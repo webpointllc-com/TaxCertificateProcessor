@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I Just Farted — Beta Console</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2kX0r1xq1sQ0aTQ4n6l0pGxK5xX3fY3v0g0Xg9A=" crossorigin="anonymous">
+<style>
+:root {
+  --bg:#f5f5f7;
+  --card:#ffffff;
+  --accent:#ff3b30;
+  --accent-dark:#d93025;
+  --success:#00d084;
+  --error:#ff4444;
+  --border:#e5e5ea;
+  --text:#222;
+  --muted:#6c6c70;
+}
+* { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+html, body { height:100%; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+body { position:relative; }
+
+#map-container { position:fixed; inset:0; z-index:0; opacity:0; pointer-events:none; transition:opacity .4s ease, transform .4s ease; }
+#map-container.visible { opacity:1; pointer-events:auto; z-index:4; }
+#map { width:100%; height:100%; }
+.map-close { position:absolute; top:12px; right:16px; z-index:11; border:none; border-radius:999px; background:rgba(255,255,255,0.92); padding:6px 12px; font-weight:600; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.12); }
+
+.header { position:fixed; top:0; left:0; right:0; height:54px; background:var(--card); display:flex; align-items:center; justify-content:space-between; padding:0 16px; box-shadow:0 2px 18px rgba(0,0,0,0.06); z-index:2; }
+.hamburger { width:32px; height:24px; display:flex; flex-direction:column; justify-content:space-between; cursor:pointer; }
+.hamburger span { width:100%; height:3px; background:#333; border-radius:2px; transition:0.28s; }
+.hamburger.active span:nth-child(1){ transform:rotate(45deg) translate(6px,6px); }
+.hamburger.active span:nth-child(2){ opacity:0; transform:translateX(-10px); }
+.hamburger.active span:nth-child(3){ transform:rotate(-45deg) translate(7px,-7px); }
+.logo { font-weight:700; font-size:1.1rem; display:flex; align-items:center; gap:8px; }
+.ghost-btn { border:1px solid var(--border); background:var(--card); color:var(--text); border-radius:20px; padding:6px 14px; font-weight:600; cursor:pointer; transition:0.2s; }
+.ghost-btn:hover { border-color:#bbb; }
+
+.menu { position:fixed; top:0; left:-320px; width:280px; height:100vh; background:var(--card); box-shadow:2px 0 24px rgba(0,0,0,0.12); transition:0.32s cubic-bezier(.2,.9,.2,1); z-index:3; padding-top:70px; }
+.menu.open { left:0; }
+.menu-item { padding:18px 22px; border-bottom:1px solid var(--border); cursor:pointer; font-size:0.96rem; color:var(--text); display:flex; justify-content:space-between; align-items:center; }
+.menu-item:hover { background:#f8f9fb; }
+.menu-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.28); display:none; z-index:2; }
+.menu-overlay.show { display:block; }
+
+.container { max-width:480px; margin:78px auto 60px; padding:0 18px 40px; display:flex; flex-direction:column; gap:18px; position:relative; z-index:1; }
+.card { background:var(--card); border-radius:16px; padding:18px; box-shadow:0 2px 14px rgba(0,0,0,0.06); }
+.status-section { text-align:center; }
+.status-label { font-size:0.95rem; color:var(--muted); display:flex; justify-content:center; align-items:center; gap:6px; margin-bottom:14px; }
+.status-indicator { width:12px; height:12px; border-radius:50%; background:#bbb; box-shadow:none; transition:0.3s; }
+.status-indicator.active { background:var(--success); box-shadow:0 0 12px rgba(0,208,132,0.8); }
+.toggle-container { display:flex; justify-content:center; }
+.toggle-switch { position:relative; width:120px; height:60px; }
+.toggle-switch input { display:none; }
+.slider { position:absolute; inset:0; background:#d1d1d6; border-radius:30px; transition:0.28s; box-shadow:inset 0 3px 10px rgba(0,0,0,0.12); }
+.slider::before { content:''; position:absolute; width:50px; height:50px; left:6px; bottom:5px; background:#fff; border-radius:50%; transition:0.3s ease; box-shadow:0 3px 12px rgba(0,0,0,0.18); }
+.toggle-switch span { position:absolute; top:50%; transform:translateY(-50%); font-weight:700; font-size:0.9rem; color:#fff; letter-spacing:0.03em; transition:0.28s; }
+.on-text { left:18px; opacity:0; }
+.off-text { right:16px; opacity:1; }
+input:checked + .slider { background:var(--success); }
+input:checked + .slider::before { transform:translateX(62px); }
+input:checked + .slider .on-text { opacity:1; }
+input:checked + .slider .off-text { opacity:0; }
+
+.button-section { display:flex; flex-direction:column; align-items:center; gap:10px; }
+#button-container { width:220px; height:220px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#ff5f50,#d32f2f); box-shadow:0 10px 25px rgba(0,0,0,0.18); cursor:pointer; transition:0.2s; position:relative; }
+#button-container.disabled { cursor:not-allowed; opacity:0.55; filter:grayscale(0.2); }
+#button-container canvas { border-radius:999px; }
+.button-fallback { color:#fff; font-weight:700; font-size:1.3rem; }
+.button-hint { font-size:0.88rem; color:var(--muted); }
+
+#fart-animation { position:absolute; width:20px; height:20px; border-radius:50%; background:rgba(255,200,50,0.35); pointer-events:none; opacity:0; }
+
+.map-card h4 { font-size:1rem; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; }
+.map-card button { border:none; background:rgba(0,208,132,0.12); color:var(--success); font-weight:600; padding:6px 10px; border-radius:999px; cursor:pointer; }
+.timeline { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.timeline li { padding:10px; border-radius:12px; background:#f8f9fb; border:1px solid #f1f1f4; font-size:0.9rem; line-height:1.3; }
+.timeline li strong { display:block; font-size:0.85rem; color:var(--muted); margin-bottom:4px; }
+.timeline-empty { text-align:center; color:var(--muted); font-style:italic; }
+
+.report-button { width:100%; padding:14px; border-radius:12px; border:2px dashed var(--border); background:#f8f9fa; font-weight:600; cursor:pointer; transition:0.2s; }
+.report-button.disabled { color:#bbb; border-color:#e5e5ea; cursor:not-allowed; }
+.report-button:not(.disabled):hover { border-color:var(--accent); color:var(--accent); }
+
+.notification { position:fixed; top:70px; right:16px; min-width:220px; background:var(--card); padding:14px 18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.15); transform:translateX(320px); transition:0.3s; z-index:6; font-size:0.92rem; border-left:4px solid transparent; }
+.notification.show { transform:translateX(0); }
+.notification.success { border-color:var(--success); }
+.notification.error { border-color:var(--error); }
+
+.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.35); justify-content:center; align-items:center; z-index:5; padding:20px; }
+.modal.show { display:flex; }
+.modal-content { background:var(--card); padding:20px; border-radius:14px; width:100%; max-width:380px; box-shadow:0 10px 30px rgba(0,0,0,0.18); }
+.modal-content h3 { margin-bottom:14px; }
+.modal-content input, .modal-content textarea { width:100%; padding:12px; border-radius:10px; border:2px solid var(--border); margin-bottom:12px; font-size:0.95rem; }
+.modal-buttons { display:flex; gap:10px; }
+.modal-btn { flex:1; padding:12px; border:none; border-radius:10px; font-weight:700; cursor:pointer; }
+.modal-btn.cancel { background:#f0f0f0; color:#555; }
+.modal-btn.confirm { background:#222; color:#fff; }
+.friends-list { max-height:240px; overflow:auto; display:flex; flex-direction:column; gap:10px; }
+.friend-item { display:flex; justify-content:space-between; align-items:center; padding:10px; border-radius:10px; border:1px solid #f1f1f4; }
+.friend-status { font-size:0.8rem; color:var(--muted); }
+.friend-status.online { color:var(--success); font-weight:600; }
+.remove-friend { border:none; background:var(--error); color:#fff; border-radius:8px; padding:6px 10px; font-size:0.8rem; cursor:pointer; }
+
+@media (max-width:520px){
+  .container { margin-top:74px; padding:0 14px 80px; }
+  .menu { width:250px; }
+  #button-container { width:200px; height:200px; }
+}
+</style>
+</head>
+<body>
+<div id="map-container" aria-hidden="true">
+  <div id="map"></div>
+  <button id="map-close" class="map-close">Close map</button>
+</div>
+
+<header class="header">
+  <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+  <div class="logo">🔔💨 Fart Status</div>
+  <button class="ghost-btn" id="map-toggle">Map</button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Quick actions">
+  <div class="menu-item" data-action="map">Live map<span>⌘M</span></div>
+  <div class="menu-item" data-action="broadcast">Instant fart<span>⌘F</span></div>
+  <div class="menu-item" data-action="report">Report smell</div>
+  <div class="menu-item" data-action="add-friend">Add friend</div>
+  <div class="menu-item" data-action="friends">Friends list</div>
+  <div class="menu-item" data-action="settings">Settings</div>
+  <div class="menu-item" data-action="about">About</div>
+</nav>
+<div class="menu-overlay" id="menu-overlay"></div>
+
+<main class="container">
+  <section class="card status-section">
+    <div class="status-label">Stream💨 status <span class="status-indicator" id="status-dot"></span></div>
+    <h2 id="status-text">Go Live</h2>
+    <div class="toggle-container">
+      <label class="toggle-switch">
+        <input type="checkbox" id="status-toggle">
+        <div class="slider">
+          <span class="on-text">ON</span>
+          <span class="off-text">OFF</span>
+        </div>
+      </label>
+    </div>
+  </section>
+
+  <section class="card button-section">
+    <div id="button-container" class="disabled" aria-live="polite">
+      <div class="button-fallback">Fart</div>
+      <div id="fart-animation"></div>
+    </div>
+    <p class="button-hint">Turn the stream on to broadcast a fart ping.</p>
+  </section>
+
+  <section class="card map-card">
+    <h4>Recent pins <button id="map-card-open">View</button></h4>
+    <ul id="timeline" class="timeline"><li class="timeline-empty">No farts logged yet.</li></ul>
+  </section>
+
+  <section class="card report-section">
+    <button class="report-button disabled" id="report-btn">Report suspicious smell</button>
+  </section>
+</main>
+
+<div class="notification" id="notification" role="status" aria-live="polite"></div>
+
+<div class="modal" id="report-modal" aria-hidden="true">
+  <div class="modal-content">
+    <h3>Report Fart</h3>
+    <textarea id="report-text" rows="3" placeholder="Describe what happened..."></textarea>
+    <input type="file" id="report-photo" accept="image/*">
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" data-close="report-modal">Cancel</button>
+      <button class="modal-btn confirm" id="report-submit">Submit</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="add-friend-modal" aria-hidden="true">
+  <div class="modal-content">
+    <h3>Add friend</h3>
+    <input type="text" id="friend-username" placeholder="Username">
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" data-close="add-friend-modal">Cancel</button>
+      <button class="modal-btn confirm" id="friend-submit">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="friends-modal" aria-hidden="true">
+  <div class="modal-content">
+    <h3>Friends</h3>
+    <div class="friends-list" id="friends-list"></div>
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" data-close="friends-modal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-nvGx0G6Xj6kQm1vN6zF8QH2r8v3yxG1I5T6Yf6b7Yqg=" crossorigin="anonymous"></script>
+<script>
+(function(){
+  const DEFAULT_COORDS = { lat:37.7749, lng:-122.4194 };
+  const STORAGE_KEY = 'fart_status_pins_v2';
+  const FRIENDS_KEY = 'fart_status_friends_v1';
+  const STATUS_KEY = 'fart_status_live';
+  const MAX_TIMELINE = 6;
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
+  const menuOverlay = document.getElementById('menu-overlay');
+  const mapContainer = document.getElementById('map-container');
+  const mapToggle = document.getElementById('map-toggle');
+  const mapCardOpen = document.getElementById('map-card-open');
+  const mapClose = document.getElementById('map-close');
+  const statusToggle = document.getElementById('status-toggle');
+  const statusText = document.getElementById('status-text');
+  const statusDot = document.getElementById('status-dot');
+  const buttonContainer = document.getElementById('button-container');
+  const reportBtn = document.getElementById('report-btn');
+  const reportModal = document.getElementById('report-modal');
+  const addFriendModal = document.getElementById('add-friend-modal');
+  const friendsModal = document.getElementById('friends-modal');
+  const notification = document.getElementById('notification');
+  const reportSubmit = document.getElementById('report-submit');
+  const reportText = document.getElementById('report-text');
+  const reportPhoto = document.getElementById('report-photo');
+  const friendSubmit = document.getElementById('friend-submit');
+  const friendInput = document.getElementById('friend-username');
+  const friendsList = document.getElementById('friends-list');
+  const timelineEl = document.getElementById('timeline');
+  const fartAnim = document.getElementById('fart-animation');
+  let notifTimer = null;
+  let isActive = false;
+  let map, markersLayer;
+  let friends = loadFriends();
+  let buttonRenderer = null;
+  let buttonMesh = null;
+  let scene, camera;
+  let lastPress = 0;
+
+  function showNotification(msg, type='success'){
+    notification.textContent = msg;
+    notification.className = `notification ${type} show`;
+    clearTimeout(notifTimer);
+    notifTimer = setTimeout(()=> notification.classList.remove('show'), 3200);
+  }
+
+  const ESCAPE_LOOKUP = { 34:'&quot;', 38:'&amp;', 39:'&#39;', 60:'&lt;', 62:'&gt;' };
+
+  function escapeHTML(value=''){
+    return String(value).replace(/[&<>"']/g, char => ESCAPE_LOOKUP[char.charCodeAt(0)] || char);
+  }
+
+  function loadPins(){
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function savePins(pins){ localStorage.setItem(STORAGE_KEY, JSON.stringify(pins)); }
+
+  function loadFriends(){
+    try { return JSON.parse(localStorage.getItem(FRIENDS_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function saveFriends(){ localStorage.setItem(FRIENDS_KEY, JSON.stringify(friends)); }
+
+  function toggleMenu(force){
+    const open = force !== undefined ? force : !menu.classList.contains('open');
+    menu.classList.toggle('open', open);
+    menuOverlay.classList.toggle('show', open);
+    hamburger.classList.toggle('active', open);
+  }
+
+  function openMap(){
+    mapContainer.classList.add('visible');
+    mapContainer.setAttribute('aria-hidden','false');
+    initMap();
+    setTimeout(()=> map && map.invalidateSize(), 200);
+  }
+  function closeMap(){
+    mapContainer.classList.remove('visible');
+    mapContainer.setAttribute('aria-hidden','true');
+  }
+
+  function initMap(){
+    if(map) { refreshPins(); return; }
+    map = L.map('map', { center:[DEFAULT_COORDS.lat, DEFAULT_COORDS.lng], zoom:3, zoomControl:true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19 }).addTo(map);
+    markersLayer = L.layerGroup().addTo(map);
+    refreshPins();
+  }
+
+  function refreshPins(){
+    const pins = loadPins();
+    if(markersLayer){
+      markersLayer.clearLayers();
+      pins.forEach(pin => {
+        const marker = L.marker([pin.lat, pin.lng]).addTo(markersLayer);
+        const note = pin.text ? `<br>${escapeHTML(pin.text).replace(/\n/g,'<br>')}` : '';
+        marker.bindPopup(`${pin.type==='report' ? 'Report' : 'Broadcast'} · ${new Date(pin.t).toLocaleString()}${note}`);
+      });
+    }
+    renderTimeline(pins);
+  }
+
+  function renderTimeline(pins){
+    if(!pins.length){
+      timelineEl.innerHTML = '<li class="timeline-empty">No farts logged yet.</li>';
+      return;
+    }
+    const items = pins.slice(-MAX_TIMELINE).reverse().map(pin => {
+      const label = pin.type === 'report' ? 'Report' : 'Broadcast';
+      const time = new Date(pin.t).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+      const note = pin.text ? `<div>${escapeHTML(pin.text).replace(/\n/g,'<br>')}</div>` : '';
+      const badge = pin.type === 'report' ? 'style="color:var(--error);"' : 'style="color:var(--success);"';
+      return `<li><strong ${badge}>${label} · ${time}</strong>${note || 'Pinned location saved.'}</li>`;
+    });
+    timelineEl.innerHTML = items.join('');
+  }
+
+  function persistPin(pin){
+    const pins = loadPins();
+    pins.push(pin);
+    savePins(pins);
+    refreshPins();
+    if(map){
+      const popupText = `${pin.type==='report' ? 'Report' : 'Broadcast'} · ${new Date(pin.t).toLocaleString()}${pin.text ? `<br>${escapeHTML(pin.text).replace(/\n/g,'<br>')}` : ''}`;
+      L.popup({ closeButton:true })
+        .setLatLng([pin.lat, pin.lng])
+        .setContent(popupText)
+        .openOn(map);
+      map.setView([pin.lat, pin.lng], 15, { animate:true });
+    }
+  }
+
+  function captureLocation(onSuccess){
+    if(!navigator.geolocation){
+      onSuccess({ lat:DEFAULT_COORDS.lat, lng:DEFAULT_COORDS.lng, fallback:true });
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(position => {
+      onSuccess({ lat:position.coords.latitude, lng:position.coords.longitude });
+    }, () => onSuccess({ lat:DEFAULT_COORDS.lat, lng:DEFAULT_COORDS.lng, fallback:true }), { timeout:8000 });
+  }
+
+  function broadcastFart(){
+    if(!isActive){ showNotification('Flip the live switch first', 'error'); return; }
+    const now = Date.now();
+    if(now - lastPress < 600){ return; }
+    lastPress = now;
+    animateButton();
+    triggerFartRipple();
+    captureLocation(coords => {
+      persistPin({ lat:coords.lat, lng:coords.lng, t:Date.now(), type:'broadcast' });
+      showNotification(coords.fallback ? 'Fart pinned at HQ backup' : 'Fart broadcasted!');
+      vibrateDevice();
+      notifyFriends();
+    });
+  }
+
+  function submitReport(){
+    if(!isActive){ showNotification('Go live to report things', 'error'); return; }
+    const note = reportText.value.trim();
+    const file = reportPhoto.files[0];
+    if(!note && !file){ showNotification('Add a note or photo', 'error'); return; }
+    const text = `${note}${file ? `\nPhoto: ${file.name}` : ''}`.trim();
+    captureLocation(coords => {
+      persistPin({ lat:coords.lat, lng:coords.lng, t:Date.now(), type:'report', text });
+      closeModal(reportModal);
+      reportText.value = '';
+      reportPhoto.value = '';
+      showNotification('Report saved. Pee-yew!');
+    });
+  }
+
+  function vibrateDevice(){
+    if(navigator.vibrate){ navigator.vibrate([60, 120, 60]); }
+  }
+
+  function triggerFartRipple(){
+    fartAnim.style.opacity = 1;
+    fartAnim.style.width = '30px';
+    fartAnim.style.height = '30px';
+    fartAnim.style.left = 'calc(50% - 15px)';
+    fartAnim.style.top = 'calc(50% - 15px)';
+    fartAnim.animate([
+      { transform:'scale(1)', opacity:0.4 },
+      { transform:'scale(5)', opacity:0 }
+    ], { duration:700, easing:'ease-out' });
+    setTimeout(()=> fartAnim.style.opacity=0, 700);
+  }
+
+  function initButton(){
+    if(!window.THREE || !buttonContainer){ return; }
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+    camera.position.z = 4.5;
+    try {
+      buttonRenderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+    } catch(err){
+      console.warn('WebGL renderer unavailable', err);
+      return;
+    }
+    buttonRenderer.setSize(buttonContainer.clientWidth, buttonContainer.clientHeight);
+    buttonRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    if(!buttonRenderer.domElement){ return; }
+    const ripple = fartAnim;
+    buttonContainer.innerHTML = '';
+    buttonContainer.appendChild(buttonRenderer.domElement);
+    if(ripple){ buttonContainer.appendChild(ripple); }
+    const geometry = new THREE.CylinderGeometry(1.3, 1.4, 0.6, 64);
+    const material = new THREE.MeshStandardMaterial({ color:0xff3b30, metalness:0.3, roughness:0.4 });
+    buttonMesh = new THREE.Mesh(geometry, material);
+    buttonMesh.rotation.x = Math.PI/2;
+    scene.add(buttonMesh);
+    const topLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    topLight.position.set(2, 2, 4);
+    scene.add(topLight);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+    const label = document.createElement('div');
+    label.textContent = 'FART';
+    label.style.position = 'absolute';
+    label.style.top = '50%';
+    label.style.left = '50%';
+    label.style.transform = 'translate(-50%, -50%)';
+    label.style.fontWeight = '700';
+    label.style.letterSpacing = '0.15em';
+    label.style.color = '#fff';
+    label.style.textShadow = '0 2px 8px rgba(0,0,0,0.35)';
+    buttonContainer.appendChild(label);
+
+    const renderLoop = () => {
+      if(buttonMesh){ buttonMesh.rotation.z = Math.sin(performance.now() * 0.001) * 0.04; }
+      buttonRenderer.render(scene, camera);
+      requestAnimationFrame(renderLoop);
+    };
+    renderLoop();
+  }
+
+  function animateButton(){
+    if(!buttonMesh){ return; }
+    buttonMesh.position.z = -0.2;
+    setTimeout(()=> buttonMesh.position.z = 0, 160);
+  }
+
+  function updateStatusUI(){
+    buttonContainer.classList.toggle('disabled', !isActive);
+    buttonContainer.setAttribute('aria-disabled', String(!isActive));
+    reportBtn.classList.toggle('disabled', !isActive);
+    reportBtn.setAttribute('aria-disabled', String(!isActive));
+    statusText.textContent = isActive ? 'Live Now' : 'Go Live';
+    statusDot.classList.toggle('active', isActive);
+  }
+
+  function openModal(modal){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
+  function closeModal(modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
+
+  function renderFriends(){
+    if(!friends.length){
+      friendsList.innerHTML = '<p style="color:var(--muted); text-align:center;">No friends yet.</p>';
+      return;
+    }
+    friendsList.innerHTML = friends.map((friend, index) => `
+      <div class="friend-item">
+        <div>
+          <div style="font-weight:600;">${escapeHTML(friend.username)}</div>
+          <div class="friend-status ${friend.online ? 'online' : ''}">${friend.online ? 'Online' : 'Offline'}</div>
+        </div>
+        <button class="remove-friend" data-remove="${index}">Remove</button>
+      </div>
+    `).join('');
+  }
+
+  function notifyFriends(){
+    if(friends.length){
+      showNotification(`Alerted ${friends.length} friend${friends.length>1?'s':''}!`);
+    }
+  }
+
+  // Event wiring
+  hamburger.addEventListener('click', () => toggleMenu());
+  hamburger.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+  menuOverlay.addEventListener('click', () => toggleMenu(false));
+  mapToggle.addEventListener('click', openMap);
+  mapCardOpen.addEventListener('click', openMap);
+  mapClose.addEventListener('click', closeMap);
+  buttonContainer.addEventListener('click', broadcastFart);
+  reportBtn.addEventListener('click', () => { if(isActive) openModal(reportModal); else showNotification('Go live first', 'error'); });
+  reportSubmit.addEventListener('click', submitReport);
+  friendSubmit.addEventListener('click', () => {
+    const username = friendInput.value.trim();
+    if(!username){ showNotification('Enter a username', 'error'); return; }
+    friends.push({ username, online: Math.random() > 0.5 });
+    friendInput.value='';
+    saveFriends();
+    renderFriends();
+    closeModal(addFriendModal);
+    showNotification('Friend added');
+  });
+  friendsList.addEventListener('click', e => {
+    const idx = e.target.dataset.remove;
+    if(idx !== undefined){ friends.splice(Number(idx), 1); saveFriends(); renderFriends(); showNotification('Friend removed'); }
+  });
+
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const target = document.getElementById(e.currentTarget.dataset.close);
+      if(target) closeModal(target);
+    });
+  });
+  [reportModal, addFriendModal, friendsModal].forEach(modal => {
+    modal.addEventListener('click', e => { if(e.target === modal) closeModal(modal); });
+  });
+
+  menu.addEventListener('click', e => {
+    const action = e.target.closest('.menu-item')?.dataset.action;
+    if(!action) return;
+    toggleMenu(false);
+    switch(action){
+      case 'map': openMap(); break;
+      case 'broadcast': broadcastFart(); break;
+      case 'report': reportBtn.click(); break;
+      case 'add-friend': openModal(addFriendModal); break;
+      case 'friends': renderFriends(); openModal(friendsModal); break;
+      case 'settings': showNotification('Settings coming soon'); break;
+      case 'about': showNotification('I Just Farted · Beta', 'success'); break;
+      default: break;
+    }
+  });
+
+  statusToggle.addEventListener('change', () => {
+    isActive = statusToggle.checked;
+    localStorage.setItem(STATUS_KEY, JSON.stringify(isActive));
+    updateStatusUI();
+    showNotification(isActive ? 'You are now broadcasting' : 'Stream paused', isActive ? 'success' : 'error');
+  });
+
+  window.addEventListener('resize', () => {
+    if(buttonRenderer){ buttonRenderer.setSize(buttonContainer.clientWidth, buttonContainer.clientHeight); }
+    if(map){ map.invalidateSize(); }
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      [reportModal, addFriendModal, friendsModal].forEach(closeModal);
+      toggleMenu(false);
+      closeMap();
+    }
+  });
+
+  // init
+  initButton();
+  isActive = JSON.parse(localStorage.getItem(STATUS_KEY) || 'false');
+  statusToggle.checked = isActive;
+  updateStatusUI();
+  refreshPins();
+  renderFriends();
+})();
+</script>
+</body>
+</html>
