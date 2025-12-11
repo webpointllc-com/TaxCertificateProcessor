@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>I Just Farted — Beta</title>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+html, body { 
+  width:100%; 
+  height:100%; 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Header */
+.header { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  height: 56px; 
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0 16px; 
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.hamburger { 
+  width: 28px; 
+  height: 28px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-around; 
+  cursor: pointer; 
+  z-index: 101; 
+  padding: 4px 0;
+}
+.hamburger span { 
+  width: 100%; 
+  height: 2px; 
+  background: #fff; 
+  display: block; 
+  border-radius: 2px; 
+  transition: 0.3s; 
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+.logo { 
+  font-size: 1.2rem; 
+  font-weight: 700; 
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-emoji { font-size: 1.4rem; }
+
+/* Slide Menu */
+.menu { 
+  position: fixed; 
+  top: 0; 
+  left: -300px; 
+  width: 280px; 
+  height: 100vh; 
+  background: rgba(26, 26, 46, 0.98);
+  backdrop-filter: blur(20px);
+  box-shadow: 2px 0 30px rgba(0,0,0,0.3); 
+  transition: 0.32s cubic-bezier(.2,.9,.2,1); 
+  z-index: 999; 
+  padding-top: 70px; 
+}
+.menu.open { left: 0; }
+.menu-item { 
+  padding: 18px 24px; 
+  border-bottom: 1px solid rgba(255,255,255,0.08); 
+  cursor: pointer; 
+  font-size: 1rem; 
+  color: rgba(255,255,255,0.85); 
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.menu-item:hover { 
+  background: rgba(255,255,255,0.1); 
+  color: #fff;
+}
+.menu-item-icon { font-size: 1.2rem; }
+.menu-overlay { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100vh; 
+  background: rgba(0,0,0,0.5); 
+  display: none; 
+  z-index: 998; 
+  transition: 0.2s; 
+}
+.menu-overlay.show { display: block; }
+
+/* Main Container */
+#main-container { 
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: flex-start;
+  padding: 70px 20px 20px;
+  overflow-y: auto;
+}
+
+/* Status Section */
+.status-section { 
+  width: 100%;
+  max-width: 360px;
+  background: rgba(255,255,255,0.08); 
+  border-radius: 16px; 
+  padding: 16px 20px; 
+  margin-bottom: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.status-label { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  font-size: 0.95rem; 
+  color: rgba(255,255,255,0.7);
+}
+.status-indicator { 
+  width: 10px; 
+  height: 10px; 
+  border-radius: 50%; 
+  background: #666; 
+  transition: 0.3s;
+  margin-left: 8px;
+}
+.status-indicator.active { 
+  background: #00d084; 
+  box-shadow: 0 0 15px #00d084; 
+  animation: pulse 2s infinite; 
+}
+@keyframes pulse { 0%,100%{ opacity:1 } 50%{ opacity:0.6 } }
+
+.toggle-container { margin-top: 12px; display: flex; justify-content: center; }
+.toggle-switch { position: relative; width: 100px; height: 50px; cursor: pointer; user-select: none; }
+.toggle-switch input { display: none; }
+.slider { 
+  position: absolute; 
+  inset: 0; 
+  background: rgba(255,255,255,0.15); 
+  border-radius: 25px; 
+  transition: 0.28s;
+}
+.slider::before { 
+  content: ''; 
+  position: absolute; 
+  width: 42px; 
+  height: 42px; 
+  left: 4px; 
+  bottom: 4px; 
+  background: white; 
+  border-radius: 50%; 
+  transition: 0.28s; 
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3); 
+}
+input:checked + .slider { background: #00d084; }
+input:checked + .slider::before { transform: translateX(50px); }
+
+/* Button Section */
+.button-section { 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  flex: 1;
+  min-height: 280px;
+  position: relative;
+}
+
+#easy-button { 
+  width: 200px; 
+  height: 200px; 
+  background: linear-gradient(145deg, #ff4757, #ff3344);
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 1.8rem; 
+  font-weight: 800; 
+  color: white; 
+  cursor: pointer; 
+  box-shadow: 
+    0 8px 30px rgba(255, 71, 87, 0.5),
+    inset 0 -4px 10px rgba(0,0,0,0.2),
+    inset 0 4px 10px rgba(255,255,255,0.2);
+  transition: 0.2s; 
+  user-select: none;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 10;
+}
+#easy-button.disabled { 
+  background: linear-gradient(145deg, #555, #444);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+#easy-button:not(.disabled):active { 
+  transform: scale(0.95); 
+  box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+}
+
+#fart-animation { 
+  position: absolute; 
+  border-radius: 50%; 
+  background: radial-gradient(circle, rgba(255,200,50,0.4) 0%, rgba(255,200,50,0) 70%);
+  pointer-events: none; 
+  z-index: 5; 
+  display: none; 
+}
+
+/* Report Button */
+.report-section {
+  width: 100%;
+  max-width: 360px;
+  margin-top: auto;
+  padding-bottom: 10px;
+}
+.report-button { 
+  width: 100%; 
+  padding: 16px; 
+  background: rgba(255,255,255,0.1); 
+  color: rgba(255,255,255,0.7); 
+  border: 2px solid rgba(255,255,255,0.2); 
+  border-radius: 12px; 
+  font-size: 1rem; 
+  font-weight: 600; 
+  cursor: pointer; 
+  transition: 0.24s; 
+}
+.report-button:not(.disabled):hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.report-button.disabled { 
+  opacity: 0.4;
+  cursor: not-allowed; 
+}
+
+/* Map Container */
+#map-container { 
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+  transition: all 0.4s cubic-bezier(.2,.9,.2,1);
+  z-index: 100;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  border: 2px solid rgba(255,255,255,0.2);
+}
+#map-container.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+#map { width: 100%; height: 100%; }
+.map-close { 
+  position: absolute; 
+  top: 8px; 
+  right: 8px; 
+  width: 28px;
+  height: 28px;
+  border: none; 
+  background: rgba(0,0,0,0.6); 
+  color: white;
+  border-radius: 50%; 
+  cursor: pointer; 
+  z-index: 1000;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Notifications */
+.notification { 
+  position: fixed; 
+  top: 70px; 
+  right: 16px; 
+  background: rgba(255,255,255,0.95); 
+  padding: 14px 18px; 
+  border-radius: 12px; 
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2); 
+  transform: translateX(400px); 
+  transition: 0.32s cubic-bezier(.2,.9,.2,1); 
+  z-index: 2000; 
+  font-size: 0.95rem;
+  color: #333;
+  max-width: 300px;
+}
+.notification.show { transform: translateX(0); }
+.notification.success { border-left: 4px solid #00d084; }
+.notification.error { border-left: 4px solid #ff4444; }
+
+/* Modals */
+.modal { 
+  display: none; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0,0,0,0.6); 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 3000;
+  padding: 20px;
+}
+.modal.show { display: flex; }
+.modal-content { 
+  background: #1a1a2e; 
+  padding: 24px; 
+  border-radius: 16px; 
+  width: 100%; 
+  max-width: 340px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.modal-content h3 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+.modal-content input, 
+.modal-content textarea { 
+  width: 100%; 
+  padding: 14px; 
+  border: 2px solid rgba(255,255,255,0.15); 
+  border-radius: 10px; 
+  margin-bottom: 12px; 
+  font-size: 1rem;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+.modal-content input::placeholder,
+.modal-content textarea::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+.modal-content input:focus,
+.modal-content textarea:focus {
+  outline: none;
+  border-color: #00d084;
+}
+.modal-buttons { display: flex; gap: 12px; margin-top: 8px; }
+.modal-btn { 
+  flex: 1; 
+  padding: 14px; 
+  border: none; 
+  border-radius: 10px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  font-size: 1rem; 
+  transition: 0.2s; 
+}
+.modal-btn.cancel { background: rgba(255,255,255,0.1); color: #fff; }
+.modal-btn.cancel:hover { background: rgba(255,255,255,0.15); }
+.modal-btn.confirm { background: #00d084; color: white; }
+.modal-btn.confirm:hover { background: #00b872; }
+
+/* Friends List */
+.friends-list { 
+  max-height: 300px; 
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+.friend-item { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 12px 0; 
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.friend-info { flex: 1; }
+.friend-name { font-weight: 600; }
+.friend-status { 
+  font-size: 0.85rem; 
+  color: rgba(255,255,255,0.5);
+  margin-top: 2px;
+}
+.friend-status.online { color: #00d084; font-weight: 600; }
+.remove-friend { 
+  background: #ff4444; 
+  color: white; 
+  border: none; 
+  border-radius: 8px; 
+  padding: 6px 12px; 
+  cursor: pointer; 
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.no-friends {
+  text-align: center;
+  padding: 30px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Fart Counter */
+.fart-counter {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+}
+.fart-counter strong {
+  color: #00d084;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  #easy-button { width: 160px; height: 160px; font-size: 1.5rem; }
+  .status-section, .report-section { max-width: 100%; }
+  #map-container { width: 150px; height: 150px; bottom: 15px; right: 15px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="logo">
+    <span class="logo-emoji">💨</span>
+    <span>I Just Farted</span>
+  </div>
+  <div style="width:28px;"></div>
+</div>
+
+<!-- Slide Menu -->
+<div class="menu" id="menu">
+  <div class="menu-item" onclick="showAddFriend()">
+    <span class="menu-item-icon">👥</span> Add Friends
+  </div>
+  <div class="menu-item" onclick="showFriends()">
+    <span class="menu-item-icon">📋</span> Friends List
+  </div>
+  <div class="menu-item" onclick="showHistory()">
+    <span class="menu-item-icon">📍</span> Fart History
+  </div>
+  <div class="menu-item" onclick="clearHistory()">
+    <span class="menu-item-icon">🗑️</span> Clear History
+  </div>
+  <div class="menu-item" onclick="showAbout()">
+    <span class="menu-item-icon">ℹ️</span> About
+  </div>
+</div>
+<div class="menu-overlay" id="menu-overlay"></div>
+
+<!-- Main Container -->
+<div id="main-container">
+  <!-- Status Section -->
+  <div class="status-section">
+    <div class="status-label">
+      <span>Stream Status: <strong id="status-text">Offline</strong></span>
+      <span class="status-indicator" id="status-dot"></span>
+    </div>
+    <div class="toggle-container">
+      <label class="toggle-switch">
+        <input type="checkbox" id="status-toggle">
+        <div class="slider"></div>
+      </label>
+    </div>
+  </div>
+
+  <!-- Button Section -->
+  <div class="button-section">
+    <div id="easy-button" class="disabled">FART</div>
+    <div id="fart-animation"></div>
+    <div class="fart-counter">
+      Total Farts: <strong id="fart-count">0</strong>
+    </div>
+  </div>
+
+  <!-- Report Section -->
+  <div class="report-section">
+    <button class="report-button disabled" id="report-btn" onclick="openReport()">
+      📝 Report a Fart Sighting
+    </button>
+  </div>
+</div>
+
+<!-- Mini Map -->
+<div id="map-container">
+  <button class="map-close" onclick="closeMap()">✕</button>
+  <div id="map"></div>
+</div>
+
+<!-- Notification -->
+<div class="notification" id="notification"></div>
+
+<!-- Add Friend Modal -->
+<div class="modal" id="add-friend-modal">
+  <div class="modal-content">
+    <h3>👥 Add Friend</h3>
+    <input type="text" id="friend-username" placeholder="Enter username or code">
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" onclick="closeModal('add-friend-modal')">Cancel</button>
+      <button class="modal-btn confirm" onclick="confirmAddFriend()">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Friends List Modal -->
+<div class="modal" id="friends-modal">
+  <div class="modal-content">
+    <h3>📋 Friends List</h3>
+    <div class="friends-list" id="friends-list"></div>
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" onclick="closeModal('friends-modal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Report Modal -->
+<div class="modal" id="report-modal">
+  <div class="modal-content">
+    <h3>📝 Report Fart</h3>
+    <textarea id="report-text" placeholder="Describe the incident..." rows="3"></textarea>
+    <input type="file" id="report-photo" accept="image/*">
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" onclick="closeModal('report-modal')">Cancel</button>
+      <button class="modal-btn confirm" onclick="confirmReport()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- History Modal -->
+<div class="modal" id="history-modal">
+  <div class="modal-content">
+    <h3>📍 Fart History</h3>
+    <div class="friends-list" id="history-list"></div>
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" onclick="closeModal('history-modal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+// ============================================
+// I Just Farted - Beta v1.0
+// Combined & Enhanced Mini App
+// ============================================
+
+// --- DOM Elements ---
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+const menuOverlay = document.getElementById('menu-overlay');
+const toggle = document.getElementById('status-toggle');
+const statusText = document.getElementById('status-text');
+const statusDot = document.getElementById('status-dot');
+const easyButton = document.getElementById('easy-button');
+const fartAnim = document.getElementById('fart-animation');
+const mapContainer = document.getElementById('map-container');
+const reportBtn = document.getElementById('report-btn');
+const notification = document.getElementById('notification');
+const fartCountEl = document.getElementById('fart-count');
+
+// --- State ---
+let isActive = false;
+let map = null;
+let markersLayer = null;
+let lastPressTime = 0;
+
+// --- Storage Keys ---
+const PINS_KEY = 'ijf_pins_v1';
+const FRIENDS_KEY = 'ijf_friends_v1';
+
+// ============================================
+// MENU FUNCTIONALITY
+// ============================================
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  menu.classList.toggle('open');
+  menuOverlay.classList.toggle('show');
+});
+
+menuOverlay.addEventListener('click', closeMenu);
+
+function closeMenu() {
+  hamburger.classList.remove('active');
+  menu.classList.remove('open');
+  menuOverlay.classList.remove('show');
+}
+
+// ============================================
+// STATUS TOGGLE
+// ============================================
+
+toggle.addEventListener('change', function() {
+  isActive = this.checked;
+  statusText.textContent = isActive ? 'Live' : 'Offline';
+  statusDot.classList.toggle('active', isActive);
+  easyButton.classList.toggle('disabled', !isActive);
+  reportBtn.classList.toggle('disabled', !isActive);
+  
+  showNotification(
+    isActive ? '🟢 You are now LIVE!' : '⚫ You are now offline',
+    isActive ? 'success' : 'error'
+  );
+  
+  if (isActive && navigator.vibrate) {
+    navigator.vibrate([50, 50, 50]);
+  }
+});
+
+// ============================================
+// EASY BUTTON - MAIN FART FUNCTIONALITY
+// ============================================
+
+easyButton.addEventListener('click', () => {
+  if (!isActive) {
+    showNotification('Turn on Live status first!', 'error');
+    return;
+  }
+  
+  // Prevent rapid pressing
+  const now = Date.now();
+  if (now - lastPressTime < 500) return;
+  lastPressTime = now;
+  
+  // Trigger animation
+  triggerFartAnimation();
+  
+  // Vibrate
+  if (navigator.vibrate) {
+    navigator.vibrate([100, 50, 100]);
+  }
+  
+  // Get location and save
+  broadcastFart();
+});
+
+function triggerFartAnimation() {
+  fartAnim.style.display = 'block';
+  fartAnim.style.width = '50px';
+  fartAnim.style.height = '50px';
+  fartAnim.style.left = 'calc(50% - 25px)';
+  fartAnim.style.top = 'calc(50% - 25px)';
+  fartAnim.style.opacity = '1';
+  
+  let size = 50;
+  const interval = setInterval(() => {
+    size += 12;
+    fartAnim.style.width = size + 'px';
+    fartAnim.style.height = size + 'px';
+    fartAnim.style.left = `calc(50% - ${size/2}px)`;
+    fartAnim.style.top = `calc(50% - ${size/2}px)`;
+    fartAnim.style.opacity = Math.max(0, 1 - size / 300);
+    
+    if (size > 300) {
+      clearInterval(interval);
+      fartAnim.style.display = 'none';
+    }
+  }, 30);
+}
+
+function broadcastFart() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const pin = {
+          id: Date.now(),
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+          timestamp: Date.now(),
+          type: 'broadcast',
+          note: ''
+        };
+        
+        savePin(pin);
+        updateFartCount();
+        showMiniMap(pin);
+        notifyFriends();
+        showNotification('💨 Fart broadcasted!', 'success');
+      },
+      (err) => {
+        // Save without location
+        const pin = {
+          id: Date.now(),
+          lat: null,
+          lng: null,
+          timestamp: Date.now(),
+          type: 'broadcast',
+          note: 'Location unavailable'
+        };
+        savePin(pin);
+        updateFartCount();
+        showNotification('💨 Fart saved (no location)', 'success');
+      },
+      { timeout: 8000, enableHighAccuracy: true }
+    );
+  } else {
+    showNotification('Geolocation not supported', 'error');
+  }
+}
+
+// ============================================
+// MAP FUNCTIONALITY
+// ============================================
+
+function initMap(lat, lng) {
+  if (map) {
+    map.remove();
+    map = null;
+  }
+  
+  map = L.map('map', {
+    center: [lat, lng],
+    zoom: 15,
+    zoomControl: false,
+    attributionControl: false
+  });
+  
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(map);
+  
+  markersLayer = L.layerGroup().addTo(map);
+}
+
+function showMiniMap(pin) {
+  if (!pin.lat || !pin.lng) return;
+  
+  initMap(pin.lat, pin.lng);
+  
+  // Add markers for all pins with location
+  const pins = loadPins().filter(p => p.lat && p.lng);
+  pins.forEach(p => {
+    const color = p.type === 'report' ? '#ff4444' : '#00d084';
+    const icon = L.divIcon({
+      html: `<div style="
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: ${color};
+        border: 3px solid white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      "></div>`,
+      className: '',
+      iconSize: [16, 16],
+      iconAnchor: [8, 8]
+    });
+    L.marker([p.lat, p.lng], { icon }).addTo(markersLayer);
+  });
+  
+  // Show map container
+  mapContainer.classList.add('show');
+  
+  // Auto-hide after 8 seconds
+  setTimeout(() => {
+    if (mapContainer.classList.contains('show')) {
+      closeMap();
+    }
+  }, 8000);
+}
+
+function closeMap() {
+  mapContainer.classList.remove('show');
+}
+
+// ============================================
+// STORAGE FUNCTIONS
+// ============================================
+
+function loadPins() {
+  try {
+    return JSON.parse(localStorage.getItem(PINS_KEY) || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function savePins(pins) {
+  localStorage.setItem(PINS_KEY, JSON.stringify(pins));
+}
+
+function savePin(pin) {
+  const pins = loadPins();
+  pins.push(pin);
+  savePins(pins);
+}
+
+function loadFriends() {
+  try {
+    return JSON.parse(localStorage.getItem(FRIENDS_KEY) || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveFriends(friends) {
+  localStorage.setItem(FRIENDS_KEY, JSON.stringify(friends));
+}
+
+function updateFartCount() {
+  const count = loadPins().length;
+  fartCountEl.textContent = count;
+}
+
+// ============================================
+// NOTIFICATIONS
+// ============================================
+
+let notifTimer = null;
+
+function showNotification(msg, type = 'success') {
+  notification.textContent = msg;
+  notification.className = `notification ${type} show`;
+  
+  clearTimeout(notifTimer);
+  notifTimer = setTimeout(() => {
+    notification.classList.remove('show');
+  }, 3000);
+}
+
+// ============================================
+// FRIENDS FUNCTIONALITY
+// ============================================
+
+function showAddFriend() {
+  closeMenu();
+  document.getElementById('friend-username').value = '';
+  document.getElementById('add-friend-modal').classList.add('show');
+}
+
+function showFriends() {
+  closeMenu();
+  renderFriends();
+  document.getElementById('friends-modal').classList.add('show');
+}
+
+function confirmAddFriend() {
+  const username = document.getElementById('friend-username').value.trim();
+  if (!username) {
+    showNotification('Please enter a username', 'error');
+    return;
+  }
+  
+  const friends = loadFriends();
+  
+  // Check if already exists
+  if (friends.some(f => f.username.toLowerCase() === username.toLowerCase())) {
+    showNotification('Friend already added', 'error');
+    return;
+  }
+  
+  friends.push({
+    id: Date.now(),
+    username: username,
+    online: Math.random() > 0.5, // Simulated
+    addedAt: Date.now()
+  });
+  
+  saveFriends(friends);
+  closeModal('add-friend-modal');
+  showNotification(`👥 ${username} added as friend!`, 'success');
+}
+
+function renderFriends() {
+  const friends = loadFriends();
+  const list = document.getElementById('friends-list');
+  
+  if (friends.length === 0) {
+    list.innerHTML = '<div class="no-friends">No friends yet. Add some!</div>';
+    return;
+  }
+  
+  list.innerHTML = friends.map((f, i) => `
+    <div class="friend-item">
+      <div class="friend-info">
+        <div class="friend-name">${escapeHtml(f.username)}</div>
+        <div class="friend-status ${f.online ? 'online' : ''}">${f.online ? '🟢 Online' : '⚫ Offline'}</div>
+      </div>
+      <button class="remove-friend" onclick="removeFriend(${f.id})">Remove</button>
+    </div>
+  `).join('');
+}
+
+function removeFriend(id) {
+  let friends = loadFriends();
+  friends = friends.filter(f => f.id !== id);
+  saveFriends(friends);
+  renderFriends();
+  showNotification('Friend removed', 'success');
+}
+
+function notifyFriends() {
+  const friends = loadFriends();
+  const onlineFriends = friends.filter(f => f.online);
+  
+  if (onlineFriends.length > 0) {
+    setTimeout(() => {
+      showNotification(`📢 Notified ${onlineFriends.length} friend${onlineFriends.length > 1 ? 's' : ''}!`, 'success');
+    }, 1500);
+  }
+}
+
+// ============================================
+// REPORT FUNCTIONALITY
+// ============================================
+
+function openReport() {
+  if (!isActive) {
+    showNotification('Turn on Live status first!', 'error');
+    return;
+  }
+  closeMenu();
+  document.getElementById('report-text').value = '';
+  document.getElementById('report-photo').value = '';
+  document.getElementById('report-modal').classList.add('show');
+}
+
+function confirmReport() {
+  const text = document.getElementById('report-text').value.trim();
+  const file = document.getElementById('report-photo').files[0];
+  
+  if (!text && !file) {
+    showNotification('Add a note or photo', 'error');
+    return;
+  }
+  
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const pin = {
+          id: Date.now(),
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+          timestamp: Date.now(),
+          type: 'report',
+          note: text || 'Fart sighting reported'
+        };
+        
+        savePin(pin);
+        updateFartCount();
+        closeModal('report-modal');
+        showMiniMap(pin);
+        showNotification('📝 Report submitted!', 'success');
+      },
+      () => {
+        const pin = {
+          id: Date.now(),
+          lat: null,
+          lng: null,
+          timestamp: Date.now(),
+          type: 'report',
+          note: text || 'Fart sighting reported'
+        };
+        
+        savePin(pin);
+        updateFartCount();
+        closeModal('report-modal');
+        showNotification('📝 Report saved (no location)', 'success');
+      }
+    );
+  } else {
+    showNotification('Geolocation not supported', 'error');
+  }
+}
+
+// ============================================
+// HISTORY FUNCTIONALITY
+// ============================================
+
+function showHistory() {
+  closeMenu();
+  renderHistory();
+  document.getElementById('history-modal').classList.add('show');
+}
+
+function renderHistory() {
+  const pins = loadPins().reverse().slice(0, 50); // Last 50
+  const list = document.getElementById('history-list');
+  
+  if (pins.length === 0) {
+    list.innerHTML = '<div class="no-friends">No farts recorded yet!</div>';
+    return;
+  }
+  
+  list.innerHTML = pins.map(p => {
+    const date = new Date(p.timestamp);
+    const typeEmoji = p.type === 'report' ? '📝' : '💨';
+    const locationText = (p.lat && p.lng) 
+      ? `${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}`
+      : 'No location';
+    
+    return `
+      <div class="friend-item">
+        <div class="friend-info">
+          <div class="friend-name">${typeEmoji} ${p.type === 'report' ? 'Report' : 'Broadcast'}</div>
+          <div class="friend-status">${date.toLocaleString()}</div>
+          <div class="friend-status">${locationText}</div>
+          ${p.note ? `<div class="friend-status">"${escapeHtml(p.note)}"</div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function clearHistory() {
+  closeMenu();
+  if (confirm('Clear all fart history?')) {
+    savePins([]);
+    updateFartCount();
+    showNotification('🗑️ History cleared', 'success');
+  }
+}
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('show');
+}
+
+function showAbout() {
+  closeMenu();
+  showNotification('💨 I Just Farted v1.0 Beta', 'success');
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateFartCount();
+  
+  // Ensure initial states
+  statusDot.classList.remove('active');
+  easyButton.classList.add('disabled');
+  reportBtn.classList.add('disabled');
+  
+  // Preload notification
+  setTimeout(() => {
+    showNotification('👋 Welcome! Turn on Live to start', 'success');
+  }, 500);
+});
+
+// Handle visibility change (refresh friend status when returning)
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    // Simulate friend status changes
+    const friends = loadFriends();
+    friends.forEach(f => {
+      f.online = Math.random() > 0.5;
+    });
+    saveFriends(friends);
+  }
+});
+</script>
+
+</body>
+</html>
