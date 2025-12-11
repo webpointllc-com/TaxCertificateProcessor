@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Fart Status — Beta</title>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2kX0r1xq1sQ0aTQ4n6l0pGxK5xX3fY3v0g0Xg9A=" crossorigin=""/>
+
+<style>
+/* --- Reset & Base --- */
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+html, body { width:100%; height:100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background:#f5f5f7; color:#222; overflow:hidden; }
+
+/* --- Header --- */
+.header { position:fixed; top:0; left:0; right:0; height:50px; background:white; display:flex; align-items:center; justify-content:space-between; padding:0 15px; box-shadow:0 2px 10px rgba(0,0,0,0.05); z-index:100; }
+.hamburger { width:30px; height:30px; display:flex; flex-direction:column; justify-content:space-around; cursor:pointer; z-index:101; }
+.hamburger span { width:100%; height:2px; background:#333; display:block; border-radius:2px; transition:0.3s; }
+.hamburger.active span:nth-child(1){ transform: rotate(45deg) translate(6px,6px); }
+.hamburger.active span:nth-child(2){ opacity:0; transform: translateX(-10px); }
+.hamburger.active span:nth-child(3){ transform: rotate(-45deg) translate(6px,-6px); }
+.logo { font-weight:700; font-size:1.2rem; color:#333; display:flex; align-items:center; gap:5px; }
+
+/* --- Menu --- */
+.menu { position:fixed; top:0; left:-320px; width:280px; height:100vh; background:white; box-shadow:2px 0 20px rgba(0,0,0,0.08); transition:0.32s cubic-bezier(.2,.9,.2,1); z-index:99; padding-top:60px; display:flex; flex-direction:column; }
+.menu.open { left:0; }
+.menu-item { padding:16px 22px; border-bottom:1px solid #f0f0f0; cursor:pointer; font-size:1rem; color:#333; transition:0.16s; display:flex; align-items:center; gap:10px; }
+.menu-item:hover { background:#f8f9fa; }
+.menu-icon { width:20px; text-align:center; font-size:1.1rem; }
+.menu-footer { margin-top:auto; padding:20px; font-size:0.8rem; color:#888; text-align:center; }
+.menu-overlay { position:fixed; top:0; left:0; width:100%; height:100vh; background: rgba(0,0,0,0.28); display:none; z-index:98; transition:0.2s; }
+.menu-overlay.show { display:block; }
+
+/* --- Main Layout --- */
+.container { max-width:420px; margin:0 auto; padding:70px 20px 20px; height:100%; overflow-y:auto; display:flex; flex-direction:column; gap:15px; }
+
+/* --- Status Card --- */
+.card { background:white; border-radius:16px; padding:20px; box-shadow:0 4px 15px rgba(0,0,0,0.04); }
+.status-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; }
+.status-label { font-size:0.95rem; font-weight:600; color:#555; display:flex; align-items:center; gap:8px; }
+.status-dot { width:10px; height:10px; border-radius:50%; background:#ccc; transition:0.3s; }
+.status-dot.active { background:#00d084; box-shadow:0 0 10px #00d084; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{ opacity:1 } 50%{ opacity:0.5 } }
+
+/* --- Toggle Switch --- */
+.toggle-switch { position:relative; width:50px; height:28px; cursor:pointer; }
+.toggle-switch input { display:none; }
+.slider { position:absolute; inset:0; background:#e0e0e0; border-radius:30px; transition:0.3s; }
+.slider::before { content:''; position:absolute; height:24px; width:24px; left:2px; bottom:2px; background:white; border-radius:50%; transition:0.3s; box-shadow:0 2px 5px rgba(0,0,0,0.2); }
+input:checked + .slider { background:#00d084; }
+input:checked + .slider::before { transform: translateX(22px); }
+
+/* --- 3D Button Container --- */
+.button-section { flex:1; display:flex; align-items:center; justify-content:center; min-height:280px; position:relative; }
+#three-button-container { width:240px; height:240px; cursor:pointer; transition:0.3s; border-radius:50%; }
+#three-button-container.disabled { opacity:0.6; filter:grayscale(0.8); cursor:not-allowed; }
+
+/* --- Action Buttons --- */
+.report-btn { width:100%; padding:16px; background:#222; color:white; border:none; border-radius:14px; font-size:1rem; font-weight:600; cursor:pointer; transition:0.2s; box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; gap:8px; }
+.report-btn:active { transform:scale(0.98); }
+.report-btn.disabled { background:#e0e0e0; color:#999; box-shadow:none; cursor:not-allowed; }
+
+/* --- Notifications --- */
+.notification { position:fixed; top:70px; right:15px; background:white; padding:12px 18px; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.15); transform:translateX(150%); transition:0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index:2000; font-size:0.95rem; display:flex; align-items:center; gap:10px; }
+.notification.show { transform:translateX(0); }
+.notification.success { border-left:4px solid #00d084; }
+.notification.error { border-left:4px solid #ff4444; }
+
+/* --- Modals (Full Screen & Popups) --- */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:3000; justify-content:center; align-items:center; padding:20px; opacity:0; transition:opacity 0.3s; }
+.modal.show { display:flex; opacity:1; }
+.modal-content { background:white; padding:24px; border-radius:16px; width:100%; max-width:340px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:scale(0.9); transition:transform 0.3s; }
+.modal.show .modal-content { transform:scale(1); }
+.modal h3 { margin-bottom:16px; font-size:1.2rem; }
+
+/* Form Elements */
+.input-group { margin-bottom:16px; }
+.input-group label { display:block; margin-bottom:6px; font-size:0.9rem; color:#666; }
+input[type="text"], textarea { width:100%; padding:12px; border:2px solid #eee; border-radius:10px; font-size:1rem; transition:0.2s; font-family:inherit; }
+input[type="text"]:focus, textarea:focus { border-color:#00d084; outline:none; }
+textarea { height:80px; resize:none; }
+.modal-buttons { display:flex; gap:12px; margin-top:20px; }
+.modal-btn { flex:1; padding:12px; border:none; border-radius:10px; font-weight:600; cursor:pointer; font-size:0.95rem; }
+.modal-btn.cancel { background:#f5f5f7; color:#666; }
+.modal-btn.confirm { background:#00d084; color:white; }
+
+/* --- Full Screen Map Modal --- */
+.map-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:2500; flex-direction:column; }
+.map-modal.show { display:flex; }
+.map-header { height:50px; display:flex; align-items:center; justify-content:space-between; padding:0 15px; border-bottom:1px solid #eee; background:white; }
+.close-map-btn { font-size:1.5rem; background:none; border:none; cursor:pointer; padding:5px 10px; }
+#full-map { flex:1; width:100%; height:100%; }
+
+/* --- Friends List --- */
+.friend-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #f0f0f0; }
+.friend-info { display:flex; flex-direction:column; }
+.friend-name { font-weight:600; font-size:1rem; }
+.friend-status { font-size:0.8rem; color:#888; margin-top:2px; }
+.friend-status.online { color:#00d084; font-weight:700; }
+.remove-btn { background:#ffeded; color:#ff4444; border:none; padding:6px 12px; border-radius:8px; font-size:0.8rem; font-weight:600; cursor:pointer; }
+
+/* --- Mini Map Popup --- */
+#mini-map-container { position:fixed; bottom:20px; right:20px; width:220px; height:220px; border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.25); z-index:1500; transform:translateY(300px); transition:0.4s cubic-bezier(0.34, 1.56, 0.64, 1); opacity:0; }
+#mini-map-container.show { transform:translateY(0); opacity:1; }
+#mini-map { width:100%; height:100%; }
+.close-mini-map { position:absolute; top:8px; right:8px; background:white; border:none; width:24px; height:24px; border-radius:50%; box-shadow:0 2px 5px rgba(0,0,0,0.2); cursor:pointer; z-index:1000; font-weight:bold; display:flex; align-items:center; justify-content:center; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <div class="logo">🔔💨 Status</div>
+  <div style="width:30px;"></div> <!-- Spacer -->
+</div>
+
+<!-- Menu -->
+<div class="menu-overlay" id="menu-overlay"></div>
+<div class="menu" id="menu">
+  <div class="menu-item" onclick="openMap()"><span class="menu-icon">🌍</span> Global Map</div>
+  <div class="menu-item" onclick="openFriends()"><span class="menu-icon">👥</span> Friends</div>
+  <div class="menu-item" onclick="openSettings()"><span class="menu-icon">⚙️</span> Settings</div>
+  <div class="menu-item" onclick="openAbout()"><span class="menu-icon">ℹ️</span> About</div>
+  <div class="menu-footer">Fart Status App v1.2 Beta</div>
+</div>
+
+<!-- Main Container -->
+<div class="container">
+  
+  <!-- Status Card -->
+  <div class="card">
+    <div class="status-header">
+      <div class="status-label">
+        <div class="status-dot" id="status-dot"></div>
+        <span id="status-text">Offline</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="status-toggle">
+        <div class="slider"></div>
+      </label>
+    </div>
+    <div style="font-size:0.85rem; color:#888; line-height:1.4;">
+      Go live to enable the button and broadcast your status to friends.
+    </div>
+  </div>
+
+  <!-- 3D Button -->
+  <div class="button-section">
+    <div id="three-button-container" class="disabled"></div>
+  </div>
+
+  <!-- Report Button -->
+  <button class="report-btn disabled" id="report-btn" onclick="openReport()">
+    <span>📝</span> Report Incident
+  </button>
+
+</div>
+
+<!-- Notification -->
+<div class="notification" id="notification"></div>
+
+<!-- Mini Map Popup -->
+<div id="mini-map-container">
+  <button class="close-mini-map" onclick="hideMiniMap()">×</button>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Full Map Modal -->
+<div class="map-modal" id="map-modal">
+  <div class="map-header">
+    <h3>Global Activity</h3>
+    <button class="close-map-btn" onclick="closeMap()">✕</button>
+  </div>
+  <div id="full-map"></div>
+</div>
+
+<!-- Report Modal -->
+<div class="modal" id="report-modal">
+  <div class="modal-content">
+    <h3>Report Fart</h3>
+    <div class="input-group">
+      <textarea id="report-text" placeholder="Describe the incident..."></textarea>
+    </div>
+    <div class="input-group">
+      <label>Photo Evidence (Optional)</label>
+      <input type="file" id="report-photo" accept="image/*" style="font-size:0.9rem;">
+    </div>
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" onclick="closeModal('report-modal')">Cancel</button>
+      <button class="modal-btn confirm" onclick="submitReport()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Friends Modal -->
+<div class="modal" id="friends-modal">
+  <div class="modal-content">
+    <h3>Friends</h3>
+    <div class="input-group" style="display:flex; gap:8px;">
+      <input type="text" id="friend-input" placeholder="Add username...">
+      <button class="modal-btn confirm" style="flex:0 0 60px;" onclick="addFriend()">Add</button>
+    </div>
+    <div id="friends-list" style="max-height:200px; overflow-y:auto;">
+      <!-- Friends injected here -->
+    </div>
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" onclick="closeModal('friends-modal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings Modal (Placeholder) -->
+<div class="modal" id="settings-modal">
+  <div class="modal-content">
+    <h3>Settings</h3>
+    <p>Version: 1.2 Beta</p>
+    <p>Storage used: <span id="storage-usage">0</span> items</p>
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" style="color:red;" onclick="clearData()">Clear Data</button>
+      <button class="modal-btn cancel" onclick="closeModal('settings-modal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-nvGx0G6Xj6kQm1vN6zF8QH2r8v3yxG1I5T6Yf6b7Yqg=" crossorigin=""></script>
+
+<script>
+// --- State & Config ---
+const STORAGE_KEY_PINS = 'fart_app_pins_v2';
+const STORAGE_KEY_FRIENDS = 'fart_app_friends_v2';
+let isActive = false;
+let mapInstance = null;
+let miniMapInstance = null;
+let mapMarkers = [];
+
+// --- UI References ---
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+const menuOverlay = document.getElementById('menu-overlay');
+const statusToggle = document.getElementById('status-toggle');
+const statusDot = document.getElementById('status-dot');
+const statusText = document.getElementById('status-text');
+const btnContainer = document.getElementById('three-button-container');
+const reportBtn = document.getElementById('report-btn');
+const notifEl = document.getElementById('notification');
+
+// --- Initialization ---
+document.addEventListener('DOMContentLoaded', () => {
+  initThreeButton();
+  loadFriends();
+  updateStorageUsage();
+});
+
+// --- Menu System ---
+hamburger.addEventListener('click', toggleMenu);
+menuOverlay.addEventListener('click', toggleMenu);
+
+function toggleMenu() {
+  hamburger.classList.toggle('active');
+  menu.classList.toggle('open');
+  menuOverlay.classList.toggle('show');
+}
+
+function closeMenu() {
+  hamburger.classList.remove('active');
+  menu.classList.remove('open');
+  menuOverlay.classList.remove('show');
+}
+
+// --- Status Toggle ---
+statusToggle.addEventListener('change', (e) => {
+  isActive = e.target.checked;
+  statusText.textContent = isActive ? 'Live' : 'Offline';
+  statusDot.classList.toggle('active', isActive);
+  btnContainer.classList.toggle('disabled', !isActive);
+  reportBtn.classList.toggle('disabled', !isActive);
+  
+  if (isActive) {
+    showNotification('You are now LIVE. Press button to broadcast.', 'success');
+  } else {
+    showNotification('You are now Offline.', 'success');
+  }
+});
+
+// --- Three.js Button ---
+let scene, camera, renderer, buttonMesh;
+let buttonPressed = false;
+
+function initThreeButton() {
+  const container = document.getElementById('three-button-container');
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 1000);
+  camera.position.z = 5.5;
+  camera.position.y = 1.5;
+  camera.lookAt(0,0,0);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  // Button Base
+  const baseGeo = new THREE.CylinderGeometry(1.6, 1.8, 0.4, 64);
+  const baseMat = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.2, roughness: 0.5 });
+  const base = new THREE.Mesh(baseGeo, baseMat);
+  scene.add(base);
+
+  // Red Button
+  const btnGeo = new THREE.CylinderGeometry(1.3, 1.3, 0.5, 64);
+  const btnMat = new THREE.MeshStandardMaterial({ color: 0xff2222, metalness: 0.1, roughness: 0.3 });
+  buttonMesh = new THREE.Mesh(btnGeo, btnMat);
+  buttonMesh.position.y = 0.3;
+  scene.add(buttonMesh);
+
+  // Text Label
+  // (Simplified: Three.js text is heavy, using CSS overlay or texture is better, 
+  // but for simplicity we'll just use the red button. The user's snippet had text loader which is async and error prone without font file.)
+  
+  // Lights
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  dirLight.position.set(5, 10, 7);
+  scene.add(dirLight);
+
+  // Animation Loop
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    // Idle Animation
+    if (!buttonPressed) {
+      buttonMesh.position.y = 0.3 + Math.sin(Date.now() * 0.002) * 0.02;
+    } else {
+      // Press Animation
+      buttonMesh.position.y = THREE.MathUtils.lerp(buttonMesh.position.y, 0.1, 0.2);
+    }
+    
+    // Release logic
+    if (buttonPressed && buttonMesh.position.y < 0.15) {
+      setTimeout(() => { buttonPressed = false; }, 100);
+    }
+    
+    if (!buttonPressed && buttonMesh.position.y < 0.3) {
+      buttonMesh.position.y = THREE.MathUtils.lerp(buttonMesh.position.y, 0.3, 0.1);
+    }
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Click Handler
+  container.addEventListener('mousedown', pressButton);
+  container.addEventListener('touchstart', (e) => { e.preventDefault(); pressButton(); });
+}
+
+function pressButton() {
+  if (!isActive) {
+    showNotification('Go LIVE to use the button!', 'error');
+    // Wiggle effect
+    btnContainer.style.transform = 'translateX(-5px)';
+    setTimeout(() => btnContainer.style.transform = 'translateX(5px)', 50);
+    setTimeout(() => btnContainer.style.transform = 'translateX(0)', 100);
+    return;
+  }
+  
+  if (buttonPressed) return;
+  buttonPressed = true;
+  
+  if (navigator.vibrate) navigator.vibrate(50);
+  
+  broadcastFart('broadcast');
+}
+
+// --- Core Logic: Broadcast ---
+function broadcastFart(type, note = '') {
+  showNotification('Locating...', 'success');
+  
+  if (!navigator.geolocation) {
+    savePin(0, 0, type, note);
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      savePin(pos.coords.latitude, pos.coords.longitude, type, note);
+      
+      // Visual feedback
+      if (type === 'broadcast') {
+        showNotification('Fart Broadcasted!', 'success');
+        showMiniMap(pos.coords.latitude, pos.coords.longitude);
+      } else {
+        showNotification('Report Submitted!', 'success');
+      }
+    },
+    (err) => {
+      console.error(err);
+      savePin(0, 0, type, note); // Save without location
+      showNotification('Saved without location.', 'error');
+    },
+    { enableHighAccuracy: true, timeout: 5000 }
+  );
+}
+
+function savePin(lat, lng, type, note) {
+  const pins = JSON.parse(localStorage.getItem(STORAGE_KEY_PINS) || '[]');
+  const newPin = {
+    id: Date.now(),
+    lat, lng, type, note,
+    timestamp: new Date().toISOString()
+  };
+  pins.push(newPin);
+  localStorage.setItem(STORAGE_KEY_PINS, JSON.stringify(pins));
+  updateStorageUsage();
+}
+
+// --- Map Logic ---
+function openMap() {
+  closeMenu();
+  const modal = document.getElementById('map-modal');
+  modal.classList.add('show');
+  
+  setTimeout(() => {
+    if (!mapInstance) {
+      mapInstance = L.map('full-map').setView([20, 0], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap',
+        maxZoom: 19
+      }).addTo(mapInstance);
+    }
+    
+    // Refresh markers
+    mapInstance.invalidateSize();
+    refreshMarkers(mapInstance);
+    
+    // Fit bounds if pins exist
+    const pins = JSON.parse(localStorage.getItem(STORAGE_KEY_PINS) || '[]');
+    const validPins = pins.filter(p => p.lat !== 0 && p.lng !== 0);
+    if (validPins.length > 0) {
+      const group = new L.featureGroup(validPins.map(p => L.marker([p.lat, p.lng])));
+      mapInstance.fitBounds(group.getBounds().pad(0.1));
+    }
+  }, 100);
+}
+
+function closeMap() {
+  document.getElementById('map-modal').classList.remove('show');
+}
+
+function refreshMarkers(map) {
+  // Clear existing
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      map.removeLayer(layer);
+    }
+  });
+
+  const pins = JSON.parse(localStorage.getItem(STORAGE_KEY_PINS) || '[]');
+  pins.forEach(p => {
+    if (p.lat === 0 && p.lng === 0) return;
+    
+    const color = p.type === 'report' ? '#ff4444' : '#00d084';
+    const icon = L.divIcon({
+      className: 'custom-pin',
+      html: `<div style="background:${color}; width:16px; height:16px; border-radius:50%; border:2px solid white; box-shadow:0 2px 5px rgba(0,0,0,0.3);"></div>`,
+      iconSize: [16, 16],
+      iconAnchor: [8, 8]
+    });
+
+    const marker = L.marker([p.lat, p.lng], { icon }).addTo(map);
+    const date = new Date(p.timestamp).toLocaleString();
+    const content = `<strong>${p.type === 'report' ? 'Report' : 'Broadcast'}</strong><br>${date}<br>${p.note || ''}`;
+    marker.bindPopup(content);
+  });
+}
+
+// --- Mini Map ---
+function showMiniMap(lat, lng) {
+  const container = document.getElementById('mini-map-container');
+  container.classList.add('show');
+  
+  if (!miniMapInstance) {
+    miniMapInstance = L.map('mini-map', {
+      zoomControl: false,
+      attributionControl: false
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(miniMapInstance);
+  }
+  
+  miniMapInstance.setView([lat, lng], 15);
+  miniMapInstance.invalidateSize();
+  
+  // Add temporary marker
+  L.marker([lat, lng]).addTo(miniMapInstance);
+  
+  // Auto hide after 5s
+  setTimeout(hideMiniMap, 5000);
+}
+
+function hideMiniMap() {
+  document.getElementById('mini-map-container').classList.remove('show');
+}
+
+// --- Report Modal ---
+function openReport() {
+  if (!isActive) {
+    showNotification('Go LIVE to report!', 'error');
+    return;
+  }
+  openModal('report-modal');
+}
+
+function submitReport() {
+  const text = document.getElementById('report-text').value;
+  if (!text) {
+    showNotification('Please enter a description', 'error');
+    return;
+  }
+  broadcastFart('report', text);
+  closeModal('report-modal');
+  document.getElementById('report-text').value = '';
+}
+
+// --- Friends Logic ---
+function openFriends() {
+  closeMenu();
+  openModal('friends-modal');
+  renderFriends();
+}
+
+function loadFriends() {
+  const list = JSON.parse(localStorage.getItem(STORAGE_KEY_FRIENDS) || '[]');
+  return list;
+}
+
+function addFriend() {
+  const input = document.getElementById('friend-input');
+  const name = input.value.trim();
+  if (!name) return;
+  
+  const list = loadFriends();
+  list.push({ name, online: Math.random() > 0.5 }); // Simulate status
+  localStorage.setItem(STORAGE_KEY_FRIENDS, JSON.stringify(list));
+  
+  input.value = '';
+  renderFriends();
+  showNotification(`Added ${name}`, 'success');
+}
+
+function removeFriend(index) {
+  const list = loadFriends();
+  list.splice(index, 1);
+  localStorage.setItem(STORAGE_KEY_FRIENDS, JSON.stringify(list));
+  renderFriends();
+}
+
+function renderFriends() {
+  const list = loadFriends();
+  const container = document.getElementById('friends-list');
+  
+  if (list.length === 0) {
+    container.innerHTML = '<div style="padding:20px; text-align:center; color:#999;">No friends added yet.</div>';
+    return;
+  }
+  
+  container.innerHTML = list.map((f, i) => `
+    <div class="friend-item">
+      <div class="friend-info">
+        <div class="friend-name">${f.name}</div>
+        <div class="friend-status ${f.online ? 'online' : ''}">${f.online ? 'Online' : 'Offline'}</div>
+      </div>
+      <button class="remove-btn" onclick="removeFriend(${i})">Remove</button>
+    </div>
+  `).join('');
+}
+
+// --- Settings & Utils ---
+function openSettings() { closeMenu(); openModal('settings-modal'); updateStorageUsage(); }
+function openAbout() { closeMenu(); showNotification('Fart Status App v1.2 Beta created by You', 'success'); }
+
+function openModal(id) { document.getElementById(id).classList.add('show'); }
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+function showNotification(msg, type) {
+  notifEl.textContent = msg;
+  notifEl.className = `notification show ${type}`;
+  setTimeout(() => { notifEl.classList.remove('show'); }, 3000);
+}
+
+function updateStorageUsage() {
+  const pins = JSON.parse(localStorage.getItem(STORAGE_KEY_PINS) || '[]');
+  const el = document.getElementById('storage-usage');
+  if(el) el.textContent = pins.length;
+}
+
+function clearData() {
+  if(confirm('Clear all saved data?')) {
+    localStorage.removeItem(STORAGE_KEY_PINS);
+    localStorage.removeItem(STORAGE_KEY_FRIENDS);
+    updateStorageUsage();
+    closeModal('settings-modal');
+    showNotification('Data cleared', 'success');
+    if(mapInstance) refreshMarkers(mapInstance);
+  }
+}
+</script>
+</body>
+</html>
