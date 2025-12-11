@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Just Farted — Beta</title>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+  crossorigin=""/>
+
+<style>
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  -webkit-tap-highlight-color: transparent; 
+}
+
+html, body { 
+  width: 100%; 
+  height: 100%; 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
+  background: #f5f5f7; 
+  overflow: hidden; 
+  color: #222;
+}
+
+/* Header */
+.header { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  height: 50px; 
+  background: white; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0 15px; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+  z-index: 1000; 
+}
+
+.hamburger { 
+  width: 30px; 
+  height: 30px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-around; 
+  cursor: pointer; 
+  z-index: 101; 
+}
+
+.hamburger span { 
+  width: 100%; 
+  height: 2px; 
+  background: #333; 
+  display: block; 
+  border-radius: 2px; 
+  transition: 0.3s; 
+}
+
+.hamburger.active span:nth-child(1) { 
+  transform: rotate(45deg) translate(6px, 6px); 
+}
+
+.hamburger.active span:nth-child(2) { 
+  opacity: 0; 
+  transform: translateX(-10px); 
+}
+
+.hamburger.active span:nth-child(3) { 
+  transform: rotate(-45deg) translate(6px, -6px); 
+}
+
+.logo { 
+  font-size: 1.2rem; 
+  font-weight: 700; 
+  color: #333; 
+}
+
+.status-indicator-header {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  transition: 0.3s;
+}
+
+.status-indicator-header.active {
+  background: #00d084;
+  box-shadow: 0 0 10px #00d084;
+  animation: pulse 2s infinite;
+}
+
+/* Menu */
+.menu { 
+  position: fixed; 
+  top: 0; 
+  left: -300px; 
+  width: 280px; 
+  height: 100vh; 
+  background: white; 
+  box-shadow: 2px 0 20px rgba(0,0,0,0.08); 
+  transition: 0.32s cubic-bezier(.2, .9, .2, 1); 
+  z-index: 999; 
+  padding-top: 60px; 
+  overflow-y: auto;
+}
+
+.menu.open { 
+  left: 0; 
+}
+
+.menu-section {
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.menu-item { 
+  padding: 18px 22px; 
+  border-bottom: 1px solid #f0f0f0; 
+  cursor: pointer; 
+  transition: 0.16s; 
+  font-size: 0.98rem; 
+  color: #333; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-item:hover { 
+  background: #f8f9fa; 
+}
+
+.menu-overlay { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100vh; 
+  background: rgba(0,0,0,0.28); 
+  display: none; 
+  z-index: 998; 
+  transition: 0.2s; 
+}
+
+.menu-overlay.show { 
+  display: block; 
+}
+
+/* Main Container */
+#main-container { 
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  position: relative; 
+  overflow: hidden; 
+  padding-top: 50px;
+}
+
+/* Status Toggle */
+.status-section {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 14px;
+  padding: 12px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.status-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.toggle-switch { 
+  position: relative; 
+  width: 60px; 
+  height: 32px; 
+  cursor: pointer; 
+  user-select: none; 
+}
+
+.toggle-switch input { 
+  display: none; 
+}
+
+.slider { 
+  position: absolute; 
+  inset: 0; 
+  background: #ccc; 
+  border-radius: 16px; 
+  transition: 0.28s; 
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.12); 
+}
+
+.slider::before { 
+  content: ''; 
+  position: absolute; 
+  width: 26px; 
+  height: 26px; 
+  left: 3px; 
+  bottom: 3px; 
+  background: white; 
+  border-radius: 50%; 
+  transition: 0.28s; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18); 
+}
+
+input:checked + .slider { 
+  background: #00d084; 
+}
+
+input:checked + .slider::before { 
+  transform: translateX(28px); 
+}
+
+/* Fart Button */
+#easy-button { 
+  width: 220px; 
+  height: 220px; 
+  background: linear-gradient(145deg, #ff3b30, #cc0000);
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 1.5rem; 
+  font-weight: bold; 
+  color: white; 
+  cursor: pointer; 
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3); 
+  transition: 0.3s; 
+  user-select: none; 
+  position: relative;
+  z-index: 20;
+}
+
+#easy-button:active { 
+  transform: scale(0.95); 
+}
+
+#easy-button.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+#fart-animation { 
+  position: absolute; 
+  border-radius: 50%; 
+  background: radial-gradient(circle, rgba(255,200,50,0.4), rgba(255,150,50,0.1));
+  pointer-events: none; 
+  z-index: 15; 
+  display: none; 
+}
+
+/* Map Container */
+#map-container { 
+  position: absolute; 
+  top: 50px; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  opacity: 0; 
+  transition: opacity 0.6s; 
+  z-index: 5; 
+  pointer-events: none;
+}
+
+#map-container.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#map { 
+  width: 100%; 
+  height: 100%; 
+}
+
+.map-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-btn {
+  background: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.map-btn:hover {
+  background: #f5f5f5;
+}
+
+/* Report Section */
+.report-section {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+}
+
+.report-button {
+  padding: 14px 24px;
+  background: white;
+  color: #333;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.24s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.report-button:hover {
+  background: #f8f9fa;
+  border-color: #ccc;
+}
+
+.report-button.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Notification */
+.notification { 
+  position: fixed; 
+  top: 60px; 
+  right: 15px; 
+  background: white; 
+  padding: 12px 16px; 
+  border-radius: 10px; 
+  box-shadow: 0 6px 20px rgba(0,0,0,0.17); 
+  transform: translateX(400px); 
+  transition: 0.32s; 
+  z-index: 1000; 
+  font-size: 0.95rem; 
+}
+
+.notification.show { 
+  transform: translateX(0); 
+}
+
+.notification.success { 
+  border-left: 4px solid #00d084; 
+}
+
+.notification.error { 
+  border-left: 4px solid #ff4444; 
+}
+
+/* Modal */
+.modal { 
+  display: none; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0,0,0,0.5); 
+  z-index: 2000; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 20px; 
+}
+
+.modal.show { 
+  display: flex; 
+}
+
+.modal-content { 
+  background: white; 
+  padding: 24px; 
+  border-radius: 16px; 
+  width: 100%; 
+  max-width: 400px; 
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-content h3 {
+  margin-bottom: 16px;
+  font-size: 1.3rem;
+}
+
+.modal-content input, 
+.modal-content textarea { 
+  width: 100%; 
+  padding: 12px; 
+  border: 2px solid #e0e0e0; 
+  border-radius: 8px; 
+  margin-bottom: 12px; 
+  font-size: 0.95rem; 
+  font-family: inherit;
+}
+
+.modal-content textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.modal-buttons { 
+  display: flex; 
+  gap: 10px; 
+  margin-top: 16px;
+}
+
+.modal-btn { 
+  flex: 1; 
+  padding: 12px; 
+  border: none; 
+  border-radius: 8px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  font-size: 0.95rem; 
+  transition: 0.18s; 
+}
+
+.modal-btn.cancel { 
+  background: #f0f0f0; 
+  color: #666; 
+}
+
+.modal-btn.confirm { 
+  background: #00d084; 
+  color: white; 
+}
+
+.modal-btn:hover {
+  opacity: 0.9;
+}
+
+/* Friends List */
+.friends-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.friend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.95rem;
+}
+
+.friend-info {
+  flex: 1;
+}
+
+.friend-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.friend-status {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 2px;
+}
+
+.friend-status.online {
+  color: #00d084;
+  font-weight: 600;
+}
+
+.remove-friend {
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.remove-friend:hover {
+  background: #cc0000;
+}
+
+/* Stats Section */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.stat-card {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00d084;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Animations */
+@keyframes pulse { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0.5; } 
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+  .logo {
+    font-size: 1rem;
+  }
+  
+  #easy-button {
+    width: 180px;
+    height: 180px;
+    font-size: 1.3rem;
+  }
+  
+  .status-section {
+    top: 60px;
+    padding: 10px 16px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="logo">🔔💨 I Just Farted</div>
+  <div class="status-indicator-header" id="status-indicator-header"></div>
+</div>
+
+<div class="menu" id="menu">
+  <div class="menu-section">Status</div>
+  <div class="menu-item" onclick="toggleStatusFromMenu()">
+    <span id="menu-status-icon">⚪</span>
+    <span>Go Live</span>
+  </div>
+  
+  <div class="menu-section">Social</div>
+  <div class="menu-item" onclick="showAddFriend()">
+    <span>👥</span>
+    <span>Add Friends</span>
+  </div>
+  <div class="menu-item" onclick="showFriends()">
+    <span>📋</span>
+    <span>Friends List</span>
+  </div>
+  
+  <div class="menu-section">Map</div>
+  <div class="menu-item" onclick="toggleMap()">
+    <span>🗺️</span>
+    <span>View Map</span>
+  </div>
+  <div class="menu-item" onclick="clearAllPins()">
+    <span>🗑️</span>
+    <span>Clear All Pins</span>
+  </div>
+  
+  <div class="menu-section">Info</div>
+  <div class="menu-item" onclick="showStats()">
+    <span>📊</span>
+    <span>Statistics</span>
+  </div>
+  <div class="menu-item" onclick="showAbout()">
+    <span>ℹ️</span>
+    <span>About</span>
+  </div>
+</div>
+
+<div class="menu-overlay" id="menu-overlay"></div>
+
+<div id="main-container">
+  <div class="status-section">
+    <span class="status-label">Status:</span>
+    <label class="toggle-switch">
+      <input type="checkbox" id="status-toggle">
+      <div class="slider"></div>
+    </label>
+    <span id="status-text" style="font-weight:700; color:#999;">OFF</span>
+  </div>
+
+  <div id="map-container">
+    <div id="map"></div>
+    <div class="map-controls">
+      <button class="map-btn" onclick="closeMap()">✕ Close</button>
+      <button class="map-btn" onclick="centerOnUser()">📍 Center</button>
+    </div>
+  </div>
+  
+  <div id="easy-button" class="disabled">
+    💨 FART
+  </div>
+  
+  <div id="fart-animation"></div>
+  
+  <div class="report-section">
+    <button class="report-button disabled" id="report-btn" onclick="openReport()">
+      📝 Report Fart
+    </button>
+  </div>
+</div>
+
+<div class="notification" id="notification"></div>
+
+<!-- Report Modal -->
+<div class="modal" id="report-modal">
+  <div class="modal-content">
+    <h3>📝 Report a Fart</h3>
+    <textarea id="report-text" placeholder="Add a note or description..."></textarea>
+    <input type="file" id="report-photo" accept="image/*">
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" onclick="closeReport()">Cancel</button>
+      <button class="modal-btn confirm" onclick="confirmReport()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Friend Modal -->
+<div class="modal" id="add-friend-modal">
+  <div class="modal-content">
+    <h3>👥 Add Friend</h3>
+    <input type="text" id="friend-username" placeholder="Enter username">
+    <div class="modal-buttons">
+      <button class="modal-btn cancel" onclick="closeAddFriend()">Cancel</button>
+      <button class="modal-btn confirm" onclick="confirmAddFriend()">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Friends List Modal -->
+<div class="modal" id="friends-modal">
+  <div class="modal-content">
+    <h3>📋 Friends List</h3>
+    <div class="friends-list" id="friends-list"></div>
+    <div class="modal-buttons">
+      <button class="modal-btn confirm" onclick="closeFriends()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Modal -->
+<div class="modal" id="stats-modal">
+  <div class="modal-content">
+    <h3>📊 Your Stats</h3>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-label">Total Farts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-reports">0</div>
+        <div class="stat-label">Reports</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-friends">0</div>
+        <div class="stat-label">Friends</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-today">0</div>
+        <div class="stat-label">Today</div>
+      </div>
+    </div>
+    <div class="modal-buttons">
+      <button class="modal-btn confirm" onclick="closeStats()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- About Modal -->
+<div class="modal" id="about-modal">
+  <div class="modal-content">
+    <h3>ℹ️ About</h3>
+    <p style="line-height:1.6; color:#666; margin-bottom:12px;">
+      <strong style="color:#333;">I Just Farted</strong> is a fun social app that lets you broadcast your farts to friends and pin them on a map!
+    </p>
+    <p style="line-height:1.6; color:#666; margin-bottom:12px;">
+      <strong>Features:</strong><br>
+      • Real-time fart broadcasting<br>
+      • Location-based mapping<br>
+      • Friends system<br>
+      • Fart reports with notes<br>
+      • Statistics tracking
+    </p>
+    <p style="line-height:1.6; color:#666;">
+      <strong>Version:</strong> 1.0 Beta<br>
+      <strong>Status:</strong> Local Beta Testing
+    </p>
+    <div class="modal-buttons">
+      <button class="modal-btn confirm" onclick="closeAbout()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
+<script>
+// ========================================
+// Global Variables
+// ========================================
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+const menuOverlay = document.getElementById('menu-overlay');
+const statusToggle = document.getElementById('status-toggle');
+const statusText = document.getElementById('status-text');
+const statusIndicatorHeader = document.getElementById('status-indicator-header');
+const easyButton = document.getElementById('easy-button');
+const reportBtn = document.getElementById('report-btn');
+const fartAnim = document.getElementById('fart-animation');
+const mapContainer = document.getElementById('map-container');
+const notification = document.getElementById('notification');
+
+let map = null;
+let markersLayer = null;
+let isActive = false;
+let friends = [];
+let userLocation = null;
+
+const STORAGE_KEY = 'fart_pins_v1';
+const FRIENDS_KEY = 'fart_friends_v1';
+
+// ========================================
+// Initialize
+// ========================================
+function init() {
+  loadFriends();
+  updateButtonState();
+  
+  // Try to get user location on load
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        userLocation = {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude
+        };
+      },
+      () => {
+        console.log('Location access denied');
+      }
+    );
+  }
+}
+
+// ========================================
+// Menu Functions
+// ========================================
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  menu.classList.toggle('open');
+  menuOverlay.classList.toggle('show');
+});
+
+menuOverlay.addEventListener('click', () => {
+  closeMenu();
+});
+
+function closeMenu() {
+  hamburger.classList.remove('active');
+  menu.classList.remove('open');
+  menuOverlay.classList.remove('show');
+}
+
+// ========================================
+// Status Toggle
+// ========================================
+statusToggle.addEventListener('change', function() {
+  isActive = this.checked;
+  updateButtonState();
+  
+  if (isActive) {
+    statusText.textContent = 'ON';
+    statusText.style.color = '#00d084';
+    statusIndicatorHeader.classList.add('active');
+    document.getElementById('menu-status-icon').textContent = '🟢';
+    showNotification('You are now LIVE! 🔴', 'success');
+    
+    if (navigator.vibrate) {
+      navigator.vibrate(200);
+    }
+  } else {
+    statusText.textContent = 'OFF';
+    statusText.style.color = '#999';
+    statusIndicatorHeader.classList.remove('active');
+    document.getElementById('menu-status-icon').textContent = '⚪';
+    showNotification('You are now offline', 'error');
+  }
+});
+
+function toggleStatusFromMenu() {
+  statusToggle.checked = !statusToggle.checked;
+  statusToggle.dispatchEvent(new Event('change'));
+  closeMenu();
+}
+
+function updateButtonState() {
+  if (isActive) {
+    easyButton.classList.remove('disabled');
+    reportBtn.classList.remove('disabled');
+  } else {
+    easyButton.classList.add('disabled');
+    reportBtn.classList.add('disabled');
+  }
+}
+
+// ========================================
+// Fart Button
+// ========================================
+easyButton.addEventListener('click', () => {
+  if (!isActive) {
+    showNotification('Turn ON your status first! 🔴', 'error');
+    return;
+  }
+  
+  triggerFart();
+});
+
+function triggerFart() {
+  // Animation
+  triggerFartAnimation();
+  
+  // Vibration
+  if (navigator.vibrate) {
+    navigator.vibrate([50, 100, 50, 100, 50]);
+  }
+  
+  // Get location and save
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const pin = {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+          timestamp: Date.now(),
+          type: 'broadcast',
+          note: ''
+        };
+        
+        savePin(pin);
+        userLocation = { lat: pin.lat, lng: pin.lng };
+        showNotification('💨 Fart broadcasted successfully!', 'success');
+        notifyFriends();
+        
+        // Show on map if initialized
+        if (map) {
+          addMarkerToMap(pin);
+          map.setView([pin.lat, pin.lng], 16);
+        }
+      },
+      (error) => {
+        showNotification('Fart sent (location unavailable)', 'error');
+        // Save without location
+        const pin = {
+          lat: 0,
+          lng: 0,
+          timestamp: Date.now(),
+          type: 'broadcast',
+          note: 'No location'
+        };
+        savePin(pin);
+      }
+    );
+  } else {
+    showNotification('Geolocation not supported', 'error');
+  }
+}
+
+function triggerFartAnimation() {
+  fartAnim.style.display = 'block';
+  fartAnim.style.width = '50px';
+  fartAnim.style.height = '50px';
+  fartAnim.style.left = 'calc(50% - 25px)';
+  fartAnim.style.top = 'calc(50% - 25px)';
+  
+  fartAnim.animate([
+    { transform: 'scale(1)', opacity: 0.6 },
+    { transform: 'scale(8)', opacity: 0 }
+  ], {
+    duration: 800,
+    easing: 'ease-out'
+  });
+  
+  setTimeout(() => {
+    fartAnim.style.display = 'none';
+  }, 800);
+}
+
+// ========================================
+// Map Functions
+// ========================================
+function initMap() {
+  if (map) return;
+  
+  const center = userLocation || { lat: 20, lng: 0 };
+  
+  map = L.map('map', {
+    center: [center.lat, center.lng],
+    zoom: userLocation ? 13 : 2,
+    zoomControl: true
+  });
+  
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+  
+  markersLayer = L.layerGroup().addTo(map);
+  
+  // Load all existing pins
+  loadPinsToMap();
+}
+
+function loadPinsToMap() {
+  if (!map || !markersLayer) return;
+  
+  markersLayer.clearLayers();
+  const pins = loadPins();
+  
+  pins.forEach(pin => {
+    addMarkerToMap(pin);
+  });
+}
+
+function addMarkerToMap(pin) {
+  if (!map || !markersLayer || pin.lat === 0) return;
+  
+  const iconHtml = pin.type === 'report' 
+    ? '<div style="width:16px;height:16px;border-radius:50%;background:#ff4444;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>'
+    : '<div style="width:16px;height:16px;border-radius:50%;background:#00d084;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>';
+  
+  const icon = L.divIcon({
+    html: iconHtml,
+    className: '',
+    iconSize: [16, 16],
+    iconAnchor: [8, 8]
+  });
+  
+  const marker = L.marker([pin.lat, pin.lng], { icon });
+  
+  const date = new Date(pin.timestamp).toLocaleString();
+  const typeLabel = pin.type === 'report' ? '📝 Report' : '💨 Broadcast';
+  const popupContent = `
+    <strong>${typeLabel}</strong><br>
+    ${date}<br>
+    ${pin.note ? `<em>${pin.note}</em>` : ''}
+  `;
+  
+  marker.bindPopup(popupContent);
+  marker.addTo(markersLayer);
+}
+
+function toggleMap() {
+  closeMenu();
+  
+  if (!map) {
+    initMap();
+  }
+  
+  if (mapContainer.classList.contains('show')) {
+    closeMap();
+  } else {
+    mapContainer.classList.add('show');
+    setTimeout(() => {
+      map.invalidateSize();
+      if (userLocation) {
+        map.setView([userLocation.lat, userLocation.lng], 13);
+      }
+    }, 100);
+  }
+}
+
+function closeMap() {
+  mapContainer.classList.remove('show');
+}
+
+function centerOnUser() {
+  if (!map) return;
+  
+  if (userLocation) {
+    map.setView([userLocation.lat, userLocation.lng], 16);
+    showNotification('Centered on your location', 'success');
+  } else {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          userLocation = {
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude
+          };
+          map.setView([userLocation.lat, userLocation.lng], 16);
+          showNotification('Centered on your location', 'success');
+        },
+        () => {
+          showNotification('Could not get location', 'error');
+        }
+      );
+    }
+  }
+}
+
+// ========================================
+// Storage Functions
+// ========================================
+function loadPins() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function savePin(pin) {
+  const pins = loadPins();
+  pins.push(pin);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(pins));
+}
+
+function clearAllPins() {
+  if (confirm('Are you sure you want to clear all pins?')) {
+    localStorage.setItem(STORAGE_KEY, '[]');
+    if (markersLayer) {
+      markersLayer.clearLayers();
+    }
+    showNotification('All pins cleared', 'success');
+  }
+  closeMenu();
+}
+
+function loadFriends() {
+  try {
+    friends = JSON.parse(localStorage.getItem(FRIENDS_KEY) || '[]');
+  } catch (e) {
+    friends = [];
+  }
+}
+
+function saveFriends() {
+  localStorage.setItem(FRIENDS_KEY, JSON.stringify(friends));
+}
+
+// ========================================
+// Report Functions
+// ========================================
+function openReport() {
+  if (!isActive) {
+    showNotification('Turn ON your status first!', 'error');
+    return;
+  }
+  document.getElementById('report-modal').classList.add('show');
+}
+
+function closeReport() {
+  document.getElementById('report-modal').classList.remove('show');
+  document.getElementById('report-text').value = '';
+  document.getElementById('report-photo').value = '';
+}
+
+function confirmReport() {
+  const text = document.getElementById('report-text').value.trim();
+  const file = document.getElementById('report-photo').files[0];
+  
+  if (!text && !file) {
+    showNotification('Please add a note or photo', 'error');
+    return;
+  }
+  
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const pin = {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+          timestamp: Date.now(),
+          type: 'report',
+          note: text || 'No note'
+        };
+        
+        savePin(pin);
+        userLocation = { lat: pin.lat, lng: pin.lng };
+        
+        if (map) {
+          addMarkerToMap(pin);
+          map.setView([pin.lat, pin.lng], 16);
+        }
+        
+        closeReport();
+        showNotification('📝 Fart report saved!', 'success');
+      },
+      () => {
+        const pin = {
+          lat: userLocation?.lat || 0,
+          lng: userLocation?.lng || 0,
+          timestamp: Date.now(),
+          type: 'report',
+          note: text || 'No note'
+        };
+        savePin(pin);
+        closeReport();
+        showNotification('Report saved (no location)', 'success');
+      }
+    );
+  }
+}
+
+// ========================================
+// Friends Functions
+// ========================================
+function showAddFriend() {
+  closeMenu();
+  document.getElementById('add-friend-modal').classList.add('show');
+}
+
+function closeAddFriend() {
+  document.getElementById('add-friend-modal').classList.remove('show');
+  document.getElementById('friend-username').value = '';
+}
+
+function confirmAddFriend() {
+  const username = document.getElementById('friend-username').value.trim();
+  
+  if (!username) {
+    showNotification('Please enter a username', 'error');
+    return;
+  }
+  
+  if (friends.some(f => f.username === username)) {
+    showNotification('Friend already added', 'error');
+    return;
+  }
+  
+  friends.push({
+    username: username,
+    online: Math.random() > 0.5,
+    addedAt: Date.now()
+  });
+  
+  saveFriends();
+  closeAddFriend();
+  showNotification(`👥 ${username} added as friend!`, 'success');
+}
+
+function showFriends() {
+  closeMenu();
+  renderFriendsList();
+  document.getElementById('friends-modal').classList.add('show');
+}
+
+function closeFriends() {
+  document.getElementById('friends-modal').classList.remove('show');
+}
+
+function renderFriendsList() {
+  const list = document.getElementById('friends-list');
+  
+  if (friends.length === 0) {
+    list.innerHTML = '<p style="text-align:center;color:#999;padding:20px;">No friends yet. Add some!</p>';
+    return;
+  }
+  
+  list.innerHTML = friends.map((f, i) => `
+    <div class="friend-item">
+      <div class="friend-info">
+        <div class="friend-name">${f.username}</div>
+        <div class="friend-status ${f.online ? 'online' : ''}">${f.online ? '🟢 Online' : '⚪ Offline'}</div>
+      </div>
+      <button class="remove-friend" onclick="removeFriend(${i})">Remove</button>
+    </div>
+  `).join('');
+}
+
+function removeFriend(index) {
+  const friend = friends[index];
+  if (confirm(`Remove ${friend.username}?`)) {
+    friends.splice(index, 1);
+    saveFriends();
+    renderFriendsList();
+    showNotification('Friend removed', 'success');
+  }
+}
+
+function notifyFriends() {
+  if (friends.length > 0) {
+    const onlineFriends = friends.filter(f => f.online).length;
+    showNotification(`📢 Notified ${onlineFriends} online friend${onlineFriends !== 1 ? 's' : ''}!`, 'success');
+  }
+}
+
+// ========================================
+// Stats Functions
+// ========================================
+function showStats() {
+  closeMenu();
+  
+  const pins = loadPins();
+  const broadcasts = pins.filter(p => p.type === 'broadcast').length;
+  const reports = pins.filter(p => p.type === 'report').length;
+  const today = pins.filter(p => {
+    const pinDate = new Date(p.timestamp);
+    const now = new Date();
+    return pinDate.toDateString() === now.toDateString();
+  }).length;
+  
+  document.getElementById('stat-total').textContent = broadcasts;
+  document.getElementById('stat-reports').textContent = reports;
+  document.getElementById('stat-friends').textContent = friends.length;
+  document.getElementById('stat-today').textContent = today;
+  
+  document.getElementById('stats-modal').classList.add('show');
+}
+
+function closeStats() {
+  document.getElementById('stats-modal').classList.remove('show');
+}
+
+// ========================================
+// About Functions
+// ========================================
+function showAbout() {
+  closeMenu();
+  document.getElementById('about-modal').classList.add('show');
+}
+
+function closeAbout() {
+  document.getElementById('about-modal').classList.remove('show');
+}
+
+// ========================================
+// Notification Functions
+// ========================================
+let notificationTimeout = null;
+
+function showNotification(message, type = 'success') {
+  notification.textContent = message;
+  notification.className = `notification ${type} show`;
+  
+  clearTimeout(notificationTimeout);
+  notificationTimeout = setTimeout(() => {
+    notification.classList.remove('show');
+  }, 3000);
+}
+
+// ========================================
+// Initialize App
+// ========================================
+init();
+</script>
+
+</body>
+</html>
