@@ -1,0 +1,34 @@
+# WebPoint Tax Certificate Processor — Render Blueprint
+#
+# One-time: Render Dashboard → Blueprints → New Blueprint → this repo/branch → Apply.
+# Postgres is the shared operational database (TCS orders, RAG chunks, Workplace imports).
+# Secrets (GROQ_API_KEY, MEMBER_EMBED_KEY) stay in the dashboard — never in git.
+
+databases:
+  - name: webpoint-tcs-db
+    plan: basic-256mb
+    region: oregon
+    postgresMajorVersion: 16
+
+services:
+  - type: web
+    name: tax-certificate-processor
+    runtime: node
+    plan: starter
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "20"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: webpoint-tcs-db
+          property: connectionString
+      - key: GROQ_API_KEY
+        sync: false
+      - key: MEMBER_EMBED_KEY
+        sync: false

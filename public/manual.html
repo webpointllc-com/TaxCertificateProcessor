@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPoint — Tax Certificate Processor User Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/manual.css">
+</head>
+<body>
+  <div id="scale-outer">
+    <div id="design-canvas">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">WEBPOINT LLC</div>
+            <div class="brand-sub">Tax Certificate Processor · User guide</div>
+          </div>
+        </div>
+        <div class="top-pills">
+          <a class="pill guide-link" href="/">Open tool</a>
+          <a class="pill guide-link" href="/architecture.html">Architecture</a>
+          <span class="pill ok">Chippewa WI live</span>
+          <span class="pill">Max 10 parcels</span>
+        </div>
+      </header>
+
+      <nav class="modules modules-5" aria-label="User guide">
+        <button type="button" class="mod active" data-section="cover">Cover<span>What you get</span></button>
+        <button type="button" class="mod" data-section="members">Members<span>Open from the site</span></button>
+        <button type="button" class="mod" data-section="workflow">Workflow<span>File, parcels, batch</span></button>
+        <button type="button" class="mod" data-section="products">Products<span>TCS · TPA · RDS · S-PUL</span></button>
+        <button type="button" class="mod" data-section="faq">FAQ<span>As-of, Guest Sign In</span></button>
+      </nav>
+
+      <main class="workspace">
+        <section class="panel order-panel">
+          <div class="manual-section active" data-section="cover">
+            <p class="kicker">Integrate. Automate. Deliver.</p>
+            <h1 class="hero-title">Collector-current tax certificates, on the members page.</h1>
+            <p class="lede">WebPoint Tax Certificate Processor is the paid-members workspace on webpointllc.com. Draft certificates from collector-current data, check a closing batch, open the official county search page, and keep every URL locked to the real portal — never invented.</p>
+            <div class="card-grid">
+              <article class="stat-card">
+                <p class="kicker">TCS</p>
+                <h3>Tax Certification System</h3>
+                <p>Collector-current certificate drafts. First county: Chippewa, Wisconsin.</p>
+              </article>
+              <article class="stat-card">
+                <p class="kicker">TPA</p>
+                <h3>Targeted Portfolio Analysis</h3>
+                <p>Batch parcel tax status for the same closing.</p>
+              </article>
+              <article class="stat-card">
+                <p class="kicker">RDS</p>
+                <h3>Recorded Document Search</h3>
+                <p>County recorded-document portal with parcel context on the order.</p>
+              </article>
+              <article class="stat-card">
+                <p class="kicker">S-PUL</p>
+                <h3>Search Page URL Locator</h3>
+                <p>Locked official tax-search URLs. The Chippewa lock is the LandNav public portal.</p>
+              </article>
+            </div>
+            <p class="lede">Phone and desktop show the <strong>same layout</strong>, scaled to the members-page frame. Nothing restacks. Confirm every amount on the official collector page before you close.</p>
+          </div>
+
+          <div class="manual-section" data-section="members">
+            <div class="panel-head">
+              <h1>How to open it</h1>
+              <p>Same tool on a laptop or a phone — the 1280×800 workspace scales to fit the iframe.</p>
+            </div>
+            <div class="card-grid">
+              <article class="step-card">
+                <span class="step-num">1</span>
+                <h3>Sign in</h3>
+                <p>Use your WebPoint members account on webpointllc.com. This workspace lives on the paid members page.</p>
+              </article>
+              <article class="step-card">
+                <span class="step-num">2</span>
+                <h3>Open the processor</h3>
+                <p>The Tax Certificate Processor appears in the page frame. Header mark: <strong>WEBPOINT LLC</strong> · Tax Certificate Processor.</p>
+              </article>
+              <article class="step-card">
+                <span class="step-num">3</span>
+                <h3>Stay in the frame</h3>
+                <p>Choose TCS, TPA, RDS, or S-PUL along the top. Use <strong>User guide</strong> in the header to return here.</p>
+              </article>
+              <article class="step-card">
+                <span class="step-num">4</span>
+                <h3>Open the collector in a new tab</h3>
+                <p><strong>Open collector portal</strong> and certificate links launch the official county search page. Sign in there as the county requires.</p>
+              </article>
+            </div>
+            <div class="embed-card">
+              <h3>Squarespace Code Block — user guide iframe (page editors)</h3>
+              <pre>&lt;div class="wp-tcs-embed-root"&gt;
+  &lt;iframe class="wp-tcs-frame"
+    src="https://tax-certificate-processor.onrender.com/manual.html"
+    title="WebPoint Tax Certificate Processor — User guide"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="clipboard-read; clipboard-write"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;style&gt;
+  .wp-tcs-embed-root { box-sizing: border-box; width: 100%; margin: 0 auto; position: relative; padding-top: 62.5%; }
+  .wp-tcs-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 16px; background: #050b20; }
+&lt;/style&gt;</pre>
+            </div>
+          </div>
+
+          <div class="manual-section" data-section="workflow">
+            <div class="panel-head">
+              <h1>Run a batch</h1>
+              <p>Labels below match the live form. Chippewa, WI is filled in when you open the tool.</p>
+            </div>
+            <div class="card-grid">
+              <article class="step-card">
+                <span class="step-num">1</span>
+                <h3>Pick TCS / TPA / RDS / S-PUL</h3>
+                <p>Four product buttons under the header. The left panel title changes: Tax Certification System, Targeted Portfolio Analysis, Recorded Document Search, or Search Page URL Locator.</p>
+              </article>
+              <article class="step-card">
+                <span class="step-num">2</span>
+                <h3>Enter the file</h3>
+                <p><strong>File number</strong> (Closing file #), <strong>Client</strong> (Title / tax service), <strong>County</strong> / <strong>State</strong> (Chippewa / WI), <strong>Closing date</strong>, <strong>Owner (optional)</strong> as Last, First.</p>
+              </article>
+              <article class="step-card">
+                <span class="step-num">3</span>
+                <h3>Add parcels — max 10</h3>
+                <p>Each row: Parcel ID, Owner last, first, Address. <strong>Add parcel</strong> until the button reads <strong>Max 10 parcels</strong>. That cap matches LandNav Chippewa and the WebPoint demo.</p>
+              </article>
+              <article class="step-card">
+                <span class="step-num">4</span>
+                <h3>Process batch</h3>
+                <p><strong>Process batch</strong> builds certificate cards: <em>parcel · tax status · as of date</em>, a short draft, and <strong>Open collector / search page</strong>. Confirm on the official page via <strong>Open collector portal</strong> or the Search Spul panel (type a county, press Search).</p>
+              </article>
+            </div>
+            <dl class="field-table">
+              <dt>Process batch</dt>
+              <dd>Creates the order and draft cards for every filled parcel row.</dd>
+              <dt>Open collector portal</dt>
+              <dd>Opens the locked tax-search URL for the County + State you entered.</dd>
+              <dt>Search Spul</dt>
+              <dd>Right panel. Type a county (Chippewa County WI) and press <strong>Search</strong>. The locked collector URL appears first. Use <strong>Ask</strong> (“Ask how to search or pay…”) for follow-up. Links are never invented.</dd>
+            </dl>
+          </div>
+
+          <div class="manual-section" data-section="products">
+            <div class="panel-head">
+              <h1>Choose the right product</h1>
+              <p>One order, one closing file, up to ten parcels. The product button sets the draft you receive.</p>
+            </div>
+            <article class="product-card">
+              <p class="kicker">TCS · Tax certificates</p>
+              <h3>Tax Certification System</h3>
+              <p>Collector-current certificate drafts for the file you are certifying. Confirm dollars, exemptions, and installments on the official search page before you issue or close.</p>
+            </article>
+            <article class="product-card">
+              <p class="kicker">TPA · Portfolio analysis</p>
+              <h3>Targeted Portfolio Analysis</h3>
+              <p>Batch parcel tax status for the same closing. Compare the set, flag delinquencies, and keep one file number across the portfolio.</p>
+            </article>
+            <article class="product-card">
+              <p class="kicker">RDS · Recorded documents</p>
+              <h3>Recorded Document Search</h3>
+              <p>Keeps parcel context with the order and points at the county recorded-document portal. For Chippewa, that is Online Real Estate Search on chippewacountywi.gov.</p>
+            </article>
+            <article class="product-card">
+              <p class="kicker">S-PUL · Search page locator</p>
+              <h3>Search Page URL Locator</h3>
+              <p>Official tax-search URLs only — locked, never invented. Chippewa County, Wisconsin: LandNav / Catalis public portal. Use Guest Sign In on that site, then search by parcel, owner last name, or address.</p>
+            </article>
+          </div>
+
+          <div class="manual-section" data-section="faq">
+            <div class="panel-head">
+              <h1>FAQ</h1>
+              <p>Short answers for title, tax-service, and mortgage desks.</p>
+            </div>
+            <article class="faq-card">
+              <h3>What does the as-of date mean?</h3>
+              <p>Each certificate card shows <strong>as of</strong> the date the draft was generated. Taxes move. Treat the card as a dated snapshot and verify balances on the collector portal before closing. If figures change, run a fresh batch for an updated as-of.</p>
+            </article>
+            <article class="faq-card">
+              <h3>Chippewa portal says Guest Sign In. Is that correct?</h3>
+              <p>Yes. The locked Chippewa tax-search page is the LandNav public portal. Use <strong>Guest Sign In</strong>, then search. Do not use a dead or guessed county host. The official lock is https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/</p>
+            </article>
+            <article class="faq-card">
+              <h3>Local treasurer or county treasurer?</h3>
+              <p>In Chippewa County, current December/January installments are paid to the <strong>local municipal treasurer</strong>. The county treasurer collects postponed and delinquent real estate tax. The LandNav portal is the public search; the county Treasurer office page is https://chippewacountywi.gov/169/Treasurer</p>
+            </article>
+            <article class="faq-card">
+              <h3>How do updates work?</h3>
+              <p>Drafts are point-in-time. For an update, keep the same file number when you can, process a new batch, and read the new as-of date on each card. Always re-open the collector page before you rely on the figures.</p>
+            </article>
+            <article class="faq-card">
+              <h3>What does “verified” mean on S-PUL?</h3>
+              <p>A <strong>verified</strong> badge means the tax-search URL is locked from WebPoint’s jurisdiction list as the official page for that collector — not a search-engine guess. <strong>pattern_matched</strong> is a stored pattern that still needs human confirmation. <strong>not_found</strong> means there is no locked URL; do not invent one.</p>
+            </article>
+            <article class="faq-card">
+              <h3>Why is there a 10-parcel limit?</h3>
+              <p>Chippewa’s LandNav payment cart allows 10 parcels per transaction. WebPoint’s members demo uses the same cap. Split the closing into another batch if you have more than ten.</p>
+            </article>
+            <article class="faq-card">
+              <h3>Need help?</h3>
+              <p>Use <strong>Request Access</strong> on webpointllc.com or contact your WebPoint representative. This guide does not replace the county portal. Confirm every certificate on the official search page.</p>
+            </article>
+          </div>
+        </section>
+
+        <aside class="panel chat-panel">
+          <div class="manual-section active" data-section="cover">
+            <h1 class="aside-title">From members page to collector</h1>
+            <p class="aside-copy">Sign in on webpointllc.com, run the processor, then confirm on the locked official portal.</p>
+            <div class="diagram-frame" aria-label="Flow diagram: members page to tool to collector portal">
+              <svg viewBox="0 0 400 430" role="img" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="coverGlow" x="-15%" y="-15%" width="130%" height="130%">
+                    <feGaussianBlur stdDeviation="3.5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                  <linearGradient id="coverFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(40,140,255,0.28)"/>
+                    <stop offset="100%" stop-color="rgba(8,20,50,0.95)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="48" y="16" width="304" height="86" rx="16" fill="url(#coverFill)" stroke="rgba(62,196,255,0.55)" filter="url(#coverGlow)"/>
+                <text x="200" y="50" text-anchor="middle" fill="#3ec4ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" letter-spacing="2">WEBPOINTLLC.COM</text>
+                <text x="200" y="74" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="15" font-weight="700">Paid members page</text>
+                <polygon points="200,118 190,138 210,138" fill="#3ec4ff"/>
+                <rect x="48" y="148" width="304" height="86" rx="16" fill="url(#coverFill)" stroke="rgba(62,196,255,0.55)" filter="url(#coverGlow)"/>
+                <text x="200" y="182" text-anchor="middle" fill="#3ec4ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" letter-spacing="2">TCS · TPA · RDS · S-PUL</text>
+                <text x="200" y="206" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="15" font-weight="700">Tax Certificate Processor</text>
+                <polygon points="200,250 190,270 210,270" fill="#3ec4ff"/>
+                <rect x="48" y="280" width="304" height="110" rx="16" fill="url(#coverFill)" stroke="rgba(62,196,255,0.7)" filter="url(#coverGlow)"/>
+                <text x="200" y="318" text-anchor="middle" fill="#3ec4ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" letter-spacing="2">OFFICIAL PAGE ONLY</text>
+                <text x="200" y="344" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="15" font-weight="700">Collector portal</text>
+                <text x="200" y="366" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="11">Chippewa WI · LandNav Guest Sign In</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="manual-section" data-section="members">
+            <h1 class="aside-title">Same layout, scaled</h1>
+            <p class="aside-copy">The members iframe keeps the desktop composition. Phones see the identical workspace, smaller — not a stacked mobile redesign.</p>
+            <div class="diagram-frame" aria-label="Desktop and mobile iframe share the same 1280 by 800 layout">
+              <svg viewBox="0 0 400 360" role="img" xmlns="http://www.w3.org/2000/svg">
+                <rect x="24" y="28" width="352" height="220" rx="16" fill="rgba(8,18,48,0.92)" stroke="rgba(70,130,210,0.45)"/>
+                <rect x="40" y="44" width="320" height="28" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(70,130,210,0.28)"/>
+                <text x="200" y="63" text-anchor="middle" fill="#3ec4ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">1280 × 800 canvas</text>
+                <rect x="40" y="82" width="74" height="44" rx="8" fill="rgba(40,140,255,0.22)" stroke="rgba(62,196,255,0.55)"/>
+                <rect x="122" y="82" width="74" height="44" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(70,130,210,0.28)"/>
+                <rect x="204" y="82" width="74" height="44" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(70,130,210,0.28)"/>
+                <rect x="286" y="82" width="74" height="44" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(70,130,210,0.28)"/>
+                <text x="77" y="108" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="10" font-weight="700">TCS</text>
+                <text x="159" y="108" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="10">TPA</text>
+                <text x="241" y="108" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="10">RDS</text>
+                <text x="323" y="108" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="10">S-PUL</text>
+                <rect x="40" y="136" width="196" height="96" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(70,130,210,0.28)"/>
+                <rect x="246" y="136" width="114" height="96" rx="12" fill="rgba(16,40,90,0.55)" stroke="rgba(70,130,210,0.28)"/>
+                <text x="138" y="188" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="11">Order form</text>
+                <text x="303" y="188" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="11">S-PUL</text>
+                <rect x="118" y="268" width="164" height="72" rx="14" fill="rgba(8,18,48,0.92)" stroke="rgba(62,196,255,0.45)"/>
+                <text x="200" y="300" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">Phone iframe</text>
+                <text x="200" y="318" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="10">padding-top 62.5% · scale, not reflow</text>
+              </svg>
+            </div>
+            <p class="note-ok">User guide in the tool header opens this page in the same frame.</p>
+          </div>
+
+          <div class="manual-section" data-section="workflow">
+            <h1 class="aside-title">Ten-parcel batch</h1>
+            <p class="aside-copy">LandNav Chippewa and WebPoint both cap a batch at 10. Add parcel disables at the cap.</p>
+            <div class="diagram-frame" aria-label="Ten parcel slots in one closing batch">
+              <svg viewBox="0 0 400 200" role="img" xmlns="http://www.w3.org/2000/svg">
+                <g font-family="DM Sans, sans-serif" font-size="11" font-weight="700" fill="#d7ecff" text-anchor="middle">
+                  <rect x="16" y="16" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="50" y="45">01</text>
+                  <rect x="92" y="16" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="126" y="45">02</text>
+                  <rect x="168" y="16" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="202" y="45">03</text>
+                  <rect x="244" y="16" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="278" y="45">04</text>
+                  <rect x="320" y="16" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="354" y="45">05</text>
+                  <rect x="16" y="76" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="50" y="105">06</text>
+                  <rect x="92" y="76" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="126" y="105">07</text>
+                  <rect x="168" y="76" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="202" y="105">08</text>
+                  <rect x="244" y="76" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="278" y="105">09</text>
+                  <rect x="320" y="76" width="68" height="48" rx="10" fill="rgba(40,140,255,0.18)" stroke="rgba(62,196,255,0.45)"/>
+                  <text x="354" y="105">10</text>
+                </g>
+                <rect x="100" y="140" width="200" height="42" rx="21" fill="url(#batchBtn)" stroke="rgba(62,196,255,0.55)"/>
+                <defs>
+                  <linearGradient id="batchBtn" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3ec4ff"/>
+                    <stop offset="100%" stop-color="#1a7ad4"/>
+                  </linearGradient>
+                </defs>
+                <text x="200" y="166" text-anchor="middle" fill="#041226" font-family="DM Sans, sans-serif" font-size="13" font-weight="700">Process batch · max 10</text>
+              </svg>
+            </div>
+            <div class="mock-cert">
+              <strong>12-345-6-789 · unknown · as of 2026-09-08</strong>
+              <p>TCS draft for the parcel in Chippewa County, WI. Confirm amounts on the official portal before closing.</p>
+              <p><a href="https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/" target="_blank" rel="noopener">Open collector / search page</a></p>
+            </div>
+          </div>
+
+          <div class="manual-section" data-section="products">
+            <h1 class="aside-title">TCS vs TPA vs RDS</h1>
+            <p class="aside-copy">S-PUL sits beside every product: it only locates the official tax-search page.</p>
+            <div class="diagram-frame" aria-label="Product comparison TCS TPA RDS and S-PUL">
+              <svg viewBox="0 0 400 280" role="img" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="12" width="182" height="118" rx="14" fill="rgba(40,140,255,0.16)" stroke="rgba(62,196,255,0.5)"/>
+                <text x="103" y="48" text-anchor="middle" fill="#3ec4ff" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">TCS</text>
+                <text x="103" y="70" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="12">Certificate draft</text>
+                <text x="103" y="92" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="11">Collector-current</text>
+                <rect x="206" y="12" width="182" height="118" rx="14" fill="rgba(8,18,48,0.9)" stroke="rgba(70,130,210,0.4)"/>
+                <text x="297" y="48" text-anchor="middle" fill="#3ec4ff" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">TPA</text>
+                <text x="297" y="70" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="12">Closing portfolio</text>
+                <text x="297" y="92" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="11">Batch tax status</text>
+                <rect x="12" y="142" width="182" height="118" rx="14" fill="rgba(8,18,48,0.9)" stroke="rgba(70,130,210,0.4)"/>
+                <text x="103" y="178" text-anchor="middle" fill="#3ec4ff" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">RDS</text>
+                <text x="103" y="200" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="12">Recorded documents</text>
+                <text x="103" y="222" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="11">County RDS portal</text>
+                <rect x="206" y="142" width="182" height="118" rx="14" fill="rgba(16,40,90,0.65)" stroke="rgba(62,196,255,0.45)"/>
+                <text x="297" y="178" text-anchor="middle" fill="#3ec4ff" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">S-PUL</text>
+                <text x="297" y="200" text-anchor="middle" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="12">URL lock</text>
+                <text x="297" y="222" text-anchor="middle" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="11">Official page only</text>
+              </svg>
+            </div>
+            <div class="diagram-frame" aria-label="URL lock: official tax search page only">
+              <svg viewBox="0 0 400 150" role="img" xmlns="http://www.w3.org/2000/svg">
+                <rect x="16" y="16" width="368" height="118" rx="14" fill="rgba(4,10,28,0.8)" stroke="rgba(62,196,255,0.45)"/>
+                <circle cx="48" cy="52" r="16" fill="rgba(61,220,138,0.15)" stroke="#3ddc8a"/>
+                <rect x="42" y="46" width="12" height="10" rx="2" fill="none" stroke="#3ddc8a" stroke-width="2"/>
+                <path d="M45 46 v-4 a3 3 0 0 1 6 0 v4" fill="none" stroke="#3ddc8a" stroke-width="2"/>
+                <text x="78" y="48" fill="#3ddc8a" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">VERIFIED</text>
+                <text x="78" y="66" fill="#d7ecff" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">Open official tax search page</text>
+                <text x="32" y="100" fill="#7ea0c8" font-family="DM Mono, monospace" font-size="9">pp-chippewa-co-wi-fb.app.landnav.com</text>
+                <text x="32" y="118" fill="#7ea0c8" font-family="DM Sans, sans-serif" font-size="10">Never invented · Guest Sign In</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="manual-section" data-section="faq">
+            <h1 class="aside-title">Chippewa County, WI</h1>
+            <p class="aside-copy">First live county. Search on LandNav. Confirm dollars on that portal before closing.</p>
+            <div class="chip-row">
+              <span class="chip">Guest Sign In</span>
+              <span class="chip">Parcel · owner · address</span>
+              <span class="chip">Max 10 / batch</span>
+            </div>
+            <article class="stat-card">
+              <h3>Tax search (locked)</h3>
+              <p class="codeish">pp-chippewa-co-wi-fb.app.landnav.com</p>
+              <p><a href="https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/" target="_blank" rel="noopener">Open collector / search page</a></p>
+            </article>
+            <article class="stat-card">
+              <h3>County treasurer</h3>
+              <p>Postponed and delinquent tax. Current December/January installments: local municipal treasurer.</p>
+              <p><a href="https://chippewacountywi.gov/169/Treasurer" target="_blank" rel="noopener">chippewacountywi.gov/169/Treasurer</a></p>
+            </article>
+            <p class="note-warn">Certificate cards are drafts. The collector portal is the source you close on.</p>
+          </div>
+        </aside>
+      </main>
+    </div>
+  </div>
+  <script src="/manual.js"></script>
+</body>
+</html>

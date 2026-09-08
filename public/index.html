@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPoint — Tax Certificate Processor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="scale-outer">
+    <div id="design-canvas">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">WEBPOINT LLC</div>
+            <div class="brand-sub">Tax Certificate Processor</div>
+          </div>
+        </div>
+        <div class="top-pills">
+          <a class="pill guide-link" href="/manual.html">User guide</a>
+          <a class="pill guide-link" href="/architecture.html">Architecture</a>
+          <span class="pill" id="db-pill">DB …</span>
+          <span class="pill" id="spul-pill">S-PUL ready</span>
+          <span class="pill" id="passport-pill">Passport …</span>
+        </div>
+      </header>
+
+      <nav class="modules" aria-label="Products">
+        <button class="mod active" data-product="TCS">TCS<span>Tax certificates</span></button>
+        <button class="mod" data-product="TPA">TPA<span>Portfolio analysis</span></button>
+        <button class="mod" data-product="RDS">RDS<span>Recorded documents</span></button>
+        <button class="mod" data-product="SPUL">S-PUL<span>Search page locator</span></button>
+      </nav>
+
+      <main class="workspace">
+        <section class="panel order-panel">
+          <div class="panel-head">
+            <h1 id="panel-title">Tax Certification System</h1>
+            <p id="panel-copy">Collector-current certificate drafts. First county: Chippewa, Wisconsin.</p>
+          </div>
+          <div class="grid-2">
+            <label>File number<input id="file-number" placeholder="Closing file #"></label>
+            <label>Client<input id="client-name" placeholder="Title / tax service"></label>
+            <label>County<input id="county" value="Chippewa"></label>
+            <label>State<input id="state" value="WI" maxlength="2"></label>
+            <label>Closing date<input id="closing-date" type="date"></label>
+            <label>Owner (optional)<input id="owner-global" placeholder="Last, First"></label>
+          </div>
+          <div class="parcel-head">
+            <h2>Parcels <small>max 10 — LandNav / WebPoint demo cap</small></h2>
+            <button type="button" class="ghost" id="add-parcel">Add parcel</button>
+          </div>
+          <div id="parcel-rows"></div>
+          <div class="actions">
+            <button type="button" class="primary" id="run-order">Process batch</button>
+            <button type="button" class="ghost" id="open-collector">Open collector portal</button>
+          </div>
+          <div id="order-status" class="status-line"></div>
+          <div id="cert-list"></div>
+        </section>
+
+        <aside class="panel chat-panel">
+          <div class="panel-head">
+            <h1>Search Spul</h1>
+            <p>Type a county. The locked collector URL appears first. RAG explains after — never invented links.</p>
+          </div>
+          <form id="hero-form" class="hero-search" role="search" autocomplete="off">
+            <label class="sr-only" for="hero-input">Search county tax portal</label>
+            <input id="hero-input" placeholder="Chippewa County WI" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="hero-suggest" aria-expanded="false">
+            <button type="submit" class="primary compact" id="hero-go">Search</button>
+            <div id="hero-suggest" class="suggest-list" hidden role="listbox"></div>
+          </form>
+          <div id="hero-chips" class="hero-chips" aria-label="Example searches"></div>
+          <div id="messages" class="messages"></div>
+          <form id="chat-form" class="chat-form">
+            <input id="chat-input" placeholder="Ask how to search or pay…" autocomplete="off">
+            <button type="submit" class="primary compact">Ask</button>
+          </form>
+        </aside>
+      </main>
+    </div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
