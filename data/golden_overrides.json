@@ -1,0 +1,46 @@
+{
+  "WI-Chippewa": {
+    "county": "Chippewa",
+    "state": "WI",
+    "searchURL": "https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/",
+    "rejectURLs": [
+      "https://chippewacounty.gov/",
+      "chippewacounty.gov",
+      "https://assessorsearch.com/"
+    ],
+    "verified": true,
+    "entityType": "tax_collector",
+    "entityNote": "Catalis / LandNav public portal. Guest Sign In. Search by parcel #, owner last name, or address. Treasurer collects postponed/delinquent tax; local municipal treasurers collect current December/January installments. Max 10 parcels per payment transaction.",
+    "vendor": "catalis_landnav",
+    "entity": "Chippewa County WI Treasurer — LandNav public portal",
+    "rdsURL": "https://www.chippewacountywi.gov/451/Online-Real-Estate-Search",
+    "gisURL": "https://mapping.chippewacountywi.gov/",
+    "treasurerURL": "https://chippewacountywi.gov/169/Treasurer"
+  },
+  "CA-SanDiego": {
+    "county": "San Diego",
+    "state": "CA",
+    "searchURL": "https://wps.sdttc.com/WebPayments/CoSDTreasurer2/search",
+    "rejectURLs": [
+      "https://arcc.sandiegocounty.gov/",
+      "arcc.sandiegocounty.gov"
+    ],
+    "verified": true,
+    "entityNote": "Treasurer WebPayments property tax search — not the Assessor ARCC site",
+    "vendor": "sdttc_webpayments",
+    "entity": "San Diego County Treasurer-Tax Collector"
+  },
+  "CO-Denver": {
+    "county": "Denver",
+    "state": "CO",
+    "searchURL": "https://property.spatialest.com/co/denver#/",
+    "rejectURLs": [
+      "https://www.denvergov.org/Assessor",
+      "denvergov.org/Assessor"
+    ],
+    "verified": true,
+    "entityNote": "Spatialest interactive search — not denvergov.org Assessor brochure page",
+    "vendor": "spatialest",
+    "entity": "City and County of Denver — Property Record Search"
+  }
+}

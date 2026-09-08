@@ -1,0 +1,66 @@
+{
+  "FL": {
+    "statutes": "Fla. Stat. § 197.172 (interest), § 197.432 (certificates), § 197.502 (tax deeds)",
+    "lienPriority": "Superior to all other liens except prior tax liens",
+    "redemptionPeriodDays": 0,
+    "interestRateCap": "18% per annum",
+    "saleProcess": "Tax certificate sold at auction. After 2+ years, holder can apply for tax deed. No redemption after deed issuance.",
+    "source": "Florida Statutes Title XIV, Chapter 197"
+  },
+  "TX": {
+    "statutes": "Tex. Tax Code § 32.01 (lien), § 33.41 (suit), § 34.01 (sale)",
+    "lienPriority": "First lien superior to all other liens",
+    "redemptionPeriodDays": 180,
+    "interestRateCap": "25% penalty + interest",
+    "saleProcess": "Tax lien or deed sale. Property can be redeemed within 6 months (or longer in some cases) by paying full amount + penalty + interest.",
+    "source": "Texas Tax Code Title 1, Subtitle E"
+  },
+  "GA": {
+    "statutes": "O.C.G.A. § 48-4-1, § 48-4-40",
+    "lienPriority": "Superior lien on the property",
+    "redemptionPeriodDays": 12,
+    "interestRateCap": "10% + costs",
+    "saleProcess": "Tax deed sale after notice. 12-month redemption period in most cases before final deed.",
+    "source": "Official Code of Georgia Annotated, Title 48, Chapter 4"
+  },
+  "IL": {
+    "statutes": "35 ILCS 200/21-190, 200/22-5",
+    "lienPriority": "First and prior lien",
+    "redemptionPeriodDays": 730,
+    "interestRateCap": "18% per 6-month period + costs",
+    "saleProcess": "Tax lien sale. 2-year redemption period. After redemption period, holder can petition for deed.",
+    "source": "Illinois Property Tax Code, 35 ILCS 200"
+  },
+  "NJ": {
+    "statutes": "N.J.S.A. 54:5-1, 54:5-86",
+    "lienPriority": "First lien superior to mortgages and other liens",
+    "redemptionPeriodDays": 730,
+    "interestRateCap": "Up to 18% + costs",
+    "saleProcess": "Tax lien certificate sold. 2-year redemption period. After period, holder can foreclose.",
+    "source": "New Jersey Statutes Annotated, Title 54, Chapter 5"
+  },
+  "CA": {
+    "statutes": "Cal. Rev. & Tax. Code § 2601, § 3691, § 3692",
+    "lienPriority": "Lien for taxes is prior to most other liens",
+    "redemptionPeriodDays": 0,
+    "interestRateCap": "Varies by county; penalties per statute",
+    "saleProcess": "Tax-defaulted property may be sold at public auction after notice and redemption period.",
+    "source": "California Revenue and Taxation Code"
+  },
+  "WI": {
+    "statutes": "Wis. Stat. ch. 74 (property taxes), ch. 75 (land sold for taxes)",
+    "lienPriority": "Property tax lien is superior to most other liens",
+    "redemptionPeriodDays": 730,
+    "interestRateCap": "Statutory interest and penalty on delinquent real estate tax",
+    "saleProcess": "County treasurer collects postponed and delinquent real estate taxes. Unpaid taxes may proceed to tax deed under ch. 75 after notice and redemption. Current-year installments are often paid to the local municipal treasurer (Dec/Jan).",
+    "source": "Wisconsin Statutes Chapters 74 and 75"
+  },
+  "CO": {
+    "statutes": "C.R.S. § 39-10-101 et seq.",
+    "lienPriority": "Tax lien has priority over most other encumbrances",
+    "redemptionPeriodDays": 180,
+    "interestRateCap": "Statutory interest and fees",
+    "saleProcess": "Tax lien certificate sale; redemption before deed in most cases.",
+    "source": "Colorado Revised Statutes Title 39"
+  }
+}
