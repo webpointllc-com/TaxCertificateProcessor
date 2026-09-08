@@ -56,7 +56,7 @@ Set in the dashboard (never commit):
 2. On the paid page, add a **Code Block**.
 3. Paste `public/SQUARESPACE_EMBED.html` (update the `src` host after the first Render deploy).
 4. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
-5. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide**.
+5. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide** and **Architecture**.
 
 Optional script tag (host will match the request):
 

@@ -22,6 +22,15 @@ describe('HTTP API', () => {
     await store.close();
   });
 
+  it('serves the end-user manual as a live page', async () => {
+    const res = await fetch(`${base}/manual.html`);
+    assert.equal(res.status, 200);
+    const body = await res.text();
+    assert.match(body, /id="scale-outer"/);
+    assert.match(body, /Tax Certification System/);
+    assert.doesNotMatch(body, /id="run-order"/);
+  });
+
   it('health reports TCS modules and Chippewa first county', async () => {
     const res = await fetch(`${base}/api/health`);
     assert.equal(res.status, 200);
