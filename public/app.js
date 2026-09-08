@@ -63,6 +63,13 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
+  function refreshAddBtn() {
+    var wrap = document.getElementById('parcel-rows');
+    var btn = document.getElementById('add-parcel');
+    btn.disabled = wrap.children.length >= MAX_PARCELS;
+    btn.textContent = wrap.children.length >= MAX_PARCELS ? 'Max 10 parcels' : 'Add parcel';
+  }
+
   function addParcelRow(values) {
     var wrap = document.getElementById('parcel-rows');
     if (wrap.children.length >= MAX_PARCELS) return;
@@ -77,8 +84,10 @@
     );
     row.querySelector('.icon-btn').addEventListener('click', function () {
       if (wrap.children.length > 1) row.remove();
+      refreshAddBtn();
     });
     wrap.appendChild(row);
+    refreshAddBtn();
   }
 
   document.getElementById('add-parcel').addEventListener('click', function () { addParcelRow(); });

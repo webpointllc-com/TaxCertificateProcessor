@@ -146,10 +146,7 @@ input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rg
   box-shadow: 0 8px 20px rgba(30, 140, 255, 0.28);
 }
 .primary.compact { padding: 8px 12px; }
-.ghost {
-  background: var(--fill); color: var(--text);
-  border: 1px solid var(--panel-border); border-radius: 12px; padding: 10px 14px;
-}
+.ghost:disabled { opacity: 0.45; cursor: not-allowed; }
 .icon-btn {
   background: rgba(255, 80, 90, 0.12); color: var(--danger);
   border: 1px solid rgba(255, 107, 122, 0.3); border-radius: 10px; height: 36px;

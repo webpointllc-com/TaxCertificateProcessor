@@ -26,6 +26,7 @@ describe('embeddable scaled UI', () => {
   it('ships a Squarespace iframe that preserves 800/1280 aspect', () => {
     assert.match(embed, /padding-top:\s*62\.5%/);
     assert.match(embed, /width:\s*100%/);
-    assert.match(html, /Tax Certificate Processor/);
+    assert.match(js, /MAX_PARCELS = 10/);
+    assert.match(js, /Max 10 parcels/);
   });
 });
