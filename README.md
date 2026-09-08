@@ -78,3 +78,18 @@ Search Spul had `https://chippewacounty.gov/` which does not resolve. Golden ove
 - Tax search: [LandNav / Catalis public portal](https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/) (Guest Sign In)
 - Treasurer: [chippewacountywi.gov/169/Treasurer](https://chippewacountywi.gov/169/Treasurer)
 - RDS: [Online Real Estate Search](https://www.chippewacountywi.gov/451/Online-Real-Estate-Search)
+
+## WPT Production Log counties
+
+S-PUL must know every jurisdiction on the [WPT Production Log](https://docs.google.com/spreadsheets/d/1yOKyy5NqJHVKiuVO1kYvSIf7s_R7gCGJ2cyfcCz2zcM/edit#gid=1491656814) (CoreLogic, Lereta, Lument, NTS, Master Log, UPF).
+
+```bash
+npm run sync:sheet          # fetch sheet, merge stubs, apply golden locks
+npm run import:master       # optional local MASTER_VALIDATED ndjson + golden
+```
+
+Missing sheet counties are stored with `coverageStatus: needs_correction` and **no invented URL**. Typos such as `WI-Horry` alias to `SC-Horry`. Catalog: `data/wpt_production_counties.json`.
+
+## Spine
+
+Non-secret operating doctrine: [`docs/SPINE.md`](docs/SPINE.md). The private EF_EE 1000TK ledger is not in this repo.

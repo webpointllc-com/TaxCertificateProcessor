@@ -1,11 +1,17 @@
 const fs = require('fs');
 const path = require('path');
-const { isRealHttpUrl, hasUrlLock } = require('./spulTruth');
+const { isRealHttpUrl, hasUrlLock, compactJurisdictionName } = require('./spulTruth');
 
 const countiesPath = path.join(__dirname, '../../data/counties.json');
 const goldenPath = path.join(__dirname, '../../data/golden_overrides.json');
+const aliasesPath = path.join(__dirname, '../../data/sheet_aliases.json');
 let countiesCache = null;
 let goldenCache = null;
+let aliasCache = null;
+
+function compactName(s) {
+  return compactJurisdictionName(s);
+}
 
 function loadCounties() {
   if (!countiesCache) {
@@ -31,6 +37,39 @@ function loadGoldenOverrides() {
   return goldenCache;
 }
 
+function loadAliases() {
+  if (aliasCache !== null) return aliasCache;
+  aliasCache = {};
+  if (fs.existsSync(aliasesPath)) {
+    try {
+      aliasCache = JSON.parse(fs.readFileSync(aliasesPath, 'utf8')) || {};
+    } catch {
+      aliasCache = {};
+    }
+  }
+  return aliasCache;
+}
+
+function aliasLookupKey(state, county) {
+  return `${(state || '').toUpperCase().trim()}:${compactName(county)}`;
+}
+
+function resolveAlias(county, state) {
+  const aliases = loadAliases();
+  const st = (state || '').toUpperCase().trim();
+  const co = (county || '').trim();
+  if (!co) return { county: co, state: st || null, aliased: false };
+  const hit = aliases[aliasLookupKey(st, co)];
+  if (hit && hit.county) {
+    return {
+      county: hit.county,
+      state: (hit.state || st).toUpperCase(),
+      aliased: true
+    };
+  }
+  return { county: co, state: st || null, aliased: false };
+}
+
 function goldenKeyFor(county, state) {
   const st = (state || '').toUpperCase().trim();
   const co = (county || '').trim();
@@ -38,15 +77,17 @@ function goldenKeyFor(county, state) {
 }
 
 function findGoldenOverride(county, state) {
+  const resolved = resolveAlias(county, state);
   const map = loadGoldenOverrides();
-  const direct = map.get(goldenKeyFor(county, state));
+  const direct = map.get(goldenKeyFor(resolved.county, resolved.state));
   if (direct) return direct;
-  const normalizedCounty = county.toLowerCase().trim();
+  const normalizedCounty = compactName(resolved.county);
+  const st = (resolved.state || '').toUpperCase().trim();
   for (const [, val] of map) {
     if (
-      val.state === (state || '').toUpperCase().trim() &&
+      val.state === st &&
       val.county &&
-      val.county.toLowerCase().trim() === normalizedCounty
+      compactName(val.county) === normalizedCounty
     ) {
       return val;
     }
@@ -56,6 +97,7 @@ function findGoldenOverride(county, state) {
 
 function invalidateGoldenCache() {
   goldenCache = null;
+  aliasCache = null;
 }
 
 function invalidateCountiesCache() {
@@ -63,25 +105,34 @@ function invalidateCountiesCache() {
   invalidateGoldenCache();
 }
 
-function countyInDatabase(county, state) {
-  const counties = loadCounties();
-  const normalizedCounty = county.toLowerCase().trim();
+function sameJurisdiction(row, county, state) {
+  const normalizedCounty = compactName(county);
   const normalizedState = state ? state.toUpperCase().trim() : '';
-  return counties.some((c) => {
-    const dbKey = c.county.toLowerCase().replace(/[-\s]+/g, '');
-    const queryKey = normalizedCounty.replace(/[-\s]+/g, '');
-    return (
-      dbKey === queryKey &&
-      (!normalizedState || c.state === normalizedState) &&
-      c.searchURL &&
-      isRealHttpUrl(c.searchURL)
-    );
-  });
+  return (
+    compactName(row.county) === normalizedCounty &&
+    (!normalizedState || row.state === normalizedState)
+  );
+}
+
+function countyInDatabase(county, state) {
+  const resolved = resolveAlias(county, state);
+  const counties = loadCounties();
+  return counties.some((c) => sameJurisdiction(c, resolved.county, resolved.state));
+}
+
+function knownRecord(county, state) {
+  const resolved = resolveAlias(county, state);
+  const counties = loadCounties();
+  return counties.find((c) => sameJurisdiction(c, resolved.county, resolved.state)) || null;
 }
 
 function findPropertyURL(county, state) {
+  const resolved = resolveAlias(county, state);
+  county = resolved.county;
+  state = resolved.state;
+
   const counties = loadCounties();
-  const normalizedCounty = county.toLowerCase().trim();
+  const normalizedCounty = compactName(county);
   const normalizedState = state ? state.toUpperCase().trim() : '';
 
   const golden = findGoldenOverride(county, state);
@@ -97,7 +148,8 @@ function findPropertyURL(county, state) {
       rejectURLs: golden.rejectURLs || [],
       rdsURL: golden.rdsURL || '',
       gisURL: golden.gisURL || '',
-      treasurerURL: golden.treasurerURL || ''
+      treasurerURL: golden.treasurerURL || '',
+      coverageStatus: 'verified'
     };
   }
 
@@ -106,26 +158,29 @@ function findPropertyURL(county, state) {
     entityNote: c.entityNote || '',
     entity: c.entity || '',
     vendor: c.vendor || '',
-    rejectURLs: c.rejectURLs || []
+    rejectURLs: c.rejectURLs || [],
+    coverageStatus: c.coverageStatus || (c.verified ? 'verified' : 'needs_correction'),
+    rdsURL: c.rdsURL || '',
+    gisURL: c.gisURL || '',
+    treasurerURL: c.treasurerURL || ''
   });
 
-  // 1. Exact verified match
-  const exact = counties.find(c =>
-    c.county.toLowerCase() === normalizedCounty &&
-    c.state === normalizedState &&
-    c.verified === true
+  // 1. Exact verified match (punctuation-insensitive)
+  const exact = counties.find(
+    (c) =>
+      compactName(c.county) === normalizedCounty &&
+      c.state === normalizedState &&
+      c.verified === true
   );
-  if (exact && exact.searchURL) {
+  if (exact && isRealHttpUrl(exact.searchURL)) {
     return { url: exact.searchURL, confidence: 'verified', source: 'SPUL database (verified)', ...meta(exact) };
   }
 
   // 2. Partial name match (handles dashes vs spaces, e.g. "miami-dade" vs "miami dade")
-  const partial = counties.find(c => {
-    const dbKey = c.county.toLowerCase().replace(/[-\s]+/g, '');
-    const queryKey = normalizedCounty.replace(/[-\s]+/g, '');
-    return dbKey === queryKey && (!normalizedState || c.state === normalizedState);
+  const partial = counties.find((c) => {
+    return compactName(c.county) === normalizedCounty && (!normalizedState || c.state === normalizedState);
   });
-  if (partial && partial.searchURL) {
+  if (partial && isRealHttpUrl(partial.searchURL)) {
     return {
       url: partial.searchURL,
       confidence: partial.verified ? 'verified' : 'pattern_matched',
@@ -137,9 +192,8 @@ function findPropertyURL(county, state) {
   // 2b. Exact name match even when not flagged verified (bulk import rows)
   const exactAny = counties.find(
     (c) =>
-      c.county.toLowerCase() === normalizedCounty &&
+      compactName(c.county) === normalizedCounty &&
       c.state === normalizedState &&
-      c.searchURL &&
       isRealHttpUrl(c.searchURL)
   );
   if (exactAny) {
@@ -151,16 +205,18 @@ function findPropertyURL(county, state) {
     };
   }
 
-  // 3. Never Google when jurisdiction exists in DB (even if URL missing — honest not_found)
-  if (countyInDatabase(county, state)) {
+  // 3. Known jurisdiction (WPT sheet / SPUL row) with no valid URL — honest not_found, never Google
+  const known = knownRecord(county, state);
+  if (known || countyInDatabase(county, state)) {
     return {
       url: null,
       confidence: 'not_found',
       source: 'SPUL record exists but no valid search URL — operator correction needed',
-      entityType: 'unknown',
-      entityNote: '',
-      entity: '',
-      rejectURLs: []
+      entityType: (known && known.entityType) || 'unknown',
+      entityNote: (known && known.entityNote) || '',
+      entity: (known && known.entity) || '',
+      rejectURLs: (known && known.rejectURLs) || [],
+      coverageStatus: (known && known.coverageStatus) || 'needs_correction'
     };
   }
 
@@ -173,12 +229,21 @@ function findPropertyURL(county, state) {
     source: 'No SPUL record — Google fallback',
     entityType: 'unknown',
     entityNote: '',
-    entity: ''
+    entity: '',
+    coverageStatus: 'unknown'
   };
 }
 
 // Parse raw user message into { county, state }
 function parseJurisdiction(message) {
+  const parsed = parseJurisdictionRaw(message);
+  if (!parsed.county) return parsed;
+  const resolved = resolveAlias(parsed.county, parsed.state);
+  if (!resolved.aliased) return parsed;
+  return { county: resolved.county, state: resolved.state };
+}
+
+function parseJurisdictionRaw(message) {
   let msg = message.toLowerCase().trim();
   msg = msg
     .replace(/^(where do i |how do i |i need (the )?|help me )+/i, '')
@@ -197,7 +262,8 @@ function parseJurisdiction(message) {
     'sd': 'SD', 'ne': 'NE', 'ks': 'KS', 'mn': 'MN', 'ia': 'IA',
     'wi': 'WI', 'in': 'IN', 'ky': 'KY', 'wv': 'WV', 'md': 'MD',
     'de': 'DE', 'nj': 'NJ', 'ct': 'CT', 'ri': 'RI', 'ma': 'MA',
-    'vt': 'VT', 'nh': 'NH', 'me': 'ME', 'hi': 'HI', 'ak': 'AK'
+    'vt': 'VT', 'nh': 'NH', 'me': 'ME', 'hi': 'HI', 'ak': 'AK',
+    'dc': 'DC', 'pr': 'PR'
   };
 
   const stateNames = {
@@ -209,7 +275,9 @@ function parseJurisdiction(message) {
     'mississippi': 'MS', 'missouri': 'MO', 'louisiana': 'LA', 'arkansas': 'AR',
     'oklahoma': 'OK', 'new mexico': 'NM', 'nevada': 'NV', 'utah': 'UT',
     'new jersey': 'NJ', 'maryland': 'MD', 'minnesota': 'MN', 'wisconsin': 'WI',
-    'indiana': 'IN', 'kentucky': 'KY', 'kansas': 'KS', 'nebraska': 'NE'
+    'indiana': 'IN', 'kentucky': 'KY', 'kansas': 'KS', 'nebraska': 'NE',
+    'district of columbia': 'DC', 'puerto rico': 'PR', 'rhode island': 'RI',
+    'massachusetts': 'MA', 'connecticut': 'CT'
   };
 
   // CAD / appraisal district → always TX
@@ -323,5 +391,7 @@ module.exports = {
   loadCounties,
   hasUrlLock,
   countyInDatabase,
-  findGoldenOverride
+  findGoldenOverride,
+  resolveAlias,
+  compactName
 };

@@ -1,3 +1,10 @@
+function compactJurisdictionName(s) {
+  return String(s || '')
+    .toLowerCase()
+    .replace(/saint\b/g, 'st')
+    .replace(/[^a-z0-9]/g, '');
+}
+
 function isGoogleFallbackUrl(url) {
   return typeof url === 'string' && /google\.com\/search/i.test(url);
 }
@@ -38,6 +45,7 @@ function buildLockedUrlPrefix(lockedUrl, confidence, entity) {
 }
 
 module.exports = {
+  compactJurisdictionName,
   isGoogleFallbackUrl,
   isRealHttpUrl,
   hasUrlLock,
