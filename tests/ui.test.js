@@ -29,4 +29,12 @@ describe('embeddable scaled UI', () => {
     assert.match(js, /MAX_PARCELS = 10/);
     assert.match(js, /Max 10 parcels/);
   });
+
+  it('has a hero search that only opens locked collector URLs', () => {
+    assert.match(html, /id="hero-input"/);
+    assert.match(html, /id="hero-form"/);
+    assert.match(js, /officialUrlOf/);
+    assert.match(js, /\/api\/suggest/);
+    assert.match(js, /googleFallback/);
+  });
 });

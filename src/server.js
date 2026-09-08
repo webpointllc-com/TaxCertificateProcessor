@@ -8,7 +8,7 @@ const express = require('express');
 const { OpenAI } = require('openai');
 const store = require('./db/store');
 const { enrichSystemPrompt, enforceLockedSpulUrl } = require('./services/taxIntelligence');
-const { parseJurisdiction, lookupForApi } = require('./services/urlFinder');
+const { parseJurisdiction, lookupForApi, suggestJurisdictions } = require('./services/urlFinder');
 const { hasUrlLock, buildLockedUrlPrefix } = require('./services/spulTruth');
 const { matchScenario } = require('./services/scenarioRouter');
 const { scanWorkplaceClone, inventoryRepo } = require('../scripts/workplace-scan');
@@ -63,10 +63,13 @@ function lookupBundle(message, county, state) {
   }
   if (!jurisdiction.county) return { ok: false, error: 'Provide a county and state, e.g. Chippewa County WI' };
   const result = lookupForApi(jurisdiction.county, jurisdiction.state);
-  const key = `${(jurisdiction.state || '').toUpperCase()}-${jurisdiction.county}`;
+  const key = `${(result.canonicalState || jurisdiction.state || '').toUpperCase()}-${result.canonicalCounty || jurisdiction.county}`;
   return {
     ok: true,
-    jurisdiction,
+    jurisdiction: {
+      county: result.canonicalCounty || jurisdiction.county,
+      state: result.canonicalState || jurisdiction.state
+    },
     key,
     scenarioId: scenarioMatch?.scenarioId || null,
     intent: scenarioMatch?.intent || null,
@@ -121,6 +124,12 @@ app.get('/api/lookup', (req, res) => {
   const result = lookupBundle(message, county, state);
   if (!result.ok) return res.status(400).json(result);
   res.json(result);
+});
+
+app.get('/api/suggest', (req, res) => {
+  const q = (req.query.q || req.query.query || '').trim();
+  const limit = Number(req.query.limit) || 8;
+  res.json({ ok: true, q, suggestions: suggestJurisdictions(q, limit) });
 });
 
 app.post('/api/chat', async (req, res) => {

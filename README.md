@@ -56,6 +56,7 @@ Set in the dashboard (never commit):
 2. On the paid page, add a **Code Block**.
 3. Paste `public/SQUARESPACE_EMBED.html` (update the `src` host after the first Render deploy).
 4. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
+5. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide**.
 
 Optional script tag (host will match the request):
 
@@ -89,6 +90,16 @@ npm run import:master       # optional local MASTER_VALIDATED ndjson + golden
 ```
 
 Missing sheet counties are stored with `coverageStatus: needs_correction` and **no invented URL**. Typos such as `WI-Horry` alias to `SC-Horry`. Catalog: `data/wpt_production_counties.json`.
+
+## Architecture (how the pieces connect)
+
+End-user + operator diagram (same 1280×800 canvas): [`public/architecture.html`](public/architecture.html). Squarespace paste: [`public/SQUARESPACE_ARCHITECTURE_EMBED.html`](public/SQUARESPACE_ARCHITECTURE_EMBED.html). Mermaid + paid-vs-free table: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+**We pay for:** Render web (Node Starter) + Render PostgreSQL. **We do not pay for:** SPUL county files, golden locks, the ingested WPT sheet (~2,923 jurisdictions), Groq free-tier if keyed, Squarespace members, or the WD Passport clone.
+
+## Paste-ready agent prompt
+
+[`docs/AGENT_PROMPT_GOOGLE_CLASS_SEARCH.md`](docs/AGENT_PROMPT_GOOGLE_CLASS_SEARCH.md) — Bill can paste that into a new Cursor/Grok turn to diagram the live setup, push Google-class search on this stack only, hunt the Passport, and keep spend on Render.
 
 ## Spine
 

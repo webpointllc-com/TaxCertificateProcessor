@@ -77,8 +77,20 @@ html, body {
 }
 .pill.ok { color: var(--ok); border-color: rgba(61, 220, 138, 0.35); }
 .pill.warn { color: var(--warn); border-color: rgba(240, 193, 75, 0.35); }
+a.pill, a.guide-link {
+  text-decoration: none;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+}
+a.pill:hover, a.guide-link:hover {
+  color: var(--blue);
+  border-color: rgba(62, 196, 255, 0.55);
+  box-shadow: 0 0 16px rgba(40, 160, 255, 0.16);
+}
 
 .modules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.modules-5 { grid-template-columns: repeat(5, 1fr); }
 .mod {
   text-align: left;
   padding: 12px 14px;
@@ -182,3 +194,69 @@ input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rg
 
 .chat-form { display: flex; gap: 8px; margin-top: 10px; }
 .chat-form input { flex: 1; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.hero-search {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.hero-search input {
+  flex: 1;
+  font-size: 16px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  background: rgba(4, 12, 32, 0.85);
+  box-shadow: 0 0 0 1px rgba(62, 196, 255, 0.22), 0 8px 28px rgba(20, 80, 180, 0.18);
+}
+.hero-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.chip {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  background: var(--fill); border: 1px solid var(--panel-border);
+  border-radius: 999px; padding: 5px 10px; cursor: pointer; font-family: inherit;
+}
+.chip:hover, .chip:focus {
+  color: var(--blue);
+  border-color: rgba(62, 196, 255, 0.55);
+  box-shadow: 0 0 14px rgba(40, 160, 255, 0.16);
+  outline: none;
+}
+.suggest-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 52px;
+  z-index: 8;
+  background: rgba(6, 14, 36, 0.98);
+  border: 1px solid rgba(62, 196, 255, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 24px var(--glow);
+  overflow: hidden;
+  max-height: 220px;
+}
+.suggest-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--panel-border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+}
+.suggest-item:last-child { border-bottom: 0; }
+.suggest-item.active, .suggest-item:hover { background: rgba(62, 196, 255, 0.12); }
+.suggest-item .meta { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.suggest-item .meta.lock { color: var(--ok); }
+.spul-card .empty-lock { color: var(--warn); margin-top: 6px; }

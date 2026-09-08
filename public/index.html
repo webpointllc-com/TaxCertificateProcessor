@@ -20,6 +20,8 @@
           </div>
         </div>
         <div class="top-pills">
+          <a class="pill guide-link" href="/manual.html">User guide</a>
+          <a class="pill guide-link" href="/architecture.html">Architecture</a>
           <span class="pill" id="db-pill">DB …</span>
           <span class="pill" id="spul-pill">S-PUL ready</span>
           <span class="pill" id="passport-pill">Passport …</span>
@@ -62,12 +64,19 @@
 
         <aside class="panel chat-panel">
           <div class="panel-head">
-            <h1>S-PUL + RAG</h1>
-            <p>Jurisdiction URLs are locked from the Search Spul database. Groq only fills context.</p>
+            <h1>Search Spul</h1>
+            <p>Type a county. The locked collector URL appears first. RAG explains after — never invented links.</p>
           </div>
+          <form id="hero-form" class="hero-search" role="search" autocomplete="off">
+            <label class="sr-only" for="hero-input">Search county tax portal</label>
+            <input id="hero-input" placeholder="Chippewa County WI" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="hero-suggest" aria-expanded="false">
+            <button type="submit" class="primary compact" id="hero-go">Search</button>
+            <div id="hero-suggest" class="suggest-list" hidden role="listbox"></div>
+          </form>
+          <div id="hero-chips" class="hero-chips" aria-label="Example searches"></div>
           <div id="messages" class="messages"></div>
           <form id="chat-form" class="chat-form">
-            <input id="chat-input" placeholder="Chippewa County WI tax certificate…" autocomplete="off">
+            <input id="chat-input" placeholder="Ask how to search or pay…" autocomplete="off">
             <button type="submit" class="primary compact">Ask</button>
           </form>
         </aside>

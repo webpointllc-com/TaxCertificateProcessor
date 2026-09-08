@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { isRealHttpUrl, hasUrlLock, compactJurisdictionName } = require('./spulTruth');
+const { isRealHttpUrl, hasUrlLock, compactJurisdictionName, isGoogleFallbackUrl } = require('./spulTruth');
 
 const countiesPath = path.join(__dirname, '../../data/counties.json');
 const goldenPath = path.join(__dirname, '../../data/golden_overrides.json');
@@ -376,11 +376,78 @@ function parseJurisdictionRaw(message) {
 function lookupForApi(county, state) {
   const result = findPropertyURL(county, state);
   const locked = hasUrlLock(result.confidence, result.url);
+  const googleFallback = isGoogleFallbackUrl(result.url);
+  const known = knownRecord(county, state);
   return {
     ...result,
     urlLocked: locked,
-    lockedUrl: locked ? result.url : null
+    lockedUrl: locked ? result.url : null,
+    officialUrl: locked ? result.url : null,
+    googleFallback,
+    displayUrl: locked ? result.url : null,
+    canonicalCounty: known ? known.county : county,
+    canonicalState: known ? known.state : (state || null)
   };
+}
+
+function suggestJurisdictions(query, limit = 8) {
+  const raw = String(query || '').trim();
+  if (raw.length < 2) return [];
+  const cap = Math.min(Math.max(Number(limit) || 8, 1), 20);
+  const parsed = parseJurisdiction(raw);
+  const needle = compactName(raw.replace(/\bcounty\b/gi, ' '));
+  const counties = loadCounties();
+  const scored = [];
+
+  for (const c of counties) {
+    const cname = compactName(c.county);
+    const blob = cname + String(c.state || '').toLowerCase();
+    let score = 0;
+    if (
+      parsed.county &&
+      compactName(parsed.county) === cname &&
+      (!parsed.state || parsed.state === c.state)
+    ) {
+      score = 10;
+    } else if (needle && cname.startsWith(needle)) {
+      score = 6;
+    } else if (needle.length >= 3 && cname.includes(needle)) {
+      score = 4;
+    } else if (needle.length >= 3 && blob.includes(needle)) {
+      score = 2;
+    } else {
+      continue;
+    }
+    if (c.verified || isRealHttpUrl(c.searchURL)) score += 1;
+    if (c.state === 'WI' && cname === 'chippewa') score += 2;
+    scored.push({
+      county: c.county,
+      state: c.state,
+      label: `${c.county} County, ${c.state}`,
+      coverageStatus: c.coverageStatus || (c.verified ? 'verified' : 'needs_correction'),
+      score
+    });
+  }
+
+  scored.sort((a, b) => b.score - a.score || a.label.localeCompare(b.label));
+  const seen = new Set();
+  const out = [];
+  for (const row of scored) {
+    const key = `${row.state}-${compactName(row.county)}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const lookup = lookupForApi(row.county, row.state);
+    out.push({
+      county: row.county,
+      state: row.state,
+      label: row.label,
+      coverageStatus: lookup.coverageStatus || row.coverageStatus,
+      urlLocked: Boolean(lookup.urlLocked),
+      confidence: lookup.confidence || 'not_found'
+    });
+    if (out.length >= cap) break;
+  }
+  return out;
 }
 
 module.exports = {
@@ -393,5 +460,6 @@ module.exports = {
   countyInDatabase,
   findGoldenOverride,
   resolveAlias,
-  compactName
+  compactName,
+  suggestJurisdictions
 };

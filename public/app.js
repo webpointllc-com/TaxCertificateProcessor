@@ -99,6 +99,10 @@
       document.querySelectorAll('.mod').forEach(function (b) { b.classList.toggle('active', b === btn); });
       document.getElementById('panel-title').textContent = COPY[product].title;
       document.getElementById('panel-copy').textContent = COPY[product].copy;
+      if (product === 'SPUL') {
+        var hero = document.getElementById('hero-input');
+        if (hero) hero.focus();
+      }
     });
   });
 
@@ -153,37 +157,191 @@
       lastLookup = data.lookup;
       setStatus('Order ' + data.order.id.slice(0, 8) + ' · ' + (data.order.status || 'issued') + ' · ' + (data.lookup.entity || ''));
       renderCerts(data);
-      if (data.lookup && data.lookup.url) renderSpulFromLookup(data.lookup, 'Batch used locked collector URL.');
+      if (data.lookup && officialUrlOf(data.lookup)) renderSpulFromLookup(data.lookup, 'Batch used locked collector URL.');
     } catch (e) {
       setStatus('Network error processing batch');
     }
   });
+
+  function jurisdictionLabel(lookup) {
+    if (lookup.entity) return lookup.entity;
+    if (lookup.jurisdiction && lookup.jurisdiction.county) {
+      return lookup.jurisdiction.county + ' County, ' + (lookup.jurisdiction.state || '');
+    }
+    return 'Property tax search';
+  }
+
+  function officialUrlOf(lookup) {
+    if (!lookup) return '';
+    if (lookup.officialUrl) return lookup.officialUrl;
+    if (lookup.lockedUrl) return lookup.lockedUrl;
+    if (lookup.urlLocked && lookup.url) return lookup.url;
+    if (lookup.googleFallback) return '';
+    if (lookup.confidence === 'not_found') return '';
+    if (lookup.url && /google\.com\/search/i.test(lookup.url)) return '';
+    if (lookup.url && lookup.confidence !== 'not_found') return lookup.url;
+    return '';
+  }
 
   document.getElementById('open-collector').addEventListener('click', async function () {
     var q = document.getElementById('county').value.trim() + ' County ' + document.getElementById('state').value.trim();
     var res = await fetch('/api/lookup?q=' + encodeURIComponent(q), { headers: headers() });
     var data = await res.json();
     lastLookup = data;
-    if (data.url) window.open(data.url, '_blank', 'noopener');
-    else setStatus(data.error || 'No locked collector URL');
+    var url = officialUrlOf(data);
+    if (url) window.open(url, '_blank', 'noopener');
+    else setStatus(data.error || data.source || 'No locked collector URL');
   });
 
   function renderSpulFromLookup(lookup, extra) {
-    var url = lookup.url || lookup.lockedUrl || '';
+    var url = officialUrlOf(lookup);
     var host = '';
-    try { host = new URL(url).hostname.replace(/^www\./, ''); } catch (e) { host = url; }
+    try { if (url) host = new URL(url).hostname.replace(/^www\./, ''); } catch (e) { host = url; }
+    var empty = url
+      ? ''
+      : '<p class="empty-lock">No locked collector URL. Sheet county stays listed — we do not invent a link.</p>';
     var card = el(
       '<div class="spul-card">' +
-        '<div class="entity"><span>' + escapeHtml(lookup.entity || 'Property tax search') + '</span>' +
+        '<div class="entity"><span>' + escapeHtml(jurisdictionLabel(lookup)) + '</span>' +
         '<span class="conf conf-' + escapeHtml(lookup.confidence || 'not_found') + '">' + escapeHtml(lookup.confidence || '') + '</span></div>' +
-        (url ? '<a href="' + encodeURI(url) + '" target="_blank" rel="noopener">Open official tax search page</a>' : '') +
-        '<div class="host">' + escapeHtml(host) + '</div>' +
+        (url ? '<a href="' + encodeURI(url) + '" target="_blank" rel="noopener">Open official tax search page</a>' : empty) +
+        (host ? '<div class="host">' + escapeHtml(host) + '</div>' : '') +
         '<p>' + escapeHtml(lookup.entityNote || lookup.source || extra || '') + '</p>' +
       '</div>'
     );
     document.getElementById('messages').appendChild(card);
     document.getElementById('messages').scrollTop = 99999;
   }
+
+  var suggestTimer = 0;
+  var suggestItems = [];
+  var suggestIndex = -1;
+
+  function hideSuggest() {
+    var box = document.getElementById('hero-suggest');
+    box.hidden = true;
+    box.innerHTML = '';
+    document.getElementById('hero-input').setAttribute('aria-expanded', 'false');
+    suggestItems = [];
+    suggestIndex = -1;
+  }
+
+  function paintSuggest(items) {
+    var box = document.getElementById('hero-suggest');
+    suggestItems = items || [];
+    if (!suggestItems.length) { hideSuggest(); return; }
+    box.innerHTML = '';
+    suggestItems.forEach(function (item, i) {
+      var btn = el(
+        '<button type="button" class="suggest-item" role="option">' +
+          '<span>' + escapeHtml(item.label) + '</span>' +
+          '<span class="meta' + (item.urlLocked ? ' lock' : '') + '">' +
+            escapeHtml(item.urlLocked ? 'locked' : (item.coverageStatus || item.confidence || '')) +
+          '</span>' +
+        '</button>'
+      );
+      btn.addEventListener('click', function () { pickSuggest(i); });
+      box.appendChild(btn);
+    });
+    box.hidden = false;
+    document.getElementById('hero-input').setAttribute('aria-expanded', 'true');
+    suggestIndex = 0;
+    markSuggest();
+  }
+
+  function markSuggest() {
+    var nodes = document.querySelectorAll('#hero-suggest .suggest-item');
+    nodes.forEach(function (n, i) { n.classList.toggle('active', i === suggestIndex); });
+  }
+
+  function pickSuggest(i) {
+    var item = suggestItems[i];
+    if (!item) return;
+    document.getElementById('hero-input').value = item.label;
+    hideSuggest();
+    runHeroSearch(item.county + ' County ' + item.state);
+  }
+
+  async function runHeroSearch(q) {
+    q = (q || document.getElementById('hero-input').value || '').trim();
+    if (!q) return;
+    hideSuggest();
+    try {
+      var res = await fetch('/api/lookup?q=' + encodeURIComponent(q), { headers: headers() });
+      var data = await res.json();
+      lastLookup = data;
+      if (data.jurisdiction && data.jurisdiction.county) {
+        document.getElementById('county').value = data.jurisdiction.county;
+        if (data.jurisdiction.state) document.getElementById('state').value = data.jurisdiction.state;
+      }
+      renderSpulFromLookup(
+        data,
+        data.urlLocked ? 'Locked official tax search page.' : 'No invented URL — operator correction needed.'
+      );
+      setStatus(
+        data.urlLocked
+          ? ('Locked: ' + (data.entity || data.jurisdiction.county || 'collector'))
+          : (data.error || data.source || 'No locked collector URL')
+      );
+    } catch (e) {
+      setStatus('Lookup unavailable');
+    }
+  }
+
+  document.getElementById('hero-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (suggestIndex >= 0 && suggestItems[suggestIndex] && !document.getElementById('hero-suggest').hidden) {
+      pickSuggest(suggestIndex);
+      return;
+    }
+    runHeroSearch();
+  });
+
+  document.getElementById('hero-input').addEventListener('input', function () {
+    var q = document.getElementById('hero-input').value.trim();
+    clearTimeout(suggestTimer);
+    if (q.length < 2) { hideSuggest(); return; }
+    suggestTimer = setTimeout(async function () {
+      try {
+        var res = await fetch('/api/suggest?q=' + encodeURIComponent(q), { headers: headers() });
+        var data = await res.json();
+        paintSuggest(data.suggestions || []);
+      } catch (e) {
+        hideSuggest();
+      }
+    }, 160);
+  });
+
+  document.getElementById('hero-input').addEventListener('keydown', function (e) {
+    if (document.getElementById('hero-suggest').hidden) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      suggestIndex = Math.min(suggestItems.length - 1, suggestIndex + 1);
+      markSuggest();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      suggestIndex = Math.max(0, suggestIndex - 1);
+      markSuggest();
+    } else if (e.key === 'Escape') {
+      hideSuggest();
+    }
+  });
+
+  fetch('/api/hero-examples', { headers: headers() })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var wrap = document.getElementById('hero-chips');
+      (data.examples || []).slice(0, 4).forEach(function (ex) {
+        var chip = el('<button type="button" class="chip"></button>');
+        chip.textContent = ex;
+        chip.addEventListener('click', function () {
+          document.getElementById('hero-input').value = ex;
+          runHeroSearch(ex);
+        });
+        wrap.appendChild(chip);
+      });
+    })
+    .catch(function () {});
 
   function addMsg(role, text) {
     var n = el('<div class="msg msg-' + role + '"></div>');
@@ -205,7 +363,7 @@
       if (look.ok) {
         var lookup = await look.json();
         lastLookup = lookup;
-        if (lookup.url && lookup.confidence !== 'not_found') renderSpulFromLookup(lookup);
+        if (officialUrlOf(lookup) || lookup.confidence === 'not_found') renderSpulFromLookup(lookup);
       }
       var res = await fetch('/api/chat', {
         method: 'POST',
