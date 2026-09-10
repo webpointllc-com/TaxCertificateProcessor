@@ -3,9 +3,9 @@
 - App path: `spul/`
 - Blueprint: `render.yaml` (service `search-spul-minimal`, free, autoDeploy)
 - Autodeploy playbook: `docs/AUTODEPLOY_VARIABLE/README.md`
-- T7 hunt: `docs/AUTODEPLOY_VARIABLE/T7_VOLUME_HUNT.md` (Bill’s Mac sees T7; cloud VM does not)
+- T7 / Passport / DeepShake: `docs/AUTODEPLOY_VARIABLE/T7_PASSPORT_DEEPSHAKE.md`, `T7_VOLUME_HUNT.md`, `docs/PASSPORT_RECOVERY.md`
 - LLM Comm guide: `POST /api/guide` (+ `/api/chat` alias) — registry-locked; optional `GROQ_API_KEY`
-- Boss briefing assets under `public/boss-briefing.html` are preserved and unrelated to this service entrypoint (`rootDir: spul`).
+- URL health sample: `npm run health:sample` → `docs/prototype-best-practice/URL_HEALTH_SAMPLE.md`
 
 Expected URL after Blueprint apply: https://search-spul-minimal.onrender.com
 
@@ -18,7 +18,10 @@ Expected URL after Blueprint apply: https://search-spul-minimal.onrender.com
 
 ## Status (2026-09-10)
 
-- Code + `render.yaml` pushed on `s-pul-front_end-Betaspul-minimal-deploy-55de`
-- Local smoke: `/api/health` OK · Travis/San Diego hit · Chambers AL (google placeholder) honest miss
-- Render live URL: **pending** one-click Blueprint or `RENDER_API_KEY` (see `docs/AUTODEPLOY_VARIABLE/ONE_CLICK_BLUEPRINT.md`)
-- Open PR manually: https://github.com/webpointllc-com/TaxCertificateProcessor/compare/s-pul-front_end-Betaboss-briefing-accounts-55de...s-pul-front_end-Betaspul-minimal-deploy-55de
+- Code + `render.yaml` on `s-pul-front_end-Betaspul-minimal-deploy-55de` (PR #4)
+- Local smoke: `/api/health` OK · guide locks Cook IL / San Diego CA · cascade search
+- Index: **2052** searchable · health sample refreshed with gated=up classifier
+- DeepShake: **not run** (no self-hosted Mac worker / `/Volumes/T7`)
+- Render live URL: **pending** one-click Blueprint or `RENDER_API_KEY` (see `ONE_CLICK_BLUEPRINT.md`)
+- Highlighter: **untouched** (read-only method clone)
+- PR: https://github.com/webpointllc-com/TaxCertificateProcessor/pull/4
