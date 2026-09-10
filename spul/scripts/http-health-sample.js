@@ -121,6 +121,19 @@ async function checkUrl(url) {
   return r;
 }
 
+/**
+ * Treat bot-gates / auth walls as "up" (site exists). Only hard-down → inactive.
+ * 401/403/405/429 = reachable. 404/410/5xx/null = down.
+ */
+function classifyHealth(r) {
+  const s = r.status;
+  if (s != null && s >= 200 && s < 400) return { ok: true, kind: 'ok' };
+  if (s === 401 || s === 403 || s === 405 || s === 429) return { ok: true, kind: 'gated' };
+  if (s === 404 || s === 410) return { ok: false, kind: 'gone' };
+  if (s != null && s >= 500) return { ok: false, kind: 'server_error' };
+  return { ok: false, kind: r.error || 'unreachable' };
+}
+
 async function mapPool(list, concurrency, fn) {
   const out = new Array(list.length);
   let i = 0;
@@ -145,7 +158,7 @@ async function main() {
 
   const results = await mapPool(sample, CONCURRENCY, async (item) => {
     const r = await checkUrl(item.url);
-    const ok = r.status != null && r.status >= 200 && r.status < 400;
+    const cls = classifyHealth(r);
     return {
       key: item.key,
       url: item.url,
@@ -153,11 +166,13 @@ async function main() {
       status: r.status,
       error: r.error,
       ms: r.ms,
-      ok,
+      ok: cls.ok,
+      kind: cls.kind,
     };
   });
 
   const okN = results.filter((r) => r.ok).length;
+  const gatedN = results.filter((r) => r.kind === 'gated').length;
   const fail = results.filter((r) => !r.ok);
   const rate = okN / Math.max(results.length, 1);
 
@@ -175,19 +190,27 @@ async function main() {
   }
 
   index.meta = index.meta || {};
+  // Unsampled rows stay active=true (default trust) unless previously false from this run's checks
+  for (const item of items) {
+    if (!byKey.has(item.key) && item.active === undefined) item.active = true;
+  }
+
+  const activeCount = items.filter((i) => i.active !== false).length;
   const healthMeta = {
     generatedAt: new Date().toISOString(),
     mode: RUN_ALL ? 'full' : 'sample',
     sampleSize: results.length,
     ok: okN,
+    gated: gatedN,
     fail: fail.length,
     okRate: Math.round(rate * 1000) / 1000,
     extrapolatedActiveEstimate: Math.round(items.length * rate),
+    indexActiveCount: activeCount,
     flippedInactive,
     flippedActive,
     deepShake: 'not_run',
     note:
-      'DeepShake unreachable from cloud VM (no self-hosted Mac worker; /Volumes/T7 not mounted here; no computerUse). HTTP HEAD/GET substitute only.',
+      'DeepShake unreachable from cloud VM (no self-hosted Mac worker; /Volumes/T7 not mounted here). HTTP HEAD/GET substitute; 401/403/405/429 counted as up (gated).',
   };
   index.meta.healthSample = healthMeta;
   if (RUN_ALL) index.meta.healthFull = healthMeta;
@@ -225,10 +248,11 @@ async function main() {
     `| Metric | Count |`,
     `|---|---:|`,
     `| Checked | ${results.length} |`,
-    `| OK (&lt;400) | ${okN} |`,
-    `| Fail | ${fail.length} |`,
-    `| OK rate | ${(rate * 100).toFixed(1)}% |`,
-    `| Extrapolated active (~index ${items.length}) | ~${healthMeta.extrapolatedActiveEstimate} |`,
+    `| OK / gated (counted up) | ${okN} (gated ${gatedN}) |`,
+    `| Hard fail | ${fail.length} |`,
+    `| Up rate | ${(rate * 100).toFixed(1)}% |`,
+    `| Index active after sample | ${healthMeta.indexActiveCount} |`,
+    `| Extrapolated if rate applied to all | ~${healthMeta.extrapolatedActiveEstimate} |`,
     `| Flipped inactive this run | ${flippedInactive} |`,
     `| Flipped active this run | ${flippedActive} |`,
     '',
