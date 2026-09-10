@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "health:sample": "node scripts/http-health-sample.js --limit=200 --concurrency=12",
+    "health:all": "node scripts/http-health-sample.js --all --concurrency=16"
   },
   "engines": {
     "node": ">=18.0.0"

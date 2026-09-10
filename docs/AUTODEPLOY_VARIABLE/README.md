@@ -4,6 +4,8 @@
 
 Use this document for every future Webpoint proto. Do **not** open or edit any prior tool's source, docs, or `render.yaml` to rediscover the method — copy **this** playbook.
 
+**Provenance (2026-09-10):** Method cloned from public Webpoint lanes `mobile` / `webpoint-shipyard` / `search-spul-test` after the search keyword *DEP Highlighter* (that repo stayed **READ-ONLY / untouched**). Samsung **T7** notes were **not** readable from the cloud VM — see `T7_VOLUME_HUNT.md`.
+
 ---
 
 ## Law (repo choice)
@@ -161,3 +163,14 @@ NOTES: <Render MCP / Blueprint one-click if blocked>
 3. Confirm `https://<service-name>.onrender.com` returns 200.
 4. Paste iframe into Squarespace.
 5. Optionally mirror best-practice docs into workplace-technologies / Real-Time-Tax when those remotes are available (see `docs/prototype-best-practice/`).
+
+## Related
+
+- `T7_VOLUME_HUNT.md` — which machine saw `/Volumes/T7`, and public precedent sources
+- `ONE_CLICK_BLUEPRINT.md` — operator apply for `search-spul-minimal`
+- `CONTROLLER_FORM.json` — machine-readable controller fields
+
+## T7 / Passport / DeepShake
+
+See `docs/AUTODEPLOY_VARIABLE/T7_PASSPORT_DEEPSHAKE.md` and `docs/PASSPORT_RECOVERY.md`.
+Cloud agents cannot see USB; self-hosted Mac worker required for DeepShake / workplace clone mounts.

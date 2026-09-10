@@ -1,0 +1,362 @@
+[
+  {
+    "key": "TX-Travis",
+    "url": "https://tax-office.traviscountytx.gov",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 245,
+    "ok": true
+  },
+  {
+    "key": "TX-Harris",
+    "url": "https://www.hctax.net/Property/PropertyTax",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 331,
+    "ok": true
+  },
+  {
+    "key": "TX-Dallas",
+    "url": "http://www.dallascounty.org/applications/english/proptax_app/tax_intro.php",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 252,
+    "ok": true
+  },
+  {
+    "key": "CA-LosAngeles",
+    "url": "https://ttc.lacounty.gov/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 281,
+    "ok": true
+  },
+  {
+    "key": "CA-SanDiego",
+    "url": "http://www.sdtreastax.com/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 306,
+    "ok": true
+  },
+  {
+    "key": "IL-Cook",
+    "url": "http://cookcountytreasurer.com/pinsummary.aspx",
+    "source": "Search",
+    "status": 303,
+    "error": null,
+    "ms": 288,
+    "ok": true
+  },
+  {
+    "key": "FL-MiamiDade",
+    "url": "http://www.miamidade.gov/taxcollector/online-services.asp",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 348,
+    "ok": false
+  },
+  {
+    "key": "FL-Orange",
+    "url": "https://www.octaxcol.com/Octc/PropertyTax/Search.aspx",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 1024,
+    "ok": false
+  },
+  {
+    "key": "WA-King",
+    "url": "http://info.kingcounty.gov/finance/treasury/propertytax/",
+    "source": "Base",
+    "status": 307,
+    "error": null,
+    "ms": 302,
+    "ok": true
+  },
+  {
+    "key": "CO-Denver",
+    "url": "https://property.spatialest.com/co/denver#/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 632,
+    "ok": true
+  },
+  {
+    "key": "AZ-Maricopa",
+    "url": "https://treasurer.maricopa.gov/PropertyTaxInformation/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 426,
+    "ok": true
+  },
+  {
+    "key": "GA-Fulton",
+    "url": "https://fultoncountytaxes.org/propertytax/search",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 240,
+    "ok": false
+  },
+  {
+    "key": "NC-Mecklenburg",
+    "url": "http://taxbill.co.mecklenburg.nc.us/publicwebaccess/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 385,
+    "ok": true
+  },
+  {
+    "key": "OH-Franklin",
+    "url": "http://treasurer.franklincountyohio.gov/",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 22,
+    "ok": false
+  },
+  {
+    "key": "MI-Wayne",
+    "url": "https://pta.waynecounty.com/Home/PropertySearch",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 647,
+    "ok": true
+  },
+  {
+    "key": "MN-Hennepin",
+    "url": "http://www16.co.hennepin.mn.us/pins/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 540,
+    "ok": true
+  },
+  {
+    "key": "OR-Multnomah",
+    "url": "http://www.multcoproptax.org/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 254,
+    "ok": true
+  },
+  {
+    "key": "NV-Clark",
+    "url": "http://www.clarkcountynv.gov/depts/treasurer/Pages/TaxCollection.aspx",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 247,
+    "ok": true
+  },
+  {
+    "key": "AK-MatanuskaSusitna",
+    "url": "https://myproperty.matsugov.us/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 264,
+    "ok": true
+  },
+  {
+    "key": "AR-Clay",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Clay&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 162,
+    "ok": false
+  },
+  {
+    "key": "AR-Nevada",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Nevada&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 236,
+    "ok": false
+  },
+  {
+    "key": "AR-VanBuren",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Van Buren&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 234,
+    "ok": false
+  },
+  {
+    "key": "CA-Modoc",
+    "url": "https://common3.mptsweb.com/MBC/api/search/modoc/0000-CURR/feeparcel/{parcel}",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 67,
+    "ok": false
+  },
+  {
+    "key": "CA-Tuolumne",
+    "url": "https://common1.mptsweb.com/MBC/api/search/tuolumne/0000-CURR/feeparcel/{parcel}",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 68,
+    "ok": false
+  },
+  {
+    "key": "FL-Lake",
+    "url": "http://www.laketax.com/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 251,
+    "ok": true
+  },
+  {
+    "key": "GA-CentervilleCity",
+    "url": "https://centervillega.mygovhub.com/#/quickpay",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 497,
+    "ok": true
+  },
+  {
+    "key": "GA-WarnerRobinsCity",
+    "url": "https://wrga.governmentwindow.com/tax.html",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 112,
+    "ok": false
+  },
+  {
+    "key": "KS-Johnson",
+    "url": "https://taxbill.jocogov.org/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 384,
+    "ok": true
+  },
+  {
+    "key": "KY-Jassamine",
+    "url": "https://jessaminesheriff.org/pay-taxes/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 356,
+    "ok": true
+  },
+  {
+    "key": "MA-BarnstableTown",
+    "url": "https://www.invoicecloud.com/portal/2/customerlocator.aspx?iti=8&bg=e547f99d-4428-4d04-85c8-4c7b2efb3256&vsii=1",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 214,
+    "ok": true
+  },
+  {
+    "key": "MI-ViennaTownship",
+    "url": "https://bsaonline.com/?uid=417",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 331,
+    "ok": true
+  },
+  {
+    "key": "NC-Anson",
+    "url": "https://www.bttaxpayerportal.com/ITSPublicAN/TaxBillSearch",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 899,
+    "ok": true
+  },
+  {
+    "key": "NJ-Brick",
+    "url": "https://apps.hlssystems.com/Brick/PropertyTaxInquiry/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 486,
+    "ok": true
+  },
+  {
+    "key": "OH-Ashtabula",
+    "url": "http://oh-ashtabulacounty.civicplus.com/311/Treasurer",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 1005,
+    "ok": true
+  },
+  {
+    "key": "OH-Montgomery",
+    "url": "http://www.mctreas.org/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 461,
+    "ok": true
+  },
+  {
+    "key": "SC-Horry",
+    "url": "https://horrycountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx\"",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 84,
+    "ok": false
+  },
+  {
+    "key": "TX-Coryell",
+    "url": "https://tax.coryellcountytax.com/",
+    "source": "Search",
+    "status": null,
+    "error": "Error",
+    "ms": 242,
+    "ok": false
+  },
+  {
+    "key": "TX-Johnson",
+    "url": "https://www.johnsoncountytaxoffice.org/search/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 468,
+    "ok": true
+  },
+  {
+    "key": "TX-WheelerAssociates",
+    "url": "https://www.wheelerassoc.com/SearchAccount",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 406,
+    "ok": true
+  },
+  {
+    "key": "VA-PortsmouthCity",
+    "url": "http://data.portsmouthva.gov/treasurer/data/realestatereceivsearch.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 239,
+    "ok": true
+  }
+]

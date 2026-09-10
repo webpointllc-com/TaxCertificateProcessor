@@ -3,10 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const { guideTurn, maybeGroqNarrate } = require('./services/guide');
+const { enforceLockedSpulUrl } = require('./services/spulTruth');
 
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 const DATA_PATH = path.join(__dirname, 'data', 'search-index.json');
+const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
 
 const STATE_ALIASES = {
   alabama: 'AL', alaska: 'AK', arizona: 'AZ', arkansas: 'AR', california: 'CA',
@@ -213,6 +216,12 @@ app.get('/api/health', (_req, res) => {
     service: 'search-spul-minimal',
     jurisdictions: items.length,
     generatedAt: index.meta?.generatedAt || null,
+    healthSample: index.meta?.healthSample || null,
+    llmGuide: {
+      deterministic: true,
+      groqOptional: Boolean(GROQ_API_KEY),
+      urlLock: 'registry_only',
+    },
   });
 });
 
@@ -247,6 +256,38 @@ app.post('/api/search', (req, res) => {
   const q = (req.body && (req.body.q || req.body.query)) || '';
   res.json(search(q, limit));
 });
+
+/**
+ * LLM Comm (flow) — registry-locked guide.
+ * Deterministic by default; optional Groq narration when GROQ_API_KEY is set.
+ * Hard rule: URLs only from Extractor index (never invented).
+ */
+async function handleGuide(req, res) {
+  const message = (req.body && (req.body.message || req.body.q || req.body.query)) || '';
+  const guide = guideTurn({ message, searchFn: search });
+  if (!guide.ok) return res.status(400).json(guide);
+
+  let narration = null;
+  if (GROQ_API_KEY) {
+    narration = await maybeGroqNarrate(guide, GROQ_API_KEY);
+    if (narration && guide.lockedUrl) {
+      narration = enforceLockedSpulUrl(
+        `SPUL_URL: ${guide.lockedUrl}\n${narration}`,
+        guide.lockedUrl,
+        guide.spul?.SPUL_CONFIDENCE
+      );
+    }
+  }
+
+  res.json({
+    ...guide,
+    groq: Boolean(GROQ_API_KEY && narration),
+    narration,
+  });
+}
+
+app.post('/api/guide', handleGuide);
+app.post('/api/chat', handleGuide); // alias — search-spul-test LLM Comm naming
 
 // Static UI
 app.use(express.static(path.join(__dirname, 'public'), {

@@ -1,6 +1,8 @@
 # ONE-CLICK: Apply Render Blueprint (operator)
 
-Code is already pushed. Render MCP/API auth is not available in this agent environment, so the free service must be created once via Dashboard.
+Code is pushed on `s-pul-front_end-Betaspul-minimal-deploy-55de` (PR #4).
+
+Render MCP/API in the cloud agent is **unauthorized** (`list_workspaces` fails; `RENDER_API_KEY` unset; CLI needs `render login`). Free service must be created once via Dashboard **or** by adding an API key and re-running the agent.
 
 ## Steps (≈1 minute)
 
@@ -28,11 +30,16 @@ Paste Squarespace iframe from `spul/public/SQUARESPACE_EMBED.html` (or `public/S
 
 ## Alternative
 
-Add secret `RENDER_API_KEY` to the cloud agent environment and re-run; agent will call `create_web_service` with autoDeploy.
+Add secret `RENDER_API_KEY` to the cloud agent environment and re-run; agent will call `create_web_service` with autoDeploy + `workspaceId` from `list_workspaces`.
+
+Mac precedent (highlighter method only — do not edit that repo): Desktop `Webpoint_ Workspace/Toolbox/deploy` + Deploy Hook; see `T7_PASSPORT_DEEPSHAKE.md`.
 
 ## Not done from this agent
 
 - Could not push to `search-spul-test` / `mobile` (403)
 - Could not create a new org repo
-- Could not create GitHub PR (integration lacks `createPullRequest`)
+- Could not create GitHub PR (integration lacks `createPullRequest`) — PR #4 already open
 - Precedent highlighter repo was **not** modified (read-only inspection only)
+- DeepShake **not run** (no self-hosted worker / T7 / Passport mount)
+- `/Volumes/T7` confirmed in **Bill’s Mac Finder** only — cloud VM has no `/Volumes`; no computerUse tool; see `T7_VOLUME_HUNT.md`
+- Render MCP `list_workspaces` → **unauthorized** (needs OAuth or `RENDER_API_KEY`)
