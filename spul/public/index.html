@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S-PUL — Search Page URL Locator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #070b16;
+  --ink-2: #0d1426;
+  --panel: rgba(16, 24, 48, 0.72);
+  --line: rgba(74, 158, 255, 0.22);
+  --accent: #4A9EFF;
+  --accent-soft: rgba(74, 158, 255, 0.14);
+  --gold: #E8C547;
+  --text: #E8EDF7;
+  --muted: #8A97B0;
+  --ok: #3DDC97;
+  --warn: #F0B429;
+  --fair: #7EB6FF;
+  --low: #9AA3B5;
+  --desktop-w: 1280px;
+  --desktop-h: 820px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #05080f;
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* ===== Embed stage: scale full desktop canvas to container width ===== */
+#stage-outer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(1100px 620px at 78% -8%, rgba(74,158,255,0.16), transparent 58%),
+    radial-gradient(900px 500px at 8% 110%, rgba(232,197,71,0.06), transparent 55%),
+    linear-gradient(165deg, #05080f 0%, #0a1224 48%, #08101c 100%);
+}
+#stage {
+  width: var(--desktop-w);
+  height: var(--desktop-h);
+  transform-origin: top left;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ===== Intro / WebPoint loading ===== */
+.wp-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(800px 420px at 50% 35%, rgba(74,158,255,0.18), transparent 60%),
+    #05080f;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+.wp-loading.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.wp-loading-inner {
+  text-align: center;
+  width: min(520px, 86%);
+}
+.wp-mark {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 22px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(74,158,255,0.35), rgba(74,158,255,0.05));
+  border: 1px solid rgba(74,158,255,0.35);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.wp-mark::after {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
+  animation: continuousShine 2.2s linear infinite;
+}
+.wp-mark span {
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  position: relative;
+  z-index: 1;
+}
+.wp-company {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #6bb6ff, #ffffff 45%, #4A9EFF 70%, #cfe6ff);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: continuousShineText 2.6s linear infinite;
+}
+.wp-sub {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.wp-bar {
+  margin: 28px auto 0;
+  width: 180px;
+  height: 2px;
+  background: rgba(74,158,255,0.15);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.wp-bar > i {
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: continuousGlide 1.4s ease-in-out infinite;
+}
+
+@keyframes continuousGlide {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(320%); }
+}
+@keyframes continuousShine {
+  0% { transform: translateX(-60%) rotate(18deg); }
+  100% { transform: translateX(60%) rotate(18deg); }
+}
+@keyframes continuousShineText {
+  0% { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wp-company, .wp-mark::after, .wp-bar > i { animation: none !important; }
+  .wp-company { color: var(--accent); background: none; -webkit-text-fill-color: unset; }
+  .wp-loading { transition-duration: 0.01s; }
+}
+
+/* ===== App shell ===== */
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 56px 40px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.app.is-ready {
+  opacity: 1;
+  transform: none;
+}
+
+.topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.brand-block h1 {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+}
+.brand-block h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.brand-block p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 520px;
+}
+.brand-meta {
+  text-align: right;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.brand-meta strong {
+  display: block;
+  color: var(--text);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.search-wrap {
+  position: relative;
+  margin-bottom: 22px;
+}
+.search-row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 10px 10px 18px;
+  backdrop-filter: blur(10px);
+}
+.search-row input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font: 400 18px/1.4 'Poppins', sans-serif;
+  min-width: 0;
+}
+.search-row input::placeholder { color: #66748f; }
+.search-row button {
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #041018;
+  font: 600 14px/1 'Poppins', sans-serif;
+  letter-spacing: 0.04em;
+  padding: 0 22px;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+.search-row button:hover { filter: brightness(1.08); }
+.search-row button:active { transform: scale(0.98); }
+
+.suggest {
+  position: absolute;
+  left: 0; right: 0; top: calc(100% + 6px);
+  background: #0e162b;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 10;
+  display: none;
+}
+.suggest.open { display: block; }
+.suggest button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  font: 400 14px/1.4 'Poppins', sans-serif;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.suggest button:hover, .suggest button.active {
+  background: var(--accent-soft);
+}
+
+.status-line {
+  min-height: 22px;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.status-line.miss { color: #ffb4b4; }
+
+.results {
+  flex: 1;
+  overflow: auto;
+  padding-right: 6px;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(18,28,52,0.9), rgba(12,18,34,0.92));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.2s ease;
+}
+.card.show {
+  opacity: 1;
+  transform: none;
+}
+.card:hover { border-color: rgba(74,158,255,0.45); }
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.card-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.card-title span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.badge.high { color: var(--ok); background: rgba(61,220,151,0.12); border-color: rgba(61,220,151,0.28); }
+.badge.medium { color: var(--fair); background: rgba(126,182,255,0.12); border-color: rgba(126,182,255,0.28); }
+.badge.fair { color: var(--warn); background: rgba(240,180,41,0.12); border-color: rgba(240,180,41,0.28); }
+.badge.low { color: var(--low); background: rgba(154,163,181,0.12); border-color: rgba(154,163,181,0.28); }
+
+.card-url a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  word-break: break-all;
+}
+.card-url a:hover { text-decoration: underline; }
+.card-meta {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.card-meta b { color: var(--text); font-weight: 500; }
+
+.empty-state {
+  color: var(--muted);
+  font-size: 15px;
+  padding: 28px 8px;
+  max-width: 560px;
+}
+
+.footer {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .app, .card { transition: none !important; }
+  .card { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<div id="stage-outer">
+  <div id="stage">
+    <div class="wp-loading" id="wpLoading" role="status" aria-live="polite">
+      <div class="wp-loading-inner">
+        <div class="wp-mark" aria-hidden="true"><span>WP</span></div>
+        <div class="wp-company">WebPoint LLC</div>
+        <div class="wp-sub">Loading S-PUL</div>
+        <div class="wp-bar" aria-hidden="true"><i></i></div>
+      </div>
+    </div>
+
+    <main class="app" id="app" aria-hidden="true">
+      <header class="topbar">
+        <div class="brand-block">
+          <h1><em>S-PUL</em> Search</h1>
+          <p>Find official county / jurisdiction Search &amp; Base URLs from the Extractor registry — with confidence.</p>
+        </div>
+        <div class="brand-meta">
+          <strong>taxcert.ai · Webpoint</strong>
+          <span id="metaCount">index loading…</span>
+        </div>
+      </header>
+
+      <div class="search-wrap">
+        <form class="search-row" id="searchForm" autocomplete="off">
+          <input id="q" name="q" type="search" placeholder="Travis County TX · San Diego CA · Anchorage AK" aria-label="County or jurisdiction search" autofocus>
+          <button type="submit">Search</button>
+        </form>
+        <div class="suggest" id="suggest" role="listbox"></div>
+      </div>
+
+      <div class="status-line" id="status"></div>
+      <section class="results" id="results" aria-live="polite">
+        <div class="empty-state">Search a county or jurisdiction to reveal ranked official URLs.</div>
+      </section>
+
+      <footer class="footer">
+        <span>Prototype · file-backed Extractor index · Render free</span>
+        <span><a href="/api/health" target="_blank" rel="noopener">API health</a></span>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+(function () {
+  const DESKTOP_W = 1280;
+  const DESKTOP_H = 820;
+  const stage = document.getElementById('stage');
+  const outer = document.getElementById('stage-outer');
+  const loading = document.getElementById('wpLoading');
+  const app = document.getElementById('app');
+  const form = document.getElementById('searchForm');
+  const input = document.getElementById('q');
+  const suggestEl = document.getElementById('suggest');
+  const resultsEl = document.getElementById('results');
+  const statusEl = document.getElementById('status');
+  const metaCount = document.getElementById('metaCount');
+
+  function scaleStage() {
+    const w = outer.clientWidth || window.innerWidth;
+    const h = outer.clientHeight || window.innerHeight;
+    const s = Math.min(w / DESKTOP_W, h / DESKTOP_H);
+    stage.style.transform = 'scale(' + s + ')';
+    stage.style.left = Math.max(0, (w - DESKTOP_W * s) / 2) + 'px';
+    stage.style.top = Math.max(0, (h - DESKTOP_H * s) / 2) + 'px';
+  }
+  scaleStage();
+  window.addEventListener('resize', scaleStage);
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const introMs = reduceMotion ? 200 : 6500;
+  window.setTimeout(function () {
+    loading.classList.add('is-done');
+    app.classList.add('is-ready');
+    app.setAttribute('aria-hidden', 'false');
+  }, introMs);
+
+  fetch('/api/meta').then(function (r) { return r.json(); }).then(function (d) {
+    if (d && d.count != null) {
+      metaCount.textContent = d.count.toLocaleString() + ' jurisdictions indexed';
+    }
+  }).catch(function () {
+    metaCount.textContent = 'index unavailable';
+  });
+
+  let suggestTimer = null;
+  let activeSuggest = -1;
+
+  input.addEventListener('input', function () {
+    activeSuggest = -1;
+    window.clearTimeout(suggestTimer);
+    const q = input.value.trim();
+    if (q.length < 2) {
+      suggestEl.classList.remove('open');
+      suggestEl.innerHTML = '';
+      return;
+    }
+    suggestTimer = window.setTimeout(function () {
+      fetch('/api/suggest?q=' + encodeURIComponent(q))
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          const list = (d && d.suggestions) || [];
+          if (!list.length) {
+            suggestEl.classList.remove('open');
+            suggestEl.innerHTML = '';
+            return;
+          }
+          suggestEl.innerHTML = list.map(function (s, i) {
+            return '<button type="button" role="option" data-i="' + i + '" data-label="' +
+              s.label.replace(/"/g, '&quot;') + '">' + s.label + '</button>';
+          }).join('');
+          suggestEl.classList.add('open');
+        }).catch(function () {});
+    }, 140);
+  });
+
+  suggestEl.addEventListener('click', function (e) {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    input.value = btn.getAttribute('data-label');
+    suggestEl.classList.remove('open');
+    runSearch(input.value);
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!suggestEl.contains(e.target) && e.target !== input) {
+      suggestEl.classList.remove('open');
+    }
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    suggestEl.classList.remove('open');
+    runSearch(input.value);
+  });
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+
+  function runSearch(q) {
+    q = String(q || '').trim();
+    if (!q) return;
+    statusEl.className = 'status-line';
+    statusEl.textContent = 'Searching…';
+    resultsEl.innerHTML = '';
+
+    fetch('/api/search?q=' + encodeURIComponent(q) + '&limit=8')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.ok) {
+          statusEl.className = 'status-line miss';
+          statusEl.textContent = (data && data.error) || 'Search failed';
+          return;
+        }
+        if (data.miss || !data.results.length) {
+          statusEl.className = 'status-line miss';
+          statusEl.textContent = data.message || 'No URL found for that jurisdiction.';
+          resultsEl.innerHTML = '<div class="empty-state">Honest miss — this query is not in the Extractor Search/Base index.</div>';
+          return;
+        }
+        statusEl.className = 'status-line';
+        statusEl.textContent = data.results.length + ' result' + (data.results.length === 1 ? '' : 's') +
+          (data.parsed && data.parsed.state ? ' · parsed ' + (data.parsed.county || '') + ' ' + data.parsed.state : '');
+        renderCascade(data.results);
+      })
+      .catch(function () {
+        statusEl.className = 'status-line miss';
+        statusEl.textContent = 'Network error talking to S-PUL API';
+      });
+  }
+
+  function renderCascade(results) {
+    resultsEl.innerHTML = '';
+    results.forEach(function (r, i) {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML =
+        '<div class="card-top">' +
+          '<div class="card-title">' + escapeHtml(r.jurisdiction) +
+            '<span>' + escapeHtml(r.key) + ' · ' + escapeHtml(r.source || 'URL') + '</span>' +
+          '</div>' +
+          '<div class="badge ' + escapeHtml(r.confidence) + '">' +
+            escapeHtml(r.confidence) + ' · ' + r.confidencePct + '%' +
+          '</div>' +
+        '</div>' +
+        '<div class="card-url"><a href="' + escapeHtml(r.url) + '" target="_blank" rel="noopener noreferrer">' +
+          escapeHtml(r.url) + '</a></div>' +
+        '<div class="card-meta">' +
+          '<span>Rank <b>#' + r.rank + '</b></span>' +
+          '<span>Relevance <b>' + r.score + '</b></span>' +
+          '<span>Open official page ↗</span>' +
+        '</div>';
+      resultsEl.appendChild(card);
+      const delay = reduceMotion ? 0 : 90 + i * 120;
+      window.setTimeout(function () { card.classList.add('show'); }, delay);
+    });
+  }
+
+  // Deep-link support: ?q=Travis%20TX
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('q')) {
+    input.value = params.get('q');
+    window.setTimeout(function () { runSearch(input.value); }, introMs + 50);
+  }
+})();
+</script>
+</body>
+</html>
