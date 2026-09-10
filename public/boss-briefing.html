@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>S-PUL — boss briefing (accounts, URLs, what we pay)</title>
+  <style>
+    :root {
+      --blue: #3ec4ff;
+      --blue-deep: #1a7ad4;
+      --glow: rgba(62, 196, 255, 0.28);
+      --bg: #050b20;
+      --panel: rgba(8, 18, 48, 0.94);
+      --panel-border: rgba(70, 130, 210, 0.28);
+      --text: #d7ecff;
+      --muted: #7ea0c8;
+      --fill: rgba(255, 255, 255, 0.06);
+      --ok: #3ddc8a;
+      --warn: #f0c14b;
+      --danger: #ff6b7a;
+      --design-w: 1280px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+    #scale-outer { position: relative; width: 100%; overflow: hidden; }
+    #design-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--design-w);
+      transform-origin: top left;
+      padding: 20px 22px 28px;
+      background:
+        radial-gradient(1100px 480px at 10% -12%, rgba(40, 140, 255, 0.18), transparent 55%),
+        radial-gradient(900px 420px at 100% 8%, rgba(20, 80, 180, 0.14), transparent 50%),
+        var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: rgba(4, 10, 28, 0.72);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 12px 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 36px; height: 36px; border-radius: 10px; flex: 0 0 auto;
+      background: radial-gradient(circle at 30% 30%, #9ae2ff, #1b6fe0 58%, #0b2c70);
+      box-shadow: 0 0 18px var(--glow);
+    }
+    .brand-name {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.16em;
+      background: linear-gradient(135deg, var(--blue), #fff 55%, var(--blue));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .brand-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .top-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    .pill {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.03em;
+      padding: 6px 10px; border-radius: 999px;
+      background: var(--fill); border: 1px solid var(--panel-border); color: var(--muted);
+      white-space: nowrap;
+    }
+    .pill.ok { color: var(--ok); border-color: rgba(61, 220, 138, 0.35); }
+    .pill.out { color: var(--danger); border-color: rgba(255, 107, 122, 0.4); }
+    .pill.warn { color: var(--warn); border-color: rgba(240, 193, 75, 0.4); }
+    .pitch {
+      border: 1px solid rgba(62, 196, 255, 0.4);
+      background: linear-gradient(180deg, rgba(40, 140, 255, 0.16), rgba(8, 20, 50, 0.9));
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+    }
+    .pitch h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .pitch p { font-size: 14px; line-height: 1.5; color: var(--text); }
+    .pitch strong { color: #fff; }
+    .jump {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .jump a {
+      font-size: 12px; font-weight: 600;
+      padding: 7px 12px; border-radius: 10px;
+      background: var(--fill); border: 1px solid var(--panel-border); color: var(--muted);
+      text-decoration: none;
+    }
+    .jump a:hover { color: var(--blue); border-color: rgba(62, 196, 255, 0.55); }
+    section.panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 16px 18px 18px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    }
+    .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .panel-head h2 { font-size: 18px; font-weight: 700; }
+    .kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .grid { display: grid; gap: 10px; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .grid-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .card {
+      background: var(--fill);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      min-width: 0;
+    }
+    .card h3 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .card p, .card li { font-size: 13px; line-height: 1.45; color: var(--muted); }
+    .card.ok { border-color: rgba(61, 220, 138, 0.35); }
+    .card.out { border-color: rgba(255, 107, 122, 0.4); }
+    .card.warn { border-color: rgba(240, 193, 75, 0.4); }
+    .badge {
+      display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.06em;
+      padding: 3px 8px; border-radius: 999px; margin-bottom: 6px;
+      border: 1px solid transparent;
+    }
+    .badge.ok { color: var(--ok); background: rgba(61, 220, 138, 0.12); border-color: rgba(61, 220, 138, 0.35); }
+    .badge.out { color: var(--danger); background: rgba(255, 107, 122, 0.12); border-color: rgba(255, 107, 122, 0.35); }
+    .badge.warn { color: var(--warn); background: rgba(240, 193, 75, 0.12); border-color: rgba(240, 193, 75, 0.35); }
+    .badge.live { color: var(--blue); background: rgba(62, 196, 255, 0.12); border-color: rgba(62, 196, 255, 0.35); }
+    .row {
+      display: grid;
+      grid-template-columns: 36px 210px minmax(0, 1.15fr) minmax(0, 1.35fr);
+      gap: 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .row .n {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: #041226;
+      background: linear-gradient(180deg, #3ec4ff, #1a7ad4);
+    }
+    .row .what { font-size: 13px; font-weight: 700; }
+    .row .url { font-size: 12px; word-break: break-all; }
+    .row .see { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+    .floor {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 10px;
+    }
+    .floor .hero {
+      background: linear-gradient(180deg, rgba(240, 193, 75, 0.16), rgba(8, 20, 50, 0.92));
+      border: 1px solid rgba(240, 193, 75, 0.45);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+    .floor .hero .amt { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+    .floor .hero p { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
+    table.sheet { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.sheet th, table.sheet td {
+      text-align: left; vertical-align: top; padding: 8px 10px;
+      border-bottom: 1px solid rgba(70, 130, 210, 0.22);
+    }
+    table.sheet th { color: var(--muted); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; }
+    table.sheet td { line-height: 1.4; }
+    table.sheet a { word-break: break-all; }
+    .pre {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 12px; line-height: 1.45;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #cfe6ff;
+      white-space: pre-wrap;
+      overflow: auto;
+    }
+    ol.next { padding-left: 18px; display: grid; gap: 6px; }
+    ol.next li { font-size: 13px; line-height: 1.45; color: var(--muted); }
+    ol.next strong { color: var(--text); }
+    .note { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+    .dead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    footer.meta { font-size: 11px; color: var(--muted); text-align: center; padding: 4px 8px 8px; }
+    @media print {
+      html, body { background: #fff; color: #111; }
+      #design-canvas {
+        position: static !important;
+        transform: none !important;
+        width: 100% !important;
+        background: #fff;
+        color: #111;
+      }
+      #scale-outer { height: auto !important; overflow: visible !important; }
+      .panel, .card, .pitch, .topbar { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div id="scale-outer">
+    <div id="design-canvas">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">WEBPOINT LLC</div>
+            <div class="brand-sub">S-PUL generative search · boss briefing · 2026-09-10</div>
+          </div>
+        </div>
+        <div class="top-pills">
+          <span class="pill">Account of record: taxcert.ai</span>
+          <span class="pill">ci@taxcert.ai</span>
+          <span class="pill out">CI orchestrator OUT</span>
+          <span class="pill out">Voice-first OUT</span>
+          <span class="pill warn">Kamatera $55 unverified</span>
+        </div>
+      </header>
+
+      <div class="pitch">
+        <h1>We own the accounts. S-PUL returns a jurisdiction URL + confidence, or an honest miss.</h1>
+        <p>
+          We own <strong>taxcert.ai</strong>, we operate the server under <strong>ci@taxcert.ai</strong> (Kamatera — confirm the invoice),
+          customers sign in with Google, <strong>we</strong> keep users / searches / feedback in <strong>our</strong> Postgres,
+          and Stripe bills the <strong>company</strong> for account access.
+          No Central Intelligence, no voice, no Render database, no Squarespace membership wall.
+          Do <strong>not</strong> apply TaxCertificateProcessor PR #2 (Render + Groq RAG).
+        </p>
+      </div>
+
+      <nav class="jump" aria-label="Jump">
+        <a href="#urls">1. URLs</a>
+        <a href="#yesno">2. Yes / no</a>
+        <a href="#pay">3. What to pay</a>
+        <a href="#bill">4. How we bill B2B</a>
+        <a href="#model">5. Account model</a>
+        <a href="#next">6. Build next</a>
+        <a href="#unverified">7. Unverified</a>
+      </nav>
+
+      <section class="panel" id="urls">
+        <div class="panel-head">
+          <h2>1. Open these first — live check 2026-09-10</h2>
+          <span class="kicker">URLs, then decisions</span>
+        </div>
+        <div class="grid">
+          <article class="row">
+            <div class="n">1</div>
+            <div class="what">Account-of-record domain</div>
+            <div class="url"><a href="https://taxcert.ai" target="_blank" rel="noopener">https://taxcert.ai</a></div>
+            <div class="see">HTTP 301 → webpointllc.com (Squarespace). Domain is live. <strong style="color:#fff">Not an S-PUL app yet.</strong></div>
+          </article>
+          <article class="row">
+            <div class="n">2</div>
+            <div class="what">www alias</div>
+            <div class="url"><a href="https://www.taxcert.ai" target="_blank" rel="noopener">https://www.taxcert.ai</a></div>
+            <div class="see">Same redirect. DNS is Squarespace (ext-sq.squarespace.com / 198.185.159.x / 198.49.23.x).</div>
+          </article>
+          <article class="row">
+            <div class="n">3</div>
+            <div class="what">Current marketing site</div>
+            <div class="url"><a href="https://webpointllc.com" target="_blank" rel="noopener">https://webpointllc.com</a></div>
+            <div class="see">HTTP 200, Squarespace. Public face today. Brochure only — not the product login.</div>
+          </article>
+          <article class="row">
+            <div class="n">4</div>
+            <div class="what">www marketing alias</div>
+            <div class="url"><a href="https://www.webpointllc.com" target="_blank" rel="noopener">https://www.webpointllc.com</a></div>
+            <div class="see">301 → https://webpointllc.com/</div>
+          </article>
+          <article class="row">
+            <div class="n">5</div>
+            <div class="what">webpoint.com — do not assume this is us</div>
+            <div class="url"><a href="https://webpoint.com" target="_blank" rel="noopener">https://webpoint.com</a></div>
+            <div class="see">Different IP (217.19.248.132), nginx. Fetch of / returned 404. Not the S-PUL product until registrar ownership is proven.</div>
+          </article>
+          <article class="row">
+            <div class="n">6</div>
+            <div class="what">Kamatera console — confirm tonight</div>
+            <div class="url"><a href="https://console.kamatera.com" target="_blank" rel="noopener">https://console.kamatera.com</a></div>
+            <div class="see">Sign in as <strong style="color:#fff">ci@taxcert.ai</strong>. Confirm account, server, <strong style="color:var(--warn)">actual invoice</strong>. ~$55/mo is unverified (public 4 vCPU / 8GB Type B list; last logged 2026-08-05).</div>
+          </article>
+          <article class="row">
+            <div class="n">7</div>
+            <div class="what">Render dashboard</div>
+            <div class="url"><a href="https://dashboard.render.com" target="_blank" rel="noopener">https://dashboard.render.com</a></div>
+            <div class="see">See what is still billed. Prototype onrender hostnames below are dead (404, no-server).</div>
+          </article>
+          <article class="row">
+            <div class="n">8</div>
+            <div class="what">Google OAuth (identity only)</div>
+            <div class="url"><a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener">https://console.cloud.google.com/apis/credentials</a></div>
+            <div class="see"><strong style="color:var(--ok)">$0.</strong> OAuth client ID + secret under taxcert.ai. Not Identity Platform. Not Firebase user hosting. Our session tokens.</div>
+          </article>
+          <article class="row">
+            <div class="n">9</div>
+            <div class="what">Stripe — B2B billing</div>
+            <div class="url"><a href="https://dashboard.stripe.com" target="_blank" rel="noopener">https://dashboard.stripe.com</a></div>
+            <div class="see">Create the account under taxcert.ai. $0 until a customer pays. This is how we charge company membership. Not Squarespace Members.</div>
+          </article>
+          <article class="row">
+            <div class="n">10</div>
+            <div class="what">S-PUL answering registry (code)</div>
+            <div class="url"><a href="https://github.com/webpointllc-com/search-spul-test" target="_blank" rel="noopener">https://github.com/webpointllc-com/search-spul-test</a></div>
+            <div class="see">Node/Express + county URL files. Last push 2026-05-18. Groq is in this prototype — <strong style="color:#fff">drop Groq for the owned product.</strong></div>
+          </article>
+          <article class="row">
+            <div class="n">11</div>
+            <div class="what">Draft fusion PR — wrong direction</div>
+            <div class="url"><a href="https://github.com/webpointllc-com/TaxCertificateProcessor/pull/2" target="_blank" rel="noopener">https://github.com/webpointllc-com/TaxCertificateProcessor/pull/2</a></div>
+            <div class="see">Assumes pay Render + Render Postgres + Groq RAG + Squarespace members. <strong style="color:var(--danger)">Do not apply that Blueprint.</strong></div>
+          </article>
+          <article class="row">
+            <div class="n">12</div>
+            <div class="what">Groq (prototype only — do not keep)</div>
+            <div class="url"><a href="https://console.groq.com" target="_blank" rel="noopener">https://console.groq.com</a></div>
+            <div class="see">Third-party inference. Conflicts with 2026-09-07 “no third-party managed services.” Registry lookup does not need it.</div>
+          </article>
+        </div>
+        <p class="note">Kamatera: no session here — open #6 as ci@taxcert.ai. Render (retried 2026-09-10): this cloud agent cannot complete interactive OAuth (Cursor Desktop only). Dashboard email/password failed for billjr@webpointllc.com and ci@taxcert.ai; account looks like Google sign-in. Onrender hostnames below stay 404. To inventory leftover bills: Bill logs in, then Cursor Desktop MCP OAuth, or an API key (<span class="mono">rnd_…</span>) as env secret RENDER_API_KEY — never git.</p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Render hostnames that are dead — do not send the boss here as “the app”</h2>
+          <span class="kicker">Checked 2026-09-10</span>
+        </div>
+        <div class="dead-grid">
+          <div class="card out"><span class="badge out">404 no-server</span><h3>search-spul-test.onrender.com</h3><p><a href="https://search-spul-test.onrender.com" target="_blank" rel="noopener">https://search-spul-test.onrender.com</a></p></div>
+          <div class="card out"><span class="badge out">404 no-server</span><h3>webpoint-spul-beta.onrender.com</h3><p><a href="https://webpoint-spul-beta.onrender.com" target="_blank" rel="noopener">https://webpoint-spul-beta.onrender.com</a></p></div>
+          <div class="card out"><span class="badge out">404 no-server</span><h3>webpoint-mobile.onrender.com</h3><p><a href="https://webpoint-mobile.onrender.com" target="_blank" rel="noopener">https://webpoint-mobile.onrender.com</a></p></div>
+          <div class="card out"><span class="badge out">404 no-server</span><h3>webpoint-shipyard.onrender.com</h3><p><a href="https://webpoint-shipyard.onrender.com" target="_blank" rel="noopener">https://webpoint-shipyard.onrender.com</a></p></div>
+        </div>
+        <p class="note">The 2026-08-10 manifesto said webpoint-spul-beta used to sit behind webpointllc.com. That is not true today. webpointllc.com is Squarespace only. The onrender prototypes are gone or never applied.</p>
+      </section>
+
+      <section class="panel" id="yesno">
+        <div class="panel-head">
+          <h2>2. Clean yes / no — do not carry last August forward</h2>
+          <span class="kicker">CI is OUT, not paused</span>
+        </div>
+        <div class="grid grid-3">
+          <article class="card out">
+            <span class="badge out">OUT · not paused</span>
+            <h3>Central Intelligence orchestrator</h3>
+            <p>No Path A, no cross-tenant learning, no orchestrator, no RAG index. Sheet 4 of the 2026-08-10 workbook is not in this build. This is a yes, not a pause.</p>
+          </article>
+          <article class="card out">
+            <span class="badge out">OUT · entirely</span>
+            <h3>Voice-first</h3>
+            <p>No voiceprint login, no TTS, no orb. Google OAuth is identity only. Voice is not a later phase of this product.</p>
+          </article>
+          <article class="card ok">
+            <span class="badge ok">YES</span>
+            <h3>One Postgres, ours</h3>
+            <p>One database on the Kamatera box. Not a second “feedback database.” Not Render Postgres. tenant_id / org_id on customer tables.</p>
+          </article>
+          <article class="card ok">
+            <span class="badge ok">YES</span>
+            <h3>Account / domain of record = taxcert.ai</h3>
+            <p>Avoids the unresolved Workplace Technologies vs Webpoint ownership question. Email of record: ci@taxcert.ai.</p>
+          </article>
+          <article class="card ok">
+            <span class="badge ok">YES — leave Render</span>
+            <h3>Move off Render</h3>
+            <p>09-07 rule stands. Prototype onrender URLs are already dead. No carve-out needed if Kamatera is live. Do not re-apply PR #2’s Render Blueprint.</p>
+          </article>
+          <article class="card ok">
+            <span class="badge ok">YES · Stripe on the org</span>
+            <h3>How we charge customers</h3>
+            <p>Stripe subscriptions on the org. Not Squarespace Members. Not a custom billing engine. Google login is identity; Stripe is money.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="pay">
+        <div class="panel-head">
+          <h2>3. What we have to pay</h2>
+          <span class="kicker">Kamatera invoice unverified until console.kamatera.com as ci@taxcert.ai</span>
+        </div>
+        <div class="floor">
+          <div class="hero">
+            <span class="badge warn">Honest monthly floor</span>
+            <div class="amt">~$0–$20 incremental</div>
+            <p>If Kamatera is already paid for TaxCert.ai and S-PUL <strong style="color:#fff">shares that box</strong>: new cash is backups only, plus domain/Squarespace you already pay. Stripe is $0 until the first paying org. Do not tell the boss Kamatera is a sunk $55 until someone opens the invoice.</p>
+          </div>
+          <div class="card warn">
+            <span class="badge warn">If the box is full</span>
+            <h3>Sibling VPS on the same account</h3>
+            <p>Add another instance under ci@taxcert.ai: about <strong style="color:#fff">$40–$55/mo</strong> (public 4c/8GB). Still no Render. Still our Postgres.</p>
+          </div>
+          <div class="card out">
+            <span class="badge out">Do not add</span>
+            <h3>Render + Groq + Members</h3>
+            <p>PR #2 priced Render Starter $7 + Postgres $6 (~$13). That is a third-party managed database. 09-07 forbids it. Groq and Squarespace Members are out.</p>
+          </div>
+        </div>
+
+        <h3 class="kicker" style="margin:16px 0 8px">A. Must-pay (keep the lights on, we own it)</h3>
+        <table class="sheet">
+          <thead>
+            <tr><th>Item</th><th>Who / URL</th><th>Est. cost</th><th>Own the data?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Kamatera VPS</strong> (4 vCPU / 8GB, Docker, TaxCert.ai today)</td>
+              <td>Kamatera · <a href="https://console.kamatera.com" target="_blank" rel="noopener">console.kamatera.com</a></td>
+              <td><strong>~$40–$55/mo</strong> public list. Confirm on the invoice.</td>
+              <td>Yes — our VM, our Docker, our Postgres</td>
+            </tr>
+            <tr>
+              <td><strong>taxcert.ai</strong> domain</td>
+              <td>Registrar (DNS currently Squarespace)</td>
+              <td>~$80–$140/year typical for .ai</td>
+              <td>Yes if the registrant is us</td>
+            </tr>
+            <tr>
+              <td>webpointllc.com domain</td>
+              <td>Squarespace DNS</td>
+              <td>~$12–$25/year typical .com</td>
+              <td>Marketing site; not the S-PUL account of record</td>
+            </tr>
+            <tr>
+              <td>Squarespace site (marketing only)</td>
+              <td><a href="https://account.squarespace.com" target="_blank" rel="noopener">account.squarespace.com</a></td>
+              <td>~$16–$39/mo annual (Basic–Plus, 2026 public list). Brochure only. Do not use Members.</td>
+              <td>Marketing pages only</td>
+            </tr>
+            <tr>
+              <td>Email ci@taxcert.ai</td>
+              <td>Google Workspace if that is how the mailbox is hosted</td>
+              <td>~$6–$12/user/mo if billed; confirm in Google Admin</td>
+              <td>Mailbox we control</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="kicker" style="margin:16px 0 8px">B. $0 until a customer pays — still required to sell</h3>
+        <table class="sheet">
+          <thead>
+            <tr><th>Item</th><th>URL</th><th>Stand-up cost</th><th>Rule</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Google OAuth client</strong></td>
+              <td><a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener">console.cloud.google.com/apis/credentials</a></td>
+              <td><strong>$0</strong></td>
+              <td>Handshake only. Users live in our Postgres. Do not buy Identity Platform / Firebase Auth as the user store.</td>
+            </tr>
+            <tr>
+              <td><strong>Stripe account + Billing</strong></td>
+              <td><a href="https://dashboard.stripe.com" target="_blank" rel="noopener">dashboard.stripe.com</a></td>
+              <td><strong>$0</strong> until first charge. Then US cards 2.9% + $0.30 plus Stripe Billing 0.7% of subscription volume (2026 public list).</td>
+              <td>Standard B2B SaaS. Do not write a custom card vault.</td>
+            </tr>
+            <tr>
+              <td>TLS</td>
+              <td>Let’s Encrypt on the Kamatera box</td>
+              <td>$0</td>
+              <td>nginx/Caddy on our VM.</td>
+            </tr>
+            <tr>
+              <td>GitHub (code)</td>
+              <td><a href="https://github.com/webpointllc-com" target="_blank" rel="noopener">github.com/webpointllc-com</a></td>
+              <td>$0 on public repos</td>
+              <td>Keep secrets out of git.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="kicker" style="margin:16px 0 8px">C. Do not add · D. Optional once money is real</h3>
+        <div class="grid grid-2">
+          <article class="card out">
+            <span class="badge out">Do not add</span>
+            <h3>Conflicts with 09-07, or already dead</h3>
+            <p><strong style="color:#fff">Render web + Render Postgres</strong> — third-party managed database. Four onrender URLs are already no-server.</p>
+            <p style="margin-top:6px"><strong style="color:#fff">Groq</strong> — prototype used Llama 3.3 70B. S-PUL answering is the registry, not a hosted LLM.</p>
+            <p style="margin-top:6px"><strong style="color:#fff">Squarespace Members</strong> — they would own the login wall.</p>
+            <p style="margin-top:6px"><strong style="color:#fff">Voice / ElevenLabs / GPU host / Pinecone / Algolia / OpenAI embeddings</strong> — RAG and voice are out.</p>
+          </article>
+          <article class="card">
+            <span class="badge live">Optional</span>
+            <h3>Once money is real</h3>
+            <p><strong style="color:#fff">Kamatera daily backup</strong> or offsite pg_dump — owning the server means owning restores.</p>
+            <p style="margin-top:6px"><strong style="color:#fff">Second Kamatera instance</strong> — isolate S-PUL from TaxCert.ai if the current 4c/8GB box is loaded. Same account, new bill line (~$19–$55/mo).</p>
+            <p style="margin-top:6px"><strong style="color:#fff">Uptime check</strong> — self-hosted. Do not buy a third-party status SaaS unless the boss carves an exception.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="bill">
+        <div class="panel-head">
+          <h2>4. How we sell it — Stripe org subscription, not Squarespace Members</h2>
+          <span class="kicker">B2B company account</span>
+        </div>
+        <p style="font-size:14px;line-height:1.5;margin-bottom:12px;color:var(--muted)">
+          Not a consumer “member area.” Not a Squarespace Members paywall.
+          <strong style="color:#fff">We sell a company account</strong> that can hold several Google-login seats.
+          Historical buyers (WPT Production Log): CoreLogic, Lereta, Lument, NTS, UPF — production <em>files</em>, not software seats.
+          S-PUL is different: access to jurisdiction search, billed as membership.
+          Google OAuth is not the product. It only answers “who is this person.” Our orgs + users tables answer which paying company, which role, are they allowed to search.
+        </p>
+        <div class="grid grid-3">
+          <article class="card">
+            <span class="badge live">Pilot</span>
+            <h3>Us + 1 design-partner firm</h3>
+            <p>Owner seat + a few users, search + thumbs/correction. $0 or a token fee so Stripe is proven.</p>
+          </article>
+          <article class="card ok">
+            <span class="badge ok">Firm</span>
+            <h3>Title / tax-cert shop</h3>
+            <p>N seats, monthly search quota, feedback we can use to fix URLs. Stripe subscription on the <strong style="color:#fff">org</strong>.</p>
+          </article>
+          <article class="card">
+            <span class="badge live">Enterprise</span>
+            <h3>Repeat production clients</h3>
+            <p>Same + more seats / quota. Invoicing via Stripe if they will not put a card on file. Still Stripe — we do not build a custom billing engine.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="model">
+        <div class="panel-head">
+          <h2>5. Account model — one Postgres on Kamatera</h2>
+          <span class="kicker">Google = identity · we mint sessions · Allow before feedback</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.45">
+          Google supplies: Google user id (sub), email, name.
+          We mint: our own session token (hash stored in Postgres, not an in-memory dict).
+          Every table that holds customer activity has org_id. One company’s searches never leak into another’s.
+          The app asks <strong style="color:#fff">Allow</strong> before we store identity, write feedback, or contact them. No silent capture.
+        </p>
+        <div class="pre">orgs            id, name, billing_email, stripe_customer_id, stripe_subscription_id, plan, status, created_at
+users           id, org_id, google_sub, email, name, role (owner|admin|user), created_at
+sessions        id, user_id, token_hash, expires_at, created_at
+jurisdictions   key, state, county, search_url, verified, confidence_notes   — the S-PUL registry (URL truth)
+search_results  id, org_id, user_id, query, jurisdiction_key, url, confidence, no_result_reason, created_at
+feedback        id, org_id, user_id, search_result_id, vote (up|down), correction_url, free_text, allow_contact, created_at</div>
+        <h3 class="kicker" style="margin:14px 0 8px">Registry size — do not quote “875”</h3>
+        <div class="grid grid-3">
+          <article class="card">
+            <span class="badge live">2026-09-09 dump</span>
+            <h3>ExtractorUrls.txt</h3>
+            <p><strong style="color:#fff">2,085 extractors</strong> · <strong style="color:#fff">1,281 unique URLs</strong> · 1,064 hosts. Not “875.”</p>
+          </article>
+          <article class="card">
+            <span class="badge live">2026-05-18</span>
+            <h3>search-spul-test counties.json</h3>
+            <p>Import commit: <strong style="color:#fff">1,760 counties</strong>.</p>
+          </article>
+          <article class="card">
+            <span class="badge warn">PR #2 notes only</span>
+            <h3>Fusion notes ~2,923 sheet counties</h3>
+            <p>Do not treat that Blueprint as production architecture. If there is no verified URL: say so. Do not invent one. Do not fall back to Google.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="next">
+        <div class="panel-head">
+          <h2>6. What to build next</h2>
+          <span class="kicker">Order</span>
+        </div>
+        <ol class="next">
+          <li>Boss confirms <strong>taxcert.ai</strong> as account of record (email + Google Cloud project + Stripe + Kamatera all under that).</li>
+          <li>Bill opens Kamatera as <strong>ci@taxcert.ai</strong>: screenshot invoice + Docker list. If TaxCert.ai already occupies the box, decide same-box vs sibling VPS.</li>
+          <li>Stand up <strong>Postgres in Docker</strong> on that box. Migrate nothing from Render unless dashboard #7 shows a live database with data (this agent could not see one).</li>
+          <li>Wire <strong>Google OAuth → sessions table → orgs/users</strong>.</li>
+          <li>Point <strong>app.taxcert.ai</strong> (or search.taxcert.ai) at the Kamatera IP. Stop using taxcert.ai as a 301 to the brochure.</li>
+          <li>Stripe products: Firm plan subscription. Webhook updates orgs.status.</li>
+          <li>Feedback UI: thumbs, correction URL, free text, Allow-to-contact. Writes only to our feedback table.</li>
+          <li><strong>Do not merge PR #2</strong> as the production architecture.</li>
+        </ol>
+      </section>
+
+      <section class="panel" id="unverified">
+        <div class="panel-head">
+          <h2>7. Say this out loud — this agent could not verify</h2>
+          <span class="kicker">Need a human at the console</span>
+        </div>
+        <div class="grid grid-2">
+          <article class="card warn">
+            <span class="badge warn">Must open</span>
+            <h3>Kamatera</h3>
+            <p>Account active? Exact $55? Docker still running TaxCert.ai? Need <a href="https://console.kamatera.com" target="_blank" rel="noopener">console.kamatera.com</a> as ci@taxcert.ai.</p>
+          </article>
+          <article class="card warn">
+            <span class="badge warn">Must open</span>
+            <h3>Render leftover bill</h3>
+            <p>Leftover bill after the 2026-08-09 declined-card note is still unknown. Dashboard login from this agent failed (Google OAuth). Bill opens <a href="https://dashboard.render.com" target="_blank" rel="noopener">dashboard.render.com</a>, then optionally creates an API key for this agent.</p>
+          </article>
+          <article class="card">
+            <span class="badge live">Confirm</span>
+            <h3>Google Workspace billing</h3>
+            <p>Mailbox cost for ci@taxcert.ai. Confirm in Google Admin — not inferred from this environment.</p>
+          </article>
+          <article class="card">
+            <span class="badge live">Not in this cloud workspace</span>
+            <h3>Excel sandbox + DeepShake</h3>
+            <p>The Claude-for-Excel workbook is on Bill’s Mac. Not read. Not written. DeepShake is a local Mac extractor; it does not check billing; not run from here.</p>
+          </article>
+        </div>
+        <p class="note">Checked instead: public DNS/HTTP for the domains above, GitHub repos, the 2026-08-10 architecture workbook, ExtractorUrls.txt, WPT Production Log, and the 2026-09-08 fusion PR.</p>
+      </section>
+
+      <footer class="meta">
+        Self-contained briefing · 1280px desktop canvas scaled to this container (Squarespace iframe-safe) · no left-rail stripes ·
+        markdown twin: docs/BOSS_BRIEFING_S-PUL_ACCOUNTS_2026-09-10.md · embed snippet: public/SQUARESPACE_BOSS_BRIEFING_EMBED.html
+      </footer>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var DESIGN_WIDTH = 1280;
+      var outer = document.getElementById('scale-outer');
+      var canvas = document.getElementById('design-canvas');
+      function scaleToFit() {
+        var width = document.documentElement.clientWidth || window.innerWidth || DESIGN_WIDTH;
+        var scale = Math.min(1, width / DESIGN_WIDTH);
+        canvas.style.transform = 'scale(' + scale + ')';
+        canvas.style.left = Math.max(0, (width - DESIGN_WIDTH * scale) / 2) + 'px';
+        var h = Math.ceil(canvas.scrollHeight * scale);
+        outer.style.height = h + 'px';
+        if (window.parent !== window) {
+          window.parent.postMessage({ type: 'spul-briefing-height', height: h }, '*');
+        }
+      }
+      window.addEventListener('resize', scaleToFit);
+      window.addEventListener('load', scaleToFit);
+      scaleToFit();
+      if (window.ResizeObserver) {
+        new ResizeObserver(scaleToFit).observe(canvas);
+        new ResizeObserver(scaleToFit).observe(document.documentElement);
+      }
+    })();
+  </script>
+</body>
+</html>
