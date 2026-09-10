@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <title>S-PUL — boss briefing (accounts, URLs, what we pay)</title>
+  <script>
+    (function () {
+      try {
+        if (location.hash) {
+          window.__spulHash = location.hash.slice(1);
+          history.replaceState(null, '', location.pathname + location.search);
+        }
+      } catch (e) {}
+    })();
+  </script>
   <style>
     :root {
       --blue: #3ec4ff;
@@ -137,7 +147,7 @@
     .badge.live { color: var(--blue); background: rgba(62, 196, 255, 0.12); border-color: rgba(62, 196, 255, 0.35); }
     .row {
       display: grid;
-      grid-template-columns: 36px 210px minmax(0, 1.15fr) minmax(0, 1.35fr);
+      grid-template-columns: 36px 260px minmax(0, 1.05fr) minmax(0, 1.35fr);
       gap: 10px;
       align-items: start;
       padding: 10px 12px;
@@ -152,7 +162,7 @@
       background: linear-gradient(180deg, #3ec4ff, #1a7ad4);
     }
     .row .what { font-size: 13px; font-weight: 700; }
-    .row .url { font-size: 12px; word-break: break-all; }
+    .row .url { font-size: 12px; word-break: break-all; overflow-wrap: anywhere; }
     .row .see { font-size: 12px; color: var(--muted); line-height: 1.4; }
     .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
     .floor {
@@ -168,10 +178,11 @@
     }
     .floor .hero .amt { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
     .floor .hero p { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
-    table.sheet { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.sheet { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
     table.sheet th, table.sheet td {
       text-align: left; vertical-align: top; padding: 8px 10px;
       border-bottom: 1px solid rgba(70, 130, 210, 0.22);
+      overflow-wrap: anywhere;
     }
     table.sheet th { color: var(--muted); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; }
     table.sheet td { line-height: 1.4; }
@@ -327,7 +338,7 @@
             <div class="see">Third-party inference. Conflicts with 2026-09-07 “no third-party managed services.” Registry lookup does not need it.</div>
           </article>
         </div>
-        <p class="note">Kamatera: no session here — open #6 as ci@taxcert.ai. Render (retried 2026-09-10): this cloud agent cannot complete interactive OAuth (Cursor Desktop only). Dashboard email/password failed for billjr@webpointllc.com and ci@taxcert.ai; account looks like Google sign-in. Onrender hostnames below stay 404. To inventory leftover bills: Bill logs in, then Cursor Desktop MCP OAuth, or an API key (<span class="mono">rnd_…</span>) as env secret RENDER_API_KEY — never git.</p>
+        <p class="note">Kamatera: no session here — Bill opens <a href="https://console.kamatera.com" target="_blank" rel="noopener">#6</a> as ci@taxcert.ai. Render (retried 2026-09-10): this environment cannot complete dashboard login (Google sign-in, not a password). Onrender hosts below stay 404. Boss or Bill opens <a href="https://dashboard.render.com" target="_blank" rel="noopener">#7</a> to see leftover bills.</p>
       </section>
 
       <section class="panel">
@@ -629,14 +640,39 @@ feedback        id, org_id, user_id, search_result_id, vote (up|down), correctio
         var scale = Math.min(1, width / DESIGN_WIDTH);
         canvas.style.transform = 'scale(' + scale + ')';
         canvas.style.left = Math.max(0, (width - DESIGN_WIDTH * scale) / 2) + 'px';
-        var h = Math.ceil(canvas.scrollHeight * scale);
+        var h = Math.ceil(canvas.scrollHeight * scale) + 2;
         outer.style.height = h + 'px';
         if (window.parent !== window) {
           window.parent.postMessage({ type: 'spul-briefing-height', height: h }, '*');
         }
       }
+      function scrollToId(id, smooth) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        scaleToFit();
+        var top = el.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - 8;
+        window.scrollTo({ top: Math.max(0, top), behavior: smooth ? 'smooth' : 'auto' });
+      }
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = (this.getAttribute('href') || '').slice(1);
+          if (!id) return;
+          e.preventDefault();
+          scrollToId(id, true);
+          if (history.replaceState) history.replaceState(null, '', '#' + id);
+        });
+      });
+      window.addEventListener('hashchange', function () {
+        if (location.hash) scrollToId(location.hash.slice(1), false);
+      });
       window.addEventListener('resize', scaleToFit);
-      window.addEventListener('load', scaleToFit);
+      window.addEventListener('load', function () {
+        scaleToFit();
+        var id = window.__spulHash || (location.hash && location.hash.slice(1));
+        if (id) {
+          requestAnimationFrame(function () { scrollToId(id, false); });
+        }
+      });
       scaleToFit();
       if (window.ResizeObserver) {
         new ResizeObserver(scaleToFit).observe(canvas);
