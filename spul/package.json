@@ -1,0 +1,19 @@
+{
+  "name": "search-spul-minimal",
+  "version": "1.0.0",
+  "description": "S-PUL minimal generative search — jurisdiction URL registry with confidence",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "health:sample": "node scripts/http-health-sample.js --limit=200 --concurrency=12",
+    "health:all": "node scripts/http-health-sample.js --all --concurrency=16"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "private": true
+}

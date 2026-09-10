@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>S-PUL Squarespace Embed Snippet</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 860px; margin: 40px auto; padding: 0 20px; line-height: 1.5; color: #111; }
+  code, pre { background: #f4f6f8; border-radius: 8px; }
+  pre { padding: 16px; overflow: auto; }
+  .note { color: #555; }
+</style>
+</head>
+<body>
+<h1>S-PUL iframe embed</h1>
+<p class="note">Paste into a password-protected / members Squarespace page (Code block). Replace the host if your Render URL differs.</p>
+<pre id="snip">&lt;iframe
+  src="https://search-spul-minimal.onrender.com"
+  width="100%"
+  height="700"
+  style="border:none;border-radius:16px;overflow:hidden;"
+  title="S-PUL Property Tax Search"
+  loading="lazy"
+  allow="clipboard-write"
+&gt;&lt;/iframe&gt;</pre>
+<p><a href="/">Open S-PUL</a></p>
+<script>
+fetch('/api/health').then(r=>r.json()).then(d=>{
+  // If somehow running under a different host, rewrite snippet src to current origin
+  const host = location.origin;
+  const el = document.getElementById('snip');
+  el.textContent = el.textContent.replace('https://search-spul-minimal.onrender.com', host);
+}).catch(()=>{});
+</script>
+</body>
+</html>

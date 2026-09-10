@@ -1,0 +1,13 @@
+# S-PUL minimal generative search (Webpoint prototype)
+# Blueprint auto-deploy pattern — free plan, Node web service.
+# Apply once: https://dashboard.render.com/blueprints/new → select this repo.
+services:
+  - type: web
+    name: search-spul-minimal
+    runtime: node
+    plan: free
+    rootDir: spul
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /api/health
