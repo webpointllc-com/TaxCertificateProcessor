@@ -5,8 +5,9 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 245,
-    "ok": true
+    "ms": 144,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "TX-Harris",
@@ -14,8 +15,9 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 331,
-    "ok": true
+    "ms": 340,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "TX-Dallas",
@@ -23,8 +25,9 @@
     "source": "Search",
     "status": 301,
     "error": null,
-    "ms": 252,
-    "ok": true
+    "ms": 323,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "CA-LosAngeles",
@@ -32,8 +35,9 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 281,
-    "ok": true
+    "ms": 295,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "CA-SanDiego",
@@ -41,8 +45,9 @@
     "source": "Search",
     "status": 301,
     "error": null,
-    "ms": 306,
-    "ok": true
+    "ms": 286,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "IL-Cook",
@@ -50,17 +55,19 @@
     "source": "Search",
     "status": 303,
     "error": null,
-    "ms": 288,
-    "ok": true
+    "ms": 381,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "FL-MiamiDade",
-    "url": "http://www.miamidade.gov/taxcollector/online-services.asp",
+    "url": "https://www.miamidade.gov/taxcollector/",
     "source": "Search",
-    "status": 404,
+    "status": 200,
     "error": null,
-    "ms": 348,
-    "ok": false
+    "ms": 405,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "FL-Orange",
@@ -68,8 +75,9 @@
     "source": "Search",
     "status": 404,
     "error": null,
-    "ms": 1024,
-    "ok": false
+    "ms": 1400,
+    "ok": false,
+    "kind": "gone"
   },
   {
     "key": "WA-King",
@@ -77,8 +85,9 @@
     "source": "Base",
     "status": 307,
     "error": null,
-    "ms": 302,
-    "ok": true
+    "ms": 318,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "CO-Denver",
@@ -86,8 +95,9 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 632,
-    "ok": true
+    "ms": 599,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "AZ-Maricopa",
@@ -95,8 +105,9 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 426,
-    "ok": true
+    "ms": 575,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "GA-Fulton",
@@ -104,8 +115,9 @@
     "source": "Search",
     "status": 403,
     "error": null,
-    "ms": 240,
-    "ok": false
+    "ms": 713,
+    "ok": true,
+    "kind": "gated"
   },
   {
     "key": "NC-Mecklenburg",
@@ -113,17 +125,19 @@
     "source": "Base",
     "status": 302,
     "error": null,
-    "ms": 385,
-    "ok": true
+    "ms": 661,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "OH-Franklin",
-    "url": "http://treasurer.franklincountyohio.gov/",
+    "url": "https://treasurer.franklincountyohio.gov/",
     "source": "Search",
     "status": 403,
     "error": null,
-    "ms": 22,
-    "ok": false
+    "ms": 636,
+    "ok": true,
+    "kind": "gated"
   },
   {
     "key": "MI-Wayne",
@@ -131,8 +145,9 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 647,
-    "ok": true
+    "ms": 1008,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "MN-Hennepin",
@@ -140,8 +155,9 @@
     "source": "Base",
     "status": 302,
     "error": null,
-    "ms": 540,
-    "ok": true
+    "ms": 745,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "OR-Multnomah",
@@ -149,8 +165,9 @@
     "source": "Base",
     "status": 301,
     "error": null,
-    "ms": 254,
-    "ok": true
+    "ms": 524,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "NV-Clark",
@@ -158,8 +175,9 @@
     "source": "Search",
     "status": 301,
     "error": null,
-    "ms": 247,
-    "ok": true
+    "ms": 477,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "AK-MatanuskaSusitna",
@@ -167,17 +185,189 @@
     "source": "Search",
     "status": 301,
     "error": null,
-    "ms": 264,
-    "ok": true
+    "ms": 490,
+    "ok": true,
+    "kind": "ok"
   },
   {
-    "key": "AR-Clay",
-    "url": "https://www.arcountydata.com/propsearch.asp?county=Clay&s=T",
+    "key": "AL-Barbour",
+    "url": "https://barbour.capturecama.com/propsearch",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 712,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AL-Choctaw",
+    "url": "https://www.ingproperty.com/Choctaw_Revenue/property.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 850,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AL-Escambia",
+    "url": "https://altags.com/Escambia_License/property.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 874,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AL-Franklin",
+    "url": "https://franklinproperty.countygovservices.com/Property/Search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 1079,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AL-Mobile",
+    "url": "https://mobile.capturecama.com/propsearch",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 879,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AL-Morgan",
+    "url": "https://morgan.capturecama.com/propsearch",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 785,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AL-Talladega",
+    "url": "https://talladegaproperty.countygovservices.com/Property/Property/Search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 1121,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AR-Benton",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Benton",
     "source": "Search",
     "status": 403,
     "error": null,
-    "ms": 162,
-    "ok": false
+    "ms": 288,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Chicot",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Chicot&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 285,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Cleburne",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Cleburne&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 249,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Crawford",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Benton",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 230,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Faulkner",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Faulkner&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 258,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Grant",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Grant&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 247,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Hempstead",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Hempstead&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 256,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Johnson",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Johnson&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 239,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-LittleRiver",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Little River&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 205,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Madison",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Madison&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 190,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Monroe",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Monroe&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 180,
+    "ok": true,
+    "kind": "gated"
   },
   {
     "key": "AR-Nevada",
@@ -185,17 +375,179 @@
     "source": "Search",
     "status": 403,
     "error": null,
-    "ms": 236,
-    "ok": false
+    "ms": 243,
+    "ok": true,
+    "kind": "gated"
   },
   {
-    "key": "AR-VanBuren",
-    "url": "https://www.arcountydata.com/propsearch.asp?county=Van Buren&s=T",
+    "key": "AR-Ouachita",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Ouachita&s=T",
     "source": "Search",
     "status": 403,
     "error": null,
-    "ms": 234,
-    "ok": false
+    "ms": 191,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Phillips",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Phillips&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 198,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Poinsett",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Poinsett&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 201,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Pope",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Pope&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 231,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Pulaski",
+    "url": "https://public.pulaskicountytreasurer.net/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 464,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AR-Scott",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Scott&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 210,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Sebastian",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Sebastian&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 264,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-StFrancis",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=St. Francis&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 251,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Union",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Union&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 241,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "AR-Woodruff",
+    "url": "https://www.arcountydata.com/propsearch.asp?county=Woodruff&s=T",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 240,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "CA-Alameda",
+    "url": "http://www.acgov.org/treasurer/index.htm",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 186,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CA-Calaveras",
+    "url": "https://common3.mptsweb.com/MBC/api/search/calaveras/0000-CURR/feeparcel/{parcel}",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 68,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "CA-DelNorte",
+    "url": "https://common3.mptsweb.com/MBC/api/search/delnorte/0000-CURR/feeparcel/{parcel}",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 68,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "CA-Humboldt",
+    "url": "https://common3.mptsweb.com/MBC/api/search/humboldt/0000-CURR/feeparcel/{parcel}",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 68,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "CA-Kern",
+    "url": "https://www.kcttc.co.kern.ca.us/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 356,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CA-Madera",
+    "url": "https://common3.mptsweb.com/MBC/api/search/madera/0000-CURR/feeparcel/{parcel}",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 66,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "CA-Mendicino",
+    "url": "https://ca-mendocino.publicaccessnow.com/TaxCollector/TaxSearch.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 350,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "CA-Modoc",
@@ -203,17 +555,179 @@
     "source": "Search",
     "status": 404,
     "error": null,
-    "ms": 67,
-    "ok": false
+    "ms": 78,
+    "ok": false,
+    "kind": "gone"
   },
   {
-    "key": "CA-Tuolumne",
-    "url": "https://common1.mptsweb.com/MBC/api/search/tuolumne/0000-CURR/feeparcel/{parcel}",
+    "key": "CA-Monterey",
+    "url": "https://common3.mptsweb.com/MBC/api/search/monterey/0000-CURR/feeparcel/{parcel}",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 67,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "CA-Orange",
+    "url": "http://ttc.ocgov.com/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 342,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CA-Riverside",
+    "url": "http://riversidetaxinfo.com/",
+    "source": "Search",
+    "status": null,
+    "error": "TimeoutError",
+    "ms": 8266,
+    "ok": false,
+    "kind": "TimeoutError"
+  },
+  {
+    "key": "CA-SanBernardino",
+    "url": "https://www.sbcountyatc.gov/tax-services/property-tax",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 431,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CA-SanFrancisco",
+    "url": "http://sftreasurer.org/property-tax-payments",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 307,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CA-SanMateo",
+    "url": "https://www.sanmateocountytaxcollector.org/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 276,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CA-SantaCruz",
+    "url": "http://ttc.co.santa-cruz.ca.us/Taxbills/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 470,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CA-Siskiyou",
+    "url": "https://common1.mptsweb.com/MBC/api/search/siskiyou/0000-CURR/feeparcel/{parcel}",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 69,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "CA-Stanislaus",
+    "url": "https://common3.mptsweb.com/MBC/api/search/stanislaus/0000-CURR/feeparcel/{parcel}",
     "source": "Search",
     "status": 404,
     "error": null,
     "ms": 68,
-    "ok": false
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "CA-Ventura",
+    "url": "https://taxpayment.venturacounty.gov/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 45,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CO-Adams",
+    "url": "https://adcotax.com/treasurer/treasurerweb/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 471,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CO-ElPaso",
+    "url": "http://www.trs.elpasoco.com",
+    "source": "Search",
+    "status": null,
+    "error": "Error",
+    "ms": 412,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "CO-Saguache",
+    "url": "https://saguachecountyco-treasurer.tylerhost.net/treasurer/treasurerweb/search.jsp",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 576,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "DE-DeweyBeachTown",
+    "url": "https://wipp.edmundsgovtech.cloud/home?wippId=334",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 671,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Brevard",
+    "url": "https://county-taxes.net/brevard/property-tax",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 616,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Collier",
+    "url": "https://county-taxes.net/fl-collier/property-tax",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 710,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Flagler",
+    "url": "http://www.flaglertax.com/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 394,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "FL-Lake",
@@ -221,17 +735,179 @@
     "source": "Search",
     "status": 301,
     "error": null,
-    "ms": 251,
-    "ok": true
+    "ms": 567,
+    "ok": true,
+    "kind": "ok"
   },
   {
-    "key": "GA-CentervilleCity",
-    "url": "https://centervillega.mygovhub.com/#/quickpay",
+    "key": "FL-Leon",
+    "url": "https://wwwtax2.leoncountyfl.gov/itm/PropertySearchAccount.aspx",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 560,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "FL-Marion",
+    "url": "https://www.mariontax.com/itm/PropertySearchAccount.aspx",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 757,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Okaloosa",
+    "url": "http://www.okaloosatax.com/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 705,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Osceola",
+    "url": "http://www.osceolataxcollector.com/",
+    "source": "Search",
+    "status": null,
+    "error": "Error",
+    "ms": 587,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "FL-Pasco",
+    "url": "http://www.pascotaxes.com/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 794,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Polk",
+    "url": "https://polk.floridatax.us/AccountSearch?s=pt",
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 497,
-    "ok": true
+    "ms": 781,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Sarasota",
+    "url": "https://www.sarasotataxcollector.com/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 946,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Volusia",
+    "url": "http://www.volusia.org/services/financial-and-administrative-services/revenue-services/property-tax-collection/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 510,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "GA-Burke",
+    "url": "https://burkeproperty.assurancegov.com/Property/Search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 935,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "GA-Cobb",
+    "url": "https://cobbtaxpayments.org/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 557,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "GA-Dade",
+    "url": "https://dadeproperty.assurancegov.com/Property/Search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 1019,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "GA-DuluthCity",
+    "url": "https://duluthga.municipalonlinepayments.com/duluthga/tax/search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 862,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "GA-FultonSolidWaste",
+    "url": "https://fultoncountytaxes.org/propertytax/search",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 546,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "GA-Gwinnett",
+    "url": "https://www.gwinnetttaxcommissioner.com/property-tax/view-pay-your-taxes",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 704,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "GA-Pickens",
+    "url": "https://pickensproperty.assurancegov.com/Property/Search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 987,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "GA-SavannahCity",
+    "url": "http://revenue.savannahga.gov/revwebpay/WebPortal/WEB_PT_MAIN.aspx?command=REPORTPARAMETERSTYLE&style=&group=RE",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 674,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "GA-Troup",
+    "url": "https://pay.troupcountytax.com/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 708,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "GA-WarnerRobinsCity",
@@ -239,17 +915,179 @@
     "source": "Search",
     "status": 403,
     "error": null,
-    "ms": 112,
-    "ok": false
+    "ms": 544,
+    "ok": true,
+    "kind": "gated"
   },
   {
-    "key": "KS-Johnson",
-    "url": "https://taxbill.jocogov.org/",
+    "key": "IL-Bureau",
+    "url": "https://propertytaxonline.org/Bureau/",
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 384,
-    "ok": true
+    "ms": 792,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "IL-CookTreasurer",
+    "url": "https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 3503,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "IL-Greene",
+    "url": "https://propertytaxonline.org/Greene/InquiryCriteria.aspx",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 954,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "IL-Lake",
+    "url": "http://www.lakecountyil.gov/Treasurer/Payments/Pages/CurrentPaymentStatus.aspx",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 143,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "IL-Shelby",
+    "url": "https://propertytaxonline.org/Shelby/InquiryCriteria.aspx?i=1",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 961,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "IN-Bartholomew",
+    "url": "https://beacon.schneidercorp.com/Application.aspx?AppID=1130&LayerID=28606&PageTypeID=2&PageID=12977",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 328,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "IN-LaGrange",
+    "url": "https://lowtaxinfo.com/lagrangecounty/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 852,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "IN-Porter",
+    "url": "https://lowtaxinfo.com/portercounty/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 850,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KS-Sedgwick",
+    "url": "https://ssc.sedgwickcounty.org/propertytax/realproperty.aspx?pin={taxid}",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 846,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-BoyleClerk",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 699,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Breathitt",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 692,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Bullitt",
+    "url": "http://ptax1.csiky.com/bullitt_current/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 841,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Daviess",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 544,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Fayette",
+    "url": "https://fayettesheriff.com/property_taxes_lookup_2025.php",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 724,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-FloydClerk",
+    "url": "https://americanlandrecords.com/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 431,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Green",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 431,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Henry",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 330,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "KY-Jassamine",
@@ -257,17 +1095,189 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 356,
-    "ok": true
+    "ms": 410,
+    "ok": true,
+    "kind": "ok"
   },
   {
-    "key": "MA-BarnstableTown",
-    "url": "https://www.invoicecloud.com/portal/2/customerlocator.aspx?iti=8&bg=e547f99d-4428-4d04-85c8-4c7b2efb3256&vsii=1",
+    "key": "KY-Johnson",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 333,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-LaRue",
+    "url": "https://view.properlytaxes.com/index?id=192&loc=2",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 423,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Mason",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 367,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Meade",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 67,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Muhlenberg",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 68,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Owen",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 68,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Simpson",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 274,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Union",
+    "url": "https://ecclix.com/ecclix/login.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 67,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "LA-CaddoParishAssessor",
+    "url": "https://www.actdatascout.com/RealProperty/Index",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 275,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "MA-BostonCity",
+    "url": "https://www.boston.gov/real-estate-taxes?input1=",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 373,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MA-WorcesterCity",
+    "url": "https://unipaygold.unibank.com/transactioninfo.aspx?TID=3486",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 634,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MD-Baltimore",
+    "url": "https://mytax.baltimorecountymd.gov/rptp/portal/property-tax-payment/",
     "source": "Search",
     "status": 302,
     "error": null,
-    "ms": 214,
-    "ok": true
+    "ms": 479,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MD-Montgomery",
+    "url": "https://apps.montgomerycountymd.gov/realpropertytax/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 439,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MI-DetroitCity",
+    "url": "https://bsaonline.com/?uid=155",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 365,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MI-HamiltonTownship",
+    "url": "https://bsaonline.com/?uid=1895",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 368,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MI-Iosco",
+    "url": "https://bsaonline.com/?uid=1995",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 422,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MI-LansingCity",
+    "url": "https://bsaonline.com/?uid=384",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 365,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MI-RedfordTown",
+    "url": "https://bsaonline.com/?uid=677",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 348,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "MI-ViennaTownship",
@@ -275,17 +1285,189 @@
     "source": "Search",
     "status": 302,
     "error": null,
-    "ms": 331,
-    "ok": true
+    "ms": 407,
+    "ok": true,
+    "kind": "ok"
   },
   {
-    "key": "NC-Anson",
-    "url": "https://www.bttaxpayerportal.com/ITSPublicAN/TaxBillSearch",
+    "key": "MN-Benton",
+    "url": "https://property.bentoncountymn.gov/search/commonsearch.aspx?mode=realprop",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 358,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MN-Fillmore",
+    "url": "https://beacon.schneidercorp.com/Application.aspx?AppID=1066&LayerID=25416&PageTypeID=2&PageID=10333",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 55,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "MN-LeSueur",
+    "url": "https://beacon.schneidercorp.com/Application.aspx?AppID=248&LayerID=3190&PageTypeID=2&PageID=1710",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 63,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "MN-Pennington",
+    "url": "https://publicsearch.co.pennington.mn.us/search/commonsearch.aspx?mode=parid",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 264,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MN-Pope",
+    "url": "https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Pope",
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 899,
-    "ok": true
+    "ms": 375,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MN-Wadena",
+    "url": "https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Wadena",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 386,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MO-Jackson",
+    "url": "https://mo-jackson.publicaccessnow.com/Collector/TaxSearch.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 182,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MS-Harrison",
+    "url": "http://www.deltacomputersystems.com/cgi-lrm5/lrmcgi01?HTMCNTY=MS24",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 210,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MT-Glacier",
+    "url": "https://glaciercountymt.gov/departments/treasurer/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 953,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Avery",
+    "url": "https://secure.webtaxpay.com/?county=avery&state=NC",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 537,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-BurlingtonCity",
+    "url": "https://www.burlingtonnctax.com/#/WildfireSearch",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 225,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Gaston",
+    "url": "https://gastonnc.devnetwedge.com/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 513,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Henderson",
+    "url": "https://lrcpwa.ncptscloud.com/Henderson/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 393,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Johnston",
+    "url": "https://my.johnstonnc.gov/service/johnston_county_property_tax",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 574,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Lincoln",
+    "url": "https://www.lincolncountytax.com/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 290,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Randolph",
+    "url": "https://txpwa.randolphcountync.gov/publicwebaccess/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 599,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-SurfCity",
+    "url": "https://wipp.edmundsgovtech.cloud/home?wippId=SURF",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 97,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Wake",
+    "url": "https://services.wake.gov/realestate/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 594,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "NJ-Brick",
@@ -293,17 +1475,179 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 486,
-    "ok": true
+    "ms": 566,
+    "ok": true,
+    "kind": "ok"
   },
   {
-    "key": "OH-Ashtabula",
-    "url": "http://oh-ashtabulacounty.civicplus.com/311/Treasurer",
+    "key": "NJ-JerseyCity",
+    "url": "https://taxes.cityofjerseycity.com/",
+    "source": "Search",
+    "status": null,
+    "error": "TimeoutError",
+    "ms": 16330,
+    "ok": false,
+    "kind": "TimeoutError"
+  },
+  {
+    "key": "NY-AlbanyCity",
+    "url": "https://magic.collectorsolutions.com/magic-ui/OneTimePayment/albany-ny",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 217,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "NY-BuffaloCitySewer",
+    "url": "https://pay.buffalony.gov/form/property-tax",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 1088,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-MountVernonCity",
+    "url": "https://infotaxonline.com/FindProperty.aspx?129",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 657,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-MountVernonCounty",
+    "url": "https://infotaxonline.com/FindProperty.aspx?129",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 662,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-NewYorkCityDEP",
+    "url": "https://a826-umax.dep.nyc.gov/balance",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 644,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-Rye",
+    "url": "https://rye.municipaltaxpayments.com/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 452,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-RyeSchool",
+    "url": "https://www.infotaxonline.com/FindProperty.aspx?112",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 677,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-WhitePlainsCity",
+    "url": "https://cwp.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=new",
     "source": "Search",
     "status": 302,
     "error": null,
-    "ms": 1005,
-    "ok": true
+    "ms": 1871,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Athens",
+    "url": "https://www.athenscountyauditor.org/",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 242,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "OH-Carroll",
+    "url": "https://www.carrollcountyauditor.us/Search/Number",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 536,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "OH-Clinton",
+    "url": "https://clintoncountyauditor.org/Search/Number",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 434,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "OH-Crawford",
+    "url": "http://realestate.crawford-co.org/re-search.php?item=Parn",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 267,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Hancock",
+    "url": "http://www.co.hancock.oh.us/government-services/treasurer",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 273,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Lake",
+    "url": "http://www.lakecountyohio.gov/treasurer/Home.aspx",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 147,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Lorain",
+    "url": "https://loraincountyauditor.gov/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 405,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Mahoning",
+    "url": "https://auditor.mahoningcountyoh.gov/",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 286,
+    "ok": true,
+    "kind": "gated"
   },
   {
     "key": "OH-Montgomery",
@@ -311,17 +1655,189 @@
     "source": "Search",
     "status": 301,
     "error": null,
-    "ms": 461,
-    "ok": true
+    "ms": 476,
+    "ok": true,
+    "kind": "ok"
   },
   {
-    "key": "SC-Horry",
-    "url": "https://horrycountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx\"",
+    "key": "OH-Portage",
+    "url": "http://portagecountyauditor.org/",
+    "source": "Search",
+    "status": 308,
+    "error": null,
+    "ms": 353,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Stark",
+    "url": "https://realestate.starkcountyohio.gov/Datalets/PrintDatalet.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 577,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Trumbull",
+    "url": "http://auditor.co.trumbull.oh.us/index.html",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 402,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Warren",
+    "url": "https://auditor.warrencountyohio.gov/PropertySearch/Summary/Index",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 399,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "PA-Beaver",
+    "url": "https://propertyrecords.beavercountypa.gov/search/commonsearch.aspx",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 617,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "PA-MontgomeryTaxClaim",
+    "url": "https://webapp07.montcopa.org/taxclaim/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 671,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "PA-WestMifflinSchool",
+    "url": "https://billpay.forte.net/westmifflinpaschooltax/",
+    "source": "Search",
+    "status": 202,
+    "error": null,
+    "ms": 407,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "SC-Anderson",
+    "url": "https://acpass.andersoncountysc.org/p_tax_search.htm",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 592,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "SC-Georgetown",
+    "url": "https://georgetowncountysctax.com/update.html#/WildfireSearch",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 296,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "SC-Lexington",
+    "url": "https://lexingtoncountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 1119,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TN-Anderson",
+    "url": "https://anderson.paytntaxes.com/lookup/property-tax",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 546,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TN-Davidson",
+    "url": "https://nashville-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup",
+    "source": "Search",
+    "status": 503,
+    "error": null,
+    "ms": 636,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "TX-AndrewsISD",
+    "url": "https://andrewsisdtax.com/taxes.html/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 671,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Bandera",
+    "url": "https://esearch.banderacounty.org/",
     "source": "Search",
     "status": 404,
     "error": null,
-    "ms": 84,
-    "ok": false
+    "ms": 359,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "TX-BellCAD",
+    "url": "https://esearch.bellcad.org/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 533,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-BowieCAD",
+    "url": "https://bowie.propertytaxpayments.net/search",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 130,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TX-Carson",
+    "url": "https://www.carsoncountytax.org/Home/Search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 184,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-ClearCreekISD",
+    "url": "http://www.texaspayments.com/084910/",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 265,
+    "ok": true,
+    "kind": "ok"
   },
   {
     "key": "TX-Coryell",
@@ -329,17 +1845,179 @@
     "source": "Search",
     "status": null,
     "error": "Error",
-    "ms": 242,
-    "ok": false
+    "ms": 276,
+    "ok": false,
+    "kind": "Error"
   },
   {
-    "key": "TX-Johnson",
-    "url": "https://www.johnsoncountytaxoffice.org/search/",
+    "key": "TX-Denton",
+    "url": "https://taxweb.dentoncounty.gov/search/",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 302,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TX-FortBend",
+    "url": "http://co.fort-bend.tx.us/index.aspx?page=417",
+    "source": "Search",
+    "status": null,
+    "error": "TimeoutError",
+    "ms": 8175,
+    "ok": false,
+    "kind": "TimeoutError"
+  },
+  {
+    "key": "TX-Galveston",
+    "url": "http://www.galvestoncountytx.gov/to/Pages/default.aspx",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 41,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TX-GarlandISD",
+    "url": "https://www.texaspayments.com/057909",
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 468,
-    "ok": true
+    "ms": 331,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Grayson",
+    "url": "https://grayson.propertytaxpayments.net/search",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 161,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TX-HarrisonCAD",
+    "url": "https://tax.harrisoncad.net/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 442,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Hill",
+    "url": "https://esearch.hilltax.org/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 4010,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-HumbleISD",
+    "url": "https://humbleisd.propertytaxpayments.net/search/",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 299,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TX-JimWellsCAD",
+    "url": "https://jimwells.propertytaxpayments.net/search",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 304,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TX-Lamb",
+    "url": "https://esearch.lambcad.org/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 442,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Liberty",
+    "url": "https://www.libertycountytax.com/search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 283,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-PasadenaISD",
+    "url": "https://taxoffice.pasadenaisd.org/search",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 281,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TX-RichardsonISD",
+    "url": "https://www.texaspayments.com/057916",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 36,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Sabine",
+    "url": "https://azurefrontdoor-gwbqhvc2fyhaghgf.z01.azurefd.net/webSearchGeoID.aspx?dbkey=SABINETAX",
+    "source": "Search",
+    "status": 404,
+    "error": null,
+    "ms": 234,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "TX-Shelby",
+    "url": "https://tax.shelbytaxpayment.com/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 474,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-SpringBranchISD",
+    "url": "https://sbisd.propertytaxpayments.net/search",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 308,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TX-Tarrant",
+    "url": "https://www.tax.tarrantcountytx.gov/Search/",
+    "source": "Search",
+    "status": 403,
+    "error": null,
+    "ms": 346,
+    "ok": true,
+    "kind": "gated"
   },
   {
     "key": "TX-WheelerAssociates",
@@ -347,16 +2025,978 @@
     "source": "Search",
     "status": 200,
     "error": null,
-    "ms": 406,
-    "ok": true
+    "ms": 481,
+    "ok": true,
+    "kind": "ok"
   },
   {
-    "key": "VA-PortsmouthCity",
-    "url": "http://data.portsmouthva.gov/treasurer/data/realestatereceivsearch.aspx",
+    "key": "TX-Wilson",
+    "url": "https://esearch.tax.wilsoncountytx.gov/",
     "source": "Search",
     "status": 200,
     "error": null,
+    "ms": 2782,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-BristolCity",
+    "url": "https://eservices.bristolva.org/applications/REPublicInquiry/webform1.aspx",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 3449,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-CityOfHopewell",
+    "url": "https://cityofhopewellva.tylerportico.com/css/citizen-selfservice/real-estate/pay-bill",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 512,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-Fauquier",
+    "url": "https://tax.fauquiercounty.gov/PortalAccount/SearchForParcel?NextAction=VIEW",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 751,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-HamptonCity",
+    "url": "https://hamptonrealinfo.hampton.gov/HamptonTaxInfo/TaxInfo",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 611,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-HamptonCitySewer",
+    "url": "https://hamptonrealinfo.hampton.gov/HamptonTaxInfo/TaxInfo",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 559,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-Hanover",
+    "url": "https://taxes.hanovercounty.gov/",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 621,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-HopewellCity",
+    "url": "https://cityofhopewellva.tylerportico.com/css/citizen-selfservice/real-estate",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 444,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-PetersburgCity",
+    "url": "https://www.petersburg-va.com/applications/REPublicInquiry/webform1.aspx",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 532,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WA-Kitsap",
+    "url": "https://psearch.kitsap.gov/pdetails/Default",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 487,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WA-Pierce",
+    "url": "https://atip.piercecountywa.gov/app/v2/parcelSearch/search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 113,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-Brown",
+    "url": "https://bclrpp.browncountywi.gov/Search/RealEstate/Search",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 88,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-Burnett",
+    "url": "http://web.burnettcounty.org/access/REAL%20ESTATE/header.asp",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 206,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-GreenLake",
+    "url": "https://greenlake.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 524,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-Kenosha",
+    "url": "https://pp-kenosha-co-wi-fb.app.landnav.com/Search/RealEstate/Search",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 63,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-Monroe",
+    "url": "https://pp-monroe-co-wi-fb.app.landnav.com/Search/RealEstate/Search",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 65,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-Polk",
+    "url": "https://pp-polk-co-wi-fb.app.landnav.com/Search/RealEstate/Search",
+    "source": "Search",
+    "status": 302,
+    "error": null,
+    "ms": 56,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-Sawyer",
+    "url": "https://tas.sawyercountygov.org/access/REAL%20ESTATE/header.asp",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 373,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-StCroix",
+    "url": "https://propertyinfo.kenoshacounty.org/Search/RealEstate/Search",
+    "source": "Search",
+    "status": 301,
+    "error": null,
+    "ms": 272,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-Washburn",
+    "url": "https://tax.co.washburn.wi.us/access/REAL%20ESTATE/header.asp",
+    "source": "Search",
+    "status": 200,
+    "error": null,
+    "ms": 407,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AK-Anchorage",
+    "url": "https://www.muni.org/pw/dfhwbtta/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 148,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "AR-Boone",
+    "url": "http://www.arcountydata.com/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 167,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "CO-LaPlata",
+    "url": "https://treasurer.laplata.co.us/treasurer/treasurerweb/",
+    "source": "Base",
+    "status": null,
+    "error": "Error",
+    "ms": 54,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "DE-Sussex",
+    "url": "http://www.sussexcountyde.gov/e-service/propertytaxes/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
     "ms": 239,
-    "ok": true
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "FL-Suwannee",
+    "url": "http://fl-suwannee-taxcollector.governmax.com/collectmax/",
+    "source": "Base",
+    "status": null,
+    "error": "Error",
+    "ms": 143,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "GA-Dougherty",
+    "url": "https://dougherty.paytaxes.net/customer/",
+    "source": "Base",
+    "status": null,
+    "error": "Error",
+    "ms": 182,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "GA-McIntosh",
+    "url": "https://mcintosh.paytaxes.net/customer/",
+    "source": "Base",
+    "status": null,
+    "error": "Error",
+    "ms": 254,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "GA-Vidalia",
+    "url": "https://vidalia.paytaxes.net/customer/",
+    "source": "Base",
+    "status": null,
+    "error": "Error",
+    "ms": 202,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "IA-Woodbury",
+    "url": "https://www.iowatreasurers.org/iscta/secure/",
+    "source": "Base",
+    "status": 404,
+    "error": null,
+    "ms": 339,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "IL-Macon",
+    "url": "http://www.fikeandfike.com/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 482,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "IN-Blackford",
+    "url": "https://beacon.schneidercorp.com/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 171,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "IN-Fountain",
+    "url": "https://beacon.schneidercorp.com/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 231,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "IN-Jennings",
+    "url": "https://jenningsin.wthgis.com/tgis/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 52,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "IN-Ohio",
+    "url": "https://ohioin.wthgis.com/tgis/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 51,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "IN-Sullivan",
+    "url": "https://beacon.schneidercorp.com/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 119,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "KS-Marion",
+    "url": "http://www.marion.kansasgov.com/tax/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 372,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "KY-Fleming",
+    "url": "http://fleming.truelevy.com/",
+    "source": "Base",
+    "status": null,
+    "error": "Error",
+    "ms": 287,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "LA-CalcasieuParish",
+    "url": "http://208.180.188.69/TCMOnline/",
+    "source": "Base",
+    "status": null,
+    "error": "TimeoutError",
+    "ms": 8001,
+    "ok": false,
+    "kind": "TimeoutError"
+  },
+  {
+    "key": "LA-TerrebonneParish",
+    "url": "http://tpso.net/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 142,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MD-HavreDeGraceCity",
+    "url": "https://wipp.edmundsassoc.com/WippHAVR/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 338,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MI-BlissfieldTownship",
+    "url": "https://bsaonline.com/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 291,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MI-GibraltarCity",
+    "url": "https://accessmygov.com/SiteSearch/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 163,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MI-OrangevilleTownship",
+    "url": "https://is.bsasoftware.com/bsa.is/TaxServices/",
+    "source": "Base",
+    "status": null,
+    "error": "TimeoutError",
+    "ms": 16061,
+    "ok": false,
+    "kind": "TimeoutError"
+  },
+  {
+    "key": "MI-VeniceTownship",
+    "url": "https://bsaonline.com/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 274,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MN-McLeod",
+    "url": "http://mcleod.visualgov.com/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 259,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MN-Washington",
+    "url": "https://mn-washington.manatron.com/",
+    "source": "Base",
+    "status": 404,
+    "error": null,
+    "ms": 339,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "MO-Greene",
+    "url": "http://www.greenecountymo.org/spane/PublicAccess/",
+    "source": "Base",
+    "status": 307,
+    "error": null,
+    "ms": 265,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MO-Warren",
+    "url": "https://billpay.forte.net/WARRENCOMOCOLLECTOR/api/",
+    "source": "Base",
+    "status": 202,
+    "error": null,
+    "ms": 60,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "MS-Neshoba",
+    "url": "http://www.deltacomputersystems.com/MS/MS50/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 263,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Cabarrus",
+    "url": "http://tax.cabarruscounty.us/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 189,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NC-Orange",
+    "url": "http://web.co.orange.nc.us/PublicWebAccess/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 367,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "ND-Williams",
+    "url": "https://www.williamsnd.com/Property/Parcel/",
+    "source": "Base",
+    "status": 404,
+    "error": null,
+    "ms": 601,
+    "ok": false,
+    "kind": "gone"
+  },
+  {
+    "key": "NE-Furnas",
+    "url": "http://www.nebraskataxesonline.us/",
+    "source": "Base",
+    "status": 307,
+    "error": null,
+    "ms": 156,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NE-Perkins",
+    "url": "http://www.nebraskataxesonline.us/",
+    "source": "Base",
+    "status": 307,
+    "error": null,
+    "ms": 169,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NH-EpsomTown",
+    "url": "http://www.nhtaxkiosk.com/",
+    "source": "Base",
+    "status": 303,
+    "error": null,
+    "ms": 258,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NH-WentworthTown",
+    "url": "http://www.nhtaxkiosk.com/",
+    "source": "Base",
+    "status": 303,
+    "error": null,
+    "ms": 279,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NJ-BelmarBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 57,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-CapeMayCity",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 57,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-DumontBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 58,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-FlorhamParkBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 70,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-HarveyCedarsBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 69,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-LakehurstBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 71,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-MagnoliaBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 57,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-MonroeTwp",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 70,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-NorthHanoverTwp",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 57,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-PennsvilleTwp",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 58,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-RoselandBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 70,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-SouthTomsRiverBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 57,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-VoorheesTwp",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 69,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NJ-WildwoodCrestBoro",
+    "url": "https://lots.signatureinfo.com/",
+    "source": "Base",
+    "status": 503,
+    "error": null,
+    "ms": 59,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "NY-BinghamtonTown",
+    "url": "http://www.taxlookup.net/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 189,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-EastFishkillTown",
+    "url": "http://www.taxlookup.net/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 190,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-MadridTown",
+    "url": "http://www.taxlookup.net/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 181,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "NY-RochesterCityATF",
+    "url": "http://www.atfs.com/atf_asp/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 251,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "OH-Auglaize",
+    "url": "http://auglaizeauditor.ddti.net/",
+    "source": "Base",
+    "status": null,
+    "error": "Error",
+    "ms": 120,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "OH-Perry",
+    "url": "http://perrycountyauditor.us/",
+    "source": "Base",
+    "status": 308,
+    "error": null,
+    "ms": 248,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "PA-Schuylkill",
+    "url": "http://www.co.schuylkill.pa.us/info/Offices/TaxClaim/",
+    "source": "Base",
+    "status": 500,
+    "error": null,
+    "ms": 77,
+    "ok": false,
+    "kind": "server_error"
+  },
+  {
+    "key": "RI-NorthProvidenceTown",
+    "url": "http://www.opaldata.net/onlinetax/",
+    "source": "Base",
+    "status": null,
+    "error": "TimeoutError",
+    "ms": 8147,
+    "ok": false,
+    "kind": "TimeoutError"
+  },
+  {
+    "key": "SC-Florence",
+    "url": "http://web.florenceco.org/cgi-bin/ta/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 344,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "TN-Hamblen",
+    "url": "https://hamblen-tn.mygovonline.com/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 1567,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Atascosa",
+    "url": "https://propaccess.trueautomation.com/clientdb/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 426,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-ChannelviewISD",
+    "url": "http://www.channelview.isd.esc4.net/",
+    "source": "Base",
+    "status": null,
+    "error": "Error",
+    "ms": 297,
+    "ok": false,
+    "kind": "Error"
+  },
+  {
+    "key": "TX-Equitax",
+    "url": "http://www.equitaxinc.com/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 324,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-HaleCAD",
+    "url": "http://propaccess.trueautomation.com/clientdb/",
+    "source": "Base",
+    "status": 303,
+    "error": null,
+    "ms": 284,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Jones",
+    "url": "http://www.jonescad.org/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 295,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Maverick",
+    "url": "https://propaccess.trueautomation.com/clientdb/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 372,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-Pecos",
+    "url": "http://www.pecostax.org/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 426,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "TX-TaylorCAD",
+    "url": "http://propaccess.taylor-cad.org/clientdb/",
+    "source": "Base",
+    "status": null,
+    "error": "TimeoutError",
+    "ms": 8235,
+    "ok": false,
+    "kind": "TimeoutError"
+  },
+  {
+    "key": "TX-Wilbarger",
+    "url": "http://www.wilbargertax.org/",
+    "source": "Base",
+    "status": 200,
+    "error": null,
+    "ms": 412,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "VA-Bath",
+    "url": "https://eservices.bristolva.org/applications/REPublicInquiry/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 79,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "VA-Louisa",
+    "url": "https://louweb.louisa.org/applications/republicinquiry/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 182,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "VA-Stafford",
+    "url": "http://taxpaid.stafford.va.us/",
+    "source": "Base",
+    "status": null,
+    "error": "TimeoutError",
+    "ms": 8119,
+    "ok": false,
+    "kind": "TimeoutError"
+  },
+  {
+    "key": "WI-Crawford",
+    "url": "http://landrecords.crawfordcountywi.org/LandRecords/PropertyListing/RealEstateTa",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 269,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-KenoshaCity",
+    "url": "http://kenosha.org/cgi-bin/",
+    "source": "Base",
+    "status": 403,
+    "error": null,
+    "ms": 28,
+    "ok": true,
+    "kind": "gated"
+  },
+  {
+    "key": "WI-Ozaukee",
+    "url": "http://www.ascent.co.ozaukee.wi.us/LandRecords/",
+    "source": "Base",
+    "status": 302,
+    "error": null,
+    "ms": 315,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WI-Waushara",
+    "url": "http://www.co.waushara.wi.us/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 186,
+    "ok": true,
+    "kind": "ok"
+  },
+  {
+    "key": "WV-Monongalia",
+    "url": "http://monongalia.softwaresystems.com/",
+    "source": "Base",
+    "status": 301,
+    "error": null,
+    "ms": 266,
+    "ok": true,
+    "kind": "ok"
   }
 ]

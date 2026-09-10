@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-10T17:35:53.442Z",
+    "fixCount": 30,
+    "verifiedOk": 26,
+    "activeAfter": 1969,
+    "inactiveAfter": 86,
+    "deepShake": "not_run",
+    "note": "Cloud substitute for DeepShake. MPTS templates rewritten; placeholders replaced; health reclassified (403/429/503 = alive)."
+  },
+  "fixes": [
+    {
+      "key": "AL-Marshall",
+      "from": "https://www.deltacomputersystems.com/cgi-lra2/",
+      "to": "https://marshallcounty.al.gov/revenue-commissioner/",
+      "how": "deltacomputersystems cgi-lra2 404 → Marshall Revenue Commissioner"
+    },
+    {
+      "key": "AR-Benton",
+      "from": "https://www.arcountydata.com/propsearch.asp?county=Benton",
+      "to": "https://bentoncountyar.gov/collector/",
+      "how": "arcountydata blocked/fragile → Benton County Collector"
+    },
+    {
+      "key": "AR-LittleRiver",
+      "from": "https://www.arcountydata.com/propsearch.asp?county=Little River&s=T",
+      "to": "https://www.arcountydata.com/propsearch.asp?county=Little%20River&s=T",
+      "how": "URL-encoded county name (was InvalidURL)"
+    },
+    {
+      "key": "AR-StFrancis",
+      "from": "https://www.arcountydata.com/propsearch.asp?county=St. Francis&s=T",
+      "to": "https://www.arcountydata.com/propsearch.asp?county=St.%20Francis&s=T",
+      "how": "encode spaces"
+    },
+    {
+      "key": "AR-VanBuren",
+      "from": "https://www.arcountydata.com/propsearch.asp?county=Van Buren&s=T",
+      "to": "https://www.arcountydata.com/propsearch.asp?county=Van%20Buren&s=T",
+      "how": "encode spaces"
+    },
+    {
+      "key": "CA-Butte",
+      "from": "https://common3.mptsweb.com/MBC/api/search/butte/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/butte/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Calaveras",
+      "from": "https://common3.mptsweb.com/MBC/api/search/calaveras/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/calaveras/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-DelNorte",
+      "from": "https://common3.mptsweb.com/MBC/api/search/delnorte/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/delnorte/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Humboldt",
+      "from": "https://common3.mptsweb.com/MBC/api/search/humboldt/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/humboldt/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Imperial",
+      "from": "https://common3.mptsweb.com/MBC/api/search/imperial/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/imperial/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Madera",
+      "from": "https://common3.mptsweb.com/MBC/api/search/madera/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/madera/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Merced",
+      "from": "https://common3.mptsweb.com/MBC/api/search/merced/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/merced/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Modoc",
+      "from": "https://common3.mptsweb.com/MBC/api/search/modoc/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/modoc/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Mono",
+      "from": "https://common3.mptsweb.com/MBC/api/search/mono/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/mono/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Monterey",
+      "from": "https://common3.mptsweb.com/MBC/api/search/monterey/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/monterey/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Napa",
+      "from": "https://common3.mptsweb.com/MBC/api/search/napa/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/napa/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Placer",
+      "from": "https://common3.mptsweb.com/MBC/api/search/placer/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/placer/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-SanJoaquin",
+      "from": "https://common3.mptsweb.com/MBC/api/search/sanjoaquin/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/sanjoaquin/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Shasta",
+      "from": "https://common3.mptsweb.com/MBC/api/search/shasta/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/shasta/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Siskiyou",
+      "from": "https://common1.mptsweb.com/MBC/api/search/siskiyou/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common1.mptsweb.com/MBC/siskiyou/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Sonoma",
+      "from": "https://common3.mptsweb.com/MBC/api/search/sonoma/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/sonoma/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Stanislaus",
+      "from": "https://common3.mptsweb.com/MBC/api/search/stanislaus/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common3.mptsweb.com/MBC/stanislaus/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Tuolumne",
+      "from": "https://common1.mptsweb.com/MBC/api/search/tuolumne/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common1.mptsweb.com/MBC/tuolumne/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "CA-Yolo",
+      "from": "https://common2.mptsweb.com/MBC/api/search/yolo/0000-CURR/feeparcel/{parcel}",
+      "to": "https://common2.mptsweb.com/MBC/yolo/tax/search",
+      "how": "MPTS api template → /tax/search"
+    },
+    {
+      "key": "FL-MiamiDade",
+      "from": "https://www.miamidade.gov/taxcollector/",
+      "to": "https://www.miamidade.gov/taxcollector/",
+      "how": "old online-services.asp 404 → tax collector home"
+    },
+    {
+      "key": "FL-Orange",
+      "from": "https://www.octaxcol.com/Octc/PropertyTax/Search.aspx",
+      "to": "https://www.octaxcol.com/taxes/",
+      "how": "old Search.aspx 404 → /taxes/"
+    },
+    {
+      "key": "VA-LynchburgCity",
+      "from": "https://",
+      "to": "https://webapps.lynchburgva.gov/citylink",
+      "how": "empty URL → Lynchburg CityLink tax portal"
+    },
+    {
+      "key": "AL-Chambers",
+      "from": "https://www.google.com/",
+      "to": "https://www.ingproperty.com/Chambers_Revenue/property.aspx",
+      "how": "google → Chambers Revenue property search"
+    },
+    {
+      "key": "AL-Coffee",
+      "from": "https://www.google.com/",
+      "to": "https://www.coffeecountyrevenue.com/property.html",
+      "how": "google → Coffee County Revenue"
+    },
+    {
+      "key": "AL-Russell",
+      "from": "https://www.google.com/",
+      "to": "https://russell.capturecama.com/propsearch",
+      "how": "google → Russell CaptureCAMA propsearch"
+    }
+  ]
+}

@@ -43,11 +43,17 @@ function normalize(s) {
 
 function extractState(q) {
   const n = normalize(q);
-  const parts = n.split(' ');
+  const parts = n.split(' ').filter(Boolean);
+  const codes = new Set(Object.values(STATE_ALIASES).map((c) => c.toLowerCase()));
   // trailing 2-letter code
   const last = parts[parts.length - 1];
-  if (last && last.length === 2 && /^[a-z]{2}$/.test(last)) {
+  if (last && last.length === 2 && codes.has(last)) {
     return last.toUpperCase();
+  }
+  // any standalone state code token (e.g. "San Diego CA property tax")
+  for (let i = parts.length - 1; i >= 0; i--) {
+    const p = parts[i];
+    if (p.length === 2 && codes.has(p)) return p.toUpperCase();
   }
   for (const [name, code] of Object.entries(STATE_ALIASES)) {
     if (n.includes(name)) return code;
@@ -64,7 +70,10 @@ function countyQuery(q, state) {
     n = n.replace(new RegExp(`\\b${name}\\b`, 'g'), ' ');
   }
   n = n
-    .replace(/\b(county|parish|borough|municipality|city|of|the|pay|property|taxes?|tax|search|bill|parcel)\b/g, ' ')
+    .replace(
+      /\b(county|parish|borough|municipality|city|of|the|a|an|my|our|your|me|please|help|find|locate|open|go|to|for|and|or|by|with|from|last|name|names|surname|pay|paying|payment|property|taxes?|tax|search|lookup|look|up|bill|bills|parcel|account|pin|apn|owner|address|online|website|page|official|collector|treasurer|assessor)\b/g,
+      ' '
+    )
     .replace(/\s+/g, ' ')
     .trim();
   return n;
