@@ -1,8 +1,8 @@
-# DeepShake status (2026-09-10)
+# DeepShake status (2026-09-13)
 
 ## Did DeepShake run?
 
-**No.** DeepShake did **not** execute in this cloud agent turn.
+**No.** DeepShake did **not** execute in this cloud agent turn (same as 2026-09-10).
 
 | Check | Result |
 | --- | --- |
@@ -30,11 +30,11 @@ Document the exact path the hunt script prints (e.g. `/Volumes/T7/.../DeepShake.
 
 **Do not modify DEP Highlighter.**
 
-## Cloud substitute used this turn
+## Cloud substitute used this turn (2026-09-13 hybrid)
 
-1. Full HTTP crawl of **2052** Extractor URLs (`npm run health:all`)
-2. Reclassify bot-blocks (403/429/503) as alive
-3. Curated + MPTS template URL fixes (`npm run health:fix`)
-4. Result: **~1969 active** / **2055 searchable** rows in `spul/data`
+1. Full hybrid crawl of **2055** Extractor URLs (`npm run health:hybrid`)
+2. Method A/B/C: HEAD/GET + redirect follow; Search-over-Base; sample title/form sniff; host cross-check
+3. Reclassify: 403/429/gated = validated-true; 404/NXDOMAIN = dead; timeout/TLS = uncertain
+4. Result: **1437 validated-true** / **368 dead** / **250 uncertain** / registry active **1681** / listed **2062** / with URL **2055**
 
-See `docs/prototype-best-practice/URL_HEALTH_SAMPLE.md` and `URL_FIXES.md`.
+See `docs/prototype-best-practice/URL_REVALIDATE_2026-09-13.md` and `docs/SPUL_DESCRIPTION_AND_VALIDATED_URLS.txt`.

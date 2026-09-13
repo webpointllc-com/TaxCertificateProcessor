@@ -20,7 +20,7 @@ npm start
 
 ## Data
 
-- Source: Extractor URL export (`ExtractorUrls_*.txt`, 2085 listed; ~2055 searchable / ~1969 active after health + URL fixes)
+- Source: Extractor URL export (`ExtractorUrls_*.txt`, 2062 listed; 2055 with URL; **1437 validated-true** / 368 dead / 250 uncertain on 2026-09-13 hybrid revalidate; registry active ≈1681 = validated-true + uncertain kept)
 - Built index: `spul/data/search-index.json`
 - County export: `spul/data/counties-export.csv` (+ `counties-export-summary.json`)
 - Query shapes: `docs/prototype-best-practice/QUERY_SHAPES.md`

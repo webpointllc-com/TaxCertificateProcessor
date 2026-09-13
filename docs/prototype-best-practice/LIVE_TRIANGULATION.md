@@ -6,7 +6,7 @@ Honest architecture for **real-time / live** confirmation of S-PUL official sear
 
 ### Layer A — Registry match (shipped)
 
-- Extractor index in `spul/data/search-index.json` (~2055 searchable / ~1969 active after health + URL fixes).
+- Extractor index in `spul/data/search-index.json` (2055 searchable; 2026-09-13 hybrid: **1437 validated-true** / 368 dead / 250 uncertain; registry active **1681**).
 - `GET/POST /api/search`, `POST /api/guide` — score county+state, return locked URL + confidence.
 - **Never invent URLs.** Honest miss when absent.
 
