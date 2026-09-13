@@ -35,10 +35,10 @@ const args = Object.fromEntries(
   })
 );
 
-const CONCURRENCY = Math.min(Math.max(parseInt(args.concurrency || '16', 10), 1), 28);
-const TIMEOUT_MS = 12000;
-const TIMEOUT_RETRY_MS = 20000;
-const MAX_REDIRECTS = 5;
+const CONCURRENCY = Math.min(Math.max(parseInt(args.concurrency || '20', 10), 1), 32);
+const TIMEOUT_MS = 8000;
+const TIMEOUT_RETRY_MS = 14000;
+const MAX_REDIRECTS = 4;
 
 const UA_BROWSER =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
@@ -73,15 +73,21 @@ function slugCompact(name) {
 
 function requestOnce(url, method, { ua, timeoutMs = TIMEOUT_MS, followBody = false, redirectCount = 0 } = {}) {
   return new Promise((resolve) => {
+    let settled = false;
+    const done = (result) => {
+      if (settled) return;
+      settled = true;
+      resolve(result);
+    };
     let parsed;
     try {
       parsed = new URL(url);
     } catch {
-      resolve({ status: null, error: 'InvalidURL', ms: 0, finalUrl: url, headers: {}, body: '' });
+      done({ status: null, error: 'InvalidURL', ms: 0, finalUrl: url, headers: {}, body: '' });
       return;
     }
     if (nxHostCache.has(parsed.hostname.toLowerCase())) {
-      resolve({
+      done({
         status: null,
         error: 'NXDOMAIN',
         ms: 0,
@@ -94,92 +100,128 @@ function requestOnce(url, method, { ua, timeoutMs = TIMEOUT_MS, followBody = fal
     }
     const lib = parsed.protocol === 'https:' ? https : http;
     const started = Date.now();
-    const req = lib.request(
-      {
-        protocol: parsed.protocol,
-        hostname: parsed.hostname,
-        port: parsed.port || (parsed.protocol === 'https:' ? 443 : 80),
-        path: parsed.pathname + parsed.search,
-        method,
-        timeout: timeoutMs,
-        headers: {
-          'User-Agent': ua || UA_BROWSER,
-          Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-          'Accept-Language': 'en-US,en;q=0.9',
-          Connection: 'close',
+    let req;
+    const wall = setTimeout(() => {
+      try {
+        if (req) req.destroy();
+      } catch {
+        /* ignore */
+      }
+      done({
+        status: null,
+        error: 'TimeoutError',
+        ms: Date.now() - started,
+        finalUrl: url,
+        headers: {},
+        body: '',
+      });
+    }, timeoutMs + 750);
+
+    try {
+      req = lib.request(
+        {
+          protocol: parsed.protocol,
+          hostname: parsed.hostname,
+          port: parsed.port || (parsed.protocol === 'https:' ? 443 : 80),
+          path: parsed.pathname + parsed.search,
+          method,
+          timeout: timeoutMs,
+          headers: {
+            'User-Agent': ua || UA_BROWSER,
+            Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            Connection: 'close',
+          },
+          rejectUnauthorized: false,
         },
-        rejectUnauthorized: false,
-      },
-      (res) => {
-        const status = res.statusCode || null;
-        const loc = res.headers.location;
-        if (status && status >= 300 && status < 400 && loc && redirectCount < MAX_REDIRECTS) {
-          res.resume();
-          let next;
-          try {
-            next = new URL(loc, url).toString();
-          } catch {
-            resolve({
+        (res) => {
+          const status = res.statusCode || null;
+          const loc = res.headers.location;
+          if (status && status >= 300 && status < 400 && loc && redirectCount < MAX_REDIRECTS) {
+            res.resume();
+            clearTimeout(wall);
+            let next;
+            try {
+              next = new URL(loc, url).toString();
+            } catch {
+              done({
+                status,
+                error: 'BadRedirect',
+                ms: Date.now() - started,
+                finalUrl: url,
+                headers: res.headers,
+                body: '',
+              });
+              return;
+            }
+            requestOnce(next, method, { ua, timeoutMs, followBody, redirectCount: redirectCount + 1 }).then(done);
+            return;
+          }
+          if (!followBody) {
+            res.resume();
+            clearTimeout(wall);
+            done({
               status,
-              error: 'BadRedirect',
+              error: null,
               ms: Date.now() - started,
               finalUrl: url,
               headers: res.headers,
               body: '',
+              redirects: redirectCount,
             });
             return;
           }
-          requestOnce(next, method, { ua, timeoutMs, followBody, redirectCount: redirectCount + 1 }).then(resolve);
-          return;
+          const chunks = [];
+          let size = 0;
+          res.on('data', (c) => {
+            if (size < 24 * 1024) {
+              chunks.push(c);
+              size += c.length;
+            }
+          });
+          res.on('end', () => {
+            clearTimeout(wall);
+            done({
+              status,
+              error: null,
+              ms: Date.now() - started,
+              finalUrl: url,
+              headers: res.headers,
+              body: Buffer.concat(chunks).toString('utf8'),
+              redirects: redirectCount,
+            });
+          });
+          res.on('error', () => {
+            clearTimeout(wall);
+            done({
+              status,
+              error: null,
+              ms: Date.now() - started,
+              finalUrl: url,
+              headers: res.headers,
+              body: Buffer.concat(chunks).toString('utf8'),
+              redirects: redirectCount,
+            });
+          });
         }
-        if (!followBody) {
-          res.resume();
-          resolve({
-            status,
-            error: null,
-            ms: Date.now() - started,
-            finalUrl: url,
-            headers: res.headers,
-            body: '',
-            redirects: redirectCount,
-          });
-          return;
-        }
-        const chunks = [];
-        let size = 0;
-        res.on('data', (c) => {
-          if (size < 24 * 1024) {
-            chunks.push(c);
-            size += c.length;
-          }
-        });
-        res.on('end', () => {
-          resolve({
-            status,
-            error: null,
-            ms: Date.now() - started,
-            finalUrl: url,
-            headers: res.headers,
-            body: Buffer.concat(chunks).toString('utf8'),
-            redirects: redirectCount,
-          });
-        });
-        res.on('error', () => {
-          resolve({
-            status,
-            error: null,
-            ms: Date.now() - started,
-            finalUrl: url,
-            headers: res.headers,
-            body: Buffer.concat(chunks).toString('utf8'),
-            redirects: redirectCount,
-          });
-        });
-      }
-    );
+      );
+    } catch (e) {
+      clearTimeout(wall);
+      done({
+        status: null,
+        error: String(e && e.message ? e.message : e),
+        ms: Date.now() - started,
+        finalUrl: url,
+        headers: {},
+        body: '',
+      });
+      return;
+    }
+
     req.on('timeout', () => {
       req.destroy();
-      resolve({
+      clearTimeout(wall);
+      done({
         status: null,
         error: 'TimeoutError',
         ms: Date.now() - started,
@@ -201,7 +243,8 @@ function requestOnce(url, method, { ua, timeoutMs = TIMEOUT_MS, followBody = fal
       }
       if (/CERT|SSL|TLS|EPROTO/i.test(msg) || /CERT|SSL|TLS|EPROTO/i.test(String(err.code || '')))
         error = 'TLSError';
-      resolve({
+      clearTimeout(wall);
+      done({
         status: null,
         error,
         ms: Date.now() - started,
@@ -350,21 +393,24 @@ function vendorCandidates(item) {
   if (/deltacomputersystems\.com/i.test(url)) {
     try {
       const p = new URL(url.replace(/^http:/, 'https:'));
-      const base = `https://${p.hostname}${p.pathname.replace(/\/?$/, '/')}`;
-      out.push(base);
-      out.push(base + 'alink.html');
+      // Keep county path (/AL/ALxx/) — never fall back to vendor marketing homepage
+      if (/\/AL\/AL\d+/i.test(p.pathname)) {
+        const base = `https://${p.hostname}${p.pathname.replace(/\/?$/, '/')}`;
+        out.push(base);
+        out.push(base + 'alink.html');
+        out.push(base.replace(/\/$/, '') + '/');
+      }
     } catch {
       /* skip */
     }
   }
 
   if (/actweb\.acttax\.com/i.test(url)) {
+    // Only https upgrade of same county path — not vendor root
     out.push(url.replace(/^http:/, 'https:'));
-    out.push('https://actweb.acttax.com/');
   }
   if (/texaspayments\.com/i.test(url)) {
     out.push(url.replace(/^http:/, 'https:'));
-    out.push('https://www.texaspayments.com/');
   }
 
   if (item.key === 'AL-Jefferson' || /jeffcointouch/i.test(url)) {
@@ -383,7 +429,77 @@ function vendorCandidates(item) {
   return uniqueUrls(out);
 }
 
-/** Single GET probe (browser UA); one longer retry on timeout */
+/** Reject generic multi-tenant vendor homepages as county Search replacements */
+function isAcceptableReplacement(originalUrl, candidateUrl, item) {
+  if (!candidateUrl || candidateUrl === originalUrl) return true;
+  let cand;
+  let orig;
+  try {
+    cand = new URL(candidateUrl);
+    orig = new URL(originalUrl);
+  } catch {
+    return false;
+  }
+  const host = cand.hostname.toLowerCase();
+  const path = (cand.pathname || '/').replace(/\/+$/, '') || '/';
+  const compact = slugCompact(item.county || '');
+
+  // Multi-tenant vendor roots without county token in host/path/query → reject
+  const vendorRoots = [
+    /^www\.deltacomputersystems\.com$/i,
+    /^deltacomputersystems\.com$/i,
+    /^www\.payyourpropertytax\.com$/i,
+    /^payyourpropertytax\.com$/i,
+    /^actweb\.acttax\.com$/i,
+    /^www\.texaspayments\.com$/i,
+    /^texaspayments\.com$/i,
+    /^www\.paytaxes\.net$/i,
+    /^paytaxes\.net$/i,
+    /^wipp\.edmundsassoc\.com$/i,
+    /^www\.infoconcountyaccess\.com$/i,
+  ];
+  const isVendorHost = vendorRoots.some((re) => re.test(host));
+  if (isVendorHost) {
+    const q = (cand.search || '').toLowerCase();
+    const hay = `${host}${path}?${q}`;
+    const hasCounty =
+      (compact && compact.length >= 4 && hay.includes(compact)) ||
+      /\/AL\/AL\d+/i.test(path) ||
+      /[?&]town=/i.test(q) ||
+      /[?&]wippid=/i.test(q) ||
+      /\/\d{5,6}\//i.test(path + '/') ||
+      /act_webdev\/[a-z0-9_-]+/i.test(path);
+    if (path === '/' && !hasCounty) return false;
+    if (!hasCounty && path.split('/').filter(Boolean).length <= 1) return false;
+  }
+
+  // Iowa statewide portals are intentional shared Search entry points
+  if (/iowataxandtags\.org|iowatreasurers\.org/i.test(host)) return true;
+
+  // Same host path-trim is OK if original host already county-specific (subdomain)
+  if (host === orig.hostname.toLowerCase()) return true;
+  if (host.replace(/^www\./, '') === orig.hostname.toLowerCase().replace(/^www\./, '')) return true;
+
+  // County token in new host (e.g. montgomeryal.capturecama, ca-inyo.publicaccessnow)
+  if (compact && compact.length >= 4 && host.replace(/[^a-z0-9]/g, '').includes(compact.slice(0, Math.min(8, compact.length))))
+    return true;
+
+  // Known good patterned replacements
+  if (/county-taxes\.net/i.test(host) && path.includes('property-tax')) return true;
+  if (/mytaxbill/i.test(host) && /town=/i.test(cand.search)) return true;
+  if (/qpublic\.net/i.test(host) && /\/ga\//i.test(path)) return true;
+  if (/spatialest\.com/i.test(host)) return true;
+  if (/jccal\.org/i.test(host)) return true;
+  if (/leetc\.com/i.test(host)) return true;
+  if (/schneidercorp|beacon\./i.test(host)) return true;
+
+  // Otherwise require county token somewhere
+  if (compact && compact.length >= 5) {
+    const hay = `${host}${path}${cand.search}`.toLowerCase();
+    if (hay.includes(compact)) return true;
+  }
+  return false;
+}
 async function probeUrl(url, { longTimeout = false } = {}) {
   let host = '';
   try {
@@ -414,16 +530,10 @@ async function probeUrl(url, { longTimeout = false } = {}) {
     };
   }
 
-  let r = await requestOnce(url, 'GET', {
+  const r = await requestOnce(url, 'GET', {
     ua: UA_BROWSER,
     timeoutMs: longTimeout ? TIMEOUT_RETRY_MS : TIMEOUT_MS,
   });
-  if (r.error === 'TimeoutError' && !longTimeout) {
-    r = await requestOnce(url, 'GET', { ua: UA_BOT, timeoutMs: TIMEOUT_RETRY_MS });
-  } else if (r.error === 'TLSError') {
-    const alt = await requestOnce(url, 'GET', { ua: UA_BOT, timeoutMs: TIMEOUT_MS });
-    if (alt.status && !r.status) r = alt;
-  }
 
   const cls = classifyBucket({ ...r, url });
   if (cls.bucket === 'validated_true') okHostCache.set(host, cls.kind);
@@ -445,36 +555,50 @@ async function recheckItem(prior) {
     source: prior.source,
   };
 
-  // 1) Always re-probe original (longer timeout for prior timeouts)
   const long = prior.kind === 'TimeoutError' || prior.bucket === 'uncertain';
   let best = await probeUrl(item.url, { longTimeout: long });
   let winningUrl = item.url;
   let how = 'retry_original';
 
+  // Original URL that only "works" by redirecting to a generic vendor home stays dead
+  if (
+    best.bucket === 'validated_true' &&
+    prior.bucket === 'dead' &&
+    !isAcceptableReplacement(item.url, best.finalUrl || item.url, item)
+  ) {
+    best = {
+      ...best,
+      bucket: 'dead',
+      kind: prior.kind || 'gone',
+      activeShould: false,
+    };
+  }
+
   if (best.bucket === 'validated_true') {
     return finishRecheck(item, prior, best, winningUrl, how, 1);
   }
 
-  // 2) Build candidates: variants + vendors. Uncertain: lean variants only.
-  //    Dead: full vendor set.
   let candidates;
   if (prior.bucket === 'uncertain') {
-    candidates = uniqueUrls([
-      ...baseVariants(item.url).filter((u) => u !== item.url),
-    ]).slice(0, 6);
+    // Lean: www/https swap + root only
+    candidates = uniqueUrls(baseVariants(item.url).filter((u) => u !== item.url)).slice(0, 4);
   } else {
     candidates = uniqueUrls([
       ...vendorCandidates(item),
       ...baseVariants(item.url).filter((u) => u !== item.url),
-    ]).slice(0, 10);
+    ]).slice(0, 8);
   }
 
   let tried = 1;
   for (const cand of candidates) {
     tried++;
+    if (!isAcceptableReplacement(item.url, cand, item)) continue;
     const r = await probeUrl(cand, { longTimeout: false });
     if (!r) continue;
     if (r.bucket === 'validated_true') {
+      const landed = r.finalUrl || cand;
+      // Reject soft 200s that redirect onto a generic vendor homepage
+      if (!isAcceptableReplacement(item.url, landed, item)) continue;
       best = r;
       winningUrl = cand;
       how = /mytaxbill|county-taxes\.net|qpublic|iowataxandtags|iowatreasurers|publicaccessnow|capturecama|edmunds|spatialest|jccal|leetc|deltacomputer|acttax|texaspayments|governmax/i.test(
@@ -486,9 +610,25 @@ async function recheckItem(prior) {
     }
     if (best.bucket === 'dead' && r.bucket === 'uncertain') {
       best = r;
-      winningUrl = item.url; // don't rewrite URL on mere uncertain soft win unless same host variant of original
+      winningUrl = item.url;
       how = 'variant_soft';
-      // keep searching for validated_true
+    }
+  }
+
+  // If best is validated_true only via unacceptable URL somehow, force dead/uncertain retention
+  if (winningUrl !== item.url && best.bucket === 'validated_true') {
+    const landed = best.finalUrl || winningUrl;
+    if (
+      !isAcceptableReplacement(item.url, winningUrl, item) ||
+      !isAcceptableReplacement(item.url, landed, item)
+    ) {
+      winningUrl = item.url;
+      best = {
+        ...best,
+        bucket: prior.bucket,
+        kind: prior.kind,
+        activeShould: prior.bucket !== 'dead',
+      };
     }
   }
 
@@ -525,12 +665,14 @@ function finishRecheck(item, prior, cls, winningUrl, how, candidatesTried) {
 async function mapPool(list, concurrency, fn) {
   const out = new Array(list.length);
   let i = 0;
+  let doneCount = 0;
   async function worker() {
     while (i < list.length) {
       const idx = i++;
       out[idx] = await fn(list[idx], idx);
-      if ((idx + 1) % 25 === 0 || idx + 1 === list.length) {
-        process.stdout.write(`  … remainder ${idx + 1}/${list.length}\n`);
+      doneCount++;
+      if (doneCount % 25 === 0 || doneCount === list.length) {
+        process.stdout.write(`  … remainder ${doneCount}/${list.length}\n`);
       }
     }
   }
