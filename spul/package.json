@@ -9,7 +9,8 @@
     "health:sample": "node scripts/http-health-sample.js --limit=200 --concurrency=12",
     "health:all": "node scripts/http-health-sample.js --all --concurrency=16",
     "health:fix": "node scripts/apply-url-fixes.js",
-    "health:hybrid": "node scripts/hybrid-revalidate.js --concurrency=24 --sniff=150"
+    "health:hybrid": "node scripts/hybrid-revalidate.js --concurrency=24 --sniff=150",
+    "health:remainder": "node scripts/remainder-revalidate.js --concurrency=12"
   },
   "engines": {
     "node": ">=18.0.0"
