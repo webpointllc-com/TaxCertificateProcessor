@@ -1,0 +1,988 @@
+{
+  "generatedAt": "2026-09-13T17:56:45.000Z",
+  "source": {
+    "file": "spul/data/jurisdictions.json",
+    "registryGeneratedAt": "2026-09-10T17:37:55.586Z",
+    "sourceFile": "ExtractorUrls_d3f4.txt",
+    "branch": "s-pul-front_end-Betaspul-minimal-deploy-55de"
+  },
+  "totals": {
+    "jurisdictions": 2062,
+    "withUrl": 2055,
+    "noUrl": 7,
+    "active": 1969,
+    "inactive": 93,
+    "sourceSearch": 423,
+    "sourceBase": 1632,
+    "statesAndTerritories": 52,
+    "ambiguousCountyNames": 157,
+    "uniqueCountyNames": 1529
+  },
+  "byState": {
+    "AK": {
+      "total": 2,
+      "active": 2,
+      "inactive": 0,
+      "withUrl": 2
+    },
+    "AL": {
+      "total": 36,
+      "active": 34,
+      "inactive": 2,
+      "withUrl": 36
+    },
+    "AR": {
+      "total": 54,
+      "active": 54,
+      "inactive": 0,
+      "withUrl": 54
+    },
+    "AZ": {
+      "total": 7,
+      "active": 7,
+      "inactive": 0,
+      "withUrl": 7
+    },
+    "CA": {
+      "total": 42,
+      "active": 40,
+      "inactive": 2,
+      "withUrl": 42
+    },
+    "CO": {
+      "total": 13,
+      "active": 13,
+      "inactive": 0,
+      "withUrl": 13
+    },
+    "CT": {
+      "total": 12,
+      "active": 5,
+      "inactive": 7,
+      "withUrl": 12
+    },
+    "DC": {
+      "total": 2,
+      "active": 2,
+      "inactive": 0,
+      "withUrl": 2
+    },
+    "DE": {
+      "total": 8,
+      "active": 6,
+      "inactive": 2,
+      "withUrl": 8
+    },
+    "FL": {
+      "total": 46,
+      "active": 46,
+      "inactive": 0,
+      "withUrl": 46
+    },
+    "GA": {
+      "total": 88,
+      "active": 85,
+      "inactive": 3,
+      "withUrl": 87
+    },
+    "GU": {
+      "total": 1,
+      "active": 1,
+      "inactive": 0,
+      "withUrl": 1
+    },
+    "HI": {
+      "total": 1,
+      "active": 1,
+      "inactive": 0,
+      "withUrl": 1
+    },
+    "IA": {
+      "total": 16,
+      "active": 1,
+      "inactive": 15,
+      "withUrl": 16
+    },
+    "ID": {
+      "total": 1,
+      "active": 0,
+      "inactive": 1,
+      "withUrl": 0
+    },
+    "IL": {
+      "total": 50,
+      "active": 44,
+      "inactive": 6,
+      "withUrl": 49
+    },
+    "IN": {
+      "total": 109,
+      "active": 106,
+      "inactive": 3,
+      "withUrl": 108
+    },
+    "KS": {
+      "total": 19,
+      "active": 19,
+      "inactive": 0,
+      "withUrl": 19
+    },
+    "KY": {
+      "total": 60,
+      "active": 59,
+      "inactive": 1,
+      "withUrl": 60
+    },
+    "LA": {
+      "total": 28,
+      "active": 27,
+      "inactive": 1,
+      "withUrl": 28
+    },
+    "MA": {
+      "total": 10,
+      "active": 10,
+      "inactive": 0,
+      "withUrl": 10
+    },
+    "MD": {
+      "total": 24,
+      "active": 20,
+      "inactive": 4,
+      "withUrl": 24
+    },
+    "ME": {
+      "total": 1,
+      "active": 1,
+      "inactive": 0,
+      "withUrl": 1
+    },
+    "MI": {
+      "total": 94,
+      "active": 93,
+      "inactive": 1,
+      "withUrl": 94
+    },
+    "MN": {
+      "total": 53,
+      "active": 52,
+      "inactive": 1,
+      "withUrl": 53
+    },
+    "MO": {
+      "total": 43,
+      "active": 41,
+      "inactive": 2,
+      "withUrl": 43
+    },
+    "MS": {
+      "total": 34,
+      "active": 32,
+      "inactive": 2,
+      "withUrl": 34
+    },
+    "MT": {
+      "total": 6,
+      "active": 6,
+      "inactive": 0,
+      "withUrl": 6
+    },
+    "NC": {
+      "total": 51,
+      "active": 50,
+      "inactive": 1,
+      "withUrl": 51
+    },
+    "ND": {
+      "total": 13,
+      "active": 12,
+      "inactive": 1,
+      "withUrl": 13
+    },
+    "NE": {
+      "total": 57,
+      "active": 57,
+      "inactive": 0,
+      "withUrl": 57
+    },
+    "NH": {
+      "total": 28,
+      "active": 28,
+      "inactive": 0,
+      "withUrl": 28
+    },
+    "NJ": {
+      "total": 307,
+      "active": 305,
+      "inactive": 2,
+      "withUrl": 307
+    },
+    "NM": {
+      "total": 6,
+      "active": 5,
+      "inactive": 1,
+      "withUrl": 5
+    },
+    "NV": {
+      "total": 2,
+      "active": 2,
+      "inactive": 0,
+      "withUrl": 2
+    },
+    "NY": {
+      "total": 102,
+      "active": 102,
+      "inactive": 0,
+      "withUrl": 102
+    },
+    "OH": {
+      "total": 64,
+      "active": 63,
+      "inactive": 1,
+      "withUrl": 64
+    },
+    "OK": {
+      "total": 6,
+      "active": 4,
+      "inactive": 2,
+      "withUrl": 6
+    },
+    "OR": {
+      "total": 3,
+      "active": 3,
+      "inactive": 0,
+      "withUrl": 3
+    },
+    "PA": {
+      "total": 29,
+      "active": 23,
+      "inactive": 6,
+      "withUrl": 29
+    },
+    "PR": {
+      "total": 3,
+      "active": 3,
+      "inactive": 0,
+      "withUrl": 3
+    },
+    "RI": {
+      "total": 28,
+      "active": 28,
+      "inactive": 0,
+      "withUrl": 28
+    },
+    "SC": {
+      "total": 27,
+      "active": 26,
+      "inactive": 1,
+      "withUrl": 27
+    },
+    "SD": {
+      "total": 2,
+      "active": 2,
+      "inactive": 0,
+      "withUrl": 2
+    },
+    "TN": {
+      "total": 26,
+      "active": 26,
+      "inactive": 0,
+      "withUrl": 26
+    },
+    "TX": {
+      "total": 235,
+      "active": 219,
+      "inactive": 16,
+      "withUrl": 234
+    },
+    "UT": {
+      "total": 7,
+      "active": 6,
+      "inactive": 1,
+      "withUrl": 7
+    },
+    "VA": {
+      "total": 74,
+      "active": 74,
+      "inactive": 0,
+      "withUrl": 74
+    },
+    "WA": {
+      "total": 7,
+      "active": 7,
+      "inactive": 0,
+      "withUrl": 7
+    },
+    "WI": {
+      "total": 95,
+      "active": 87,
+      "inactive": 8,
+      "withUrl": 94
+    },
+    "WV": {
+      "total": 29,
+      "active": 29,
+      "inactive": 0,
+      "withUrl": 29
+    },
+    "ZZ": {
+      "total": 1,
+      "active": 1,
+      "inactive": 0,
+      "withUrl": 1
+    }
+  },
+  "topAmbiguous": [
+    {
+      "name": "jackson",
+      "states": [
+        "AL",
+        "AR",
+        "IL",
+        "IN",
+        "MO",
+        "MS",
+        "NC",
+        "OH",
+        "TX",
+        "WI",
+        "WV"
+      ],
+      "count": 11
+    },
+    {
+      "name": "madison",
+      "states": [
+        "AL",
+        "AR",
+        "GA",
+        "IL",
+        "IN",
+        "KY",
+        "MS",
+        "NE",
+        "OH",
+        "TN",
+        "TX"
+      ],
+      "count": 11
+    },
+    {
+      "name": "washington",
+      "states": [
+        "GA",
+        "IN",
+        "MD",
+        "MN",
+        "MS",
+        "NY",
+        "OH",
+        "OR",
+        "TN",
+        "UT",
+        "WI"
+      ],
+      "count": 11
+    },
+    {
+      "name": "jefferson",
+      "states": [
+        "AL",
+        "CO",
+        "IL",
+        "IN",
+        "KY",
+        "MO",
+        "NE",
+        "TX",
+        "WI",
+        "WV"
+      ],
+      "count": 10
+    },
+    {
+      "name": "montgomery",
+      "states": [
+        "AL",
+        "AR",
+        "IA",
+        "IN",
+        "KY",
+        "MD",
+        "OH",
+        "TN",
+        "TX"
+      ],
+      "count": 9
+    },
+    {
+      "name": "franklin",
+      "states": [
+        "AL",
+        "GA",
+        "IN",
+        "KY",
+        "MO",
+        "NE",
+        "OH",
+        "TX"
+      ],
+      "count": 8
+    },
+    {
+      "name": "boone",
+      "states": [
+        "AR",
+        "IL",
+        "IN",
+        "KY",
+        "MO",
+        "NE",
+        "WV"
+      ],
+      "count": 7
+    },
+    {
+      "name": "greene",
+      "states": [
+        "AR",
+        "IL",
+        "IN",
+        "MO",
+        "MS",
+        "NY",
+        "TN"
+      ],
+      "count": 7
+    },
+    {
+      "name": "johnson",
+      "states": [
+        "AR",
+        "IA",
+        "IN",
+        "KS",
+        "KY",
+        "NE",
+        "TX"
+      ],
+      "count": 7
+    },
+    {
+      "name": "marshall",
+      "states": [
+        "AL",
+        "IN",
+        "KS",
+        "KY",
+        "MN",
+        "MS",
+        "WV"
+      ],
+      "count": 7
+    },
+    {
+      "name": "monroe",
+      "states": [
+        "AR",
+        "FL",
+        "GA",
+        "IL",
+        "IN",
+        "NY",
+        "WI"
+      ],
+      "count": 7
+    },
+    {
+      "name": "polk",
+      "states": [
+        "AR",
+        "FL",
+        "IA",
+        "MN",
+        "MO",
+        "NC",
+        "WI"
+      ],
+      "count": 7
+    },
+    {
+      "name": "shelby",
+      "states": [
+        "AL",
+        "IL",
+        "IN",
+        "KY",
+        "OH",
+        "TN",
+        "TX"
+      ],
+      "count": 7
+    },
+    {
+      "name": "union",
+      "states": [
+        "AR",
+        "IN",
+        "KY",
+        "MS",
+        "NC",
+        "OH",
+        "SC"
+      ],
+      "count": 7
+    },
+    {
+      "name": "warren",
+      "states": [
+        "IN",
+        "KY",
+        "MO",
+        "MS",
+        "NY",
+        "OH",
+        "VA"
+      ],
+      "count": 7
+    },
+    {
+      "name": "clay",
+      "states": [
+        "AR",
+        "IN",
+        "MO",
+        "MS",
+        "NE",
+        "TX"
+      ],
+      "count": 6
+    },
+    {
+      "name": "crawford",
+      "states": [
+        "AR",
+        "GA",
+        "IN",
+        "MO",
+        "OH",
+        "WI"
+      ],
+      "count": 6
+    },
+    {
+      "name": "knox",
+      "states": [
+        "IL",
+        "IN",
+        "KY",
+        "NE",
+        "OH",
+        "TN"
+      ],
+      "count": 6
+    },
+    {
+      "name": "lee",
+      "states": [
+        "AL",
+        "FL",
+        "GA",
+        "MS",
+        "NC",
+        "TX"
+      ],
+      "count": 6
+    },
+    {
+      "name": "marion",
+      "states": [
+        "FL",
+        "IL",
+        "IN",
+        "KS",
+        "SC",
+        "WV"
+      ],
+      "count": 6
+    },
+    {
+      "name": "orange",
+      "states": [
+        "CA",
+        "FL",
+        "IN",
+        "NC",
+        "NY",
+        "VA"
+      ],
+      "count": 6
+    },
+    {
+      "name": "pike",
+      "states": [
+        "AR",
+        "GA",
+        "IN",
+        "MO",
+        "MS",
+        "OH"
+      ],
+      "count": 6
+    },
+    {
+      "name": "scott",
+      "states": [
+        "AR",
+        "IN",
+        "KY",
+        "MN",
+        "MO",
+        "MS"
+      ],
+      "count": 6
+    },
+    {
+      "name": "wayne",
+      "states": [
+        "IN",
+        "MI",
+        "MS",
+        "NE",
+        "NY",
+        "WV"
+      ],
+      "count": 6
+    },
+    {
+      "name": "adams",
+      "states": [
+        "CO",
+        "IL",
+        "IN",
+        "NE",
+        "WI"
+      ],
+      "count": 5
+    },
+    {
+      "name": "carroll",
+      "states": [
+        "AR",
+        "IN",
+        "MD",
+        "OH",
+        "VA"
+      ],
+      "count": 5
+    },
+    {
+      "name": "cass",
+      "states": [
+        "IN",
+        "MI",
+        "MO",
+        "NE",
+        "TX"
+      ],
+      "count": 5
+    },
+    {
+      "name": "clinton",
+      "states": [
+        "IA",
+        "IN",
+        "MI",
+        "NY",
+        "OH"
+      ],
+      "count": 5
+    },
+    {
+      "name": "grant",
+      "states": [
+        "AR",
+        "IN",
+        "KY",
+        "MN",
+        "WI"
+      ],
+      "count": 5
+    },
+    {
+      "name": "hancock",
+      "states": [
+        "IN",
+        "KY",
+        "MS",
+        "OH",
+        "WV"
+      ],
+      "count": 5
+    },
+    {
+      "name": "harrison",
+      "states": [
+        "IN",
+        "KY",
+        "MS",
+        "TX",
+        "WV"
+      ],
+      "count": 5
+    },
+    {
+      "name": "henry",
+      "states": [
+        "GA",
+        "IL",
+        "IN",
+        "KY",
+        "MO"
+      ],
+      "count": 5
+    },
+    {
+      "name": "lake",
+      "states": [
+        "FL",
+        "IL",
+        "IN",
+        "MT",
+        "OH"
+      ],
+      "count": 5
+    },
+    {
+      "name": "logan",
+      "states": [
+        "AR",
+        "IL",
+        "KY",
+        "OH",
+        "WV"
+      ],
+      "count": 5
+    },
+    {
+      "name": "morgan",
+      "states": [
+        "AL",
+        "GA",
+        "IN",
+        "OH",
+        "WV"
+      ],
+      "count": 5
+    },
+    {
+      "name": "benton",
+      "states": [
+        "AR",
+        "IN",
+        "MN",
+        "MO"
+      ],
+      "count": 4
+    },
+    {
+      "name": "brown",
+      "states": [
+        "IN",
+        "OH",
+        "SD",
+        "WI"
+      ],
+      "count": 4
+    },
+    {
+      "name": "cherokee",
+      "states": [
+        "AL",
+        "GA",
+        "SC",
+        "TX"
+      ],
+      "count": 4
+    },
+    {
+      "name": "clark",
+      "states": [
+        "IL",
+        "IN",
+        "NV",
+        "WI"
+      ],
+      "count": 4
+    },
+    {
+      "name": "columbia",
+      "states": [
+        "AR",
+        "FL",
+        "NY",
+        "WI"
+      ],
+      "count": 4
+    },
+    {
+      "name": "dallas",
+      "states": [
+        "AR",
+        "IA",
+        "MO",
+        "TX"
+      ],
+      "count": 4
+    },
+    {
+      "name": "de kalb",
+      "states": [
+        "AL",
+        "GA",
+        "IL",
+        "IN"
+      ],
+      "count": 4
+    },
+    {
+      "name": "douglas",
+      "states": [
+        "CO",
+        "MN",
+        "NE",
+        "WI"
+      ],
+      "count": 4
+    },
+    {
+      "name": "fayette",
+      "states": [
+        "GA",
+        "IN",
+        "KY",
+        "WV"
+      ],
+      "count": 4
+    },
+    {
+      "name": "fulton",
+      "states": [
+        "AR",
+        "GA",
+        "IN",
+        "OH"
+      ],
+      "count": 4
+    },
+    {
+      "name": "hamilton",
+      "states": [
+        "IN",
+        "NE",
+        "OH",
+        "TN"
+      ],
+      "count": 4
+    },
+    {
+      "name": "howard",
+      "states": [
+        "AR",
+        "IN",
+        "MD",
+        "TX"
+      ],
+      "count": 4
+    },
+    {
+      "name": "jasper",
+      "states": [
+        "GA",
+        "IN",
+        "MO",
+        "SC"
+      ],
+      "count": 4
+    },
+    {
+      "name": "lawrence",
+      "states": [
+        "AL",
+        "AR",
+        "IN",
+        "OH"
+      ],
+      "count": 4
+    },
+    {
+      "name": "lincoln",
+      "states": [
+        "MN",
+        "NC",
+        "NE",
+        "WI"
+      ],
+      "count": 4
+    }
+  ],
+  "meta": {
+    "generatedAt": "2026-09-10T17:37:55.586Z",
+    "sourceFile": "ExtractorUrls_d3f4.txt",
+    "sourceNote": "d3f4, 3058, and 656d uploads are byte-identical (md5 aa618cd9...)",
+    "totalExtractorsListed": 2085,
+    "parsed": 2062,
+    "searchable": 2055,
+    "qualityCounts": {
+      "ok": 2051,
+      "placeholder": 3,
+      "broken_fixed": 1,
+      "no_url": 7
+    },
+    "sourceCounts": {
+      "Base": 1633,
+      "Search": 422,
+      "none": 7
+    },
+    "parseFailures": 0,
+    "smokeSampleSize": 40,
+    "smokeOk": 25,
+    "healthSample": {
+      "generatedAt": "2026-09-10T17:34:25.248Z",
+      "mode": "sample",
+      "sampleSize": 300,
+      "ok": 251,
+      "gated": 53,
+      "fail": 49,
+      "okRate": 0.837,
+      "extrapolatedActiveEstimate": 1717,
+      "indexActiveCount": 2003,
+      "flippedInactive": 49,
+      "flippedActive": 0,
+      "deepShake": "not_run",
+      "note": "DeepShake unreachable from cloud VM (no self-hosted Mac worker; /Volumes/T7 not mounted here). HTTP HEAD/GET substitute; 401/403/405/429 counted as up (gated)."
+    },
+    "healthFull": {
+      "reclassifiedAt": "2026-09-10T17:35:53.442Z",
+      "activeAfterReclass": 1966,
+      "inactiveAfterReclass": 86
+    },
+    "urlFixes": {
+      "generatedAt": "2026-09-10T17:35:53.442Z",
+      "fixCount": 27,
+      "verifiedOk": 26,
+      "activeAfter": 1969,
+      "inactiveAfter": 86,
+      "deepShake": "not_run",
+      "note": "Cloud substitute for DeepShake. MPTS templates rewritten; placeholders replaced; health reclassified (403/429/503 = alive).",
+      "placeholderRestored": [
+        "AL-Chambers",
+        "AL-Coffee",
+        "AL-Russell"
+      ],
+      "searchableAfter": 2055,
+      "updatedAt": "2026-09-10T17:36:24.518Z"
+    },
+    "activeCount": 1969
+  }
+}

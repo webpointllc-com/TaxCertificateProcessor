@@ -20,13 +20,16 @@ npm start
 
 ## Data
 
-- Source: Extractor URL export (`ExtractorUrls_*.txt`, 2085 listed; ~2052 searchable after quality filter)
+- Source: Extractor URL export (`ExtractorUrls_*.txt`, 2085 listed; ~2055 searchable / ~1969 active after health + URL fixes)
 - Built index: `spul/data/search-index.json`
+- County export: `spul/data/counties-export.csv` (+ `counties-export-summary.json`)
+- Query shapes: `docs/prototype-best-practice/QUERY_SHAPES.md`
+- Live triangulation note: `docs/prototype-best-practice/LIVE_TRIANGULATION.md`
 - Quality report: `docs/prototype-best-practice/URL_QUALITY_REPORT.md`
 
 ## Product scope
 
-S-PUL only — registry lookup + confidence. Honest miss when no URL. No CI orchestrator, no voice.
+S-PUL only — registry lookup + confidence + local query aliases. Honest miss when no URL. No CI orchestrator, no voice. Highlighter untouched.
 
 ## Autodeploy
 

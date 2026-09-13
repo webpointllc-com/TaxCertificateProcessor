@@ -5,6 +5,7 @@ const path = require('path');
 const express = require('express');
 const { guideTurn, maybeGroqNarrate } = require('./services/guide');
 const { enforceLockedSpulUrl } = require('./services/spulTruth');
+const { normalizeQuery } = require('./services/normalizeQuery');
 
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
@@ -134,10 +135,13 @@ function confidenceLabel(item, score) {
 }
 
 function search(query, limit = 8) {
-  const q = String(query || '').trim();
-  if (!q) {
+  const raw = String(query || '').trim();
+  if (!raw) {
     return { ok: false, error: 'Query required', results: [] };
   }
+  // Layer B: local alias / city / abbrev rewrite (no URL invention)
+  const normalized = normalizeQuery(raw);
+  const q = normalized.query || raw;
   const qNorm = normalize(q);
   const state = extractState(q);
   const countyPart = countyQuery(q, state);
@@ -178,13 +182,24 @@ function search(query, limit = 8) {
 
   ranked = ranked.slice(0, Math.min(Math.max(limit, 1), 20));
 
+  const aliasMeta = {
+    original: normalized.original,
+    normalizedQuery: q,
+    aliasApplied: normalized.aliasApplied,
+    aliasTarget: normalized.aliasTarget,
+    signals: normalized.signals,
+    notes: normalized.notes,
+  };
+
   if (!ranked.length) {
     return {
       ok: true,
-      query: q,
+      query: raw,
       miss: true,
       message: 'No jurisdiction URL found in the Extractor index for that query.',
       results: [],
+      alias: aliasMeta,
+      parsed: { state, county: countyPart || null },
     };
   }
 
@@ -206,11 +221,18 @@ function search(query, limit = 8) {
     };
   });
 
+  // Ambiguous county names (same name, multiple states) → ask for state
+  const uniqueStates = [...new Set(results.map((r) => r.state))];
+  const needsState =
+    !state && uniqueStates.length > 1 && results.every((r) => normalize(r.county) === normalize(countyPart || r.county));
+
   return {
     ok: true,
-    query: q,
+    query: raw,
     miss: false,
     parsed: { state, county: countyPart || null },
+    ambiguous: needsState,
+    alias: aliasMeta,
     results,
   };
 }

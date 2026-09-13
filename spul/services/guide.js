@@ -58,9 +58,11 @@ function intentActions(intent) {
   }
 }
 
-function clarifyingQuestions(parsed, results) {
+function clarifyingQuestions(parsed, results, opts = {}) {
   const qs = [];
-  if (!parsed || !parsed.state) {
+  if (opts.ambiguous || (results && results.length > 1 && (!parsed || !parsed.state))) {
+    qs.push('Which U.S. state? (e.g. TX, CA, IL) — that county name exists in more than one state.');
+  } else if (!parsed || !parsed.state) {
     qs.push('Which U.S. state? (e.g. TX, CA, IL)');
   }
   if (!parsed || !parsed.county) {
@@ -95,6 +97,7 @@ function guideTurn({ message, searchFn }) {
   const results = (lookup.results || []).filter((r) => isRealHttpUrl(r.url));
   const top = results[0] || null;
   const locked = top && hasUrlLock(top.confidence, top.url);
+  const ambiguous = Boolean(lookup.ambiguous);
 
   const lines = [];
   lines.push('S-PUL guide (registry-locked — URLs never invented)');
@@ -102,7 +105,7 @@ function guideTurn({ message, searchFn }) {
   if (lookup.miss || !results.length) {
     lines.push('');
     lines.push('No jurisdiction URL in the Extractor index for that query.');
-    const qs = clarifyingQuestions(lookup.parsed, results);
+    const qs = clarifyingQuestions(lookup.parsed, results, { ambiguous });
     if (qs.length) {
       lines.push('');
       lines.push('Clarify:');
@@ -114,6 +117,7 @@ function guideTurn({ message, searchFn }) {
       intent,
       miss: true,
       parsed: lookup.parsed || null,
+      alias: lookup.alias || null,
       lockedUrl: null,
       results: [],
       questions: qs,
@@ -134,6 +138,9 @@ function guideTurn({ message, searchFn }) {
 
   lines.push('');
   lines.push(`Intent: ${intent.replace(/_/g, ' ')}`);
+  if (lookup.alias && lookup.alias.aliasApplied) {
+    lines.push(`Alias: “${lookup.alias.original}” → ${lookup.alias.normalizedQuery}`);
+  }
   if (lookup.parsed) {
     lines.push(`Parsed: ${lookup.parsed.county || '(county?)'} ${lookup.parsed.state || ''}`.trim());
   }
@@ -158,8 +165,8 @@ function guideTurn({ message, searchFn }) {
     });
   }
 
-  const qs = clarifyingQuestions(lookup.parsed, results);
-  if (!locked || results.length > 1) {
+  const qs = clarifyingQuestions(lookup.parsed, results, { ambiguous });
+  if (!locked || results.length > 1 || ambiguous) {
     if (qs.length) {
       lines.push('');
       lines.push('If this is not the right jurisdiction:');
@@ -169,20 +176,24 @@ function guideTurn({ message, searchFn }) {
 
   return {
     ok: true,
-    mode: locked ? 'locked' : 'ranked',
+    mode: locked && !ambiguous ? 'locked' : 'ranked',
     intent,
     miss: false,
+    ambiguous,
     parsed: lookup.parsed || null,
-    lockedUrl: locked ? top.url : null,
+    alias: lookup.alias || null,
+    lockedUrl: locked && !ambiguous ? top.url : null,
     results,
     questions: qs,
     message: lines.join('\n'),
     spul: {
       SPUL_URL: top.url,
       SPUL_ENTITY: entity,
-      SPUL_CONFIDENCE: conf,
+      SPUL_CONFIDENCE: ambiguous ? 'ambiguous' : conf,
       SPUL_ACTIONS: actions,
-      SPUL_CONTEXT: `Registry ${top.source} URL; confidence ${conf} ${top.confidencePct}%`,
+      SPUL_CONTEXT: ambiguous
+        ? 'County name matches multiple states — confirm state before treating URL as locked.'
+        : `Registry ${top.source} URL; confidence ${conf} ${top.confidencePct}%`,
     },
   };
 }
