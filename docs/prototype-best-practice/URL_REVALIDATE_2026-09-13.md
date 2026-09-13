@@ -92,3 +92,7 @@
 - `GA-Folkston` → `https://folkston.paytaxes.net/customer/` — status=null kind=nxdomain error=NXDOMAIN
 - `GA-Franklin` → `http://taxes.franklincountyga.com/TaxSearch/` — status=404 kind=gone error=
 - `GA-GainesvilleCity` → `http://www.gainesvilletax.org/` — status=null kind=nxdomain error=NXDOMAIN
+
+## Remainder pass (same day)
+
+See `URL_REMAINDER_2026-09-13.md`. After remainder: **1675 validated-true** / 163 dead / 217 uncertain / active **1866** (DeepShake still not_run).

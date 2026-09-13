@@ -1,0 +1,2077 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-13T22:38:00.568Z",
+    "fixCount": 229,
+    "validatedTrueAfter": 1675,
+    "deadAfter": 163,
+    "uncertainAfter": 217,
+    "newlyValidatedFromBaseline1437": 238,
+    "indexActiveCount": 1866,
+    "pathTo2000": 325,
+    "deepShake": "not_run",
+    "note": "Cumulative HTTP-evidenced remainder replacements vs hybrid baseline index"
+  },
+  "fixes": [
+    {
+      "key": "AL-Jefferson",
+      "from": "http://tc.jeffcointouch.com/taxcollection/ASP/",
+      "to": "https://www.jccal.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "AL-Limestone",
+      "from": "http://www.limestonerevenue.net/PRC/PublicPRC/",
+      "to": "https://www.limestonerevenue.net/PRC/PublicPRC/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "AL-Montgomery",
+      "from": "https://montgomery.capturecama.com/propsearch",
+      "to": "https://montgomery.capturecama.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CA-Inyo",
+      "from": "https://ca-inyo.publicaccessnow.com/Treasurer/TaxSearch/",
+      "to": "https://ca-inyo.publicaccessnow.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CA-Sutter",
+      "from": "https://ca-sutter.publicaccessnow.com/TaxCollector/TaxSearch/",
+      "to": "https://ca-sutter.publicaccessnow.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CO-ElPaso",
+      "from": "http://www.trs.elpasoco.com",
+      "to": "https://property.spatialest.com/co/elpaso/#/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CT-CromwellTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CT-Ellington",
+      "from": "https://www.mytaxbill.org/inet/bill/",
+      "to": "https://www.mytaxbill.org/inet/bill/home.do?town=ellington",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CT-GreenwichTown",
+      "from": "https://www.mytaxbill.org/inet/bill/",
+      "to": "https://www.mytaxbill.org/inet/bill/home.do?town=greenwich",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CT-NaugatuckTown",
+      "from": "https://www.mytaxbill.org/inet/bill/",
+      "to": "https://www.mytaxbill.org/inet/bill/home.do?town=naugatuck",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CT-NewMilfordTown",
+      "from": "https://www.mytaxbill.org/inet/bill/",
+      "to": "https://www.mytaxbill.org/inet/bill/home.do?town=new%20milford",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CT-OldLymeTown",
+      "from": "https://www.mytaxbill.org/inet/bill/",
+      "to": "https://www.mytaxbill.org/inet/bill/home.do?town=old%20lyme",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CT-SomersTown",
+      "from": "https://www.mytaxbill.org/inet/bill/",
+      "to": "https://www.mytaxbill.org/inet/bill/home.do?town=somers",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "CT-TorringtonCity",
+      "from": "https://www.mytaxbill.org/inet/bill/",
+      "to": "https://www.mytaxbill.org/inet/bill/home.do?town=torrington",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "DE-Kent",
+      "from": "http://kent400.co.kent.de.us/cgi-bin/",
+      "to": "https://kent400.co.kent.de.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "DE-MiddletownTown",
+      "from": "https://wipp.edmundsassoc.com/Wipp/Wipp23/",
+      "to": "https://wipp.edmundsassoc.com/Wipp/?wippid=Middletown",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "DE-NewCastle",
+      "from": "https://www3.newcastlede.gov/parcel/search/",
+      "to": "https://www3.newcastlede.gov/",
+      "how": "retry_original",
+      "status": 472,
+      "kind": "unreachable",
+      "bucket": "uncertain"
+    },
+    {
+      "key": "FL-Charlotte",
+      "from": "http://www.charlotte.county-taxes.com/",
+      "to": "https://county-taxes.net/charlotte/property-tax",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "FL-Citrus",
+      "from": "http://www.citrus.county-taxes.com/",
+      "to": "https://county-taxes.net/citrus/property-tax",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "FL-DeSoto",
+      "from": "http://www.desotocountytaxcollector.com/Property/",
+      "to": "https://www.desotocountytaxcollector.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "FL-Highlands",
+      "from": "http://www.highlands.county-taxes.com/",
+      "to": "https://county-taxes.net/highlands/property-tax",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "FL-Lee",
+      "from": "http://www.leetc.com/taxes",
+      "to": "https://leetc.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "FL-Monroe",
+      "from": "http://www.monroe.county-taxes.com/",
+      "to": "https://county-taxes.net/monroe/property-tax",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "FL-StLucie",
+      "from": "http://www.stlucie.county-taxes.com/",
+      "to": "https://county-taxes.net/stlucie/property-tax",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "FL-Volusia",
+      "from": "http://www.volusia.org/services/financial-and-administrative-services/revenue-services/property-tax-collection/",
+      "to": "https://www.volusia.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Banks",
+      "from": "https://bankscounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/banks/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Bartow",
+      "from": "https://bartow.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/bartow/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Bryan",
+      "from": "https://bryancounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/bryan/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Bulloch",
+      "from": "https://bulloch.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/bulloch/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Camden",
+      "from": "https://camden.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/camden/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Colquitt",
+      "from": "https://colquittcounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/colquitt/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Crisp",
+      "from": "https://crispcounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/crisp/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Dawson",
+      "from": "https://dawsoncounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/dawson/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Dougherty",
+      "from": "https://dougherty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/dougherty/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Folkston",
+      "from": "https://folkston.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/folkston/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Gilmer",
+      "from": "https://gilmercounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/gilmer/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Gordon",
+      "from": "https://gordon.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/gordon/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Haralson",
+      "from": "https://haralson.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/haralson/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Heard",
+      "from": "https://heard.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/heard/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Houston",
+      "from": "https://houstoncounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/houston/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Jones",
+      "from": "https://jonescounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/jones/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-KennesawCity",
+      "from": "https://www.municipalonlinepayments.com/kennesawga/tax/search/detail/",
+      "to": "https://www.municipalonlinepayments.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Lamar",
+      "from": "https://lamarcounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/lamar/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Laurens",
+      "from": "https://laurens.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/laurens/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Lee",
+      "from": "https://lee.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/lee/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Lumpkin",
+      "from": "http://www.lumpkincountytax.com/TaxSearch/",
+      "to": "https://www.lumpkincountytax.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Madison",
+      "from": "https://madison.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/madison/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-McIntosh",
+      "from": "https://mcintosh.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/mc-intosh/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-MiltonCity",
+      "from": "https://www.municipalonlinepayments.com/miltonga/tax/search/detail/",
+      "to": "https://www.municipalonlinepayments.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Monroe",
+      "from": "https://monroe.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/monroe/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Morgan",
+      "from": "https://morgan.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/morgan/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Paulding",
+      "from": "https://paulding.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/paulding/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Pierce",
+      "from": "https://pierce.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/pierce/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Pike",
+      "from": "https://pike.paytaxes.net/3.0/",
+      "to": "https://www.qpublic.net/ga/pike/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Putnam",
+      "from": "https://putnam.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/putnam/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-RiverdaleCity",
+      "from": "https://riverdale.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/riverdale/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Smyrna",
+      "from": "https://smyrna.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/smyrna/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Tift",
+      "from": "https://tiftcounty.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/tift/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Vidalia",
+      "from": "https://vidalia.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/vidalia/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-WestPoint",
+      "from": "https://westpoint.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/west-point/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-Wilkinson",
+      "from": "https://wilkinson.paytaxes.net/customer/",
+      "to": "https://www.qpublic.net/ga/wilkinson/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "GA-WoodstockCity",
+      "from": "https://woodstock.surecourt.com/epay/epay/",
+      "to": "https://woodstock.surecourt.com/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Buchanan",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Clayton",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Clinton",
+      "from": "https://www.iowatreasurers.org/iscta/secure/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Dallas",
+      "from": "https://www.iowatreasurers.org/iscta/secure/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Dickinson",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Floyd",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Iowa",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Johnson",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Linn",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Montgomery",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Polk",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Pottawattamie",
+      "from": "http://www.pottco.org/x/",
+      "to": "https://www.pottco.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Poweshiek",
+      "from": "https://www.iowataxandtags.org/tax/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Woodbury",
+      "from": "https://www.iowatreasurers.org/iscta/secure/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IA-Worth",
+      "from": "https://www.iowatreasurers.org/iscta/secure/",
+      "to": "https://www.iowataxandtags.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Adams",
+      "from": "http://adamsil.devnetwedge.com/view/RE/",
+      "to": "https://adamsil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Boone",
+      "from": "http://booneil.devnetwedge.com/print/RE/",
+      "to": "https://booneil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Cook",
+      "from": "http://cookcountytreasurer.com/pinsummary.aspx",
+      "to": "https://cookcountytreasurer.com/pinsummary.aspx",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Grundy",
+      "from": "http://www.fikeandfike.com/propertytax/Grundy/",
+      "to": "https://www.fikeandfike.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Henry",
+      "from": "http://henryil.devnetwedge.com/view/RE/",
+      "to": "https://henryil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Jackson",
+      "from": "http://jacksonil.devnetwedge.com/view/RE/",
+      "to": "https://jacksonil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Jersey",
+      "from": "https://jerseyil.devnetwedge.com/parcel/view",
+      "to": "https://jerseyil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Livingston",
+      "from": "http://livingstonil.devnetwedge.com/view/RE/",
+      "to": "https://livingstonil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Logan",
+      "from": "http://taxsearch.co.logan.il.us/",
+      "to": "https://taxsearch.co.logan.il.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Marion",
+      "from": "http://marionil.devnetwedge.com/view/RE/",
+      "to": "https://marionil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Saline",
+      "from": "http://salineil.devnetwedge.com/view/RE/",
+      "to": "https://salineil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-StClair",
+      "from": "http://www.co.st-clair.il.us/StClairCoWeb/PageComponents/Templates/parcel/",
+      "to": "https://www.co.st-clair.il.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Tazewell",
+      "from": "http://tazewellil.devnetwedge.com/parcel/view/",
+      "to": "https://tazewellil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IL-Whiteside",
+      "from": "http://whitesideil.devnetwedge.com/view/RE/",
+      "to": "https://whitesideil.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IN-Hamilton",
+      "from": "http://www.hamiltoncounty.in.gov/apps/reports/",
+      "to": "https://www.hamiltoncounty.in.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "IN-Hendricks",
+      "from": "http://www.co.hendricks.in.us/dwlookup/",
+      "to": "https://www.co.hendricks.in.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "KY-Boone",
+      "from": "http://www.boonecountyky.org/PropertyTax/",
+      "to": "https://www.boonecountyky.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "KY-Hardin",
+      "from": "http://www.compuaid.com:8080/hcs2013/",
+      "to": "https://www.compuaid.com:8080/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "LA-CaddoParish",
+      "from": "http://mytax.eztaxonline.net/caddo/tax/faces/",
+      "to": "https://mytax.eztaxonline.net/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "LA-EastBatonRougeParish",
+      "from": "http://www.ebrso.org/DesktopModules/TCMOnline/",
+      "to": "https://www.ebrso.org/DesktopModules/TCMOnline/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "LA-NewOrleansParish",
+      "from": "http://services.nola.gov/",
+      "to": "https://services.nola.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "LA-Shreveport",
+      "from": "http://www.shreveportla.gov/tax_web/",
+      "to": "https://www.shreveportla.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MD-Caroline",
+      "from": "http://www.carolinemd.org/governmt/taxoffice/tax_db/",
+      "to": "https://www.carolinemd.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MD-Cecil",
+      "from": "https://cecilco.munisselfservice.com/citizens/RealEstate/",
+      "to": "https://cecilco.munisselfservice.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MD-Charles",
+      "from": "http://www.charlescounty.org/treas/taxes/acctinquiry/",
+      "to": "https://www.charlescounty.org/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MD-Howard",
+      "from": "https://howardcountymd.munisselfservice.com/citizens/RealEstate/",
+      "to": "https://howardcountymd.munisselfservice.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MD-Washington",
+      "from": "http://www.washco-md.net/treasurer/retax/",
+      "to": "https://www.washco-md.net/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MD-Wicomico",
+      "from": "http://www.wicomicocounty.org/MSS/citizens/RealEstate/",
+      "to": "https://www.wicomicocounty.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MI-StClair",
+      "from": "http://www.stclaircounty.org/Offices/equalization/",
+      "to": "https://www.stclaircounty.org/Offices/equalization/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-BlueEarth",
+      "from": "https://mn-blueearth.manatron.com/",
+      "to": "https://www.blueearthcountymn.gov/",
+      "how": "url_variant",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Carver",
+      "from": "https://mn-carver.manatron.com/Tabs/TaxSearch/ParcelDetail/",
+      "to": "https://www.carvercountymn.gov/",
+      "how": "url_variant",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Dakota",
+      "from": "http://services.co.dakota.mn.us/TaxStatement/",
+      "to": "https://services.co.dakota.mn.us/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Douglas",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.douglascountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Grant",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.grantcountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Isanti",
+      "from": "https://mn-isanti.manatron.com/Tabs/TaxSearch/AccountDetail/",
+      "to": "https://www.isanticountymn.gov/",
+      "how": "url_variant",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Kandiyohi",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.kandiyohicountymn.gov/",
+      "how": "retry_original",
+      "status": 301,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Lyon",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.lyoncountymn.gov/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Marshall",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.marshallcountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Meeker",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.meekercountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Murray",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.murraycountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Nobles",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.noblescountymn.gov/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Norman",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.co.norman.mn.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Renville",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.renvillecountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Rock",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.co.rock.mn.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Scott",
+      "from": "http://mn-scott-treasurer.publicaccessnow.com/TaxSearch/",
+      "to": "https://www.scottcountymn.gov/",
+      "how": "url_variant",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Stevens",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.stevenscountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Todd",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.toddcountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Traverse",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.traversecountymn.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Washington",
+      "from": "https://mn-washington.manatron.com/",
+      "to": "https://www.washingtoncountymn.gov/",
+      "how": "url_variant",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Wilkin",
+      "from": "http://morris.state.mn.us/tax/",
+      "to": "https://www.co.wilkin.mn.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MN-Winona",
+      "from": "http://winona.visualgov.com/",
+      "to": "https://www.co.winona.mn.us/",
+      "how": "url_variant",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MO-Buchanan",
+      "from": "http://buchananmo.devnetwedge.com/wedge/search/",
+      "to": "https://buchananmo.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MO-Cole",
+      "from": "http://colemo.devnetwedge.com/view/RE/",
+      "to": "https://colemo.devnetwedge.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MO-GladstoneCity",
+      "from": "http://www.gladstone.mo.us/e-Services/taxes/",
+      "to": "https://www.gladstone.mo.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MO-Greene",
+      "from": "http://www.greenecountymo.org/spane/PublicAccess/",
+      "to": "https://www.greenecountymo.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MO-Phelps",
+      "from": "http://www.phelpscountycollector.com/print/RE/11154.04/2017/",
+      "to": "https://www.phelpscountycollector.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MO-Scott",
+      "from": "http://www.scottcocollector.com/parcels/",
+      "to": "https://www.scottcocollector.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "MS-Clay",
+      "from": "https://cs.datasysmgt.com/lrdsmp/",
+      "to": "https://cs.datasysmgt.com/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NC-Iredell",
+      "from": "http://www.co.iredell.nc.us/PublicAccess/",
+      "to": "https://www.co.iredell.nc.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NC-Nash",
+      "from": "http://nashcountync.munisselfservice.com/citizens/RealEstate/",
+      "to": "https://nashcountync.munisselfservice.com/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NC-NewHanover",
+      "from": "https://mss.nhcgov.com/CSS/citizens/RealEstate/",
+      "to": "https://mss.nhcgov.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "ND-Williams",
+      "from": "https://www.williamsnd.com/Property/Parcel/",
+      "to": "https://www.williamsnd.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NJ-GloucesterTownship",
+      "from": "https://wipp.edmundsassoc.com/Wipp0415/Wipp/",
+      "to": "https://wipp.edmundsassoc.com/Wipp/?wippid=Gloucestertownship",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NJ-HamiltonTownship",
+      "from": "http://wipp.edmundsassoc.com/Wipp0112/wipp/",
+      "to": "https://wipp.edmundsassoc.com/Wipp/?wippid=Hamiltontownship",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NM-Bernalillo",
+      "from": "http://www.bernco.gov/property-tax-search/",
+      "to": "https://www.bernco.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NM-Sandoval",
+      "from": "http://etweb.sandovalcountynm.gov/Treasurer/treasurerweb/",
+      "to": "https://etweb.sandovalcountynm.gov/Treasurer/treasurerweb/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NV-Clark",
+      "from": "http://www.clarkcountynv.gov/depts/treasurer/Pages/TaxCollection.aspx",
+      "to": "https://www.clarkcountynv.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NY-AmherstTown",
+      "from": "http://www.amherst.ny.us/govt/it/cpi/",
+      "to": "https://www.amherst.ny.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NY-Clinton",
+      "from": "https://www.clintoncountygov.com/MSS/citizens/RealEstate/",
+      "to": "https://www.clintoncountygov.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NY-HastingOnHudsonVillage",
+      "from": "https://hastingsonhudsonny.municipalonlinepayments.com/hastingsonhudsonny/tax/se",
+      "to": "https://hastingsonhudsonny.municipalonlinepayments.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NY-Monroe",
+      "from": "http://www.monroecountytax.org/monroe/tax/",
+      "to": "https://www.monroecountytax.org/monroe/tax/",
+      "how": "retry_original",
+      "status": 302,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NY-RochesterCityATF",
+      "from": "http://www.atfs.com/atf_asp/",
+      "to": "https://www.atfs.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "NY-Wayne",
+      "from": "http://web.co.wayne.ny.us/treas_taxsearch/",
+      "to": "https://web.co.wayne.ny.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "OH-Geauga",
+      "from": "http://geaugarealink.co.geauga.oh.us/REALink/parcel/",
+      "to": "https://geaugarealink.co.geauga.oh.us/REALink/parcel/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "OH-Hancock",
+      "from": "http://www.co.hancock.oh.us/government-services/treasurer",
+      "to": "https://www.co.hancock.oh.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "OH-Lake",
+      "from": "http://www.lakecountyohio.gov/treasurer/Home.aspx",
+      "to": "https://www.lakecountyohio.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "OH-Licking",
+      "from": "https://www.lcounty.com/treasurer/",
+      "to": "https://www.lcounty.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "OH-Logan",
+      "from": "http://realestate.co.logan.oh.us/Parcel/Default/",
+      "to": "https://realestate.co.logan.oh.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "OR-Clackamas",
+      "from": "http://www.clackamas.us/ascendweb/",
+      "to": "https://www.clackamas.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "PA-Mercer",
+      "from": "http://www.infoconcountyaccess.com/CAS_Public_Inquiries/Monarch/",
+      "to": "https://www.infoconcountyaccess.com/CAS_Public_Inquiries/Monarch/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "PA-Northampton",
+      "from": "http://www.ncpub.org/_web/datalets/",
+      "to": "https://www.ncpub.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "PA-Schuylkill",
+      "from": "http://www.co.schuylkill.pa.us/info/Offices/TaxClaim/",
+      "to": "https://www.co.schuylkill.pa.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "PR-CRIM",
+      "from": "http://www.crimpr.net/crimportal/",
+      "to": "https://www.crimpr.net/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-BristolTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-BurrillvilleTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-CharlestownTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-CoventryTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-CumberlandTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-ExeterTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-GlocesterTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-HopkintonTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-JamestownTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-JohnstonTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-LincolnTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-LittleComptonTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-NarragansettTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-NewportCity",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-NorthProvidenceTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-NorthSmithfieldTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-PortsmouthTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-RichmondTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-ScituateTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-SmithfieldTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-SouthKingstownTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-WarrenTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-WestGreenwichTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-WestWarwickTown",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "RI-WoonsocketCity",
+      "from": "http://www.opaldata.net/onlinetax/",
+      "to": "https://www.opaldata.net/onlinetax/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "SC-Horry",
+      "from": "https://horrycountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx\"",
+      "to": "https://horrycountytreasurer.qpaybill.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "SC-NorthAugustaCity",
+      "from": "https://www.govhost.com/northaugustatest-sc/",
+      "to": "https://www.govhost.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "SC-Orangeburg",
+      "from": "http://www.orangeburgcounty.org/Credit_Card_Pay/treasurer/",
+      "to": "https://www.orangeburgcounty.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "SC-York",
+      "from": "http://www.yorkcountygov.com/taxes/",
+      "to": "https://www.yorkcountygov.com/",
+      "how": "retry_original",
+      "status": null,
+      "kind": "TimeoutError",
+      "bucket": "uncertain"
+    },
+    {
+      "key": "TX-Bastrop",
+      "from": "http://www.bastroptac.com/Appraisal/PublicAccess/",
+      "to": "https://www.bastroptac.com/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Brazoria",
+      "from": "https://actweb.acttax.com/act_webdev/brazoria/",
+      "to": "https://www.brazoriacountytx.gov/",
+      "how": "url_variant",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Cameron",
+      "from": "http://www.cameroncountytax.org/faces/faces/search.jsp",
+      "to": "https://www.cameroncountytax.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-DeltaCAD",
+      "from": "http://esearch.delta-cad.org/",
+      "to": "https://esearch.delta-cad.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Ellis",
+      "from": "https://actweb.acttax.com/act_webdev/ellis/",
+      "to": "https://www.elliscountytx.gov/",
+      "how": "url_variant",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Falls",
+      "from": "http://www.texasonlinerecords.com/tax/",
+      "to": "https://www.texasonlinerecords.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-FrioCAD",
+      "from": "http://www.friocad.org/(S(ln3dtrfjt0pvnbhyw1apwbtc))/search.aspx?clientid=frioca",
+      "to": "https://www.friocad.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Hunt",
+      "from": "http://esearch.hctax.info/",
+      "to": "https://esearch.hctax.info/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-KendallCAD",
+      "from": "http://esearch.kendallad.org/Property/View/",
+      "to": "https://esearch.kendallad.org/Property/View/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-LampasasCAD",
+      "from": "http://www.lampasascad.org/",
+      "to": "https://www.lampasascad.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Milam",
+      "from": "http://esearch.milamad.org/",
+      "to": "https://esearch.milamad.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Rusk",
+      "from": "http://www.ruskcountytax.com/taxSearch/",
+      "to": "https://www.ruskcountytax.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-TaylorCAD",
+      "from": "http://propaccess.taylor-cad.org/clientdb/",
+      "to": "https://propaccess.taylor-cad.org/",
+      "how": "retry_original",
+      "status": null,
+      "kind": "ECONNRESET",
+      "bucket": "uncertain"
+    },
+    {
+      "key": "TX-Terry",
+      "from": "http://www.tax.cagi.com/account-search/",
+      "to": "https://www.tax.cagi.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-WallerISD",
+      "from": "http://mytax.eztaxonline.net/waller/tax/faces/",
+      "to": "https://mytax.eztaxonline.net/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Webb",
+      "from": "http://www.webbcountytax.com/faces/",
+      "to": "https://www.webbcountytax.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "TX-Wise",
+      "from": "http://www.wisecountyonline.net/tax/",
+      "to": "https://www.wisecountyonline.net/tax/",
+      "how": "retry_original",
+      "status": 404,
+      "kind": "gone",
+      "bucket": "dead"
+    },
+    {
+      "key": "TX-Wood",
+      "from": "http://www.woodcountytax.com/taxSearch/",
+      "to": "https://www.woodcountytax.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "UT-Davis",
+      "from": "http://www.co.davis.ut.us/treasurer/",
+      "to": "https://www.co.davis.ut.us/treasurer/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "UT-SaltLake",
+      "from": "http://www.treasurer.slco.org/taxdue/",
+      "to": "https://treasurer.slco.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "UT-Summit",
+      "from": "https://property.summitcounty.org/treasurer/treasurerweb/",
+      "to": "https://property.summitcounty.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "UT-Washington",
+      "from": "https://www.washco.utah.gov/forms/treasurer/account-information/",
+      "to": "https://www.washco.utah.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "VA-Chesterfield",
+      "from": "http://www.chesterfield.gov/eServices/RealEstateAssessments/LegacyService/",
+      "to": "https://www.chesterfield.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "VA-JamesCity",
+      "from": "http://property.jamescitycountyva.gov/JamesCity/ParcelViewer/",
+      "to": "https://property.jamescitycountyva.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "VA-VirginiaBeachCity",
+      "from": "http://cvb.manatron.com/Tabs/PropertySearch/",
+      "to": "https://cvb.manatron.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WA-Cowlitz",
+      "from": "http://www.cowlitzinfo.net/applications/cowlitzassessorparcelsearch/",
+      "to": "https://www.cowlitzinfo.net/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Crawford",
+      "from": "http://landrecords.crawfordcountywi.org/LandRecords/PropertyListing/RealEstateTa",
+      "to": "https://landrecords.crawfordcountywi.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-FondDuLac",
+      "from": "http://landinfo.fdlco.wi.gov/ascent/Parcel/",
+      "to": "https://landinfo.fdlco.wi.gov/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Grant",
+      "from": "http://www.grantcountylandrecords.com/GCSWebPortal/",
+      "to": "https://grantcountylandrecords.com/",
+      "how": "url_variant",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Kewaunee",
+      "from": "http://www.kewauneeco.org/GCSWebPortal/",
+      "to": "https://www.kewauneeco.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Lincoln",
+      "from": "http://lrs.co.lincoln.wi.us/apps/lrs/",
+      "to": "https://lrs.co.lincoln.wi.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-ManitowocCity",
+      "from": "https://taxes.manitowoc.org/LandRecords/PropertyListing/",
+      "to": "https://taxes.manitowoc.org/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Menominee",
+      "from": "https://ascent.co.menominee.wi.us/LandRecords/PropertyListing/",
+      "to": "https://ascent.co.menominee.wi.us/",
+      "how": "retry_original",
+      "status": 403,
+      "kind": "gated",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-OshkoshCity",
+      "from": "http://www.ci.oshkosh.wi.us/webinfo/Real_Estate/",
+      "to": "https://www.ci.oshkosh.wi.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Pierce",
+      "from": "http://www.co.pierce.wi.us/link/reports/",
+      "to": "https://www.co.pierce.wi.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Price",
+      "from": "http://www.co.price.wi.us/Access/REAL%20ESTATE/",
+      "to": "https://www.co.price.wi.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Shawano",
+      "from": "http://gis.co.shawano.wi.us/scpaipub/",
+      "to": "https://gis.co.shawano.wi.us/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Taylor",
+      "from": "http://taylorwi.mapping-online.com/TaylorCoWi/",
+      "to": "https://taylorwi.mapping-online.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WI-Vernon",
+      "from": "http://vernonwi.mapping-online.com/VernonCoWi/",
+      "to": "https://vernonwi.mapping-online.com/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    },
+    {
+      "key": "WV-Preston",
+      "from": "http://129.71.117.27/taxweb/",
+      "to": "https://129.71.117.27/",
+      "how": "retry_original",
+      "status": 200,
+      "kind": "ok",
+      "bucket": "validated_true"
+    }
+  ]
+}

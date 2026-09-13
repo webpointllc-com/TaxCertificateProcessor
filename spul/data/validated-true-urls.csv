@@ -16,11 +16,14 @@ AL,Escambia,AL-Escambia,https://altags.com/Escambia_License/property.aspx,Search
 AL,Etowah,AL-Etowah,https://etowahproperty.assurancegov.com/Property/Search,Search,200,ok,https://etowahproperty.assurancegov.com/Property/Search
 AL,Franklin,AL-Franklin,https://franklinproperty.countygovservices.com/Property/Search,Search,200,ok,https://franklinproperty.countygovservices.com/Property/Search
 AL,Houston,AL-Houston,http://www.houstoncounty.org/Revenue/record/,Base,200,ok,https://houstoncountyal.gov/page/404/
+AL,Jefferson,AL-Jefferson,https://www.jccal.org/,Base,200,ok,https://www.jccal.org/
 AL,Lauderdale,AL-Lauderdale,http://www.deltacomputersystems.com/AL/AL41/,Base,200,ok,https://www.deltacomputersystems.com/AL/AL41/
 AL,Lawrence,AL-Lawrence,https://lawrenceproperty.countygovservices.com/Property/Search,Search,200,ok,https://lawrenceproperty.countygovservices.com/Property/Search
 AL,Lee,AL-Lee,http://www.deltacomputersystems.com/AL/AL43/,Base,200,ok,https://www.deltacomputersystems.com/AL/AL43/
+AL,Limestone,AL-Limestone,https://www.limestonerevenue.net/PRC/PublicPRC/,Base,200,ok,https://www.limestonerevenue.net/PRC/PublicPRC/
 AL,Marshall,AL-Marshall,https://marshall.capturecama.com/propsearch,Search,200,ok,https://marshall.capturecama.com/propsearch
 AL,Mobile,AL-Mobile,https://mobile.capturecama.com/propsearch,Search,200,ok,https://mobile.capturecama.com/propsearch
+AL,Montgomery,AL-Montgomery,https://montgomery.capturecama.com/,Search,200,ok,https://montgomery.capturecama.com/
 AL,Morgan,AL-Morgan,https://morgan.capturecama.com/propsearch,Search,200,ok,https://morgan.capturecama.com/propsearch
 AL,Russell,AL-Russell,https://russell.capturecama.com/propsearch,Search,200,ok,https://russell.capturecama.com/propsearch
 AL,Shelby,AL-Shelby,https://ptc.shelbyal.com/propsearch,Search,200,ok,https://ptc.shelbyal.com/propsearch
@@ -94,6 +97,7 @@ CA,Del Norte,CA-DelNorte,https://common3.mptsweb.com/MBC/delnorte/tax/search,Sea
 CA,Fresno,CA-Fresno,http://www.co.fresno.ca.us/DepartmentPage.aspx?id=6218,Search,200,ok,https://www.fresnocountyca.gov/Departments/Public-Health/Environmental-Health/Rabies-Control-and-Animal-Services-Program?id=6218
 CA,Humboldt,CA-Humboldt,https://common3.mptsweb.com/MBC/humboldt/tax/search,Search,200,ok,https://common3.mptsweb.com/MBC/humboldt/tax/search
 CA,Imperial,CA-Imperial,https://common3.mptsweb.com/MBC/imperial/tax/search,Search,200,ok,https://common3.mptsweb.com/MBC/imperial/tax/search
+CA,Inyo,CA-Inyo,https://ca-inyo.publicaccessnow.com/,Base,200,ok,https://ca-inyo.publicaccessnow.com/
 CA,Kern,CA-Kern,https://www.kcttc.co.kern.ca.us/,Search,200,ok,https://www.kcttc.co.kern.ca.us/
 CA,Los Angeles,CA-LosAngeles,https://ttc.lacounty.gov/,Search,200,ok,https://ttc.lacounty.gov/
 CA,Madera,CA-Madera,https://common3.mptsweb.com/MBC/madera/tax/search,Search,200,ok,https://common3.mptsweb.com/MBC/madera/tax/search
@@ -121,6 +125,7 @@ CA,Shasta,CA-Shasta,https://common3.mptsweb.com/MBC/shasta/tax/search,Search,200
 CA,Siskiyou,CA-Siskiyou,https://common1.mptsweb.com/MBC/siskiyou/tax/search,Search,200,ok,https://common1.mptsweb.com/MBC/siskiyou/tax/search
 CA,Sonoma,CA-Sonoma,https://common3.mptsweb.com/MBC/sonoma/tax/search,Search,200,ok,https://common3.mptsweb.com/MBC/sonoma/tax/search
 CA,Stanislaus,CA-Stanislaus,https://common3.mptsweb.com/MBC/stanislaus/tax/search,Search,200,ok,https://common3.mptsweb.com/MBC/stanislaus/tax/search
+CA,Sutter,CA-Sutter,https://ca-sutter.publicaccessnow.com/,Base,200,ok,https://ca-sutter.publicaccessnow.com/
 CA,Tuolumne,CA-Tuolumne,https://common1.mptsweb.com/MBC/tuolumne/tax/search,Search,200,ok,https://common1.mptsweb.com/MBC/tuolumne/tax/search
 CA,Ventura,CA-Ventura,https://taxpayment.venturacounty.gov/,Search,200,ok,https://taxpayment.venturacounty.gov/
 CA,Yolo,CA-Yolo,https://common2.mptsweb.com/MBC/yolo/tax/search,Search,200,ok,https://common2.mptsweb.com/MBC/yolo/tax/search
@@ -128,30 +133,47 @@ CO,Adams,CO-Adams,https://adcotax.com/treasurer/treasurerweb/,Search,200,ok,http
 CO,Arapahoe,CO-Arapahoe,http://www.co.arapahoe.co.us,Search,200,ok,https://www.arapahoeco.gov/
 CO,Denver,CO-Denver,https://property.spatialest.com/co/denver#/,Search,200,ok,https://property.spatialest.com/co/denver#/
 CO,Douglas,CO-Douglas,https://apps.douglas.co.us/treasurer/treasurerweb/search.jsp,Search,200,ok,https://apps.douglas.co.us/treasurer/web/login.jsp
+CO,El Paso,CO-ElPaso,https://property.spatialest.com/co/elpaso/#/,Search,200,ok,https://property.spatialest.com/co/elpaso/#/
 CO,Jefferson,CO-Jefferson,http://www.jeffco.us,Search,200,ok,https://www.jeffco.us/
 CO,Larimer,CO-Larimer,http://www.co.larimer.co.us/assessor/query/,Base,403,gated,https://www.larimer.gov/assessor/query/
 CO,Mesa,CO-Mesa,https://appz.mesacounty.us/treasurer/treasurerweb/,Base,200,ok,https://appz.mesacounty.us/treasurer/treasurerweb/
 CO,Saguache,CO-Saguache,https://saguachecountyco-treasurer.tylerhost.net/treasurer/treasurerweb/search.jsp,Search,200,ok,https://saguachecountyco-treasurer.tylerhost.net/treasurer/web/login.jsp
 CO,Weld,CO-Weld,https://www.weldtax.com/treasurer/treasurerweb/,Base,200,ok,https://www.weldtax.com/treasurer/treasurerweb/
+CT,Cromwell Town,CT-CromwellTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+CT,Ellington,CT-Ellington,https://www.mytaxbill.org/inet/bill/home.do?town=ellington,Base,200,ok,https://www.mytaxbill.org/inet/bill/home.do?town=ellington
 CT,Enfield Town,CT-EnfieldTown,https://enfield.munisselfservice.com/,Base,200,ok,https://enfield.munisselfservice.com/common/Upgrade.aspx
+CT,Greenwich Town,CT-GreenwichTown,https://www.mytaxbill.org/inet/bill/home.do?town=greenwich,Base,200,ok,https://www.mytaxbill.org/inet/bill/home.do?town=greenwich
+CT,Naugatuck Town,CT-NaugatuckTown,https://www.mytaxbill.org/inet/bill/home.do?town=naugatuck,Base,200,ok,https://www.mytaxbill.org/inet/bill/home.do?town=naugatuck
+CT,New Milford Town,CT-NewMilfordTown,https://www.mytaxbill.org/inet/bill/home.do?town=new%20milford,Base,200,ok,https://www.mytaxbill.org/inet/bill/home.do?town=new%20milford
+CT,Old Lyme Town,CT-OldLymeTown,https://www.mytaxbill.org/inet/bill/home.do?town=old%20lyme,Base,200,ok,https://www.mytaxbill.org/inet/bill/home.do?town=old%20lyme
+CT,Somers Town,CT-SomersTown,https://www.mytaxbill.org/inet/bill/home.do?town=somers,Base,200,ok,https://www.mytaxbill.org/inet/bill/home.do?town=somers
+CT,Torrington City,CT-TorringtonCity,https://www.mytaxbill.org/inet/bill/home.do?town=torrington,Base,200,ok,https://www.mytaxbill.org/inet/bill/home.do?town=torrington
 CT,Waterbury City,CT-WaterburyCity,https://www.mytaxbill.org/inet/bill/home.do?town=waterbury,Search,200,ok,https://www.mytaxbill.org/inet/bill/home.do?town=waterbury
 DC,District Of Columbia,DC-DistrictOfColumbia,https://www.taxpayerservicecenter.com/,Base,200,ok,https://www.taxpayerservicecenter.com/
 DC,District Of Columbia Separate BID,DC-DistrictOfColumbiaSeparateBID,https://www.taxpayerservicecenter.com/,Base,200,ok,https://www.taxpayerservicecenter.com/
 DE,Dewey Beach Town,DE-DeweyBeachTown,https://wipp.edmundsgovtech.cloud/home?wippId=334,Search,200,ok,https://wipp.edmundsgovtech.cloud/home?wippId=334
+DE,Kent,DE-Kent,https://kent400.co.kent.de.us/,Base,200,ok,https://kent400.co.kent.de.us/
+DE,Middletown Town,DE-MiddletownTown,https://wipp.edmundsassoc.com/Wipp/?wippid=Middletown,Base,200,ok,https://wipp.edmundsassoc.com/Wipp/?wippid=Middletown
 DE,Sussex,DE-Sussex,http://www.sussexcountyde.gov/e-service/propertytaxes/,Base,301,ok,https://sussexcountyde.gov/zoning-and-sales-information
 FL,Bradford,FL-Bradford,http://qpublic.net/cgi-bin/,Base,403,gated,https://qpublic.net/cgi-bin/
 FL,Brevard,FL-Brevard,https://county-taxes.net/brevard/property-tax,Search,403,gated,https://county-taxes.net/brevard/property-tax
 FL,Broward,FL-Broward,https://county-taxes.net/broward/broward/property-tax,Search,403,gated,https://county-taxes.net/broward/broward/property-tax
+FL,Charlotte,FL-Charlotte,https://county-taxes.net/charlotte/property-tax,Base,403,gated,https://county-taxes.net/charlotte/property-tax
+FL,Citrus,FL-Citrus,https://county-taxes.net/citrus/property-tax,Base,403,gated,https://county-taxes.net/citrus/property-tax
 FL,Collier,FL-Collier,https://county-taxes.net/fl-collier/property-tax,Search,403,gated,https://county-taxes.net/fl-collier/property-tax
+FL,De Soto,FL-DeSoto,https://www.desotocountytaxcollector.com/,Base,200,ok,https://www.desotocountytaxcollector.com/Property/SearchSelect?Accept=true&ClearData=True
 FL,Duval,FL-Duval,http://www.coj.net/departments/tax-collector.aspx,Search,200,ok,https://taxcollector.jacksonville.gov/
 FL,Flagler,FL-Flagler,http://www.flaglertax.com/,Search,200,ok,https://www.flaglertax.gov/
+FL,Highlands,FL-Highlands,https://county-taxes.net/highlands/property-tax,Base,403,gated,https://county-taxes.net/highlands/property-tax
 FL,Hillsborough,FL-Hillsborough,http://www.hillstax.org/,Search,200,ok,https://www.hillstaxfl.gov/
 FL,Lafayette,FL-Lafayette,http://www.lafayettetc.com/TAX/,Base,200,ok,https://www.lafayettetc.com/TAX/
 FL,Lake,FL-Lake,http://www.laketax.com/,Search,200,ok,https://laketax.com/
+FL,Lee,FL-Lee,https://leetc.com/,Search,200,ok,https://leetc.com/
 FL,Leon,FL-Leon,https://wwwtax2.leoncountyfl.gov/itm/PropertySearchAccount.aspx,Search,200,ok,https://wwwtax2.leoncountyfl.gov/itm/DisclaimerPage.aspx?mode=prop
 FL,Manatee,FL-Manatee,https://secure.taxcollector.com/ptaxweb/editPropertySearch2.action?action=list,Search,200,ok,https://secure.taxcollector.com/ptaxweb/editPropertySearch2.action?action=list
 FL,Marion,FL-Marion,https://www.mariontax.com/itm/PropertySearchAccount.aspx,Search,302,ok,https://www.mariontax.com/itm/PropertySearchAccount.aspx?AspxAutoDetectCookieSupport=1
 FL,Miami Dade,FL-MiamiDade,https://www.miamidade.gov/taxcollector/,Base,200,ok,https://www.miamidade.gov/taxcollector/
+FL,Monroe,FL-Monroe,https://county-taxes.net/monroe/property-tax,Base,403,gated,https://county-taxes.net/monroe/property-tax
 FL,Okaloosa,FL-Okaloosa,http://www.okaloosatax.com/,Search,403,gated,https://www.okaloosatax.com/
 FL,Orange,FL-Orange,https://www.octaxcol.com/taxes/,Search,403,gated,https://www.octaxcol.com/taxes/
 FL,Palm Beach,FL-PalmBeach,https://www.pbctax.com/,Search,200,ok,https://www.pbctax.gov/
@@ -161,72 +183,141 @@ FL,Polk,FL-Polk,https://polk.floridatax.us/AccountSearch?s=pt,Search,200,ok,http
 FL,Santa Rosa,FL-SantaRosa,http://www.srctc.com/,Search,200,ok,https://srctc.com/
 FL,Sarasota,FL-Sarasota,https://www.sarasotataxcollector.com/,Search,200,ok,https://www.sarasotataxcollector.gov/
 FL,Seminole,FL-Seminole,https://seminolecounty.tax/services/property-taxes/property-and-tangible-taxes/,Search,200,ok,https://seminolecounty.tax/services/property-taxes/property-and-tangible-taxes/
+FL,St Lucie,FL-StLucie,https://county-taxes.net/stlucie/property-tax,Base,403,gated,https://county-taxes.net/stlucie/property-tax
+FL,Volusia,FL-Volusia,https://www.volusia.org/,Search,200,ok,https://www.volusia.org/
 FL,Wakulla,FL-Wakulla,http://www.wakullacountytaxcollector.com/,Base,200,ok,https://www.wakullacountytaxcollector.com/Property/SearchSelect?Accept=true&ClearData=True
 GA,Alpharetta City,GA-AlpharettaCity,https://mss.alpharetta.ga.us/MSS/citizens/RealEstate/,Base,200,ok,https://mss.alpharetta.ga.us/mss/common/Upgrade.aspx
 GA,Americus,GA-Americus,https://americusga.governmentwindow.com/tax.html,Search,403,gated,https://americusga.governmentwindow.com/tax.html
+GA,Banks,GA-Banks,https://www.qpublic.net/ga/banks/,Base,403,gated,https://www.qpublic.net/ga/banks/
+GA,Bartow,GA-Bartow,https://www.qpublic.net/ga/bartow/,Base,403,gated,https://www.qpublic.net/ga/bartow/
 GA,Brooks,GA-Brooks,https://d1ebsyxxbc7tep.cloudfront.net/,Base,200,ok,https://d1ebsyxxbc7tep.cloudfront.net/
+GA,Bryan,GA-Bryan,https://www.qpublic.net/ga/bryan/,Base,403,gated,https://www.qpublic.net/ga/bryan/
+GA,Bulloch,GA-Bulloch,https://www.qpublic.net/ga/bulloch/,Base,403,gated,https://www.qpublic.net/ga/bulloch/
 GA,Burke,GA-Burke,https://burkeproperty.assurancegov.com/Property/Search,Search,200,ok,https://burkeproperty.assurancegov.com/Property/Search
 GA,Byron City,GA-ByronCity,https://byronga.csibillpay.com/Tax/,Base,200,ok,https://byronga.csibillpay.com/Tax/
+GA,Camden,GA-Camden,https://www.qpublic.net/ga/camden/,Base,403,gated,https://www.qpublic.net/ga/camden/
 GA,Catoosa,GA-Catoosa,http://catoosataxes.com/,Base,200,ok,https://www.catoosataxes.com/
 GA,Centerville City,GA-CentervilleCity,https://centervillega.mygovhub.com/#/quickpay,Search,200,ok,https://centervillega.mygovhub.com/#/quickpay
 GA,Chatham,GA-Chatham,http://chathamtax.org/,Base,302,ok,https://www.chathamtax.org/PT/default.aspx
 GA,Cherokee,GA-Cherokee,http://www.cherokeega.com/applications/taxbills/,Base,403,gated,https://www.cherokeega.com/applications/taxbills/
 GA,Cobb,GA-Cobb,https://cobbtaxpayments.org/,Search,200,ok,https://cobbtaxpayments.org/
+GA,Colquitt,GA-Colquitt,https://www.qpublic.net/ga/colquitt/,Base,403,gated,https://www.qpublic.net/ga/colquitt/
 GA,Crawford,GA-Crawford,https://crawfordproperty.assurancegov.com/Property/Search,Search,200,ok,https://crawfordproperty.assurancegov.com/Property/Search
+GA,Crisp,GA-Crisp,https://www.qpublic.net/ga/crisp/,Base,403,gated,https://www.qpublic.net/ga/crisp/
 GA,Dade,GA-Dade,https://dadeproperty.assurancegov.com/Property/Search,Search,200,ok,https://dadeproperty.assurancegov.com/Property/Search
+GA,Dawson,GA-Dawson,https://www.qpublic.net/ga/dawson/,Base,403,gated,https://www.qpublic.net/ga/dawson/
 GA,Decatur City,GA-DecaturCity,https://www.decaturgatax.com/taxes#/WildfireSearch,Search,200,ok,https://www.decaturgatax.com/taxes#/WildfireSearch
+GA,Dougherty,GA-Dougherty,https://www.qpublic.net/ga/dougherty/,Base,403,gated,https://www.qpublic.net/ga/dougherty/
 GA,Duluth City,GA-DuluthCity,https://duluthga.municipalonlinepayments.com/duluthga/tax/search,Search,200,ok,https://duluthga.municipalonlinepayments.com/duluthga/tax/search
 GA,Elbert,GA-Elbert,https://d1ebsyxxbc7tep.cloudfront.net/,Base,200,ok,https://d1ebsyxxbc7tep.cloudfront.net/
 GA,Emanuel,GA-Emanuel,https://emanuelproperty.assurancegov.com/Property/Search,Search,200,ok,https://emanuelproperty.assurancegov.com/Property/Search
 GA,Fayette,GA-Fayette,http://www.fayettecountytaxcomm.com/,Base,200,ok,https://www.fayettecountypay.com/
+GA,Folkston,GA-Folkston,https://www.qpublic.net/ga/folkston/,Base,403,gated,https://www.qpublic.net/ga/folkston/
+GA,Franklin,GA-Franklin,http://taxes.franklincountyga.com/TaxSearch/,Base,403,gated,https://taxes.franklincountyga.com/TaxSearch/
 GA,Fulton,GA-Fulton,https://fultoncountytaxes.org/propertytax/search,Search,403,gated,https://fultoncountytaxes.org/propertytax/search
 GA,Fulton Cities,GA-FultonCities,https://fultoncountytaxes.org/propertytax/search,Search,403,gated,https://fultoncountytaxes.org/propertytax/search
 GA,Fulton Solid Waste,GA-FultonSolidWaste,https://fultoncountytaxes.org/propertytax/search,Search,403,gated,https://fultoncountytaxes.org/propertytax/search
+GA,Gilmer,GA-Gilmer,https://www.qpublic.net/ga/gilmer/,Base,403,gated,https://www.qpublic.net/ga/gilmer/
+GA,Gordon,GA-Gordon,https://www.qpublic.net/ga/gordon/,Base,403,gated,https://www.qpublic.net/ga/gordon/
 GA,Grady,GA-Grady,https://qpublic.schneidercorp.com/Application.aspx?AppID=1065&LayerID=25364&PageTypeID=2&PageID=10318,Search,403,gated,https://qpublic.schneidercorp.com/Application.aspx?AppID=1065&LayerID=25364&PageTypeID=2&PageID=10318
 GA,Gwinnett,GA-Gwinnett,https://www.gwinnetttaxcommissioner.com/property-tax/view-pay-your-taxes,Search,200,ok,https://www.gwinnetttaxcommissioner.com/property-tax/view-pay-your-taxes?p_p_id=gov_gc_tco_portal_user_payment_PaymentApplicationPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_gov_gc_tco_portal_user_payment_PaymentApplicationPortlet_mvcRenderCommandName=%2Fcaptcha
+GA,Haralson,GA-Haralson,https://www.qpublic.net/ga/haralson/,Base,403,gated,https://www.qpublic.net/ga/haralson/
+GA,Heard,GA-Heard,https://www.qpublic.net/ga/heard/,Base,403,gated,https://www.qpublic.net/ga/heard/
+GA,Houston,GA-Houston,https://www.qpublic.net/ga/houston/,Base,403,gated,https://www.qpublic.net/ga/houston/
+GA,Jones,GA-Jones,https://www.qpublic.net/ga/jones/,Base,403,gated,https://www.qpublic.net/ga/jones/
+GA,Kennesaw City,GA-KennesawCity,https://www.municipalonlinepayments.com/,Base,200,ok,https://www.municipalonlinepayments.com/
+GA,Lamar,GA-Lamar,https://www.qpublic.net/ga/lamar/,Base,403,gated,https://www.qpublic.net/ga/lamar/
+GA,Laurens,GA-Laurens,https://www.qpublic.net/ga/laurens/,Base,403,gated,https://www.qpublic.net/ga/laurens/
+GA,Lee,GA-Lee,https://www.qpublic.net/ga/lee/,Base,403,gated,https://www.qpublic.net/ga/lee/
 GA,Long,GA-Long,https://www.longcountytax.com/taxes.html#/WildfireSearch,Search,200,ok,https://www.longcountytax.com/taxes.html#/WildfireSearch
+GA,Lumpkin,GA-Lumpkin,https://www.lumpkincountytax.com/,Base,200,ok,https://www.lumpkincountytax.com/
+GA,Madison,GA-Madison,https://www.qpublic.net/ga/madison/,Base,403,gated,https://www.qpublic.net/ga/madison/
+GA,Mc Intosh,GA-McIntosh,https://www.qpublic.net/ga/mc-intosh/,Base,403,gated,https://www.qpublic.net/ga/mc-intosh/
+GA,Milton City,GA-MiltonCity,https://www.municipalonlinepayments.com/,Base,200,ok,https://www.municipalonlinepayments.com/
+GA,Monroe,GA-Monroe,https://www.qpublic.net/ga/monroe/,Base,403,gated,https://www.qpublic.net/ga/monroe/
+GA,Morgan,GA-Morgan,https://www.qpublic.net/ga/morgan/,Base,403,gated,https://www.qpublic.net/ga/morgan/
+GA,Paulding,GA-Paulding,https://www.qpublic.net/ga/paulding/,Base,403,gated,https://www.qpublic.net/ga/paulding/
 GA,Peach,GA-Peach,http://www.peachcountytax.com/,Base,200,ok,https://www.peachcountytax.com/
 GA,Pickens,GA-Pickens,https://pickensproperty.assurancegov.com/Property/Search,Search,200,ok,https://pickensproperty.assurancegov.com/Property/Search
+GA,Pierce,GA-Pierce,https://www.qpublic.net/ga/pierce/,Base,403,gated,https://www.qpublic.net/ga/pierce/
+GA,Pike,GA-Pike,https://www.qpublic.net/ga/pike/,Base,403,gated,https://www.qpublic.net/ga/pike/
 GA,Powder Springs City,GA-PowderSpringsCity,https://wipp.edmundsassoc.com/Wipp/,Base,200,ok,https://wipp.edmundsassoc.com/Wipp/
 GA,Pulaski,GA-Pulaski,https://pulaskicountyga.governmentwindow.com/tax.html,Search,403,gated,https://pulaskicountyga.governmentwindow.com/tax.html
+GA,Putnam,GA-Putnam,https://www.qpublic.net/ga/putnam/,Base,403,gated,https://www.qpublic.net/ga/putnam/
+GA,Riverdale City,GA-RiverdaleCity,https://www.qpublic.net/ga/riverdale/,Base,403,gated,https://www.qpublic.net/ga/riverdale/
 GA,Savannah City,GA-SavannahCity,http://revenue.savannahga.gov/revwebpay/WebPortal/WEB_PT_MAIN.aspx?command=REPORTPARAMETERSTYLE&style=&group=RE,Search,200,ok,http://revenue.savannahga.gov/revwebpay/(S(s4yt0a35l14istuhllg5fygh))/WebPortal/Web_PT_Main.aspx?Command=DEFAULT
+GA,Smyrna,GA-Smyrna,https://www.qpublic.net/ga/smyrna/,Base,403,gated,https://www.qpublic.net/ga/smyrna/
 GA,Spaulding,GA-Spaulding,http://www.spaldingcountytax.com/,Base,403,gated,https://spaldingcountyga.governmentwindow.com./
 GA,Sumter,GA-Sumter,http://www.sumtercountygatax.com/,Base,200,ok,https://www.sumtercountygatax.com/
 GA,Thomas,GA-Thomas,https://thomascountyga.governmentwindow.com/tax.html,Search,403,gated,https://thomascountyga.governmentwindow.com/tax.html
+GA,Tift,GA-Tift,https://www.qpublic.net/ga/tift/,Base,403,gated,https://www.qpublic.net/ga/tift/
 GA,Toccoa City,GA-ToccoaCity,https://www.invoicecloud.com/portal/(S(xkepqelrtghf3prgwu1eiiwj))/2/,Base,403,gated,https://www.invoicecloud.com/portal/(S(xkepqelrtghf3prgwu1eiiwj))/2/
 GA,Troup,GA-Troup,https://pay.troupcountytax.com/,Search,200,ok,https://pay.troupcountytax.com/
 GA,Union City,GA-UnionCity,https://unioncityga.governmentwindow.com/,Base,403,gated,https://unioncityga.governmentwindow.com/
 GA,Vesta Holdings,GA-VestaHoldings,http://blackbox1.vestaholdings.com/p9/infoaccount/,Base,200,ok,http://blackbox1.vestaholdings.com/p9/infoaccount/
+GA,Vidalia,GA-Vidalia,https://www.qpublic.net/ga/vidalia/,Base,403,gated,https://www.qpublic.net/ga/vidalia/
 GA,Walker,GA-Walker,https://walkerproperty.assurancegov.com/Property/Search,Search,200,ok,https://walkerproperty.assurancegov.com/Property/Search
 GA,Ware,GA-Ware,https://d1ebsyxxbc7tep.cloudfront.net/,Base,200,ok,https://d1ebsyxxbc7tep.cloudfront.net/
 GA,Warner Robins City,GA-WarnerRobinsCity,https://wrga.governmentwindow.com/tax.html,Search,403,gated,https://wrga.governmentwindow.com/tax.html
 GA,Washington,GA-Washington,https://washingtoncountyga.governmentwindow.com/,Base,403,gated,https://washingtoncountyga.governmentwindow.com/
+GA,West Point,GA-WestPoint,https://www.qpublic.net/ga/west-point/,Base,403,gated,https://www.qpublic.net/ga/west-point/
+GA,Wilkinson,GA-Wilkinson,https://www.qpublic.net/ga/wilkinson/,Base,403,gated,https://www.qpublic.net/ga/wilkinson/
+GA,Woodstock City,GA-WoodstockCity,https://woodstock.surecourt.com/,Base,403,gated,https://woodstock.surecourt.com/
 GU,Guam,GU-Guam,https://www.guamtax.com/,Base,200,ok,https://www.guamtax.com/
 HI,Honolulu,HI-Honolulu,https://qpublic.schneidercorp.com/Application.aspx?App=HonoluluCountyHI&PageType=Search,Search,403,gated,https://qpublic.schneidercorp.com/Application.aspx?App=HonoluluCountyHI&PageType=Search
+IA,Buchanan,IA-Buchanan,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Clayton,IA-Clayton,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Clinton,IA-Clinton,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Dallas,IA-Dallas,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Dickinson,IA-Dickinson,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Floyd,IA-Floyd,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Iowa,IA-Iowa,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Johnson,IA-Johnson,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Linn,IA-Linn,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Montgomery,IA-Montgomery,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Polk,IA-Polk,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Pottawattamie,IA-Pottawattamie,https://www.pottco.org/,Base,200,ok,https://www.pottco.org/
+IA,Poweshiek,IA-Poweshiek,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
 IA,Story,IA-Story,https://www.iowatreasurers.org/,Base,200,ok,https://www.iowatreasurers.org/
+IA,Woodbury,IA-Woodbury,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IA,Worth,IA-Worth,https://www.iowataxandtags.org/,Base,200,ok,https://www.iowataxandtags.org/
+IL,Adams,IL-Adams,https://adamsil.devnetwedge.com/,Base,200,ok,https://adamsil.devnetwedge.com/
+IL,Boone,IL-Boone,https://booneil.devnetwedge.com/,Base,200,ok,https://booneil.devnetwedge.com/
 IL,Bureau,IL-Bureau,https://propertytaxonline.org/Bureau/,Search,200,ok,https://propertytaxonline.org/Bureau/
 IL,Champaign,IL-Champaign,http://www.co.champaign.il.us/,Base,200,ok,https://www.champaigncountyil.gov/
 IL,Christian,IL-Christian,http://www.fikeandfike.com/propertytax/Christian/,Base,200,ok,https://propertytaxonline.org/Christian/
 IL,Clark,IL-Clark,https://clarkil.devnetwedge.com/,Search,200,ok,https://clarkil.devnetwedge.com/
 IL,Coles,IL-Coles,http://colesil.devnetwedge.com/,Base,200,ok,https://colesil.devnetwedge.com/
+IL,Cook,IL-Cook,https://cookcountytreasurer.com/pinsummary.aspx,Search,200,ok,https://cookcountytreasurer.com/Error.aspx?aspxerrorpath=/pinsummary.aspx
 IL,Cook Clerk,IL-CookClerk,http://www.cookcountyclerk.com/tsd/delinquenttaxsearch/Pages/DelinquentTaxSearch.aspx,Search,200,ok,https://www.cookcountyclerkil.gov/property-taxes/delinquent-property-tax-search
 IL,Cook Treasurer,IL-CookTreasurer,https://www.cookcountytreasurer.com/setsearchparameters.aspx,Search,200,ok,https://www.cookcountytreasurer.com/setsearchparameters.aspx
 IL,Du Page,IL-DuPage,https://propertylookup.dupagecounty.gov/search/commonsearch.aspx?mode=parid,Search,200,ok,https://propertylookup.dupagecounty.gov/Search/Disclaimer.aspx?FromUrl=../search/commonsearch.aspx?mode=parid
 IL,Du Page Clerk,IL-DuPageClerk,http://www.dupageco.org/CountyClerk/,Base,200,ok,https://www.dupagecounty.gov/elected_officials/county_clerk/
 IL,Greene,IL-Greene,https://propertytaxonline.org/Greene/InquiryCriteria.aspx,Search,200,ok,https://propertytaxonline.org/Greene/Inquiry.aspx
+IL,Grundy,IL-Grundy,https://www.fikeandfike.com/,Base,200,ok,https://www.fikeandfike.com/
+IL,Henry,IL-Henry,https://henryil.devnetwedge.com/,Base,200,ok,https://henryil.devnetwedge.com/
+IL,Jackson,IL-Jackson,https://jacksonil.devnetwedge.com/,Base,200,ok,https://jacksonil.devnetwedge.com/
+IL,Jersey,IL-Jersey,https://jerseyil.devnetwedge.com/,Base,200,ok,https://jerseyil.devnetwedge.com/
 IL,Kane,IL-Kane,https://kaneil.devnetwedge.com/,Search,200,ok,https://kaneil.devnetwedge.com/
 IL,Lake,IL-Lake,http://www.lakecountyil.gov/Treasurer/Payments/Pages/CurrentPaymentStatus.aspx,Search,403,gated,https://www.lakecountyil.gov/Treasurer/Payments/Pages/CurrentPaymentStatus.aspx
+IL,Livingston,IL-Livingston,https://livingstonil.devnetwedge.com/,Base,200,ok,https://livingstonil.devnetwedge.com/
+IL,Logan,IL-Logan,https://taxsearch.co.logan.il.us/,Base,200,ok,https://taxsearch.co.logan.il.us/
 IL,Macon,IL-Macon,http://www.fikeandfike.com/,Base,200,ok,http://www.fikeandfike.com/
 IL,Madison,IL-Madison,http://reweb1.co.madison.il.us/,Base,200,ok,http://reweb1.co.madison.il.us/
+IL,Marion,IL-Marion,https://marionil.devnetwedge.com/,Base,200,ok,https://marionil.devnetwedge.com/
 IL,Mc Lean,IL-McLean,https://mcleanil.devnetwedge.com/,Search,200,ok,https://mcleanil.devnetwedge.com/
 IL,Monroe,IL-Monroe,http://propertytaxonline.org/Monroe/,Base,200,ok,https://propertytaxonline.org/Monroe/
 IL,Ogle,IL-Ogle,http://beacon.schneidercorp.com/,Base,403,gated,http://beacon.schneidercorp.com/
 IL,Peoria,IL-Peoria,http://propertytax.peoriacounty.org/parcel/view/,Base,502,gateway_soft,http://propertytax.peoriacounty.org/parcel/view/
 IL,Rock Island,IL-RockIsland,http://www.rockislandcounty.org/,Base,200,ok,https://www.rockislandcountyil.gov/
+IL,Saline,IL-Saline,https://salineil.devnetwedge.com/,Base,200,ok,https://salineil.devnetwedge.com/
 IL,Sangamon,IL-Sangamon,http://tax.co.sangamon.il.us/SangamonCountyWeb/app/,Base,200,ok,https://tax.co.sangamon.il.us/SangamonCountyWeb/app/homeAction.action
 IL,Shelby,IL-Shelby,https://propertytaxonline.org/Shelby/InquiryCriteria.aspx?i=1,Search,200,ok,https://propertytaxonline.org/Shelby/InquiryCriteria.aspx?i=1
 IL,Stark,IL-Stark,http://www.fikeandfike.com/propertytax/Stark/,Base,200,ok,https://propertytaxonline.org/Stark/
+IL,St Clair,IL-StClair,https://www.co.st-clair.il.us/,Base,200,ok,https://www.co.st-clair.il.us/
+IL,Tazewell,IL-Tazewell,https://tazewellil.devnetwedge.com/,Base,200,ok,https://tazewellil.devnetwedge.com/
 IL,Vermilion,IL-Vermilion,http://taxinquiry.vercounty.org/,Base,502,gateway_soft,http://taxinquiry.vercounty.org/
+IL,Whiteside,IL-Whiteside,https://whitesideil.devnetwedge.com/,Base,200,ok,https://whitesideil.devnetwedge.com/
 IL,Will,IL-Will,https://willcountytreasurer.us/taxes.html#/WildfireSearch,Search,200,ok,https://willcountytreasurer.us/taxes.html#/WildfireSearch
 IN,Adams,IN-Adams,http://web1.adams-county.com/pti_release/,Base,200,ok,http://web1.adams-county.com/pti_release/
 IN,Bartholomew,IN-Bartholomew,https://beacon.schneidercorp.com/Application.aspx?AppID=1130&LayerID=28606&PageTypeID=2&PageID=12977,Search,403,gated,https://beacon.schneidercorp.com/Application.aspx?AppID=1130&LayerID=28606&PageTypeID=2&PageID=12977
@@ -250,7 +341,9 @@ IN,Fulton,IN-Fulton,https://fultonin.wthgis.com/tgis/,Base,403,gated,https://ful
 IN,Gibson,IN-Gibson,https://beacon.schneidercorp.com/,Base,403,gated,https://beacon.schneidercorp.com/
 IN,Grant,IN-Grant,http://treasurer.grant.in.datapitstop.us/,Base,200,ok,http://treasurer.grant.in.datapitstop.us/
 IN,Greene,IN-Greene,https://greenein.wthgis.com/tgis/,Base,403,gated,https://greenein.wthgis.com/tgis/
+IN,Hamilton,IN-Hamilton,https://www.hamiltoncounty.in.gov/,Base,200,ok,https://www.hamiltoncounty.in.gov/
 IN,Hancock,IN-Hancock,http://beacon.schneidercorp.com/,Base,403,gated,http://beacon.schneidercorp.com/
+IN,Hendricks,IN-Hendricks,https://www.co.hendricks.in.us/,Base,200,ok,https://www.co.hendricks.in.us/
 IN,Henry,IN-Henry,https://beacon.schneidercorp.com/,Base,403,gated,https://beacon.schneidercorp.com/
 IN,Howard,IN-Howard,http://beacon.schneidercorp.com/,Base,403,gated,http://beacon.schneidercorp.com/
 IN,Jasper,IN-Jasper,https://beacon.schneidercorp.com/,Base,403,gated,https://beacon.schneidercorp.com/
@@ -311,6 +404,7 @@ KS,Thomas,KS-Thomas,http://ks1057.cichosting.com/tax/search/,Base,403,gated,http
 KY,Alexandria City,KY-AlexandriaCity,http://alexandria.campbell.ky.govern.com/,Base,200,ok,https://alexandria.campbell.ky.pontemsoftware.com/
 KY,Anderson,KY-Anderson,https://view.properlytaxes.com/,Base,200,ok,https://view.properlytaxes.com/
 KY,Barren,KY-Barren,https://ecclix.com/ecclix/,Base,200,ok,https://ecclix.com/ecclix/login.aspx
+KY,Boone,KY-Boone,https://www.boonecountyky.org/,Base,200,ok,https://www.boonecountyky.org/
 KY,Boone Clerk,KY-BooneClerk,https://ecclix.com/ecclix/login.aspx,Search,200,ok,https://ecclix.com/ecclix/login.aspx
 KY,Boyle Clerk,KY-BoyleClerk,https://ecclix.com/ecclix/login.aspx,Search,200,ok,https://ecclix.com/ecclix/login.aspx
 KY,Bracken,KY-Bracken,https://ecclix.com/ecclix/login.aspx,Search,200,ok,https://ecclix.com/ecclix/login.aspx
@@ -328,6 +422,7 @@ KY,Grant,KY-Grant,https://ecclix.com/ecclix/,Base,200,ok,https://ecclix.com/eccl
 KY,Graves,KY-Graves,https://ecclix.com/ecclix/,Base,200,ok,https://ecclix.com/ecclix/login.aspx
 KY,Green,KY-Green,https://ecclix.com/ecclix/login.aspx,Search,200,ok,https://ecclix.com/ecclix/login.aspx
 KY,Hancock,KY-Hancock,https://ecclix.com/ecclix/login.aspx,Search,200,ok,https://ecclix.com/ecclix/login.aspx
+KY,Hardin,KY-Hardin,https://www.compuaid.com:8080/,Base,403,gated,https://www.compuaid.com:8080/
 KY,Harrison,KY-Harrison,https://view.properlytaxes.com/,Base,200,ok,https://view.properlytaxes.com/
 KY,Henry,KY-Henry,https://ecclix.com/ecclix/login.aspx,Search,200,ok,https://ecclix.com/ecclix/login.aspx
 KY,Hopkins,KY-Hopkins,https://www.hopkinscountysheriff.com/index.php/taxes,Search,200,ok,https://www.hopkinscountysheriff.com/index.php/taxes
@@ -356,17 +451,22 @@ KY,Woodford,KY-Woodford,https://ecclix.com/ecclix/login.aspx,Search,200,ok,https
 LA,Allen Parish,LA-AllenParish,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
 LA,Beauregard Parish,LA-BeauregardParish,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
 LA,Bossier Parish,LA-BossierParish,http://www.bossiersheriff.com/property-details/,Base,200,ok,https://www.bossiersheriff.com/property-details
+LA,Caddo Parish,LA-CaddoParish,https://mytax.eztaxonline.net/,Base,403,gated,https://mytax.eztaxonline.net/
 LA,Caddo Parish Assessor,LA-CaddoParishAssessor,https://www.actdatascout.com/RealProperty/Index,Search,403,gated,https://www.actdatascout.com/RealProperty/Index
 LA,De Soto Parish,LA-DeSotoParish,https://snstaxpayments.com/desoto/,Base,200,ok,https://snstaxpayments.com/desoto/
+LA,East Baton Rouge Parish,LA-EastBatonRougeParish,https://www.ebrso.org/DesktopModules/TCMOnline/,Base,403,gated,https://www.ebrso.org/DesktopModules/TCMOnline/
 LA,Gretna City,LA-GretnaCity,https://www.municipalonlinepayments.com/gretnala/tax/,Base,200,ok,https://gretnala.municipalonlinepayments.com/gretnala/tax/search
 LA,Harahan City,LA-HarahanCity,https://www.municipalonlinepayments.com/harahanla/tax/,Base,302,ok,https://harahanla.municipalonlinepayments.com/error/notfound?aspxerrorpath=/harahanla/tax/site/redirect404
 LA,Iberville Parish,LA-IbervilleParish,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
 LA,Jefferson Parish,LA-JeffersonParish,https://eservices.jpso.com/eservicespt/propertytax/,Base,200,ok,https://eservices.jpso.com/eservicespt/propertytax/
 LA,Kenner City,LA-KennerCity,https://payments.kenner.la.us/RE_PropertyTax/RETaxSelfService.aspx,Base,200,ok,https://payments.kenner.la.us/realestate/default.aspx
 LA,Lincoln Parish,LA-LincolnParish,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
+LA,Livingston Parish,LA-LivingstonParish,http://www.lpso.org/General/,Base,403,gated,http://www.lpso.org/General/
 LA,Natchitoches Parish,LA-NatchitochesParish,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
 LA,New Iberia City,LA-NewIberiaCity,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
+LA,New Orleans Parish,LA-NewOrleansParish,https://services.nola.gov/,Base,200,ok,https://services.nola.gov/
 LA,Sabine Parish,LA-SabineParish,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
+LA,Shreveport,LA-Shreveport,https://www.shreveportla.gov/,Base,200,ok,https://www.shreveportla.gov/
 LA,St James Parish,LA-StJamesParish,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
 LA,St John The Baptist Parish,LA-StJohnTheBaptistParish,http://snstaxpayments.com/,Base,200,ok,https://snstaxpayments.com/
 LA,St Mary Parish,LA-StMaryParish,https://snstaxpayments.com/stmary/,Base,200,ok,https://snstaxpayments.com/stmary/
@@ -387,13 +487,19 @@ MD,Anne Arundel,MD-AnneArundel,https://aacounty.munisselfservice.com/citizens/Re
 MD,Anne Arundel Utility,MD-AnneArundelUtility,https://aacounty.munisselfservice.com/citizens/UtilityBilling/,Base,200,ok,https://aacounty.munisselfservice.com/common/Upgrade.aspx
 MD,Baltimore,MD-Baltimore,https://mytax.baltimorecountymd.gov/rptp/portal/property-tax-payment/,Search,200,ok,https://mytax.baltimorecountymd.gov/rptp/portal/property-tax-payment/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zi_RydzTyMvA0MDY2d3AwC_SzdvYJCDQ0N3A31wwkpiAJKG-AAjgZA_VGElBTkRhikOyoqAgA1SSfT/dz/d5/L2dBISEvZ0FBIS9nQSEh/
 MD,Baltimore City,MD-BaltimoreCity,http://cityservices.baltimorecity.gov/realproperty/,Base,502,gateway_soft,http://cityservices.baltimorecity.gov/realproperty/
+MD,Caroline,MD-Caroline,https://www.carolinemd.org/,Base,200,ok,https://www.carolinemd.org/
+MD,Cecil,MD-Cecil,https://cecilco.munisselfservice.com/,Base,200,ok,https://cecilco.munisselfservice.com/
+MD,Charles,MD-Charles,https://www.charlescounty.org/,Base,403,gated,http://www.charlescountymd.gov/
 MD,Frederick,MD-Frederick,http://frederickcountymd.munisselfservice.com/citizens/RealEstate/,Base,200,ok,https://frederickcountymd.munisselfservice.com/common/Upgrade.aspx
 MD,Garrett,MD-Garrett,https://payments.garrettcounty.org/,Base,200,ok,https://www.garrettcountymd.gov/citizen
 MD,Hagerstown City,MD-HagerstownCity,https://mycity.hagerstownmd.org/MSS/citizens/RealEstate/,Base,200,ok,https://mycity.hagerstownmd.org/mss/common/Upgrade.aspx
 MD,Harford,MD-Harford,https://hcgweb01.harfordcountymd.gov/billpay?tabindex=0,Search,200,ok,https://hcgweb01.harfordcountymd.gov/billpay?tabindex=0
 MD,Havre De Grace City,MD-HavreDeGraceCity,https://wipp.edmundsassoc.com/WippHAVR/,Base,200,ok,https://wipp.edmundsassoc.com/WippHAVR/
+MD,Howard,MD-Howard,https://howardcountymd.munisselfservice.com/,Base,200,ok,https://howardcountymd.munisselfservice.com/
 MD,Montgomery,MD-Montgomery,https://apps.montgomerycountymd.gov/realpropertytax/,Search,200,ok,https://apps.montgomerycountymd.gov/realpropertytax/
 MD,Prince George,MD-PrinceGeorge,http://taxinquiry.princegeorgescountymd.gov/,Base,200,ok,http://taxinquiry.princegeorgescountymd.gov/
+MD,Washington,MD-Washington,https://www.washco-md.net/,Base,200,ok,https://www.washco-md.net/
+MD,Wicomico,MD-Wicomico,https://www.wicomicocounty.org/,Base,200,ok,https://www.wicomicocounty.org/
 ME,Falmouth,ME-Falmouth,http://falmouthme.munisselfservice.com/citizens/RealEstate/,Base,200,ok,https://falmouthme.munisselfservice.com/common/Upgrade.aspx
 MI,Auburn City,MI-AuburnCity,https://accessmygov.com/SiteSearch/,Base,200,ok,https://bsaonline.com/Home/LandingPage
 MI,Bedford Charter Township,MI-BedfordCharterTownship,https://www.bsaonline.com/,Base,200,ok,https://www.bsaonline.com/Home/LandingPage
@@ -429,6 +535,7 @@ MI,Prairieville Township,MI-PrairievilleTownship,https://bsaonline.com/SiteSearc
 MI,Redford Town,MI-RedfordTown,https://bsaonline.com/?uid=677,Search,200,ok,https://bsaonline.com/Home/MunicipalityHome?uid=677
 MI,Reynolds Township,MI-ReynoldsTownship,https://accessmygov.com/,Base,200,ok,https://bsaonline.com/Home/LandingPage
 MI,Romeo Village,MI-RomeoVillage,https://accessmygov.com/SiteSearch/,Base,200,ok,https://bsaonline.com/Home/LandingPage
+MI,St Clair,MI-StClair,https://www.stclaircounty.org/Offices/equalization/,Base,200,ok,https://www.stclaircounty.org/Offices/equalization/
 MI,St Clair Township,MI-StClairTownship,https://bsaonline.com/SiteSearch/,Base,200,ok,https://bsaonline.com/Error?aspxerrorpath=/SiteSearch/
 MI,St Joseph,MI-StJoseph,https://bsaonline.com/,Base,200,ok,https://bsaonline.com/Home/LandingPage
 MI,Sullivan Township,MI-SullivanTownship,https://bsaonline.com/?uid=1598,Search,200,ok,https://bsaonline.com/Home/MunicipalityHome?uid=1598
@@ -439,20 +546,33 @@ MI,Vernon Township,MI-VernonTownship,https://bsaonline.com/,Base,200,ok,https://
 MI,Vienna Township,MI-ViennaTownship,https://bsaonline.com/?uid=417,Search,200,ok,https://bsaonline.com/Home/MunicipalityHome?uid=417
 MI,Wayne,MI-Wayne,https://pta.waynecounty.com/Home/PropertySearch,Search,200,ok,https://pta.waynecounty.com/Home/PropertySearch
 MN,Benton,MN-Benton,https://property.bentoncountymn.gov/search/commonsearch.aspx?mode=realprop,Search,200,ok,https://property.bentoncountymn.gov/Search/Disclaimer.aspx?FromUrl=../search/commonsearch.aspx?mode=realprop
+MN,Blue Earth,MN-BlueEarth,https://www.blueearthcountymn.gov/,Base,200,ok,https://www.blueearthcountymn.gov/
+MN,Carver,MN-Carver,https://www.carvercountymn.gov/,Base,403,gated,https://www.carvercountymn.gov/
 MN,Chisago,MN-Chisago,https://gis.chisagocounty.us/chisago_tax/,Base,200,ok,https://gis.chisagocounty.us/chisago_tax/
 MN,Cook,MN-Cook,https://beacon.schneidercorp.com/Application.aspx?AppID=1373&LayerID=46422&PageTypeID=2&PageID=19190,Search,403,gated,https://beacon.schneidercorp.com/Application.aspx?AppID=1373&LayerID=46422&PageTypeID=2&PageID=19190
+MN,Dakota,MN-Dakota,https://services.co.dakota.mn.us/,Base,403,gated,https://services.co.dakota.mn.us/
 MN,Dodge,MN-Dodge,http://dodge.visualgov.com/,Base,200,ok,http://dodge.visualgov.com/
+MN,Douglas,MN-Douglas,https://www.douglascountymn.gov/,Base,200,ok,https://www.douglascountymn.gov/
 MN,Fillmore,MN-Fillmore,https://beacon.schneidercorp.com/Application.aspx?AppID=1066&LayerID=25416&PageTypeID=2&PageID=10333,Search,403,gated,https://beacon.schneidercorp.com/Application.aspx?AppID=1066&LayerID=25416&PageTypeID=2&PageID=10333
 MN,Freeborn,MN-Freeborn,https://beacon.schneidercorp.com/,Base,403,gated,https://beacon.schneidercorp.com/
 MN,Goodhue,MN-Goodhue,http://visualgov.co.goodhue.mn.us/,Base,200,ok,http://visualgov.co.goodhue.mn.us/
+MN,Grant,MN-Grant,https://www.grantcountymn.gov/,Base,200,ok,https://www.grantcountymn.gov/
 MN,Hennepin,MN-Hennepin,http://www16.co.hennepin.mn.us/pins/,Base,200,ok,https://www16.co.hennepin.mn.us/pins/
 MN,Hubbard,MN-Hubbard,https://publicaccess.co.hubbard.mn.us/search/,Base,403,gated,https://publicaccess.co.hubbard.mn.us/search/
+MN,Isanti,MN-Isanti,https://www.isanticountymn.gov/,Base,200,ok,https://www.isanticountymn.gov/
 MN,Kanabec,MN-Kanabec,https://beacon.schneidercorp.com/Application.aspx?AppID=453&LayerID=6582&PageTypeID=2&PageID=3498,Search,403,gated,https://beacon.schneidercorp.com/Application.aspx?AppID=453&LayerID=6582&PageTypeID=2&PageID=3498
+MN,Kandiyohi,MN-Kandiyohi,https://www.kandiyohicountymn.gov/,Base,301,ok,https://www.kandiyohicountymn.gov/
 MN,Le Sueur,MN-LeSueur,https://beacon.schneidercorp.com/Application.aspx?AppID=248&LayerID=3190&PageTypeID=2&PageID=1710,Search,403,gated,https://beacon.schneidercorp.com/Application.aspx?AppID=248&LayerID=3190&PageTypeID=2&PageID=1710
 MN,Lincoln,MN-Lincoln,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Lincoln,Search,200,ok,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Lincoln
+MN,Lyon,MN-Lyon,https://www.lyoncountymn.gov/,Base,403,gated,https://www.lyoncountymn.gov/
+MN,Marshall,MN-Marshall,https://www.marshallcountymn.gov/,Base,200,ok,https://www.marshallcountymn.gov/
 MN,Martin,MN-Martin,https://beacon.schneidercorp.com/,Base,403,gated,https://beacon.schneidercorp.com/
 MN,Mc Leod,MN-McLeod,http://mcleod.visualgov.com/,Base,200,ok,http://mcleod.visualgov.com/
+MN,Meeker,MN-Meeker,https://www.meekercountymn.gov/,Base,200,ok,https://www.meekercountymn.gov/
 MN,Morrison,MN-Morrison,http://beacon.schneidercorp.com/,Base,403,gated,http://beacon.schneidercorp.com/
+MN,Murray,MN-Murray,https://www.murraycountymn.gov/,Base,200,ok,https://www.murraycountymn.gov/
+MN,Nobles,MN-Nobles,https://www.noblescountymn.gov/,Base,403,gated,https://www.noblescountymn.gov/
+MN,Norman,MN-Norman,https://www.co.norman.mn.us/,Base,200,ok,https://www.normanmn.gov/
 MN,Olmsted,MN-Olmsted,https://publicaccess.co.olmsted.mn.us/Datalets/,Base,403,gated,https://publicaccess.co.olmsted.mn.us/Datalets/
 MN,Ottertail,MN-Ottertail,http://ottertail.visualgov.com/,Base,200,ok,http://ottertail.visualgov.com/Home/SiteDown
 MN,Pennington,MN-Pennington,https://publicsearch.co.pennington.mn.us/search/commonsearch.aspx?mode=parid,Search,200,ok,https://publicsearch.co.pennington.mn.us/Search/Disclaimer.aspx?FromUrl=../search/commonsearch.aspx?mode=parid
@@ -460,28 +580,53 @@ MN,Pine,MN-Pine,http://beacon.schneidercorp.com/,Base,403,gated,http://beacon.sc
 MN,Polk,MN-Polk,https://mn-polk-treasurer.publicaccessnow.com/TaxSearch.aspx,Search,200,ok,https://mn-polk.publicaccessnow.com/
 MN,Pope,MN-Pope,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Pope,Search,200,ok,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Pope
 MN,Ramsey,MN-Ramsey,https://beacon.schneidercorp.com/application.aspx?app=RamseyCountyMN&PageType=Search,Search,403,gated,https://beacon.schneidercorp.com/application.aspx?app=RamseyCountyMN&PageType=Search
+MN,Renville,MN-Renville,https://www.renvillecountymn.gov/,Base,200,ok,https://www.renvillecountymn.gov/
 MN,Rice,MN-Rice,https://beacon.schneidercorp.com/,Base,403,gated,https://beacon.schneidercorp.com/
+MN,Rock,MN-Rock,https://www.co.rock.mn.us/,Base,200,ok,https://www.co.rock.mn.us/
 MN,Roseau,MN-Roseau,http://mn-roseau-treasurer.publicaccessnow.com/,Base,200,ok,https://mn-roseau.publicaccessnow.com/
+MN,Scott,MN-Scott,https://www.scottcountymn.gov/,Base,200,ok,https://www.scottcountymn.gov/
 MN,Steele,MN-Steele,http://cpuimei.com/tax/,Base,200,ok,https://mntax.cpuimei.com/tax/newSite.asp
+MN,Stevens,MN-Stevens,https://www.stevenscountymn.gov/,Base,200,ok,https://www.stevenscountymn.gov/
+MN,Todd,MN-Todd,https://www.toddcountymn.gov/,Base,200,ok,https://www.toddcountymn.gov/
+MN,Traverse,MN-Traverse,https://www.traversecountymn.gov/,Base,200,ok,https://traversecountymn.gov/
 MN,Wadena,MN-Wadena,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Wadena,Search,200,ok,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Wadena
+MN,Washington,MN-Washington,https://www.washingtoncountymn.gov/,Base,200,ok,https://www.washingtoncountymn.gov/
+MN,Wilkin,MN-Wilkin,https://www.co.wilkin.mn.us/,Base,200,ok,https://wilkincounty.gov/
+MN,Winona,MN-Winona,https://www.co.winona.mn.us/,Base,200,ok,https://www.winonacounty.gov/
 MO,Boone,MO-Boone,http://www.showmeboone.com/collector/,Base,200,ok,https://www.boonemo.gov/collector/
+MO,Buchanan,MO-Buchanan,https://buchananmo.devnetwedge.com/,Base,200,ok,https://buchananmo.devnetwedge.com/
 MO,Callaway,MO-Callaway,http://www.callawaycollector.com/,Base,200,ok,https://www.callawaycollector.com/
 MO,Cass,MO-Cass,http://www.casscountycollector.com/,Base,200,ok,https://www.casscountycollector.org/
+MO,Cole,MO-Cole,https://colemo.devnetwedge.com/,Base,200,ok,https://colemo.devnetwedge.com/
 MO,Crawford,MO-Crawford,http://crawfordmo.devnetwedge.com/,Base,200,ok,https://crawfordmo.devnetwedge.com/
 MO,Dade,MO-Dade,https://dadecountycollector.org/,Search,200,ok,https://dadecountycollector.org/
 MO,Dent,MO-Dent,http://dentmo.taxnet.us/,Base,200,ok,https://dentmo.taxnet.us/
+MO,Gladstone City,MO-GladstoneCity,https://www.gladstone.mo.us/,Base,200,ok,https://www.gladstone.mo.us/
+MO,Greene,MO-Greene,https://www.greenecountymo.org/,Base,200,ok,https://greenecountymo.gov/
 MO,Jackson,MO-Jackson,https://mo-jackson.publicaccessnow.com/Collector/TaxSearch.aspx,Search,200,ok,https://mo-jackson.publicaccessnow.com/Collector/TaxSearch.aspx
 MO,Laclede,MO-Laclede,http://lacledecollector.com/details/,Base,403,gated,https://lacledecollector.com/details/
 MO,Nodaway,MO-Nodaway,https://billpay.forte.net/NodawayMOTax/,Base,202,ok,https://billpay.forte.net/NodawayMOTax/
 MO,Pettis,MO-Pettis,http://pettismo.devnetwedge.com/,Base,200,ok,https://pettismo.devnetwedge.com/
+MO,Phelps,MO-Phelps,https://www.phelpscountycollector.com/,Base,200,ok,https://phelpscountycollector.com/
 MO,Pike,MO-Pike,http://beacon.schneidercorp.com/,Base,403,gated,http://beacon.schneidercorp.com/
+MO,Scott,MO-Scott,https://www.scottcocollector.com/,Base,200,ok,https://www.scottcocollector.com/
 MO,St Charles,MO-StCharles,http://collector.sccmo.org/ecollector/Tabs/RealEstateSearch/,Base,200,ok,https://www.sccmo.org/261/Collector-of-Revenue
 MO,St Louis,MO-StLouis,https://taxpayments.stlouiscountymo.gov/,Search,403,gated,https://taxpayments.stlouiscountymo.gov/
 MO,St Louis City,MO-StLouisCity,https://www.stlouis-mo.gov/data/address-search/,Base,200,ok,https://www.stlouis-mo.gov/data/address-search/
 MO,Warren,MO-Warren,https://billpay.forte.net/WARRENCOMOCOLLECTOR/api/,Base,202,ok,https://billpay.forte.net/WARRENCOMOCOLLECTOR/api/
+MS,Alcorn,MS-Alcorn,http://www.deltacomputersystems.com/MS/MS02/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS02/
+MS,Clarke,MS-Clarke,http://www.deltacomputersystems.com/MS/MS12/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS12/
+MS,Clay,MS-Clay,https://cs.datasysmgt.com/,Base,403,gated,https://cs.datasysmgt.com/
+MS,Forrest,MS-Forrest,http://www.deltacomputersystems.com/MS/MS18/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS18/
+MS,George,MS-George,http://www.deltacomputersystems.com/MS/MS20/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS20/
+MS,Greene,MS-Greene,http://www.deltacomputersystems.com/MS/MS21/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS21/
 MS,Hancock,MS-Hancock,https://www.pay1stop.com/PropTaxView/,Base,200,ok,https://www.pay1stop.com/PropTaxView/
+MS,Harrison,MS-Harrison,http://www.deltacomputersystems.com/cgi-lrm5/lrmcgi01?HTMCNTY=MS24,Search,200,ok,https://www.deltacomputersystems.com/cgi-lrm5/lrmcgi01?HTMCNTY=MS24
 MS,Hinds,MS-Hinds,http://www.co.hinds.ms.us/pgs/apps/,Base,403,gated,https://www.co.hinds.ms.us/pgs/apps/
 MS,Jackson,MS-Jackson,https://co-jackson-ms-taxpayments.us/payTaxes.html#/WildfireSearch,Search,200,ok,https://co-jackson-ms-taxpayments.us/payTaxes.html#/WildfireSearch
+MS,Lafayette,MS-Lafayette,http://www.deltacomputersystems.com/MS/MS36/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS36/
+MS,Lamar,MS-Lamar,http://www.deltacomputersystems.com/MS/MS37/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS37/
+MS,Lauderdale,MS-Lauderdale,http://www.deltacomputersystems.com/MS/MS38/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS38/
 MS,Lee,MS-Lee,http://www.deltacomputersystems.com/MS/MS41/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS41/
 MS,Lowndes,MS-Lowndes,http://www.deltacomputersystems.com/MS/MS44/,Base,200,ok,https://www.deltacomputersystems.com/MS/MS44/
 MS,Madison,MS-Madison,https://www.pay1stop.com/PropTax/,Base,200,ok,https://www.pay1stop.com/PropTax/
@@ -524,6 +669,7 @@ NC,Henderson,NC-Henderson,https://lrcpwa.ncptscloud.com/Henderson/,Search,200,ok
 NC,Hoke,NC-Hoke,https://hokecountytaxes.munisselfservice.com/citizens/RealEstate/,Base,200,ok,https://hokecountytaxes.munisselfservice.com/common/Upgrade.aspx
 NC,Hudson Town,NC-HudsonTown,https://hudsonnc.mygovhub.com/#/quickpay,Search,200,ok,https://hudsonnc.mygovhub.com/#/quickpay
 NC,Indian Trail Town,NC-IndianTrailTown,https://wipp.edmundsassoc.com/Wipp600/,Base,200,ok,https://wipp.edmundsassoc.com/Wipp600/
+NC,Iredell,NC-Iredell,https://www.co.iredell.nc.us/,Base,200,ok,https://www.iredellcountync.gov/
 NC,Jackson,NC-Jackson,https://d1ebsyxxbc7tep.cloudfront.net/,Base,200,ok,https://d1ebsyxxbc7tep.cloudfront.net/
 NC,Johnston,NC-Johnston,https://my.johnstonnc.gov/service/johnston_county_property_tax,Search,200,ok,https://my.johnstonnc.gov/service/johnston_county_property_tax
 NC,Lee,NC-Lee,https://leecountync.munisselfservice.com/citizens/RealEstate/,Base,200,ok,https://leecountync.munisselfservice.com/common/Upgrade.aspx
@@ -532,6 +678,8 @@ NC,Lincoln,NC-Lincoln,https://www.lincolncountytax.com/,Search,200,ok,https://ww
 NC,Macon,NC-Macon,https://tax.maconnc.org/ITSPublicMA/TaxBillSearch,Search,200,ok,https://tax.maconnc.org/ITSPublicMA/TaxBillSearch
 NC,Mecklenburg,NC-Mecklenburg,http://taxbill.co.mecklenburg.nc.us/publicwebaccess/,Base,200,ok,https://taxbill.co.mecklenburg.nc.us/publicwebaccess/
 NC,Mitchell,NC-Mitchell,http://mitchell.webtaxpay.com/,Base,200,ok,https://secure.webtaxpay.com/challenge.php?return=index.php%3Fcounty%3Dmitchell%26state%3DNC
+NC,Nash,NC-Nash,https://nashcountync.munisselfservice.com/,Base,403,gated,https://nashcountync.munisselfservice.com/
+NC,New Hanover,NC-NewHanover,https://mss.nhcgov.com/,Base,200,ok,https://mss.nhcgov.com/
 NC,Oak Island Town,NC-OakIslandTown,https://www.municipalonlinepayments.com/OAKISLANDNC/tax/,Base,302,ok,https://oakislandnc.municipalonlinepayments.com/error/notfound?aspxerrorpath=/OAKISLANDNC/tax/site/redirect404
 NC,Orange,NC-Orange,http://web.co.orange.nc.us/PublicWebAccess/,Base,200,ok,https://bcpwa.ncptscloud.com/orange/bill-search
 NC,Polk,NC-Polk,http://cms.revize.com/revize/apps/polkcounty/,Base,403,gated,http://cms.revize.com/revize/apps/polkcounty/
@@ -557,6 +705,7 @@ ND,Ransom,ND-Ransom,http://www.co.stutsman.nd.us/Tax/,Base,200,ok,https://www.st
 ND,Sargent,ND-Sargent,http://www.co.stutsman.nd.us/Tax/,Base,200,ok,https://www.stutsmancounty.gov/departments/tax-equalization/
 ND,Stutsman,ND-Stutsman,http://www.co.stutsman.nd.us/Tax/,Base,200,ok,https://www.stutsmancounty.gov/departments/tax-equalization/
 ND,Ward,ND-Ward,https://itax.tylertech.com/wardnd/,Base,200,ok,https://itax.tylertech.com/wardnd/
+ND,Williams,ND-Williams,https://www.williamsnd.com/,Base,200,ok,https://www.williamsnd.com/
 NE,Adams,NE-Adams,http://www.nebraskataxesonline.us/,Base,200,ok,https://www.nebraskataxesonline.us/
 NE,Boone,NE-Boone,http://www.nebraskataxesonline.us/,Base,200,ok,https://www.nebraskataxesonline.us/
 NE,Box Butte,NE-BoxButte,http://www.nebraskataxesonline.us/,Base,200,ok,https://www.nebraskataxesonline.us/
@@ -732,12 +881,14 @@ NJ,Galloway Twp,NJ-GallowayTwp,https://lots.signatureinfo.com/,Base,503,gateway_
 NJ,Gibbsboro Boro,NJ-GibbsboroBoro,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Glassboro Boro,NJ-GlassboroBoro,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Glen Ridge Borough Twp,NJ-GlenRidgeBoroughTwp,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
+NJ,Gloucester Township,NJ-GloucesterTownship,https://wipp.edmundsassoc.com/Wipp/?wippid=Gloucestertownship,Base,200,ok,https://wipp.edmundsassoc.com/Wipp/?wippid=Gloucestertownship
 NJ,Greenwich Twp,NJ-GreenwichTwp,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Hackensack City,NJ-HackensackCity,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Hackettstown Town,NJ-HackettstownTown,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Haddonfield Boro,NJ-HaddonfieldBoro,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Haddon Heights Boro,NJ-HaddonHeightsBoro,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Haledon Boro,NJ-HaledonBoro,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
+NJ,Hamilton Township,NJ-HamiltonTownship,https://wipp.edmundsassoc.com/Wipp/?wippid=Hamiltontownship,Base,200,ok,https://wipp.edmundsassoc.com/Wipp/?wippid=Hamiltontownship
 NJ,Hamilton Twp,NJ-HamiltonTwp,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Hammonton Town,NJ-HammontonTown,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Harrison Twp,NJ-HarrisonTwp,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
@@ -942,10 +1093,14 @@ NJ,Woodridge Boro,NJ-WoodridgeBoro,https://lots.signatureinfo.com/,Base,503,gate
 NJ,Woolwich Twp,NJ-WoolwichTwp,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Wrightstown Boro,NJ-WrightstownBoro,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
 NJ,Wyckoff Twp,NJ-WyckoffTwp,https://lots.signatureinfo.com/,Base,503,gateway_soft,https://lots.signatureinfo.com/
+NM,Bernalillo,NM-Bernalillo,https://www.bernco.gov/,Base,200,ok,https://www.bernco.gov/
 NM,Dona Ana,NM-DonaAna,http://treasurer.donaanacounty.org/treasurer/treasurerweb/,Base,200,ok,https://recordbook.donaana.gov/treasurer/treasurerweb/
+NM,Sandoval,NM-Sandoval,https://etweb.sandovalcountynm.gov/Treasurer/treasurerweb/,Base,200,ok,https://etweb.sandovalcountynm.gov/Treasurer/treasurerweb/
 NM,Santa Fe,NM-SantaFe,http://www.workplace.com/,Base,200,ok,https://www.meta.com/workplace/?utm_source=workplace&utm_medium=referral&utm_content=workplace-eol
+NV,Clark,NV-Clark,https://www.clarkcountynv.gov/,Search,200,ok,https://www.clarkcountynv.gov/
 NY,Albany City,NY-AlbanyCity,https://magic.collectorsolutions.com/magic-ui/OneTimePayment/albany-ny,Search,403,gated,https://magic.collectorsolutions.com/magic-ui/OneTimePayment/albany-ny
 NY,Albany City School,NY-AlbanyCitySchool,http://tax.neric.org/,Base,200,ok,http://tax.neric.org/
+NY,Amherst Town,NY-AmherstTown,https://www.amherst.ny.us/,Base,200,ok,https://www.amherst.ny.us/
 NY,Aurelius Town,NY-AureliusTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
 NY,Binghamton Town,NY-BinghamtonTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
 NY,Brasher Town,NY-BrasherTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
@@ -958,6 +1113,7 @@ NY,Chautauqua,NY-Chautauqua,https://app.co.chautauqua.ny.us/cctaxonline/,Search,
 NY,Chenango Town,NY-ChenangoTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
 NY,Cherry Valley Town,NY-CherryValleyTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
 NY,Clifton Town,NY-CliftonTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
+NY,Clinton,NY-Clinton,https://www.clintoncountygov.com/,Base,200,ok,https://www.clintoncountyny.gov/
 NY,Colton Town,NY-ColtonTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
 NY,Columbia,NY-Columbia,http://www.totalcollectionsolution.com/Entity/show/id/,Base,200,ok,http://www.totalcollectionsolution.com/site/login
 NY,Conklin Town,NY-ConklinTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
@@ -981,6 +1137,7 @@ NY,Glenville Town,NY-GlenvilleTown,https://egov.basgov.com/glenville/,Base,200,o
 NY,Gouverneur Town,NY-GouverneurTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
 NY,Greene,NY-Greene,http://ny.greenecounty.totalcollectionsolution.com/,Base,200,ok,https://ny-greenecounty.totalcollectionsolution.com/site/login
 NY,Guilderland Town,NY-GuilderlandTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
+NY,Hasting On Hudson Village,NY-HastingOnHudsonVillage,https://hastingsonhudsonny.municipalonlinepayments.com/,Base,200,ok,https://hastingsonhudsonny.municipalonlinepayments.com/hastingsonhudsonny
 NY,Hempstead School,NY-HempsteadSchool,http://mylocalgov.com/hempsteadny/,Base,403,gated,https://mylocalgov.com/hempsteadny/
 NY,Hempstead Town,NY-HempsteadTown,http://mylocalgov.com/hempsteadny/,Base,403,gated,https://mylocalgov.com/hempsteadny/
 NY,Kirkwood Town,NY-KirkwoodTown,http://www.taxlookup.net/,Base,200,ok,http://www.taxlookup.net/
@@ -994,6 +1151,7 @@ NY,Mamakating Town,NY-MamakatingTown,http://www.taxlookup.net/,Base,200,ok,http:
 NY,Mamaroneck Village,NY-MamaroneckVillage,https://www.invoicecloud.com/portal/,Base,200,ok,https://my.invoicecloud.com/portal/(S(0wsvskhj4lyyb4e4vxiwgxfc))/billerLogin.aspx
 NY,Manhattan Boro,NY-ManhattanBoro,http://nycserv.nyc.gov/NYCServWeb/,Base,403,gated,http://nycserv.nyc.gov/NYCServWeb/
 NY,Mastic Beach Village,NY-MasticBeachVillage,https://www.municipaltaxpayments.com/,Base,200,ok,https://www.municipaltaxpayments.com/
+NY,Monroe,NY-Monroe,https://www.monroecountytax.org/monroe/tax/,Base,302,ok,https://www.monroecountytax.org/monroe/tax/unauth.html
 NY,Mount Vernon City,NY-MountVernonCity,https://infotaxonline.com/FindProperty.aspx?129,Search,200,ok,https://infotaxonline.com/FindProperty.aspx?129
 NY,Mount Vernon City Schools,NY-MountVernonCitySchools,https://www.infotaxonline.com/FindProperty.aspx,Search,200,ok,https://www.infotaxonline.com/TaxHome.aspx
 NY,Mount Vernon County,NY-MountVernonCounty,https://infotaxonline.com/FindProperty.aspx?129,Search,200,ok,https://infotaxonline.com/FindProperty.aspx?129
@@ -1010,6 +1168,7 @@ NY,Orange,NY-Orange,http://propertydata.orangecountygov.com/imate/,Base,502,gate
 NY,Queens Boro,NY-QueensBoro,http://nycserv.nyc.gov/NYCServWeb/,Base,403,gated,http://nycserv.nyc.gov/NYCServWeb/
 NY,Rensselaer,NY-Rensselaer,http://ny.rensselaercounty.totalcollectionsolution.com/entity,Search,200,ok,http://ny.rensselaercounty.totalcollectionsolution.com/site/login
 NY,Rochester City,NY-RochesterCity,http://geo.cityofrochester.gov/,Base,502,gateway_soft,http://geo.cityofrochester.gov/
+NY,Rochester City ATF,NY-RochesterCityATF,https://www.atfs.com/,Base,200,ok,https://www.atfs.com/
 NY,Rockville Centre Village,NY-RockvilleCentreVillage,https://rockvillecentre.municipaltaxpayments.com/,Base,200,ok,https://rockvillecentre.municipaltaxpayments.com/
 NY,Rome City,NY-RomeCity,https://selfservice.romenewyork.com/MSS/citizens/RealEstate/,Base,200,ok,https://selfservice.romenewyork.com/mss/common/Upgrade.aspx
 NY,Rome School,NY-RomeSchool,https://selfservice.romenewyork.com/mss/citizens/RealEstate/,Base,200,ok,https://selfservice.romenewyork.com/mss/common/Upgrade.aspx
@@ -1024,6 +1183,7 @@ NY,Syracuse City,NY-SyracuseCity,http://ocfintax.ongov.net/ImateSyr/,Base,200,ok
 NY,Syracuse County,NY-SyracuseCounty,http://ocfintax.ongov.net/ImateSyr/,Base,200,ok,https://ocfintax.ongov.net/ImateSyr/index.aspx
 NY,Warren,NY-Warren,https://public.warrencountyny.gov/vinyl/app/Property%20Taxes/Home/Property%20Taxes/Public%20Delinquent%20Bills,Search,200,ok,https://public.warrencountyny.gov/vinyl/app/Property%20Taxes/Home/Property%20Taxes/Public%20Delinquent%20Bills
 NY,Washington,NY-Washington,http://www.totalcollectionsolution.com/,Base,200,ok,http://www.totalcollectionsolution.com/site/login
+NY,Wayne,NY-Wayne,https://web.co.wayne.ny.us/,Base,200,ok,https://www.waynecountyny.gov/
 NY,Westchester,NY-Westchester,https://cnr.munisselfservice.com/citizens/RealEstate/,Base,200,ok,https://cnr.munisselfservice.com/common/Upgrade.aspx
 NY,White Plains,NY-WhitePlains,http://cwp.munisselfservice.com/citizens/RealEstate/,Base,200,ok,https://cwp.munisselfservice.com/common/Upgrade.aspx
 NY,White Plains City,NY-WhitePlainsCity,https://cwp.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=new,Search,200,ok,https://cwp.munisselfservice.com/common/Upgrade.aspx
@@ -1043,14 +1203,19 @@ OH,Crawford,OH-Crawford,http://realestate.crawford-co.org/re-search.php?item=Par
 OH,Cuyahoga,OH-Cuyahoga,https://treasurer.cuyahogacounty.us/,Search,200,ok,https://www.cuyahogacounty.gov/treasury
 OH,Darke,OH-Darke,http://www.darkecountyrealestate.org/,Base,403,gated,https://www.darkecountyrealestate.org/
 OH,Franklin,OH-Franklin,https://treasurer.franklincountyohio.gov/,Search,200,ok,https://treasurer.franklincountyohio.gov/Home
+OH,Geauga,OH-Geauga,https://geaugarealink.co.geauga.oh.us/REALink/parcel/,Base,403,gated,https://realestate.geauga.oh.gov/Search/Name
 OH,Hamilton,OH-Hamilton,http://www.hamiltoncountyohio.gov/treasurer/default.asp,Search,403,gated,https://cms2.revize.com/revize/hamiltoncountyoh/treasurer/default.asp
+OH,Hancock,OH-Hancock,https://www.co.hancock.oh.us/,Search,200,ok,https://www.co.hancock.oh.us/
 OH,Hardin,OH-Hardin,http://realestate.co.hardin.oh.us/,Base,200,ok,http://realestate.co.hardin.oh.us/re-search.php
 OH,Highland,OH-Highland,http://highlandcountyauditor.org/,Base,403,gated,https://highlandcountyauditor.org/
 OH,Holmes,OH-Holmes,https://www.holmescountyauditor.org/Search/Number,Search,403,gated,https://www.holmescountyauditor.org/Search/Number
 OH,Huron,OH-Huron,http://www.huroncountyauditor.org/,Base,200,ok,https://www.huroncountyauditor.org/
 OH,Jackson,OH-Jackson,http://jacksoncountyauditor.org/,Base,403,gated,https://jacksoncountyauditor.org/
 OH,Knox,OH-Knox,http://knoxcountyauditor.org/,Base,200,ok,https://knoxcountyauditor.org/
+OH,Lake,OH-Lake,https://www.lakecountyohio.gov/,Search,200,ok,https://www.lakecountyohio.gov/
 OH,Lawrence,OH-Lawrence,http://lawrencecountytreasurer.org/TaxDetails/,Base,403,gated,https://lawrencecountytreasurer.org/TaxDetails/
+OH,Licking,OH-Licking,https://www.lcounty.com/,Search,200,ok,https://lickingcounty.gov/
+OH,Logan,OH-Logan,https://realestate.co.logan.oh.us/,Base,200,ok,https://realestate.logancountyohio.gov/
 OH,Lorain,OH-Lorain,https://loraincountyauditor.gov/,Search,200,ok,https://loraincountyauditor.gov/
 OH,Lucas,OH-Lucas,http://www.co.lucas.oh.us/index.aspx?nid=466,Search,200,ok,https://www.lucascountytreasurer.org/
 OH,Mahoning,OH-Mahoning,https://auditor.mahoningcountyoh.gov/,Search,403,gated,https://auditor.mahoningcountyoh.gov/
@@ -1078,6 +1243,7 @@ OH,Williams,OH-Williams,https://realestate.williamscountyoh.gov/Search,Base,403,
 OH,Wyandot,OH-Wyandot,http://realestate.co.wyandot.oh.us/re/re-search.php?item=Parn,Base,200,ok,http://realestate.co.wyandot.oh.us/re/re-search.php?item=Parn
 OK,Oklahoma,OK-Oklahoma,http://www.oklahomacounty.org/treasurer/,Base,200,ok,https://www.oklahomacounty.org/elected-offices/treasurer
 OK,Tulsa,OK-Tulsa,https://oktaxrolls.com/searchTaxRoll/Tulsa/,Base,200,ok,https://oktaxrolls.com/searchTaxRoll/Tulsa/
+OR,Clackamas,OR-Clackamas,https://www.clackamas.us/,Base,200,ok,https://www.clackamas.us/
 OR,Multnomah,OR-Multnomah,http://www.multcoproptax.org/,Base,200,ok,https://multcoproptax.com/
 OR,Washington,OR-Washington,http://www.co.washington.or.us/AssessmentTaxation/,Base,200,ok,https://www.washingtoncountyor.gov/at
 PA,Allegheny,PA-Allegheny,https://realestate.alleghenycounty.us/Tax?ID={0}&SearchType=3,Search,200,ok,https://realestate.alleghenycounty.us/Search
@@ -1087,16 +1253,45 @@ PA,Chester Due,PA-ChesterDue,https://www.officialpayments.com/,Base,200,ok,https
 PA,Chester Payments,PA-ChesterPayments,https://payments.municipay.com/api/b9b26aee8ebf11ea94907fc00dc56f18/parcel/search,Search,405,gated,https://payments.municipay.com/api/b9b26aee8ebf11ea94907fc00dc56f18/parcel/search
 PA,Lehigh,PA-Lehigh,http://apps.lehighcounty.org/,Base,200,ok,https://apps.lehighcounty.org/
 PA,Luzerne,PA-Luzerne,http://nerevenue.rba.com/taxes/luzerne/,Base,200,ok,https://nerevenue.rba.com/taxes/luzerne/login.asp
+PA,Mercer,PA-Mercer,https://www.infoconcountyaccess.com/CAS_Public_Inquiries/Monarch/,Base,200,ok,https://www.infoconcountyaccess.com/CAS_Public_Inquiries/Monarch/
 PA,Montgomery Tax Claim,PA-MontgomeryTaxClaim,https://webapp07.montcopa.org/taxclaim/,Search,200,ok,https://webapp07.montcopa.org/taxclaim/
 PA,New Castle City,PA-NewCastleCity,https://wipp.edmundsassoc.com/Wipp/,Base,200,ok,https://wipp.edmundsassoc.com/Wipp/
 PA,New Castle School,PA-NewCastleSchool,https://wipp.edmundsassoc.com/Wipp/,Base,200,ok,https://wipp.edmundsassoc.com/Wipp/
+PA,Northampton,PA-Northampton,https://www.ncpub.org/,Base,200,ok,https://www.ncpub.org/_web/forms/htmlframe.aspx?mode=content/home.htm
 PA,Philadelphia City,PA-PhiladelphiaCity,https://tax-services.phila.gov/,Search,200,ok,https://tax-services.phila.gov/?Check=1
+PA,Schuylkill,PA-Schuylkill,https://www.co.schuylkill.pa.us/,Base,200,ok,https://www.co.schuylkill.pa.us/Revize.asp
 PA,Scranton City,PA-ScrantonCity,http://nerevenue.rba.com/taxes/scranton/,Base,200,ok,https://nerevenue.rba.com/taxes/scranton/login.asp
 PA,West Mifflin School,PA-WestMifflinSchool,https://billpay.forte.net/westmifflinpaschooltax/,Search,202,ok,https://billpay.forte.net/westmifflinpaschooltax/
+PR,CRIM,PR-CRIM,https://www.crimpr.net/,Base,200,ok,https://portal.crim360.com/crimpr/index.htm
 PR,Special,PR-Special,https://siscon.hacienda.gobierno.pr/ce/,Base,200,ok,https://siscon.hacienda.gobierno.pr/ce/
+RI,Bristol Town,RI-BristolTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Burrillville Town,RI-BurrillvilleTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Charlestown Town,RI-CharlestownTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Coventry Town,RI-CoventryTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Cumberland Town,RI-CumberlandTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Exeter Town,RI-ExeterTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Glocester Town,RI-GlocesterTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Hopkinton Town,RI-HopkintonTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Jamestown Town,RI-JamestownTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Johnston Town,RI-JohnstonTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Lincoln Town,RI-LincolnTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Little Compton Town,RI-LittleComptonTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Narragansett Town,RI-NarragansettTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Newport City,RI-NewportCity,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,North Providence Town,RI-NorthProvidenceTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,North Smithfield Town,RI-NorthSmithfieldTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Portsmouth Town,RI-PortsmouthTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
 RI,Providence City,RI-ProvidenceCity,https://billpay.providenceri.com/,Base,200,ok,https://www.providenceri.gov/collector/online-tax-payment-system/
+RI,Richmond Town,RI-RichmondTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Scituate Town,RI-ScituateTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Smithfield Town,RI-SmithfieldTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,South Kingstown Town,RI-SouthKingstownTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Warren Town,RI-WarrenTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
 RI,Warwick City,RI-WarwickCity,https://www.citizenselfservice.com/MSS/citizens/RealEstate/,Base,200,ok,https://identity.tylerportico.com/oauth2/default/v1/authorize?client_id=0oa78by9mjEqRfEkL4x7&response_mode=form_post&response_type=code+id_token&scope=openid+offline_access+profile+email+tcpPortal_cityofwarwickri&state=OpenIdConnect.AuthenticationProperties%3dPIkE9iw0w69jhe5dwgUWtcqy47gcyrdLfKs2xmdkj5O7AKVWztHi0ueUGW1NB6eLmHqqRe4MGQKict5ti6hLhhFpNMzR4WCF96TqlF1AgvUAVd2VU41KoksqZmO2UB7_4qDBl3ZjrRDlmahQGgbc7ekKIr0&nonce=639249276050743725.YzI5MDhmZDktNDNjNS00YjY3LTk3NmMtNmM2YjI3YWI0YTM3YzBkNjMwMTItMDhlYy00MjhlLThlZmQtZjQ4ZWQ1YTc2ZWNi&redirect_uri=https%3a%2f%2fwww.citizenselfservice.com%2fmss%2flogin.aspx
 RI,Westerly Town,RI-WesterlyTown,https://www.mytaxbillri.org/inet/bill/home.do?town=westerlyri,Search,200,ok,https://www.mytaxbillri.org/inet/bill/home.do?town=westerlyri
+RI,West Greenwich Town,RI-WestGreenwichTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,West Warwick Town,RI-WestWarwickTown,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
+RI,Woonsocket City,RI-WoonsocketCity,https://www.opaldata.net/onlinetax/,Base,200,ok,https://www.opaldata.net/onlinetax/
 SC,Anderson,SC-Anderson,https://acpass.andersoncountysc.org/p_tax_search.htm,Search,200,ok,https://acpass.andersoncountysc.org/loginreg3/login.php
 SC,Beaufort,SC-Beaufort,https://sc-beaufort.publicaccessnow.com/Home.aspx,Search,200,ok,https://sc-beaufort.publicaccessnow.com/Home.aspx
 SC,Cherokee,SC-Cherokee,https://www.cherokeecountysctax.com/taxes.html#/,Base,200,ok,https://cherokeecountysctax.qpaybill.com/Taxes/TaxesDefaultType4.aspx
@@ -1106,12 +1301,15 @@ SC,Dorchester Priors,SC-DorchesterPriors,https://as400.dorchestercounty.net/weba
 SC,Florence,SC-Florence,http://web.florenceco.org/cgi-bin/ta/,Base,403,gated,http://web.florenceco.org/cgi-bin/ta/
 SC,Georgetown,SC-Georgetown,https://georgetowncountysctax.com/update.html#/WildfireSearch,Search,200,ok,https://georgetowncountysctax.com/update.html#/WildfireSearch
 SC,Greenville,SC-Greenville,http://www.greenvillecounty.org/appsAS400/RealProperty/,Base,502,gateway_soft,http://www.greenvillecounty.org/appsAS400/RealProperty/
+SC,Horry,SC-Horry,https://horrycountytreasurer.qpaybill.com/,Search,200,ok,https://horrycountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx
 SC,Jasper,SC-Jasper,http://www.jaspercountysc.org/,Base,200,ok,http://www.jaspercountysc.org/
 SC,Kershaw,SC-Kershaw,http://www.kershawcountysctax.com/,Base,200,ok,https://kershawcounty.qpaybill.com/Taxes/TaxesDefaultType4.aspx
 SC,Lancaster,SC-Lancaster,http://mylancastersctax.org/,Base,200,ok,https://lancastersctax.qpaybill.com/Taxes/TaxesDefaultType4.aspx
 SC,Laurens,SC-Laurens,http://www.laurenscountysctaxes.com/,Base,200,ok,https://laurenstreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx
 SC,Lexington,SC-Lexington,https://lexingtoncountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx,Search,200,ok,https://lexingtoncountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx
 SC,Marion,SC-Marion,http://marionsc.org/,Base,200,ok,https://marionsc.org/
+SC,North Augusta City,SC-NorthAugustaCity,https://www.govhost.com/,Base,200,ok,https://www.govhost.com/
+SC,Orangeburg,SC-Orangeburg,https://www.orangeburgcounty.org/,Base,200,ok,https://www.orangeburgcounty.org/
 SC,Spartanburg,SC-Spartanburg,https://spartanburgcountytax.qpaybill.com/Taxes/TaxesDefaultType4.aspx,Search,200,ok,https://spartanburgcountytax.qpaybill.com/Taxes/TaxesDefaultType4.aspx
 SC,Union,SC-Union,https://uniontreasurer.qpaybill.com/Taxes/,Base,403,gated,https://uniontreasurer.qpaybill.com/Taxes/
 SD,Brown,SD-Brown,http://tax.brown.sd.us/,Base,200,ok,http://tax.brown.sd.us/
@@ -1137,11 +1335,13 @@ TX,Aldine ISD,TX-AldineISD,http://tax.aldine.k12.tx.us/TaxAldineISD/,Base,403,ga
 TX,Alief ISD,TX-AliefISD,https://texaspayments.com/Home/,Base,403,gated,https://www.texaspayments.com/Home/
 TX,Andrews ISD,TX-AndrewsISD,https://andrewsisdtax.com/taxes.html/,Search,200,ok,https://andrewsisdtax.com/taxes.html/
 TX,Angelina,TX-Angelina,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
+TX,Aransas,TX-Aransas,http://www.aransascad.org/Appraisal/PublicAccess/,Base,403,gated,https://www.aransascad.org/Appraisal/PublicAccess/
 TX,ASW,TX-ASW,http://www.aswtax.com/,Base,200,ok,https://www.aswtax.com/
 TX,Atascosa,TX-Atascosa,https://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Austin CAD,TX-AustinCAD,http://tax.austincad.org/tax/,Base,403,gated,https://tax.austincad.org/tax
 TX,Bailey CAD,TX-BaileyCAD,https://esearch.bailey-cad.org/,Search,200,ok,https://esearch.bailey-cad.org/
 TX,BAMunitax,TX-BAMunitax,http://www.bamunitax.com/,Base,503,gateway_soft,http://www.bamunitax.com/
+TX,Bastrop,TX-Bastrop,https://www.bastroptac.com/,Base,403,gated,http://bastrop.propertytaxpayments.net/
 TX,Bee,TX-Bee,https://actweb.acttax.com/bee/bee/index.jsp,Search,200,ok,https://actweb.acttax.com/bee/bee/index.jsp
 TX,Bell CAD,TX-BellCAD,https://esearch.bellcad.org/,Search,200,ok,https://esearch.bellcad.org/
 TX,Bexar,TX-Bexar,http://home.bexar.org/tax/index.html,Search,200,ok,https://www.bexar.org/1515/Tax-Assessor-Collector
@@ -1149,6 +1349,7 @@ TX,Blanco CAD,TX-BlancoCAD,http://propaccess.trueautomation.com/clientdb/,Base,2
 TX,Bob Leard Interests,TX-BobLeardInterests,http://www.bli-tax.com/tax-form/,Base,200,ok,https://www.bli-tax.com/tax-form/
 TX,Bosque,TX-Bosque,http://www.bosquecountytaxoffice.com/,Base,200,ok,https://www.bosquecountytaxoffice.com/
 TX,Bowie CAD,TX-BowieCAD,https://bowie.propertytaxpayments.net/search,Search,403,gated,https://bowie.propertytaxpayments.net/search
+TX,Brazoria,TX-Brazoria,https://www.brazoriacountytx.gov/,Base,403,gated,https://www.brazoriacountytx.gov/
 TX,Brazos,TX-Brazos,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Brewster CAD,TX-BrewsterCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Brooks,TX-Brooks,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
@@ -1157,6 +1358,7 @@ TX,Burnet CAD,TX-BurnetCAD,https://propaccess.trueautomation.com/clientdb/,Base,
 TX,Caldwell CAD,TX-CaldwellCAD,https://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Calhoun CAD,TX-CalhounCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Callahan,TX-Callahan,http://www.isouthwestdata.com/client/,Base,200,ok,http://isouthwestdata.com/
+TX,Cameron,TX-Cameron,https://www.cameroncountytax.org/,Base,200,ok,https://camerontax.go2gov.net/faces/search.jsp
 TX,Camp CAD,TX-CampCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Carrollton Farmers Branch ISD,TX-CarrolltonFarmersBranchISD,https://www.texaspayments.com/057903,Search,200,ok,https://www.texaspayments.com/057903
 TX,Carson,TX-Carson,https://www.carsoncountytax.org/Home/Search,Search,200,ok,https://www.carsoncountytax.org/Home/Search
@@ -1175,19 +1377,23 @@ TX,Dallam CAD,TX-DallamCAD,http://propaccess.trueautomation.com/clientdb/,Base,2
 TX,Dallas,TX-Dallas,http://www.dallascounty.org/applications/english/proptax_app/tax_intro.php,Search,200,ok,https://www.dallascounty.org/departments/tax/property-tax.php
 TX,Dayton ISD,TX-DaytonISD,https://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Deer Park City,TX-DeerParkCity,https://actweb.acttax.com/act_webdev/deerparkcity/,Base,200,ok,https://actweb.acttax.com/act_webdev/deerparkcity/
+TX,Delta CAD,TX-DeltaCAD,https://esearch.delta-cad.org/,Base,200,ok,https://esearch.delta-cad.org/
 TX,Denton,TX-Denton,https://taxweb.dentoncounty.gov/search/,Search,403,gated,https://taxweb.dentoncounty.gov/search/
 TX,Denton County LID1,TX-DentonCountyLID1,http://bli-tax.com/cad-number/,Base,200,ok,https://bli-tax.com/cad-number/
 TX,Denton County RUD1,TX-DentonCountyRUD1,http://bli-tax.com/cad-number/,Base,200,ok,https://bli-tax.com/cad-number/
 TX,De Witt,TX-DeWitt,https://www.dewittcad.org/(S(23vnxvbawv3tdhfnq2bcpznm))/,Base,200,ok,https://www.dewittcad.org/(S(23vnxvbawv3tdhfnq2bcpznm))/
 TX,Eastland CAD,TX-EastlandCAD,http://www.eastlandcad.org,Base,200,ok,http://www.eastlandcad.org
 TX,Edwards,TX-Edwards,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
+TX,Ellis,TX-Ellis,https://www.elliscountytx.gov/,Base,200,ok,https://www.elliscountytx.gov/
 TX,Equitax,TX-Equitax,http://www.equitaxinc.com/,Base,200,ok,https://equitaxinc.com/
+TX,Falls,TX-Falls,https://www.texasonlinerecords.com/,Base,200,ok,https://www.texasonlinerecords.com/tor/
 TX,Fannin CAD,TX-FanninCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Fayette CAD,TX-FayetteCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Floyd CAD,TX-FloydCAD,http://www.isouthwestdata.com/client/,Base,200,ok,http://isouthwestdata.com/
 TX,Freestone,TX-Freestone,http://www.freestonetax.org/,Base,200,ok,http://www.freestonetax.org/
 TX,Friendswood ISD,TX-FriendswoodISD,http://www.myfisd.com/,Base,200,ok,https://www.myfisd.com/
 TX,Frio,TX-Frio,http://www.friocountytax.org/,Base,200,ok,http://www.friocountytax.org/
+TX,Frio CAD,TX-FrioCAD,https://www.friocad.org/,Base,200,ok,https://www.friocad.org/
 TX,Gaines CAD,TX-GainesCAD,https://esearch.gainescad.org/,Search,200,ok,https://esearch.gainescad.org/
 TX,Galveston,TX-Galveston,http://www.galvestoncountytx.gov/to/Pages/default.aspx,Search,403,gated,http://www.galvestoncountytx.gov/to/Pages/default.aspx
 TX,Garland City,TX-GarlandCity,https://www.texaspayments.com/057120,Search,200,ok,https://www.texaspayments.com/057120
@@ -1217,6 +1423,7 @@ TX,Hopkins,TX-Hopkins,https://hopkins.propertytaxpayments.net/search,Search,403,
 TX,Howard,TX-Howard,http://iswdataclient.azurewebsites.net/,Base,200,ok,https://iswdatacorp.azurewebsites.net/
 TX,Howard CAD,TX-HowardCAD,http://iswdataclient.azurewebsites.net/,Base,200,ok,https://iswdatacorp.azurewebsites.net/
 TX,Humble ISD,TX-HumbleISD,https://humbleisd.propertytaxpayments.net/search/,Search,403,gated,https://humbleisd.propertytaxpayments.net/search/
+TX,Hunt,TX-Hunt,https://esearch.hctax.info/,Base,200,ok,https://esearch.hctax.info/
 TX,Irving ISD,TX-IrvingISD,https://actweb.acttax.com/act_webdev/irving,Base,200,ok,https://actweb.acttax.com/act_webdev/irving/
 TX,ITMServices,TX-ITMServices,http://www.itmservices.com/,Base,200,ok,http://www.itmservices.com/
 TX,Jack,TX-Jack,https://www.jackcountytax.org/,Search,200,ok,https://www.jackcountytax.org/
@@ -1225,10 +1432,13 @@ TX,Jim Wells CAD,TX-JimWellsCAD,https://jimwells.propertytaxpayments.net/search,
 TX,Johnson,TX-Johnson,https://www.johnsoncountytaxoffice.org/search/,Search,200,ok,https://www.johnsoncountytaxoffice.org/search/
 TX,Jones,TX-Jones,http://www.jonescad.org/,Base,200,ok,http://www.jonescad.org/
 TX,Karnes,TX-Karnes,http://www.karnescountytax.org/,Base,200,ok,http://www.karnescountytax.org/
+TX,Kaufman,TX-Kaufman,http://kaufmantax.net/clientdb/,Base,403,gated,http://kaufmantax.net/clientdb/
+TX,Kendall CAD,TX-KendallCAD,https://esearch.kendallad.org/Property/View/,Base,200,ok,https://esearch.kendallad.org/Error/Http404
 TX,Kimble CAD,TX-KimbleCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Knox CAD,TX-KnoxCAD,http://www.isouthwestdata.com/client/,Base,200,ok,http://isouthwestdata.com/
 TX,Lamar CAD,TX-LamarCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Lamb,TX-Lamb,https://esearch.lambcad.org/,Search,200,ok,https://esearch.lambcad.org/
+TX,Lampasas CAD,TX-LampasasCAD,https://www.lampasascad.org/,Base,200,ok,https://www.lampasascad.org/
 TX,Lancaster MUD1,TX-LancasterMUD1,http://www.bli-tax.com/tax-form/,Base,200,ok,https://www.bli-tax.com/tax-form/
 TX,Lavaca,TX-Lavaca,https://www.lavacacountytax.com/,Search,200,ok,https://www.lavacacountytax.com/
 TX,Lee,TX-Lee,http://www.leetax.org/,Base,200,ok,https://leetax.org/
@@ -1245,6 +1455,7 @@ TX,Mc Lennan,TX-McLennan,http://actweb.acttax.com/act_webdev/mclennan/,Base,200,
 TX,Medina,TX-Medina,http://www.medinacountytx.org/Appraisal/PublicAccess/,Base,200,ok,http://www.medinacountytx.org/Appraisal/PublicAccess/
 TX,Mesquite City,TX-MesquiteCity,https://propertytax.cityofmesquite.com/mesquitetax/,Base,403,gated,https://propertytax.cityofmesquite.com/mesquitetax/
 TX,Midland CAD,TX-MidlandCAD,http://www.isouthwestdata.com/client/,Base,200,ok,http://isouthwestdata.com/
+TX,Milam,TX-Milam,https://esearch.milamad.org/,Base,200,ok,https://esearch.milamad.org/
 TX,Mills CAD,TX-MillsCAD,http://www.isouthwestdata.com/client/,Base,200,ok,http://isouthwestdata.com/
 TX,Montague,TX-Montague,http://www.isouthwestdata.com/client/,Base,200,ok,http://isouthwestdata.com/
 TX,Montague CAD,TX-MontagueCAD,http://www.isouthwestdata.com/client/,Base,200,ok,http://isouthwestdata.com/
@@ -1269,6 +1480,7 @@ TX,Richardson ISD,TX-RichardsonISD,https://www.texaspayments.com/057916,Search,2
 TX,Robertson,TX-Robertson,https://tax.cagi.com/account-search/C198,Search,200,ok,https://tax.cagi.com/account-search/C198
 TX,Rockwall CAD,TX-RockwallCAD,http://esearch.rockwallcad.com/,Base,200,ok,https://esearch.rockwallcad.com/
 TX,Runnels,TX-Runnels,https://iswdataclient.azurewebsites.net/,Base,200,ok,https://iswdatacorp.azurewebsites.net/
+TX,Rusk,TX-Rusk,https://www.ruskcountytax.com/,Base,200,ok,https://www.ruskcountytax.com/
 TX,San Augustine,TX-SanAugustine,http://www.sanaugustinetax.org/,Base,200,ok,http://www.sanaugustinetax.org/
 TX,San Jacinto Tax Service,TX-SanJacintoTaxService,http://www.sjtaxservice.com/,Base,200,ok,https://www.sjtaxservice.com/
 TX,Santa Fe ISD,TX-SantaFeISD,https://www.texaspayments.com/084909,Search,200,ok,https://www.texaspayments.com/084909
@@ -1286,6 +1498,7 @@ TX,Swisher CAD,TX-SwisherCAD,http://propaccess.trueautomation.com/clientdb/,Base
 TX,Tarrant,TX-Tarrant,https://www.tax.tarrantcountytx.gov/Search/,Search,403,gated,https://www.tax.tarrantcountytx.gov/Search/
 TX,Tax Tech,TX-TaxTech,http://www.taxtech.net/,Base,200,ok,https://www.taxtech.net/
 TX,Terrell CAD,TX-TerrellCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
+TX,Terry,TX-Terry,https://www.tax.cagi.com/,Base,200,ok,https://tax.cagi.com/
 TX,Texas City ISD,TX-TexasCityISD,https://actweb.acttax.com/act_webdev/texascity/,Base,200,ok,https://actweb.acttax.com/act_webdev/texascity/
 TX,Titus,TX-Titus,https://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Tomball ISD,TX-TomballISD,https://tomballisd.propertytaxpayments.net/search,Search,403,gated,https://tomballisd.propertytaxpayments.net/search
@@ -1298,7 +1511,9 @@ TX,Valwood Improvement Authority,TX-ValwoodImprovementAuthority,http://www.valwo
 TX,Van Zandt CAD,TX-VanZandtCAD,https://vanzandt.propertytaxpayments.net/search,Search,403,gated,https://vanzandt.propertytaxpayments.net/search
 TX,Walker CAD,TX-WalkerCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Waller,TX-Waller,http://tax.co.waller.tx.us/,Base,200,ok,http://tax.co.waller.tx.us/
+TX,Waller ISD,TX-WallerISD,https://mytax.eztaxonline.net/,Base,403,gated,https://mytax.eztaxonline.net/
 TX,Ward,TX-Ward,http://wardcountytax.org/,Base,200,ok,http://wardcountytax.org/
+TX,Webb,TX-Webb,https://www.webbcountytax.com/,Base,200,ok,https://webb.go2gov.net/
 TX,Wharton,TX-Wharton,http://www.whartoncountytaxoffice.com/,Base,200,ok,https://www.whartoncountytaxoffice.com/
 TX,Wheeler,TX-Wheeler,http://www.wheelerassoc.com/,Base,200,ok,https://www.wheelerassoc.com/
 TX,Wheeler Associates,TX-WheelerAssociates,https://www.wheelerassoc.com/SearchAccount,Search,200,ok,https://www.wheelerassoc.com/SearchAccount
@@ -1307,10 +1522,15 @@ TX,Wilbarger,TX-Wilbarger,http://www.wilbargertax.org/,Base,200,ok,http://www.wi
 TX,Wilson,TX-Wilson,https://esearch.tax.wilsoncountytx.gov/,Search,200,ok,https://esearch.tax.wilsoncountytx.gov/
 TX,Wilson CAD,TX-WilsonCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Wise CAD,TX-WiseCAD,http://www.isouthwestdata.com/client/,Base,200,ok,http://isouthwestdata.com/
+TX,Wood,TX-Wood,https://www.woodcountytax.com/,Base,200,ok,https://www.woodcountytax.com/
 TX,Woodlands Mud,TX-WoodlandsMud,https://texaspayments.com/Home/,Base,403,gated,https://www.texaspayments.com/Home/
 TX,Yoakum CAD,TX-YoakumCAD,http://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 TX,Zapata CAD,TX-ZapataCAD,https://propaccess.trueautomation.com/clientdb/,Base,200,ok,https://propaccess.trueautomation.com/clientdb/customdisplay.htm?aspxerrorpath=/clientdb/propertysearch.aspx
 UT,Carbon,UT-Carbon,https://secureinstantpayments.com/sip/reports/,Base,403,gated,https://secureinstantpayments.com/sip/reports/
+UT,Davis,UT-Davis,https://www.co.davis.ut.us/treasurer/,Base,200,ok,https://www.co.davis.ut.us/treasurer/
+UT,Salt Lake,UT-SaltLake,https://treasurer.slco.org/,Base,200,ok,https://www.saltlakecounty.gov/treasurer/
+UT,Summit,UT-Summit,https://property.summitcounty.org/,Base,200,ok,https://property.summitcounty.org/
+UT,Washington,UT-Washington,https://www.washco.utah.gov/,Base,200,ok,https://www.washco.utah.gov/
 VA,Accomack,VA-Accomack,http://www.accomacktax.com/taxes/,Base,200,ok,https://www.accomack.gov/702/Pay-Taxes
 VA,Albemarle,VA-Albemarle,https://www.albemarlecountytaxes.org/taxes/,Base,200,ok,https://www.albemarlecountytaxes.org/taxes/
 VA,Alexandria City,VA-AlexandriaCity,https://realestate.alexandriava.gov/,Base,200,ok,https://realestate.alexandriava.gov/
@@ -1324,6 +1544,7 @@ VA,Bristol City,VA-BristolCity,https://eservices.bristolva.org/applications/REPu
 VA,Campbell,VA-Campbell,https://bai.co.campbell.va.us/applications/REPublicInquiry/,Base,403,gated,https://bai.co.campbell.va.us/applications/REPublicInquiry/
 VA,Caroline,VA-Caroline,https://e-services.co.caroline.va.us/Applications/REPublicInquiry/,Base,403,gated,https://e-services.co.caroline.va.us/Applications/REPublicInquiry/
 VA,Chesapeake,VA-Chesapeake,https://cityapps.cityofchesapeake.net/subscriptions/realestate/,Search,200,ok,https://access.cityofchesapeake.net/clickshare/authenticateUserSubscription.do?CSAuthReq=1789331440575000:qHEYtVWEPuZnfg==::W4kSDx5sVl4HppqTvnDC8g==&CSTargetURL=http://cityapps.cityofchesapeake.net/subscriptions/realestate/
+VA,Chesterfield,VA-Chesterfield,https://www.chesterfield.gov/,Base,200,ok,https://www.chesterfield.gov/
 VA,City Of Hopewell,VA-CityOfHopewell,https://cityofhopewellva.tylerportico.com/css/citizen-selfservice/real-estate/pay-bill,Search,200,ok,https://cityofhopewellva.tylerportico.com/css/citizen-selfservice/real-estate/pay-bill
 VA,Colonial Beach Town,VA-ColonialBeachTown,https://wipp.edmundsgovtech.cloud/home?wippId=CBTN,Search,200,ok,https://wipp.edmundsgovtech.cloud/home?wippId=CBTN
 VA,Culpeper,VA-Culpeper,https://www.culpepercounty.gov/applications/REPublicInquiry/,Base,403,gated,https://www.culpepercounty.gov/applications/REPublicInquiry/
@@ -1339,6 +1560,7 @@ VA,Hampton City Storm,VA-HamptonCityStorm,https://hamptonrealinfo.hampton.gov/Ha
 VA,Hanover,VA-Hanover,https://taxes.hanovercounty.gov/,Search,200,ok,https://taxes.hanovercounty.gov/
 VA,Henrico,VA-Henrico,https://businesstax.henrico.gov/taxes.html#/WildfireSearch,Search,200,ok,https://businesstax.henrico.gov/taxes.html#/WildfireSearch
 VA,Hopewell City,VA-HopewellCity,https://cityofhopewellva.tylerportico.com/css/citizen-selfservice/real-estate,Search,200,ok,https://cityofhopewellva.tylerportico.com/css/citizen-selfservice/real-estate
+VA,James City,VA-JamesCity,https://property.jamescitycountyva.gov/,Base,200,ok,https://property.jamescitycountyva.gov/
 VA,King George,VA-KingGeorge,https://eservices.kinggeorgecountyva.gov/applications/REPublicInquiry/,Base,403,gated,https://eservices.kinggeorgecountyva.gov/applications/REPublicInquiry/
 VA,King Queen,VA-KingQueen,https://eservices.kingandqueenco.net/applications/trapps/,Base,200,ok,https://eservices.kingandqueenco.net/applications/trapps/
 VA,Leesburg Town,VA-LeesburgTown,https://leesburg.munisselfservice.com/citizens/RealEstate/,Base,200,ok,https://leesburg.munisselfservice.com/common/Upgrade.aspx
@@ -1362,8 +1584,10 @@ VA,Russell,VA-Russell,https://egov.russellcountyva.us/applications/REPublicInqui
 VA,Staunton City,VA-StauntonCity,https://services.ci.staunton.va.us/MSS/citizens/RealEstate/,Base,200,ok,https://services.ci.staunton.va.us/mss/common/Upgrade.aspx
 VA,Suffolk City,VA-SuffolkCity,https://www.suffolkvatax.us/#/,Base,200,ok,https://www.suffolkvatax.us/#/
 VA,Sussex,VA-Sussex,https://eservices.sussexcountyva.gov/applications/REpublicInquiry/,Base,403,gated,https://eservices.sussexcountyva.gov/applications/REpublicInquiry/
+VA,Virginia Beach City,VA-VirginiaBeachCity,https://cvb.manatron.com/,Base,200,ok,https://cvb.manatron.com/
 VA,Warren,VA-Warren,https://eservices.warrencountyva.net/applications/REPublicInquiry/,Base,403,gated,https://eservices.warrencountyva.net/applications/REPublicInquiry/
 VA,Westmoreland,VA-Westmoreland,https://eservices.westmoreland-county.org/applications/REPublicInquiry/,Base,403,gated,https://eservices.westmoreland-county.org/applications/REPublicInquiry/
+WA,Cowlitz,WA-Cowlitz,https://www.cowlitzinfo.net/,Base,200,ok,https://www.cowlitzinfo.net/
 WA,King,WA-King,http://info.kingcounty.gov/finance/treasury/propertytax/,Base,200,ok,https://payment.kingcounty.gov/Home/Index?app=PropertyTaxes
 WA,Kitsap,WA-Kitsap,https://psearch.kitsap.gov/pdetails/Default,Search,200,ok,https://psearch.kitsap.gov/pdetails/Default
 WA,Lewis,WA-Lewis,https://parcels.lewiscountywa.gov/,Search,200,ok,https://parcels.lewiscountywa.gov/
@@ -1380,36 +1604,49 @@ WI,Buffalo,WI-Buffalo,https://landnav-publicportal.buffalocounty.com/Search/Real
 WI,Burnett,WI-Burnett,http://web.burnettcounty.org/access/REAL%20ESTATE/header.asp,Search,200,ok,https://web.burnettcounty.org/access/REAL%20ESTATE/header.asp
 WI,Clark,WI-Clark,http://clarkcowi.wgxtreme.com/java/wgx_taxsearch/report/window/clarkcowi/,Base,200,ok,http://clarkcowi.wgxtreme.com/java/wgx_taxsearch/report/window/clarkcowi/
 WI,Columbia,WI-Columbia,https://ascent.co.columbia.wi.us/LandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,200,ok,https://ascent.co.columbia.wi.us/LandRecords/PropertyListing/RealEstateTaxParcel#/Search
+WI,Crawford,WI-Crawford,https://landrecords.crawfordcountywi.org/,Base,200,ok,https://landrecords.crawfordcountywi.org/
 WI,Florence,WI-Florence,http://gcs.florencewisconsin.com/GCSWebPortal/,Base,302,ok,http://gcs.florencewisconsin.com/GCSWebPortal/
+WI,Fond Du Lac,WI-FondDuLac,https://landinfo.fdlco.wi.gov/,Base,200,ok,https://landinfo.fdlco.wi.gov/LandShark/
 WI,Fox Point Village,WI-FoxPointVillage,http://host.gcssoftware.com/Foxpoint/,Base,503,gateway_soft,https://host.gcssoftware.com/Foxpoint/
 WI,Glendale City,WI-GlendaleCity,https://host.gcssoftware.com/Glendale/,Base,503,gateway_soft,https://host.gcssoftware.com/Glendale/
+WI,Grant,WI-Grant,https://grantcountylandrecords.com/,Base,200,ok,https://pp-grant-co-wi-fb.app.landnav.com/login/index/?ReturnUrl=%2FSearch%2FRealEstate%2FSearch
 WI,Green,WI-Green,http://landrecords.greencountywi.org/lrsweb/parcel/,Base,502,gateway_soft,http://landrecords.greencountywi.org/lrsweb/parcel/
 WI,Green Lake,WI-GreenLake,https://greenlake.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,200,ok,https://greenlake.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search
 WI,Jackson,WI-Jackson,https://pp-jackson-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,200,ok,https://pp-jackson-co-wi-fb.app.landnav.com/login/index/?ReturnUrl=%2FSearch%2FRealEstate%2FSearch
 WI,Kenosha,WI-Kenosha,https://pp-kenosha-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,200,ok,https://pp-kenosha-co-wi-fb.app.landnav.com/login/index/?ReturnUrl=%2FSearch%2FRealEstate%2FSearch
 WI,Kenosha City,WI-KenoshaCity,http://kenosha.org/cgi-bin/,Base,403,gated,http://kenosha.org/cgi-bin/
+WI,Kewaunee,WI-Kewaunee,https://www.kewauneeco.org/,Base,200,ok,https://www.kewauneeco.org/
 WI,La Crosse,WI-LaCrosse,http://www.co.la-crosse.wi.us/landrecordsportal/,Base,403,gated,https://www.lacrossecounty.org/landrecordsportal/
+WI,Lincoln,WI-Lincoln,https://lrs.co.lincoln.wi.us/,Base,200,ok,https://lrs.co.lincoln.wi.us/
 WI,Madison City,WI-MadisonCity,http://www.cityofmadison.com/assessor/property/,Base,200,ok,https://www.cityofmadison.com/assessor/property/
+WI,Manitowoc City,WI-ManitowocCity,https://taxes.manitowoc.org/,Base,200,ok,https://taxes.manitowoc.org/
 WI,Marathon,WI-Marathon,http://ascent.co.marathon.wi.us/AscentLandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,200,ok,https://ascent.co.marathon.wi.us/AscentLandRecords/PropertyListing/RealEstateTaxParcel
 WI,Marquette,WI-Marquette,http://marquettecowi.wgxtreme.com/java/wgx_taxsearch/,Base,200,ok,http://marquettecowi.wgxtreme.com/java/wgx_taxsearch/
+WI,Menominee,WI-Menominee,https://ascent.co.menominee.wi.us/,Base,403,gated,https://ascent.co.menominee.wi.us/
 WI,Monroe,WI-Monroe,https://pp-monroe-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,200,ok,https://pp-monroe-co-wi-fb.app.landnav.com/login/index/?ReturnUrl=%2FSearch%2FRealEstate%2FSearch
 WI,Neenah City,WI-NeenahCity,http://www3.ci.neenah.wi.us/prod/,Base,403,gated,http://www3.ci.neenah.wi.us/prod/
 WI,New Berlin City,WI-NewBerlinCity,http://www.newberlin.org/,Base,200,ok,https://www.newberlinwi.gov/
 WI,Oak Creek City,WI-OakCreekCity,http://city.oakcreekwi.org/gcswebportal/,Base,200,ok,https://pp-milwaukee-co-wi-fb.app.landnav.com/Login
 WI,Oconto,WI-Oconto,http://ocgen.co.oconto.wi.us/GCSWebPortal/search.aspx,Search,302,ok,http://ocgen.co.oconto.wi.us/GCSWebPortal/search.aspx
+WI,Oshkosh City,WI-OshkoshCity,https://www.ci.oshkosh.wi.us/,Base,200,ok,https://www.ci.oshkosh.wi.us/
 WI,Ozaukee,WI-Ozaukee,http://www.ascent.co.ozaukee.wi.us/LandRecords/,Base,200,ok,https://ascent.co.ozaukee.wi.us/LandRecords/PropertyListing/RealEstateTaxParcel
+WI,Pierce,WI-Pierce,https://www.co.pierce.wi.us/,Base,200,ok,https://www.co.pierce.wi.us/
 WI,Polk,WI-Polk,https://pp-polk-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,200,ok,https://pp-polk-co-wi-fb.app.landnav.com/login/index/?ReturnUrl=%2FSearch%2FRealEstate%2FSearch
+WI,Price,WI-Price,https://www.co.price.wi.us/,Base,200,ok,https://www.co.price.wi.us/
 WI,Richland,WI-Richland,http://richlandcowi.wgxtreme.com/java/wgx_taxsearch/report/panel/richlandcowi/,Base,200,ok,http://richlandcowi.wgxtreme.com/java/wgx_taxsearch/report/panel/richlandcowi/
 WI,Rock,WI-Rock,https://taxsearch.co.rock.wi.us/search.php,Search,200,ok,https://taxsearch.co.rock.wi.us/disclaimer.php
 WI,Rusk,WI-Rusk,http://ruskcowi.wgxtreme.com/java/wgx_taxsearch/report/window/ruskcowi/,Base,200,ok,http://ruskcowi.wgxtreme.com/java/wgx_taxsearch/report/window/ruskcowi/
 WI,Sawyer,WI-Sawyer,https://tas.sawyercountygov.org/access/REAL%20ESTATE/header.asp,Search,200,ok,https://tas.sawyercountygov.org/access/REAL%20ESTATE/header.asp
+WI,Shawano,WI-Shawano,https://gis.co.shawano.wi.us/,Base,200,ok,https://gis.co.shawano.wi.us/
 WI,Sheboygan,WI-Sheboygan,https://treasurer.sheboygancounty.com/GCSWebPortal/Search.aspx,Search,200,ok,https://treasurer.sheboygancounty.com/GCSWebPortal/Login.aspx?ReturnUrl=%2fGCSWebPortal%2fSearch.aspx
 WI,Shorewood Village,WI-ShorewoodVillage,http://gcs.villageofshorewood.org/,Base,200,ok,http://gcs.villageofshorewood.org/
 WI,St Croix,WI-StCroix,https://propertyinfo.kenoshacounty.org/Search/RealEstate/Search,Search,200,ok,https://propertyinfo.kenoshacounty.org/Search/RealEstate/Search
 WI,Stevens Point City,WI-StevensPointCity,http://www2.stevenspoint.com/GCSWebPortal/,Base,502,gateway_soft,http://www2.stevenspoint.com/GCSWebPortal/
 WI,St Francis City,WI-StFrancisCity,http://host.gcssoftware.com/StFrancis/,Base,503,gateway_soft,https://host.gcssoftware.com/StFrancis/
+WI,Taylor,WI-Taylor,https://taylorwi.mapping-online.com/,Base,200,ok,https://taylorwi.mapping-online.com/
 WI,Trempealeau,WI-Trempealeau,http://www.tremplocounty.com/Search/,Base,200,ok,https://www.tremplocounty.com/
 WI,Two Rivers City,WI-TwoRiversCity,https://tworivers.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,200,ok,https://tworivers.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search
+WI,Vernon,WI-Vernon,https://vernonwi.mapping-online.com/,Base,200,ok,https://vernonwi.mapping-online.com/
 WI,Washburn,WI-Washburn,https://tax.co.washburn.wi.us/access/REAL%20ESTATE/header.asp,Search,200,ok,https://tax.co.washburn.wi.us/access/REAL%20ESTATE/header.asp
 WI,Waupaca,WI-Waupaca,https://waupaca.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,200,ok,https://waupaca.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search
 WI,Waushara,WI-Waushara,http://www.co.waushara.wi.us/,Base,403,gated,https://www.co.waushara.wi.us/
@@ -1431,6 +1668,7 @@ WV,Monongalia,WV-Monongalia,http://monongalia.softwaresystems.com/,Base,200,ok,h
 WV,Morgan,WV-Morgan,http://morgan.softwaresystems.com/,Base,200,ok,http://morgan.softwaresystems.com/index.html
 WV,Nicholas,WV-Nicholas,http://nicholas.softwaresystems.com/,Base,200,ok,http://nicholas.softwaresystems.com/index.html
 WV,Ohio,WV-Ohio,http://ohio.softwaresystems.com/,Base,200,ok,http://ohio.softwaresystems.com/index.html
+WV,Preston,WV-Preston,https://129.71.117.27/,Base,200,ok,https://129.71.117.27/
 WV,Putnam,WV-Putnam,http://putnam.softwaresystems.com/,Base,200,ok,http://putnam.softwaresystems.com/index.html
 WV,Randolph,WV-Randolph,http://randolph.softwaresystems.com/,Base,200,ok,http://randolph.softwaresystems.com/index.html
 WV,Taylor,WV-Taylor,http://taylor.softwaresystems.com/,Base,200,ok,http://taylor.softwaresystems.com/index.html

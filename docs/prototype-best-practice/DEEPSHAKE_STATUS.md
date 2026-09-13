@@ -35,6 +35,6 @@ Document the exact path the hunt script prints (e.g. `/Volumes/T7/.../DeepShake.
 1. Full hybrid crawl of **2055** Extractor URLs (`npm run health:hybrid`)
 2. Method A/B/C: HEAD/GET + redirect follow; Search-over-Base; sample title/form sniff; host cross-check
 3. Reclassify: 403/429/gated = validated-true; 404/NXDOMAIN = dead; timeout/TLS = uncertain
-4. Result: **1437 validated-true** / **368 dead** / **250 uncertain** / registry active **1681** / listed **2062** / with URL **2055**
+4. Result: **1675 validated-true** / **163 dead** / **217 uncertain** / registry active **1866** / listed **2062** / with URL **2055**
 
 See `docs/prototype-best-practice/URL_REVALIDATE_2026-09-13.md` and `docs/SPUL_DESCRIPTION_AND_VALIDATED_URLS.txt`.

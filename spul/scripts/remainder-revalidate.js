@@ -426,6 +426,21 @@ function vendorCandidates(item) {
     out.push('https://leetc.com/');
   }
 
+  // MN — morris.state.mn.us / legacy manatron NXDOMAIN → official county hosts
+  if (state === 'MN' && /morris\.state\.mn\.us|manatron\.com|visualgov|publicaccessnow/i.test(url)) {
+    out.push(`https://www.${compact}countymn.gov/`);
+    out.push(`https://${compact}countymn.gov/`);
+    out.push(`https://www.co.${dash}.mn.us/`);
+    out.push(`https://www.co.${compact}.mn.us/`);
+  }
+
+  // TX ACT Tax dead county path → official county / tax office when hostable
+  if (state === 'TX' && /actweb\.acttax\.com|texaspayments\.com/i.test(url) && compact.length >= 4) {
+    out.push(`https://www.${compact}countytx.gov/`);
+    out.push(`https://www.${compact}countytx.gov/departments/tax-office`);
+    out.push(`https://${compact}countytx.gov/`);
+  }
+
   return uniqueUrls(out);
 }
 
@@ -492,6 +507,8 @@ function isAcceptableReplacement(originalUrl, candidateUrl, item) {
   if (/jccal\.org/i.test(host)) return true;
   if (/leetc\.com/i.test(host)) return true;
   if (/schneidercorp|beacon\./i.test(host)) return true;
+  if (/countymn\.gov$/i.test(host) || /\.mn\.us$/i.test(host)) return true;
+  if (/countytx\.gov$/i.test(host)) return true;
 
   // Otherwise require county token somewhere
   if (compact && compact.length >= 5) {
@@ -835,6 +852,10 @@ async function main() {
   const byKeyPrior = new Map((prior.results || []).map((r) => [r.key, r]));
 
   let remainder = (prior.results || []).filter((r) => r.bucket !== 'validated_true');
+  if (args.bucket && args.bucket !== true) {
+    const b = String(args.bucket);
+    remainder = remainder.filter((r) => r.bucket === b);
+  }
   const LIMIT = parseInt(args.limit || '0', 10);
   if (LIMIT > 0) remainder = remainder.slice(0, LIMIT);
   console.log(
