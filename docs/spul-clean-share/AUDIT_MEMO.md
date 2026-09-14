@@ -11,8 +11,11 @@
 | --- | --- |
 | Screenshot `kata_deploy/` | Reviewed. Symlink farm of overlapping deploy/runbook/env files. |
 | `CURSOR_TASK_DEEPSHAKE_PREVIEW.md` | **Not found** in this workspace, uploads, or accessible `webpointllc-com` repos. Proxies used: `docs/prototype-best-practice/DEEPSHAKE_STATUS.md`, T7 notes, live beta `/api/search` pipeline. |
-| GitHub commit `webpointllc-com/webpoint-spul-beta@5ef1a1cc…` | **Repo not accessible** to this agent (`404` / `Repository not found`). |
+| GitHub commit `webpointllc-com/webpoint-spul-beta@5ef1a1cc…` | **Still 404** on re-fetch (2026-09-14): repo + commit `Not Found`. Live-beta audit below (§C) stands in for architecture. |
+| Samsung T7 `/Volumes/T7` | **Unreachable** on this Linux cloud VM (no `/Volumes`). |
+| Claude Desktop / `cursor_memory` CARBON greps | **Unreachable** (Mac-only). No pasted hits from Bill. |
 | Live `https://webpoint-spul-beta.onrender.com` | **HTTP 200** (2026-09-14). Health + `/api/search` inspected read-only. |
+| Merge vs Mac-only matrix | [MERGE_SOURCES.md](./MERGE_SOURCES.md) |
 | `TaxCertificateProcessor` PR #4 / `spul/` | Full local tree reviewed (1675 validated-true URLs). |
 | `search-spul-test` | Read-only structure + `spulTruth` / deploy patterns. |
 | DEP Highlighter | **Untouched** (read-only mention only). |

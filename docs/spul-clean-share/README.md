@@ -6,6 +6,7 @@ Documents for making S-PUL teammate-ready (Adam) without the `kata_deploy` / bet
 | --- | --- |
 | [ADAM_ONBOARDING.md](./ADAM_ONBOARDING.md) | 5-bullet start |
 | [AUDIT_MEMO.md](./AUDIT_MEMO.md) | Redundant vs keep; canonical repo choice |
+| [MERGE_SOURCES.md](./MERGE_SOURCES.md) | Merged vs still Mac-only / 404 gaps |
 | [CANONICAL_TREE.md](./CANONICAL_TREE.md) | Target tree + data flow |
 | [BEST_COMPONENTS.md](./BEST_COMPONENTS.md) | Salvage list from beta + DeepShake + `spul/` |
 | [../aws/LIGHTSAIL_MINIMAL.md](../aws/LIGHTSAIL_MINIMAL.md) | AWS production path |
