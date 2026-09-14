@@ -1,0 +1,20 @@
+{
+  "controller": "AUTODEPLOY_VARIABLE",
+  "version": 1,
+  "fields": {
+    "repo": "https://github.com/webpointllc-com/TaxCertificateProcessor",
+    "serviceName": "search-spul-minimal",
+    "plan": "free",
+    "branch": "s-pul-front_end-Betaspul-minimal-deploy-55de",
+    "branchNote": "After merge, watch main or keep shipping branch in Render settings",
+    "runtime": "node",
+    "rootDir": "spul",
+    "buildCommand": "npm install --omit=dev",
+    "startCommand": "npm start",
+    "healthCheckPath": "/api/health",
+    "autoDeploy": true,
+    "envVars": [],
+    "squarespaceEmbedTarget": "taxcert.ai members / password-protected Code block",
+    "expectedUrl": "https://search-spul-minimal.onrender.com"
+  }
+}

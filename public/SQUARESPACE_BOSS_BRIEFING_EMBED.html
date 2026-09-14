@@ -1,0 +1,52 @@
+<!-- S-PUL boss briefing — Squarespace 7.1 Code Block -->
+<!--
+  Paste into a Squarespace Code Block (full-width column).
+  The briefing is a 1280px desktop layout that scales to this container
+  (Bill's rule: identical desktop layout, including iframe). No left-rail stripes.
+
+  Set src to wherever boss-briefing.html is hosted.
+  Local file:  open public/boss-briefing.html directly (no iframe needed).
+  This repo:   .../public/boss-briefing.html
+  After Kamatera nginx: https://app.taxcert.ai/boss-briefing.html  (when that host exists)
+
+  This is a long document, not the 1280×800 product canvas.
+  Do not use the 62.5% padding-top trick from the tool embed — it would clip.
+  Default iframe height is tall enough to scroll; optional postMessage resizes it.
+-->
+<div class="wp-spul-brief-embed-root">
+  <iframe
+    id="wp-spul-boss-briefing"
+    class="wp-spul-brief-frame"
+    src="boss-briefing.html"
+    title="S-PUL boss briefing — URLs, yes/no, what we pay, Stripe B2B"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+  ></iframe>
+</div>
+<style>
+  .wp-spul-brief-embed-root {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+  .wp-spul-brief-frame {
+    display: block;
+    width: 100%;
+    height: 2800px;
+    border: 0;
+    border-radius: 16px;
+    background: #050b20;
+  }
+</style>
+<script>
+  (function () {
+    window.addEventListener('message', function (e) {
+      if (!e.data || e.data.type !== 'spul-briefing-height') return;
+      var f = document.getElementById('wp-spul-boss-briefing');
+      var h = Number(e.data.height);
+      if (f && h > 400) f.style.height = h + 'px';
+    });
+  })();
+</script>

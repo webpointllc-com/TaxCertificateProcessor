@@ -1,0 +1,2056 @@
+state,county,key,primary_search_url,source,active,confidence_base,quality,version
+AK,Anchorage,AK-Anchorage,https://www.muni.org/pw/dfhwbtta/,Base,true,0.78,ok,1
+AK,Matanuska Susitna,AK-MatanuskaSusitna,https://myproperty.matsugov.us/,Search,true,0.92,ok,1
+AL,Baldwin,AL-Baldwin,https://baldwinproperty.countygovservices.com/Property/Search,Search,true,0.92,ok,1
+AL,Barbour,AL-Barbour,https://barbour.capturecama.com/propsearch,Search,true,0.92,ok,1
+AL,Blount,AL-Blount,http://www.deltacomputersystems.com/AL/AL08/,Base,false,0.78,ok,1
+AL,Calhoun,AL-Calhoun,https://altags.com/calhoun_revenue/,Base,true,0.78,ok,1
+AL,Chambers,AL-Chambers,https://www.ingproperty.com/Chambers_Revenue/property.aspx,Search,true,0.88,ok,1
+AL,Cherokee,AL-Cherokee,https://cherokeeproperty.countygovservices.com/Property/Search,Search,true,0.92,ok,1
+AL,Choctaw,AL-Choctaw,https://www.ingproperty.com/Choctaw_Revenue/property.aspx,Search,true,0.92,ok,1
+AL,Coffee,AL-Coffee,https://www.coffeecountyrevenue.com/property.html,Base,true,0.88,ok,1
+AL,Colbert,AL-Colbert,http://www.deltacomputersystems.com/AL/AL20/,Base,true,0.78,ok,1
+AL,Cullman,AL-Cullman,http://www.deltacomputersystems.com/AL/AL25/,Base,false,0.78,ok,1
+AL,Dale,AL-Dale,http://www.alabamagis.com/Dale/CamaTemplates/reports/,Base,true,0.78,ok,1
+AL,De Kalb,AL-DeKalb,https://dekalbproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+AL,Elmore,AL-Elmore,http://www.elmorerevenuecommissioner.com/,Base,true,0.78,ok,1
+AL,Escambia,AL-Escambia,https://altags.com/Escambia_License/property.aspx,Search,true,0.92,ok,1
+AL,Etowah,AL-Etowah,https://etowahproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+AL,Franklin,AL-Franklin,https://franklinproperty.countygovservices.com/Property/Search,Search,true,0.92,ok,1
+AL,Houston,AL-Houston,http://www.houstoncounty.org/Revenue/record/,Base,true,0.78,ok,1
+AL,Jackson,AL-Jackson,http://www.deltacomputersystems.com/AL/AL39/,Base,false,0.78,ok,1
+AL,Jefferson,AL-Jefferson,https://www.jccal.org/,Base,true,0.78,ok,1
+AL,Lauderdale,AL-Lauderdale,http://www.deltacomputersystems.com/AL/AL41/,Base,true,0.78,ok,1
+AL,Lawrence,AL-Lawrence,https://lawrenceproperty.countygovservices.com/Property/Search,Search,true,0.92,ok,1
+AL,Lee,AL-Lee,http://www.deltacomputersystems.com/AL/AL43/,Base,true,0.78,ok,1
+AL,Limestone,AL-Limestone,https://www.limestonerevenue.net/PRC/PublicPRC/,Base,true,0.78,ok,1
+AL,Madison,AL-Madison,http://www.deltacomputersystems.com/AL/AL47/,Base,false,0.78,ok,1
+AL,Marshall,AL-Marshall,https://marshall.capturecama.com/propsearch,Search,true,0.88,ok,1
+AL,Mobile,AL-Mobile,https://mobile.capturecama.com/propsearch,Search,true,0.92,ok,1
+AL,Montgomery,AL-Montgomery,https://montgomery.capturecama.com/,Search,true,0.92,ok,1
+AL,Morgan,AL-Morgan,https://morgan.capturecama.com/propsearch,Search,true,0.92,ok,1
+AL,Russell,AL-Russell,https://russell.capturecama.com/propsearch,Search,true,0.88,ok,1
+AL,Shelby,AL-Shelby,https://ptc.shelbyal.com/propsearch,Search,true,0.92,ok,1
+AL,St Clair,AL-StClair,http://www.deltacomputersystems.com/,Base,true,0.78,ok,1
+AL,Talladega,AL-Talladega,https://talladegaproperty.countygovservices.com/Property/Property/Search,Search,true,0.92,ok,1
+AL,Tallapoosa,AL-Tallapoosa,http://tallapoosapropertytax.com/taxes/,Base,true,0.78,ok,1
+AL,Tuscaloosa,AL-Tuscaloosa,https://www.payyourpropertytax.com/tuscaloosa/la/,Base,false,0.78,ok,1
+AL,Walker,AL-Walker,http://www.walkercountyrevenue.com/,Base,true,0.78,ok,1
+AL,Winston,AL-Winston,https://winstonproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+AR,Arkansas,AR-Arkansas,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Baxter,AR-Baxter,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Benton,AR-Benton,https://bentoncountyar.gov/collector/,Base,true,0.92,ok,1
+AR,Boone,AR-Boone,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Calhoun,AR-Calhoun,https://www.arcountydata.com/propsearch.asp?county=Calhoun&s=T,Search,true,0.92,ok,1
+AR,Carroll,AR-Carroll,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Chicot,AR-Chicot,https://www.arcountydata.com/propsearch.asp?county=Chicot&s=T,Search,true,0.92,ok,1
+AR,Clay,AR-Clay,https://www.arcountydata.com/propsearch.asp?county=Clay&s=T,Search,true,0.92,ok,1
+AR,Cleburne,AR-Cleburne,https://www.arcountydata.com/propsearch.asp?county=Cleburne&s=T,Search,true,0.92,ok,1
+AR,Columbia,AR-Columbia,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Craighead,AR-Craighead,https://www.arcountydata.com/propsearch.asp?county=Craighead&s=T,Search,true,0.92,ok,1
+AR,Crawford,AR-Crawford,https://www.arcountydata.com/propsearch.asp?county=Benton,Search,true,0.92,ok,1
+AR,Dallas,AR-Dallas,https://www.arcountydata.com/propsearch.asp?county=Dallas&s=T,Search,true,0.92,ok,1
+AR,Desha,AR-Desha,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Faulkner,AR-Faulkner,https://www.arcountydata.com/propsearch.asp?county=Faulkner&s=T,Search,true,0.92,ok,1
+AR,Fulton,AR-Fulton,https://www.arcountydata.com/propsearch.asp?county=Fulton&s=T,Search,true,0.92,ok,1
+AR,Grant,AR-Grant,https://www.arcountydata.com/propsearch.asp?county=Grant&s=T,Search,true,0.92,ok,1
+AR,Greene,AR-Greene,https://www.arcountydata.com/propsearch.asp?county=Greene&s=T,Search,true,0.92,ok,1
+AR,Hempstead,AR-Hempstead,https://www.arcountydata.com/propsearch.asp?county=Hempstead&s=T,Search,true,0.92,ok,1
+AR,Howard,AR-Howard,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Izard,AR-Izard,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Jackson,AR-Jackson,https://www.arcountydata.com/propsearch.asp?county=Jackson&s=T,Search,true,0.92,ok,1
+AR,Johnson,AR-Johnson,https://www.arcountydata.com/propsearch.asp?county=Johnson&s=T,Search,true,0.92,ok,1
+AR,Lawrence,AR-Lawrence,https://www.arcountydata.com/propsearch.asp?county=Lawrence&s=T,Search,true,0.92,ok,1
+AR,Little River,AR-LittleRiver,https://www.arcountydata.com/propsearch.asp?county=Little%20River&s=T,Search,true,0.92,ok,1
+AR,Logan,AR-Logan,https://www.arcountydata.com/propsearch.asp?county=Logan&s=T,Search,true,0.92,ok,1
+AR,Lonoke,AR-Lonoke,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Madison,AR-Madison,https://www.arcountydata.com/propsearch.asp?county=Madison&s=T,Search,true,0.92,ok,1
+AR,Mississippi,AR-Mississippi,https://www.arcountydata.com/propsearch.asp?county=Mississippi&s=T,Search,true,0.92,ok,1
+AR,Monroe,AR-Monroe,https://www.arcountydata.com/propsearch.asp?county=Monroe&s=T,Search,true,0.92,ok,1
+AR,Montgomery,AR-Montgomery,https://www.arcountydata.com/propsearch.asp?county=Montgomery&s=T,Search,true,0.92,ok,1
+AR,Nevada,AR-Nevada,https://www.arcountydata.com/propsearch.asp?county=Nevada&s=T,Search,true,0.92,ok,1
+AR,Newton,AR-Newton,https://www.arcountydata.com/propsearch.asp?county=Newton&s=T,Search,true,0.92,ok,1
+AR,Ouachita,AR-Ouachita,https://www.arcountydata.com/propsearch.asp?county=Ouachita&s=T,Search,true,0.92,ok,1
+AR,Perry,AR-Perry,https://www.arcountydata.com/propsearch.asp?county=Perry&s=T,Search,true,0.92,ok,1
+AR,Phillips,AR-Phillips,https://www.arcountydata.com/propsearch.asp?county=Phillips&s=T,Search,true,0.92,ok,1
+AR,Pike,AR-Pike,https://www.arcountydata.com/propsearch.asp?county=Pike&s=T,Search,true,0.92,ok,1
+AR,Poinsett,AR-Poinsett,https://www.arcountydata.com/propsearch.asp?county=Poinsett&s=T,Search,true,0.92,ok,1
+AR,Polk,AR-Polk,https://www.arcountydata.com/propsearch.asp?county=Polk&s=T,Search,true,0.92,ok,1
+AR,Pope,AR-Pope,https://www.arcountydata.com/propsearch.asp?county=Pope&s=T,Search,true,0.92,ok,1
+AR,Prairie,AR-Prairie,https://www.arcountydata.com/propsearch.asp?county=Prairie&s=T,Search,true,0.92,ok,1
+AR,Pulaski,AR-Pulaski,https://public.pulaskicountytreasurer.net/,Search,true,0.92,ok,1
+AR,Randolph,AR-Randolph,https://www.arcountydata.com/propsearch.asp?county=Randolph&s=T,Search,true,0.92,ok,1
+AR,Saline,AR-Saline,http://www.arcountydata.com/,Base,true,0.78,ok,1
+AR,Scott,AR-Scott,https://www.arcountydata.com/propsearch.asp?county=Scott&s=T,Search,true,0.92,ok,1
+AR,Searcy,AR-Searcy,https://www.arcountydata.com/propsearch.asp?county=Searcy&s=T,Search,true,0.92,ok,1
+AR,Sebastian,AR-Sebastian,https://www.arcountydata.com/propsearch.asp?county=Sebastian&s=T,Search,true,0.92,ok,1
+AR,Sharp,AR-Sharp,https://www.arcountydata.com/propsearch.asp?county=Sharp&s=T,Search,true,0.92,ok,1
+AR,St Francis,AR-StFrancis,https://www.arcountydata.com/propsearch.asp?county=St.%20Francis&s=T,Search,true,0.92,broken_fixed,1
+AR,Stone,AR-Stone,https://www.arcountydata.com/propsearch.asp?county=Stone&s=T,Search,true,0.92,ok,1
+AR,Union,AR-Union,https://www.arcountydata.com/propsearch.asp?county=Union&s=T,Search,true,0.92,ok,1
+AR,Van Buren,AR-VanBuren,https://www.arcountydata.com/propsearch.asp?county=Van%20Buren&s=T,Search,true,0.92,broken_fixed,1
+AR,Woodruff,AR-Woodruff,https://www.arcountydata.com/propsearch.asp?county=Woodruff&s=T,Search,true,0.92,ok,1
+AR,Yell,AR-Yell,https://www.arcountydata.com/propsearch.asp?county=Yell&s=T,Search,true,0.92,ok,1
+AZ,Coconino,AZ-Coconino,https://treasurer.coconino.az.gov/treasurer/treasurerweb/,Base,true,0.78,ok,1
+AZ,Gila,AZ-Gila,https://parcelsearch.gilacountyaz.gov/,Base,false,0.78,ok,1
+AZ,Graham,AZ-Graham,http://72.165.8.87/ParcelSearch/,Base,true,0.78,ok,1
+AZ,Maricopa,AZ-Maricopa,https://treasurer.maricopa.gov/PropertyTaxInformation/,Search,true,0.92,ok,1
+AZ,Mohave,AZ-Mohave,https://eagletw.mohavecounty.us/treasurer/treasurerweb/search.jsp,Base,true,0.78,ok,1
+AZ,Pima,AZ-Pima,https://www.to.pima.gov/propertyInquiry/,Base,true,0.78,ok,1
+AZ,Pinal,AZ-Pinal,https://treasurer.pinal.gov/parcelinquiry/,Search,true,0.92,ok,1
+CA,Alameda,CA-Alameda,http://www.acgov.org/treasurer/index.htm,Search,true,0.92,ok,1
+CA,ALTAIrrigation,CA-ALTAIrrigation,http://altaid.org/,Base,true,0.78,ok,1
+CA,Butte,CA-Butte,https://common3.mptsweb.com/MBC/butte/tax/search,Search,true,0.92,ok,1
+CA,Calaveras,CA-Calaveras,https://common3.mptsweb.com/MBC/calaveras/tax/search,Search,true,0.92,ok,1
+CA,Contra Costa,CA-ContraCosta,https://tcpws2.co.contra-costa.ca.us/taxpaymentrev3/lookup/,Search,true,0.92,ok,1
+CA,Del Norte,CA-DelNorte,https://common3.mptsweb.com/MBC/delnorte/tax/search,Search,true,0.92,ok,1
+CA,Fresno,CA-Fresno,http://www.co.fresno.ca.us/DepartmentPage.aspx?id=6218,Search,true,0.92,ok,1
+CA,Humboldt,CA-Humboldt,https://common3.mptsweb.com/MBC/humboldt/tax/search,Search,true,0.92,ok,1
+CA,Imperial,CA-Imperial,https://common3.mptsweb.com/MBC/imperial/tax/search,Search,true,0.92,ok,1
+CA,Inyo,CA-Inyo,https://ca-inyo.publicaccessnow.com/,Base,true,0.78,ok,1
+CA,Kern,CA-Kern,https://www.kcttc.co.kern.ca.us/,Search,true,0.92,ok,1
+CA,Los Angeles,CA-LosAngeles,https://ttc.lacounty.gov/,Search,true,0.92,ok,1
+CA,Madera,CA-Madera,https://common3.mptsweb.com/MBC/madera/tax/search,Search,true,0.92,ok,1
+CA,Marin,CA-Marin,https://apps.marincounty.gov/TaxBillOnline/?PropertyId={parcel},Search,true,0.92,ok,1
+CA,Mendicino,CA-Mendicino,https://ca-mendocino.publicaccessnow.com/TaxCollector/TaxSearch.aspx,Search,true,0.92,ok,1
+CA,Merced,CA-Merced,https://common3.mptsweb.com/MBC/merced/tax/search,Search,true,0.92,ok,1
+CA,Modoc,CA-Modoc,https://common3.mptsweb.com/MBC/modoc/tax/search,Search,true,0.92,ok,1
+CA,Mono,CA-Mono,https://common3.mptsweb.com/MBC/mono/tax/search,Search,true,0.92,ok,1
+CA,Monterey,CA-Monterey,https://common3.mptsweb.com/MBC/monterey/tax/search,Search,true,0.92,ok,1
+CA,Napa,CA-Napa,https://common3.mptsweb.com/MBC/napa/tax/search,Search,true,0.92,ok,1
+CA,Orange,CA-Orange,http://ttc.ocgov.com/,Search,true,0.92,ok,1
+CA,Placer,CA-Placer,https://common3.mptsweb.com/MBC/placer/tax/search,Search,true,0.92,ok,1
+CA,Riverside,CA-Riverside,http://riversidetaxinfo.com/,Search,true,0.92,ok,1
+CA,Sacramento,CA-Sacramento,https://eproptax.saccounty.net/,Search,true,0.92,ok,1
+CA,San Bernardino,CA-SanBernardino,https://www.sbcountyatc.gov/tax-services/property-tax,Search,true,0.92,ok,1
+CA,San Diego,CA-SanDiego,http://www.sdtreastax.com/,Search,true,0.92,ok,1
+CA,San Francisco,CA-SanFrancisco,http://sftreasurer.org/property-tax-payments,Search,true,0.92,ok,1
+CA,San Joaquin,CA-SanJoaquin,https://common3.mptsweb.com/MBC/sanjoaquin/tax/search,Search,true,0.92,ok,1
+CA,San Mateo,CA-SanMateo,https://www.sanmateocountytaxcollector.org/,Search,true,0.92,ok,1
+CA,Santa Clara,CA-SantaClara,https://www.sccgov.org/sites/tax/Pages/Santa-Clara-Tax-Collector's-Office.aspx,Search,true,0.92,ok,1
+CA,Santa Cruz,CA-SantaCruz,http://ttc.co.santa-cruz.ca.us/Taxbills/,Search,true,0.92,ok,1
+CA,SBSKern,CA-SBSKern,http://www.kcttc.co.kern.ca.us/payment/,Base,true,0.78,ok,1
+CA,SBSLos Angeles,CA-SBSLosAngeles,https://vcheck.ttc.lacounty.gov/,Base,true,0.78,ok,1
+CA,SBSSan Mateo,CA-SBSSanMateo,http://www.sanmateocountytaxcollector.org/SMCWPS/,Base,true,0.78,ok,1
+CA,Shasta,CA-Shasta,https://common3.mptsweb.com/MBC/shasta/tax/search,Search,true,0.92,ok,1
+CA,Siskiyou,CA-Siskiyou,https://common1.mptsweb.com/MBC/siskiyou/tax/search,Search,true,0.92,ok,1
+CA,Sonoma,CA-Sonoma,https://common3.mptsweb.com/MBC/sonoma/tax/search,Search,true,0.92,ok,1
+CA,Stanislaus,CA-Stanislaus,https://common3.mptsweb.com/MBC/stanislaus/tax/search,Search,true,0.92,ok,1
+CA,Sutter,CA-Sutter,https://ca-sutter.publicaccessnow.com/,Base,true,0.78,ok,1
+CA,Tuolumne,CA-Tuolumne,https://common1.mptsweb.com/MBC/tuolumne/tax/search,Search,true,0.92,ok,1
+CA,Ventura,CA-Ventura,https://taxpayment.venturacounty.gov/,Search,true,0.92,ok,1
+CA,Yolo,CA-Yolo,https://common2.mptsweb.com/MBC/yolo/tax/search,Search,true,0.92,ok,1
+CO,Adams,CO-Adams,https://adcotax.com/treasurer/treasurerweb/,Search,true,0.92,ok,1
+CO,Arapahoe,CO-Arapahoe,http://www.co.arapahoe.co.us,Search,true,0.92,ok,1
+CO,Boulder,CO-Boulder,http://webpubapps.bouldercounty.org/treasurer/proptax/,Base,true,0.78,ok,1
+CO,Denver,CO-Denver,https://property.spatialest.com/co/denver#/,Search,true,0.92,ok,1
+CO,Douglas,CO-Douglas,https://apps.douglas.co.us/treasurer/treasurerweb/search.jsp,Search,true,0.92,ok,1
+CO,El Paso,CO-ElPaso,https://property.spatialest.com/co/elpaso/#/,Search,true,0.92,ok,1
+CO,Gunnison,CO-Gunnison,http://204.132.78.100/PropertyTaxSearch/TaxAccount/Bills/,Base,true,0.78,ok,1
+CO,Jefferson,CO-Jefferson,http://www.jeffco.us,Search,true,0.92,ok,1
+CO,La Plata,CO-LaPlata,https://treasurer.laplata.co.us/treasurer/treasurerweb/,Base,false,0.78,ok,1
+CO,Larimer,CO-Larimer,http://www.co.larimer.co.us/assessor/query/,Base,true,0.78,ok,1
+CO,Mesa,CO-Mesa,https://appz.mesacounty.us/treasurer/treasurerweb/,Base,true,0.78,ok,1
+CO,Saguache,CO-Saguache,https://saguachecountyco-treasurer.tylerhost.net/treasurer/treasurerweb/search.jsp,Search,true,0.92,ok,1
+CO,Weld,CO-Weld,https://www.weldtax.com/treasurer/treasurerweb/,Base,true,0.78,ok,1
+CT,Cromwell Town,CT-CromwellTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+CT,Ellington,CT-Ellington,https://www.mytaxbill.org/inet/bill/home.do?town=ellington,Base,true,0.78,ok,1
+CT,Enfield Town,CT-EnfieldTown,https://enfield.munisselfservice.com/,Base,true,0.78,ok,1
+CT,Greenwich Town,CT-GreenwichTown,https://www.mytaxbill.org/inet/bill/home.do?town=greenwich,Base,true,0.78,ok,1
+CT,Hartford City,CT-HartfordCity,http://selfservice.hartford.gov/MSS/citizens/RealEstate/,Base,false,0.78,ok,1
+CT,Naugatuck Town,CT-NaugatuckTown,https://www.mytaxbill.org/inet/bill/home.do?town=naugatuck,Base,true,0.78,ok,1
+CT,New Haven City,CT-NewHavenCity,http://c2g.cityofnewhaven.com/Click2GovTX/,Base,false,0.78,ok,1
+CT,New Milford Town,CT-NewMilfordTown,https://www.mytaxbill.org/inet/bill/home.do?town=new%20milford,Base,true,0.78,ok,1
+CT,Old Lyme Town,CT-OldLymeTown,https://www.mytaxbill.org/inet/bill/home.do?town=old%20lyme,Base,true,0.78,ok,1
+CT,Somers Town,CT-SomersTown,https://www.mytaxbill.org/inet/bill/home.do?town=somers,Base,true,0.78,ok,1
+CT,Torrington City,CT-TorringtonCity,https://www.mytaxbill.org/inet/bill/home.do?town=torrington,Base,true,0.78,ok,1
+CT,Waterbury City,CT-WaterburyCity,https://www.mytaxbill.org/inet/bill/home.do?town=waterbury,Search,true,0.92,ok,1
+DC,District Of Columbia,DC-DistrictOfColumbia,https://www.taxpayerservicecenter.com/,Base,true,0.78,ok,1
+DC,District Of Columbia Separate BID,DC-DistrictOfColumbiaSeparateBID,https://www.taxpayerservicecenter.com/,Base,true,0.78,ok,1
+DE,Dewey Beach Town,DE-DeweyBeachTown,https://wipp.edmundsgovtech.cloud/home?wippId=334,Search,true,0.92,ok,1
+DE,Dover City,DE-DoverCity,https://secure.cityofdover.com/,Base,true,0.78,ok,1
+DE,Kent,DE-Kent,https://kent400.co.kent.de.us/,Base,true,0.78,ok,1
+DE,Middletown Town,DE-MiddletownTown,https://wipp.edmundsassoc.com/Wipp/?wippid=Middletown,Base,true,0.78,ok,1
+DE,New Castle,DE-NewCastle,https://www3.newcastlede.gov/,Search,true,0.92,ok,1
+DE,Rehoboth Beach Town,DE-RehobothBeachTown,https://rehobothbeachde.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+DE,Sussex,DE-Sussex,http://www.sussexcountyde.gov/e-service/propertytaxes/,Base,true,0.78,ok,1
+DE,Wilmington City,DE-WilmingtonCity,http://cityfinance1.wilmingtonde.gov/Departments/,Base,false,0.78,ok,1
+FL,Alachua,FL-Alachua,http://alachuataxcollector.governmax.com/collectmax/,Base,false,0.78,ok,1
+FL,Bay,FL-Bay,http://tc.co.bay.fl.us/Property/,Base,false,0.78,ok,1
+FL,Bradford,FL-Bradford,http://qpublic.net/cgi-bin/,Base,true,0.78,ok,1
+FL,Brevard,FL-Brevard,https://county-taxes.net/brevard/property-tax,Search,true,0.92,ok,1
+FL,Broward,FL-Broward,https://county-taxes.net/broward/broward/property-tax,Search,true,0.92,ok,1
+FL,Charlotte,FL-Charlotte,https://county-taxes.net/charlotte/property-tax,Base,true,0.78,ok,1
+FL,Citrus,FL-Citrus,https://county-taxes.net/citrus/property-tax,Base,true,0.78,ok,1
+FL,Collier,FL-Collier,https://county-taxes.net/fl-collier/property-tax,Search,true,0.92,ok,1
+FL,Columbia,FL-Columbia,http://fl-columbia-taxcollector.governmax.com/collectmax/,Base,false,0.78,ok,1
+FL,De Soto,FL-DeSoto,https://www.desotocountytaxcollector.com/,Base,true,0.78,ok,1
+FL,Duval,FL-Duval,http://www.coj.net/departments/tax-collector.aspx,Search,true,0.92,ok,1
+FL,Escambia,FL-Escambia,http://escambiataxcollector.governmaxa.com/collectmax/,Base,false,0.78,ok,1
+FL,Flagler,FL-Flagler,http://www.flaglertax.com/,Search,true,0.92,ok,1
+FL,Gadsden,FL-Gadsden,http://fl-gadsden-taxcollector.governmax.com/collectmax/,Base,true,0.78,ok,1
+FL,Gilchrist,FL-Gilchrist,http://fl-gilchrist-taxcollector.governmax.com/collectmax/,Base,false,0.78,ok,1
+FL,Highlands,FL-Highlands,https://county-taxes.net/highlands/property-tax,Base,true,0.78,ok,1
+FL,Hillsborough,FL-Hillsborough,http://www.hillstax.org/,Search,true,0.92,ok,1
+FL,Indian River,FL-IndianRiver,http://fl-indianriver-taxcollector.governmaxa.com/collectmax/,Base,false,0.78,ok,1
+FL,Lafayette,FL-Lafayette,http://www.lafayettetc.com/TAX/,Base,true,0.78,ok,1
+FL,Lake,FL-Lake,http://www.laketax.com/,Search,true,0.92,ok,1
+FL,Lee,FL-Lee,https://leetc.com/,Search,true,0.92,ok,1
+FL,Leon,FL-Leon,https://wwwtax2.leoncountyfl.gov/itm/PropertySearchAccount.aspx,Search,true,0.92,ok,1
+FL,Levy,FL-Levy,http://www.lctax.org/ptaxweb/,Base,false,0.78,ok,1
+FL,Manatee,FL-Manatee,https://secure.taxcollector.com/ptaxweb/editPropertySearch2.action?action=list,Search,true,0.92,ok,1
+FL,Marion,FL-Marion,https://www.mariontax.com/itm/PropertySearchAccount.aspx,Search,true,0.92,ok,1
+FL,Martin,FL-Martin,https://taxcol.martin.fl.us/ws/ITM32/,Base,true,0.78,ok,1
+FL,Miami Dade,FL-MiamiDade,https://www.miamidade.gov/taxcollector/,Base,true,0.92,ok,1
+FL,Monroe,FL-Monroe,https://county-taxes.net/monroe/property-tax,Base,true,0.78,ok,1
+FL,Nassau,FL-Nassau,http://fl-nassau-taxcollector.governmax.com/collectmax/,Base,false,0.78,ok,1
+FL,Okaloosa,FL-Okaloosa,http://www.okaloosatax.com/,Search,true,0.92,ok,1
+FL,Orange,FL-Orange,https://www.octaxcol.com/taxes/,Search,true,0.92,ok,1
+FL,Osceola,FL-Osceola,http://www.osceolataxcollector.com/,Search,false,0.92,ok,1
+FL,Palm Beach,FL-PalmBeach,https://www.pbctax.com/,Search,true,0.92,ok,1
+FL,Pasco,FL-Pasco,http://www.pascotaxes.com/,Search,true,0.92,ok,1
+FL,Pinellas,FL-Pinellas,http://www.taxcollect.com/,Search,true,0.92,ok,1
+FL,Polk,FL-Polk,https://polk.floridatax.us/AccountSearch?s=pt,Search,true,0.92,ok,1
+FL,Santa Rosa,FL-SantaRosa,http://www.srctc.com/,Search,true,0.92,ok,1
+FL,Sarasota,FL-Sarasota,https://www.sarasotataxcollector.com/,Search,true,0.92,ok,1
+FL,Seminole,FL-Seminole,https://seminolecounty.tax/services/property-taxes/property-and-tangible-taxes/,Search,true,0.92,ok,1
+FL,St Johns,FL-StJohns,http://stjohnstaxcollector.governmax.com/collectmax/,Base,false,0.78,ok,1
+FL,St Lucie,FL-StLucie,https://county-taxes.net/stlucie/property-tax,Base,true,0.78,ok,1
+FL,Suwannee,FL-Suwannee,http://fl-suwannee-taxcollector.governmax.com/collectmax/,Base,false,0.78,ok,1
+FL,Taylor,FL-Taylor,http://fl-taylor-taxcollector.governmax.com/collectmax/,Base,false,0.78,ok,1
+FL,Volusia,FL-Volusia,https://www.volusia.org/,Search,true,0.92,ok,1
+FL,Wakulla,FL-Wakulla,http://www.wakullacountytaxcollector.com/,Base,true,0.78,ok,1
+FL,Walton,FL-Walton,http://taxsearch.waltontaxcollector.com/collectmax/,Base,false,0.78,ok,1
+GA,Alpharetta City,GA-AlpharettaCity,https://mss.alpharetta.ga.us/MSS/citizens/RealEstate/,Base,true,0.78,ok,1
+GA,Americus,GA-Americus,https://americusga.governmentwindow.com/tax.html,Search,true,0.92,ok,1
+GA,Banks,GA-Banks,https://www.qpublic.net/ga/banks/,Base,true,0.78,ok,1
+GA,Bartow,GA-Bartow,https://www.qpublic.net/ga/bartow/,Base,true,0.78,ok,1
+GA,Brooks,GA-Brooks,https://d1ebsyxxbc7tep.cloudfront.net/,Base,true,0.78,ok,1
+GA,Bryan,GA-Bryan,https://www.qpublic.net/ga/bryan/,Base,true,0.78,ok,1
+GA,Bulloch,GA-Bulloch,https://www.qpublic.net/ga/bulloch/,Base,true,0.78,ok,1
+GA,Burke,GA-Burke,https://burkeproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+GA,Byron City,GA-ByronCity,https://byronga.csibillpay.com/Tax/,Base,true,0.78,ok,1
+GA,Camden,GA-Camden,https://www.qpublic.net/ga/camden/,Base,true,0.78,ok,1
+GA,Catoosa,GA-Catoosa,http://catoosataxes.com/,Base,true,0.78,ok,1
+GA,Centerville City,GA-CentervilleCity,https://centervillega.mygovhub.com/#/quickpay,Search,true,0.92,ok,1
+GA,Chatham,GA-Chatham,http://chathamtax.org/,Base,true,0.78,ok,1
+GA,Cherokee,GA-Cherokee,http://www.cherokeega.com/applications/taxbills/,Base,true,0.78,ok,1
+GA,Clayton,GA-Clayton,http://weba.co.clayton.ga.us/tcmcgi-bin/,Base,true,0.78,ok,1
+GA,Cobb,GA-Cobb,https://cobbtaxpayments.org/,Search,true,0.92,ok,1
+GA,Coffee,GA-Coffee,http://coffeecountytax.com/,Base,false,0.78,ok,1
+GA,Colquitt,GA-Colquitt,https://www.qpublic.net/ga/colquitt/,Base,true,0.78,ok,1
+GA,Crawford,GA-Crawford,https://crawfordproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+GA,Crisp,GA-Crisp,https://www.qpublic.net/ga/crisp/,Base,true,0.78,ok,1
+GA,Dade,GA-Dade,https://dadeproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+GA,Dawson,GA-Dawson,https://www.qpublic.net/ga/dawson/,Base,true,0.78,ok,1
+GA,Decatur City,GA-DecaturCity,https://www.decaturgatax.com/taxes#/WildfireSearch,Search,true,0.92,ok,1
+GA,De Kalb,GA-DeKalb,http://taxcommissioner.dekalbcountyga.gov/TaxCommissioner/,Base,false,0.78,ok,1
+GA,Dougherty,GA-Dougherty,https://www.qpublic.net/ga/dougherty/,Base,true,0.78,ok,1
+GA,Dublin City,GA-DublinCity,https://dubl-egov.aspgov.com/dublc2gtx/,Base,false,0.78,ok,1
+GA,Duluth City,GA-DuluthCity,https://duluthga.municipalonlinepayments.com/duluthga/tax/search,Search,true,0.92,ok,1
+GA,East Point City,GA-EastPointCity,http://www.iparceltools.com/eastpointcitytax/iparceltools/,Base,false,0.78,ok,1
+GA,Elbert,GA-Elbert,https://d1ebsyxxbc7tep.cloudfront.net/,Base,true,0.78,ok,1
+GA,Emanuel,GA-Emanuel,https://emanuelproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+GA,Fayette,GA-Fayette,http://www.fayettecountytaxcomm.com/,Base,true,0.78,ok,1
+GA,Folkston,GA-Folkston,https://www.qpublic.net/ga/folkston/,Base,true,0.78,ok,1
+GA,Franklin,GA-Franklin,http://taxes.franklincountyga.com/TaxSearch/,Base,true,0.78,ok,1
+GA,Fulton,GA-Fulton,https://fultoncountytaxes.org/propertytax/search,Search,true,0.92,ok,1
+GA,Fulton Cities,GA-FultonCities,https://fultoncountytaxes.org/propertytax/search,Search,true,0.92,ok,1
+GA,Fulton Solid Waste,GA-FultonSolidWaste,https://fultoncountytaxes.org/propertytax/search,Search,true,0.92,ok,1
+GA,Gainesville City,GA-GainesvilleCity,http://www.gainesvilletax.org/,Base,false,0.78,ok,1
+GA,Gilmer,GA-Gilmer,https://www.qpublic.net/ga/gilmer/,Base,true,0.78,ok,1
+GA,Gordon,GA-Gordon,https://www.qpublic.net/ga/gordon/,Base,true,0.78,ok,1
+GA,Grady,GA-Grady,https://qpublic.schneidercorp.com/Application.aspx?AppID=1065&LayerID=25364&PageTypeID=2&PageID=10318,Search,true,0.92,ok,1
+GA,Gwinnett,GA-Gwinnett,https://www.gwinnetttaxcommissioner.com/property-tax/view-pay-your-taxes,Search,true,0.92,ok,1
+GA,Haralson,GA-Haralson,https://www.qpublic.net/ga/haralson/,Base,true,0.78,ok,1
+GA,Heard,GA-Heard,https://www.qpublic.net/ga/heard/,Base,true,0.78,ok,1
+GA,Henry,GA-Henry,https://www.henrytc.org/taxes.html#/WildfireSearch,Base,true,0.78,ok,1
+GA,Houston,GA-Houston,https://www.qpublic.net/ga/houston/,Base,true,0.78,ok,1
+GA,Jones,GA-Jones,https://www.qpublic.net/ga/jones/,Base,true,0.78,ok,1
+GA,Kennesaw City,GA-KennesawCity,https://www.municipalonlinepayments.com/,Base,true,0.78,ok,1
+GA,Lamar,GA-Lamar,https://www.qpublic.net/ga/lamar/,Base,true,0.78,ok,1
+GA,Laurens,GA-Laurens,https://www.qpublic.net/ga/laurens/,Base,true,0.78,ok,1
+GA,Lee,GA-Lee,https://www.qpublic.net/ga/lee/,Base,true,0.78,ok,1
+GA,Long,GA-Long,https://www.longcountytax.com/taxes.html#/WildfireSearch,Search,true,0.92,ok,1
+GA,Lumpkin,GA-Lumpkin,https://www.lumpkincountytax.com/,Base,true,0.78,ok,1
+GA,Madison,GA-Madison,https://www.qpublic.net/ga/madison/,Base,true,0.78,ok,1
+GA,Mc Intosh,GA-McIntosh,https://www.qpublic.net/ga/mc-intosh/,Base,true,0.78,ok,1
+GA,Milton City,GA-MiltonCity,https://www.municipalonlinepayments.com/,Base,true,0.78,ok,1
+GA,Monroe,GA-Monroe,https://www.qpublic.net/ga/monroe/,Base,true,0.78,ok,1
+GA,Morgan,GA-Morgan,https://www.qpublic.net/ga/morgan/,Base,true,0.78,ok,1
+GA,Muscogee,GA-Muscogee,http://publicaccess.columbusga.org/iaswpub/Datalets/,Base,false,0.78,ok,1
+GA,Palmetto City,GA-PalmettoCity,http://taxes.citypalmetto.com/,Base,true,0.78,ok,1
+GA,Paulding,GA-Paulding,https://www.qpublic.net/ga/paulding/,Base,true,0.78,ok,1
+GA,Peach,GA-Peach,http://www.peachcountytax.com/,Base,true,0.78,ok,1
+GA,Pickens,GA-Pickens,https://pickensproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+GA,Pierce,GA-Pierce,https://www.qpublic.net/ga/pierce/,Base,true,0.78,ok,1
+GA,Pike,GA-Pike,https://www.qpublic.net/ga/pike/,Base,true,0.78,ok,1
+GA,Powder Springs City,GA-PowderSpringsCity,https://wipp.edmundsassoc.com/Wipp/,Base,true,0.78,ok,1
+GA,Pulaski,GA-Pulaski,https://pulaskicountyga.governmentwindow.com/tax.html,Search,true,0.92,ok,1
+GA,Putnam,GA-Putnam,https://www.qpublic.net/ga/putnam/,Base,true,0.78,ok,1
+GA,Riverdale City,GA-RiverdaleCity,https://www.qpublic.net/ga/riverdale/,Base,true,0.78,ok,1
+GA,Roswell,GA-Roswell,https://munis-web.ci.roswell.ga.us/MSS/citizens/RealEstate/Default.aspx?mode=new,Base,false,0.78,ok,1
+GA,Savannah City,GA-SavannahCity,http://revenue.savannahga.gov/revwebpay/WebPortal/WEB_PT_MAIN.aspx?command=REPORTPARAMETERSTYLE&style=&group=RE,Search,true,0.92,ok,1
+GA,Smyrna,GA-Smyrna,https://www.qpublic.net/ga/smyrna/,Base,true,0.78,ok,1
+GA,Spaulding,GA-Spaulding,http://www.spaldingcountytax.com/,Base,true,0.78,ok,1
+GA,Sumter,GA-Sumter,http://www.sumtercountygatax.com/,Base,true,0.78,ok,1
+GA,Thomas,GA-Thomas,https://thomascountyga.governmentwindow.com/tax.html,Search,true,0.92,ok,1
+GA,Tift,GA-Tift,https://www.qpublic.net/ga/tift/,Base,true,0.78,ok,1
+GA,Toccoa City,GA-ToccoaCity,https://www.invoicecloud.com/portal/(S(xkepqelrtghf3prgwu1eiiwj))/2/,Base,true,0.78,ok,1
+GA,Troup,GA-Troup,https://pay.troupcountytax.com/,Search,true,0.92,ok,1
+GA,Union City,GA-UnionCity,https://unioncityga.governmentwindow.com/,Base,true,0.78,ok,1
+GA,Vesta Holdings,GA-VestaHoldings,http://blackbox1.vestaholdings.com/p9/infoaccount/,Base,true,0.78,ok,1
+GA,Vidalia,GA-Vidalia,https://www.qpublic.net/ga/vidalia/,Base,true,0.78,ok,1
+GA,Walker,GA-Walker,https://walkerproperty.assurancegov.com/Property/Search,Search,true,0.92,ok,1
+GA,Ware,GA-Ware,https://d1ebsyxxbc7tep.cloudfront.net/,Base,true,0.78,ok,1
+GA,Warner Robins City,GA-WarnerRobinsCity,https://wrga.governmentwindow.com/tax.html,Search,true,0.92,ok,1
+GA,Washington,GA-Washington,https://washingtoncountyga.governmentwindow.com/,Base,true,0.78,ok,1
+GA,West Point,GA-WestPoint,https://www.qpublic.net/ga/west-point/,Base,true,0.78,ok,1
+GA,Wilkinson,GA-Wilkinson,https://www.qpublic.net/ga/wilkinson/,Base,true,0.78,ok,1
+GA,Woodstock City,GA-WoodstockCity,https://woodstock.surecourt.com/,Base,true,0.78,ok,1
+GU,Guam,GU-Guam,https://www.guamtax.com/,Base,true,0.78,ok,1
+HI,Honolulu,HI-Honolulu,https://qpublic.schneidercorp.com/Application.aspx?App=HonoluluCountyHI&PageType=Search,Search,true,0.92,ok,1
+IA,Buchanan,IA-Buchanan,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Clayton,IA-Clayton,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Clinton,IA-Clinton,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Dallas,IA-Dallas,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Dickinson,IA-Dickinson,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Floyd,IA-Floyd,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Iowa,IA-Iowa,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Johnson,IA-Johnson,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Linn,IA-Linn,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Montgomery,IA-Montgomery,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Polk,IA-Polk,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Pottawattamie,IA-Pottawattamie,https://www.pottco.org/,Base,true,0.78,ok,1
+IA,Poweshiek,IA-Poweshiek,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Story,IA-Story,https://www.iowatreasurers.org/,Base,true,0.78,ok,1
+IA,Woodbury,IA-Woodbury,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IA,Worth,IA-Worth,https://www.iowataxandtags.org/,Base,true,0.78,ok,1
+IL,Adams,IL-Adams,https://adamsil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Boone,IL-Boone,https://booneil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Bureau,IL-Bureau,https://propertytaxonline.org/Bureau/,Search,true,0.92,ok,1
+IL,Champaign,IL-Champaign,http://www.co.champaign.il.us/,Base,true,0.78,ok,1
+IL,Christian,IL-Christian,http://www.fikeandfike.com/propertytax/Christian/,Base,true,0.78,ok,1
+IL,Clark,IL-Clark,https://clarkil.devnetwedge.com/,Search,true,0.92,ok,1
+IL,Coles,IL-Coles,http://colesil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Cook,IL-Cook,https://cookcountytreasurer.com/pinsummary.aspx,Search,true,0.92,ok,1
+IL,Cook Clerk,IL-CookClerk,http://www.cookcountyclerk.com/tsd/delinquenttaxsearch/Pages/DelinquentTaxSearch.aspx,Search,true,0.92,ok,1
+IL,Cook Treasurer,IL-CookTreasurer,https://www.cookcountytreasurer.com/setsearchparameters.aspx,Search,true,0.92,ok,1
+IL,Cook TU,IL-CookTU,http://taxesunlimitedonline.com/,Base,false,0.78,ok,1
+IL,De Kalb,IL-DeKalb,http://gisweb.co.de-kalb.il.us/qtas/,Base,false,0.78,ok,1
+IL,Du Page,IL-DuPage,https://propertylookup.dupagecounty.gov/search/commonsearch.aspx?mode=parid,Search,true,0.92,ok,1
+IL,Du Page Clerk,IL-DuPageClerk,http://www.dupageco.org/CountyClerk/,Base,true,0.78,ok,1
+IL,Greene,IL-Greene,https://propertytaxonline.org/Greene/InquiryCriteria.aspx,Search,true,0.92,ok,1
+IL,Grundy,IL-Grundy,https://www.fikeandfike.com/,Base,true,0.78,ok,1
+IL,Henry,IL-Henry,https://henryil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Jackson,IL-Jackson,https://jacksonil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Jefferson,IL-Jefferson,http://67.36.172.145/cgi-bin/,Base,true,0.78,ok,1
+IL,Jersey,IL-Jersey,https://jerseyil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Kane,IL-Kane,https://kaneil.devnetwedge.com/,Search,true,0.92,ok,1
+IL,Kankakee,IL-Kankakee,http://treasurer.k3county.net/,Base,false,0.78,ok,1
+IL,Kendall,IL-Kendall,http://taxinquiry.co.kendall.il.us/forms/,Base,false,0.78,ok,1
+IL,Knox,IL-Knox,http://taxinq.co.knox.il.us/view/RE/,Base,false,0.78,ok,1
+IL,Lake,IL-Lake,http://www.lakecountyil.gov/Treasurer/Payments/Pages/CurrentPaymentStatus.aspx,Search,true,0.92,ok,1
+IL,La Salle,IL-LaSalle,http://www.lasallecounty.org/cidnet/tre/public/,Base,false,0.78,ok,1
+IL,Livingston,IL-Livingston,https://livingstonil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Logan,IL-Logan,https://taxsearch.co.logan.il.us/,Base,true,0.78,ok,1
+IL,Macon,IL-Macon,http://www.fikeandfike.com/,Base,true,0.78,ok,1
+IL,Macoupin,IL-Macoupin,https://il981.cichosting.com/atasportal/parcelSearch.aspx,Base,false,0.78,ok,1
+IL,Madison,IL-Madison,http://reweb1.co.madison.il.us/,Base,true,0.78,ok,1
+IL,Marion,IL-Marion,https://marionil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Mc Henry,IL-McHenry,http://mchenrycotaxweb.org/subscribers/forms/,Base,false,0.78,ok,1
+IL,Mc Lean,IL-McLean,https://mcleanil.devnetwedge.com/,Search,true,0.92,ok,1
+IL,Monroe,IL-Monroe,http://propertytaxonline.org/Monroe/,Base,true,0.78,ok,1
+IL,Ogle,IL-Ogle,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IL,Peoria,IL-Peoria,http://propertytax.peoriacounty.org/parcel/view/,Base,true,0.78,ok,1
+IL,Rock Island,IL-RockIsland,http://www.rockislandcounty.org/,Base,true,0.78,ok,1
+IL,Saline,IL-Saline,https://salineil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Sangamon,IL-Sangamon,http://tax.co.sangamon.il.us/SangamonCountyWeb/app/,Base,true,0.78,ok,1
+IL,Shelby,IL-Shelby,https://propertytaxonline.org/Shelby/InquiryCriteria.aspx?i=1,Search,true,0.92,ok,1
+IL,Stark,IL-Stark,http://www.fikeandfike.com/propertytax/Stark/,Base,true,0.78,ok,1
+IL,St Clair,IL-StClair,https://www.co.st-clair.il.us/,Base,true,0.78,ok,1
+IL,Stephenson,IL-Stephenson,http://taxrecords.co.stephenson.il.us/,Base,false,0.78,ok,1
+IL,Tazewell,IL-Tazewell,https://tazewellil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Vermilion,IL-Vermilion,http://taxinquiry.vercounty.org/,Base,true,0.78,ok,1
+IL,Whiteside,IL-Whiteside,https://whitesideil.devnetwedge.com/,Base,true,0.78,ok,1
+IL,Will,IL-Will,https://willcountytreasurer.us/taxes.html#/WildfireSearch,Search,true,0.92,ok,1
+IL,Winnebago,IL-Winnebago,http://treasurer.wincoil.us/,Base,false,0.78,ok,1
+IN,Adams,IN-Adams,http://web1.adams-county.com/pti_release/,Base,true,0.78,ok,1
+IN,Bartholomew,IN-Bartholomew,https://beacon.schneidercorp.com/Application.aspx?AppID=1130&LayerID=28606&PageTypeID=2&PageID=12977,Search,true,0.92,ok,1
+IN,Benton,IN-Benton,https://bentonin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Benton FD,IN-BentonFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Blackford,IN-Blackford,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Boone,IN-Boone,https://www.invoicecloud.com/boonecounty,Search,true,0.92,ok,1
+IN,Brown,IN-Brown,https://brownin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Carroll,IN-Carroll,https://beaconbeta.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Cass,IN-Cass,https://www.govtechtaxpro.com/,Base,true,0.78,ok,1
+IN,Clark,IN-Clark,http://egis.39dn.com/egis/View/,Base,true,0.78,ok,1
+IN,Clay,IN-Clay,https://clayin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Clay FD,IN-ClayFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Clinton,IN-Clinton,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Crawford,IN-Crawford,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Daviess,IN-Daviess,https://www.govtechtaxpro.com/,Base,true,0.78,ok,1
+IN,Daviess FD,IN-DaviessFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Dearborn,IN-Dearborn,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Dearborn FD,IN-DearbornFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Decatur,IN-Decatur,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Decatur FD,IN-DecaturFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,De Kalb,IN-DeKalb,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Delaware,IN-Delaware,https://tax.co.delaware.in.us/egov/apps/bill/,Base,false,0.78,ok,1
+IN,Dubois,IN-Dubois,https://duboisin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Elkhart,IN-Elkhart,https://www.invoicecloud.com/,Base,true,0.78,ok,1
+IN,Fayette,IN-Fayette,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Floyd,IN-Floyd,http://egis.39dn.com/egis/View/,Base,true,0.78,ok,1
+IN,Fountain,IN-Fountain,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Fountain FD,IN-FountainFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Franklin,IN-Franklin,https://franklinin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Fulton,IN-Fulton,https://fultonin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Fulton FD,IN-FultonFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Gibson,IN-Gibson,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Gibson FD,IN-GibsonFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Grant,IN-Grant,http://treasurer.grant.in.datapitstop.us/,Base,true,0.78,ok,1
+IN,Greene,IN-Greene,https://greenein.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Hamilton,IN-Hamilton,https://www.hamiltoncounty.in.gov/,Base,true,0.78,ok,1
+IN,Hancock,IN-Hancock,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Harrison,IN-Harrison,http://egis.39dn.com/egis/View/,Base,true,0.78,ok,1
+IN,Hendricks,IN-Hendricks,https://www.co.hendricks.in.us/,Base,true,0.78,ok,1
+IN,Henry,IN-Henry,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Howard,IN-Howard,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Huntington,IN-Huntington,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Jackson,IN-Jackson,https://thinkopengis.jackson.in.wthtechnology.com/tgis/,Base,false,0.78,ok,1
+IN,Jackson FD,IN-JacksonFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Jasper,IN-Jasper,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Jay,IN-Jay,http://in-jay-county.governmax.com/svc/collectmax/,Base,false,0.78,ok,1
+IN,Jefferson,IN-Jefferson,https://jeffersonin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Jennings,IN-Jennings,https://jenningsin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Johnson,IN-Johnson,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Johnson FD,IN-JohnsonFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Knox,IN-Knox,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Knox FD,IN-KnoxFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Kosciusko,IN-Kosciusko,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,La Grange,IN-LaGrange,https://lowtaxinfo.com/lagrangecounty/,Search,true,0.92,ok,1
+IN,Lake,IN-Lake,https://in-lake.publicaccessnow.com/PropertyTax/TaxSearch.aspx,Search,true,0.92,ok,1
+IN,La Porte,IN-LaPorte,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Lawrence,IN-Lawrence,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Madison,IN-Madison,http://treasurer.madisoncounty48.us/,Base,true,0.78,ok,1
+IN,Madison FD,IN-MadisonFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Marion,IN-Marion,https://www.biz.indygov.org/treasurer/property/,Base,true,0.78,ok,1
+IN,Marion Auctions,IN-MarionAuctions,https://liveauctions.govease.com/in/inmarion/1282/PublicPortalRecords/,Base,true,0.78,ok,1
+IN,Marshall,IN-Marshall,http://egis.39dn.com/egis/View/,Base,true,0.78,ok,1
+IN,Martin,IN-Martin,https://www.govtechtaxpro.com/,Base,true,0.78,ok,1
+IN,Miami,IN-Miami,http://egis.39dn.com/egis/View/,Base,true,0.78,ok,1
+IN,Monroe,IN-Monroe,http://egis.39dn.com/egis/View/,Base,true,0.78,ok,1
+IN,Montgomery,IN-Montgomery,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Morgan,IN-Morgan,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Newton,IN-Newton,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Noble,IN-Noble,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Noble FD,IN-NobleFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Ohio,IN-Ohio,https://ohioin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Orange,IN-Orange,http://egis.39dn.com/egisv4/View/,Base,true,0.78,ok,1
+IN,Owen,IN-Owen,https://www.govtechtaxpro.com/,Base,true,0.78,ok,1
+IN,Parke,IN-Parke,http://in-parke-treasurer.governmax.com/collectmax/,Base,false,0.78,ok,1
+IN,Perry,IN-Perry,https://perryin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Pike,IN-Pike,https://pikein.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Pike FD,IN-PikeFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Porter,IN-Porter,https://lowtaxinfo.com/portercounty/,Search,true,0.92,ok,1
+IN,Posey,IN-Posey,http://poseycountytax.com/taxes/,Base,true,0.78,ok,1
+IN,Pulaski,IN-Pulaski,https://pulaskiin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Putnam,IN-Putnam,https://putnamin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Putnam FD,IN-PutnamFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Randolph,IN-Randolph,https://randolphin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Randolph FD,IN-RandolphFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Rush,IN-Rush,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Scott,IN-Scott,https://scottin.wthgis.com/,Base,true,0.78,ok,1
+IN,Shelby,IN-Shelby,http://auditor.shelbycounty73.us/,Base,true,0.78,ok,1
+IN,Spencer,IN-Spencer,https://spencerin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Starke,IN-Starke,https://starkein.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Starke FD,IN-StarkeFD,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Steuben,IN-Steuben,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,St Joseph,IN-StJoseph,https://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Sullivan,IN-Sullivan,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Switzerland,IN-Switzerland,https://switzerlandin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Tippecanoe,IN-Tippecanoe,http://www.itricityfreedomdata.com/content/,Base,true,0.78,ok,1
+IN,Tipton,IN-Tipton,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Union,IN-Union,https://unionin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Vanderburgh,IN-Vanderburgh,http://in-vanderburgh-treasurer.governmax.com/svc/collectmax/,Base,false,0.78,ok,1
+IN,Vermillion,IN-Vermillion,https://vermillionin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Vigo,IN-Vigo,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Wabash,IN-Wabash,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Warren,IN-Warren,https://www.invoicecloud.com/portal/,Base,true,0.78,ok,1
+IN,Warrick,IN-Warrick,http://in-warrick-treasurer.governmax.com/svc/collectmax/,Base,false,0.78,ok,1
+IN,Washington,IN-Washington,https://washingtonin.wthgis.com/tgis/,Base,true,0.78,ok,1
+IN,Wayne,IN-Wayne,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,Wells,IN-Wells,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+IN,White,IN-White,http://in-white-treasurer.governmax.com/collectmax/,Base,false,0.78,ok,1
+IN,Whitley,IN-Whitley,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+KS,Bourbon,KS-Bourbon,https://dms.bourboncountyks.org/ols/tax/Search/,Base,true,0.78,ok,1
+KS,Butler,KS-Butler,http://ww1.bucoks.com/InternetSite/OLS/tax/Search/,Base,true,0.78,ok,1
+KS,Coffey,KS-Coffey,http://www.coffey.kansasgov.com/tax/,Base,false,0.78,ok,1
+KS,Gray,KS-Gray,http://www.gray.kansasgov.com/tax/,Base,true,0.78,ok,1
+KS,Johnson,KS-Johnson,https://taxbill.jocogov.org/,Search,true,0.92,ok,1
+KS,Lyon,KS-Lyon,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+KS,Marion,KS-Marion,http://www.marion.kansasgov.com/tax/,Base,true,0.78,ok,1
+KS,Marshall,KS-Marshall,http://www.marshall.kansasgov.com/Tax/,Base,false,0.78,ok,1
+KS,Mitchell,KS-Mitchell,http://www.mitchell.kansasgov.com/tax/,Base,true,0.78,ok,1
+KS,Morris,KS-Morris,http://www.morris.kansasgov.com/tax/,Base,false,0.78,ok,1
+KS,Nemaha,KS-Nemaha,http://ks284.cichosting.com/ttp/tax/Search/,Base,true,0.78,ok,1
+KS,Osage,KS-Osage,http://www.osage.kansasgis.com/Tax/,Base,false,0.78,ok,1
+KS,Pottawatomie,KS-Pottawatomie,http://www2.pottcounty.org/aspnet/Taxes/,Base,true,0.78,ok,1
+KS,Reno,KS-Reno,http://tax.renogov.org/ols/tax/Search/,Base,true,0.78,ok,1
+KS,Sedgwick,KS-Sedgwick,https://ssc.sedgwickcounty.org/propertytax/realproperty.aspx?pin={taxid},Search,true,0.92,ok,1
+KS,Shawnee,KS-Shawnee,http://www.snco.us/treasurer/,Base,true,0.78,ok,1
+KS,Thomas,KS-Thomas,http://ks1057.cichosting.com/tax/search/,Base,true,0.78,ok,1
+KS,Wabaunsee,KS-Wabaunsee,http://www.wabaunsee.kansasgov.com/Tax/,Base,false,0.78,ok,1
+KS,Wyandotte,KS-Wyandotte,http://landsweb.wycokck.org/LandsWeb/,Base,true,0.78,ok,1
+KY,Alexandria City,KY-AlexandriaCity,http://alexandria.campbell.ky.govern.com/,Base,true,0.78,ok,1
+KY,Allen,KY-Allen,https://tax.smllc.us/Bill/Print/,Base,false,0.78,ok,1
+KY,Anderson,KY-Anderson,https://view.properlytaxes.com/,Base,true,0.78,ok,1
+KY,Barren,KY-Barren,https://ecclix.com/ecclix/,Base,true,0.78,ok,1
+KY,Boone,KY-Boone,https://www.boonecountyky.org/,Base,true,0.78,ok,1
+KY,Boone Clerk,KY-BooneClerk,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Boyd,KY-Boyd,http://taxbills.g-uts.com/,Base,true,0.78,ok,1
+KY,Boyle,KY-Boyle,http://taxbills.g-uts.com/,Base,true,0.78,ok,1
+KY,Boyle Clerk,KY-BoyleClerk,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Bracken,KY-Bracken,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Breathitt,KY-Breathitt,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Breckinridge,KY-Breckinridge,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Bullitt,KY-Bullitt,http://ptax1.csiky.com/bullitt_current/,Search,true,0.92,ok,1
+KY,Caldwell,KY-Caldwell,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Calloway,KY-Calloway,https://kycopvdwebportal.pvdconnect.com/,Base,false,0.78,ok,1
+KY,Campbell,KY-Campbell,http://www.campbellcountykypva.org/tracoms_pva/cpt/,Base,true,0.78,ok,1
+KY,Daviess,KY-Daviess,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Elliott,KY-Elliott,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Fayette,KY-Fayette,https://fayettesheriff.com/property_taxes_lookup_2025.php,Search,true,0.92,ok,1
+KY,Fleming,KY-Fleming,http://fleming.truelevy.com/,Base,false,0.78,ok,1
+KY,Floyd,KY-Floyd,https://americanlandrecords.com/delinquent-tax?countyId=1029,Search,true,0.92,ok,1
+KY,Floyd Clerk,KY-FloydClerk,https://americanlandrecords.com/,Search,true,0.92,ok,1
+KY,Franklin,KY-Franklin,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Grant,KY-Grant,https://ecclix.com/ecclix/,Base,true,0.78,ok,1
+KY,Graves,KY-Graves,https://ecclix.com/ecclix/,Base,true,0.78,ok,1
+KY,Green,KY-Green,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Greenup,KY-Greenup,http://greenup.truelevy.com/,Base,false,0.78,ok,1
+KY,Hancock,KY-Hancock,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Hardin,KY-Hardin,https://www.compuaid.com:8080/,Base,true,0.78,ok,1
+KY,Harrison,KY-Harrison,https://view.properlytaxes.com/,Base,true,0.78,ok,1
+KY,Henderson,KY-Henderson,http://taxmaster.hendersonky.us/Tax_KY_Web_2005/Secure/Assessor/,Base,false,0.78,ok,1
+KY,Henry,KY-Henry,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Hopkins,KY-Hopkins,https://www.hopkinscountysheriff.com/index.php/taxes,Search,true,0.92,ok,1
+KY,Jassamine,KY-Jassamine,https://jessaminesheriff.org/pay-taxes/,Search,true,0.92,ok,1
+KY,Jefferson,KY-Jefferson,https://pay-jeffersonky-sheriff.com/#/WildfireSearch,Search,true,0.92,ok,1
+KY,Jefferson City,KY-JeffersonCity,https://taxes.jeffersontownky.com/#,Base,true,0.78,ok,1
+KY,Johnson,KY-Johnson,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Knox,KY-Knox,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,La Rue,KY-LaRue,https://view.properlytaxes.com/index?id=192&loc=2,Search,true,0.92,ok,1
+KY,Logan,KY-Logan,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Madison,KY-Madison,https://ecclix.com/ecclix/,Base,true,0.78,ok,1
+KY,Marshall,KY-Marshall,https://view.properlytaxes.com/,Base,true,0.78,ok,1
+KY,Mason,KY-Mason,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Mc Cracken,KY-McCracken,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Meade,KY-Meade,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Menifee,KY-Menifee,http://menifee.truelevy.com/,Base,false,0.78,ok,1
+KY,Montgomery,KY-Montgomery,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Mt Sterling,KY-MtSterling,http://mtsterling.truelevy.com/,Base,false,0.78,ok,1
+KY,Muhlenberg,KY-Muhlenberg,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Nelson,KY-Nelson,http://nelson.kysheriff.org/tax/bills/,Base,false,0.78,ok,1
+KY,Oldham,KY-Oldham,http://ptax1.csiky.com/oldham_current/,Search,true,0.92,ok,1
+KY,Owen,KY-Owen,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Scott,KY-Scott,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Shelby,KY-Shelby,http://shelby.kysheriff.org/tax/bills/,Base,false,0.78,ok,1
+KY,Simpson,KY-Simpson,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Spencer,KY-Spencer,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Union,KY-Union,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+KY,Warren,KY-Warren,https://ecclix.com/ecclix/,Base,true,0.78,ok,1
+KY,Whitley,KY-Whitley,https://ecclix.com/ecclix/,Base,true,0.78,ok,1
+KY,Woodford,KY-Woodford,https://ecclix.com/ecclix/login.aspx,Search,true,0.92,ok,1
+LA,Allen Parish,LA-AllenParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,Ascension Parish,LA-AscensionParish,https://secure.parishapso.com/propertyTax/,Base,true,0.78,ok,1
+LA,Beauregard Parish,LA-BeauregardParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,Bossier Parish,LA-BossierParish,http://www.bossiersheriff.com/property-details/,Base,true,0.78,ok,1
+LA,Caddo Parish,LA-CaddoParish,https://mytax.eztaxonline.net/,Base,true,0.78,ok,1
+LA,Caddo Parish Assessor,LA-CaddoParishAssessor,https://www.actdatascout.com/RealProperty/Index,Search,true,0.644,ok,1
+LA,Calcasieu Parish,LA-CalcasieuParish,http://208.180.188.69/TCMOnline/,Base,true,0.78,ok,1
+LA,De Soto Parish,LA-DeSotoParish,https://snstaxpayments.com/desoto/,Base,true,0.78,ok,1
+LA,East Baton Rouge Parish,LA-EastBatonRougeParish,https://www.ebrso.org/DesktopModules/TCMOnline/,Base,true,0.78,ok,1
+LA,Gretna City,LA-GretnaCity,https://www.municipalonlinepayments.com/gretnala/tax/,Base,true,0.78,ok,1
+LA,Harahan City,LA-HarahanCity,https://www.municipalonlinepayments.com/harahanla/tax/,Base,true,0.78,ok,1
+LA,Iberville Parish,LA-IbervilleParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,Jefferson Parish,LA-JeffersonParish,https://eservices.jpso.com/eservicespt/propertytax/,Base,true,0.78,ok,1
+LA,Kenner City,LA-KennerCity,https://payments.kenner.la.us/RE_PropertyTax/RETaxSelfService.aspx,Base,true,0.78,ok,1
+LA,Lafayette Parish,LA-LafayetteParish,http://webtax.lafayettesheriff.com/paymentweb/,Base,false,0.78,ok,1
+LA,Lincoln Parish,LA-LincolnParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,Livingston Parish,LA-LivingstonParish,http://www.lpso.org/General/,Base,true,0.78,ok,1
+LA,Natchitoches Parish,LA-NatchitochesParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,New Iberia City,LA-NewIberiaCity,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,New Orleans Parish,LA-NewOrleansParish,https://services.nola.gov/,Base,true,0.78,ok,1
+LA,Sabine Parish,LA-SabineParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,Shreveport,LA-Shreveport,https://www.shreveportla.gov/,Base,true,0.78,ok,1
+LA,St James Parish,LA-StJamesParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,St John The Baptist Parish,LA-StJohnTheBaptistParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,St Mary Parish,LA-StMaryParish,https://snstaxpayments.com/stmary/,Base,true,0.78,ok,1
+LA,St Tammany Parish,LA-StTammanyParish,https://secure.stpsopayments.com/propertyTax/,Base,true,0.78,ok,1
+LA,Tangipahoa Parish,LA-TangipahoaParish,http://snstaxpayments.com/,Base,true,0.78,ok,1
+LA,Terrebonne Parish,LA-TerrebonneParish,http://tpso.net/,Base,true,0.78,ok,1
+MA,Arlington Town,MA-ArlingtonTown,https://www.invoicecloud.com/portal/,Base,true,0.78,ok,1
+MA,Barnstable Town,MA-BarnstableTown,https://www.invoicecloud.com/portal/2/customerlocator.aspx?iti=8&bg=e547f99d-4428-4d04-85c8-4c7b2efb3256&vsii=1,Search,true,0.92,ok,1
+MA,Boston City,MA-BostonCity,https://www.boston.gov/real-estate-taxes?input1=,Search,true,0.92,ok,1
+MA,Cambridge,MA-Cambridge,https://www.cambridgema.gov/externallinks/paybillsonline/InvoiceCloud,Search,true,0.92,ok,1
+MA,Gloucester,MA-Gloucester,http://eportal.gloucester-ma.gov/webuserinterface/,Base,false,0.78,ok,1
+MA,Lowell City,MA-LowellCity,https://www.invoicecloud.com/portal/(S(e3qdmnuh3cq23pd5wadi14kr))/2/,Base,true,0.78,ok,1
+MA,Malden City,MA-MaldenCity,https://www.invoicecloud.com/portal/,Base,true,0.78,ok,1
+MA,Waltham City,MA-WalthamCity,https://web-server.city.waltham.ma.us/GovernEcomponents/WebUserInterface/,Base,true,0.78,ok,1
+MA,Worcester City,MA-WorcesterCity,https://unipaygold.unibank.com/transactioninfo.aspx?TID=3486,Search,true,0.92,ok,1
+MA,Worcester City Lien,MA-WorcesterCityLien,https://www.worcesterma.gov/finance/liens-auctions/municipal-lien,Search,true,0.92,ok,1
+MD,Aberdeen,MD-Aberdeen,http://propertytax.aberdeenmd.gov:8000/cgi-bin/,Base,true,0.78,ok,1
+MD,Allegany,MD-Allegany,http://propertytaxes.allconet.org/account/,Base,true,0.78,ok,1
+MD,Anne Arundel,MD-AnneArundel,https://aacounty.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+MD,Anne Arundel Utility,MD-AnneArundelUtility,https://aacounty.munisselfservice.com/citizens/UtilityBilling/,Base,true,0.78,ok,1
+MD,Baltimore,MD-Baltimore,https://mytax.baltimorecountymd.gov/rptp/portal/property-tax-payment/,Search,true,0.92,ok,1
+MD,Baltimore City,MD-BaltimoreCity,http://cityservices.baltimorecity.gov/realproperty/,Base,true,0.78,ok,1
+MD,Calvert,MD-Calvert,https://selfservice.co.cal.md.us/MSS/citizens/RealEstate/,Base,true,0.78,ok,1
+MD,Caroline,MD-Caroline,https://www.carolinemd.org/,Base,true,0.78,ok,1
+MD,Carroll,MD-Carroll,http://ccgovernment.carr.org/ccg/collect/,Base,true,0.78,ok,1
+MD,Cecil,MD-Cecil,https://cecilco.munisselfservice.com/,Base,true,0.78,ok,1
+MD,Charles,MD-Charles,https://www.charlescounty.org/,Base,true,0.78,ok,1
+MD,Cumberland City,MD-CumberlandCity,http://167.102.209.51/inquiry/output/,Base,true,0.78,ok,1
+MD,Dorchester,MD-Dorchester,http://www.dorchestertreasurer.info/tax_db/,Base,false,0.78,ok,1
+MD,Frederick,MD-Frederick,http://frederickcountymd.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+MD,Garrett,MD-Garrett,https://payments.garrettcounty.org/,Base,true,0.78,ok,1
+MD,Hagerstown City,MD-HagerstownCity,https://mycity.hagerstownmd.org/MSS/citizens/RealEstate/,Base,true,0.78,ok,1
+MD,Harford,MD-Harford,https://hcgweb01.harfordcountymd.gov/billpay?tabindex=0,Search,true,0.92,ok,1
+MD,Havre De Grace City,MD-HavreDeGraceCity,https://wipp.edmundsassoc.com/WippHAVR/,Base,true,0.78,ok,1
+MD,Howard,MD-Howard,https://howardcountymd.munisselfservice.com/,Base,true,0.78,ok,1
+MD,Montgomery,MD-Montgomery,https://apps.montgomerycountymd.gov/realpropertytax/,Search,true,0.92,ok,1
+MD,Prince George,MD-PrinceGeorge,http://taxinquiry.princegeorgescountymd.gov/,Base,true,0.78,ok,1
+MD,Washington,MD-Washington,https://www.washco-md.net/,Base,true,0.78,ok,1
+MD,Wicomico,MD-Wicomico,https://www.wicomicocounty.org/,Base,true,0.78,ok,1
+MD,Worcester,MD-Worcester,http://taxes.co.worcester.md.us/CGI-BIN/,Base,false,0.78,ok,1
+ME,Falmouth,ME-Falmouth,http://falmouthme.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+MI,Alcona Township,MI-AlconaTownship,http://alcona.alcona.mi.govern.com/,Base,false,0.78,ok,1
+MI,Allegan,MI-Allegan,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Almira Township,MI-AlmiraTownship,https://is.bsasoftware.com/bsa.is/,Base,true,0.78,ok,1
+MI,Auburn City,MI-AuburnCity,https://accessmygov.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Auburn Hills City,MI-AuburnHillsCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Aurelius Township,MI-AureliusTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Barry,MI-Barry,http://barryco.readyhosting.com/,Base,false,0.78,ok,1
+MI,Battle Creek City,MI-BattleCreekCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Bay,MI-Bay,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Bedford Charter Township,MI-BedfordCharterTownship,https://www.bsaonline.com/,Base,true,0.78,ok,1
+MI,Bedford Township,MI-BedfordTownship,https://www.bsaonline.com/,Base,true,0.78,ok,1
+MI,Bennington Township,MI-BenningtonTownship,https://accessmygov.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Berlin Township,MI-BerlinTownship,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Berrien,MI-Berrien,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Blissfield Township,MI-BlissfieldTownship,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Brighton City,MI-BrightonCity,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Brownstown Township,MI-BrownstownTownship,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Caledonia Township,MI-CaledoniaTownship,https://bsaonline.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Canton Township,MI-CantonTownship,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Carlton Township,MI-CarltonTownship,https://accessmygov.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Cass,MI-Cass,http://www.cass.mi.govern.com/,Base,false,0.78,ok,1
+MI,Chelsea City,MI-ChelseaCity,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Chesterfield Township,MI-ChesterfieldTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Clinton,MI-Clinton,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Clinton Township,MI-ClintonTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Colon Township,MI-ColonTownship,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Constantine Township,MI-ConstantineTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Dearborn City,MI-DearbornCity,https://bsaonline.com/?uid=599,Search,true,0.92,ok,1
+MI,Dearborn Heights City,MI-DearbornHeightsCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Delhi Township,MI-DelhiTownship,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Detroit City,MI-DetroitCity,https://bsaonline.com/?uid=155,Search,true,0.92,ok,1
+MI,Dundee Township,MI-DundeeTownship,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Durand City,MI-DurandCity,https://bsaonline.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Emmet,MI-Emmet,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Farmington Hills City,MI-FarmingtonHillsCity,https://bsaonline.com/?uid=316,Search,true,0.92,ok,1
+MI,Ferndale City,MI-FerndaleCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Flint City,MI-FlintCity,https://accessmygov.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Genesee,MI-Genesee,https://www.co.genesee.mi.us/treasurer/,Base,true,0.78,ok,1
+MI,Gibraltar City,MI-GibraltarCity,https://accessmygov.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Grand Blanc Township,MI-GrandBlancTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Grand Rapids City,MI-GrandRapidsCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Hadley Township,MI-HadleyTownship,https://bsaonline.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Hamilton Township,MI-HamiltonTownship,https://bsaonline.com/?uid=1895,Search,true,0.92,ok,1
+MI,Handy Township,MI-HandyTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Hartford Township,MI-HartfordTownship,https://bsaonline.com/?uid=1896,Search,true,0.92,ok,1
+MI,Hayes Township,MI-HayesTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Huron Township,MI-HuronTownship,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Ida Township,MI-IdaTownship,https://is.bsasoftware.com/bsa.is/,Base,true,0.78,ok,1
+MI,Iosco,MI-Iosco,https://bsaonline.com/?uid=1995,Search,true,0.92,ok,1
+MI,Iosco-Duplicate-c67e0d91,MI-Iosco-Duplicate-c67e0d91,https://bsaonline.com/?uid=1995,Search,true,0.644,ok,1
+MI,Isabella,MI-Isabella,http://www.fetchgis.com/isabellaLRP/,Base,true,0.78,ok,1
+MI,Kalamazoo City,MI-KalamazooCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Lansing City,MI-LansingCity,https://bsaonline.com/?uid=384,Search,true,0.92,ok,1
+MI,Livonia City,MI-LivoniaCity,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,London Township,MI-LondonTownship,https://is.bsasoftware.com/bsa.is/,Base,true,0.78,ok,1
+MI,Lyon Township,MI-LyonTownship,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Macomb Township,MI-MacombTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Merritt Township,MI-MerrittTownship,https://bsaonline.com/?uid=934,Search,true,0.92,ok,1
+MI,Midland,MI-Midland,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Milan,MI-Milan,https://accessmygov.com/,Base,true,0.78,ok,1
+MI,Montcalm,MI-Montcalm,https://is.bsasoftware.com/bsa.is/,Base,true,0.78,ok,1
+MI,Newaygo,MI-Newaygo,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,North Branch Township,MI-NorthBranchTownship,https://accessmygov.com/,Base,true,0.78,ok,1
+MI,Novi City,MI-NoviCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Olive Township,MI-OliveTownship,https://accessmygov.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Orangeville Township,MI-OrangevilleTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Owosso Township,MI-OwossoTownship,https://is.bsasoftware.com/bsa.is/,Base,true,0.78,ok,1
+MI,Peninsula Township,MI-PeninsulaTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Pierson Township,MI-PiersonTownship,https://accessmygov.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Portage City,MI-PortageCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Prairieville Township,MI-PrairievilleTownship,https://bsaonline.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Redford Town,MI-RedfordTown,https://bsaonline.com/?uid=677,Search,true,0.92,ok,1
+MI,Reynolds Township,MI-ReynoldsTownship,https://accessmygov.com/,Base,true,0.78,ok,1
+MI,Romeo Village,MI-RomeoVillage,https://accessmygov.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Roseville City,MI-RosevilleCity,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Rutland Township,MI-RutlandTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Shelby Township,MI-ShelbyTownship,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Southfield City,MI-SouthfieldCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,St Clair,MI-StClair,https://www.stclaircounty.org/Offices/equalization/,Base,true,0.78,ok,1
+MI,St Clair Township,MI-StClairTownship,https://bsaonline.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Sterling Heights City,MI-SterlingHeightsCity,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,St Joseph,MI-StJoseph,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Sturgis City,MI-SturgisCity,https://is.bsasoftware.com/bsa.is/,Base,true,0.78,ok,1
+MI,Sullivan Township,MI-SullivanTownship,https://bsaonline.com/?uid=1598,Search,true,0.92,ok,1
+MI,Texas Charter Township,MI-TexasCharterTownship,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Thornapple Township,MI-ThornappleTownship,https://bsaonline.com/SiteSearch/,Base,true,0.78,ok,1
+MI,Van Buren,MI-VanBuren,https://accessmygov.com/,Base,true,0.78,ok,1
+MI,Van Buren Town,MI-VanBurenTown,https://secure.waynecounty.com/w3netsslrd/DotNetForms/PTA/,Base,false,0.78,ok,1
+MI,Venice Township,MI-VeniceTownship,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Vernon Township,MI-VernonTownship,https://bsaonline.com/,Base,true,0.78,ok,1
+MI,Vienna Township,MI-ViennaTownship,https://bsaonline.com/?uid=417,Search,true,0.92,ok,1
+MI,Warren City,MI-WarrenCity,https://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MI,Wayne,MI-Wayne,https://pta.waynecounty.com/Home/PropertySearch,Search,true,0.92,ok,1
+MI,Westland City,MI-WestlandCity,http://is.bsasoftware.com/bsa.is/TaxServices/,Base,true,0.78,ok,1
+MN,Anoka,MN-Anoka,https://prtinfo.co.anoka.mn.us/,Base,true,0.78,ok,1
+MN,Benton,MN-Benton,https://property.bentoncountymn.gov/search/commonsearch.aspx?mode=realprop,Search,true,0.92,ok,1
+MN,Blue Earth,MN-BlueEarth,https://www.blueearthcountymn.gov/,Base,true,0.78,ok,1
+MN,Carver,MN-Carver,https://www.carvercountymn.gov/,Base,true,0.78,ok,1
+MN,Chisago,MN-Chisago,https://gis.chisagocounty.us/chisago_tax/,Base,true,0.78,ok,1
+MN,Cook,MN-Cook,https://beacon.schneidercorp.com/Application.aspx?AppID=1373&LayerID=46422&PageTypeID=2&PageID=19190,Search,true,0.92,ok,1
+MN,Dakota,MN-Dakota,https://services.co.dakota.mn.us/,Base,true,0.78,ok,1
+MN,Dodge,MN-Dodge,http://dodge.visualgov.com/,Base,true,0.78,ok,1
+MN,Douglas,MN-Douglas,https://www.douglascountymn.gov/,Base,true,0.78,ok,1
+MN,Fillmore,MN-Fillmore,https://beacon.schneidercorp.com/Application.aspx?AppID=1066&LayerID=25416&PageTypeID=2&PageID=10333,Search,true,0.92,ok,1
+MN,Freeborn,MN-Freeborn,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+MN,Goodhue,MN-Goodhue,http://visualgov.co.goodhue.mn.us/,Base,true,0.78,ok,1
+MN,Grant,MN-Grant,https://www.grantcountymn.gov/,Base,true,0.78,ok,1
+MN,Hennepin,MN-Hennepin,http://www16.co.hennepin.mn.us/pins/,Base,true,0.78,ok,1
+MN,Hubbard,MN-Hubbard,https://publicaccess.co.hubbard.mn.us/search/,Base,true,0.78,ok,1
+MN,Isanti,MN-Isanti,https://www.isanticountymn.gov/,Base,true,0.78,ok,1
+MN,Kanabec,MN-Kanabec,https://beacon.schneidercorp.com/Application.aspx?AppID=453&LayerID=6582&PageTypeID=2&PageID=3498,Search,true,0.92,ok,1
+MN,Kandiyohi,MN-Kandiyohi,https://www.kandiyohicountymn.gov/,Base,true,0.78,ok,1
+MN,Le Sueur,MN-LeSueur,https://beacon.schneidercorp.com/Application.aspx?AppID=248&LayerID=3190&PageTypeID=2&PageID=1710,Search,true,0.92,ok,1
+MN,Lincoln,MN-Lincoln,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Lincoln,Search,true,0.92,ok,1
+MN,Lyon,MN-Lyon,https://www.lyoncountymn.gov/,Base,true,0.78,ok,1
+MN,Marshall,MN-Marshall,https://www.marshallcountymn.gov/,Base,true,0.78,ok,1
+MN,Martin,MN-Martin,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+MN,Mc Leod,MN-McLeod,http://mcleod.visualgov.com/,Base,true,0.78,ok,1
+MN,Meeker,MN-Meeker,https://www.meekercountymn.gov/,Base,true,0.78,ok,1
+MN,Mille Lacs,MN-MilleLacs,http://morris.state.mn.us/tax/,Base,false,0.78,ok,1
+MN,Morrison,MN-Morrison,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+MN,Murray,MN-Murray,https://www.murraycountymn.gov/,Base,true,0.78,ok,1
+MN,Nobles,MN-Nobles,https://www.noblescountymn.gov/,Base,true,0.78,ok,1
+MN,Norman,MN-Norman,https://www.co.norman.mn.us/,Base,true,0.78,ok,1
+MN,Olmsted,MN-Olmsted,https://publicaccess.co.olmsted.mn.us/Datalets/,Base,true,0.78,ok,1
+MN,Ottertail,MN-Ottertail,http://ottertail.visualgov.com/,Base,true,0.78,ok,1
+MN,Pennington,MN-Pennington,https://publicsearch.co.pennington.mn.us/search/commonsearch.aspx?mode=parid,Search,true,0.92,ok,1
+MN,Pine,MN-Pine,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+MN,Polk,MN-Polk,https://mn-polk-treasurer.publicaccessnow.com/TaxSearch.aspx,Search,true,0.92,ok,1
+MN,Pope,MN-Pope,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Pope,Search,true,0.92,ok,1
+MN,Ramsey,MN-Ramsey,https://beacon.schneidercorp.com/application.aspx?app=RamseyCountyMN&PageType=Search,Search,true,0.92,ok,1
+MN,Redwood,MN-Redwood,http://morris.state.mn.us/tax/,Base,false,0.78,ok,1
+MN,Renville,MN-Renville,https://www.renvillecountymn.gov/,Base,true,0.78,ok,1
+MN,Rice,MN-Rice,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+MN,Rock,MN-Rock,https://www.co.rock.mn.us/,Base,true,0.78,ok,1
+MN,Roseau,MN-Roseau,http://mn-roseau-treasurer.publicaccessnow.com/,Base,true,0.78,ok,1
+MN,Scott,MN-Scott,https://www.scottcountymn.gov/,Base,true,0.78,ok,1
+MN,Steele,MN-Steele,http://cpuimei.com/tax/,Base,true,0.78,ok,1
+MN,Stevens,MN-Stevens,https://www.stevenscountymn.gov/,Base,true,0.78,ok,1
+MN,Swift,MN-Swift,http://morris.state.mn.us/tax/,Base,false,0.78,ok,1
+MN,Todd,MN-Todd,https://www.toddcountymn.gov/,Base,true,0.78,ok,1
+MN,Traverse,MN-Traverse,https://www.traversecountymn.gov/,Base,true,0.78,ok,1
+MN,Wadena,MN-Wadena,https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Wadena,Search,true,0.92,ok,1
+MN,Washington,MN-Washington,https://www.washingtoncountymn.gov/,Base,true,0.78,ok,1
+MN,Wilkin,MN-Wilkin,https://www.co.wilkin.mn.us/,Base,true,0.78,ok,1
+MN,Winona,MN-Winona,https://www.co.winona.mn.us/,Base,true,0.78,ok,1
+MN,Yellow Medicine,MN-YellowMedicine,http://morris.state.mn.us/tax/,Base,false,0.78,ok,1
+MO,Barry,MO-Barry,http://barrycountycollector.com/,Base,true,0.78,ok,1
+MO,Benton,MO-Benton,http://www.bentoncountycollector.com/,Base,true,0.78,ok,1
+MO,Boone,MO-Boone,http://www.showmeboone.com/collector/,Base,true,0.78,ok,1
+MO,Buchanan,MO-Buchanan,https://buchananmo.devnetwedge.com/,Base,true,0.78,ok,1
+MO,Callaway,MO-Callaway,http://www.callawaycollector.com/,Base,true,0.78,ok,1
+MO,Camden,MO-Camden,http://ccinfo.camdenmo.org:9080/CamdenCol/,Base,false,0.78,ok,1
+MO,Cass,MO-Cass,http://www.casscountycollector.com/,Base,true,0.78,ok,1
+MO,Cedar,MO-Cedar,http://www.equitechinfo.com/cedar/real_bills/index/,Base,true,0.78,ok,1
+MO,Christian,MO-Christian,http://www.christiancountycollector.com/,Base,true,0.78,ok,1
+MO,Clay,MO-Clay,http://collector.claycogov.com/ascend/,Base,false,0.78,ok,1
+MO,Cole,MO-Cole,https://colemo.devnetwedge.com/,Base,true,0.78,ok,1
+MO,Crawford,MO-Crawford,http://crawfordmo.devnetwedge.com/,Base,true,0.78,ok,1
+MO,Dade,MO-Dade,https://dadecountycollector.org/,Search,true,0.92,ok,1
+MO,Dallas,MO-Dallas,http://www.dallascountymocollector.com/,Base,true,0.78,ok,1
+MO,Dent,MO-Dent,http://dentmo.taxnet.us/,Base,true,0.78,ok,1
+MO,Franklin,MO-Franklin,http://www.franklincountymissouri.org/Collector/,Base,false,0.78,ok,1
+MO,Gasconade,MO-Gasconade,http://www.gasconadecountycollector.com/,Base,true,0.78,ok,1
+MO,Gladstone City,MO-GladstoneCity,https://www.gladstone.mo.us/,Base,true,0.78,ok,1
+MO,Greene,MO-Greene,https://www.greenecountymo.org/,Base,true,0.78,ok,1
+MO,Henry,MO-Henry,http://henrycountycollector.com/,Base,true,0.78,ok,1
+MO,Jackson,MO-Jackson,https://mo-jackson.publicaccessnow.com/Collector/TaxSearch.aspx,Search,true,0.92,ok,1
+MO,Jasper,MO-Jasper,http://www.jaspercountycollector.com/,Base,true,0.78,ok,1
+MO,Jefferson,MO-Jefferson,https://collector.jeffcomo.org/,Base,true,0.78,ok,1
+MO,Kansas City City,MO-KansasCityCity,http://kivaweb.kcmo.org/kivanet/2/land/real_est/,Base,false,0.78,ok,1
+MO,Laclede,MO-Laclede,http://lacledecollector.com/details/,Base,true,0.78,ok,1
+MO,Mc Donald,MO-McDonald,http://mcdonaldcountycollector.com/,Base,true,0.78,ok,1
+MO,Moniteau,MO-Moniteau,http://equitechinfo.com/moniteau/,Base,false,0.78,ok,1
+MO,New Madrid,MO-NewMadrid,http://www.newmadridcocollector.com/parcels/,Base,false,0.78,ok,1
+MO,Newton,MO-Newton,http://www.newtoncountycollector.com/,Base,true,0.78,ok,1
+MO,Nodaway,MO-Nodaway,https://billpay.forte.net/NodawayMOTax/,Base,true,0.78,ok,1
+MO,Pettis,MO-Pettis,http://pettismo.devnetwedge.com/,Base,true,0.78,ok,1
+MO,Phelps,MO-Phelps,https://www.phelpscountycollector.com/,Base,true,0.78,ok,1
+MO,Pike,MO-Pike,http://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+MO,Platte,MO-Platte,http://www.plattecountycollector.com/,Base,true,0.78,ok,1
+MO,Polk,MO-Polk,https://polkcountycollector.com/,Base,true,0.78,ok,1
+MO,Scott,MO-Scott,https://www.scottcocollector.com/,Base,true,0.78,ok,1
+MO,St Charles,MO-StCharles,http://collector.sccmo.org/ecollector/Tabs/RealEstateSearch/,Base,true,0.78,ok,1
+MO,St Louis,MO-StLouis,https://taxpayments.stlouiscountymo.gov/,Search,true,0.92,ok,1
+MO,St Louis City,MO-StLouisCity,https://www.stlouis-mo.gov/data/address-search/,Base,true,0.78,ok,1
+MO,Stone,MO-Stone,http://www.equitechinfo.com/stoneview/user/props/,Base,false,0.78,ok,1
+MO,Taney,MO-Taney,http://www.taneycountycollector.com/,Base,true,0.78,ok,1
+MO,Warren,MO-Warren,https://billpay.forte.net/WARRENCOMOCOLLECTOR/api/,Base,true,0.78,ok,1
+MO,Webster,MO-Webster,http://www.webstercountycollector.com/,Base,true,0.78,ok,1
+MS,Alcorn,MS-Alcorn,http://www.deltacomputersystems.com/MS/MS02/,Base,true,0.78,ok,1
+MS,Clarke,MS-Clarke,http://www.deltacomputersystems.com/MS/MS12/,Base,true,0.78,ok,1
+MS,Clay,MS-Clay,https://cs.datasysmgt.com/,Base,true,0.78,ok,1
+MS,De Soto,MS-DeSoto,http://www.desotoms.info/webpgms/,Base,false,0.78,ok,1
+MS,Forrest,MS-Forrest,http://www.deltacomputersystems.com/MS/MS18/,Base,true,0.78,ok,1
+MS,George,MS-George,http://www.deltacomputersystems.com/MS/MS20/,Base,true,0.78,ok,1
+MS,Greene,MS-Greene,http://www.deltacomputersystems.com/MS/MS21/,Base,true,0.78,ok,1
+MS,Hancock,MS-Hancock,https://www.pay1stop.com/PropTaxView/,Base,true,0.78,ok,1
+MS,Harrison,MS-Harrison,http://www.deltacomputersystems.com/cgi-lrm5/lrmcgi01?HTMCNTY=MS24,Search,true,0.92,ok,1
+MS,Hinds,MS-Hinds,http://www.co.hinds.ms.us/pgs/apps/,Base,true,0.78,ok,1
+MS,Jackson,MS-Jackson,https://co-jackson-ms-taxpayments.us/payTaxes.html#/WildfireSearch,Search,true,0.92,ok,1
+MS,Lafayette,MS-Lafayette,http://www.deltacomputersystems.com/MS/MS36/,Base,true,0.78,ok,1
+MS,Lamar,MS-Lamar,http://www.deltacomputersystems.com/MS/MS37/,Base,true,0.78,ok,1
+MS,Lauderdale,MS-Lauderdale,http://www.deltacomputersystems.com/MS/MS38/,Base,true,0.78,ok,1
+MS,Leake,MS-Leake,http://www.deltacomputersystems.com/cgi-lrm5/,Base,false,0.78,ok,1
+MS,Lee,MS-Lee,http://www.deltacomputersystems.com/MS/MS41/,Base,true,0.78,ok,1
+MS,Leflore,MS-Leflore,http://cdms.datasysmgt.com/dsmp/,Base,true,0.78,ok,1
+MS,Lowndes,MS-Lowndes,http://www.deltacomputersystems.com/MS/MS44/,Base,true,0.78,ok,1
+MS,Madison,MS-Madison,https://www.pay1stop.com/PropTax/,Base,true,0.78,ok,1
+MS,Madison Step One Only,MS-MadisonStepOneOnly,https://madison.ibcpayments.com/,Base,true,0.78,ok,1
+MS,Marshall,MS-Marshall,http://www.deltacomputersystems.com/MS/MS47/,Base,true,0.78,ok,1
+MS,Neshoba,MS-Neshoba,http://www.deltacomputersystems.com/MS/MS50/,Base,true,0.78,ok,1
+MS,Pearl River,MS-PearlRiver,http://www.deltacomputersystems.com/MS/MS55/,Base,true,0.78,ok,1
+MS,Perry,MS-Perry,http://www.deltacomputersystems.com/MS/MS56/,Base,true,0.78,ok,1
+MS,Pike,MS-Pike,http://www.deltacomputersystems.com/MS/MS57/,Base,true,0.78,ok,1
+MS,Rankin,MS-Rankin,https://www2.rankincounty.org/TA/,Base,true,0.78,ok,1
+MS,Scott,MS-Scott,http://www.deltacomputersystems.com/MS/MS62/,Base,true,0.78,ok,1
+MS,Stone,MS-Stone,http://www.deltacomputersystems.com/MS/MS66/,Base,true,0.78,ok,1
+MS,Tate,MS-Tate,http://cdms.datasysmgt.com/dsmp/,Base,true,0.78,ok,1
+MS,Union,MS-Union,http://www.deltacomputersystems.com/MS/MS73/,Base,true,0.78,ok,1
+MS,Warren,MS-Warren,http://www.deltacomputersystems.com/MS/MS75/,Base,true,0.78,ok,1
+MS,Washington,MS-Washington,http://www.deltacomputersystems.com/MS/MS76/,Base,true,0.78,ok,1
+MS,Wayne,MS-Wayne,http://www.deltacomputersystems.com/MS/MS77/,Base,true,0.78,ok,1
+MS,Winston,MS-Winston,http://cdms.datasysmgt.com/dsmp/,Base,true,0.78,ok,1
+MT,Cascade,MT-Cascade,http://itax.tylertech.com/cascademt/,Base,true,0.78,ok,1
+MT,Glacier,MT-Glacier,https://glaciercountymt.gov/departments/treasurer/,Search,true,0.92,ok,1
+MT,Lake,MT-Lake,http://www.mtcounty.com/bmsrdl/,Base,true,0.78,ok,1
+MT,Missoula,MT-Missoula,https://itax.missoulacounty.us/itax/,Base,true,0.78,ok,1
+MT,Ravalli,MT-Ravalli,http://www.mtcounty.com/bmsrdl/,Base,true,0.78,ok,1
+MT,Sanders,MT-Sanders,http://www.mtcounty.com/bmsrdl/,Base,true,0.78,ok,1
+NC,Alexander,NC-Alexander,http://alexander.ustaxdata.com/,Base,true,0.78,ok,1
+NC,Anson,NC-Anson,https://www.bttaxpayerportal.com/ITSPublicAN/TaxBillSearch,Search,true,0.92,ok,1
+NC,Avery,NC-Avery,https://secure.webtaxpay.com/?county=avery&state=NC,Search,true,0.92,ok,1
+NC,Bertie,NC-Bertie,https://d1ebsyxxbc7tep.cloudfront.net/,Base,true,0.78,ok,1
+NC,Bladen,NC-Bladen,https://bladen.ustaxdata.com/TaxSearch.cfm,Search,true,0.92,ok,1
+NC,Buncombe,NC-Buncombe,http://www.buncombetax.org/,Base,true,0.78,ok,1
+NC,Burlington City,NC-BurlingtonCity,https://www.burlingtonnctax.com/#/WildfireSearch,Search,true,0.92,ok,1
+NC,Cabarrus,NC-Cabarrus,http://tax.cabarruscounty.us/,Base,true,0.78,ok,1
+NC,Caldwell,NC-Caldwell,http://tax.caldwellcountync.org/,Base,true,0.78,ok,1
+NC,Carteret,NC-Carteret,http://carteretcountytax.com/,Base,true,0.78,ok,1
+NC,Columbus,NC-Columbus,http://24.172.30.162/,Base,true,0.78,ok,1
+NC,Cumberland,NC-Cumberland,https://taxpwa.co.cumberland.nc.us/publicwebaccess/,Base,true,0.78,ok,1
+NC,Currituck,NC-Currituck,http://currituck.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+NC,Dare,NC-Dare,https://darenctax.munisselfservice.com/,Base,true,0.78,ok,1
+NC,Duplin,NC-Duplin,http://duplintax.duplincounty.org/,Base,false,0.78,ok,1
+NC,Durham,NC-Durham,http://www.ustaxdata.com/nc/durham/,Base,true,0.78,ok,1
+NC,Forsyth,NC-Forsyth,https://bcpwa.ncptscloud.com/forsythtax/,Search,true,0.92,ok,1
+NC,Gaston,NC-Gaston,https://gastonnc.devnetwedge.com/,Search,true,0.92,ok,1
+NC,Guilford,NC-Guilford,https://bcpwa.ncptscloud.com/guilfordtax/,Search,true,0.92,ok,1
+NC,Halifax,NC-Halifax,https://halifaxnc.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+NC,Henderson,NC-Henderson,https://lrcpwa.ncptscloud.com/Henderson/,Search,true,0.92,ok,1
+NC,Hoke,NC-Hoke,https://hokecountytaxes.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+NC,Hudson Town,NC-HudsonTown,https://hudsonnc.mygovhub.com/#/quickpay,Search,true,0.92,ok,1
+NC,Indian Trail Town,NC-IndianTrailTown,https://wipp.edmundsassoc.com/Wipp600/,Base,true,0.78,ok,1
+NC,Iredell,NC-Iredell,https://www.co.iredell.nc.us/,Base,true,0.78,ok,1
+NC,Jackson,NC-Jackson,https://d1ebsyxxbc7tep.cloudfront.net/,Base,true,0.78,ok,1
+NC,Johnston,NC-Johnston,https://my.johnstonnc.gov/service/johnston_county_property_tax,Search,true,0.92,ok,1
+NC,Lee,NC-Lee,https://leecountync.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+NC,Lenoir City,NC-LenoirCity,https://lenoirnc.mygovhub.com/#/quickpay,Search,true,0.92,ok,1
+NC,Lincoln,NC-Lincoln,https://www.lincolncountytax.com/,Search,true,0.92,ok,1
+NC,Macon,NC-Macon,https://tax.maconnc.org/ITSPublicMA/TaxBillSearch,Search,true,0.92,ok,1
+NC,Mecklenburg,NC-Mecklenburg,http://taxbill.co.mecklenburg.nc.us/publicwebaccess/,Base,true,0.78,ok,1
+NC,Mitchell,NC-Mitchell,http://mitchell.webtaxpay.com/,Base,true,0.78,ok,1
+NC,Nash,NC-Nash,https://nashcountync.munisselfservice.com/,Base,true,0.78,ok,1
+NC,New Hanover,NC-NewHanover,https://mss.nhcgov.com/,Base,true,0.78,ok,1
+NC,Oak Island Town,NC-OakIslandTown,https://www.municipalonlinepayments.com/OAKISLANDNC/tax/,Base,true,0.78,ok,1
+NC,Onslow,NC-Onslow,http://taxonline.onslowcountync.gov/MSS/citizens/RealEstate/,Base,false,0.78,ok,1
+NC,Orange,NC-Orange,http://web.co.orange.nc.us/PublicWebAccess/,Base,true,0.78,ok,1
+NC,Polk,NC-Polk,http://cms.revize.com/revize/apps/polkcounty/,Base,true,0.78,ok,1
+NC,Randolph,NC-Randolph,https://txpwa.randolphcountync.gov/publicwebaccess/,Search,true,0.92,ok,1
+NC,Robeson,NC-Robeson,http://www.ustaxdata.com/nc/robeson/,Base,true,0.78,ok,1
+NC,Rocky Mount City,NC-RockyMountCity,https://rockymountnc.munisselfservice.com/css/citizens/RealEstate/Default.aspx?mode=new,Search,true,0.92,ok,1
+NC,Rowan,NC-Rowan,http://rowan.ustaxdata.com/,Base,true,0.78,ok,1
+NC,Stokes,NC-Stokes,http://www.stokescountytax.com/taxes/,Base,true,0.78,ok,1
+NC,Surf City,NC-SurfCity,https://wipp.edmundsgovtech.cloud/home?wippId=SURF,Search,true,0.92,ok,1
+NC,Tarboro Town,NC-TarboroTown,https://wipp.edmundsassoc.com/WippTARB/,Base,true,0.78,ok,1
+NC,Transylvania,NC-Transylvania,https://tax.transylvaniacounty.org/TaxBillSearch,Search,true,0.92,ok,1
+NC,Union,NC-Union,http://www.unioncountync.us/Government/TaxAdministration/,Base,false,0.78,ok,1
+NC,Vance,NC-Vance,http://vance.ustaxdata.com/,Base,true,0.78,ok,1
+NC,Wake,NC-Wake,https://services.wake.gov/realestate/,Search,true,0.92,ok,1
+NC,Waynesville,NC-Waynesville,https://waynesville.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=n,Base,true,0.78,ok,1
+ND,Barnes,ND-Barnes,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Dunn,ND-Dunn,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Grand Forks,ND-GrandForks,https://gfcountytax.nd.gov/,Base,false,0.78,ok,1
+ND,La Moure,ND-LaMoure,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Mc Kenzie,ND-McKenzie,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Morton,ND-Morton,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Mountrail,ND-Mountrail,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Pembina,ND-Pembina,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Ransom,ND-Ransom,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Sargent,ND-Sargent,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Stutsman,ND-Stutsman,http://www.co.stutsman.nd.us/Tax/,Base,true,0.78,ok,1
+ND,Ward,ND-Ward,https://itax.tylertech.com/wardnd/,Base,true,0.78,ok,1
+ND,Williams,ND-Williams,https://www.williamsnd.com/,Base,true,0.78,ok,1
+NE,Adams,NE-Adams,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Boone,NE-Boone,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Box Butte,NE-BoxButte,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Buffalo,NE-Buffalo,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Burt,NE-Burt,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Butler,NE-Butler,https://butler.gisworkshop.com/,Base,true,0.78,ok,1
+NE,Cass,NE-Cass,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Cedar,NE-Cedar,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Chase,NE-Chase,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Clay,NE-Clay,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Colfax,NE-Colfax,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Cuming,NE-Cuming,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Dawes,NE-Dawes,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Dawson,NE-Dawson,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Deuel,NE-Deuel,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Dixon,NE-Dixon,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Douglas,NE-Douglas,https://treasurer.douglascounty-ne.gov/property-tax-lookup/property-tax-records/,Search,true,0.92,ok,1
+NE,Dundy,NE-Dundy,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Fillmore,NE-Fillmore,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Franklin,NE-Franklin,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Frontier,NE-Frontier,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Furnas,NE-Furnas,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Gage,NE-Gage,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Garden,NE-Garden,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Gosper,NE-Gosper,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Greeley,NE-Greeley,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Hamilton,NE-Hamilton,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Hitchcock,NE-Hitchcock,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Holt,NE-Holt,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Jefferson,NE-Jefferson,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Johnson,NE-Johnson,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Keith,NE-Keith,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Kimball,NE-Kimball,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Knox,NE-Knox,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Lincoln,NE-Lincoln,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Madison,NE-Madison,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Merrick,NE-Merrick,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Morrill,NE-Morrill,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Nance,NE-Nance,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Nemaha,NE-Nemaha,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Otoe,NE-Otoe,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Pawnee,NE-Pawnee,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Perkins,NE-Perkins,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Phelps,NE-Phelps,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Platte,NE-Platte,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Red Willow,NE-RedWillow,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Saline,NE-Saline,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Saunders,NE-Saunders,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Scotts Bluff,NE-ScottsBluff,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Seward,NE-Seward,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Stanton,NE-Stanton,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Thayer,NE-Thayer,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Thurston,NE-Thurston,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Wayne,NE-Wayne,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Webster,NE-Webster,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,Wheeler,NE-Wheeler,http://www.nebraskataxesonline.us/,Base,true,0.78,ok,1
+NE,York,NE-York,https://york.gisworkshop.com/,Base,false,0.78,ok,1
+NH,Andover Town,NH-AndoverTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Boscawen Town,NH-BoscawenTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Bristol Town,NH-BristolTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Danville Town,NH-DanvilleTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Deering Town,NH-DeeringTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Effingham Town,NH-EffinghamTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Epsom Town,NH-EpsomTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Fitzwilliam Town,NH-FitzwilliamTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Hampstead Town,NH-HampsteadTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Lempster Town,NH-LempsterTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Loudon Town,NH-LoudonTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Madison Town,NH-MadisonTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Manchester City,NH-ManchesterCity,http://egov.manchesternh.gov/Click2GovTX/,Base,false,0.78,ok,1
+NH,Merrimack Town,NH-MerrimackTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Middleton Town,NH-MiddletonTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,New Boston Town,NH-NewBostonTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Newbury Town,NH-NewburyTown,https://www.eb2gov.com/,Base,true,0.78,ok,1
+NH,New Ipswich Town,NH-NewIpswichTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Northfield Town,NH-NorthfieldTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,North Hampton Town,NH-NorthHamptonTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Stratham Town,NH-StrathamTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Tilton Town,NH-TiltonTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Tuftonboro Town,NH-TuftonboroTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Walpole Town,NH-WalpoleTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Washington Town,NH-WashingtonTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Weare Town,NH-WeareTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Webster Town,NH-WebsterTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NH,Wentworth Town,NH-WentworthTown,http://www.nhtaxkiosk.com/,Base,true,0.78,ok,1
+NJ,Aberdeen Twp,NJ-AberdeenTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Absecon City,NJ-AbseconCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Allendale Boro,NJ-AllendaleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Alloway Twp,NJ-AllowayTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Alpha Boro,NJ-AlphaBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Alpine Boro,NJ-AlpineBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Andover Twp,NJ-AndoverTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Asbury Park City,NJ-AsburyParkCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Atlantic City,NJ-AtlanticCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Atlantic Highlands Boro,NJ-AtlanticHighlandsBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Audubon Boro,NJ-AudubonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Avalon Boro,NJ-AvalonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Avonbythesea Boro,NJ-AvonbytheseaBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Barnegat Light Boro,NJ-BarnegatLightBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Barnegat Twp,NJ-BarnegatTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Barrington Boro,NJ-BarringtonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Bay Head Boro,NJ-BayHeadBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Beachwood Boro,NJ-BeachwoodBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Belleville Twp,NJ-BellevilleTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Bellmawr Boro,NJ-BellmawrBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Belmar Boro,NJ-BelmarBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Bergenfield Boro,NJ-BergenfieldBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Berkeley Heights Twp,NJ-BerkeleyHeightsTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Berlin Boro,NJ-BerlinBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Bernards Twp,NJ-BernardsTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Bloomfield Twp,NJ-BloomfieldTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Bloomingdale Boro,NJ-BloomingdaleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Boonton Town,NJ-BoontonTown,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Bordentown Twp,NJ-BordentownTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Bradley Beach Boro,NJ-BradleyBeachBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Branchburg Twp,NJ-BranchburgTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Brick,NJ-Brick,https://apps.hlssystems.com/Brick/PropertyTaxInquiry/,Search,true,0.92,ok,1
+NJ,Brick Township,NJ-BrickTownship,http://www.bricktownship.net/TaxInquiry/,Base,false,0.78,ok,1
+NJ,Brielle Boro,NJ-BrielleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Brigantine City,NJ-BrigantineCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Brooklawn Boro,NJ-BrooklawnBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Buena Boro,NJ-BuenaBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Buena Vista Twp,NJ-BuenaVistaTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Burlington City,NJ-BurlingtonCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Butler Boro,NJ-ButlerBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Caldwell Borough Twp,NJ-CaldwellBoroughTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Camden City,NJ-CamdenCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Cape May City,NJ-CapeMayCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Cape May Point Boro,NJ-CapeMayPointBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Carlstadt Boro,NJ-CarlstadtBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Carneys Point Twp,NJ-CarneysPointTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Carteret Boro,NJ-CarteretBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Chatham Boro,NJ-ChathamBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Chesilhurst Boro,NJ-ChesilhurstBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Chesterfield Twp,NJ-ChesterfieldTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Chester Twp,NJ-ChesterTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Clayton Boro,NJ-ClaytonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Clementon Boro,NJ-ClementonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Clifton City,NJ-CliftonCity,http://taxsystem.cliftonnj.org:51000/,Base,true,0.78,ok,1
+NJ,Collingswood Boro,NJ-CollingswoodBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Commercial Twp,NJ-CommercialTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Cresskill Boro,NJ-CresskillBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Deal Boro,NJ-DealBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Deerfield Twp,NJ-DeerfieldTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Delanco Twp,NJ-DelancoTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Delran Twp,NJ-DelranTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Dennis Twp,NJ-DennisTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Dover Town,NJ-DoverTown,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Dumont Boro,NJ-DumontBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Eagleswood Twp,NJ-EagleswoodTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Eastampton Twp,NJ-EastamptonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,East Hanover Twp,NJ-EastHanoverTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,East Windsor Twp,NJ-EastWindsorTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Eatontown Boro,NJ-EatontownBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Edgewater Park Twp,NJ-EdgewaterParkTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Egg Harbor Twp,NJ-EggHarborTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Elizabeth City,NJ-ElizabethCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Elk Twp,NJ-ElkTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Elmwood Park Boro,NJ-ElmwoodParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Emerson Boro,NJ-EmersonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Englishtown Boro,NJ-EnglishtownBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Estell Manor City,NJ-EstellManorCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Evesham Twp,NJ-EveshamTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Fairfield Twp,NJ-FairfieldTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Fair Haven Boro,NJ-FairHavenBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Fair Lawn Boro,NJ-FairLawnBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Fairview Boro,NJ-FairviewBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Far Hills Boro,NJ-FarHillsBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Farmingdale Boro,NJ-FarmingdaleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Florham Park Boro,NJ-FlorhamParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Folsom Boro,NJ-FolsomBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Franklin Lakes Boro,NJ-FranklinLakesBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Franklin Twp,NJ-FranklinTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Freehold Boro,NJ-FreeholdBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Freehold Twp,NJ-FreeholdTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Galloway Twp,NJ-GallowayTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Gibbsboro Boro,NJ-GibbsboroBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Glassboro Boro,NJ-GlassboroBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Glen Ridge Borough Twp,NJ-GlenRidgeBoroughTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Gloucester Township,NJ-GloucesterTownship,https://wipp.edmundsassoc.com/Wipp/?wippid=Gloucestertownship,Base,true,0.78,ok,1
+NJ,Greenwich Twp,NJ-GreenwichTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Hackensack City,NJ-HackensackCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Hackettstown Town,NJ-HackettstownTown,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Haddonfield Boro,NJ-HaddonfieldBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Haddon Heights Boro,NJ-HaddonHeightsBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Haledon Boro,NJ-HaledonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Hamilton Township,NJ-HamiltonTownship,https://wipp.edmundsassoc.com/Wipp/?wippid=Hamiltontownship,Base,true,0.78,ok,1
+NJ,Hamilton Twp,NJ-HamiltonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Hammonton Town,NJ-HammontonTown,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Harrison Twp,NJ-HarrisonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Harvey Cedars Boro,NJ-HarveyCedarsBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Haworth Boro,NJ-HaworthBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Hazlet Twp,NJ-HazletTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Helmetta Boro,NJ-HelmettaBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Highland Park Boro,NJ-HighlandParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Highlands Boro,NJ-HighlandsBoro,https://wipp.edmundsassoc.com/Wipp/?wippid=1319,Search,true,0.92,ok,1
+NJ,Hightstown Boro,NJ-HightstownBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Hillsborough Twp,NJ-HillsboroughTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Hillsdale Boro,NJ-HillsdaleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Holmdel Twp,NJ-HolmdelTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Hopatcong Boro,NJ-HopatcongBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Howell Twp,NJ-HowellTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Interlaken Boro,NJ-InterlakenBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Irvington Twp,NJ-IrvingtonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Island Heights Boro,NJ-IslandHeightsBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Jamesburg Boro,NJ-JamesburgBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Jefferson Twp,NJ-JeffersonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Jersey City,NJ-JerseyCity,https://taxes.cityofjerseycity.com/,Search,true,0.92,ok,1
+NJ,Keansburg Boro,NJ-KeansburgBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Kenilworth Boro,NJ-KenilworthBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Keyport Boro,NJ-KeyportBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Kinnelon Boro,NJ-KinnelonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lake Como Boro,NJ-LakeComoBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lakehurst Boro,NJ-LakehurstBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lakewood Twp,NJ-LakewoodTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Laurel Springs Boro,NJ-LaurelSpringsBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lavallette Boro,NJ-LavalletteBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lawnside Boro,NJ-LawnsideBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lawrence Twp,NJ-LawrenceTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Leonia Boro,NJ-LeoniaBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lincoln Park Boro,NJ-LincolnParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Linden City,NJ-LindenCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lindenwold Boro,NJ-LindenwoldBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Linwood City,NJ-LinwoodCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Little Ferry Boro,NJ-LittleFerryBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Little Silver Boro,NJ-LittleSilverBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Livingston Twp,NJ-LivingstonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Loch Arbour Village,NJ-LochArbourVillage,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Logan Twp,NJ-LoganTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Long Beach Twp,NJ-LongBeachTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Longport Boro,NJ-LongportBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lower Alloways Creek Twp,NJ-LowerAllowaysCreekTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Lower Twp,NJ-LowerTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Madison Boro,NJ-MadisonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Magnolia Boro,NJ-MagnoliaBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Manasquan Boro,NJ-ManasquanBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mannington Twp,NJ-ManningtonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mansfield Twp,NJ-MansfieldTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mantoloking Boro,NJ-MantolokingBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mantua Twp,NJ-MantuaTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Manville Boro,NJ-ManvilleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Maplewood Twp,NJ-MaplewoodTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Matawan Boro,NJ-MatawanBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Maurice River Twp,NJ-MauriceRiverTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Medford Lakes Boro,NJ-MedfordLakesBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mendham Twp,NJ-MendhamTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Merchantville Boro,NJ-MerchantvilleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Metuchen Boro,NJ-MetuchenBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Middletown Twp,NJ-MiddletownTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Middle Twp,NJ-MiddleTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Midland Park Boro,NJ-MidlandParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Millburn Twp,NJ-MillburnTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Millstone Twp,NJ-MillstoneTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Milltown Boro,NJ-MilltownBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Millville City,NJ-MillvilleCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Monroe Twp,NJ-MonroeTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Montclair Twp,NJ-MontclairTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Montvale Boro,NJ-MontvaleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Montville Twp,NJ-MontvilleTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Morristown Town,NJ-MorristownTown,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Morris Twp,NJ-MorrisTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mountainside Boro,NJ-MountainsideBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mount Arlington Boro,NJ-MountArlingtonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mount Ephraim Boro,NJ-MountEphraimBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mount Laurel Twp,NJ-MountLaurelTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mount Olive Twp,NJ-MountOliveTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Mullica Twp,NJ-MullicaTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,National Park Boro,NJ-NationalParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Neptune City Boro,NJ-NeptuneCityBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Netcong Boro,NJ-NetcongBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Newark City,NJ-NewarkCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,New Hanover Twp,NJ-NewHanoverTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,North Bergen Twp,NJ-NorthBergenTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,North Brunswick Twp,NJ-NorthBrunswickTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,North Caldwell Boro,NJ-NorthCaldwellBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Northfield City,NJ-NorthfieldCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,North Haledon Boro,NJ-NorthHaledonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,North Hanover Twp,NJ-NorthHanoverTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,North Plainfield Boro,NJ-NorthPlainfieldBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Oakland Boro,NJ-OaklandBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Oaklyn Boro,NJ-OaklynBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Ocean City,NJ-OceanCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Ocean Gate Boro,NJ-OceanGateBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Oceanport Boro,NJ-OceanportBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Ocean Twp,NJ-OceanTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Oldmans Twp,NJ-OldmansTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Old Tappan Boro,NJ-OldTappanBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Oradell Boro,NJ-OradellBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Paramus Boro,NJ-ParamusBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Park Ridge Boro,NJ-ParkRidgeBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Parsippanytroy Hills Twp,NJ-ParsippanytroyHillsTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Passaic City,NJ-PassaicCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Paterson City,NJ-PatersonCity,https://wipp.edmundsassoc.com/Wipp/,Base,true,0.78,ok,1
+NJ,Peapack Gladstone Boro,NJ-PeapackGladstoneBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Pemberton Twp,NJ-PembertonTwp,https://wipp.edmundsassoc.com/Wipp/?wippid=0329,Base,true,0.78,ok,1
+NJ,Pennsauken Twp,NJ-PennsaukenTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Penns Grove Boro,NJ-PennsGroveBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Pennsville Twp,NJ-PennsvilleTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Perth Amboy City,NJ-PerthAmboyCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Pilesgrove Twp,NJ-PilesgroveTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Pine Beach Boro,NJ-PineBeachBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Pine Hill Boro,NJ-PineHillBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Pitman Boro,NJ-PitmanBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Pittsgrove Twp,NJ-PittsgroveTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Pleasantville City,NJ-PleasantvilleCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Plumsted Twp,NJ-PlumstedTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Point Pleasant Beach Boro,NJ-PointPleasantBeachBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Port Republic City,NJ-PortRepublicCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Prospect Park Boro,NJ-ProspectParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Quinton Twp,NJ-QuintonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Rahway City,NJ-RahwayCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Raritan Boro,NJ-RaritanBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Red Bank Boro,NJ-RedBankBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Ridgewood Village,NJ-RidgewoodVillage,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Riverdale Boro,NJ-RiverdaleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Riverton Boro,NJ-RivertonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,River Vale Twp,NJ-RiverValeTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Robbinsville Twp,NJ-RobbinsvilleTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Roseland Boro,NJ-RoselandBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Roxbury Twp,NJ-RoxburyTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Rumson Boro,NJ-RumsonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Runnemede Boro,NJ-RunnemedeBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Rutherford Boro,NJ-RutherfordBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Salem City,NJ-SalemCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Sea Bright Boro,NJ-SeaBrightBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Sea Girt Boro,NJ-SeaGirtBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Sea Isle City,NJ-SeaIsleCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Seaside Park Boro,NJ-SeasideParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Shrewsbury Boro,NJ-ShrewsburyBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Shrewsbury Twp,NJ-ShrewsburyTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Somerdale Boro,NJ-SomerdaleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Somers Point City,NJ-SomersPointCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,South Amboy City,NJ-SouthAmboyCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Southampton Twp,NJ-SouthamptonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,South Bound Brook Boro,NJ-SouthBoundBrookBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,South Brunswick Twp,NJ-SouthBrunswickTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,South Hackensack Twp,NJ-SouthHackensackTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,South Harrison Twp,NJ-SouthHarrisonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,South Plainfield Boro,NJ-SouthPlainfieldBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,South River Boro,NJ-SouthRiverBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,South Toms River Boro,NJ-SouthTomsRiverBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Sparta Twp,NJ-SpartaTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Spotswood Boro,NJ-SpotswoodBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Springfield Twp,NJ-SpringfieldTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Stockton Boro,NJ-StocktonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Stratford Boro,NJ-StratfordBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Surf City Boro,NJ-SurfCityBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Swedesboro Boro,NJ-SwedesboroBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Tabernacle Twp,NJ-TabernacleTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Toms River Township,NJ-TomsRiverTownship,https://wipp.edmundsassoc.com/Wipp/,Base,true,0.78,ok,1
+NJ,Totowa Boro,NJ-TotowaBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Tuckerton Boro,NJ-TuckertonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Union Beach Boro,NJ-UnionBeachBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Union Twp,NJ-UnionTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Upper Deerfield Twp,NJ-UpperDeerfieldTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Upper Freehold Twp,NJ-UpperFreeholdTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Upper Twp,NJ-UpperTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Ventnor City,NJ-VentnorCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Verona Twp,NJ-VeronaTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Vineland City,NJ-VinelandCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Voorhees Twp,NJ-VoorheesTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Waldwick Boro,NJ-WaldwickBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wall Twp,NJ-WallTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wanaque Boro,NJ-WanaqueBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Washington Boro,NJ-WashingtonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Washington Township,NJ-WashingtonTownship,http://wipp.edmundsassoc.com/Wipp0818/,Base,true,0.78,ok,1
+NJ,Washington Twp,NJ-WashingtonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Waterford Twp,NJ-WaterfordTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wayne Twp,NJ-WayneTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wenonah Boro,NJ-WenonahBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Westampton Twp,NJ-WestamptonTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,West Caldwell Twp,NJ-WestCaldwellTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,West Cape May Boro,NJ-WestCapeMayBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Westfield Town,NJ-WestfieldTown,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,West Orange Twp,NJ-WestOrangeTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Westville Boro,NJ-WestvilleBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,West Wildwood Boro,NJ-WestWildwoodBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Westwood Boro,NJ-WestwoodBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Weymouth Twp,NJ-WeymouthTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wharton Boro,NJ-WhartonBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wildwood City,NJ-WildwoodCity,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wildwood Crest Boro,NJ-WildwoodCrestBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Winslow Twp,NJ-WinslowTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Woodbine Boro,NJ-WoodbineBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Woodbridge Twp,NJ-WoodbridgeTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Woodbury Heights Boro,NJ-WoodburyHeightsBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Woodcliff Lake Boro,NJ-WoodcliffLakeBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Woodland Park Boro,NJ-WoodlandParkBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Woodridge Boro,NJ-WoodridgeBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Woolwich Twp,NJ-WoolwichTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wrightstown Boro,NJ-WrightstownBoro,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NJ,Wyckoff Twp,NJ-WyckoffTwp,https://lots.signatureinfo.com/,Base,true,0.78,ok,1
+NM,Bernalillo,NM-Bernalillo,https://www.bernco.gov/,Base,true,0.78,ok,1
+NM,Chaves,NM-Chaves,http://eagleweb.co.chaves.nm.us/Treasurer/eagleweb/,Base,true,0.78,ok,1
+NM,Dona Ana,NM-DonaAna,http://treasurer.donaanacounty.org/treasurer/treasurerweb/,Base,true,0.78,ok,1
+NM,Sandoval,NM-Sandoval,https://etweb.sandovalcountynm.gov/Treasurer/treasurerweb/,Base,true,0.78,ok,1
+NM,Santa Fe,NM-SantaFe,http://www.workplace.com/,Base,true,0.78,ok,1
+NV,Clark,NV-Clark,https://www.clarkcountynv.gov/,Search,true,0.92,ok,1
+NV,Washoe,NV-Washoe,https://nv-washoe-treasurer.manatron.com/Tabs/TaxSearch/,Base,false,0.78,ok,1
+NY,Albany City,NY-AlbanyCity,https://magic.collectorsolutions.com/magic-ui/OneTimePayment/albany-ny,Search,true,0.92,ok,1
+NY,Albany City School,NY-AlbanyCitySchool,http://tax.neric.org/,Base,true,0.78,ok,1
+NY,Amherst Town,NY-AmherstTown,https://www.amherst.ny.us/,Base,true,0.78,ok,1
+NY,Aurelius Town,NY-AureliusTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Babylon Town,NY-BabylonTown,http://tax.rptdata.com/AppCom/home/,Base,false,0.78,ok,1
+NY,Binghamton Town,NY-BinghamtonTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Brasher Town,NY-BrasherTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Bronx Boro,NY-BronxBoro,http://nycserv.nyc.gov/NYCServWeb/,Base,true,0.78,ok,1
+NY,Brookhaven Town,NY-BrookhavenTown,http://tax.rptdata.com/AppCom/home/,Base,false,0.78,ok,1
+NY,Brooklyn Boro,NY-BrooklynBoro,http://nycserv.nyc.gov/NYCServWeb/,Base,true,0.78,ok,1
+NY,Buffalo City,NY-BuffaloCity,https://pay.buffalony.gov/form/property-tax,Search,true,0.92,ok,1
+NY,Buffalo City Sewer,NY-BuffaloCitySewer,https://pay.buffalony.gov/form/property-tax,Search,true,0.92,ok,1
+NY,Canton Town,NY-CantonTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Chautauqua,NY-Chautauqua,https://app.co.chautauqua.ny.us/cctaxonline/,Search,true,0.92,ok,1
+NY,Chenango Town,NY-ChenangoTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Cherry Valley Town,NY-CherryValleyTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Clifton Town,NY-CliftonTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Clinton,NY-Clinton,https://www.clintoncountygov.com/,Base,true,0.78,ok,1
+NY,Colton Town,NY-ColtonTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Columbia,NY-Columbia,http://www.totalcollectionsolution.com/Entity/show/id/,Base,true,0.78,ok,1
+NY,Conklin Town,NY-ConklinTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Cortlandt School,NY-CortlandtSchool,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,Cortlandt Town,NY-CortlandtTown,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,De Kalb Town,NY-DeKalbTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Delaware Town,NY-DelawareTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Dickinson Town,NY-DickinsonTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Duanesburg Town,NY-DuanesburgTown,https://egov.basgov.com/duanesburg/,Base,true,0.78,ok,1
+NY,East Chester School,NY-EastChesterSchool,https://www.cit-e.net/eastchester-ny/Cit-e-Access/TaxBill/,Base,true,0.78,ok,1
+NY,East Chester Town,NY-EastChesterTown,https://www.cit-e.net/eastchester-ny/Cit-e-Access/TaxBill/,Base,true,0.78,ok,1
+NY,East Fishkill Town,NY-EastFishkillTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Ellenburg Town,NY-EllenburgTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Erie,NY-Erie,https://paytax.erie.gov/webprop/,Base,true,0.78,ok,1
+NY,Essex,NY-Essex,http://www.co.essex.ny.us/Treasurer/,Base,true,0.78,ok,1
+NY,Exeter Town,NY-ExeterTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Fallsburg Town,NY-FallsburgTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Fenton Town,NY-FentonTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Fine Town,NY-FineTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Glenville Town,NY-GlenvilleTown,https://egov.basgov.com/glenville/,Base,true,0.78,ok,1
+NY,Gouverneur Town,NY-GouverneurTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Greene,NY-Greene,http://ny.greenecounty.totalcollectionsolution.com/,Base,true,0.78,ok,1
+NY,Guilderland Town,NY-GuilderlandTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Hasting On Hudson Village,NY-HastingOnHudsonVillage,https://hastingsonhudsonny.municipalonlinepayments.com/,Base,true,0.78,ok,1
+NY,Hempstead School,NY-HempsteadSchool,http://mylocalgov.com/hempsteadny/,Base,true,0.78,ok,1
+NY,Hempstead Town,NY-HempsteadTown,http://mylocalgov.com/hempsteadny/,Base,true,0.78,ok,1
+NY,Islip Town,NY-IslipTown,http://tax.rptdata.com/AppCom/home/,Base,false,0.78,ok,1
+NY,Kirkwood Town,NY-KirkwoodTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Lewisboro School,NY-LewisboroSchool,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,Lewisboro Town,NY-LewisboroTown,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,Liberty Town,NY-LibertyTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Louisville Town,NY-LouisvilleTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Madrid Town,NY-MadridTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Maine Town,NY-MaineTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Mamakating Town,NY-MamakatingTown,http://www.taxlookup.net/,Base,true,0.78,ok,1
+NY,Mamaroneck Village,NY-MamaroneckVillage,https://www.invoicecloud.com/portal/,Base,true,0.78,ok,1
+NY,Manhattan Boro,NY-ManhattanBoro,http://nycserv.nyc.gov/NYCServWeb/,Base,true,0.78,ok,1
+NY,Mastic Beach Village,NY-MasticBeachVillage,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,Monroe,NY-Monroe,https://www.monroecountytax.org/monroe/tax/,Base,true,0.78,ok,1
+NY,Mount Vernon City,NY-MountVernonCity,https://infotaxonline.com/FindProperty.aspx?129,Search,true,0.92,ok,1
+NY,Mount Vernon City Schools,NY-MountVernonCitySchools,https://www.infotaxonline.com/FindProperty.aspx,Search,true,0.92,ok,1
+NY,Mount Vernon County,NY-MountVernonCounty,https://infotaxonline.com/FindProperty.aspx?129,Search,true,0.92,ok,1
+NY,Mount Vernon School,NY-MountVernonSchool,https://www.infotaxonline.com/FindProperty.aspx?125,Search,true,0.92,ok,1
+NY,New Rochelle City,NY-NewRochelleCity,https://cnr.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+NY,New Rochelle School,NY-NewRochelleSchool,https://cnr.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+NY,New York City,NY-NewYorkCity,http://nycserv.nyc.gov/NYCServWeb/,Base,true,0.78,ok,1
+NY,New York City DEP,NY-NewYorkCityDEP,https://a826-umax.dep.nyc.gov/balance,Search,true,0.92,ok,1
+NY,Niskayuna Town,NY-NiskayunaTown,http://WWW.totalcollectionsolution.com/,Base,true,0.78,ok,1
+NY,North Castle School,NY-NorthCastleSchool,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,North Castle Town,NY-NorthCastleTown,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,North Hempstead School,NY-NorthHempsteadSchool,http://tax.rptdata.com/PubCom/Login/ComHome.aspx,Base,false,0.78,ok,1
+NY,North Hempstead Town,NY-NorthHempsteadTown,http://tax.rptdata.com/AppCom/home/,Base,false,0.78,ok,1
+NY,Onondaga,NY-Onondaga,http://ocfintax.ongov.net/Imate/,Base,true,0.78,ok,1
+NY,Orange,NY-Orange,http://propertydata.orangecountygov.com/imate/,Base,true,0.78,ok,1
+NY,Oyster Bay School,NY-OysterBaySchool,http://tax.rptdata.com/PubCom/Login/ComHome.aspx,Base,false,0.78,ok,1
+NY,Oyster Bay Town,NY-OysterBayTown,http://tax.rptdata.com/AppCom/home/,Base,false,0.78,ok,1
+NY,Queens Boro,NY-QueensBoro,http://nycserv.nyc.gov/NYCServWeb/,Base,true,0.78,ok,1
+NY,Rensselaer,NY-Rensselaer,http://ny.rensselaercounty.totalcollectionsolution.com/entity,Search,true,0.92,ok,1
+NY,Rochester City,NY-RochesterCity,http://geo.cityofrochester.gov/,Base,true,0.78,ok,1
+NY,Rochester City ATF,NY-RochesterCityATF,https://www.atfs.com/,Base,true,0.78,ok,1
+NY,Rockville Centre Village,NY-RockvilleCentreVillage,https://rockvillecentre.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,Rome City,NY-RomeCity,https://selfservice.romenewyork.com/MSS/citizens/RealEstate/,Base,true,0.78,ok,1
+NY,Rome School,NY-RomeSchool,https://selfservice.romenewyork.com/mss/citizens/RealEstate/,Base,true,0.78,ok,1
+NY,Rotterdam Town,NY-RotterdamTown,http://www.totalcollectionsolution.com/,Base,true,0.78,ok,1
+NY,Rye,NY-Rye,https://rye.municipaltaxpayments.com/,Search,true,0.92,ok,1
+NY,Rye City,NY-RyeCity,https://rye.municipaltaxpayments.com/,Search,true,0.92,ok,1
+NY,Rye School,NY-RyeSchool,https://www.infotaxonline.com/FindProperty.aspx?112,Search,true,0.92,ok,1
+NY,Schenectady City School,NY-SchenectadyCitySchool,http://tax.neric.org/,Base,true,0.78,ok,1
+NY,Staten Island Boro,NY-StatenIslandBoro,http://nycserv.nyc.gov/NYCServWeb/,Base,true,0.78,ok,1
+NY,St Lawrence,NY-StLawrence,http://www.taxlookup.net/stlawrence/,Base,true,0.78,ok,1
+NY,Suffolk,NY-Suffolk,https://suffolk.munisselfservice.com/citizens/RealEstate/,Base,false,0.78,ok,1
+NY,Syracuse City,NY-SyracuseCity,http://ocfintax.ongov.net/ImateSyr/,Base,true,0.78,ok,1
+NY,Syracuse County,NY-SyracuseCounty,http://ocfintax.ongov.net/ImateSyr/,Base,true,0.78,ok,1
+NY,Tioga,NY-Tioga,https://imo.co.tioga.ny.us/,Base,true,0.78,ok,1
+NY,Warren,NY-Warren,https://public.warrencountyny.gov/vinyl/app/Property%20Taxes/Home/Property%20Taxes/Public%20Delinquent%20Bills,Search,true,0.92,ok,1
+NY,Washington,NY-Washington,http://www.totalcollectionsolution.com/,Base,true,0.78,ok,1
+NY,Wayne,NY-Wayne,https://web.co.wayne.ny.us/,Base,true,0.78,ok,1
+NY,Westchester,NY-Westchester,https://cnr.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+NY,White Plains,NY-WhitePlains,http://cwp.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+NY,White Plains City,NY-WhitePlainsCity,https://cwp.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=new,Search,true,0.92,ok,1
+NY,Wyoming,NY-Wyoming,http://wyomingcountytreasurer.com/Property/,Base,true,0.78,ok,1
+NY,Yates,NY-Yates,http://www.tslco.net/,Base,true,0.78,ok,1
+NY,Yorktown School,NY-YorktownSchool,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+NY,Yorktown Town,NY-YorktownTown,https://www.municipaltaxpayments.com/,Base,true,0.78,ok,1
+OH,Allen,OH-Allen,http://allencountyohpropertytax.com/,Base,true,0.78,ok,1
+OH,Ashtabula,OH-Ashtabula,http://oh-ashtabulacounty.civicplus.com/311/Treasurer,Search,true,0.92,ok,1
+OH,Athens,OH-Athens,https://www.athenscountyauditor.org/,Search,true,0.92,ok,1
+OH,Auglaize,OH-Auglaize,http://auglaizeauditor.ddti.net/,Base,false,0.78,ok,1
+OH,Brown,OH-Brown,http://brownauditor.ddti.net/,Base,false,0.78,ok,1
+OH,Butler,OH-Butler,https://www.butlercountytreasurer.org/,Search,true,0.92,ok,1
+OH,Carroll,OH-Carroll,https://www.carrollcountyauditor.us/Search/Number,Search,true,0.92,ok,1
+OH,Clermont,OH-Clermont,https://www.clermontauditorrealestate.org/_web/search/commonsearch.aspx?mode=parid,Search,true,0.92,ok,1
+OH,Clinton,OH-Clinton,https://clintoncountyauditor.org/Search/Number,Search,true,0.92,ok,1
+OH,Coshocton,OH-Coshocton,https://www.coshoctoncountytreasurer.com/Search/Number,Search,true,0.92,ok,1
+OH,Crawford,OH-Crawford,http://realestate.crawford-co.org/re-search.php?item=Parn,Search,true,0.92,ok,1
+OH,Cuyahoga,OH-Cuyahoga,https://treasurer.cuyahogacounty.us/,Search,true,0.92,ok,1
+OH,Darke,OH-Darke,http://www.darkecountyrealestate.org/,Base,true,0.78,ok,1
+OH,Defiance,OH-Defiance,http://defiance.ddti.net/,Base,false,0.78,ok,1
+OH,Franklin,OH-Franklin,https://treasurer.franklincountyohio.gov/,Search,true,0.92,ok,1
+OH,Fulton,OH-Fulton,http://fultonoh-auditor.ddti.net/,Base,false,0.78,ok,1
+OH,Gallia,OH-Gallia,https://galliaoh-auditor-classic.ddti.net/,Base,false,0.78,ok,1
+OH,Geauga,OH-Geauga,https://geaugarealink.co.geauga.oh.us/REALink/parcel/,Base,true,0.78,ok,1
+OH,Guernsey,OH-Guernsey,https://galliaoh-auditor-classic.ddti.net/,Base,false,0.78,ok,1
+OH,Hamilton,OH-Hamilton,http://www.hamiltoncountyohio.gov/treasurer/default.asp,Search,true,0.92,ok,1
+OH,Hancock,OH-Hancock,https://www.co.hancock.oh.us/,Search,true,0.92,ok,1
+OH,Hardin,OH-Hardin,http://realestate.co.hardin.oh.us/,Base,true,0.78,ok,1
+OH,Highland,OH-Highland,http://highlandcountyauditor.org/,Base,true,0.78,ok,1
+OH,Hocking,OH-Hocking,http://www.realestate.co.hocking.oh.us/,Base,false,0.78,ok,1
+OH,Holmes,OH-Holmes,https://www.holmescountyauditor.org/Search/Number,Search,true,0.92,ok,1
+OH,Huron,OH-Huron,http://www.huroncountyauditor.org/,Base,true,0.78,ok,1
+OH,Jackson,OH-Jackson,http://jacksoncountyauditor.org/,Base,true,0.78,ok,1
+OH,Knox,OH-Knox,http://knoxcountyauditor.org/,Base,true,0.78,ok,1
+OH,Lake,OH-Lake,https://www.lakecountyohio.gov/,Search,true,0.92,ok,1
+OH,Lawrence,OH-Lawrence,http://lawrencecountytreasurer.org/TaxDetails/,Base,true,0.78,ok,1
+OH,Licking,OH-Licking,https://www.lcounty.com/,Search,true,0.92,ok,1
+OH,Logan,OH-Logan,https://realestate.co.logan.oh.us/,Base,true,0.78,ok,1
+OH,Lorain,OH-Lorain,https://loraincountyauditor.gov/,Search,true,0.92,ok,1
+OH,Lucas,OH-Lucas,http://www.co.lucas.oh.us/index.aspx?nid=466,Search,true,0.92,ok,1
+OH,Madison,OH-Madison,http://madisonoh.ddti.net/,Base,false,0.78,ok,1
+OH,Mahoning,OH-Mahoning,https://auditor.mahoningcountyoh.gov/,Search,true,0.92,ok,1
+OH,Medina,OH-Medina,http://www.medinacountytax.com/,Search,true,0.92,ok,1
+OH,Meigs,OH-Meigs,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+OH,Mercer,OH-Mercer,http://www2.mercercountyohio.org/treasurer/TaxBills/,Base,false,0.78,ok,1
+OH,Miami,OH-Miami,http://www.miamicountyauditor.org/,Base,true,0.78,ok,1
+OH,Montgomery,OH-Montgomery,http://www.mctreas.org/,Search,true,0.92,ok,1
+OH,Morgan,OH-Morgan,https://www.morgancountyauditor.org/Search/Number,Search,true,0.92,ok,1
+OH,Ottawa,OH-Ottawa,http://ottawacountytreasurer.org/,Base,true,0.78,ok,1
+OH,Perry,OH-Perry,http://perrycountyauditor.us/,Base,true,0.78,ok,1
+OH,Pickaway,OH-Pickaway,http://picktreasurer.org/,Base,true,0.78,ok,1
+OH,Pike,OH-Pike,https://pikeparcelsearch.appraisalresearchcorp.com/,Base,true,0.78,ok,1
+OH,Portage,OH-Portage,http://portagecountyauditor.org/,Search,true,0.92,ok,1
+OH,Preble,OH-Preble,http://www.preblecountyauditor.org/,Base,true,0.78,ok,1
+OH,Richland,OH-Richland,https://www.billpayit.com/richlandcoohtax/,Base,true,0.78,ok,1
+OH,Sandusky,OH-Sandusky,http://www.sanduskycountyauditor.us/,Base,true,0.78,ok,1
+OH,Scioto,OH-Scioto,http://oh-scioto-auditor.publicaccessnow.com/,Base,true,0.78,ok,1
+OH,Seneca,OH-Seneca,https://senecacountytreasurer.org/Search/Account,Search,true,0.92,ok,1
+OH,Shelby,OH-Shelby,http://parcelaccesstemplate.bhamaps.com/,Base,false,0.78,ok,1
+OH,Stark,OH-Stark,https://realestate.starkcountyohio.gov/Datalets/PrintDatalet.aspx,Search,true,0.92,ok,1
+OH,Summit,OH-Summit,https://fiscaloffice.summitoh.net/,Search,true,0.92,ok,1
+OH,Trumbull,OH-Trumbull,http://auditor.co.trumbull.oh.us/index.html,Search,false,0.92,ok,1
+OH,Tuscarawas,OH-Tuscarawas,http://auditor.co.tuscarawas.oh.us/,Base,true,0.78,ok,1
+OH,Union,OH-Union,http://union.ohiorevaluations.com/,Base,true,0.78,ok,1
+OH,Van Wert,OH-VanWert,https://auditor.vanwertcountyohio.gov/,Search,true,0.92,ok,1
+OH,Vinton,OH-Vinton,https://beacon.schneidercorp.com/,Base,true,0.78,ok,1
+OH,Warren,OH-Warren,https://auditor.warrencountyohio.gov/PropertySearch/Summary/Index,Search,true,0.92,ok,1
+OH,Washington,OH-Washington,http://173.249.135.94/,Base,true,0.78,ok,1
+OH,Williams,OH-Williams,https://realestate.williamscountyoh.gov/Search,Base,true,0.78,ok,1
+OH,Wyandot,OH-Wyandot,http://realestate.co.wyandot.oh.us/re/re-search.php?item=Parn,Base,true,0.78,ok,1
+OK,Canadian,OK-Canadian,http://www.tmconsulting.us.com/visitor/,Base,false,0.78,ok,1
+OK,Comanche,OK-Comanche,http://www.tmconsulting.us.com/visitor/,Base,false,0.78,ok,1
+OK,Delaware,OK-Delaware,http://delaware.okcountytreasurers.com/details/,Base,false,0.78,ok,1
+OK,Oklahoma,OK-Oklahoma,http://www.oklahomacounty.org/treasurer/,Base,true,0.78,ok,1
+OK,Pontotoc,OK-Pontotoc,http://pontotoc.okcountytreasurers.com/details/,Base,false,0.78,ok,1
+OK,Tulsa,OK-Tulsa,https://oktaxrolls.com/searchTaxRoll/Tulsa/,Base,true,0.78,ok,1
+OR,Clackamas,OR-Clackamas,https://www.clackamas.us/,Base,true,0.78,ok,1
+OR,Multnomah,OR-Multnomah,http://www.multcoproptax.org/,Base,true,0.78,ok,1
+OR,Washington,OR-Washington,http://www.co.washington.or.us/AssessmentTaxation/,Base,true,0.78,ok,1
+PA,Allegheny,PA-Allegheny,https://realestate.alleghenycounty.us/Tax?ID={0}&SearchType=3,Search,true,0.92,ok,1
+PA,Allegheny Court,PA-AlleghenyCourt,https://dcr.alleghenycounty.us/Civil/,Base,true,0.78,ok,1
+PA,Beaver,PA-Beaver,https://propertyrecords.beavercountypa.gov/search/commonsearch.aspx,Search,true,0.92,ok,1
+PA,Bedford,PA-Bedford,http://www.infoconcountyaccess.com/CAS_Public_Inquiries/,Base,false,0.78,ok,1
+PA,Blair,PA-Blair,http://www.infoconcountyaccess.com/CAS_Public_Inquiries/,Base,false,0.78,ok,1
+PA,Bucks,PA-Bucks,http://buckspa.devnetwedge.com/,Base,false,0.78,ok,1
+PA,Chester,PA-Chester,https://epin.chesco.org/TaxClaims/,Base,true,0.78,ok,1
+PA,Chester County,PA-ChesterCounty,https://epin.chesco.org/TaxClaims/,Base,true,0.78,ok,1
+PA,Chester Due,PA-ChesterDue,https://www.officialpayments.com/,Base,true,0.78,ok,1
+PA,Chester Municipality,PA-ChesterMunicipality,https://epin.chesco.org/TaxClaims/,Base,true,0.78,ok,1
+PA,Chester Payments,PA-ChesterPayments,https://payments.municipay.com/api/b9b26aee8ebf11ea94907fc00dc56f18/parcel/search,Search,true,0.92,ok,1
+PA,Chester School,PA-ChesterSchool,https://epin.chesco.org/TaxClaims/,Base,true,0.78,ok,1
+PA,Clarion,PA-Clarion,http://www.infoconcountyaccess.com/CAS_Public_Inquiries/,Base,false,0.78,ok,1
+PA,Dauphin,PA-Dauphin,http://www.dauphinpropertyinfo.org/,Base,false,0.78,ok,1
+PA,Delaware,PA-Delaware,http://w01.co.delaware.pa.us/pa/,Base,true,0.78,ok,1
+PA,Hempfield Town,PA-HempfieldTown,http://westmorelandweb400.us:8088/CGI-BIN/,Base,false,0.78,ok,1
+PA,Lehigh,PA-Lehigh,http://apps.lehighcounty.org/,Base,true,0.78,ok,1
+PA,Luzerne,PA-Luzerne,http://nerevenue.rba.com/taxes/luzerne/,Base,true,0.78,ok,1
+PA,Mercer,PA-Mercer,https://www.infoconcountyaccess.com/CAS_Public_Inquiries/Monarch/,Base,true,0.78,ok,1
+PA,Montgomery Tax Claim,PA-MontgomeryTaxClaim,https://webapp07.montcopa.org/taxclaim/,Search,true,0.644,ok,1
+PA,New Castle City,PA-NewCastleCity,https://wipp.edmundsassoc.com/Wipp/,Base,true,0.78,ok,1
+PA,New Castle School,PA-NewCastleSchool,https://wipp.edmundsassoc.com/Wipp/,Base,true,0.78,ok,1
+PA,Northampton,PA-Northampton,https://www.ncpub.org/,Base,true,0.78,ok,1
+PA,Philadelphia City,PA-PhiladelphiaCity,https://tax-services.phila.gov/,Search,true,0.92,ok,1
+PA,Schuylkill,PA-Schuylkill,https://www.co.schuylkill.pa.us/,Base,true,0.78,ok,1
+PA,Scranton City,PA-ScrantonCity,http://nerevenue.rba.com/taxes/scranton/,Base,true,0.78,ok,1
+PA,West Mifflin School,PA-WestMifflinSchool,https://billpay.forte.net/westmifflinpaschooltax/,Search,true,0.92,ok,1
+PA,Westmoreland,PA-Westmoreland,http://204.171.50.103/lookserver/,Base,true,0.78,ok,1
+PA,York,PA-York,http://gis.york-county.org/,Base,false,0.78,ok,1
+PR,CRIM,PR-CRIM,https://www.crimpr.net/,Base,true,0.78,ok,1
+PR,CRIMNext Month,PR-CRIMNextMonth,http://www.crimpr.net/crimportal/,Base,false,0.78,ok,1
+PR,Special,PR-Special,https://siscon.hacienda.gobierno.pr/ce/,Base,true,0.78,ok,1
+RI,Bristol Town,RI-BristolTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Burrillville Town,RI-BurrillvilleTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Charlestown Town,RI-CharlestownTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Coventry Town,RI-CoventryTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Cumberland Town,RI-CumberlandTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Exeter Town,RI-ExeterTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Glocester Town,RI-GlocesterTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Hopkinton Town,RI-HopkintonTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Jamestown Town,RI-JamestownTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Johnston Town,RI-JohnstonTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Lincoln Town,RI-LincolnTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Little Compton Town,RI-LittleComptonTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Narragansett Town,RI-NarragansettTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Newport City,RI-NewportCity,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,North Providence Town,RI-NorthProvidenceTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,North Smithfield Town,RI-NorthSmithfieldTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Portsmouth Town,RI-PortsmouthTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Providence City,RI-ProvidenceCity,https://billpay.providenceri.com/,Base,true,0.78,ok,1
+RI,Richmond Town,RI-RichmondTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Scituate Town,RI-ScituateTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Smithfield Town,RI-SmithfieldTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,South Kingstown Town,RI-SouthKingstownTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Warren Town,RI-WarrenTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Warwick City,RI-WarwickCity,https://www.citizenselfservice.com/MSS/citizens/RealEstate/,Base,true,0.78,ok,1
+RI,Westerly Town,RI-WesterlyTown,https://www.mytaxbillri.org/inet/bill/home.do?town=westerlyri,Search,true,0.92,ok,1
+RI,West Greenwich Town,RI-WestGreenwichTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,West Warwick Town,RI-WestWarwickTown,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+RI,Woonsocket City,RI-WoonsocketCity,https://www.opaldata.net/onlinetax/,Base,true,0.78,ok,1
+SC,Aiken,SC-Aiken,https://cxap2.aikencountysc.gov/EGSV2Aiken/,Base,false,0.78,ok,1
+SC,Anderson,SC-Anderson,https://acpass.andersoncountysc.org/p_tax_search.htm,Search,true,0.92,ok,1
+SC,Beaufort,SC-Beaufort,https://sc-beaufort.publicaccessnow.com/Home.aspx,Search,true,0.92,ok,1
+SC,Berkeley,SC-Berkeley,http://server1.berkeleycountysc.gov/EGSBKLY/,Base,false,0.78,ok,1
+SC,Charleston,SC-Charleston,http://taxweb.charlestoncounty.org/,Base,false,0.78,ok,1
+SC,Cherokee,SC-Cherokee,https://www.cherokeecountysctax.com/taxes.html#/,Base,true,0.78,ok,1
+SC,Chester,SC-Chester,https://d1ebsyxxbc7tep.cloudfront.net/data/61020303-8d26-4a16-b995-6deb1def7d97/,Base,true,0.78,ok,1
+SC,Colleton,SC-Colleton,http://sc-colleton-county.governmax.com/svc/,Base,false,0.78,ok,1
+SC,Dorchester,SC-Dorchester,http://dorchestercountytaxesonline.com/,Base,true,0.78,ok,1
+SC,Dorchester Priors,SC-DorchesterPriors,https://as400.dorchestercounty.net/webapps/,Base,true,0.78,ok,1
+SC,Florence,SC-Florence,http://web.florenceco.org/cgi-bin/ta/,Base,true,0.78,ok,1
+SC,Georgetown,SC-Georgetown,https://georgetowncountysctax.com/update.html#/WildfireSearch,Search,true,0.92,ok,1
+SC,Greenville,SC-Greenville,http://www.greenvillecounty.org/appsAS400/RealProperty/,Base,true,0.78,ok,1
+SC,Greenwood,SC-Greenwood,http://greenwoodsctax.com/,Base,false,0.78,ok,1
+SC,Horry,SC-Horry,https://horrycountytreasurer.qpaybill.com/,Search,true,0.92,ok,1
+SC,Jasper,SC-Jasper,http://www.jaspercountysc.org/,Base,true,0.78,ok,1
+SC,Kershaw,SC-Kershaw,http://www.kershawcountysctax.com/,Base,true,0.78,ok,1
+SC,Lancaster,SC-Lancaster,http://mylancastersctax.org/,Base,true,0.78,ok,1
+SC,Laurens,SC-Laurens,http://www.laurenscountysctaxes.com/,Base,true,0.78,ok,1
+SC,Lexington,SC-Lexington,https://lexingtoncountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx,Search,true,0.92,ok,1
+SC,Marion,SC-Marion,http://marionsc.org/,Base,true,0.78,ok,1
+SC,North Augusta City,SC-NorthAugustaCity,https://www.govhost.com/,Base,true,0.78,ok,1
+SC,Orangeburg,SC-Orangeburg,https://www.orangeburgcounty.org/,Base,true,0.78,ok,1
+SC,Richland,SC-Richland,https://www5.rcgov.us/TreasurerTaxInfo/,Base,true,0.78,ok,1
+SC,Spartanburg,SC-Spartanburg,https://spartanburgcountytax.qpaybill.com/Taxes/TaxesDefaultType4.aspx,Search,true,0.92,ok,1
+SC,Union,SC-Union,https://uniontreasurer.qpaybill.com/Taxes/,Base,true,0.78,ok,1
+SC,York,SC-York,https://www.yorkcountygov.com/,Base,true,0.78,ok,1
+SD,Brown,SD-Brown,http://tax.brown.sd.us/,Base,true,0.78,ok,1
+SD,Pennington,SD-Pennington,https://docs.pennco.org/PropertyTax/,Base,true,0.78,ok,1
+TN,Anderson,TN-Anderson,https://anderson.paytntaxes.com/lookup/property-tax,Search,true,0.92,ok,1
+TN,Bradley,TN-Bradley,https://www.bradleytrustee.com/,Base,false,0.78,ok,1
+TN,Chattanooga City,TN-ChattanoogaCity,https://chattanoogatn.taxandrevenue.opengov.com,Search,true,0.92,ok,1
+TN,Claiborne,TN-Claiborne,https://claiborne-tn.mygovonline.com/,Base,true,0.78,ok,1
+TN,Clarksville City,TN-ClarksvilleCity,https://clarksville.munisselfservice.com/citizens/RealEstate/,Base,false,0.78,ok,1
+TN,Cleveland City,TN-ClevelandCity,https://secure.tennesseetrustee.org/,Base,true,0.78,ok,1
+TN,Crockett,TN-Crockett,http://www.crockett.tennesseetrustee.org/,Base,true,0.78,ok,1
+TN,Davidson,TN-Davidson,https://nashville-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup,Search,true,0.92,ok,1
+TN,Greene,TN-Greene,http://www.greene.tennesseetrustee.org/,Base,true,0.78,ok,1
+TN,Hamblen,TN-Hamblen,https://hamblen-tn.mygovonline.com/,Base,true,0.78,ok,1
+TN,Hamilton,TN-Hamilton,http://www2.hamiltontn.gov/TrusteeInquiry/AppFolder/,Base,false,0.78,ok,1
+TN,Hawkins,TN-Hawkins,https://hawkins-tn.mygovonline.com/,Base,false,0.78,ok,1
+TN,Hendersonville City,TN-HendersonvilleCity,http://www.cityofhendersonville.tennesseetrustee.org/,Base,true,0.78,ok,1
+TN,Knox,TN-Knox,http://workplace.com/,Base,true,0.78,ok,1
+TN,Knoxville City,TN-KnoxvilleCity,https://secure.cityofknoxville.org/Tax_Search/,Base,true,0.78,ok,1
+TN,Madison,TN-Madison,https://madison-tn.mygovonline.com/,Base,true,0.78,ok,1
+TN,Memphis City,TN-MemphisCity,https://epayments.memphistn.gov/property/,Base,true,0.78,ok,1
+TN,Montgomery,TN-Montgomery,http://www.montgomery.tennesseetrustee.org/,Base,false,0.78,ok,1
+TN,Morristown City,TN-MorristownCity,https://morristown.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=new,Search,true,0.92,ok,1
+TN,Rutherford,TN-Rutherford,http://payments.rctrustee.org/,Base,true,0.78,ok,1
+TN,Shelby,TN-Shelby,https://sct.shelbycountytrustee.com/TaxQry/,Base,true,0.78,ok,1
+TN,Sullivan,TN-Sullivan,https://secure.tennesseetrustee.org/,Base,true,0.78,ok,1
+TN,Sumner,TN-Sumner,https://sumner-trustee-tn.mygovonline.com/,Base,false,0.78,ok,1
+TN,Washington,TN-Washington,https://washington-tn.mygovonline.com/,Base,true,0.78,ok,1
+TN,Williamson,TN-Williamson,http://www.williamsonpropertytax.com/taxes/,Base,false,0.78,ok,1
+TN,Wilson,TN-Wilson,https://wilson-tn.mygovonline.com/,Base,true,0.78,ok,1
+TX,Aldine ISD,TX-AldineISD,http://tax.aldine.k12.tx.us/TaxAldineISD/,Base,true,0.78,ok,1
+TX,Alief ISD,TX-AliefISD,https://texaspayments.com/Home/,Base,true,0.78,ok,1
+TX,Andrews ISD,TX-AndrewsISD,https://andrewsisdtax.com/taxes.html/,Search,true,0.92,ok,1
+TX,Angelina,TX-Angelina,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Aransas,TX-Aransas,http://www.aransascad.org/Appraisal/PublicAccess/,Base,true,0.78,ok,1
+TX,ASW,TX-ASW,http://www.aswtax.com/,Base,true,0.78,ok,1
+TX,Atascosa,TX-Atascosa,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Austin CAD,TX-AustinCAD,http://tax.austincad.org/tax/,Base,true,0.78,ok,1
+TX,Bailey CAD,TX-BaileyCAD,https://esearch.bailey-cad.org/,Search,true,0.92,ok,1
+TX,BAMunitax,TX-BAMunitax,http://www.bamunitax.com/,Base,true,0.78,ok,1
+TX,Bandera,TX-Bandera,https://esearch.banderacounty.org/,Search,false,0.92,ok,1
+TX,Bastrop,TX-Bastrop,https://www.bastroptac.com/,Base,true,0.78,ok,1
+TX,Bee,TX-Bee,https://actweb.acttax.com/bee/bee/index.jsp,Search,true,0.92,ok,1
+TX,Bell CAD,TX-BellCAD,https://esearch.bellcad.org/,Search,true,0.92,ok,1
+TX,Bexar,TX-Bexar,http://home.bexar.org/tax/index.html,Search,true,0.92,ok,1
+TX,Blanco CAD,TX-BlancoCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Bob Leard Interests,TX-BobLeardInterests,http://www.bli-tax.com/tax-form/,Base,true,0.78,ok,1
+TX,Bosque,TX-Bosque,http://www.bosquecountytaxoffice.com/,Base,true,0.78,ok,1
+TX,Bowie CAD,TX-BowieCAD,https://bowie.propertytaxpayments.net/search,Search,true,0.92,ok,1
+TX,Brazoria,TX-Brazoria,https://www.brazoriacountytx.gov/,Base,true,0.78,ok,1
+TX,Brazos,TX-Brazos,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Brewster CAD,TX-BrewsterCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Brooks,TX-Brooks,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Brooks ISD,TX-BrooksISD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Brown CAD,TX-BrownCAD,http://propaccess.brown-cad.org/clientdb/,Base,true,0.78,ok,1
+TX,Burkburnett ISD,TX-BurkburnettISD,http://www.texaspayments.com/243901/,Base,false,0.78,ok,1
+TX,Burnet CAD,TX-BurnetCAD,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Caldwell CAD,TX-CaldwellCAD,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Calhoun CAD,TX-CalhounCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Callahan,TX-Callahan,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Cameron,TX-Cameron,https://www.cameroncountytax.org/,Base,true,0.78,ok,1
+TX,Camp CAD,TX-CampCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Carrollton Farmers Branch ISD,TX-CarrolltonFarmersBranchISD,https://www.texaspayments.com/057903,Search,true,0.92,ok,1
+TX,Carson,TX-Carson,https://www.carsoncountytax.org/Home/Search,Search,true,0.92,ok,1
+TX,Cass,TX-Cass,http://www.casscountyonline.net/tax/,Base,true,0.78,ok,1
+TX,Chambers,TX-Chambers,https://actweb.acttax.com/chambers/chambers/index.jsp,Search,true,0.92,ok,1
+TX,Channelview ISD,TX-ChannelviewISD,http://www.channelview.isd.esc4.net/,Base,false,0.78,ok,1
+TX,Cherokee,TX-Cherokee,https://tax.co.cherokee.tx.us/Accounts/,Base,true,0.78,ok,1
+TX,Cherokee CAD,TX-CherokeeCAD,https://esearch.cherokeecad.com/,Base,true,0.78,ok,1
+TX,Clay,TX-Clay,http://www.claycad.org/,Base,true,0.78,ok,1
+TX,Clear Creek ISD,TX-ClearCreekISD,http://www.texaspayments.com/084910/,Search,false,0.92,ok,1
+TX,Clear Lake City Water Authority,TX-ClearLakeCityWaterAuthority,https://texaspayments.com/Home/,Base,true,0.78,ok,1
+TX,Coleman,TX-Coleman,http://colemancountycad.com/Appraisal/PublicAccess/,Base,true,0.78,ok,1
+TX,Collin,TX-Collin,http://taxpublic.collincountytx.gov/taxcollincounty/,Base,true,0.78,ok,1
+TX,Colorado CAD,TX-ColoradoCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Comal,TX-Comal,https://property.co.comal.tx.us/search,Search,true,0.92,ok,1
+TX,Comal CAD,TX-ComalCAD,http://taxweb.co.comal.tx.us/clientdb/,Base,true,0.78,ok,1
+TX,Coryell,TX-Coryell,https://tax.coryellcountytax.com/,Search,true,0.92,ok,1
+TX,Cypress Fairbanks ISD,TX-CypressFairbanksISD,https://actweb.acttax.com/act_webdev/cyfair/,Base,true,0.78,ok,1
+TX,Dallam CAD,TX-DallamCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Dallas,TX-Dallas,http://www.dallascounty.org/applications/english/proptax_app/tax_intro.php,Search,true,0.92,ok,1
+TX,Dallas County URD,TX-DallasCountyURD,http://taxsearch.dcurd.org/webtax/,Base,false,0.78,ok,1
+TX,Dayton ISD,TX-DaytonISD,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Deer Park City,TX-DeerParkCity,https://actweb.acttax.com/act_webdev/deerparkcity/,Base,true,0.78,ok,1
+TX,Delta CAD,TX-DeltaCAD,https://esearch.delta-cad.org/,Base,true,0.78,ok,1
+TX,Denton,TX-Denton,https://taxweb.dentoncounty.gov/search/,Search,true,0.92,ok,1
+TX,Denton County LID1,TX-DentonCountyLID1,http://bli-tax.com/cad-number/,Base,true,0.78,ok,1
+TX,Denton County RUD1,TX-DentonCountyRUD1,http://bli-tax.com/cad-number/,Base,true,0.78,ok,1
+TX,De Witt,TX-DeWitt,https://www.dewittcad.org/(S(23vnxvbawv3tdhfnq2bcpznm))/,Base,true,0.78,ok,1
+TX,Eastland CAD,TX-EastlandCAD,http://www.eastlandcad.org,Base,true,0.78,ok,1
+TX,Edwards,TX-Edwards,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Ellis,TX-Ellis,https://www.elliscountytx.gov/,Base,true,0.78,ok,1
+TX,El Paso,TX-ElPaso,http://www.co.el-paso.tx.us/TaxOffice/,Search,false,0.92,ok,1
+TX,Equitax,TX-Equitax,http://www.equitaxinc.com/,Base,true,0.78,ok,1
+TX,Falls,TX-Falls,https://www.texasonlinerecords.com/,Base,true,0.78,ok,1
+TX,Fannin CAD,TX-FanninCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Fayette CAD,TX-FayetteCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Floresville,TX-Floresville,http://www.cagi.com:8080/,Base,true,0.78,ok,1
+TX,Floresville ISD,TX-FloresvilleISD,http://www.cagi.com:8080/,Base,true,0.78,ok,1
+TX,Floyd CAD,TX-FloydCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Fort Bend,TX-FortBend,http://co.fort-bend.tx.us/index.aspx?page=417,Search,true,0.92,ok,1
+TX,Franklin,TX-Franklin,http://www.franklincountytaxoffice.com/appraisal/publicaccess/,Base,false,0.78,ok,1
+TX,Freestone,TX-Freestone,http://www.freestonetax.org/,Base,true,0.78,ok,1
+TX,Friendswood ISD,TX-FriendswoodISD,http://www.myfisd.com/,Base,true,0.78,ok,1
+TX,Frio,TX-Frio,http://www.friocountytax.org/,Base,true,0.78,ok,1
+TX,Frio CAD,TX-FrioCAD,https://www.friocad.org/,Base,true,0.78,ok,1
+TX,Gaines CAD,TX-GainesCAD,https://esearch.gainescad.org/,Search,true,0.92,ok,1
+TX,Galena Park ISD,TX-GalenaParkISD,http://actweb.acttax.com/act_webdev/galenapark/,Base,false,0.78,ok,1
+TX,Galveston,TX-Galveston,http://www.galvestoncountytx.gov/to/Pages/default.aspx,Search,true,0.92,ok,1
+TX,Garland City,TX-GarlandCity,https://www.texaspayments.com/057120,Search,true,0.92,ok,1
+TX,Garland ISD,TX-GarlandISD,https://www.texaspayments.com/057909,Search,true,0.92,ok,1
+TX,Gillespie,TX-Gillespie,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Gladewater ISD,TX-GladewaterISD,http://www.texaspayments.com/092901/,Base,false,0.78,ok,1
+TX,Gonzales,TX-Gonzales,http://tax.co.gonzales.tx.us/Appraisal/PublicAccess/,Base,true,0.78,ok,1
+TX,Goose Creek ISD,TX-GooseCreekISD,https://tax.gccisd.net/search,Search,true,0.92,ok,1
+TX,Grand Prairie Metropolitan URD,TX-GrandPrairieMetropolitanURD,http://www.wheelerassoc.com/,Base,true,0.78,ok,1
+TX,Grapevine Colleyville ISD,TX-GrapevineColleyvilleISD,https://texaspayments.com/Home/,Base,true,0.78,ok,1
+TX,Grayson,TX-Grayson,https://grayson.propertytaxpayments.net/search,Search,true,0.92,ok,1
+TX,Gregg,TX-Gregg,http://actweb.acttax.com/act_webdev/gregg/,Base,true,0.78,ok,1
+TX,Grimes CAD,TX-GrimesCAD,https://www.grimescad.org/,Base,true,0.78,ok,1
+TX,Guadalupe,TX-Guadalupe,http://property.co.guadalupe.tx.us/Appraisal/PublicAccess/,Base,true,0.78,ok,1
+TX,Hale CAD,TX-HaleCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Hardin,TX-Hardin,https://tax.cagi.com/account-search/C100,Base,true,0.78,ok,1
+TX,Harlingen,TX-Harlingen,https://actweb.acttax.com/act_webdev/harlingen/,Base,false,0.78,ok,1
+TX,Harris,TX-Harris,https://www.hctax.net/Property/PropertyTax,Search,true,0.92,ok,1
+TX,Harris MUD109,TX-HarrisMUD109,http://www.texaspayments.com/101386/,Base,false,0.78,ok,1
+TX,Harris MUD36,TX-HarrisMUD36,http://www.texaspayments.com/101386/,Base,false,0.78,ok,1
+TX,Harris MUD386,TX-HarrisMUD386,http://www.texaspayments.com/101386/,Base,false,0.78,ok,1
+TX,Harrison,TX-Harrison,http://iswdataclient.azurewebsites.net/,Base,true,0.78,ok,1
+TX,Harrison CAD,TX-HarrisonCAD,https://tax.harrisoncad.net/,Search,true,0.92,ok,1
+TX,Hartley CAD,TX-HartleyCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Hays,TX-Hays,http://hayscountytax.com/Taxes/,Base,true,0.78,ok,1
+TX,Henderson,TX-Henderson,https://henderson.propertytaxpayments.net/search,Search,true,0.92,ok,1
+TX,Hidalgo,TX-Hidalgo,https://actweb.acttax.com/act_webdev/hidalgo/,Base,true,0.78,ok,1
+TX,Hill,TX-Hill,https://esearch.hilltax.org/,Search,true,0.92,ok,1
+TX,Hill CAD,TX-HillCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Hockley,TX-Hockley,http://www.hockleycountyonline.net/tax/,Base,false,0.78,ok,1
+TX,Hood CAD,TX-HoodCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Hopkins,TX-Hopkins,https://hopkins.propertytaxpayments.net/search,Search,true,0.92,ok,1
+TX,Howard,TX-Howard,http://iswdataclient.azurewebsites.net/,Base,true,0.78,ok,1
+TX,Howard CAD,TX-HowardCAD,http://iswdataclient.azurewebsites.net/,Base,true,0.78,ok,1
+TX,Humble ISD,TX-HumbleISD,https://humbleisd.propertytaxpayments.net/search/,Search,true,0.92,ok,1
+TX,Hunt,TX-Hunt,https://esearch.hctax.info/,Base,true,0.78,ok,1
+TX,Hutchinson,TX-Hutchinson,http://www.hutchinsoncountytax.com/Appraisal/PublicAccess/,Base,false,0.78,ok,1
+TX,Irving ISD,TX-IrvingISD,https://actweb.acttax.com/act_webdev/irving,Base,true,0.78,ok,1
+TX,ITMServices,TX-ITMServices,http://www.itmservices.com/,Base,true,0.78,ok,1
+TX,Jack,TX-Jack,https://www.jackcountytax.org/,Search,true,0.92,ok,1
+TX,Jackson,TX-Jackson,http://pa.jacksoncad.org/Appraisal/PublicAccess/,Base,false,0.78,ok,1
+TX,Jefferson,TX-Jefferson,https://actweb.acttax.com/act_webdev/jefferson/,Base,true,0.78,ok,1
+TX,Jim Wells CAD,TX-JimWellsCAD,https://jimwells.propertytaxpayments.net/search,Search,true,0.92,ok,1
+TX,Johnson,TX-Johnson,https://www.johnsoncountytaxoffice.org/search/,Search,true,0.92,ok,1
+TX,Jones,TX-Jones,http://www.jonescad.org/,Base,true,0.78,ok,1
+TX,Judson ISD,TX-JudsonISD,http://actweb.acttax.com/act_webdev/judson/,Base,false,0.78,ok,1
+TX,Karnes,TX-Karnes,http://www.karnescountytax.org/,Base,true,0.78,ok,1
+TX,Katy ISD,TX-KatyISD,https://actweb.acttax.com/act_webdev/katy/,Base,false,0.78,ok,1
+TX,Kaufman,TX-Kaufman,http://kaufmantax.net/clientdb/,Base,true,0.78,ok,1
+TX,Kendall CAD,TX-KendallCAD,https://esearch.kendallad.org/Property/View/,Base,true,0.78,ok,1
+TX,Kerr,TX-Kerr,http://public.co.kerr.tx.us:8088/Appraisal/PublicAccess/,Base,true,0.78,ok,1
+TX,Kimble CAD,TX-KimbleCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Klein ISD,TX-KleinISD,http://kleintax.kleinisd.net/kleinisdtax/,Base,false,0.78,ok,1
+TX,Knox CAD,TX-KnoxCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Lamar CAD,TX-LamarCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Lamb,TX-Lamb,https://esearch.lambcad.org/,Search,true,0.92,ok,1
+TX,Lampasas CAD,TX-LampasasCAD,https://www.lampasascad.org/,Base,true,0.78,ok,1
+TX,Lancaster MUD1,TX-LancasterMUD1,http://www.bli-tax.com/tax-form/,Base,true,0.78,ok,1
+TX,Lavaca,TX-Lavaca,https://www.lavacacountytax.com/,Search,true,0.92,ok,1
+TX,Lee,TX-Lee,http://www.leetax.org/,Base,true,0.78,ok,1
+TX,Leon,TX-Leon,http://leoncountytax.org/,Base,true,0.78,ok,1
+TX,Liberty,TX-Liberty,https://www.libertycountytax.com/search,Search,true,0.92,ok,1
+TX,Lipscomb,TX-Lipscomb,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Live Oak CAD,TX-LiveOakCAD,http://www.cagi.com:8080/,Base,true,0.78,ok,1
+TX,Llano,TX-Llano,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Lubbock,TX-Lubbock,http://www.lubbockcad.org/Appraisal/PublicAccess/,Base,true,0.78,ok,1
+TX,Madison,TX-Madison,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Matagorda CAD,TX-MatagordaCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Maverick,TX-Maverick,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Mc Allen City,TX-McAllenCity,https://mcallen.go2gov.net/faces/search.jsp,Base,true,0.78,ok,1
+TX,Mc Lennan,TX-McLennan,http://actweb.acttax.com/act_webdev/mclennan/,Base,true,0.78,ok,1
+TX,Medina,TX-Medina,http://www.medinacountytx.org/Appraisal/PublicAccess/,Base,true,0.78,ok,1
+TX,Mesquite City,TX-MesquiteCity,https://propertytax.cityofmesquite.com/mesquitetax/,Base,true,0.78,ok,1
+TX,Midland CAD,TX-MidlandCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Milam,TX-Milam,https://esearch.milamad.org/,Base,true,0.78,ok,1
+TX,Mills CAD,TX-MillsCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Montague,TX-Montague,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Montague CAD,TX-MontagueCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Montgomery,TX-Montgomery,https://actweb.acttax.com/act_webdev/montgomery/,Base,true,0.78,ok,1
+TX,Moore,TX-Moore,https://esearch.co.moore.tx.us/,Search,true,0.92,ok,1
+TX,Morris CAD,TX-MorrisCAD,http://www.morriscad.com/,Base,true,0.78,ok,1
+TX,Nacogdoches CAD,TX-NacogdochesCAD,https://esearch.nacocad.org/,Base,true,0.78,ok,1
+TX,Navarro,TX-Navarro,http://actweb.acttax.com/act_webdev/navarro/,Base,true,0.78,ok,1
+TX,Nolan,TX-Nolan,http://www.nolan-cad.org/,Base,true,0.78,ok,1
+TX,Northwest Dallas County FCD,TX-NorthwestDallasCountyFCD,http://www.nwdallasfcd.com/,Base,true,0.78,ok,1
+TX,Nueces,TX-Nueces,https://actweb.acttax.com/act_webdev/nueces/,Base,true,0.78,ok,1
+TX,Palo Pinto,TX-PaloPinto,http://www.palopintocounty.net/tax/,Base,true,0.78,ok,1
+TX,Panola,TX-Panola,http://www.panolacountytax.org/,Base,true,0.78,ok,1
+TX,Parker CAD,TX-ParkerCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Parmer CAD,TX-ParmerCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Pasadena ISD,TX-PasadenaISD,https://taxoffice.pasadenaisd.org/search,Search,true,0.92,ok,1
+TX,Pecos,TX-Pecos,http://www.pecostax.org/,Base,true,0.78,ok,1
+TX,Rains CAD,TX-RainsCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Real CAD,TX-RealCAD,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Red River CAD,TX-RedRiverCAD,http://www.cagi.com:8080/,Base,true,0.78,ok,1
+TX,Reeves,TX-Reeves,https://www.reevescountytax.org/search,Search,true,0.92,ok,1
+TX,Richardson ISD,TX-RichardsonISD,https://www.texaspayments.com/057916,Search,true,0.92,ok,1
+TX,Robertson,TX-Robertson,https://tax.cagi.com/account-search/C198,Search,true,0.92,ok,1
+TX,Rockwall CAD,TX-RockwallCAD,http://esearch.rockwallcad.com/,Base,true,0.78,ok,1
+TX,Runnels,TX-Runnels,https://iswdataclient.azurewebsites.net/,Base,true,0.78,ok,1
+TX,Rusk,TX-Rusk,https://www.ruskcountytax.com/,Base,true,0.78,ok,1
+TX,Sabine,TX-Sabine,https://azurefrontdoor-gwbqhvc2fyhaghgf.z01.azurefd.net/webSearchGeoID.aspx?dbkey=SABINETAX,Search,false,0.92,ok,1
+TX,San Augustine,TX-SanAugustine,http://www.sanaugustinetax.org/,Base,true,0.78,ok,1
+TX,San Jacinto,TX-SanJacinto,http://sjc-tax.com/Appraisal/PublicAccess/,Base,false,0.78,ok,1
+TX,San Jacinto Tax Service,TX-SanJacintoTaxService,http://www.sjtaxservice.com/,Base,true,0.78,ok,1
+TX,San Patricio,TX-SanPatricio,http://12.105.136.220/Appraisal/PublicAccess/,Base,true,0.78,ok,1
+TX,Santa Fe ISD,TX-SantaFeISD,https://www.texaspayments.com/084909,Search,true,0.92,ok,1
+TX,Schleicher CAD,TX-SchleicherCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Scurry CAD,TX-ScurryCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Shelby,TX-Shelby,https://tax.shelbytaxpayment.com/,Search,true,0.92,ok,1
+TX,Sheldon ISD,TX-SheldonISD,http://statements.sheldonisd.com/,Base,true,0.78,ok,1
+TX,Smith,TX-Smith,https://publictax.smith-county.com/search,Base,true,0.78,ok,1
+TX,Somervell CAD,TX-SomervellCAD,https://somervellcad.southwestdatasolutions.com/PropertySearch,Search,true,0.92,ok,1
+TX,Spring Branch ISD,TX-SpringBranchISD,https://sbisd.propertytaxpayments.net/search,Search,true,0.92,ok,1
+TX,Spring ISD,TX-SpringISD,http://statements.springisd.org/,Base,true,0.78,ok,1
+TX,Starr,TX-Starr,https://starr.go2gov.net/faces/_rlvid.jsp?_rap=!searchID&_rvip=/search.jsp,Base,true,0.78,ok,1
+TX,Stephens,TX-Stephens,http://iswdataclient.azurewebsites.net/,Base,true,0.78,ok,1
+TX,Sulphur Springs ISD,TX-SulphurSpringsISD,https://actweb.acttax.com/ssisd/ssisd/index.jsp,Search,true,0.92,ok,1
+TX,Sutton CAD,TX-SuttonCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Swisher CAD,TX-SwisherCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Tarrant,TX-Tarrant,https://www.tax.tarrantcountytx.gov/Search/,Search,true,0.92,ok,1
+TX,Tax Tech,TX-TaxTech,http://www.taxtech.net/,Base,true,0.78,ok,1
+TX,Taylor CAD,TX-TaylorCAD,https://propaccess.taylor-cad.org/,Base,true,0.78,ok,1
+TX,Terrell CAD,TX-TerrellCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Terry,TX-Terry,https://www.tax.cagi.com/,Base,true,0.78,ok,1
+TX,Texas City ISD,TX-TexasCityISD,https://actweb.acttax.com/act_webdev/texascity/,Base,true,0.78,ok,1
+TX,Titus,TX-Titus,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Titus CAD,TX-TitusCAD,http://propaccess.titus-cad.org/clientdb/,Base,true,0.78,ok,1
+TX,Tomball ISD,TX-TomballISD,https://tomballisd.propertytaxpayments.net/search,Search,true,0.92,ok,1
+TX,Travis,TX-Travis,https://tax-office.traviscountytx.gov,Search,true,0.92,ok,1
+TX,Trinity CAD,TX-TrinityCAD,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Tyler,TX-Tyler,https://www.tylercountytax.org/,Base,true,0.78,ok,1
+TX,Upshur,TX-Upshur,https://actweb.acttax.com/act_webdev/,Base,false,0.78,ok,1
+TX,Utility Tax,TX-UtilityTax,http://www.utilitytaxservice.com/,Base,true,0.78,ok,1
+TX,Uvalde CAD,TX-UvaldeCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Valwood Improvement Authority,TX-ValwoodImprovementAuthority,http://www.valwood.com/,Base,true,0.78,ok,1
+TX,Van Zandt CAD,TX-VanZandtCAD,https://vanzandt.propertytaxpayments.net/search,Search,true,0.92,ok,1
+TX,Victoria,TX-Victoria,http://orion.vctx.org/appraisal/publicaccess/,Base,false,0.78,ok,1
+TX,Walker CAD,TX-WalkerCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Waller,TX-Waller,http://tax.co.waller.tx.us/,Base,true,0.78,ok,1
+TX,Waller ISD,TX-WallerISD,https://mytax.eztaxonline.net/,Base,true,0.78,ok,1
+TX,Ward,TX-Ward,http://wardcountytax.org/,Base,true,0.78,ok,1
+TX,Webb,TX-Webb,https://www.webbcountytax.com/,Base,true,0.78,ok,1
+TX,Wharton,TX-Wharton,http://www.whartoncountytaxoffice.com/,Base,true,0.78,ok,1
+TX,Wheeler,TX-Wheeler,http://www.wheelerassoc.com/,Base,true,0.78,ok,1
+TX,Wheeler Associates,TX-WheelerAssociates,https://www.wheelerassoc.com/SearchAccount,Search,true,0.92,ok,1
+TX,Wichita,TX-Wichita,https://wichita.propertytaxpayments.net/search,Base,true,0.78,ok,1
+TX,Wilbarger,TX-Wilbarger,http://www.wilbargertax.org/,Base,true,0.78,ok,1
+TX,Williamson,TX-Williamson,http://www.williamson-county.org/,Search,true,0.92,ok,1
+TX,Wilson,TX-Wilson,https://esearch.tax.wilsoncountytx.gov/,Search,true,0.92,ok,1
+TX,Wilson CAD,TX-WilsonCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Wise,TX-Wise,https://www.wisecountyonline.net/tax/,Base,false,0.78,ok,1
+TX,Wise CAD,TX-WiseCAD,http://www.isouthwestdata.com/client/,Base,true,0.78,ok,1
+TX,Wood,TX-Wood,https://www.woodcountytax.com/,Base,true,0.78,ok,1
+TX,Woodlands Mud,TX-WoodlandsMud,https://texaspayments.com/Home/,Base,true,0.78,ok,1
+TX,Yoakum CAD,TX-YoakumCAD,http://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+TX,Zapata CAD,TX-ZapataCAD,https://propaccess.trueautomation.com/clientdb/,Base,true,0.78,ok,1
+UT,Carbon,UT-Carbon,https://secureinstantpayments.com/sip/reports/,Base,true,0.78,ok,1
+UT,Davis,UT-Davis,https://www.co.davis.ut.us/treasurer/,Base,true,0.78,ok,1
+UT,Juab,UT-Juab,http://63.78.118.148/recorder/taxweb/,Base,true,0.78,ok,1
+UT,Salt Lake,UT-SaltLake,https://treasurer.slco.org/,Base,true,0.78,ok,1
+UT,Summit,UT-Summit,https://property.summitcounty.org/,Base,true,0.78,ok,1
+UT,Utah,UT-Utah,http://www.co.utah.ut.us/LandRecords/,Base,false,0.78,ok,1
+UT,Washington,UT-Washington,https://www.washco.utah.gov/,Base,true,0.78,ok,1
+VA,Accomack,VA-Accomack,http://www.accomacktax.com/taxes/,Base,true,0.78,ok,1
+VA,Albemarle,VA-Albemarle,https://www.albemarlecountytaxes.org/taxes/,Base,true,0.78,ok,1
+VA,Alexandria City,VA-AlexandriaCity,https://realestate.alexandriava.gov/,Base,true,0.78,ok,1
+VA,Alexandria City Refuse,VA-AlexandriaCityRefuse,https://realestate.alexandriava.gov/,Base,true,0.78,ok,1
+VA,Appomattox,VA-Appomattox,https://appomattox-gov-revmgt.secure.openrda.net/portal/search/hb/,Base,true,0.78,ok,1
+VA,Ashland Town,VA-AshlandTown,https://townofashlandva.tylerportico.com/css/citizen-selfservice/real-estate,Search,true,0.92,ok,1
+VA,Augusta,VA-Augusta,https://tax.co.augusta.va.us/Applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Bath,VA-Bath,https://eservices.bristolva.org/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Botetourt,VA-Botetourt,http://botetourtbillpay.com/,Base,true,0.78,ok,1
+VA,Bristol City,VA-BristolCity,https://eservices.bristolva.org/applications/REPublicInquiry/webform1.aspx,Search,true,0.92,ok,1
+VA,Campbell,VA-Campbell,https://bai.co.campbell.va.us/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Caroline,VA-Caroline,https://e-services.co.caroline.va.us/Applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Carroll,VA-Carroll,https://epayments.carrollcountyva.org/Applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Charlotte,VA-Charlotte,http://www.charlottevatax.com/taxes/,Base,false,0.78,ok,1
+VA,Chesapeake,VA-Chesapeake,https://cityapps.cityofchesapeake.net/subscriptions/realestate/,Search,true,0.92,ok,1
+VA,Chesterfield,VA-Chesterfield,https://www.chesterfield.gov/,Base,true,0.78,ok,1
+VA,City Of Hopewell,VA-CityOfHopewell,https://cityofhopewellva.tylerportico.com/css/citizen-selfservice/real-estate/pay-bill,Search,true,0.92,ok,1
+VA,Colonial Beach Town,VA-ColonialBeachTown,https://wipp.edmundsgovtech.cloud/home?wippId=CBTN,Search,true,0.92,ok,1
+VA,Culpeper,VA-Culpeper,https://www.culpepercounty.gov/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Dickenson,VA-Dickenson,http://cwood.us.to/applications/trapps/,Base,false,0.78,ok,1
+VA,Dinwiddie,VA-Dinwiddie,https://online.dinwiddieva.us/applications/REpublicInquiry/,Base,true,0.78,ok,1
+VA,Essex,VA-Essex,http://county.essex-va.org/Applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Fairfax,VA-Fairfax,http://icareffx.fairfaxcounty.gov/datalets/,Base,true,0.78,ok,1
+VA,Fairfax City,VA-FairfaxCity,https://eservices.fairfaxva.gov/taxes/,Base,true,0.78,ok,1
+VA,Fauquier,VA-Fauquier,https://tax.fauquiercounty.gov/PortalAccount/SearchForParcel?NextAction=VIEW,Search,true,0.92,ok,1
+VA,Frederick,VA-Frederick,https://taxes.co.frederick.va.us/applications/TR_payTaxes/,Base,true,0.78,ok,1
+VA,Front Royal Town,VA-FrontRoyalTown,https://taxpay.frontroyalva.com/applications/REpublicInquiry/,Base,true,0.78,ok,1
+VA,Gloucester,VA-Gloucester,https://gloucestercountyva.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=new,Search,true,0.92,ok,1
+VA,Hampton City,VA-HamptonCity,https://hamptonrealinfo.hampton.gov/HamptonTaxInfo/TaxInfo,Search,true,0.92,ok,1
+VA,Hampton City City,VA-HamptonCityCity,https://hamptonrealinfo.hampton.gov/HamptonTaxInfo/TaxInfo,Search,true,0.92,ok,1
+VA,Hampton City Sewer,VA-HamptonCitySewer,https://hamptonrealinfo.hampton.gov/HamptonTaxInfo/TaxInfo,Search,true,0.92,ok,1
+VA,Hampton City Storm,VA-HamptonCityStorm,https://hamptonrealinfo.hampton.gov/HamptonTaxInfo/TaxInfo,Search,true,0.92,ok,1
+VA,Hanover,VA-Hanover,https://taxes.hanovercounty.gov/,Search,true,0.92,ok,1
+VA,Henrico,VA-Henrico,https://businesstax.henrico.gov/taxes.html#/WildfireSearch,Search,true,0.92,ok,1
+VA,Hopewell City,VA-HopewellCity,https://cityofhopewellva.tylerportico.com/css/citizen-selfservice/real-estate,Search,true,0.92,ok,1
+VA,James City,VA-JamesCity,https://property.jamescitycountyva.gov/,Base,true,0.78,ok,1
+VA,King George,VA-KingGeorge,https://eservices.kinggeorgecountyva.gov/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,King Queen,VA-KingQueen,https://eservices.kingandqueenco.net/applications/trapps/,Base,true,0.78,ok,1
+VA,King William,VA-KingWilliam,https://e-services.kingwilliamcounty.us/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Leesburg Town,VA-LeesburgTown,https://leesburg.munisselfservice.com/citizens/RealEstate/,Base,true,0.78,ok,1
+VA,Loudoun,VA-Loudoun,http://inter1.loudoun.gov/taxadmin/webpdbs2008/,Base,false,0.78,ok,1
+VA,Louisa,VA-Louisa,https://louweb.louisa.org/applications/republicinquiry/,Base,true,0.78,ok,1
+VA,Lunenburg,VA-Lunenburg,https://eservices.lunenburgva.org/applications/REpublicInquiry/,Base,true,0.78,ok,1
+VA,Lynchburg City,VA-LynchburgCity,https://webapps.lynchburgva.gov/citylink,Search,true,0.92,ok,1
+VA,Manassas City,VA-ManassasCity,https://comc2g.manassasva.gov/Click2GovTX/,Base,false,0.78,ok,1
+VA,Mathews,VA-Mathews,https://eservices-mathews.com/applications/trapps/,Base,true,0.78,ok,1
+VA,Mecklenburg,VA-Mecklenburg,https://meckweb.mecklenburgva.com/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Middlesex,VA-Middlesex,https://websrv-vmw.dmz.co.middlesex.va.us/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,New Kent,VA-NewKent,http://216.54.24.4/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Newport News City,VA-NewportNewsCity,https://assessment.nnva.gov/PT/search/,Base,true,0.78,ok,1
+VA,Newport News City Storm,VA-NewportNewsCityStorm,https://assessment.nnva.gov/PT/search/,Base,true,0.78,ok,1
+VA,Norfolk City,VA-NorfolkCity,https://eservices.norfolk.gov/Taxes/,Base,true,0.78,ok,1
+VA,Orange,VA-Orange,https://tax.orangecountyva.gov/applications/trapps/,Base,true,0.78,ok,1
+VA,Page,VA-Page,https://eservices.pagecounty.virginia.gov/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Petersburg City,VA-PetersburgCity,https://www.petersburg-va.com/applications/REPublicInquiry/webform1.aspx,Search,true,0.92,ok,1
+VA,Pittsylvania,VA-Pittsylvania,https://keyweb.pittgov.net/WebPAAS/Parcels/,Base,true,0.78,ok,1
+VA,Portsmouth City,VA-PortsmouthCity,http://data.portsmouthva.gov/treasurer/data/realestatereceivsearch.aspx,Search,true,0.92,ok,1
+VA,Portsmouth City Storm,VA-PortsmouthCityStorm,http://www.portsmouthva.gov/,Base,true,0.78,ok,1
+VA,Powhatan,VA-Powhatan,https://www.powhatanvaonline.org/applications/REpublicInquiry/,Base,false,0.78,ok,1
+VA,Prince William,VA-PrinceWilliam,https://tax.pwcgov.org/PortalAccount/ViewParcel/,Base,true,0.78,ok,1
+VA,Prince William Storm,VA-PrinceWilliamStorm,https://tax.pwcgov.org/PortalAccount/ViewParcel/,Base,true,0.78,ok,1
+VA,Pulaski,VA-Pulaski,https://www.pulaskicountyva.gov/applications/REPublicInquiry/,Base,false,0.78,ok,1
+VA,Roanoke,VA-Roanoke,https://csspayments.roanokecountyva.gov/MSS/citizens/RealEstate/,Base,true,0.78,ok,1
+VA,Russell,VA-Russell,https://egov.russellcountyva.us/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Shenandoah,VA-Shenandoah,https://204.111.80.202/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Stafford,VA-Stafford,http://taxpaid.stafford.va.us/,Base,true,0.78,ok,1
+VA,Staunton City,VA-StauntonCity,https://services.ci.staunton.va.us/MSS/citizens/RealEstate/,Base,true,0.78,ok,1
+VA,Suffolk City,VA-SuffolkCity,https://www.suffolkvatax.us/#/,Base,true,0.78,ok,1
+VA,Sussex,VA-Sussex,https://eservices.sussexcountyva.gov/applications/REpublicInquiry/,Base,true,0.78,ok,1
+VA,Virginia Beach City,VA-VirginiaBeachCity,https://cvb.manatron.com/,Base,true,0.78,ok,1
+VA,Warren,VA-Warren,https://eservices.warrencountyva.net/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Westmoreland,VA-Westmoreland,https://eservices.westmoreland-county.org/applications/REPublicInquiry/,Base,true,0.78,ok,1
+VA,Williamsburg City,VA-WilliamsburgCity,https://egov.williamsburgva.gov/Real_Property_Public/,Base,false,0.78,ok,1
+VA,York,VA-York,https://www.countyofyorkva.org/applications/republicinquiry/,Base,false,0.78,ok,1
+WA,Cowlitz,WA-Cowlitz,https://www.cowlitzinfo.net/,Base,true,0.78,ok,1
+WA,King,WA-King,http://info.kingcounty.gov/finance/treasury/propertytax/,Base,true,0.78,ok,1
+WA,Kitsap,WA-Kitsap,https://psearch.kitsap.gov/pdetails/Default,Search,true,0.92,ok,1
+WA,Lewis,WA-Lewis,https://parcels.lewiscountywa.gov/,Search,true,0.92,ok,1
+WA,Pierce,WA-Pierce,https://atip.piercecountywa.gov/app/v2/parcelSearch/search,Search,true,0.92,ok,1
+WA,Snohomish,WA-Snohomish,https://wa-snohomish.publicaccessnow.com/Treasurer/TaxSearch.aspx,Search,true,0.92,ok,1
+WA,Spokane,WA-Spokane,http://cp.spokanecounty.org/SCOUT/propertyinformation/,Base,true,0.78,ok,1
+WI,Adams,WI-Adams,http://adamscowi.wgxtreme.com/java/wgxparcel/,Base,true,0.78,ok,1
+WI,Appleton City,WI-AppletonCity,http://my.appleton.org/,Base,true,0.78,ok,1
+WI,Ashland,WI-Ashland,http://ashlandcowi.wgxtreme.com/java/wgxparcel/,Base,true,0.78,ok,1
+WI,Barron,WI-Barron,http://www.co.barron.wi.us/GCSWebPortal/,Base,true,0.78,ok,1
+WI,Bayfield,WI-Bayfield,http://novus.bayfieldcounty.org:8081/access/,Base,true,0.78,ok,1
+WI,Brown,WI-Brown,https://bclrpp.browncountywi.gov/Search/RealEstate/Search,Search,true,0.92,ok,1
+WI,Brown Deer Village,WI-BrownDeerVillage,https://pp-milwaukee-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,true,0.92,ok,1
+WI,Buffalo,WI-Buffalo,https://landnav-publicportal.buffalocounty.com/Search/RealEstate/Search,Base,true,0.78,ok,1
+WI,Burnett,WI-Burnett,http://web.burnettcounty.org/access/REAL%20ESTATE/header.asp,Search,true,0.92,ok,1
+WI,Calumet,WI-Calumet,http://calum400.co.calumet.wi.us/NSCCALO/,Base,true,0.78,ok,1
+WI,Chippewa,WI-Chippewa,http://cctax.co.chippewa.wi.us/,Base,false,0.78,ok,1
+WI,Clark,WI-Clark,http://clarkcowi.wgxtreme.com/java/wgx_taxsearch/report/window/clarkcowi/,Base,true,0.78,ok,1
+WI,Columbia,WI-Columbia,https://ascent.co.columbia.wi.us/LandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,true,0.92,ok,1
+WI,Crawford,WI-Crawford,https://landrecords.crawfordcountywi.org/,Base,true,0.78,ok,1
+WI,Cudahy City,WI-CudahyCity,http://propertytax.ci.cudahy.wi.us/GCSWebPortal/,Base,false,0.78,ok,1
+WI,Dane,WI-Dane,http://accessdane.co.dane.wi.us/,Base,true,0.78,ok,1
+WI,Dodge,WI-Dodge,http://dr1.co.dodge.wi.us/lrst/,Base,false,0.78,ok,1
+WI,Door,WI-Door,http://pubinfo.co.door.wi.us/RERV10O/,Base,false,0.78,ok,1
+WI,Douglas,WI-Douglas,http://www.gcssoftware.com/douglas/,Base,false,0.78,ok,1
+WI,Dunn,WI-Dunn,http://216.222.161.54:8083/taxdata/,Base,true,0.78,ok,1
+WI,Florence,WI-Florence,http://gcs.florencewisconsin.com/GCSWebPortal/,Base,true,0.78,ok,1
+WI,Fond Du Lac,WI-FondDuLac,https://landinfo.fdlco.wi.gov/,Base,true,0.78,ok,1
+WI,Forest,WI-Forest,http://www.gcssoftware.com/forest/,Base,false,0.78,ok,1
+WI,Fox Point Village,WI-FoxPointVillage,http://host.gcssoftware.com/Foxpoint/,Base,true,0.78,ok,1
+WI,Franklin City,WI-FranklinCity,http://gcs.franklinwi.gov/GCSWebPortal/,Base,false,0.78,ok,1
+WI,Glendale City,WI-GlendaleCity,https://host.gcssoftware.com/Glendale/,Base,true,0.78,ok,1
+WI,Grant,WI-Grant,https://grantcountylandrecords.com/,Base,true,0.78,ok,1
+WI,Green,WI-Green,http://landrecords.greencountywi.org/lrsweb/parcel/,Base,true,0.78,ok,1
+WI,Greendale Village,WI-GreendaleVillage,http://village.greendale.org/,Base,true,0.78,ok,1
+WI,Greenfield City,WI-GreenfieldCity,http://gcs.greenfieldwi.us/gcswebportal/,Base,true,0.78,ok,1
+WI,Green Lake,WI-GreenLake,https://greenlake.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,true,0.92,ok,1
+WI,Iowa,WI-Iowa,http://ascent.iowacounty.org/LandRecords/PropertyListing/RealEstateTaxParcel/,Base,true,0.78,ok,1
+WI,Iron,WI-Iron,http://209.62.163.77/,Base,true,0.78,ok,1
+WI,Jackson,WI-Jackson,https://pp-jackson-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,true,0.92,ok,1
+WI,Jefferson,WI-Jefferson,http://jeffersoncountyapps.jeffersoncountywi.gov/jclrs/LIO/,Base,true,0.78,ok,1
+WI,Juneau,WI-Juneau,http://gcs.co.juneau.wi.us/,Base,true,0.78,ok,1
+WI,Kenosha,WI-Kenosha,https://pp-kenosha-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,true,0.92,ok,1
+WI,Kenosha City,WI-KenoshaCity,http://kenosha.org/cgi-bin/,Base,true,0.78,ok,1
+WI,Kewaunee,WI-Kewaunee,https://www.kewauneeco.org/,Base,true,0.78,ok,1
+WI,La Crosse,WI-LaCrosse,http://www.co.la-crosse.wi.us/landrecordsportal/,Base,true,0.78,ok,1
+WI,Lafayette,WI-Lafayette,http://66.112.65.189/gisweb/web/,Base,true,0.78,ok,1
+WI,Langlade,WI-Langlade,http://www.langladecogiws.com/LangladeCoWi/,Base,false,0.78,ok,1
+WI,Lincoln,WI-Lincoln,https://lrs.co.lincoln.wi.us/,Base,true,0.78,ok,1
+WI,Madison City,WI-MadisonCity,http://www.cityofmadison.com/assessor/property/,Base,true,0.78,ok,1
+WI,Manitowoc,WI-Manitowoc,http://www.manitowoc-county.com/taxquery/,Base,false,0.78,ok,1
+WI,Manitowoc City,WI-ManitowocCity,https://taxes.manitowoc.org/,Base,true,0.78,ok,1
+WI,Marathon,WI-Marathon,http://ascent.co.marathon.wi.us/AscentLandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,true,0.92,ok,1
+WI,Marinette,WI-Marinette,http://webgis.marinettecounty.com/,Base,false,0.78,ok,1
+WI,Marquette,WI-Marquette,http://marquettecowi.wgxtreme.com/java/wgx_taxsearch/,Base,true,0.78,ok,1
+WI,Menasha City,WI-MenashaCity,http://www.cityofmenasha-wi.gov/content/departments/finance/,Base,false,0.78,ok,1
+WI,Menominee,WI-Menominee,https://ascent.co.menominee.wi.us/,Base,true,0.78,ok,1
+WI,Milwaukee,WI-Milwaukee,http://gcswebportal.milwaukeecounty.org/GCSWebPortal/,Base,true,0.78,ok,1
+WI,Milwaukee City,WI-MilwaukeeCity,http://itmdapps.ci.mil.wi.us/taxAccountBalance/,Base,false,0.78,ok,1
+WI,Monroe,WI-Monroe,https://pp-monroe-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,true,0.92,ok,1
+WI,Neenah City,WI-NeenahCity,http://www3.ci.neenah.wi.us/prod/,Base,true,0.78,ok,1
+WI,New Berlin City,WI-NewBerlinCity,http://www.newberlin.org/,Base,true,0.78,ok,1
+WI,Oak Creek City,WI-OakCreekCity,http://city.oakcreekwi.org/gcswebportal/,Base,true,0.78,ok,1
+WI,Oconto,WI-Oconto,http://ocgen.co.oconto.wi.us/GCSWebPortal/search.aspx,Search,true,0.92,ok,1
+WI,Oneida,WI-Oneida,http://octax.co.oneida.wi.us/,Base,false,0.78,ok,1
+WI,Oshkosh City,WI-OshkoshCity,https://www.ci.oshkosh.wi.us/,Base,true,0.78,ok,1
+WI,Outagamie,WI-Outagamie,http://www.co.outagamie.wi.us/OutagamieCoWi/,Base,false,0.78,ok,1
+WI,Ozaukee,WI-Ozaukee,http://www.ascent.co.ozaukee.wi.us/LandRecords/,Base,true,0.78,ok,1
+WI,Pepin,WI-Pepin,http://www.pepinco-onlinemaps.com/PepinCoWi/,Base,false,0.78,ok,1
+WI,Pierce,WI-Pierce,https://www.co.pierce.wi.us/,Base,true,0.78,ok,1
+WI,Polk,WI-Polk,https://pp-polk-co-wi-fb.app.landnav.com/Search/RealEstate/Search,Search,true,0.92,ok,1
+WI,Portage,WI-Portage,http://pctax.co.portage.wi.us/PCTax/,Base,false,0.78,ok,1
+WI,Price,WI-Price,https://www.co.price.wi.us/,Base,true,0.78,ok,1
+WI,Racine,WI-Racine,http://services.racineco.com/propertytax/,Base,false,0.78,ok,1
+WI,Racine City,WI-RacineCity,http://tax.cityofracine.org/,Base,true,0.78,ok,1
+WI,Richland,WI-Richland,http://richlandcowi.wgxtreme.com/java/wgx_taxsearch/report/panel/richlandcowi/,Base,true,0.78,ok,1
+WI,Rock,WI-Rock,https://taxsearch.co.rock.wi.us/search.php,Search,true,0.92,ok,1
+WI,Rusk,WI-Rusk,http://ruskcowi.wgxtreme.com/java/wgx_taxsearch/report/window/ruskcowi/,Base,true,0.78,ok,1
+WI,Sauk,WI-Sauk,http://soaring.co.sauk.wi.us/,Base,false,0.78,ok,1
+WI,Sawyer,WI-Sawyer,https://tas.sawyercountygov.org/access/REAL%20ESTATE/header.asp,Search,true,0.92,ok,1
+WI,Shawano,WI-Shawano,https://gis.co.shawano.wi.us/,Base,true,0.78,ok,1
+WI,Sheboygan,WI-Sheboygan,https://treasurer.sheboygancounty.com/GCSWebPortal/Search.aspx,Search,true,0.92,ok,1
+WI,Shorewood Village,WI-ShorewoodVillage,http://gcs.villageofshorewood.org/,Base,true,0.78,ok,1
+WI,St Croix,WI-StCroix,https://propertyinfo.kenoshacounty.org/Search/RealEstate/Search,Search,true,0.92,ok,1
+WI,Stevens Point City,WI-StevensPointCity,http://www2.stevenspoint.com/GCSWebPortal/,Base,true,0.78,ok,1
+WI,St Francis City,WI-StFrancisCity,http://host.gcssoftware.com/StFrancis/,Base,true,0.78,ok,1
+WI,Taylor,WI-Taylor,https://taylorwi.mapping-online.com/,Base,true,0.78,ok,1
+WI,Trempealeau,WI-Trempealeau,http://www.tremplocounty.com/Search/,Base,true,0.78,ok,1
+WI,Two Rivers City,WI-TwoRiversCity,https://tworivers.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,true,0.92,ok,1
+WI,Vernon,WI-Vernon,https://vernonwi.mapping-online.com/,Base,true,0.78,ok,1
+WI,Vilas,WI-Vilas,http://webtax.co.vilas.wi.us/,Base,false,0.78,ok,1
+WI,Walworth,WI-Walworth,http://ctyweb.co.walworth.wi.us/TaxInquiry/webfacing/,Base,false,0.78,ok,1
+WI,Washburn,WI-Washburn,https://tax.co.washburn.wi.us/access/REAL%20ESTATE/header.asp,Search,true,0.92,ok,1
+WI,Washington,WI-Washington,http://records.co.washington.wi.us/webtax/webfacing/,Base,false,0.78,ok,1
+WI,Waukesha,WI-Waukesha,http://dwprd.waukeshacounty.gov/applications/production/ROD_TAX_LISTING/,Base,false,0.78,ok,1
+WI,Waupaca,WI-Waupaca,https://waupaca.transcendenttech.com/LandRecords/PropertyListing/RealEstateTaxParcel#/Search,Search,true,0.92,ok,1
+WI,Waushara,WI-Waushara,http://www.co.waushara.wi.us/,Base,true,0.78,ok,1
+WI,Whitefish Bay Village,WI-WhitefishBayVillage,http://tax.wfbvillage.org/GCSWebPortal/,Base,false,0.78,ok,1
+WI,Winnebago,WI-Winnebago,http://www.co.winnebago.wi.us/,Base,true,0.78,ok,1
+WI,Wood,WI-Wood,http://www.co.wood.wi.us/Departments/Treasurer/TaxPublic/,Base,true,0.78,ok,1
+WV,Berkeley,WV-Berkeley,http://planning.berkeleycountycomm.org:8003/,Base,true,0.78,ok,1
+WV,Boone,WV-Boone,http://boone.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Brooke,WV-Brooke,http://www.brookecountysheriff.com/tax/,Base,true,0.78,ok,1
+WV,Cabell,WV-Cabell,http://cabell.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Fayette,WV-Fayette,http://fayette.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Greenbrier,WV-Greenbrier,http://greenbrier.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Hampshire,WV-Hampshire,http://129.71.205.207/,Base,true,0.78,ok,1
+WV,Hancock,WV-Hancock,http://hancock.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Harrison,WV-Harrison,http://harrison.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Jackson,WV-Jackson,http://jackson.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Jefferson,WV-Jefferson,http://jefferson.softwaresystems.com:8003/,Base,true,0.78,ok,1
+WV,Kanawha,WV-Kanawha,http://129.71.205.110:8383/,Base,true,0.78,ok,1
+WV,Logan,WV-Logan,http://logan.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Marion,WV-Marion,http://marion.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Marshall,WV-Marshall,http://marshall.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Mercer,WV-Mercer,http://74.43.146.197/,Base,true,0.78,ok,1
+WV,Mineral,WV-Mineral,http://mineral.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Monongalia,WV-Monongalia,http://monongalia.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Morgan,WV-Morgan,http://morgan.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Nicholas,WV-Nicholas,http://nicholas.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Ohio,WV-Ohio,http://ohio.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Preston,WV-Preston,https://129.71.117.27/,Base,true,0.78,ok,1
+WV,Putnam,WV-Putnam,http://putnam.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Raleigh,WV-Raleigh,http://129.71.205.249/,Base,true,0.78,ok,1
+WV,Randolph,WV-Randolph,http://randolph.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Taylor,WV-Taylor,http://taylor.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Upshur,WV-Upshur,http://upshur.softwaresystems.com/,Base,true,0.78,ok,1
+WV,Wayne,WV-Wayne,http://www.waynecountywv.us/WEBTax/,Base,true,0.78,ok,1
+WV,Wood,WV-Wood,http://129.71.205.120/webtax/,Base,true,0.78,ok,1
+ZZ,Test,ZZ-Test,https://ptd.workplacetechnologies.com,Base,true,0.78,ok,1
