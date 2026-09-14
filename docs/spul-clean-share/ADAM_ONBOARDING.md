@@ -31,7 +31,9 @@
 | What | Where |
 | --- | --- |
 | Code | this repo → `spul/` |
-| Minimal PR | https://github.com/webpointllc-com/TaxCertificateProcessor/pull/4 |
-| Cleanup docs PR | (this branch) `s-pul-front_end-Betaadam-clean-share-39e4` |
-| Demo only (do not treat as product) | https://webpoint-spul-beta.onrender.com |
+| Day 0 manifest | [`docs/DAY0_MANIFEST.md`](../DAY0_MANIFEST.md) |
+| Reviewer PR (open today) | https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8 |
+| Clean-share parent | https://github.com/webpointllc-com/TaxCertificateProcessor/pull/7 |
+| Invite collaborator | https://github.com/webpointllc-com/TaxCertificateProcessor/settings/access |
+| Demo only (do not treat as product) | https://webpoint-spul-beta.onrender.com (repo 404; ignore) |
 | Marketing | https://webpointllc.com · account domain https://taxcert.ai |

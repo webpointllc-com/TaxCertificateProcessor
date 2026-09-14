@@ -4,6 +4,7 @@ Documents for making S-PUL teammate-ready (Adam) without the `kata_deploy` / bet
 
 | Doc | Purpose |
 | --- | --- |
+| [../DAY0_MANIFEST.md](../DAY0_MANIFEST.md) | Day 0: what/where/boot/PRs |
 | [ADAM_ONBOARDING.md](./ADAM_ONBOARDING.md) | 5-bullet start |
 | [AUDIT_MEMO.md](./AUDIT_MEMO.md) | Redundant vs keep; canonical repo choice |
 | [MERGE_SOURCES.md](./MERGE_SOURCES.md) | Merged vs still Mac-only / 404 gaps |
