@@ -1,36 +1,42 @@
-# S-PUL Minimal — Render Free Autodeploy
+# S-PUL — Search Page URL Locator
 
-Prototype: indexed Extractor Search/Base URLs → jurisdiction URL(s) with confidence and staggered cascade reveal.
+Generative jurisdiction search: type a place, get the **official** county/city tax search URL + confidence — or an honest miss. **Never invents URLs.**
 
-## Live (after Blueprint / auto-deploy)
+**Canonical path in repo:** `spul/` inside [TaxCertificateProcessor](https://github.com/webpointllc-com/TaxCertificateProcessor)
 
-- Service name: `search-spul-minimal`
-- Expected URL: `https://search-spul-minimal.onrender.com`
-- Health: `GET /api/health` must return 200
-- UI: `/` · Embed helper: `/SQUARESPACE_EMBED.html`
-
-## Local
+## Quick start
 
 ```bash
 cd spul
+cp .env.example .env
 npm install
 npm start
-# open http://localhost:3000
+# http://localhost:3000  ·  GET /api/health
 ```
 
-## Data
+## What ships here
 
-- Source: Extractor URL export (`ExtractorUrls_*.txt`, 2062 listed; 2055 with URL; **1675 validated-true** / 163 dead / 217 uncertain on 2026-09-13 hybrid+remainder; registry active ≈1866 = validated-true + uncertain kept
-- Built index: `spul/data/search-index.json`
-- County export: `spul/data/counties-export.csv` (+ `counties-export-summary.json`)
-- Query shapes: `docs/prototype-best-practice/QUERY_SHAPES.md`
-- Live triangulation note: `docs/prototype-best-practice/LIVE_TRIANGULATION.md`
-- Quality report: `docs/prototype-best-practice/URL_QUALITY_REPORT.md`
+| Layer | Path |
+| --- | --- |
+| UI | `public/index.html` |
+| API | `server.js` → `/api/search`, `/api/health`, `/api/guide` |
+| URL lock | `services/spulTruth.js` |
+| Data | `data/search-index.json` · `data/validated-true-urls.csv` (**1675** true) |
+| Offline quality | `scripts/hybrid-revalidate.js`, `remainder-revalidate.js` |
+| Extractors contract | `extractors/` (DeepShake offline — not in request path) |
 
-## Product scope
+## Deploy
 
-S-PUL only — registry lookup + confidence + local query aliases. Honest miss when no URL. No CI orchestrator, no voice. Highlighter untouched.
+**Production: AWS** — see [`docs/aws/LIGHTSAIL_MINIMAL.md`](../docs/aws/LIGHTSAIL_MINIMAL.md).  
+Bind `0.0.0.0:$PORT`. No secrets in git.
 
-## Autodeploy
+Render free / `render.yaml` = historical proto only.
 
-See `docs/AUTODEPLOY_VARIABLE/README.md`.
+## Adam
+
+Start with [`docs/spul-clean-share/ADAM_ONBOARDING.md`](../docs/spul-clean-share/ADAM_ONBOARDING.md).  
+Audit / keep-delete: [`docs/spul-clean-share/AUDIT_MEMO.md`](../docs/spul-clean-share/AUDIT_MEMO.md).
+
+## Out of scope
+
+Central Intelligence · voice · DEP Highlighter · live beta Three.js demo as product.

@@ -1,13 +1,17 @@
 # S-PUL Minimal Deploy Status
 
-- App path: `spul/`
-- Blueprint: `render.yaml` (service `search-spul-minimal`, free, autoDeploy)
-- Autodeploy playbook: `docs/AUTODEPLOY_VARIABLE/README.md`
+**Production target is AWS** — see `docs/aws/LIGHTSAIL_MINIMAL.md` and `docs/spul-clean-share/`.  
+Render free / Blueprint below = historical proto only.
+
+- App path: `spul/` (canonical product)
+- Adam onboarding: `docs/spul-clean-share/ADAM_ONBOARDING.md`
+- Blueprint (historical): `render.yaml` (service `search-spul-minimal`, free)
+- Autodeploy playbook (historical): `docs/AUTODEPLOY_VARIABLE/README.md`
 - T7 / Passport / DeepShake: `docs/AUTODEPLOY_VARIABLE/T7_PASSPORT_DEEPSHAKE.md`, `T7_VOLUME_HUNT.md`, `docs/PASSPORT_RECOVERY.md`, `docs/prototype-best-practice/DEEPSHAKE_STATUS.md`
 - LLM Comm guide: `POST /api/guide` (+ `/api/chat` alias) — registry-locked; optional `GROQ_API_KEY`
 - URL health: full crawl + gated reclass + curated fixes → `docs/prototype-best-practice/URL_HEALTH_SAMPLE.md`, `URL_FIXES.md`
 
-Expected URL after Blueprint apply: https://search-spul-minimal.onrender.com
+Historical expected URL after Blueprint apply: https://search-spul-minimal.onrender.com
 
 **Live checks (cloud agent, 2026-09-10):**
 
