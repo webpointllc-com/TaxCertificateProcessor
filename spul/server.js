@@ -257,7 +257,13 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.get('/api/meta', (_req, res) => {
-  res.json({ ok: true, meta: index.meta, count: items.length });
+  res.json({
+    ok: true,
+    meta: index.meta,
+    count: items.length,
+    validatedTrue: 1675,
+    embed: { desktopW: 1280, desktopH: 820, path: '/?embed=1' },
+  });
 });
 
 app.get('/api/suggest', (req, res) => {
