@@ -1,6 +1,4 @@
-# S-PUL minimal generative search (Webpoint prototype)
-# Blueprint auto-deploy pattern — free plan, Node web service.
-# Apply once: https://dashboard.render.com/blueprints/new → select this repo.
+# Historical — Render free proto only. Production = AWS (docs/aws/LIGHTSAIL_MINIMAL.md).
 services:
   - type: web
     name: search-spul-minimal
