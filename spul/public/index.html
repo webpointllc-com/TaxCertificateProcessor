@@ -36,6 +36,15 @@ html, body {
   overflow: hidden;
 }
 
+/* Squarespace iframe (/searchpages): fill host frame; desktop stage scales to width */
+html.spul-embed, html.spul-embed body {
+  min-height: 100%;
+}
+html.spul-embed #stage-outer {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 /* ===== Embed stage: scale full desktop canvas to container width ===== */
 #stage-outer {
   width: 100%;
@@ -562,19 +571,29 @@ html, body {
   const guideQ = document.getElementById('guideQ');
   const guideLog = document.getElementById('guideLog');
 
+  // Squarespace /searchpages iframe: ?embed=1 (short intro) — layout stays 1280×820 scaled to 100% width
+  const params = new URLSearchParams(window.location.search);
+  const isEmbed = params.get('embed') === '1' || params.get('embed') === 'true' || window.self !== window.top;
+  if (isEmbed) document.documentElement.classList.add('spul-embed');
+
   function scaleStage() {
     const w = outer.clientWidth || window.innerWidth;
     const h = outer.clientHeight || window.innerHeight;
-    const s = Math.min(w / DESKTOP_W, h / DESKTOP_H);
+    // Prefer width-locked scale so iframe width drives the whole composition (100% scalable)
+    let s = w / DESKTOP_W;
+    if (h > 0 && DESKTOP_H * s > h) s = Math.min(s, h / DESKTOP_H);
     stage.style.transform = 'scale(' + s + ')';
     stage.style.left = Math.max(0, (w - DESKTOP_W * s) / 2) + 'px';
     stage.style.top = Math.max(0, (h - DESKTOP_H * s) / 2) + 'px';
   }
   scaleStage();
   window.addEventListener('resize', scaleStage);
+  if (window.ResizeObserver) {
+    new ResizeObserver(scaleStage).observe(outer);
+  }
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const introMs = reduceMotion ? 200 : 6500;
+  const introMs = reduceMotion ? 200 : (isEmbed ? 900 : 6500);
   window.setTimeout(function () {
     loading.classList.add('is-done');
     app.classList.add('is-ready');
@@ -760,8 +779,7 @@ html, body {
     });
   }
 
-  // Deep-link support: ?q=Travis%20TX
-  const params = new URLSearchParams(window.location.search);
+  // Deep-link support: ?q=Travis%20TX (works with ?embed=1)
   if (params.get('q')) {
     input.value = params.get('q');
     window.setTimeout(function () {

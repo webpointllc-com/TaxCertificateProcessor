@@ -2,7 +2,8 @@
 
 Generative jurisdiction search: type a place, get the **official** county/city tax search URL + confidence — or an honest miss. **Never invents URLs.**
 
-**Canonical path in repo:** `spul/` inside [TaxCertificateProcessor](https://github.com/webpointllc-com/TaxCertificateProcessor)
+**Canonical path in repo:** `spul/` inside [TaxCertificateProcessor](https://github.com/webpointllc-com/TaxCertificateProcessor)  
+**Day 0 handoff:** [`docs/DAY0_MANIFEST.md`](../docs/DAY0_MANIFEST.md) · reviewer PR [#8](https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8)
 
 ## Quick start
 
@@ -12,13 +13,18 @@ cp .env.example .env
 npm install
 npm start
 # http://localhost:3000  ·  GET /api/health
+# http://localhost:3000/?embed=1  ·  Squarespace iframe mode
 ```
+
+## Squarespace /searchpages
+
+Proportional desktop layout (1280×820 → scales to iframe width). Snippet: [`docs/SEARCHPAGES_EMBED.md`](../docs/SEARCHPAGES_EMBED.md) · live helper page `/SQUARESPACE_EMBED.html`.
 
 ## What ships here
 
 | Layer | Path |
 | --- | --- |
-| UI | `public/index.html` |
+| UI | `public/index.html` (`?embed=1` for iframe) |
 | API | `server.js` → `/api/search`, `/api/health`, `/api/guide` |
 | URL lock | `services/spulTruth.js` |
 | Data | `data/search-index.json` · `data/validated-true-urls.csv` (**1675** true) |

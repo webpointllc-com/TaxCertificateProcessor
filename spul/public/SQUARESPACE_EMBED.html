@@ -2,34 +2,67 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>S-PUL Squarespace Embed Snippet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S-PUL — Squarespace /searchpages embed</title>
 <style>
-  body { font-family: system-ui, sans-serif; max-width: 860px; margin: 40px auto; padding: 0 20px; line-height: 1.5; color: #111; }
+  body { font-family: system-ui, sans-serif; max-width: 920px; margin: 40px auto; padding: 0 20px; line-height: 1.5; color: #111; }
   code, pre { background: #f4f6f8; border-radius: 8px; }
-  pre { padding: 16px; overflow: auto; }
+  pre { padding: 16px; overflow: auto; white-space: pre-wrap; }
   .note { color: #555; }
+  .ok { color: #0a7; font-weight: 600; }
+  .warn { color: #a60; }
 </style>
 </head>
 <body>
-<h1>S-PUL iframe embed</h1>
-<p class="note">Paste into a password-protected / members Squarespace page (Code block). Replace the host if your Render URL differs.</p>
-<pre id="snip">&lt;iframe
-  src="https://search-spul-minimal.onrender.com"
-  width="100%"
-  height="700"
-  style="border:none;border-radius:16px;overflow:hidden;"
-  title="S-PUL Property Tax Search"
-  loading="lazy"
-  allow="clipboard-write"
-&gt;&lt;/iframe&gt;</pre>
-<p><a href="/">Open S-PUL</a></p>
+<h1>webpointllc.com/searchpages — iframe snippet</h1>
+<p class="note">Paste into a Squarespace <strong>Code</strong> block on <code>/searchpages</code>.
+The UI is a fixed 1280×820 desktop composition that scales to <strong>100% of the iframe width</strong> (<code>?embed=1</code>).</p>
+
+<p id="hostStatus" class="warn">Checking live host…</p>
+
+<pre id="snip">&lt;!-- S-PUL for webpointllc.com/searchpages — proportional desktop layout --&gt;
+&lt;div style="width:100%;max-width:100%;"&gt;
+  &lt;iframe
+    src="https://search-spul-minimal.onrender.com/?embed=1"
+    title="S-PUL Property Tax Search"
+    loading="lazy"
+    allow="clipboard-write"
+    style="width:100%;aspect-ratio:1280/820;height:auto;border:none;border-radius:16px;overflow:hidden;display:block;background:#05080f;"
+  &gt;&lt;/iframe&gt;
+&lt;/div&gt;</pre>
+
+<p class="note">Local smoke: <code>cd spul && npm start</code> then open <a href="/?embed=1">/?embed=1</a>.
+Validated-true county URLs in this build: <strong>1675</strong>.</p>
+<p><a href="/">Open S-PUL full page</a> · <a href="/api/health">/api/health</a></p>
+
 <script>
-fetch('/api/health').then(r=>r.json()).then(d=>{
-  // If somehow running under a different host, rewrite snippet src to current origin
-  const host = location.origin;
+(function () {
+  const DEFAULT = 'https://search-spul-minimal.onrender.com';
   const el = document.getElementById('snip');
-  el.textContent = el.textContent.replace('https://search-spul-minimal.onrender.com', host);
-}).catch(()=>{});
+  const status = document.getElementById('hostStatus');
+  const origin = location.origin;
+
+  function setSrc(host) {
+    el.textContent = el.textContent.replace(/https:\/\/[^/"'\s]+/, host);
+  }
+
+  // Prefer current origin when this page is served by the app
+  if (/localhost|127\.0\.0\.1|onrender\.com|webpoint|taxcert/i.test(origin)) {
+    setSrc(origin);
+  }
+
+  fetch('/api/health').then(function (r) {
+    if (!r.ok) throw new Error('bad');
+    return r.json();
+  }).then(function (d) {
+    status.className = 'ok';
+    status.textContent = 'Live: ' + origin + ' · ' + (d.jurisdictions || '?') + ' jurisdictions indexed · URL lock registry_only';
+    setSrc(origin);
+  }).catch(function () {
+    status.className = 'warn';
+    status.textContent = 'App not reachable here. Use a deployed host in the snippet (Render free proto may be cold/404). Default placeholder: ' + DEFAULT;
+  });
+})();
 </script>
 </body>
 </html>
