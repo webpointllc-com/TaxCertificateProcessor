@@ -31,6 +31,12 @@
       "ts": "2026-09-15T00:18:12Z",
       "author": "system",
       "text": "Project Continuity Widget added at spul/widget/. Open with: cd spul && npm run widget  →  http://127.0.0.1:3847/  Press Enter in the prompt to append live memory here."
+    },
+    {
+      "id": "e-mu1xdoai-9r14x",
+      "ts": "2026-09-15T00:20:11.706Z",
+      "author": "agent",
+      "text": "Boot proof: widget Enter path live from cloud agent."
     }
   ]
 }
