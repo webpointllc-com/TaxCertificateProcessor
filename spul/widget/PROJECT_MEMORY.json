@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "label": "S-PUL project continuity memory",
+  "note": "Local-first latent project memory stand-in. Cursor agents and Bill: read this file at session start; append via the Continuity Widget (Enter) or edit JSON carefully. Not an MCP twin bridge — honest shared log only.",
+  "project": {
+    "name": "S-PUL",
+    "productPath": "spul/",
+    "day0": true,
+    "branch": "s-pul-front_end-Betasearchpages-best-55de",
+    "pr": 8,
+    "prUrl": "https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8",
+    "repoUrl": "https://github.com/webpointllc-com/TaxCertificateProcessor",
+    "manifest": "docs/DAY0_MANIFEST.md",
+    "stats": {
+      "listed": 2062,
+      "withUrl": 2055,
+      "active": 1866,
+      "withoutUrl": 7,
+      "validatedTrue": 1675
+    }
+  },
+  "entries": [
+    {
+      "id": "seed-day0-2026-09-15",
+      "ts": "2026-09-15T00:18:12Z",
+      "author": "system",
+      "text": "Day 0 snapshot seeded. Product = spul/ only. Reviewer PR #8 on branch s-pul-front_end-Betasearchpages-best-55de. Jurisdiction stats: 2062 listed · 2055 with URL · 1866 active · 7 without URL · 1675 validated-true. Voice-first / Central Intelligence = OUT (visual art reused in Continuity Widget only)."
+    },
+    {
+      "id": "seed-widget-2026-09-15",
+      "ts": "2026-09-15T00:18:12Z",
+      "author": "system",
+      "text": "Project Continuity Widget added at spul/widget/. Open with: cd spul && npm run widget  →  http://127.0.0.1:3847/  Press Enter in the prompt to append live memory here."
+    },
+    {
+      "id": "e-mu1xdoai-9r14x",
+      "ts": "2026-09-15T00:20:11.706Z",
+      "author": "agent",
+      "text": "Boot proof: widget Enter path live from cloud agent."
+    }
+  ]
+}
