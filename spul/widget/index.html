@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Webpoint · Project Continuity</title>
+<title>Webpoint · Continuity Wall</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -18,8 +18,11 @@
   --ok: #3DDC97;
   --line: rgba(74, 158, 255, 0.22);
   --panel: rgba(16, 24, 48, 0.55);
-  --desktop-w: 1280px;
-  --desktop-h: 820px;
+  --claude: #F2C4A0;
+  --cursor: #4A9EFF;
+  --bill: #E8C547;
+  --desktop-w: 1440px;
+  --desktop-h: 900px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,8 +41,8 @@ html, body {
   overflow: hidden;
   position: relative;
   background:
-    radial-gradient(1100px 620px at 78% -8%, rgba(74,158,255,0.16), transparent 58%),
-    radial-gradient(900px 500px at 8% 110%, rgba(232,197,71,0.07), transparent 55%),
+    radial-gradient(1200px 680px at 82% -10%, rgba(74,158,255,0.18), transparent 58%),
+    radial-gradient(900px 520px at 6% 108%, rgba(232,197,71,0.08), transparent 55%),
     linear-gradient(165deg, #05080f 0%, #0a1224 48%, #08101c 100%);
 }
 #stage {
@@ -51,7 +54,6 @@ html, body {
   left: 0;
 }
 
-/* Intro — Webpoint mark (art from S-PUL / Voice First visual language) */
 .wp-loading {
   position: absolute;
   inset: 0;
@@ -150,12 +152,16 @@ html, body {
   100% { box-shadow: 0 0 0 18px rgba(61, 220, 151, 0); }
 }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: none; }
+}
+@keyframes reminderPulse {
+  0%, 100% { opacity: 0.92; }
+  50% { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wp-company, .wp-mark::after, .wp-bar > i { animation: none !important; }
+  .wp-company, .wp-mark::after, .wp-bar > i, .reminder { animation: none !important; }
   .wp-company { color: var(--accent); background: none; -webkit-text-fill-color: unset; }
   .wp-loading { transition-duration: 0.01s; }
 }
@@ -164,27 +170,27 @@ html, body {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  padding: 40px 56px 36px;
+  grid-template-rows: auto auto 1fr auto;
+  padding: 32px 48px 28px;
+  gap: 16px;
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.65s ease, transform 0.65s ease;
+  min-height: 0;
 }
 .app.is-ready {
   opacity: 1;
   transform: none;
 }
 
-/* Brand-first hero — one composition */
 .hero {
   display: grid;
-  grid-template-columns: 1.35fr 0.65fr;
-  gap: 28px;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 24px;
   align-items: end;
-  margin-bottom: 28px;
 }
 .brand-block h1 {
-  font-size: 46px;
+  font-size: 42px;
   font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1.05;
@@ -194,11 +200,11 @@ html, body {
   color: var(--accent);
 }
 .brand-block .tagline {
-  margin-top: 10px;
+  margin-top: 8px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
-  max-width: 540px;
+  max-width: 620px;
   line-height: 1.45;
 }
 .brand-meta {
@@ -214,12 +220,12 @@ html, body {
   border: 1px solid rgba(61, 220, 151, 0.35);
   padding: 6px 12px;
   border-radius: 999px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   background: rgba(61, 220, 151, 0.06);
 }
 .brand-meta .branch {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
   word-break: break-all;
 }
@@ -229,102 +235,286 @@ html, body {
   font-weight: 500;
   margin-bottom: 4px;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.04em;
 }
 
-/* Atmosphere strip — stats as rhythm, not cards */
-.atmosphere {
+.reminder {
   display: flex;
-  align-items: baseline;
-  gap: 0;
-  flex-wrap: wrap;
-  margin-bottom: 22px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(74, 158, 255, 0.12);
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 18px;
+  background: linear-gradient(90deg, rgba(74,158,255,0.12), rgba(232,197,71,0.06));
+  border: 1px solid rgba(74, 158, 255, 0.28);
+  border-radius: 14px;
+  animation: reminderPulse 4.5s ease-in-out infinite;
 }
-.stat {
-  display: flex;
-  flex-direction: column;
-  padding-right: 28px;
-  margin-right: 28px;
-  border-right: 1px solid rgba(74, 158, 255, 0.12);
-}
-.stat:last-child {
-  border-right: none;
-  margin-right: 0;
-  padding-right: 0;
-}
-.stat b {
-  font-size: 26px;
-  font-weight: 600;
+.reminder p {
+  font-size: 13px;
+  font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--text);
-  font-variant-numeric: tabular-nums;
 }
-.stat b.accent { color: var(--accent); }
-.stat b.gold { color: var(--gold); }
-.stat span {
-  margin-top: 4px;
+.reminder p span { color: var(--gold); font-weight: 500; }
+.reminder code {
+  font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 400;
+  color: #a8b8d4;
 }
 
-.main {
+.layout {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 28px;
   min-height: 0;
 }
 
-/* Enter = live memory */
-.prompt-zone {
+.wall-pane {
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
-.prompt-label {
+.wall-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.wall-head h2 {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.filters button {
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.filters button:hover { color: var(--text); }
+.filters button.is-on {
+  color: var(--accent);
+  border-color: rgba(74, 158, 255, 0.35);
+  background: rgba(74, 158, 255, 0.08);
+}
+
+.wall-stream {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 8px;
+  mask-image: linear-gradient(to bottom, #000 92%, transparent 100%);
+}
+.wall-stream::-webkit-scrollbar { width: 6px; }
+.wall-stream::-webkit-scrollbar-thumb {
+  background: rgba(74, 158, 255, 0.25);
+  border-radius: 3px;
+}
+
+.post {
+  position: relative;
+  padding: 18px 0 20px 22px;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.1);
+  animation: fadeUp 0.5s ease;
+}
+.post::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
+}
+.post.author-claude-desktop::before { background: var(--claude); box-shadow: 0 0 0 3px rgba(242, 196, 160, 0.18); }
+.post.author-bill::before { background: var(--gold); box-shadow: 0 0 0 3px rgba(232, 197, 71, 0.18); }
+.post.author-system::before { background: var(--muted); box-shadow: 0 0 0 3px rgba(138, 151, 176, 0.15); }
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: baseline;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+.post-meta .author { color: var(--accent); }
+.post.author-claude-desktop .post-meta .author { color: var(--claude); }
+.post.author-bill .post-meta .author { color: var(--gold); }
+.post-meta .type {
+  color: #a8b8d4;
+  border: 1px solid rgba(74, 158, 255, 0.18);
+  padding: 1px 7px;
+  border-radius: 999px;
+  letter-spacing: 0.1em;
+}
+.post h3 {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.post .body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: #c8d2e6;
+  max-width: 62ch;
+}
+.post .outcome {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ok);
+  font-weight: 400;
+}
+.post .outcome::before { content: '→ '; color: rgba(61, 220, 151, 0.7); }
+.post .links {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+.post .links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.25);
+  transition: border-color 0.2s ease;
+}
+.post .links a:hover { border-color: var(--accent); }
+.post .chart {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(74, 158, 255, 0.1);
+}
+.post .chart-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.bars { display: flex; flex-direction: column; gap: 8px; max-width: 420px; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 48px;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+}
+.bar-row span { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track {
+  height: 8px;
+  background: rgba(74, 158, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), #7ebfff);
+  border-radius: 4px;
+  transition: width 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bar-row b {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text);
+}
+.wall-empty {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 24px 0;
+}
+
+.composer-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+.composer {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.composer.is-saved {
+  animation: pulseOk 0.7s ease-out;
+  border-color: rgba(61, 220, 151, 0.55);
+}
+.composer h2 {
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  font-weight: 500;
 }
-.prompt-row {
-  display: flex;
-  gap: 12px;
-  align-items: stretch;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 12px 12px 12px 20px;
-  backdrop-filter: blur(12px);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
-.prompt-row:focus-within {
-  border-color: rgba(74, 158, 255, 0.55);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field.full { grid-column: 1 / -1; }
+.field label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
-.prompt-row.is-saved {
-  animation: pulseOk 0.7s ease-out;
-  border-color: rgba(61, 220, 151, 0.55);
-}
-.prompt-row input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
+.field input, .field select, .field textarea {
+  width: 100%;
+  border: 1px solid rgba(74, 158, 255, 0.18);
+  background: rgba(5, 10, 22, 0.55);
   color: var(--text);
   font-family: inherit;
-  font-size: 17px;
-  font-weight: 400;
-  min-width: 0;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
-.prompt-row input::placeholder { color: #66748f; }
-.prompt-row button {
+.field textarea { min-height: 78px; resize: vertical; font-weight: 300; line-height: 1.45; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: rgba(74, 158, 255, 0.55);
+}
+.field input::placeholder, .field textarea::placeholder { color: #66748f; }
+.compose-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.compose-actions button[type="submit"] {
   border: none;
   cursor: pointer;
   background: var(--accent);
@@ -334,79 +524,28 @@ html, body {
   font-size: 13px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0 22px;
+  padding: 12px 22px;
   border-radius: 12px;
   transition: filter 0.2s ease, transform 0.15s ease;
 }
-.prompt-row button:hover { filter: brightness(1.08); }
-.prompt-row button:active { transform: scale(0.98); }
-.prompt-row button:disabled { opacity: 0.5; cursor: wait; }
-
+.compose-actions button[type="submit"]:hover { filter: brightness(1.08); }
+.compose-actions button[type="submit"]:active { transform: scale(0.98); }
+.compose-actions button[type="submit"]:disabled { opacity: 0.5; cursor: wait; }
 .save-status {
-  margin-top: 10px;
-  min-height: 20px;
-  font-size: 13px;
+  min-height: 18px;
+  font-size: 12px;
   color: var(--muted);
 }
 .save-status.ok { color: var(--ok); }
 .save-status.err { color: #ffb4b4; }
 
-.memory-stream {
-  flex: 1;
-  min-height: 0;
-  margin-top: 18px;
-  overflow: auto;
-  padding-right: 6px;
-}
-.memory-stream::-webkit-scrollbar { width: 6px; }
-.memory-stream::-webkit-scrollbar-thumb {
-  background: rgba(74, 158, 255, 0.25);
-  border-radius: 3px;
-}
-.mem-empty {
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 300;
-  padding: 12px 0;
-}
-.mem-item {
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(74, 158, 255, 0.08);
-  animation: fadeUp 0.45s ease;
-}
-.mem-item:first-child { padding-top: 4px; }
-.mem-meta {
-  display: flex;
-  gap: 12px;
-  align-items: baseline;
-  margin-bottom: 6px;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-family: 'JetBrains Mono', monospace;
-}
-.mem-meta .author { color: var(--accent); }
-.mem-text {
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 300;
-  color: var(--text);
-}
-
-/* Jump column — links as text rail, not card stack */
-.rail {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  min-height: 0;
-}
 .rail h2 {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
   font-weight: 500;
+  margin-bottom: 8px;
 }
 .jumps {
   display: flex;
@@ -415,30 +554,27 @@ html, body {
 }
 .jumps a {
   display: block;
-  padding: 10px 0;
+  padding: 9px 0;
   color: var(--text);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   border-bottom: 1px solid rgba(74, 158, 255, 0.1);
   transition: color 0.2s ease, padding-left 0.2s ease;
 }
-.jumps a:hover {
-  color: var(--accent);
-  padding-left: 6px;
-}
+.jumps a:hover { color: var(--accent); padding-left: 6px; }
 .jumps a span {
   display: block;
-  margin-top: 3px;
-  font-size: 12px;
+  margin-top: 2px;
+  font-size: 11px;
   color: var(--muted);
   font-weight: 300;
 }
 .actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: auto;
+  gap: 8px;
+  margin-top: 4px;
 }
 .actions button {
   cursor: pointer;
@@ -470,8 +606,7 @@ html, body {
 }
 
 .footer {
-  margin-top: 18px;
-  padding-top: 14px;
+  padding-top: 10px;
   border-top: 1px solid rgba(74, 158, 255, 0.1);
   display: flex;
   justify-content: space-between;
@@ -486,7 +621,6 @@ html, body {
   font-size: 11px;
   color: #a8b8d4;
 }
-
 .mode-pill {
   display: inline-flex;
   align-items: center;
@@ -509,7 +643,7 @@ html, body {
       <div>
         <div class="wp-mark"><span>WP</span></div>
         <div class="wp-company">Webpoint</div>
-        <div class="wp-sub">Project continuity</div>
+        <div class="wp-sub">Continuity wall</div>
         <div class="wp-bar"><i></i></div>
       </div>
     </div>
@@ -517,74 +651,117 @@ html, body {
     <div class="app" id="app">
       <header class="hero">
         <div class="brand-block">
-          <h1>WEBPOINT <em>S-PUL</em></h1>
-          <p class="tagline">Jump back into Day 0 — live project memory when you press Enter. Visual language from Webpoint / Voice First art; voice product stays out.</p>
+          <h1>WEBPOINT <em>WALL</em></h1>
+          <p class="tagline">Bill · Cursor · Claude Desktop — one chronological change wall. Post what changed, with GitHub or local refs. Voice product stays out; art language stays Webpoint.</p>
         </div>
         <div class="brand-meta">
-          <div class="day0">Day 0 · live</div>
+          <div class="day0">Day 0 · continuity</div>
           <div class="branch">
-            <strong>Branch</strong>
+            <strong>Day 0 product branch</strong>
             s-pul-front_end-Betasearchpages-best-55de
           </div>
         </div>
       </header>
 
-      <div class="atmosphere" aria-label="Jurisdiction stats">
-        <div class="stat"><b>2062</b><span>Listed</span></div>
-        <div class="stat"><b>2055</b><span>With URL</span></div>
-        <div class="stat"><b>1866</b><span>Active</span></div>
-        <div class="stat"><b>7</b><span>No URL</span></div>
-        <div class="stat"><b class="accent">1675</b><span>Validated</span></div>
+      <div class="reminder" role="status">
+        <p><span>After any S-PUL change → post here</span> with a GitHub PR/commit/file or local path ref.</p>
+        <code>spul/widget/wall/posts.jsonl</code>
       </div>
 
-      <div class="main">
-        <section class="prompt-zone">
-          <div class="prompt-label">Latent project memory · Enter to save</div>
-          <form class="prompt-row" id="memory-form" autocomplete="off">
-            <input id="memory-input" type="text" maxlength="4000"
-              placeholder="What should the next session remember?" aria-label="Project memory note">
-            <button type="submit" id="memory-submit">Enter</button>
-          </form>
-          <div class="save-status" id="save-status" role="status"></div>
-          <div class="memory-stream" id="memory-stream" aria-live="polite"></div>
+      <div class="layout">
+        <section class="wall-pane">
+          <div class="wall-head">
+            <h2>Change wall</h2>
+            <div class="filters" id="filters" aria-label="Filter posts">
+              <button type="button" data-filter="all" class="is-on">All</button>
+              <button type="button" data-filter="cursor">Cursor</button>
+              <button type="button" data-filter="claude-desktop">Claude</button>
+              <button type="button" data-filter="bill">Bill</button>
+              <button type="button" data-filter="snapshot">Snapshots</button>
+            </div>
+          </div>
+          <div class="wall-stream" id="wall-stream" aria-live="polite"></div>
         </section>
 
-        <aside class="rail">
-          <div>
+        <aside class="composer-pane">
+          <form class="composer" id="post-form" autocomplete="off">
+            <h2>Post change</h2>
+            <div class="fields">
+              <div class="field">
+                <label for="f-author">Author</label>
+                <select id="f-author">
+                  <option value="bill">bill</option>
+                  <option value="cursor">cursor</option>
+                  <option value="claude-desktop">claude-desktop</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-type">Type</label>
+                <select id="f-type">
+                  <option value="change">change</option>
+                  <option value="snapshot">snapshot</option>
+                  <option value="note">note</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="f-title">Title</label>
+                <input id="f-title" type="text" maxlength="200" placeholder="What changed?" required>
+              </div>
+              <div class="field full">
+                <label for="f-body">Body</label>
+                <textarea id="f-body" maxlength="8000" placeholder="What happened — enough for the other AI to pick up without re-asking."></textarea>
+              </div>
+              <div class="field full">
+                <label for="f-links">Links (GitHub URL or local path, comma-separated)</label>
+                <input id="f-links" type="text" maxlength="2000" placeholder="https://github.com/.../pull/8, spul/server.js">
+              </div>
+              <div class="field full">
+                <label for="f-outcome">Outcome (what came of it)</label>
+                <input id="f-outcome" type="text" maxlength="2000" placeholder="Optional — result / decision / next step">
+              </div>
+            </div>
+            <div class="compose-actions">
+              <button type="submit" id="post-submit">Post</button>
+              <div class="save-status" id="save-status" role="status"></div>
+            </div>
+          </form>
+
+          <div class="rail">
             <h2>Jump</h2>
             <nav class="jumps">
               <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8" target="_blank" rel="noopener">
                 PR #8 — searchpages
-                <span>Reviewer branch · Day 0 primary</span>
+                <span>Day 0 primary product</span>
+              </a>
+              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/tree/s-pul-front_end-Betaproject-widget-55de/spul/widget" target="_blank" rel="noopener">
+                Widget on GitHub
+                <span>PR #10 lineage</span>
               </a>
               <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/blob/s-pul-front_end-Betasearchpages-best-55de/docs/DAY0_MANIFEST.md" target="_blank" rel="noopener">
                 Day 0 manifest
                 <span>docs/DAY0_MANIFEST.md</span>
               </a>
-              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/tree/s-pul-front_end-Betasearchpages-best-55de/spul" target="_blank" rel="noopener">
-                spul/ boot
-                <span>cd spul · npm install · npm start</span>
+              <a href="./TWIN_SYNC.md" target="_blank" rel="noopener">
+                Twin sync protocol
+                <span>Cursor ↔ Claude Desktop</span>
               </a>
-              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor" target="_blank" rel="noopener">
-                GitHub repo
-                <span>webpointllc-com/TaxCertificateProcessor</span>
-              </a>
-              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/settings/access" target="_blank" rel="noopener">
-                Collaborator access
-                <span>Invite Adam · settings/access</span>
+              <a href="./README.md" target="_blank" rel="noopener">
+                AI contract
+                <span>How to post (required)</span>
               </a>
             </nav>
           </div>
+
           <div class="actions">
-            <button type="button" class="primary" id="btn-copy">Copy context for Cursor</button>
-            <button type="button" id="btn-reload">Reload memory</button>
+            <button type="button" class="primary" id="btn-twin">Copy twin pack</button>
+            <button type="button" id="btn-reload">Reload wall</button>
           </div>
         </aside>
       </div>
 
       <footer class="footer">
         <div class="mode-pill" id="mode-pill"><i></i> <span id="mode-label">Connecting…</span></div>
-        <div>Memory · <code>spul/widget/PROJECT_MEMORY.json</code> · <a href="./PROJECT_MEMORY.json">open file</a></div>
+        <div>Wall · <code>spul/widget/wall/posts.jsonl</code> · <a href="./wall/posts.jsonl">open file</a></div>
       </footer>
     </div>
   </div>
@@ -592,22 +769,22 @@ html, body {
 
 <script>
 (function () {
-  const DESKTOP_W = 1280;
-  const DESKTOP_H = 820;
+  const DESKTOP_W = 1440;
+  const DESKTOP_H = 900;
   const stage = document.getElementById('stage');
   const outer = document.getElementById('stage-outer');
   const loader = document.getElementById('loader');
   const app = document.getElementById('app');
-  const form = document.getElementById('memory-form');
-  const input = document.getElementById('memory-input');
-  const submitBtn = document.getElementById('memory-submit');
+  const form = document.getElementById('post-form');
+  const submitBtn = document.getElementById('post-submit');
   const statusEl = document.getElementById('save-status');
-  const stream = document.getElementById('memory-stream');
+  const stream = document.getElementById('wall-stream');
   const modePill = document.getElementById('mode-pill');
   const modeLabel = document.getElementById('mode-label');
 
   let live = false;
-  let memory = null;
+  let posts = [];
+  let filter = 'all';
 
   function scaleStage() {
     const w = outer.clientWidth;
@@ -624,35 +801,8 @@ html, body {
     live = ok;
     modePill.classList.toggle('offline', !ok);
     modeLabel.textContent = ok
-      ? 'Live · writing PROJECT_MEMORY.json'
-      : 'Offline snapshot · start npm run widget to write disk';
-  }
-
-  function formatTs(iso) {
-    try {
-      const d = new Date(iso);
-      return d.toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, 'Z');
-    } catch (_) {
-      return iso;
-    }
-  }
-
-  function renderEntries(entries) {
-    const list = Array.isArray(entries) ? entries.slice() : [];
-    list.reverse();
-    if (!list.length) {
-      stream.innerHTML = '<p class="mem-empty">No memory yet — type a note and press Enter.</p>';
-      return;
-    }
-    stream.innerHTML = list.map(function (e) {
-      return (
-        '<article class="mem-item">' +
-          '<div class="mem-meta"><span class="author">' + escapeHtml(e.author || '—') + '</span>' +
-          '<span>' + escapeHtml(formatTs(e.ts)) + '</span></div>' +
-          '<p class="mem-text">' + escapeHtml(e.text || '') + '</p>' +
-        '</article>'
-      );
-    }).join('');
+      ? 'Live · writing wall/posts.jsonl'
+      : 'Offline · run mac/open-widget.sh (or npm run widget)';
   }
 
   function escapeHtml(s) {
@@ -663,114 +813,225 @@ html, body {
       .replace(/"/g, '&quot;');
   }
 
-  async function loadMemory() {
+  function formatTs(iso) {
     try {
-      const res = await fetch('/api/memory', { cache: 'no-store' });
+      return new Date(iso).toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, 'Z');
+    } catch (_) {
+      return iso;
+    }
+  }
+
+  function linkHref(url) {
+    const u = String(url || '');
+    if (/^https?:\/\//i.test(u) || u.startsWith('/') || u.startsWith('./')) return u;
+    // local repo-relative path — show as text link to GitHub blob when possible
+    if (/^[a-zA-Z0-9_./-]+$/.test(u) && !u.includes(' ')) {
+      return 'https://github.com/webpointllc-com/TaxCertificateProcessor/blob/s-pul-front_end-Betasearchpages-best-55de/' + u;
+    }
+    return u;
+  }
+
+  function renderChart(snapshot) {
+    if (!snapshot || !Array.isArray(snapshot.series) || !snapshot.series.length) return '';
+    const max = Math.max.apply(null, snapshot.series.map(function (s) { return Number(s.value) || 0; })) || 1;
+    const rows = snapshot.series.map(function (s) {
+      const v = Number(s.value) || 0;
+      const pct = Math.max(2, Math.round((v / max) * 100));
+      return (
+        '<div class="bar-row">' +
+          '<span title="' + escapeHtml(s.label) + '">' + escapeHtml(s.label) + '</span>' +
+          '<div class="bar-track"><div class="bar-fill" data-w="' + pct + '%"></div></div>' +
+          '<b>' + escapeHtml(String(v)) + '</b>' +
+        '</div>'
+      );
+    }).join('');
+    return (
+      '<div class="chart">' +
+        '<div class="chart-label">' + escapeHtml(snapshot.label || 'Snapshot') + '</div>' +
+        '<div class="bars">' + rows + '</div>' +
+      '</div>'
+    );
+  }
+
+  function filteredPosts() {
+    if (filter === 'all') return posts.slice();
+    if (filter === 'snapshot') return posts.filter(function (p) { return p.type === 'snapshot'; });
+    return posts.filter(function (p) { return p.author === filter; });
+  }
+
+  function renderWall() {
+    const list = filteredPosts().slice().reverse();
+    if (!list.length) {
+      stream.innerHTML = '<p class="wall-empty">No posts yet — use Post change, or append to wall/posts.jsonl.</p>';
+      return;
+    }
+    stream.innerHTML = list.map(function (p) {
+      const links = (p.links || []).map(function (l) {
+        const href = linkHref(l.url);
+        const isHttp = /^https?:\/\//i.test(href);
+        return '<a href="' + escapeHtml(href) + '"' + (isHttp ? ' target="_blank" rel="noopener"' : '') + '>' +
+          escapeHtml(l.label || l.url) + '</a>';
+      }).join('');
+      return (
+        '<article class="post author-' + escapeHtml(p.author || 'system') + '">' +
+          '<div class="post-meta">' +
+            '<span class="author">' + escapeHtml(p.author || '—') + '</span>' +
+            '<span>' + escapeHtml(formatTs(p.ts)) + '</span>' +
+            '<span class="type">' + escapeHtml(p.type || 'change') + '</span>' +
+          '</div>' +
+          '<h3>' + escapeHtml(p.title || '(untitled)') + '</h3>' +
+          (p.body ? '<p class="body">' + escapeHtml(p.body) + '</p>' : '') +
+          (p.outcome ? '<p class="outcome">' + escapeHtml(p.outcome) + '</p>' : '') +
+          (links ? '<div class="links">' + links + '</div>' : '') +
+          renderChart(p.snapshot) +
+        '</article>'
+      );
+    }).join('');
+    // animate bars after paint
+    requestAnimationFrame(function () {
+      stream.querySelectorAll('.bar-fill').forEach(function (el) {
+        el.style.width = el.getAttribute('data-w') || '0%';
+      });
+    });
+  }
+
+  async function loadWall() {
+    try {
+      const res = await fetch('/api/wall', { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
-      memory = await res.json();
+      const data = await res.json();
+      posts = Array.isArray(data.posts) ? data.posts : [];
       setMode(true);
-      renderEntries(memory.entries || []);
+      renderWall();
       statusEl.textContent = '';
       statusEl.className = 'save-status';
       return;
-    } catch (_) {
-      /* fall through to static JSON (file:// or cold static host) */
-    }
+    } catch (_) { /* fall through */ }
+
     try {
-      const res = await fetch('./PROJECT_MEMORY.json', { cache: 'no-store' });
+      const res = await fetch('./wall/posts.jsonl', { cache: 'no-store' });
       if (!res.ok) throw new Error('no file');
-      memory = await res.json();
+      const text = await res.text();
+      posts = text.split(/\r?\n/).filter(Boolean).map(function (line) {
+        try { return JSON.parse(line); } catch (e) { return null; }
+      }).filter(Boolean);
       setMode(false);
-      renderEntries(memory.entries || []);
-      statusEl.textContent = 'Read-only: open via npm run widget to append on Enter.';
+      renderWall();
+      statusEl.textContent = 'Read-only JSONL — open via mac/open-widget.sh to post live.';
       statusEl.className = 'save-status';
     } catch (e) {
       setMode(false);
-      memory = { entries: [] };
-      renderEntries([]);
-      statusEl.textContent = 'Could not load memory file.';
+      posts = [];
+      renderWall();
+      statusEl.textContent = 'Could not load wall.';
       statusEl.className = 'save-status err';
     }
   }
 
-  async function saveNote(text) {
-    statusEl.textContent = 'Saving…';
+  async function postChange(payload) {
+    statusEl.textContent = 'Posting…';
     statusEl.className = 'save-status';
     submitBtn.disabled = true;
     try {
-      const res = await fetch('/api/memory', {
+      const res = await fetch('/api/wall', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text, author: 'bill' }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json().catch(function () { return {}; });
       if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
       form.classList.add('is-saved');
       setTimeout(function () { form.classList.remove('is-saved'); }, 700);
-      statusEl.textContent = 'Saved · ' + formatTs(data.entry.ts);
+      statusEl.textContent = 'Posted · ' + formatTs(data.post.ts);
       statusEl.className = 'save-status ok';
-      input.value = '';
-      await loadMemory();
+      form.reset();
+      document.getElementById('f-author').value = payload.author || 'bill';
+      await loadWall();
       setMode(true);
     } catch (e) {
-      statusEl.textContent = 'Save failed — run: cd spul && npm run widget  (' + (e.message || e) + ')';
+      statusEl.textContent = 'Post failed — run Mac launcher or: cd spul && npm run widget  (' + (e.message || e) + ')';
       statusEl.className = 'save-status err';
       setMode(false);
     } finally {
       submitBtn.disabled = false;
-      input.focus();
     }
   }
 
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
-    const text = (input.value || '').trim();
-    if (!text) return;
-    saveNote(text);
+    const title = document.getElementById('f-title').value.trim();
+    const body = document.getElementById('f-body').value.trim();
+    if (!title && !body) return;
+    const linksRaw = document.getElementById('f-links').value.trim();
+    const links = linksRaw
+      ? linksRaw.split(',').map(function (s) { return s.trim(); }).filter(Boolean).map(function (url) {
+          return { label: url.replace(/^https?:\/\/(www\.)?/, '').slice(0, 60), url: url };
+        })
+      : [];
+    postChange({
+      author: document.getElementById('f-author').value,
+      type: document.getElementById('f-type').value,
+      title: title,
+      body: body,
+      outcome: document.getElementById('f-outcome').value.trim(),
+      links: links,
+    });
+  });
+
+  document.getElementById('filters').addEventListener('click', function (ev) {
+    const btn = ev.target.closest('button[data-filter]');
+    if (!btn) return;
+    filter = btn.getAttribute('data-filter');
+    document.querySelectorAll('#filters button').forEach(function (b) {
+      b.classList.toggle('is-on', b === btn);
+    });
+    renderWall();
   });
 
   document.getElementById('btn-reload').addEventListener('click', function () {
-    loadMemory();
+    loadWall();
   });
 
-  document.getElementById('btn-copy').addEventListener('click', async function () {
-    const entries = (memory && memory.entries) ? memory.entries.slice(-8) : [];
-    const pack = [
-      'S-PUL Project Continuity context pack',
-      '====================================',
-      'Product: spul/ only (TaxCertificateProcessor Day 0)',
-      'Branch: s-pul-front_end-Betasearchpages-best-55de',
-      'PR: https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8',
-      'Manifest: docs/DAY0_MANIFEST.md',
-      'Memory file: spul/widget/PROJECT_MEMORY.json',
-      'Stats: 2062 listed / 2055 with URL / 1866 active / 7 no URL / 1675 validated-true',
-      'OUT: voice-first, Central Intelligence, DEP Highlighter, kata_deploy, invented URLs',
-      '',
-      'Recent memory:',
-      ...(entries.length
-        ? entries.map(function (e) { return '- [' + e.ts + '] (' + e.author + ') ' + e.text; })
-        : ['- (empty)']),
-      '',
-      'Agents: read/update PROJECT_MEMORY.json; do not invent a twin MCP bridge.',
-    ].join('\n');
+  document.getElementById('btn-twin').addEventListener('click', async function () {
+    let pack = '';
+    try {
+      const res = await fetch('/api/twin-pack', { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        pack = data.text || '';
+        setMode(true);
+      }
+    } catch (_) { /* offline build below */ }
+    if (!pack) {
+      const recent = posts.slice(-12);
+      pack = [
+        'S-PUL Continuity Twin Pack (offline)',
+        'Wall: spul/widget/wall/posts.jsonl',
+        'Day 0: docs/DAY0_MANIFEST.md · PR #8',
+        'Stats: 2062 / 2055 / 1866 / 7 / 1675 validated-true',
+        '',
+        ...recent.map(function (p) {
+          return '- [' + p.ts + '] (' + p.author + ') ' + p.title;
+        }),
+      ].join('\n');
+    }
     try {
       await navigator.clipboard.writeText(pack);
-      statusEl.textContent = 'Context pack copied.';
+      statusEl.textContent = 'Twin pack copied — paste into Cursor or Claude Desktop.';
       statusEl.className = 'save-status ok';
     } catch (_) {
-      statusEl.textContent = 'Clipboard blocked — select & copy from console if needed.';
+      statusEl.textContent = 'Clipboard blocked — twin pack logged to console.';
       statusEl.className = 'save-status err';
       console.log(pack);
     }
   });
 
-  // Boot
   setTimeout(function () {
     loader.classList.add('is-done');
     app.classList.add('is-ready');
-    input.focus();
+    document.getElementById('f-title').focus();
   }, 900);
-  loadMemory();
+  loadWall();
 })();
 </script>
 </body>

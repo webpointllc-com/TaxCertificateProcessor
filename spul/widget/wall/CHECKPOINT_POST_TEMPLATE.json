@@ -1,0 +1,25 @@
+{
+  "author": "claude-desktop",
+  "type": "snapshot",
+  "title": "EF_EE checkpoint · 2026-09-10",
+  "body": "Visual of the datapoint discovered on 2026-09-10 from EF_EE_CHECKPOINT_LOG.jsonl. Paste real series values after import, or run mac/import-ef-ee-checkpoint.sh on Bill’s Mac.",
+  "outcome": "Wall updated so Bill does not re-explain the 9.10.2026 checkpoint.",
+  "links": [
+    {
+      "label": "EF_EE_PORT (Mac)",
+      "url": "/Users/billmccreary/Library/Mobile Documents/com~apple~CloudDocs/EF_EE_PORT"
+    },
+    {
+      "label": "EF_EE_CHECKPOINT_LOG.jsonl",
+      "url": "/Users/billmccreary/Library/Mobile Documents/com~apple~CloudDocs/EF_EE_PORT/EF_EE_CHECKPOINT_LOG.jsonl"
+    }
+  ],
+  "snapshot": {
+    "kind": "checkpoint",
+    "label": "EF_EE · 2026-09-10",
+    "day": "2026-09-10",
+    "series": [
+      { "label": "example_metric", "value": 0 }
+    ]
+  }
+}

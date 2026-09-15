@@ -1,7 +1,7 @@
 {
   "version": 1,
   "label": "S-PUL project continuity memory",
-  "note": "Local-first latent project memory stand-in. Cursor agents and Bill: read this file at session start; append via the Continuity Widget (Enter) or edit JSON carefully. Not an MCP twin bridge — honest shared log only.",
+  "note": "LEGACY mirror. Canonical trail is spul/widget/wall/posts.jsonl (Continuity Wall). Cursor + Claude Desktop + Bill: read/post the wall per spul/widget/README.md and TWIN_SYNC.md. Not an MCP twin bridge — paste pack + shared wall file only.",
   "project": {
     "name": "S-PUL",
     "productPath": "spul/",
@@ -11,6 +11,7 @@
     "prUrl": "https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8",
     "repoUrl": "https://github.com/webpointllc-com/TaxCertificateProcessor",
     "manifest": "docs/DAY0_MANIFEST.md",
+    "wall": "spul/widget/wall/posts.jsonl",
     "stats": {
       "listed": 2062,
       "withUrl": 2055,
@@ -37,6 +38,12 @@
       "ts": "2026-09-15T00:20:11.706Z",
       "author": "agent",
       "text": "Boot proof: widget Enter path live from cloud agent."
+    },
+    {
+      "id": "seed-wall-upgrade-note",
+      "ts": "2026-09-15T19:56:00Z",
+      "author": "cursor",
+      "text": "Canonical continuity moved to wall/posts.jsonl blog wall. Mac launcher: spul/widget/mac/open-widget.sh. Twin pack + TWIN_SYNC.md for Cursor ↔ Claude Desktop."
     }
   ]
 }
