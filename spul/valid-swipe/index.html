@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#05080f" />
+  <title>S-PUL Valid · Tinder for tax URLs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #05080f;
+      --ink: #f2f4f8;
+      --muted: #9aa3b2;
+      --end: #a8b0bd;
+      --yes: #1a5cff;
+      --no: #e11d2e;
+      --bar: #0a0e18;
+      --line: rgba(255,255,255,0.08);
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --safe-t: env(safe-area-inset-top, 0px);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      margin: 0; height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Poppins", system-ui, sans-serif;
+      overflow: hidden;
+    }
+    #app {
+      height: 100%;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding-top: var(--safe-t);
+    }
+
+    /* Top chrome */
+    .top {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px 8px;
+      background: linear-gradient(180deg, #0b101c 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--line);
+      z-index: 5;
+    }
+    .meta { min-width: 0; flex: 1; }
+    .progress {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .progress b { color: var(--ink); font-weight: 600; }
+    .place {
+      margin-top: 2px;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .url-chip {
+      margin-top: 4px;
+      font-size: 10px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .end-session {
+      flex: 0 0 auto;
+      border: 0;
+      background: transparent;
+      color: var(--end);
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 400;
+      padding: 6px 2px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+    .end-session:active { opacity: 0.65; }
+
+    /* Stage / iframe */
+    .stage-wrap {
+      flex: 1 1 auto;
+      position: relative;
+      min-height: 0;
+      background:
+        radial-gradient(120% 80% at 50% 0%, rgba(26,92,255,0.12), transparent 55%),
+        #02040a;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+    .stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+      will-change: transform;
+    }
+    .stage.swipe-left { transform: translateX(-120%) rotate(-6deg); opacity: 0; }
+    .stage.swipe-right { transform: translateX(120%) rotate(6deg); opacity: 0; }
+    .stage.dragging { transition: none; }
+
+    .iframe-shell {
+      flex: 1;
+      margin: 8px 10px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+      display: block;
+    }
+    .load-veil {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(5,8,15,0.72);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .load-veil.on { opacity: 1; pointer-events: auto; }
+    .blocked {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 24px;
+      text-align: center;
+      background: linear-gradient(160deg, #0e1422, #05080f);
+      color: var(--ink);
+    }
+    .blocked.show { display: flex; }
+    .blocked h2 { margin: 0; font-size: 16px; font-weight: 600; }
+    .blocked p { margin: 0; font-size: 12px; color: var(--muted); max-width: 280px; line-height: 1.45; }
+    .open-ext {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .stamp {
+      position: absolute;
+      top: 28%;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 8px 18px;
+      border: 4px solid;
+      border-radius: 12px;
+      opacity: 0;
+      transform: scale(0.85) rotate(-12deg);
+      pointer-events: none;
+      z-index: 4;
+      transition: opacity 0.15s ease;
+    }
+    .stamp.yes { left: 18px; color: #3d7cff; border-color: #3d7cff; }
+    .stamp.no { right: 18px; color: #ff4d5e; border-color: #ff4d5e; }
+    .stamp.show { opacity: 0.92; }
+
+    /* Bottom bar */
+    .bottom {
+      flex: 0 0 auto;
+      background: var(--bar);
+      border-top: 1px solid var(--line);
+      padding: 12px 16px calc(12px + var(--safe-b));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      z-index: 5;
+    }
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      height: 48px;
+      font-family: inherit;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.12s ease, filter 0.12s ease, opacity 0.12s ease;
+    }
+    .btn:active { transform: scale(0.96); }
+    .btn:disabled { opacity: 0.4; pointer-events: none; }
+    .btn-no { background: var(--no); }
+    .btn-yes { background: var(--yes); }
+
+    /* Sheets */
+    .sheet {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(0,0,0,0.62);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 16px;
+      padding-bottom: calc(16px + var(--safe-b));
+    }
+    .sheet.show { display: flex; animation: fadeIn 0.18s ease; }
+    .sheet-card {
+      width: min(440px, 100%);
+      background: #101625;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 16px 14px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .sheet-card h3 { margin: 0 0 6px; font-size: 16px; font-weight: 600; }
+    .sheet-card p { margin: 0 0 14px; font-size: 12px; color: var(--muted); line-height: 1.45; }
+    .sheet-actions { display: grid; gap: 8px; }
+    .sheet-actions button, .sheet-actions a.as-btn {
+      height: 44px;
+      border-radius: 999px;
+      border: 0;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .primary { background: var(--yes); color: #fff; }
+    .ghost { background: rgba(255,255,255,0.06); color: var(--ink); }
+    .danger { background: rgba(225,29,46,0.18); color: #ff8a94; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(88px + var(--safe-b));
+      transform: translateX(-50%) translateY(12px);
+      background: rgba(16,22,37,0.96);
+      border: 1px solid var(--line);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 50;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .done-screen {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 24px;
+      text-align: center;
+      background: var(--bg);
+      z-index: 6;
+    }
+    .done-screen.show { display: flex; }
+    .done-screen h2 { margin: 0; font-size: 22px; }
+    .done-screen p { margin: 0; font-size: 13px; color: var(--muted); }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="meta">
+        <div class="progress"><b id="pos">0</b> / <span id="total">0</span> · session <span id="sessDot" style="display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:middle;margin:0 2px 1px;"></span><span id="sessLabel">—</span></div>
+        <div class="place" id="place">Loading…</div>
+        <div class="url-chip" id="urlChip">—</div>
+      </div>
+      <button type="button" class="end-session" id="endBtn">end session</button>
+    </header>
+
+    <div class="stage-wrap" id="stageWrap">
+      <div class="stage" id="stage">
+        <div class="iframe-shell">
+          <div class="load-veil on" id="veil">Loading page…</div>
+          <div class="blocked" id="blocked">
+            <h2>Page won’t embed</h2>
+            <p>Many county sites block iframes. Open it, look for the tax search page, then tap Yes or No below — no time limit.</p>
+            <a class="open-ext" id="openExt" href="#" target="_blank" rel="noopener">Open search page</a>
+            <button type="button" class="open-ext" id="dismissBlocked" style="background:transparent;border:0;color:#9aa3b2;font:inherit;font-size:11px;cursor:pointer">Dismiss</button>
+          </div>
+          <iframe id="frame" title="County tax search page" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer"></iframe>
+          <div class="stamp yes" id="stampYes">VALID</div>
+          <div class="stamp no" id="stampNo">NO</div>
+        </div>
+      </div>
+      <div class="done-screen" id="done">
+        <h2>Queue complete</h2>
+        <p>Download your session report anytime from End session.</p>
+        <button type="button" class="btn btn-yes" style="width:min(240px,80%);margin-top:8px" id="doneDownload">Download report</button>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <button type="button" class="btn btn-no" id="noBtn">𐄂 not-valid</button>
+      <button type="button" class="btn btn-yes" id="yesBtn">✓ validate</button>
+    </div>
+  </div>
+
+  <div class="sheet" id="endSheet" role="dialog" aria-modal="true">
+    <div class="sheet-card">
+      <h3>End session?</h3>
+      <p id="endStats">Your Yes/No answers stay on this phone (IndexedDB). Download a color-coded report — each session keeps its color.</p>
+      <div class="sheet-actions">
+        <button type="button" class="primary" id="downloadBtn">Download report</button>
+        <button type="button" class="ghost" id="resumeBtn">Keep going</button>
+        <button type="button" class="danger" id="newSessionBtn">Start new session color</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="./urls.js"></script>
+  <script>
+(function () {
+  const DB_NAME = "spul-valid-swipe";
+  const DB_VER = 1;
+  const SESSION_COLORS = [
+    "#3d7cff", "#ff6b4a", "#2dd4a8", "#f5c542", "#c084fc",
+    "#38bdf8", "#fb7185", "#a3e635", "#f97316", "#818cf8"
+  ];
+
+  const els = {
+    pos: document.getElementById("pos"),
+    total: document.getElementById("total"),
+    place: document.getElementById("place"),
+    urlChip: document.getElementById("urlChip"),
+    sessDot: document.getElementById("sessDot"),
+    sessLabel: document.getElementById("sessLabel"),
+    endBtn: document.getElementById("endBtn"),
+    stage: document.getElementById("stage"),
+    stageWrap: document.getElementById("stageWrap"),
+    frame: document.getElementById("frame"),
+    veil: document.getElementById("veil"),
+    blocked: document.getElementById("blocked"),
+    openExt: document.getElementById("openExt"),
+    yesBtn: document.getElementById("yesBtn"),
+    noBtn: document.getElementById("noBtn"),
+    stampYes: document.getElementById("stampYes"),
+    stampNo: document.getElementById("stampNo"),
+    endSheet: document.getElementById("endSheet"),
+    downloadBtn: document.getElementById("downloadBtn"),
+    resumeBtn: document.getElementById("resumeBtn"),
+    newSessionBtn: document.getElementById("newSessionBtn"),
+    done: document.getElementById("done"),
+    doneDownload: document.getElementById("doneDownload"),
+    toast: document.getElementById("toast"),
+    endStats: document.getElementById("endStats"),
+  };
+
+  const queue = (window.SPUL_VALID_QUEUE && window.SPUL_VALID_QUEUE.urls) || [];
+  let db = null;
+  let state = {
+    index: 0,
+    sessionId: null,
+    sessionColor: SESSION_COLORS[0],
+    sessionStartedAt: null,
+    busy: false,
+  };
+  let embedTimer = null;
+
+  function toast(msg) {
+    els.toast.textContent = msg;
+    els.toast.classList.add("show");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => els.toast.classList.remove("show"), 1800);
+  }
+
+  function openDb() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, DB_VER);
+      req.onupgradeneeded = () => {
+        const d = req.result;
+        if (!d.objectStoreNames.contains("meta")) d.createObjectStore("meta");
+        if (!d.objectStoreNames.contains("judgments")) {
+          const s = d.createObjectStore("judgments", { keyPath: "id", autoIncrement: true });
+          s.createIndex("by_n", "n", { unique: false });
+          s.createIndex("by_session", "sessionId", { unique: false });
+        }
+        if (!d.objectStoreNames.contains("sessions")) {
+          d.createObjectStore("sessions", { keyPath: "id" });
+        }
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function idbGet(store, key) {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(store, "readonly");
+      const req = tx.objectStore(store).get(key);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function idbPut(store, value, key) {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(store, "readwrite");
+      const os = tx.objectStore(store);
+      const req = key !== undefined ? os.put(value, key) : os.put(value);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function idbAll(store) {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(store, "readonly");
+      const req = tx.objectStore(store).getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async function ensureSession(forceNew) {
+    let meta = (await idbGet("meta", "cursor")) || {};
+    const sessions = await idbAll("sessions");
+    if (forceNew || !meta.sessionId) {
+      const id = "s-" + Date.now().toString(36);
+      const color = SESSION_COLORS[sessions.length % SESSION_COLORS.length];
+      const sess = { id, color, startedAt: new Date().toISOString(), label: "Session " + (sessions.length + 1) };
+      await idbPut("sessions", sess);
+      meta.sessionId = id;
+      meta.sessionColor = color;
+      meta.sessionStartedAt = sess.startedAt;
+      if (forceNew) {
+        // keep index where you are — new color for new answers only
+      }
+      await idbPut("meta", meta, "cursor");
+      state.sessionId = id;
+      state.sessionColor = color;
+      state.sessionStartedAt = sess.startedAt;
+      toast("New session color · " + color);
+    } else {
+      state.sessionId = meta.sessionId;
+      state.sessionColor = meta.sessionColor || SESSION_COLORS[0];
+      state.sessionStartedAt = meta.sessionStartedAt;
+      state.index = typeof meta.index === "number" ? meta.index : 0;
+    }
+    els.sessDot.style.background = state.sessionColor;
+    els.sessLabel.textContent = state.sessionColor;
+  }
+
+  async function saveCursor() {
+    await idbPut("meta", {
+      index: state.index,
+      sessionId: state.sessionId,
+      sessionColor: state.sessionColor,
+      sessionStartedAt: state.sessionStartedAt,
+      updatedAt: new Date().toISOString(),
+    }, "cursor");
+    try {
+      localStorage.setItem("spul-valid-swipe-index", String(state.index));
+      localStorage.setItem("spul-valid-swipe-session", state.sessionId);
+    } catch (_) {}
+  }
+
+  function current() {
+    return queue[state.index] || null;
+  }
+
+  function renderChrome() {
+    els.total.textContent = String(queue.length);
+    els.pos.textContent = queue.length ? String(Math.min(state.index + 1, queue.length)) : "0";
+    const item = current();
+    if (!item) {
+      els.place.textContent = "Done";
+      els.urlChip.textContent = "—";
+      els.done.classList.add("show");
+      els.yesBtn.disabled = true;
+      els.noBtn.disabled = true;
+      return;
+    }
+    els.done.classList.remove("show");
+    els.yesBtn.disabled = false;
+    els.noBtn.disabled = false;
+    els.place.textContent = item.label || (item.county + ", " + item.state);
+    els.urlChip.textContent = item.url;
+    els.openExt.href = item.url;
+  }
+
+  function loadFrame(item) {
+    clearTimeout(embedTimer);
+    els.blocked.classList.remove("show");
+    els.veil.classList.add("on");
+    els.veil.textContent = "Loading page…";
+    els.stampYes.classList.remove("show");
+    els.stampNo.classList.remove("show");
+    els.stage.classList.remove("swipe-left", "swipe-right", "dragging");
+    els.stage.style.transform = "";
+
+    let settled = false;
+    const settle = () => {
+      if (settled) return;
+      settled = true;
+      els.veil.classList.remove("on");
+      // Hold ~2s after paint before we even hint — decisions have NO time limit.
+      // Soft helper only if the frame still looks empty / likely blocked.
+      embedTimer = setTimeout(() => {
+        try {
+          // Cross-origin frames throw on contentDocument access when truly loaded cross-origin;
+          // about:blank or empty blocked frames often allow access or stay blank.
+          const doc = els.frame.contentDocument;
+          if (!doc || !doc.body || !doc.body.innerHTML || doc.URL === "about:blank") {
+            els.blocked.classList.add("show");
+          }
+        } catch (_) {
+          // Cross-origin content present (blocked from reading = usually embedded OK). No overlay.
+        }
+      }, 2000);
+    };
+
+    els.frame.src = "about:blank";
+    requestAnimationFrame(() => {
+      els.frame.src = item.url;
+    });
+
+    els.frame.onload = () => {
+      // Ignore the about:blank hop
+      try {
+        if (els.frame.contentWindow.location.href === "about:blank") return;
+      } catch (_) {}
+      settle();
+    };
+    // Safety: never leave the veil forever
+    setTimeout(settle, 8000);
+  }
+
+  function showItem() {
+    renderChrome();
+    const item = current();
+    if (!item) return;
+    loadFrame(item);
+  }
+
+  async function judge(verdict) {
+    if (state.busy) return;
+    const item = current();
+    if (!item) return;
+    state.busy = true;
+    els.yesBtn.disabled = true;
+    els.noBtn.disabled = true;
+
+    if (verdict === "valid") els.stampYes.classList.add("show");
+    else els.stampNo.classList.add("show");
+    els.stage.classList.add(verdict === "valid" ? "swipe-right" : "swipe-left");
+
+    const row = {
+      n: item.n,
+      county: item.county,
+      state: item.state,
+      label: item.label,
+      url: item.url,
+      verdict, // valid | not-valid
+      sessionId: state.sessionId,
+      sessionColor: state.sessionColor,
+      at: new Date().toISOString(),
+    };
+    await idbPut("judgments", row);
+    state.index += 1;
+    await saveCursor();
+
+    setTimeout(() => {
+      state.busy = false;
+      showItem();
+    }, 280);
+  }
+
+  async function buildReport() {
+    const judgments = await idbAll("judgments");
+    const sessions = await idbAll("sessions");
+    const bySession = {};
+    for (const s of sessions) bySession[s.id] = s;
+
+    const sorted = judgments.slice().sort((a, b) => (a.at || "").localeCompare(b.at || ""));
+    const valid = sorted.filter((j) => j.verdict === "valid");
+    const bad = sorted.filter((j) => j.verdict === "not-valid");
+
+    const rowsHtml = sorted.map((j) => {
+      const color = j.sessionColor || (bySession[j.sessionId] && bySession[j.sessionId].color) || "#888";
+      const mark = j.verdict === "valid" ? "✓ VALID" : "𐄂 NOT-VALID";
+      return (
+        '<tr style="color:' + color + '">' +
+        "<td>" + j.n + "</td>" +
+        "<td>" + escapeHtml(j.county) + "</td>" +
+        "<td>" + escapeHtml(j.state) + "</td>" +
+        "<td>" + escapeHtml(mark) + "</td>" +
+        '<td style="word-break:break-all"><a style="color:inherit" href="' + escapeAttr(j.url) + '">' + escapeHtml(j.url) + "</a></td>" +
+        "<td>" + escapeHtml(j.sessionId) + "</td>" +
+        "<td>" + escapeHtml(j.at) + "</td>" +
+        "</tr>"
+      );
+    }).join("\n");
+
+    const legend = sessions.map((s) =>
+      '<span style="color:' + s.color + ';margin-right:14px">● ' + escapeHtml(s.label || s.id) + "</span>"
+    ).join("");
+
+    return `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>S-PUL Valid Report</title>
+<style>
+  body{font-family:Poppins,system-ui,sans-serif;background:#0b0f18;color:#e8ecf4;padding:24px}
+  h1{font-size:22px;margin:0 0 8px}
+  .sub{color:#9aa3b2;font-size:13px;margin-bottom:18px}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{text-align:left;padding:8px;border-bottom:1px solid #2a3348;color:#9aa3b2;font-weight:600}
+  td{padding:8px;border-bottom:1px solid #1a2233;vertical-align:top}
+  .note{margin-top:18px;font-size:11px;color:#9aa3b2}
+</style></head><body>
+<h1>S-PUL personally validated URL report</h1>
+<div class="sub">Generated ${new Date().toISOString()} · ${sorted.length} judgments · ${valid.length} valid · ${bad.length} not-valid</div>
+<div class="sub">Session colors (text color on each row = session batch):<br>${legend || "—"}</div>
+<table>
+<thead><tr><th>#</th><th>County</th><th>ST</th><th>Verdict</th><th>URL / extractor</th><th>Session</th><th>When</th></tr></thead>
+<tbody>
+${rowsHtml}
+</tbody>
+</table>
+<p class="note">Bill: these are URLs you personally reviewed in the Valid swipe tool (iframe / open-external). Row text color stays tied to the session in which you judged it.</p>
+</body></html>`;
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function escapeAttr(s) {
+    return escapeHtml(s).replace(/'/g, "&#39;");
+  }
+
+  async function downloadReport() {
+    const html = await buildReport();
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const a = document.createElement("a");
+    const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
+    a.href = URL.createObjectURL(blob);
+    a.download = "spul-valid-report-" + stamp + ".html";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    toast("Report downloaded");
+  }
+
+  async function refreshEndStats() {
+    const judgments = await idbAll("judgments");
+    const mine = judgments.filter((j) => j.sessionId === state.sessionId);
+    const v = mine.filter((j) => j.verdict === "valid").length;
+    const n = mine.filter((j) => j.verdict === "not-valid").length;
+    els.endStats.textContent =
+      "This session (" + state.sessionColor + "): " + v + " valid · " + n + " not-valid · " +
+      judgments.length + " total saved on this device. Download keeps each session’s text color.";
+  }
+
+  // Swipe
+  let drag = null;
+  function onPointerDown(e) {
+    if (state.busy || !current()) return;
+    const t = e.touches ? e.touches[0] : e;
+    drag = { x0: t.clientX, y0: t.clientY, dx: 0, active: true };
+    els.stage.classList.add("dragging");
+  }
+  function onPointerMove(e) {
+    if (!drag || !drag.active) return;
+    const t = e.touches ? e.touches[0] : e;
+    drag.dx = t.clientX - drag.x0;
+    const dy = t.clientY - drag.y0;
+    if (Math.abs(dy) > Math.abs(drag.dx) && Math.abs(dy) > 24) {
+      // vertical scroll intent — cancel swipe
+      drag.active = false;
+      els.stage.style.transform = "";
+      els.stampYes.classList.remove("show");
+      els.stampNo.classList.remove("show");
+      return;
+    }
+    const rot = drag.dx / 40;
+    els.stage.style.transform = "translateX(" + drag.dx + "px) rotate(" + rot + "deg)";
+    if (drag.dx > 48) els.stampYes.classList.add("show");
+    else els.stampYes.classList.remove("show");
+    if (drag.dx < -48) els.stampNo.classList.add("show");
+    else els.stampNo.classList.remove("show");
+  }
+  function onPointerUp() {
+    if (!drag) return;
+    const dx = drag.dx;
+    drag = null;
+    els.stage.classList.remove("dragging");
+    if (dx > 90) judge("valid");
+    else if (dx < -90) judge("not-valid");
+    else {
+      els.stage.style.transform = "";
+      els.stampYes.classList.remove("show");
+      els.stampNo.classList.remove("show");
+    }
+  }
+
+  els.stageWrap.addEventListener("touchstart", onPointerDown, { passive: true });
+  els.stageWrap.addEventListener("touchmove", onPointerMove, { passive: true });
+  els.stageWrap.addEventListener("touchend", onPointerUp);
+  els.stageWrap.addEventListener("mousedown", onPointerDown);
+  window.addEventListener("mousemove", onPointerMove);
+  window.addEventListener("mouseup", onPointerUp);
+
+  els.yesBtn.addEventListener("click", () => judge("valid"));
+  els.noBtn.addEventListener("click", () => judge("not-valid"));
+  els.endBtn.addEventListener("click", async () => {
+    await refreshEndStats();
+    els.endSheet.classList.add("show");
+  });
+  els.resumeBtn.addEventListener("click", () => els.endSheet.classList.remove("show"));
+  els.downloadBtn.addEventListener("click", () => downloadReport());
+  els.doneDownload.addEventListener("click", () => downloadReport());
+  els.newSessionBtn.addEventListener("click", async () => {
+    await ensureSession(true);
+    els.endSheet.classList.remove("show");
+  });
+  // tap blocked helper open already linked; tapping veil of blocked shouldn't block buttons
+  els.blocked.addEventListener("click", (e) => {
+    if (e.target === els.blocked) els.blocked.classList.remove("show");
+  });
+  const dismissBlocked = document.getElementById("dismissBlocked");
+  if (dismissBlocked) dismissBlocked.addEventListener("click", () => els.blocked.classList.remove("show"));
+
+  async function boot() {
+    if (!queue.length) {
+      els.place.textContent = "No URLs loaded";
+      els.urlChip.textContent = "Missing urls.js";
+      return;
+    }
+    db = await openDb();
+    // resume index from IDB (fallback localStorage)
+    const meta = (await idbGet("meta", "cursor")) || {};
+    if (typeof meta.index === "number") state.index = meta.index;
+    else {
+      const ls = parseInt(localStorage.getItem("spul-valid-swipe-index") || "0", 10);
+      if (!isNaN(ls)) state.index = ls;
+    }
+    await ensureSession(false);
+    await saveCursor();
+    showItem();
+  }
+
+  boot().catch((err) => {
+    console.error(err);
+    els.place.textContent = "Storage error";
+    els.urlChip.textContent = String(err && err.message || err);
+  });
+})();
+  </script>
+</body>
+</html>
