@@ -3,7 +3,8 @@
 Generative jurisdiction search: type a place, get the **official** county/city tax search URL + confidence — or an honest miss. **Never invents URLs.**
 
 **Canonical path in repo:** `spul/` inside [TaxCertificateProcessor](https://github.com/webpointllc-com/TaxCertificateProcessor)  
-**Day 0 handoff:** [`docs/DAY0_MANIFEST.md`](../docs/DAY0_MANIFEST.md) · reviewer PR [#8](https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8)
+**Day 0 handoff:** [`docs/DAY0_MANIFEST.md`](../docs/DAY0_MANIFEST.md) · reviewer PR [#8](https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8)  
+**Continuity widget (project memory):** [`widget/`](./widget/) — `npm run widget` → http://127.0.0.1:3847/ · memory file [`widget/PROJECT_MEMORY.json`](./widget/PROJECT_MEMORY.json)
 
 ## Quick start
 

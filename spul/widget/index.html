@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webpoint · Project Continuity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #070b16;
+  --accent: #4A9EFF;
+  --accent-soft: rgba(74, 158, 255, 0.14);
+  --gold: #E8C547;
+  --text: #E8EDF7;
+  --muted: #8A97B0;
+  --ok: #3DDC97;
+  --line: rgba(74, 158, 255, 0.22);
+  --panel: rgba(16, 24, 48, 0.55);
+  --desktop-w: 1280px;
+  --desktop-h: 820px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #05080f;
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+#stage-outer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(1100px 620px at 78% -8%, rgba(74,158,255,0.16), transparent 58%),
+    radial-gradient(900px 500px at 8% 110%, rgba(232,197,71,0.07), transparent 55%),
+    linear-gradient(165deg, #05080f 0%, #0a1224 48%, #08101c 100%);
+}
+#stage {
+  width: var(--desktop-w);
+  height: var(--desktop-h);
+  transform-origin: top left;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Intro — Webpoint mark (art from S-PUL / Voice First visual language) */
+.wp-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(800px 420px at 50% 35%, rgba(74,158,255,0.18), transparent 60%),
+    #05080f;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+.wp-loading.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.wp-mark {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 22px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(74,158,255,0.35), rgba(74,158,255,0.05));
+  border: 1px solid rgba(74,158,255,0.35);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.wp-mark::after {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
+  animation: continuousShine 2.2s linear infinite;
+}
+.wp-mark span {
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  position: relative;
+  z-index: 1;
+}
+.wp-company {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(90deg, #6bb6ff, #ffffff 45%, #4A9EFF 70%, #cfe6ff);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: continuousShineText 2.6s linear infinite;
+}
+.wp-sub {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+}
+.wp-bar {
+  margin: 28px auto 0;
+  width: 180px;
+  height: 2px;
+  background: rgba(74,158,255,0.15);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.wp-bar > i {
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: continuousGlide 1.4s ease-in-out infinite;
+}
+
+@keyframes continuousGlide {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(320%); }
+}
+@keyframes continuousShine {
+  0% { transform: translateX(-60%) rotate(18deg); }
+  100% { transform: translateX(60%) rotate(18deg); }
+}
+@keyframes continuousShineText {
+  0% { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+@keyframes pulseOk {
+  0% { box-shadow: 0 0 0 0 rgba(61, 220, 151, 0.45); }
+  100% { box-shadow: 0 0 0 18px rgba(61, 220, 151, 0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wp-company, .wp-mark::after, .wp-bar > i { animation: none !important; }
+  .wp-company { color: var(--accent); background: none; -webkit-text-fill-color: unset; }
+  .wp-loading { transition-duration: 0.01s; }
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 40px 56px 36px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.app.is-ready {
+  opacity: 1;
+  transform: none;
+}
+
+/* Brand-first hero — one composition */
+.hero {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+.brand-block h1 {
+  font-size: 46px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+}
+.brand-block h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.brand-block .tagline {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 540px;
+  line-height: 1.45;
+}
+.brand-meta {
+  text-align: right;
+  align-self: center;
+}
+.brand-meta .day0 {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ok);
+  border: 1px solid rgba(61, 220, 151, 0.35);
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  background: rgba(61, 220, 151, 0.06);
+}
+.brand-meta .branch {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  word-break: break-all;
+}
+.brand-meta .branch strong {
+  display: block;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+/* Atmosphere strip — stats as rhythm, not cards */
+.atmosphere {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.12);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding-right: 28px;
+  margin-right: 28px;
+  border-right: 1px solid rgba(74, 158, 255, 0.12);
+}
+.stat:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+.stat b {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.stat b.accent { color: var(--accent); }
+.stat b.gold { color: var(--gold); }
+.stat span {
+  margin-top: 4px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  min-height: 0;
+}
+
+/* Enter = live memory */
+.prompt-zone {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.prompt-label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.prompt-row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px 12px 12px 20px;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.prompt-row:focus-within {
+  border-color: rgba(74, 158, 255, 0.55);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.prompt-row.is-saved {
+  animation: pulseOk 0.7s ease-out;
+  border-color: rgba(61, 220, 151, 0.55);
+}
+.prompt-row input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+  min-width: 0;
+}
+.prompt-row input::placeholder { color: #66748f; }
+.prompt-row button {
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: #041018;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0 22px;
+  border-radius: 12px;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+.prompt-row button:hover { filter: brightness(1.08); }
+.prompt-row button:active { transform: scale(0.98); }
+.prompt-row button:disabled { opacity: 0.5; cursor: wait; }
+
+.save-status {
+  margin-top: 10px;
+  min-height: 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.save-status.ok { color: var(--ok); }
+.save-status.err { color: #ffb4b4; }
+
+.memory-stream {
+  flex: 1;
+  min-height: 0;
+  margin-top: 18px;
+  overflow: auto;
+  padding-right: 6px;
+}
+.memory-stream::-webkit-scrollbar { width: 6px; }
+.memory-stream::-webkit-scrollbar-thumb {
+  background: rgba(74, 158, 255, 0.25);
+  border-radius: 3px;
+}
+.mem-empty {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 12px 0;
+}
+.mem-item {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.08);
+  animation: fadeUp 0.45s ease;
+}
+.mem-item:first-child { padding-top: 4px; }
+.mem-meta {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+.mem-meta .author { color: var(--accent); }
+.mem-text {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: var(--text);
+}
+
+/* Jump column — links as text rail, not card stack */
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 0;
+}
+.rail h2 {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.jumps {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.jumps a {
+  display: block;
+  padding: 10px 0;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.1);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+.jumps a:hover {
+  color: var(--accent);
+  padding-left: 6px;
+}
+.jumps a span {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+.actions button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(74, 158, 255, 0.08);
+  color: var(--text);
+  text-align: left;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.actions button:hover {
+  background: rgba(74, 158, 255, 0.16);
+  border-color: rgba(74, 158, 255, 0.4);
+}
+.actions button.primary {
+  background: var(--accent);
+  color: #041018;
+  border-color: transparent;
+  font-weight: 600;
+}
+.actions button.primary:hover {
+  filter: brightness(1.06);
+  background: var(--accent);
+}
+
+.footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(74, 158, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+}
+.footer a { color: var(--accent); text-decoration: none; }
+.footer code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #a8b8d4;
+}
+
+.mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.mode-pill i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 8px rgba(61, 220, 151, 0.6);
+}
+.mode-pill.offline i { background: var(--gold); box-shadow: 0 0 8px rgba(232, 197, 71, 0.45); }
+</style>
+</head>
+<body>
+<div id="stage-outer">
+  <div id="stage">
+    <div class="wp-loading" id="loader" aria-hidden="true">
+      <div>
+        <div class="wp-mark"><span>WP</span></div>
+        <div class="wp-company">Webpoint</div>
+        <div class="wp-sub">Project continuity</div>
+        <div class="wp-bar"><i></i></div>
+      </div>
+    </div>
+
+    <div class="app" id="app">
+      <header class="hero">
+        <div class="brand-block">
+          <h1>WEBPOINT <em>S-PUL</em></h1>
+          <p class="tagline">Jump back into Day 0 — live project memory when you press Enter. Visual language from Webpoint / Voice First art; voice product stays out.</p>
+        </div>
+        <div class="brand-meta">
+          <div class="day0">Day 0 · live</div>
+          <div class="branch">
+            <strong>Branch</strong>
+            s-pul-front_end-Betasearchpages-best-55de
+          </div>
+        </div>
+      </header>
+
+      <div class="atmosphere" aria-label="Jurisdiction stats">
+        <div class="stat"><b>2062</b><span>Listed</span></div>
+        <div class="stat"><b>2055</b><span>With URL</span></div>
+        <div class="stat"><b>1866</b><span>Active</span></div>
+        <div class="stat"><b>7</b><span>No URL</span></div>
+        <div class="stat"><b class="accent">1675</b><span>Validated</span></div>
+      </div>
+
+      <div class="main">
+        <section class="prompt-zone">
+          <div class="prompt-label">Latent project memory · Enter to save</div>
+          <form class="prompt-row" id="memory-form" autocomplete="off">
+            <input id="memory-input" type="text" maxlength="4000"
+              placeholder="What should the next session remember?" aria-label="Project memory note">
+            <button type="submit" id="memory-submit">Enter</button>
+          </form>
+          <div class="save-status" id="save-status" role="status"></div>
+          <div class="memory-stream" id="memory-stream" aria-live="polite"></div>
+        </section>
+
+        <aside class="rail">
+          <div>
+            <h2>Jump</h2>
+            <nav class="jumps">
+              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8" target="_blank" rel="noopener">
+                PR #8 — searchpages
+                <span>Reviewer branch · Day 0 primary</span>
+              </a>
+              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/blob/s-pul-front_end-Betasearchpages-best-55de/docs/DAY0_MANIFEST.md" target="_blank" rel="noopener">
+                Day 0 manifest
+                <span>docs/DAY0_MANIFEST.md</span>
+              </a>
+              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/tree/s-pul-front_end-Betasearchpages-best-55de/spul" target="_blank" rel="noopener">
+                spul/ boot
+                <span>cd spul · npm install · npm start</span>
+              </a>
+              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor" target="_blank" rel="noopener">
+                GitHub repo
+                <span>webpointllc-com/TaxCertificateProcessor</span>
+              </a>
+              <a href="https://github.com/webpointllc-com/TaxCertificateProcessor/settings/access" target="_blank" rel="noopener">
+                Collaborator access
+                <span>Invite Adam · settings/access</span>
+              </a>
+            </nav>
+          </div>
+          <div class="actions">
+            <button type="button" class="primary" id="btn-copy">Copy context for Cursor</button>
+            <button type="button" id="btn-reload">Reload memory</button>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="footer">
+        <div class="mode-pill" id="mode-pill"><i></i> <span id="mode-label">Connecting…</span></div>
+        <div>Memory · <code>spul/widget/PROJECT_MEMORY.json</code> · <a href="./PROJECT_MEMORY.json">open file</a></div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const DESKTOP_W = 1280;
+  const DESKTOP_H = 820;
+  const stage = document.getElementById('stage');
+  const outer = document.getElementById('stage-outer');
+  const loader = document.getElementById('loader');
+  const app = document.getElementById('app');
+  const form = document.getElementById('memory-form');
+  const input = document.getElementById('memory-input');
+  const submitBtn = document.getElementById('memory-submit');
+  const statusEl = document.getElementById('save-status');
+  const stream = document.getElementById('memory-stream');
+  const modePill = document.getElementById('mode-pill');
+  const modeLabel = document.getElementById('mode-label');
+
+  let live = false;
+  let memory = null;
+
+  function scaleStage() {
+    const w = outer.clientWidth;
+    const h = outer.clientHeight;
+    const s = Math.min(w / DESKTOP_W, h / DESKTOP_H);
+    stage.style.transform = 'scale(' + s + ')';
+    stage.style.left = Math.max(0, (w - DESKTOP_W * s) / 2) + 'px';
+    stage.style.top = Math.max(0, (h - DESKTOP_H * s) / 2) + 'px';
+  }
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+
+  function setMode(ok) {
+    live = ok;
+    modePill.classList.toggle('offline', !ok);
+    modeLabel.textContent = ok
+      ? 'Live · writing PROJECT_MEMORY.json'
+      : 'Offline snapshot · start npm run widget to write disk';
+  }
+
+  function formatTs(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, 'Z');
+    } catch (_) {
+      return iso;
+    }
+  }
+
+  function renderEntries(entries) {
+    const list = Array.isArray(entries) ? entries.slice() : [];
+    list.reverse();
+    if (!list.length) {
+      stream.innerHTML = '<p class="mem-empty">No memory yet — type a note and press Enter.</p>';
+      return;
+    }
+    stream.innerHTML = list.map(function (e) {
+      return (
+        '<article class="mem-item">' +
+          '<div class="mem-meta"><span class="author">' + escapeHtml(e.author || '—') + '</span>' +
+          '<span>' + escapeHtml(formatTs(e.ts)) + '</span></div>' +
+          '<p class="mem-text">' + escapeHtml(e.text || '') + '</p>' +
+        '</article>'
+      );
+    }).join('');
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  async function loadMemory() {
+    try {
+      const res = await fetch('/api/memory', { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      memory = await res.json();
+      setMode(true);
+      renderEntries(memory.entries || []);
+      statusEl.textContent = '';
+      statusEl.className = 'save-status';
+      return;
+    } catch (_) {
+      /* fall through to static JSON (file:// or cold static host) */
+    }
+    try {
+      const res = await fetch('./PROJECT_MEMORY.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('no file');
+      memory = await res.json();
+      setMode(false);
+      renderEntries(memory.entries || []);
+      statusEl.textContent = 'Read-only: open via npm run widget to append on Enter.';
+      statusEl.className = 'save-status';
+    } catch (e) {
+      setMode(false);
+      memory = { entries: [] };
+      renderEntries([]);
+      statusEl.textContent = 'Could not load memory file.';
+      statusEl.className = 'save-status err';
+    }
+  }
+
+  async function saveNote(text) {
+    statusEl.textContent = 'Saving…';
+    statusEl.className = 'save-status';
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch('/api/memory', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text, author: 'bill' }),
+      });
+      const data = await res.json().catch(function () { return {}; });
+      if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+      form.classList.add('is-saved');
+      setTimeout(function () { form.classList.remove('is-saved'); }, 700);
+      statusEl.textContent = 'Saved · ' + formatTs(data.entry.ts);
+      statusEl.className = 'save-status ok';
+      input.value = '';
+      await loadMemory();
+      setMode(true);
+    } catch (e) {
+      statusEl.textContent = 'Save failed — run: cd spul && npm run widget  (' + (e.message || e) + ')';
+      statusEl.className = 'save-status err';
+      setMode(false);
+    } finally {
+      submitBtn.disabled = false;
+      input.focus();
+    }
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    const text = (input.value || '').trim();
+    if (!text) return;
+    saveNote(text);
+  });
+
+  document.getElementById('btn-reload').addEventListener('click', function () {
+    loadMemory();
+  });
+
+  document.getElementById('btn-copy').addEventListener('click', async function () {
+    const entries = (memory && memory.entries) ? memory.entries.slice(-8) : [];
+    const pack = [
+      'S-PUL Project Continuity context pack',
+      '====================================',
+      'Product: spul/ only (TaxCertificateProcessor Day 0)',
+      'Branch: s-pul-front_end-Betasearchpages-best-55de',
+      'PR: https://github.com/webpointllc-com/TaxCertificateProcessor/pull/8',
+      'Manifest: docs/DAY0_MANIFEST.md',
+      'Memory file: spul/widget/PROJECT_MEMORY.json',
+      'Stats: 2062 listed / 2055 with URL / 1866 active / 7 no URL / 1675 validated-true',
+      'OUT: voice-first, Central Intelligence, DEP Highlighter, kata_deploy, invented URLs',
+      '',
+      'Recent memory:',
+      ...(entries.length
+        ? entries.map(function (e) { return '- [' + e.ts + '] (' + e.author + ') ' + e.text; })
+        : ['- (empty)']),
+      '',
+      'Agents: read/update PROJECT_MEMORY.json; do not invent a twin MCP bridge.',
+    ].join('\n');
+    try {
+      await navigator.clipboard.writeText(pack);
+      statusEl.textContent = 'Context pack copied.';
+      statusEl.className = 'save-status ok';
+    } catch (_) {
+      statusEl.textContent = 'Clipboard blocked — select & copy from console if needed.';
+      statusEl.className = 'save-status err';
+      console.log(pack);
+    }
+  });
+
+  // Boot
+  setTimeout(function () {
+    loader.classList.add('is-done');
+    app.classList.add('is-ready');
+    input.focus();
+  }, 900);
+  loadMemory();
+})();
+</script>
+</body>
+</html>

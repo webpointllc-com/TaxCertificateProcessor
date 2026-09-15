@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "widget": "node widget/server.js",
     "health:sample": "node scripts/http-health-sample.js --limit=200 --concurrency=12",
     "health:all": "node scripts/http-health-sample.js --all --concurrency=16",
     "health:fix": "node scripts/apply-url-fixes.js",

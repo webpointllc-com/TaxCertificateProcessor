@@ -42,12 +42,21 @@ npm start
 
 ## Collaborator log
 
-There is **no separate twin “collaborated log.”** Collaboration trail = **git history + PR #7 / #8 discussion**. Onboarding narrative: [`docs/spul-clean-share/ADAM_ONBOARDING.md`](./spul-clean-share/ADAM_ONBOARDING.md).
+There is **no separate twin “collaborated log” / MCP telepathy bridge.** Collaboration trail = **git history + PR #7 / #8 discussion**, plus the local **Project Continuity** memory file agents should read/update:
+
+| Surface | Path |
+| --- | --- |
+| Continuity widget | [`spul/widget/`](../spul/widget/) — `cd spul && npm run widget` → http://127.0.0.1:3847/ |
+| Latent project memory | [`spul/widget/PROJECT_MEMORY.json`](../spul/widget/PROJECT_MEMORY.json) |
+| Widget README | [`spul/widget/README.md`](../spul/widget/README.md) |
+
+Onboarding narrative: [`docs/spul-clean-share/ADAM_ONBOARDING.md`](./spul-clean-share/ADAM_ONBOARDING.md).
 
 ## Already on disk (pointers)
 
 - App README: [`spul/README.md`](../spul/README.md)
 - Product pointer: [`SPUL.md`](../SPUL.md)
+- Continuity widget + memory: [`spul/widget/`](../spul/widget/)
 - Embed: [`docs/SEARCHPAGES_EMBED.md`](./SEARCHPAGES_EMBED.md)
 - Clean-share pack: [`docs/spul-clean-share/`](./spul-clean-share/)
 - Historical Render proto: root `render.yaml` (not production)
