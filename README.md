@@ -63,3 +63,33 @@ All data is stored locally on your device. No server communication. Location dat
 **Made with 💨 for the original creators**
 
 *Beta v1.0 — December 2024*
+
+---
+
+## Server components (beta v1.1)
+
+The frontend can now talk to a real API. Two new components ship in this repo:
+
+- [`api/`](./api/README.md) — FastAPI HTTP API (users, farts, friends, stats, iOS-shortcut endpoint). Runs on Render via [`render.yaml`](./render.yaml), backed by managed Postgres.
+- [`mcp_server/`](./mcp_server/README.md) — MCP server that exposes the API as tools so Cursor / Claude Desktop can drive it.
+- [`ios/`](./ios/README.md) — iOS Shortcut recipe and Pythonista script for one-tap farting from your phone.
+
+### Local dev quickstart
+
+```bash
+pip install -r api/requirements.txt
+uvicorn api.main:app --reload --port 8000
+# in another terminal:
+pip install -r mcp_server/requirements.txt
+IJF_API_BASE_URL=http://localhost:8000 python -m mcp_server.server
+```
+
+### Deploy
+
+Push the repo to GitHub and connect it to Render. The included `render.yaml` provisions:
+
+- `ijf-postgres` — free Postgres
+- `ijf-api` — the FastAPI web service, wired to Postgres
+- `ijf-frontend` — the existing static `index.html`
+
+Point the frontend at the API by editing the deployed URL in `index.html` (or via a config injection layer of your choice).
