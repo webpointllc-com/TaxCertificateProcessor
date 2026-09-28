@@ -64,7 +64,7 @@ async function signup({ email, password, display_name, company }) {
     company,
     password_salt: salt,
     password_hash,
-    activity_on: true,
+    activity_on: false,
     created_at: new Date().toISOString()
   };
 

@@ -109,7 +109,8 @@
     var n = $('acct-clock');
     if (!n) return;
     var d = new Date();
-    var h = d.getHours();
+    var h = d.getHours() % 12;
+    if (h === 0) h = 12;
     var m = d.getMinutes();
     n.textContent = h + ':' + (m < 10 ? '0' : '') + m;
   }

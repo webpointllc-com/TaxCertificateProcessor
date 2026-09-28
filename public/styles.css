@@ -413,17 +413,18 @@ input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rg
   padding: 0 0 20px;
 }
 .ios-status {
-  height: 54px;
+  height: 62px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 0 28px 8px 30px;
+  padding: 0 24px 10px 28px;
   color: #fff;
 }
 .ios-time {
   font-size: 16px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  padding-left: 2px;
 }
 .ios-sys { display: flex; align-items: center; gap: 6px; }
 .ios-signal { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
@@ -492,8 +493,8 @@ input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rg
 .acct-sub { font-size: 13px; color: #a7a7a7; font-weight: 400; }
 .acct-rule {
   height: 1px;
-  background: #2a2a2a;
-  margin: 0;
+  background: #3a3a3a;
+  margin: 2px 0 4px;
 }
 
 .acct-row, .acct-msg-title, .acct-circle-btn, .acct-compose-btn, .acct-back {
@@ -508,7 +509,7 @@ input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rg
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 14px 20px;
+  padding: 13px 22px;
   text-align: left;
 }
 .acct-row-stacked { align-items: flex-start; padding-top: 16px; padding-bottom: 14px; }

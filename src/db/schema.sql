@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS accounts (
   company TEXT,
   password_salt TEXT NOT NULL,
   password_hash TEXT NOT NULL,
-  activity_on BOOLEAN NOT NULL DEFAULT true,
+  activity_on BOOLEAN NOT NULL DEFAULT false,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
