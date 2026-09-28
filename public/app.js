@@ -150,11 +150,13 @@
     $('member-form').hidden = name !== 'member';
   }
 
-  function openGate(kind, title, copy) {
+  function openGate(kind, title, copy, tab) {
     if (title) $('gate-title').textContent = title;
     if (copy) $('gate-copy').textContent = copy;
+    setAuthError('');
     $('auth-gate').hidden = false;
     showGatePanel(kind || 'account');
+    if ((kind || 'account') === 'account') showAuthTab(tab || 'signup');
   }
 
   function closeGate() {
@@ -1131,7 +1133,7 @@
   });
   $('acct-signin').addEventListener('click', function () {
     showAuthTab('login');
-    openGate('account', 'Sign in', 'Use email and password, Google, or Apple. After email confirm you can attach a shop code, or skip and keep one free search.');
+    openGate('account', 'Sign in', 'Use email and password, Google, or Apple. After email confirm you can attach a shop code, or skip and keep one free search.', 'login');
   });
   $('gate-close').addEventListener('click', closeGate);
   $('auth-gate').addEventListener('click', function (e) {
