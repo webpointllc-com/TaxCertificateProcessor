@@ -17,15 +17,16 @@ async function signIn() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       display_name: 'Bill McCreary',
-      email
+      email,
+      password: 'webpoint1'
     })
   });
   const created = await res.json();
   assert.equal(created.ok, true, JSON.stringify(created));
-  const ver = await fetch(`${base}/api/verify`, {
+  const ver = await fetch(`${base}/api/confirm`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, code: created.code, purpose: 'signup' })
+    body: JSON.stringify({ token: created.confirm_token })
   });
   const body = await ver.json();
   assert.equal(body.ok, true, JSON.stringify(body));
@@ -73,6 +74,8 @@ describe('HTTP API', () => {
     assert.equal(body.firstCounty.county, 'Chippewa');
     assert.equal(body.db, 'memory');
     assert.equal(body.workplace.found, false);
+    assert.equal(body.oauth.google, false);
+    assert.equal(body.oauth.apple, false);
   });
 
   it('lookup returns the Chippewa LandNav URL', async () => {

@@ -42,29 +42,45 @@ describe('signup, session, account', () => {
     assert.equal(body.ok, false);
   });
 
-  it('creates an account and requires the emailed 6-digit code', async () => {
+  it('requires a password of 8+ characters', async () => {
+    const { res, body } = await json('/api/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        display_name: 'Bill McCreary',
+        email: `bill.short.${Date.now()}@webpointllc.com`,
+        password: 'short'
+      })
+    });
+    assert.equal(res.status, 400);
+    assert.match(body.error, /password/i);
+  });
+
+  it('creates an account and requires the emailed confirmation link', async () => {
     const { res, body } = await json('/api/signup', {
       method: 'POST',
       body: JSON.stringify({
         display_name: 'Bill McCreary',
         email,
+        password: 'webpoint1',
         company: 'WebPoint LLC'
       })
     });
     assert.equal(res.status, 201);
     assert.equal(body.ok, true);
-    assert.equal(body.needs_code, true);
+    assert.equal(body.needs_confirm, true);
     assert.equal(body.account.email, email);
     assert.equal(body.account.display_name, 'Bill McCreary');
     assert.equal(body.account.initial, 'B');
     assert.equal(body.account.plan, 'free');
     assert.equal(body.token, undefined);
     assert.equal(body.account.password_hash, undefined);
-    assert.match(String(body.code || ''), /^\d{6}$/);
+    assert.equal(body.account.email_verified, false);
+    assert.match(String(body.confirm_token || ''), /^[a-f0-9]{32,}$/);
+    assert.match(String(body.confirm_path || ''), /\/api\/confirm-email\?token=/);
 
-    const verified = await json('/api/verify', {
+    const verified = await json('/api/confirm', {
       method: 'POST',
-      body: JSON.stringify({ email, code: body.code, purpose: 'signup' })
+      body: JSON.stringify({ token: body.confirm_token })
     });
     assert.equal(verified.body.ok, true);
     assert.ok(verified.body.token);
@@ -77,7 +93,8 @@ describe('signup, session, account', () => {
       method: 'POST',
       body: JSON.stringify({
         display_name: 'Bill McCreary',
-        email
+        email,
+        password: 'webpoint1'
       })
     });
     assert.equal(res.status, 400);
@@ -92,32 +109,63 @@ describe('signup, session, account', () => {
     assert.equal(body.account.email, email);
   });
 
-  it('logs in by emailing a 6-digit code, not a magic link', async () => {
+  it('logs in with email and password after the confirmation link', async () => {
     const { res, body } = await json('/api/login', {
       method: 'POST',
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email, password: 'webpoint1' })
     });
     assert.equal(res.status, 200);
     assert.equal(body.ok, true);
-    assert.equal(body.needs_code, true);
-    assert.ok(body.code);
-    const verified = await json('/api/verify', {
-      method: 'POST',
-      body: JSON.stringify({ email, code: body.code, purpose: 'login' })
-    });
-    assert.equal(verified.body.ok, true);
-    assert.ok(verified.body.token);
-    token = verified.body.token;
+    assert.ok(body.token);
+    assert.equal(body.account.email, email);
+    token = body.token;
   });
 
-  it('rejects a wrong verification code', async () => {
-    await json('/api/login', { method: 'POST', body: JSON.stringify({ email }) });
-    const { res, body } = await json('/api/verify', {
+  it('rejects a wrong password', async () => {
+    const { res, body } = await json('/api/login', {
       method: 'POST',
-      body: JSON.stringify({ email, code: '000000', purpose: 'login' })
+      body: JSON.stringify({ email, password: 'nope-nope' })
     });
-    assert.equal(res.status, 400);
-    assert.match(body.error, /match|code/i);
+    assert.equal(res.status, 401);
+    assert.match(body.error, /incorrect/i);
+  });
+
+  it('redirects the confirmation link onto the app with a session', async () => {
+    const fresh = `bill.link.${Date.now()}@webpointllc.com`;
+    const created = await json('/api/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        display_name: 'Link User',
+        email: fresh,
+        password: 'webpoint1'
+      })
+    });
+    const res = await fetch(`${base}${created.body.confirm_path}`, { redirect: 'manual' });
+    assert.equal(res.status, 302);
+    const location = res.headers.get('location') || '';
+    assert.match(location, /[?&]auth=/);
+    assert.match(location, /confirmed=1/);
+  });
+
+  it('reports Google and Apple as unconnected until those keys are set', async () => {
+    const google = await fetch(`${base}/api/auth/google/start`, { headers: { Accept: 'application/json' } });
+    const apple = await fetch(`${base}/api/auth/apple/start`, { headers: { Accept: 'application/json' } });
+    assert.equal(google.status, 501);
+    assert.equal(apple.status, 501);
+    const health = await json('/api/health');
+    assert.equal(health.body.oauth.google, false);
+    assert.equal(health.body.oauth.apple, false);
+  });
+
+  it('marks Google/Apple accounts verified without a confirmation link', async () => {
+    const result = await accounts.upsertOAuth({
+      email: `bill.oauth.${Date.now()}@gmail.com`,
+      display_name: 'Bill Google',
+      provider: 'google'
+    });
+    assert.equal(result.ok, true);
+    assert.equal(result.account.email_verified, true);
+    assert.ok(result.token);
   });
 
   it('lets a guest run one intelligence search, then asks for an account', async () => {
@@ -138,6 +186,39 @@ describe('signup, session, account', () => {
     });
     assert.equal(second.res.status, 402);
     assert.equal(second.body.gate, 'account');
+  });
+
+  it('uses up the free search when a guest later creates an account', async () => {
+    const sid = `guest-used-${Date.now()}`;
+    const guest = await json('/api/intelligence', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Session-Id': sid },
+      body: JSON.stringify({ q: 'Chippewa County WI' })
+    });
+    assert.equal(guest.body.ok, true);
+    const usedEmail = `bill.used.${Date.now()}@webpointllc.com`;
+    const created = await json('/api/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Session-Id': sid },
+      body: JSON.stringify({
+        display_name: 'Used Guest',
+        email: usedEmail,
+        password: 'webpoint1'
+      })
+    });
+    const confirmed = await json('/api/confirm', {
+      method: 'POST',
+      body: JSON.stringify({ token: created.body.confirm_token })
+    });
+    assert.equal(confirmed.body.ok, true);
+    assert.equal(confirmed.body.account.searches_remaining, 0);
+    const next = await json('/api/intelligence', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Auth-Token': confirmed.body.token },
+      body: JSON.stringify({ q: 'Los Angeles County CA' })
+    });
+    assert.equal(next.res.status, 402);
+    assert.equal(next.body.gate, 'member');
   });
 
   it('requires a member code for certificate batches', async () => {

@@ -100,7 +100,7 @@ async function signup({ email, password, display_name, company, sessionId }) {
     return { ok: false, error: 'Enter a valid work email' };
   }
   if (display_name.length < 2) return { ok: false, error: 'Enter the name on the account' };
-  if (password && password.length < 8) return { ok: false, error: 'Password must be at least 8 characters' };
+  if (password.length < 8) return { ok: false, error: 'Password must be at least 8 characters' };
 
   const salt = crypto.randomBytes(16).toString('hex');
   const password_hash = await hashSecret(password || crypto.randomBytes(16).toString('hex'), salt);
@@ -119,6 +119,7 @@ async function signup({ email, password, display_name, company, sessionId }) {
     plan: 'free',
     search_count: guestCount > 0 ? 1 : 0,
     member_code_id: null,
+    auth_provider: 'password',
     created_at: new Date().toISOString()
   };
 
@@ -127,11 +128,12 @@ async function signup({ email, password, display_name, company, sessionId }) {
       await pool.query(
         `INSERT INTO accounts
           (id, email, display_name, company, password_salt, password_hash, activity_on, learn_consent,
-           email_verified, plan, search_count)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
+           email_verified, plan, search_count, auth_provider)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
         [
           row.id, row.email, row.display_name, row.company, row.password_salt, row.password_hash,
-          row.activity_on, row.learn_consent, row.email_verified, row.plan, row.search_count
+          row.activity_on, row.learn_consent, row.email_verified, row.plan, row.search_count,
+          row.auth_provider
         ]
       );
     } else {
@@ -147,16 +149,7 @@ async function signup({ email, password, display_name, company, sessionId }) {
     throw err;
   }
 
-  const otp = await issueOtp({ email, purpose: 'signup', accountId: row.id });
-  return {
-    ok: true,
-    needs_code: true,
-    purpose: 'signup',
-    email,
-    delivery: shouldEchoOtp() ? 'hold' : 'email',
-    code: shouldEchoOtp() ? otp.code : undefined,
-    account: publicAccount(row)
-  };
+  return confirmPayload(row, await issueConfirmLink(row.id, row.email));
 }
 
 async function findByEmail(email) {
@@ -176,38 +169,170 @@ async function findById(accountId) {
   return memory.accounts.find((a) => a.id === accountId) || null;
 }
 
-async function requestLoginCode({ email, password }) {
+async function loginWithPassword({ email, password }) {
   const row = await findByEmail(email);
-  if (!row) return { ok: false, error: 'No account for that email' };
-  if (password) {
-    const hash = await hashSecret(String(password), row.password_salt);
-    const a = Buffer.from(hash, 'hex');
-    const b = Buffer.from(row.password_hash, 'hex');
-    if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) {
-      return { ok: false, error: 'Email or password is incorrect' };
-    }
+  if (!row) return { ok: false, error: 'Email or password is incorrect' };
+  if (row.auth_provider && row.auth_provider !== 'password') {
+    return { ok: false, error: 'Use Google or Apple to sign in to this account' };
+  }
+  const hash = await hashSecret(String(password || ''), row.password_salt);
+  const a = Buffer.from(hash, 'hex');
+  const b = Buffer.from(row.password_hash, 'hex');
+  if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) {
+    return { ok: false, error: 'Email or password is incorrect' };
   }
   if (!(row.email_verified === true || row.email_verified === 1)) {
-    const otpUnverified = await issueOtp({ email: row.email, purpose: 'signup', accountId: row.id });
     return {
-      ok: true,
-      needs_code: true,
-      purpose: 'signup',
-      email: row.email,
-      delivery: shouldEchoOtp() ? 'hold' : 'email',
-      code: shouldEchoOtp() ? otpUnverified.code : undefined,
-      error: undefined
+      ...confirmPayload(row, await issueConfirmLink(row.id, row.email)),
+      ok: false,
+      error: 'Confirm the link we emailed before signing in.'
     };
   }
-  const otp = await issueOtp({ email: row.email, purpose: 'login', accountId: row.id });
+  const session = await createSession(row.id);
+  return { ok: true, account: publicAccount(row), token: session.token };
+}
+
+function shaToken(token) {
+  return crypto.createHash('sha256').update(String(token)).digest('hex');
+}
+
+function confirmPayload(accountRow, confirm) {
+  const echo = shouldEchoOtp();
   return {
     ok: true,
-    needs_code: true,
-    purpose: 'login',
-    email: row.email,
-    delivery: shouldEchoOtp() ? 'hold' : 'email',
-    code: shouldEchoOtp() ? otp.code : undefined
+    needs_confirm: true,
+    email: accountRow.email,
+    delivery: echo ? 'hold' : 'email',
+    confirm_token: echo ? confirm.token : undefined,
+    confirm_path: echo ? confirm.path : undefined,
+    account: publicAccount(accountRow)
   };
+}
+
+async function issueConfirmLink(accountId, email) {
+  const token = crypto.randomBytes(24).toString('hex');
+  const row = {
+    id: id(),
+    email: String(email || '').trim().toLowerCase(),
+    purpose: 'confirm',
+    code_hash: shaToken(token),
+    salt: '',
+    account_id: accountId || null,
+    attempts: 0,
+    expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+    created_at: new Date().toISOString()
+  };
+  if (usingPostgres()) {
+    await pool.query(`DELETE FROM email_otps WHERE account_id = $1 AND purpose = 'confirm'`, [accountId]);
+    await pool.query(
+      `INSERT INTO email_otps (id, email, purpose, code_hash, salt, account_id, attempts, expires_at)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+      [row.id, row.email, row.purpose, row.code_hash, row.salt, row.account_id, row.attempts, row.expires_at]
+    );
+  } else {
+    memory.otps = memory.otps.filter((o) => !(o.account_id === accountId && o.purpose === 'confirm'));
+    memory.otps.push(row);
+  }
+  return { token, path: '/api/confirm-email?token=' + token };
+}
+
+async function consumeConfirmToken(token) {
+  token = String(token || '').trim();
+  if (token.length < 24) return { ok: false, error: 'That confirmation link is not valid' };
+  const hashed = shaToken(token);
+  let row;
+  if (usingPostgres()) {
+    const { rows } = await pool.query(
+      `SELECT * FROM email_otps WHERE purpose = 'confirm' AND code_hash = $1 LIMIT 1`,
+      [hashed]
+    );
+    row = rows[0];
+  } else {
+    row = memory.otps.find((o) => o.purpose === 'confirm' && o.code_hash === hashed);
+  }
+  if (!row) return { ok: false, error: 'That confirmation link is not valid' };
+  if (new Date(row.expires_at).getTime() < Date.now()) {
+    return { ok: false, error: 'That confirmation link expired. Sign in to get a new one.' };
+  }
+  const accountRow = row.account_id ? await findById(row.account_id) : await findByEmail(row.email);
+  if (!accountRow) return { ok: false, error: 'Account not found' };
+  accountRow.email_verified = true;
+  if (usingPostgres()) {
+    await pool.query(`UPDATE accounts SET email_verified = true WHERE id = $1`, [accountRow.id]);
+    await pool.query(`DELETE FROM email_otps WHERE id = $1`, [row.id]);
+  } else {
+    memory.otps = memory.otps.filter((o) => o.id !== row.id);
+  }
+  const session = await createSession(accountRow.id);
+  return { ok: true, account: publicAccount(accountRow), token: session.token };
+}
+
+async function resendConfirm({ email }) {
+  email = String(email || '').trim().toLowerCase();
+  const row = await findByEmail(email);
+  if (!row) {
+    return { ok: true, sent: false, email };
+  }
+  if (row.email_verified === true || row.email_verified === 1) {
+    return { ok: false, error: 'That email is already confirmed. Sign in.' };
+  }
+  return confirmPayload(row, await issueConfirmLink(row.id, row.email));
+}
+
+async function upsertOAuth({ email, display_name, provider, sessionId }) {
+  email = String(email || '').trim().toLowerCase();
+  display_name = String(display_name || email.split('@')[0] || 'Member').trim();
+  provider = String(provider || 'google');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { ok: false, error: 'That sign-in did not return an email' };
+  }
+  let row = await findByEmail(email);
+  if (!row) {
+    const salt = crypto.randomBytes(16).toString('hex');
+    const password_hash = await hashSecret(crypto.randomBytes(16).toString('hex'), salt);
+    const guestCount = sessionId ? await guestSearchCount(sessionId) : 0;
+    row = {
+      id: id(),
+      email,
+      display_name,
+      company: '',
+      password_salt: salt,
+      password_hash,
+      activity_on: false,
+      learn_consent: false,
+      email_verified: true,
+      plan: 'free',
+      search_count: guestCount > 0 ? 1 : 0,
+      member_code_id: null,
+      auth_provider: provider,
+      created_at: new Date().toISOString()
+    };
+    if (usingPostgres()) {
+      await pool.query(
+        `INSERT INTO accounts
+          (id, email, display_name, company, password_salt, password_hash, activity_on, learn_consent,
+           email_verified, plan, search_count, auth_provider)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
+        [
+          row.id, row.email, row.display_name, row.company, row.password_salt, row.password_hash,
+          row.activity_on, row.learn_consent, true, row.plan, row.search_count, provider
+        ]
+      );
+    } else {
+      memory.accounts.push(row);
+    }
+  } else {
+    row.email_verified = true;
+    row.auth_provider = row.auth_provider || provider;
+    if (usingPostgres()) {
+      await pool.query(`UPDATE accounts SET email_verified = true, auth_provider = COALESCE(auth_provider, $2) WHERE id = $1`, [
+        row.id,
+        provider
+      ]);
+    }
+  }
+  const session = await createSession(row.id);
+  return { ok: true, account: publicAccount(row), token: session.token };
 }
 
 async function issueOtp({ email, purpose, accountId }) {
@@ -460,7 +585,7 @@ async function redeemMemberCode(accountId, rawCode) {
   const account = await findById(accountId);
   if (!account) return { ok: false, error: 'Account not found' };
   if (!(account.email_verified === true || account.email_verified === 1)) {
-    return { ok: false, error: 'Confirm the email code first' };
+    return { ok: false, error: 'Confirm your email first' };
   }
   const formatted = formatMemberCode(rawCode);
   if (!/^WP-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(formatted)) {
@@ -591,7 +716,11 @@ module.exports = {
   FREE_SEARCHES,
   attachPool,
   signup,
-  requestLoginCode,
+  loginWithPassword,
+  consumeConfirmToken,
+  issueConfirmLink,
+  resendConfirm,
+  upsertOAuth,
   verifyOtp,
   issueOtp,
   logout,
@@ -610,5 +739,5 @@ module.exports = {
   redeemMemberCode,
   guestSearchCount,
   resetMemory,
-  login: requestLoginCode
+  login: loginWithPassword
 };

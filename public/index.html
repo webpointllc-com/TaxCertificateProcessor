@@ -197,38 +197,46 @@
           <button type="button" class="about-x" id="gate-close" aria-label="Close">×</button>
           <div id="gate-account">
             <h2 id="gate-title">Create a free account to continue</h2>
-            <p id="gate-copy">One search is included. Members unlock unlimited search, batches, and extractor updates.</p>
+            <p id="gate-copy">Try one search first. Then create an account — email and password, Google, or Apple. A shop code is only if your lead bought seats.</p>
             <div class="auth-tabs" role="tablist">
               <button type="button" class="auth-tab active" id="tab-signup" role="tab" aria-selected="true">Create account</button>
               <button type="button" class="auth-tab" id="tab-login" role="tab" aria-selected="false">Sign in</button>
             </div>
+            <div class="oauth-stack">
+              <button type="button" class="oauth-btn" id="oauth-google">Continue with Google</button>
+              <button type="button" class="oauth-btn" id="oauth-apple">Continue with Apple</button>
+            </div>
+            <p class="oauth-or">or use email</p>
             <form id="signup-form" autocomplete="on">
               <label>Name<input id="su-name" name="name" placeholder="Your name" required minlength="2"></label>
               <label>Work email<input id="su-email" name="email" type="email" placeholder="you@titleco.com" required></label>
+              <label>Password<input id="su-password" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></label>
+              <label>Confirm password<input id="su-password2" name="password2" type="password" autocomplete="new-password" minlength="8" required></label>
               <label>Company <span class="opt">(optional)</span><input id="su-company" name="company" placeholder="Title company / tax service"></label>
-              <button type="submit" class="primary" id="su-submit">Email me a code</button>
+              <button type="submit" class="primary" id="su-submit">Create account</button>
             </form>
             <form id="login-form" hidden autocomplete="on">
               <label>Work email<input id="li-email" name="email" type="email" required></label>
-              <button type="submit" class="primary" id="li-submit">Email me a code</button>
+              <label>Password<input id="li-password" name="password" type="password" autocomplete="current-password" required></label>
+              <button type="submit" class="primary" id="li-submit">Sign in</button>
             </form>
             <p id="auth-error" class="auth-error" hidden></p>
-            <p class="auth-note">We email a 6-digit code. No Apple, Google, or login links.</p>
+            <p class="auth-note">Email accounts get a confirmation link to click. After that you can attach a shop member code, or skip and keep the one free search.</p>
           </div>
-          <form id="verify-form" class="gate-verify" hidden>
-            <h2>Enter the 6-digit code</h2>
-            <p id="verify-copy">We sent a code to your email.</p>
-            <p id="otp-hold" class="auth-note" hidden></p>
-            <label class="sr-only" for="otp-input">Verification code</label>
-            <input id="otp-input" name="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••" required>
-            <button type="submit" class="primary" id="otp-submit">Confirm</button>
-            <p class="auth-error" id="otp-error" hidden></p>
-          </form>
+          <div id="confirm-panel" class="gate-confirm" hidden>
+            <h2>Check your email</h2>
+            <p id="confirm-copy">We sent a confirmation link. Click it to prove it’s you.</p>
+            <p id="confirm-hold" class="auth-note" hidden></p>
+            <a id="confirm-hold-link" class="confirm-hold-link" hidden href="#">Open confirmation link</a>
+            <button type="button" class="primary" id="confirm-resend">Resend link</button>
+            <p class="auth-error" id="confirm-error" hidden></p>
+          </div>
           <form id="member-form" class="gate-member" hidden>
-            <h2>Members</h2>
-            <p>One plan. Your shop lead receives a code from WebPoint after payment. Enter it here — we do not email login links to colleagues.</p>
-            <label>Member code<input id="member-code" name="member_code" placeholder="WP-XXXX-XXXX" autocomplete="off" required></label>
-            <button type="submit" class="primary" id="member-submit">Unlock members</button>
+            <h2>Shop member code</h2>
+            <p id="member-copy">If your shop lead bought seats from WebPoint, enter the code they gave you. Trying it out with no code? Skip — one free search is included.</p>
+            <label>Member code<input id="member-code" name="member_code" placeholder="WP-XXXX-XXXX" autocomplete="off"></label>
+            <button type="submit" class="primary" id="member-submit">Attach code</button>
+            <button type="button" class="ghost-skip" id="member-skip">Skip — keep my free search</button>
             <p class="auth-error" id="member-error" hidden></p>
           </form>
         </div>
@@ -259,7 +267,7 @@
               </span>
               <span class="acct-row-text">
                 <span class="acct-row-title">Add account</span>
-                <span class="acct-row-sub">They sign up, then use your shop’s member code</span>
+                <span class="acct-row-sub">They sign up, confirm email, then attach your shop code</span>
               </span>
             </button>
             <button type="button" class="acct-row" id="acct-recents">
@@ -403,7 +411,7 @@
               <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
               <h2>Usage and plan</h2>
             </div>
-            <p class="acct-hint">One plan: Members. Ask your shop lead for the code WebPoint issued after payment. We do not send login links.</p>
+            <p class="acct-hint">One plan: Members. Ask your shop lead for the code WebPoint issued after they purchase seats. Try-it-out accounts keep one free search.</p>
             <dl class="acct-dl" id="usage-dl">
               <div><dt>Plan</dt><dd id="usage-plan">Free</dd></div>
               <div><dt>Learning</dt><dd id="usage-learn">Off</dd></div>
@@ -423,7 +431,7 @@
               <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
               <h2>Invite Friends</h2>
             </div>
-            <p class="acct-hint">Give colleagues your shop’s member code. They create their own account and punch it in. We do not email login links.</p>
+            <p class="acct-hint">Give colleagues your shop’s member code. They create an account (email and password, Google, or Apple), confirm their email, then attach the code.</p>
             <form id="invite-form" class="acct-form">
               <label>Note a colleague<input id="invite-email" type="email" placeholder="name@titleco.com" required></label>
               <button type="submit" class="primary compact">Save note</button>

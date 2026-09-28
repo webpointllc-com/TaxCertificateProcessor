@@ -9,6 +9,8 @@ const { OpenAI } = require('openai');
 const store = require('./db/store');
 const accounts = require('./db/accounts');
 const extractors = require('./db/extractors');
+const oauth = require('./services/oauth');
+const mailer = require('./services/mailer');
 const {
   parseSearchQuery,
   buildCard,
@@ -35,6 +37,7 @@ const FRAME_ANCESTORS = [
 const app = express();
 app.disable('x-powered-by');
 app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   res.setHeader('Content-Security-Policy', `frame-ancestors ${FRAME_ANCESTORS}`);
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -131,6 +134,7 @@ app.get('/api/health', async (req, res) => {
     groq: Boolean(groq),
     model: groq ? GROQ_MODEL : 'spul-db',
     extractors: await extractors.stats(),
+    oauth: oauth.oauthStatus(),
     workplace: scan,
     lastImport
   });
@@ -147,10 +151,25 @@ app.get('/api/hero-examples', (req, res) => {
   });
 });
 
+async function deliverConfirm(req, result) {
+  if (!result?.needs_confirm || !result.email) return result;
+  const origin = oauth.originOf(req);
+  const token = result.confirm_token;
+  const path = result.confirm_path || (token ? `/api/confirm-email?token=${token}` : '');
+  if (!path) return result;
+  try {
+    await mailer.sendConfirmEmail({ to: result.email, confirmUrl: origin + path });
+  } catch (err) {
+    console.error('confirm email', err.message);
+  }
+  return result;
+}
+
 app.post('/api/signup', async (req, res) => {
   try {
     const result = await accounts.signup({ ...(req.body || {}), sessionId: sessionIdOf(req) });
     if (!result.ok) return res.status(400).json(result);
+    await deliverConfirm(req, result);
     res.status(201).json(result);
   } catch (err) {
     console.error('signup', err.message);
@@ -160,8 +179,11 @@ app.post('/api/signup', async (req, res) => {
 
 app.post('/api/login', async (req, res) => {
   try {
-    const result = await accounts.requestLoginCode(req.body || {});
-    if (!result.ok) return res.status(401).json(result);
+    const result = await accounts.loginWithPassword(req.body || {});
+    if (!result.ok) {
+      if (result.needs_confirm) await deliverConfirm(req, result);
+      return res.status(result.needs_confirm ? 403 : 401).json(result);
+    }
     res.json(result);
   } catch (err) {
     console.error('login', err.message);
@@ -169,15 +191,90 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-app.post('/api/verify', async (req, res) => {
+app.post('/api/confirm', async (req, res) => {
   try {
-    const result = await accounts.verifyOtp(req.body || {});
+    const result = await accounts.consumeConfirmToken(req.body?.token || req.query.token);
     if (!result.ok) return res.status(400).json(result);
     res.json(result);
   } catch (err) {
-    console.error('verify', err.message);
-    res.status(500).json({ ok: false, error: 'Could not confirm that code' });
+    console.error('confirm', err.message);
+    res.status(500).json({ ok: false, error: 'Could not confirm that email' });
   }
+});
+
+app.post('/api/confirm/resend', async (req, res) => {
+  try {
+    const result = await accounts.resendConfirm({ email: req.body?.email });
+    if (!result.ok) return res.status(400).json(result);
+    await deliverConfirm(req, result);
+    res.json(result);
+  } catch (err) {
+    console.error('confirm resend', err.message);
+    res.status(500).json({ ok: false, error: 'Could not resend the confirmation link' });
+  }
+});
+
+app.get('/api/confirm-email', async (req, res) => {
+  try {
+    const result = await accounts.consumeConfirmToken(req.query.token);
+    if (!result.ok) {
+      return res.redirect('/?confirm=failed');
+    }
+    res.redirect(`/?auth=${encodeURIComponent(result.token)}&confirmed=1`);
+  } catch (err) {
+    console.error('confirm-email', err.message);
+    res.redirect('/?confirm=failed');
+  }
+});
+
+function wantsJson(req) {
+  return /json/i.test(req.get('accept') || '') || req.query.format === 'json';
+}
+
+app.get('/api/auth/google/start', (req, res) => {
+  if (!oauth.googleEnabled()) {
+    return res.status(501).json({
+      ok: false,
+      error: 'Google sign-in is not connected on this host yet. Use email and password.'
+    });
+  }
+  const url = oauth.googleAuthUrl(req, req.query.state || sessionIdOf(req));
+  if (wantsJson(req)) return res.json({ ok: true, url });
+  res.redirect(url);
+});
+
+app.get('/api/auth/google/callback', async (req, res) => {
+  try {
+    if (!oauth.googleEnabled()) return res.redirect('/?oauth=unavailable');
+    const profile = await oauth.exchangeGoogleCode(req, req.query.code);
+    const result = await accounts.upsertOAuth({
+      email: profile.email,
+      display_name: profile.display_name,
+      provider: 'google',
+      sessionId: req.query.state || sessionIdOf(req)
+    });
+    if (!result.ok) return res.redirect('/?oauth=failed');
+    res.redirect(`/?auth=${encodeURIComponent(result.token)}&oauth=google`);
+  } catch (err) {
+    console.error('google oauth', err.message);
+    res.redirect('/?oauth=failed');
+  }
+});
+
+app.get('/api/auth/apple/start', (req, res) => {
+  if (!oauth.appleEnabled()) {
+    return res.status(501).json({
+      ok: false,
+      error: 'Apple sign-in is not connected on this host yet. Use email and password.'
+    });
+  }
+  const url = oauth.appleAuthUrl(req, req.query.state || sessionIdOf(req));
+  if (wantsJson(req)) return res.json({ ok: true, url });
+  res.redirect(url);
+});
+
+app.post('/api/auth/apple/callback', async (req, res) => {
+  return res.redirect('/?oauth=unavailable');
 });
 
 app.post('/api/member-code', async (req, res) => {

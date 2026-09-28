@@ -304,11 +304,55 @@ button.mac-label {
 .gate-card .primary { width: 100%; margin-top: 4px; }
 .gate-card .auth-note { margin-top: 12px; color: #8b97a8; font-size: 12px; }
 .gate-card .auth-error { color: #c2410c; font-size: 13px; }
-#otp-input {
-  letter-spacing: 0.4em; font-size: 22px; font-weight: 700; text-align: center;
-  background: #f7fbff; color: #1b2433; border: 1px solid #e4edf6; border-radius: 12px;
-  padding: 12px;
+.oauth-stack { display: flex; flex-direction: column; gap: 8px; }
+.oauth-btn {
+  width: 100%;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid #d5e2ef;
+  background: #fff;
+  color: #1b2433;
+  cursor: pointer;
 }
+.oauth-btn:hover { background: #f7fbff; }
+.oauth-or {
+  text-align: center;
+  color: #8b97a8;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 10px 0 4px;
+}
+.confirm-hold-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  background: #3b6dff;
+  color: #fff;
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 8px 0 10px;
+}
+.ghost-skip {
+  width: 100%;
+  margin-top: 6px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid #d5e2ef;
+  background: #f4f8fd;
+  color: #1b2433;
+  cursor: pointer;
+}
+.gate-confirm, .gate-member { display: flex; flex-direction: column; gap: 10px; }
 .perm-actions .primary, .about-card .guide-link {
   background: #3b6dff; color: #fff; border: 0; border-radius: 12px;
   padding: 10px 16px; font-weight: 700; text-decoration: none;
@@ -323,21 +367,6 @@ button.mac-label {
 }
 .about-links { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
 .about-links .guide-link { display: inline-flex; align-items: center; }
-.text-signin {
-  border: 0; background: transparent; font-family: inherit; cursor: pointer;
-  font-size: 13px; font-weight: 600; color: #3b6dff; padding: 4px 8px;
-}
-.gate-card { max-width: 440px; }
-.gate-card form { display: flex; flex-direction: column; gap: 10px; }
-.gate-card .auth-tabs { margin: 14px 0 12px; }
-.gate-card .primary { width: 100%; margin-top: 4px; }
-.gate-card .auth-note { margin-top: 12px; color: #8b97a8; font-size: 12px; }
-.gate-card .auth-error { color: #c2410c; font-size: 13px; }
-#otp-input {
-  letter-spacing: 0.4em; font-size: 22px; font-weight: 700; text-align: center;
-  background: #f7fbff; color: #1b2433; border: 1px solid #e4edf6; border-radius: 12px;
-  padding: 12px;
-}
 
 .auth-gate {
   background:
@@ -1017,6 +1046,6 @@ input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rg
   background: #eaf3ff; border-color: #3b6dff; color: #1b2433;
   box-shadow: none;
 }
-.batch-card input, .auth-card input, .heal-box textarea, .acct-form input, .acct-form textarea {
+.batch-card input, .auth-card input, .gate-card input, .heal-box textarea, .acct-form input, .acct-form textarea {
   background: #f7fbff; color: #1b2433; border: 1px solid #e4edf6;
 }

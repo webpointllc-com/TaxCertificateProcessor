@@ -38,17 +38,23 @@ describe('embeddable scaled UI', () => {
     assert.match(js, /googleFallback/);
   });
 
-  it('gates the app on email signup and never offers Apple login', () => {
+  it('gates the app on email signup plus Google/Apple, then a confirmation link', () => {
     assert.match(html, /id="signup-form"/);
     assert.match(html, /id="login-form"/);
     assert.match(html, /id="auth-gate"/);
-    assert.match(html, /id="verify-form"/);
+    assert.match(html, /id="confirm-panel"/);
     assert.match(html, /id="member-form"/);
+    assert.match(html, /id="su-password"/);
+    assert.match(html, /id="li-password"/);
+    assert.match(html, /id="member-skip"/);
+    assert.match(html, /Continue with Google/);
+    assert.match(html, /Continue with Apple/);
     assert.match(js, /\/api\/signup/);
-    assert.match(js, /\/api\/verify/);
+    assert.match(js, /\/api\/confirm/);
+    assert.match(js, /\/api\/auth\/' \+ provider \+ '\/start/);
     assert.match(js, /\/api\/member-code/);
-    assert.doesNotMatch(html, /Sign in with Apple|Apple ID|apple-signin|Sign in with Google|Continue with Google/i);
-    assert.doesNotMatch(js, /Sign in with Apple|AppleID/i);
+    assert.doesNotMatch(html, /Email me a code|6-digit/);
+    assert.doesNotMatch(js, /\/api\/verify/);
   });
 
   it('ships the generative search home matching the Property Tax Intelligence window', () => {

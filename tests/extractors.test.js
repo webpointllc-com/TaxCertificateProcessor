@@ -33,14 +33,15 @@ describe('extractor self-heal', () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         display_name: 'Bill McCreary',
-        email: `bill.heal.${Date.now()}@webpointllc.com`
+        email: `bill.heal.${Date.now()}@webpointllc.com`,
+        password: 'webpoint1'
       })
     });
     const created = await res.json();
-    const verified = await fetch(`${base}/api/verify`, {
+    const verified = await fetch(`${base}/api/confirm`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: created.email, code: created.code, purpose: 'signup' })
+      body: JSON.stringify({ token: created.confirm_token })
     });
     const body = await verified.json();
     token = body.token;

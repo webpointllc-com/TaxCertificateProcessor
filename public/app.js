@@ -143,11 +143,10 @@
   }
 
   var pendingEmail = '';
-  var pendingPurpose = 'signup';
 
   function showGatePanel(name) {
     $('gate-account').hidden = name !== 'account';
-    $('verify-form').hidden = name !== 'verify';
+    $('confirm-panel').hidden = name !== 'confirm';
     $('member-form').hidden = name !== 'member';
   }
 
@@ -170,14 +169,14 @@
     if (!data || data.ok) return false;
     if (data.gate === 'member') {
       if (!account) {
-        openGate('account', 'Create a free account to continue', 'Then enter the member code from your shop lead.');
+        openGate('account', 'Create a free account to continue', 'Then enter the member code from your shop lead, or skip and keep one free search.');
       } else {
         openGate('member');
       }
       return true;
     }
     if (data.gate === 'account' || data.status === 401) {
-      openGate('account', 'Create a free account to continue', 'One search is included. Members unlock the rest.');
+      openGate('account', 'Create a free account to continue', 'One free search is included. Sign in with email, Google, or Apple to keep going.');
       return true;
     }
     return false;
@@ -767,25 +766,68 @@
   $('tab-signup').addEventListener('click', function () { showAuthTab('signup'); });
   $('tab-login').addEventListener('click', function () { showAuthTab('login'); });
 
-  function beginVerify(data) {
-    pendingEmail = data.email || pendingEmail;
-    pendingPurpose = data.purpose || 'signup';
-    $('verify-copy').textContent = 'Enter the 6-digit code sent to ' + pendingEmail + '.';
-    if (data.code) {
-      $('otp-hold').hidden = false;
-      $('otp-hold').textContent = 'Code for this session: ' + data.code;
-    } else {
-      $('otp-hold').hidden = true;
-      $('otp-hold').textContent = '';
+  function offerMemberCode() {
+    if (!account || isMember()) {
+      closeGate();
+      return;
     }
-    $('otp-input').value = '';
-    $('otp-error').hidden = true;
-    openGate('verify');
+    var remaining = account.searches_remaining;
+    var copy = remaining === 0
+      ? 'Your free search is used. Enter the shop code from your lead for unlimited search, or skip to keep this account.'
+      : 'If your shop lead bought seats, attach the code. No code? Skip and use your one free search.';
+    $('member-copy').textContent = copy;
+    $('member-code').value = '';
+    $('member-error').hidden = true;
+    openGate('member');
   }
+
+  function beginConfirm(data) {
+    pendingEmail = data.email || pendingEmail;
+    $('confirm-copy').textContent = 'We sent a confirmation link to ' + pendingEmail + '. Click it to prove it is you.';
+    var hold = $('confirm-hold');
+    var link = $('confirm-hold-link');
+    if (data.confirm_path) {
+      hold.hidden = false;
+      hold.textContent = 'This host is not sending mail yet — use the link below.';
+      link.hidden = false;
+      link.href = data.confirm_path;
+    } else {
+      hold.hidden = true;
+      hold.textContent = '';
+      link.hidden = true;
+      link.removeAttribute('href');
+    }
+    $('confirm-error').hidden = true;
+    openGate('confirm');
+  }
+
+  async function startOAuth(provider) {
+    setAuthError('');
+    try {
+      var res = await fetch('/api/auth/' + provider + '/start?state=' + encodeURIComponent(sessionId), {
+        headers: { Accept: 'application/json' }
+      });
+      var data = await res.json().catch(function () { return {}; });
+      if (!data.ok) {
+        setAuthError(data.error || (provider === 'apple' ? 'Apple sign-in is not connected yet.' : 'Google sign-in is not connected yet.'));
+        return;
+      }
+      window.location.assign(data.url);
+    } catch (err) {
+      setAuthError('Could not start ' + provider + ' sign-in');
+    }
+  }
+
+  $('oauth-google').addEventListener('click', function () { startOAuth('google'); });
+  $('oauth-apple').addEventListener('click', function () { startOAuth('apple'); });
 
   $('signup-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     setAuthError('');
+    if ($('su-password').value !== $('su-password2').value) {
+      setAuthError('Passwords do not match');
+      return;
+    }
     $('su-submit').disabled = true;
     try {
       var res = await fetch('/api/signup', {
@@ -794,12 +836,13 @@
         body: JSON.stringify({
           display_name: $('su-name').value.trim(),
           email: $('su-email').value.trim(),
+          password: $('su-password').value,
           company: $('su-company').value.trim()
         })
       });
       var data = await res.json();
       if (!data.ok) { setAuthError(data.error || 'Could not create the account'); return; }
-      beginVerify(data);
+      beginConfirm(data);
     } catch (err) {
       setAuthError('Network error creating the account');
     } finally {
@@ -815,11 +858,19 @@
       var res = await fetch('/api/login', {
         method: 'POST',
         headers: headers(true),
-        body: JSON.stringify({ email: $('li-email').value.trim() })
+        body: JSON.stringify({
+          email: $('li-email').value.trim(),
+          password: $('li-password').value
+        })
       });
       var data = await res.json();
+      if (data.needs_confirm) {
+        beginConfirm(data);
+        return;
+      }
       if (!data.ok) { setAuthError(data.error || 'Could not sign in'); return; }
-      beginVerify(data);
+      setSignedIn(data.account, data.token);
+      offerMemberCode();
     } catch (err) {
       setAuthError('Network error signing in');
     } finally {
@@ -827,32 +878,29 @@
     }
   });
 
-  $('verify-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    $('otp-error').hidden = true;
+  $('confirm-resend').addEventListener('click', async function () {
+    $('confirm-error').hidden = true;
     try {
-      var res = await fetch('/api/verify', {
+      var res = await fetch('/api/confirm/resend', {
         method: 'POST',
         headers: headers(true),
-        body: JSON.stringify({
-          email: pendingEmail,
-          code: $('otp-input').value.trim(),
-          purpose: pendingPurpose
-        })
+        body: JSON.stringify({ email: pendingEmail })
       });
       var data = await res.json();
       if (!data.ok) {
-        $('otp-error').hidden = false;
-        $('otp-error').textContent = data.error || 'That code does not match';
+        $('confirm-error').hidden = false;
+        $('confirm-error').textContent = data.error || 'Could not resend';
         return;
       }
-      setSignedIn(data.account, data.token);
-      closeGate();
-      if (!isMember()) openGate('member');
+      beginConfirm(Object.assign({ email: pendingEmail }, data));
     } catch (err) {
-      $('otp-error').hidden = false;
-      $('otp-error').textContent = 'Network error';
+      $('confirm-error').hidden = false;
+      $('confirm-error').textContent = 'Network error';
     }
+  });
+
+  $('confirm-hold-link').addEventListener('click', function () {
+    // GET /api/confirm-email sets the session via redirect; bootSession also reads ?auth=
   });
 
   async function redeemMember(code, errorId) {
@@ -878,6 +926,9 @@
   $('member-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     await redeemMember($('member-code').value.trim(), 'member-error');
+  });
+  $('member-skip').addEventListener('click', function () {
+    closeGate();
   });
   $('usage-member-form').addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -1018,6 +1069,31 @@
   async function bootSession() {
     tickClock();
     setInterval(tickClock, 30000);
+    var params = new URLSearchParams(location.search);
+    var authFromLink = params.get('auth');
+    var confirmed = params.get('confirmed') === '1';
+    var oauthFlag = params.get('oauth');
+    var confirmFlag = params.get('confirm');
+    if (authFromLink) {
+      authToken = authFromLink;
+      localStorage.setItem('wp_tcs_token', authFromLink);
+    }
+    if (authFromLink || confirmed || oauthFlag || confirmFlag) {
+      history.replaceState({}, '', location.pathname);
+    }
+    if (oauthFlag === 'unavailable' || oauthFlag === 'failed') {
+      setSignedIn(null);
+      openGate('account', 'Sign in', 'Email and password always work. Google or Apple light up once those keys are set on the host.');
+      setAuthError(oauthFlag === 'unavailable'
+        ? 'Google / Apple is not connected on this host yet.'
+        : 'That social sign-in did not finish. Use email and password.');
+      return;
+    }
+    if (confirmFlag === 'failed') {
+      setSignedIn(null);
+      openGate('account', 'Sign in', 'That confirmation link was not valid. Sign in to get a new one.');
+      return;
+    }
     if (!authToken) {
       setSignedIn(null);
       return;
@@ -1028,6 +1104,7 @@
       if (data.ok && data.account) {
         setSignedIn(data.account, authToken);
         refreshAccount();
+        if ((confirmed || oauthFlag) && !isMember()) offerMemberCode();
       } else {
         authToken = '';
         localStorage.removeItem('wp_tcs_token');
@@ -1054,7 +1131,7 @@
   });
   $('acct-signin').addEventListener('click', function () {
     showAuthTab('login');
-    openGate('account', 'Sign in', 'We’ll email a 6-digit code. No passwords in this step, and no login links.');
+    openGate('account', 'Sign in', 'Use email and password, Google, or Apple. After email confirm you can attach a shop code, or skip and keep one free search.');
   });
   $('gate-close').addEventListener('click', closeGate);
   $('auth-gate').addEventListener('click', function (e) {
