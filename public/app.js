@@ -774,7 +774,14 @@
   function beginVerify(data) {
     pendingEmail = data.email || pendingEmail;
     pendingPurpose = data.purpose || 'signup';
-    $('verify-copy').textContent = 'We sent a 6-digit code to ' + pendingEmail + '.';
+    $('verify-copy').textContent = 'Enter the 6-digit code sent to ' + pendingEmail + '.';
+    if (data.code) {
+      $('otp-hold').hidden = false;
+      $('otp-hold').textContent = 'Code for this session: ' + data.code;
+    } else {
+      $('otp-hold').hidden = true;
+      $('otp-hold').textContent = '';
+    }
     $('otp-input').value = '';
     $('otp-error').hidden = true;
     openGate('verify');
