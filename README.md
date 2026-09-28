@@ -26,7 +26,7 @@ The importer inventories SQL dumps, CSVs, JSON, and app trees and records them i
 
 ## Database choice: Render PostgreSQL
 
-Use **Render PostgreSQL** (not SQLite, not Mongo, not a spreadsheet).
+Use **Render PostgreSQL** (not SQLite, not Mongo, not a spreadsheet, not AWS RDS yet).
 
 Why:
 
@@ -35,21 +35,40 @@ Why:
 - `pg` full-text search (`tsvector`) is the RAG retrieval layer that works **without** an embeddings API. Groq does chat, not embeddings.
 - JSONB holds collector payloads until the Passport dump tells us the exact columns.
 - Same private network as the web service (`DATABASE_URL` via `fromDatabase` in `render.yaml`).
+- Testing conversations on `/v1/chat` and `/v1/feedback` survive deploys. When you later swap to AWS, `pg_dump` the same schema — the Node app already binds `0.0.0.0:$PORT`.
 
-Plan: start on **Basic 256MB** (or Free only for a 30-day trial — Free Postgres expires). Region: **Oregon**, matching the other WebPoint Render services.
+Plan: **Basic 256MB ($7/mo)**. Do **not** use Free Postgres (expires in 30 days). Region: **Oregon**.
 
-SQLite is used only as an **in-memory fallback** when `DATABASE_URL` is unset (local tests). Production on Render must set `DATABASE_URL`.
+SQLite/memory is only the local test fallback when `DATABASE_URL` is unset. Production on Render must set `DATABASE_URL`.
 
-## Server choice: Render web service (Node 18+)
+## Server + LLM (the decision)
 
-Bind `0.0.0.0:$PORT`. Starter plan for a paid members tool (Free spin-down after 15 minutes will look broken inside Squarespace). Auto-deploy from this branch once the Blueprint is applied.
+**Launch on Render, not AWS.** AWS is a later cutover once the product is taking paid load and you want a dedicated GPU box. Render Starter is the professional always-on surface for a Squarespace iframe (Free web spin-down after 15 minutes looks broken to members).
 
-Set in the dashboard (never commit):
+**Claude 4.6 is the coding agent. It is not the production tax LLM.** Production stack:
 
-- `GROQ_API_KEY` — Search Spul LLM. Lookup + certificate drafts work without it.
-- `MEMBER_ISSUE_KEY` — optional. Header `X-Issue-Key` for minting shop member codes after a payment. Never commit this.
-- `MEMBER_EMBED_KEY` — optional. Put `?k=...` on the members-page iframe so the public onrender URL can be limited later.
-- `WORKPLACE_CLONE_PATH` — only needed on a machine that can see the Passport.
+| Layer | Model | Role |
+| --- | --- | --- |
+| Workhorse | Llama 3.3 70B on Groq | County lookup, intake, FAQ, routing (`MODEL_PROVIDER=groq`) |
+| Heavy lift (optional) | Anthropic Sonnet via `ANTHROPIC_API_KEY` | Extractor heal / ambiguous certificate reasoning |
+| Year 2+ | Fine-tuned Llama 70B on *your* county data | Self-hosted GPU — not this month |
+
+Node is async, so Starter is not Gunicorn’s “2 workers = 2 chats.” Chat still waits on Groq, which is hundreds of tokens/sec, not a 60s Anthropic hold.
+
+### What the boss pays this month
+
+| Item | Monthly | Annual | Required to go live |
+| --- | --- | --- | --- |
+| Render web **Starter** | **$7** | $84 | Yes — always-on iframe |
+| Render Postgres **Basic 256MB** | **$7** | $84 | Yes — durable memory |
+| Groq Llama 3.3 70B | $0–15 at launch volume | ~$0–180 | Free key first; card later |
+| Anthropic API | $0 | $0 | Off until we turn it on |
+| AWS / GPU box | $0 | $0 | Not this launch |
+| **Total to turn it on** | **$14** | **$168** | |
+
+At ~200 users expect ~$14 compute + ~$40–80 Groq. Do not buy RunPod/Lambda until year 2.
+
+Pay: [Render billing](https://dashboard.render.com/billing) → Apply Blueprint → paste Groq key from [console.groq.com/keys](https://console.groq.com/keys).
 
 ## Squarespace members page
 
@@ -58,7 +77,7 @@ Set in the dashboard (never commit):
 3. Paste `public/SQUARESPACE_EMBED.html` (update the `src` host after the first Render deploy).
 4. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
 5. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide** and **Architecture**.
-6. Page load shows the same Property Tax Intelligence window members use. One search is free. After that: create a free account (we email a 6-digit code — no Apple/Google, no magic login links). Members is one plan, unlocked with a shop code WebPoint issues after payment (`WP-XXXX-XXXX`). The avatar opens the account sheet (profile, recents, updates, settings, usage, invites, messages). Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
+6. Members land on the Google-style search bar. Sign in is required before a research task. Email/password plus a confirmation link; Google/Apple light up when those keys are set on Render. Shop code `WP-XXXX-XXXX` or skip for one free task. Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
 
 Optional script tag (host will match the request):
 

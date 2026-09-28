@@ -5,12 +5,12 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const { OpenAI } = require('openai');
 const store = require('./db/store');
 const accounts = require('./db/accounts');
 const extractors = require('./db/extractors');
 const oauth = require('./services/oauth');
 const mailer = require('./services/mailer');
+const llm = require('./services/llm');
 const {
   parseSearchQuery,
   buildCard,
@@ -26,7 +26,6 @@ const { matchScenario } = require('./services/scenarioRouter');
 const { scanWorkplaceClone, inventoryRepo } = require('../scripts/workplace-scan');
 
 const PORT = process.env.PORT || 3000;
-const GROQ_MODEL = 'llama-3.3-70b-versatile';
 const FRAME_ANCESTORS = [
   "'self'",
   'https://*.squarespace.com',
@@ -46,10 +45,6 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.static(path.join(__dirname, '..', 'public')));
-
-const groq = process.env.GROQ_API_KEY
-  ? new OpenAI({ apiKey: process.env.GROQ_API_KEY, baseURL: 'https://api.groq.com/openai/v1' })
-  : null;
 
 function sessionIdOf(req) {
   return (
@@ -123,17 +118,19 @@ function synthesizeSpul(lookup) {
   ].join('\n');
 }
 
-app.get('/api/health', async (req, res) => {
+app.get(['/api/health', '/v1/health'], async (req, res) => {
   const scan = scanWorkplaceClone();
   const lastImport = await store.latestImport();
+  const models = llm.status();
   res.json({
     ok: true,
     product: 'WebPoint Tax Certificate Processor',
     modules: ['TCS', 'TPA', 'RDS', 'SPUL'],
     firstCounty: { county: 'Chippewa', state: 'WI' },
     db: store.usingPostgres() ? 'postgres' : 'memory',
-    groq: Boolean(groq),
-    model: groq ? GROQ_MODEL : 'spul-db',
+    groq: models.groq,
+    model: models.model,
+    llm: models,
     extractors: await extractors.stats(),
     operator: { central: true },
     oauth: oauth.oauthStatus(),
@@ -384,7 +381,7 @@ app.get('/api/extractors/stats', async (req, res) => {
   const slots = await extractors.stats();
   slots.catalog = loadCounties().length;
   const working = await extractors.listActive(12);
-  res.json({ ok: true, slots, working, model: groq ? GROQ_MODEL : 'spul-db' });
+  res.json({ ok: true, slots, working, model: llm.status().model });
 });
 
 app.get('/api/extractors', async (req, res) => {
@@ -435,40 +432,33 @@ app.post('/api/intelligence', async (req, res) => {
     });
   }
   let talk = card.summary;
-  if (groq) {
-    try {
-      const locked = lookup.officialUrl || '';
-      const memoryBits = [
-        agent.parcel_format ? `Parcel format: ${agent.parcel_format}` : '',
-        Array.isArray(agent.exceptions) && agent.exceptions.length
-          ? `Known exceptions: ${agent.exceptions.slice(-3).map((e) => e.value || e.kind).join('; ')}`
-          : ''
-      ]
-        .filter(Boolean)
-        .join('\n');
-      const completion = await groq.chat.completions.create({
-        model: GROQ_MODEL,
-        temperature: 0.1,
-        max_tokens: 280,
-        messages: [
-          {
-            role: 'system',
-            content:
-              'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. If amounts are unknown, say to confirm on the collector page.'
-          },
-          {
-            role: 'user',
-            content: `Query: ${q}\nCounty agent: ${lookup.key}\nEntity: ${lookup.entity}\nLocked URL: ${locked || '(none)'}\nExtractor v${agent.version}\n${memoryBits}\nWrite 2 short sentences.`
-          }
-        ]
-      });
-      const text = completion.choices?.[0]?.message?.content?.trim();
-      if (text) talk = text;
-    } catch (err) {
-      console.error('intelligence llm', err.message);
-    }
-  }
+  const memoryBits = [
+    agent.parcel_format ? `Parcel format: ${agent.parcel_format}` : '',
+    Array.isArray(agent.exceptions) && agent.exceptions.length
+      ? `Known exceptions: ${agent.exceptions.slice(-3).map((e) => e.value || e.kind).join('; ')}`
+      : ''
+  ]
+    .filter(Boolean)
+    .join('\n');
+  const spoken = await llm.complete({
+    temperature: 0.1,
+    max_tokens: 280,
+    messages: [
+      {
+        role: 'system',
+        content:
+          'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. If amounts are unknown, say to confirm on the collector page.'
+      },
+      {
+        role: 'user',
+        content: `Query: ${q}\nCounty agent: ${lookup.key}\nEntity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nExtractor v${agent.version}\n${memoryBits}\nWrite 2 short sentences.`
+      }
+    ]
+  });
+  if (spoken.ok && spoken.text) talk = spoken.text;
   card.summary = talk;
+  await store.addConversation(sessionIdOf(req), 'user', q, null);
+  await store.addConversation(sessionIdOf(req), 'assistant', talk, spoken.model || llm.status().model);
   res.json({
     ok: true,
     query: q,
@@ -519,32 +509,31 @@ app.post('/api/extractors/heal', async (req, res) => {
   const previous = await extractors.ensureSlot(lookup);
   const urlDecision = resolveHealedUrl(lookup, req.body?.proposed_url);
   let method = methodFromFeedback(feedback, lookup, previous);
-  if (groq) {
+  const repaired = await llm.complete({
+    heavy: true,
+    temperature: 0,
+    max_tokens: 400,
+    messages: [
+      {
+        role: 'system',
+        content:
+          'Return JSON only: {"steps":["..."],"search_by":["parcel","owner"],"notes":"..."}. You are repairing a tax-collector EXTRACTOR. Never invent a URL. The search_url is locked if provided.'
+      },
+      {
+        role: 'user',
+        content: `Entity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nPrior method: ${JSON.stringify(previous.method)}\nUser feedback: ${feedback}`
+      }
+    ]
+  });
+  if (repaired.ok && repaired.text) {
     try {
-      const completion = await groq.chat.completions.create({
-        model: GROQ_MODEL,
-        temperature: 0,
-        max_tokens: 400,
-        messages: [
-          {
-            role: 'system',
-            content:
-              'Return JSON only: {"steps":["..."],"search_by":["parcel","owner"],"notes":"..."}. You are repairing a tax-collector EXTRACTOR. Never invent a URL. The search_url is locked if provided.'
-          },
-          {
-            role: 'user',
-            content: `Entity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nPrior method: ${JSON.stringify(previous.method)}\nUser feedback: ${feedback}`
-          }
-        ]
-      });
-      const text = completion.choices?.[0]?.message?.content || '';
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      const jsonMatch = repaired.text.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         const parsedMethod = JSON.parse(jsonMatch[0]);
         if (Array.isArray(parsedMethod.steps) && parsedMethod.steps.length) method = parsedMethod;
       }
     } catch (err) {
-      console.error('heal llm', err.message);
+      console.error('heal llm parse', err.message);
     }
   }
   const saved = await extractors.saveNewVersion({
@@ -597,7 +586,7 @@ app.get('/api/suggest', (req, res) => {
   res.json({ ok: true, q, suggestions: suggestJurisdictions(q, limit) });
 });
 
-app.post('/api/chat', async (req, res) => {
+app.post(['/api/chat', '/v1/chat'], async (req, res) => {
   const message = (req.body?.message || '').trim();
   if (!message) return res.status(400).json({ error: 'Message is required' });
   const sid = sessionIdOf(req);
@@ -633,10 +622,10 @@ app.post('/api/chat', async (req, res) => {
       fullResponse = enforceLockedSpulUrl(fullResponse, lookup.url, lookup.confidence);
     }
     await store.addConversation(sid, 'user', message, null);
-    await store.addConversation(sid, 'assistant', fullResponse, groq ? GROQ_MODEL : 'spul-db');
+    await store.addConversation(sid, 'assistant', fullResponse, llm.status().model);
   };
 
-  if (!groq) {
+  if (!llm.groqEnabled()) {
     fullResponse = synthesizeSpul(lookup || { confidence: 'not_found', entityNote: 'No jurisdiction detected.' });
     if (chunks.length) {
       fullResponse += `\n\nPLAYBOOK:\n- ${chunks[0].title}`;
@@ -667,11 +656,7 @@ app.post('/api/chat', async (req, res) => {
       urlLocked && lookup.url
         ? `${message}\n\n[URL already verified in SPUL database. Output SPUL_ENTITY, SPUL_CONFIDENCE, SPUL_ACTIONS, SPUL_CONTEXT only — SPUL_URL is locked to: ${lookup.url}]`
         : message;
-    const stream = await groq.chat.completions.create({
-      model: GROQ_MODEL,
-      temperature: 0.1,
-      max_tokens: 700,
-      stream: true,
+    const stream = await llm.streamGroq({
       messages: [
         { role: 'system', content: systemContent },
         ...history.slice(-12),
@@ -695,6 +680,52 @@ app.post('/api/chat', async (req, res) => {
     res.write(`data: ${JSON.stringify({ type: 'error', content: fullResponse })}\n\n`);
     res.end();
   }
+});
+
+app.post(['/v1/feedback', '/api/feedback'], async (req, res) => {
+  const body = String(req.body?.feedback || req.body?.body || req.body?.message || '').trim();
+  if (body.length < 4) {
+    return res.status(400).json({ ok: false, error: 'Feedback is empty' });
+  }
+  const account = await resolveAccount(req);
+  let jurisdictionKey = String(req.body?.jurisdiction_key || req.body?.county_key || '').trim();
+  let lookup = null;
+  if (!jurisdictionKey) {
+    const bundled = lookupBundle(req.body?.q || body, req.body?.county, req.body?.state);
+    if (bundled.ok) {
+      jurisdictionKey = bundled.key;
+      lookup = bundled;
+    }
+  }
+  const row = await extractors.addFeedback({
+    accountId: account?.id || null,
+    jurisdictionKey,
+    kind: req.body?.kind || 'tjos',
+    body,
+    extractorId: req.body?.extractor_id
+  });
+  let discoveries = [];
+  if (jurisdictionKey) {
+    try {
+      const routed = await operator.dispatch({
+        q: req.body?.q || body,
+        accountId: account?.id,
+        feedback: body
+      });
+      discoveries = routed.discoveries || [];
+    } catch (err) {
+      console.error('feedback dispatch', err.message);
+    }
+  }
+  res.json({
+    ok: true,
+    persisted: true,
+    db: store.usingPostgres() ? 'postgres' : 'memory',
+    feedback: row,
+    jurisdiction_key: jurisdictionKey || null,
+    lookup,
+    discoveries
+  });
 });
 
 app.post('/api/orders', async (req, res) => {
@@ -841,7 +872,7 @@ async function main() {
   const db = await store.init();
   const scan = scanWorkplaceClone();
   const server = app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Tax Certificate Processor on 0.0.0.0:${PORT} db=${db.mode} groq=${Boolean(groq)} workplace=${scan.found}`);
+    console.log(`Tax Certificate Processor on 0.0.0.0:${PORT} db=${db.mode} llm=${llm.status().model} workplace=${scan.found}`);
   });
   return server;
 }
