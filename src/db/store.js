@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const accounts = require('./accounts');
 
 const SCHEMA_PATH = path.join(__dirname, 'schema.sql');
 const MAX_PARCELS = 10;
@@ -30,6 +31,7 @@ async function init() {
   const url = process.env.DATABASE_URL;
   if (!url) {
     seedMemoryKnowledge();
+    accounts.attachPool(null);
     return { mode: 'memory' };
   }
   const { Pool } = require('pg');
@@ -39,6 +41,7 @@ async function init() {
   });
   const sql = fs.readFileSync(SCHEMA_PATH, 'utf8');
   await pool.query(sql);
+  accounts.attachPool(pool);
   await seedPostgresKnowledge();
   return { mode: 'postgres' };
 }
@@ -164,6 +167,7 @@ async function createOrder(input) {
     status: 'researching',
     source: input.source || 'embed',
     notes: input.notes || '',
+    account_id: input.account_id || null,
     created_at: new Date().toISOString()
   };
   const parcels = (input.parcels || []).map((p, i) => ({
@@ -183,11 +187,11 @@ async function createOrder(input) {
 
   if (usingPostgres()) {
     await pool.query(
-      `INSERT INTO orders (id, product, file_number, client_name, county, state, closing_date, status, source, notes)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+      `INSERT INTO orders (id, product, file_number, client_name, county, state, closing_date, status, source, notes, account_id)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
       [
         order.id, order.product, order.file_number, order.client_name, order.county,
-        order.state, order.closing_date, order.status, order.source, order.notes
+        order.state, order.closing_date, order.status, order.source, order.notes, order.account_id
       ]
     );
     for (const p of parcels) {
@@ -249,12 +253,22 @@ async function getOrder(orderId) {
   return { order, parcels, certificates };
 }
 
-async function listOrders(limit = 20) {
+async function listOrders(limit = 20, accountId) {
   if (usingPostgres()) {
+    if (accountId) {
+      const { rows } = await pool.query(
+        `SELECT * FROM orders WHERE account_id = $1 ORDER BY created_at DESC LIMIT $2`,
+        [accountId, limit]
+      );
+      return rows;
+    }
     const { rows } = await pool.query(`SELECT * FROM orders ORDER BY created_at DESC LIMIT $1`, [limit]);
     return rows;
   }
-  return memory.orders.slice(0, limit);
+  const rows = accountId
+    ? memory.orders.filter((o) => o.account_id === accountId)
+    : memory.orders;
+  return rows.slice(0, limit);
 }
 
 async function addConversation(sessionId, role, content, model) {
@@ -314,6 +328,7 @@ async function close() {
     await pool.end();
     pool = null;
   }
+  accounts.attachPool(null);
 }
 
 module.exports = {

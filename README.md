@@ -57,6 +57,7 @@ Set in the dashboard (never commit):
 3. Paste `public/SQUARESPACE_EMBED.html` (update the `src` host after the first Render deploy).
 4. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
 5. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide** and **Architecture**.
+6. Page load opens **Create account / Sign in** (email + password, no Apple). After signup the processor is live. The avatar opens a mobile account sheet (profile, recents, updates, settings, invites, messages) and **View profile** opens the desktop account workspace. Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
 
 Optional script tag (host will match the request):
 

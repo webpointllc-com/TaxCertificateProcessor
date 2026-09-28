@@ -9,6 +9,9 @@
   localStorage.setItem('wp_tcs_session', sessionId);
   var memberKey = new URLSearchParams(location.search).get('k') || '';
   var lastLookup = null;
+  var authToken = localStorage.getItem('wp_tcs_token') || '';
+  var account = null;
+  var accountBundle = { recents: [], messages: [], invites: [], updates: [] };
 
   var COPY = {
     TCS: {
@@ -49,7 +52,161 @@
     var h = { 'X-Session-Id': sessionId };
     if (json) h['Content-Type'] = 'application/json';
     if (memberKey) h['X-Member-Key'] = memberKey;
+    if (authToken) h['X-Auth-Token'] = authToken;
     return h;
+  }
+
+  function $(id) { return document.getElementById(id); }
+
+  function setSignedIn(nextAccount, token) {
+    account = nextAccount;
+    if (token) {
+      authToken = token;
+      localStorage.setItem('wp_tcs_token', token);
+    }
+    var canvas = $('design-canvas');
+    var gate = $('auth-gate');
+    var chip = $('acct-open');
+    if (account) {
+      canvas.classList.remove('signed-out');
+      gate.hidden = true;
+      chip.hidden = false;
+      paintAccount();
+    } else {
+      canvas.classList.add('signed-out');
+      gate.hidden = false;
+      chip.hidden = true;
+      $('account-overlay').hidden = true;
+    }
+  }
+
+  function paintAccount() {
+    if (!account) return;
+    var initial = account.initial || (account.display_name || 'U').charAt(0).toUpperCase();
+    ['acct-chip-ava', 'acct-avatar', 'acct-act-ava', 'prof-avatar', 'desk-avatar'].forEach(function (id) {
+      var n = $(id);
+      if (n) n.textContent = initial;
+    });
+    $('acct-chip-name').textContent = account.display_name;
+    $('acct-name').textContent = account.display_name;
+    $('prof-name').textContent = account.display_name;
+    $('desk-name').textContent = account.display_name;
+    $('prof-email').textContent = account.email;
+    $('desk-email').textContent = account.email;
+    $('prof-company').textContent = account.company || 'No company on file';
+    $('set-name').value = account.display_name;
+    $('set-company').value = account.company || '';
+    $('set-activity').checked = account.activity_on !== false;
+    $('acct-act-label').textContent = account.activity_on !== false ? 'On' : 'Turn on';
+    $('prof-activity').textContent = account.activity_on !== false ? 'On' : 'Off';
+    if (account.created_at) {
+      var d = new Date(account.created_at);
+      $('prof-since').textContent = isNaN(d.getTime()) ? '—' : d.toLocaleDateString();
+    }
+  }
+
+  function tickClock() {
+    var n = $('acct-clock');
+    if (!n) return;
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+    n.textContent = h + ':' + (m < 10 ? '0' : '') + m;
+  }
+
+  function showAcctView(name) {
+    document.querySelectorAll('.acct-view').forEach(function (v) {
+      v.hidden = v.id !== 'view-' + name;
+    });
+    $('account-sheet').classList.toggle('is-wide', name === 'desktop' || name === 'profile');
+  }
+
+  function openAccount(view) {
+    if (!account) return;
+    $('account-overlay').hidden = false;
+    showAcctView(view || 'menu');
+    tickClock();
+    refreshAccount();
+  }
+
+  function closeAccount() {
+    $('account-overlay').hidden = true;
+    showAcctView('menu');
+  }
+
+  function listOrEmpty(items, render, empty) {
+    if (!items || !items.length) {
+      return '<p class="acct-empty">' + escapeHtml(empty) + '</p>';
+    }
+    return items.map(render).join('');
+  }
+
+  function recentHtml(r) {
+    return '<button type="button" class="acct-item" data-kind="' + escapeHtml(r.kind || '') + '" data-label="' + escapeHtml(r.label || '') + '">' +
+      '<strong>' + escapeHtml(r.label || 'Recent') + '</strong>' +
+      '<span>' + escapeHtml(r.detail || r.kind || '') + '</span></button>';
+  }
+
+  function orderHtml(o) {
+    return '<article class="acct-item"><strong>' + escapeHtml((o.product || 'TCS') + ' · ' + (o.county || '') + ' ' + (o.state || '')) + '</strong>' +
+      '<span>' + escapeHtml((o.status || '') + (o.file_number ? ' · ' + o.file_number : '')) + '</span></article>';
+  }
+
+  function messageHtml(m) {
+    return '<article class="acct-item"><strong>' + escapeHtml(m.body || '') + '</strong><span>' + escapeHtml(m.created_at || '') + '</span></article>';
+  }
+
+  function inviteHtml(i) {
+    return '<article class="acct-item"><strong>' + escapeHtml(i.email) + '</strong><span>Invited</span></article>';
+  }
+
+  function paintLists() {
+    $('recents-list').innerHTML = listOrEmpty(accountBundle.recents, recentHtml, 'No recents yet. Search a county or process a batch.');
+    $('desk-recents').innerHTML = listOrEmpty(accountBundle.recents.slice(0, 4), recentHtml, 'None yet');
+    $('updates-list').innerHTML = listOrEmpty(accountBundle.updates, orderHtml, 'No certificate updates yet.');
+    $('desk-updates').innerHTML = listOrEmpty(accountBundle.updates.slice(0, 4), orderHtml, 'None yet');
+    $('messages-list').innerHTML = listOrEmpty(accountBundle.messages, messageHtml, 'No messages yet.');
+    $('desk-messages').innerHTML = listOrEmpty(accountBundle.messages.slice(0, 4), messageHtml, 'None yet');
+    $('invites-list').innerHTML = listOrEmpty(accountBundle.invites, inviteHtml, 'No invites sent.');
+  }
+
+  async function refreshAccount() {
+    if (!authToken) return;
+    try {
+      var res = await fetch('/api/account', { headers: headers() });
+      var data = await res.json();
+      if (!data.ok) return;
+      account = data.account;
+      accountBundle = {
+        recents: data.recents || [],
+        messages: data.messages || [],
+        invites: data.invites || [],
+        updates: data.updates || []
+      };
+      paintAccount();
+      paintLists();
+    } catch (e) {}
+  }
+
+  async function rememberRecent(kind, label, detail) {
+    if (!authToken || !label) return;
+    try {
+      await fetch('/api/recents', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({ kind: kind, label: label, detail: detail || '' })
+      });
+    } catch (e) {}
+  }
+
+  async function signOut() {
+    try { await fetch('/api/logout', { method: 'POST', headers: headers(true) }); } catch (e) {}
+    authToken = '';
+    localStorage.removeItem('wp_tcs_token');
+    account = null;
+    accountBundle = { recents: [], messages: [], invites: [], updates: [] };
+    setSignedIn(null);
+    $('tab-login').click();
   }
 
   function el(html) {
@@ -278,6 +435,13 @@
         data,
         data.urlLocked ? 'Locked official tax search page.' : 'No invented URL — operator correction needed.'
       );
+      rememberRecent(
+        'search',
+        data.jurisdiction && data.jurisdiction.county
+          ? (data.jurisdiction.county + ' County ' + (data.jurisdiction.state || ''))
+          : q,
+        data.urlLocked ? 'Locked collector URL' : (data.source || 'Lookup')
+      );
       setStatus(
         data.urlLocked
           ? ('Locked: ' + (data.entity || data.jurisdiction.county || 'collector'))
@@ -418,4 +582,229 @@
       spul.className = 'pill ok';
     })
     .catch(function () {});
+
+  function setAuthError(msg) {
+    var n = $('auth-error');
+    if (!msg) { n.hidden = true; n.textContent = ''; return; }
+    n.hidden = false;
+    n.textContent = msg;
+  }
+
+  function showAuthTab(which) {
+    var signup = which === 'signup';
+    $('tab-signup').classList.toggle('active', signup);
+    $('tab-login').classList.toggle('active', !signup);
+    $('tab-signup').setAttribute('aria-selected', signup ? 'true' : 'false');
+    $('tab-login').setAttribute('aria-selected', signup ? 'false' : 'true');
+    $('signup-form').hidden = !signup;
+    $('login-form').hidden = signup;
+    setAuthError('');
+  }
+
+  $('tab-signup').addEventListener('click', function () { showAuthTab('signup'); });
+  $('tab-login').addEventListener('click', function () { showAuthTab('login'); });
+
+  $('signup-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    setAuthError('');
+    if ($('su-pass').value !== $('su-pass2').value) {
+      setAuthError('Passwords do not match');
+      return;
+    }
+    $('su-submit').disabled = true;
+    try {
+      var res = await fetch('/api/signup', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({
+          display_name: $('su-name').value.trim(),
+          email: $('su-email').value.trim(),
+          company: $('su-company').value.trim(),
+          password: $('su-pass').value
+        })
+      });
+      var data = await res.json();
+      if (!data.ok) { setAuthError(data.error || 'Could not create the account'); return; }
+      setSignedIn(data.account, data.token);
+    } catch (err) {
+      setAuthError('Network error creating the account');
+    } finally {
+      $('su-submit').disabled = false;
+    }
+  });
+
+  $('login-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    setAuthError('');
+    $('li-submit').disabled = true;
+    try {
+      var res = await fetch('/api/login', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({
+          email: $('li-email').value.trim(),
+          password: $('li-pass').value
+        })
+      });
+      var data = await res.json();
+      if (!data.ok) { setAuthError(data.error || 'Could not sign in'); return; }
+      setSignedIn(data.account, data.token);
+    } catch (err) {
+      setAuthError('Network error signing in');
+    } finally {
+      $('li-submit').disabled = false;
+    }
+  });
+
+  $('acct-open').addEventListener('click', function () { openAccount('menu'); });
+  $('acct-close-peek').addEventListener('click', closeAccount);
+  $('acct-view-profile').addEventListener('click', function () { showAcctView('desktop'); });
+  $('acct-add').addEventListener('click', function () { showAcctView('add'); });
+  $('acct-recents').addEventListener('click', function () { showAcctView('recents'); });
+  $('acct-updates').addEventListener('click', function () { showAcctView('updates'); });
+  $('acct-settings').addEventListener('click', function () { showAcctView('settings'); });
+  $('acct-invite').addEventListener('click', function () { showAcctView('invite'); });
+  $('acct-messages').addEventListener('click', function () { showAcctView('messages'); });
+  $('acct-compose-ico').addEventListener('click', function () { showAcctView('compose'); });
+  $('acct-new-msg').addEventListener('click', function () { showAcctView('compose'); });
+  $('acct-compose-from-list').addEventListener('click', function () { showAcctView('compose'); });
+  $('acct-logout').addEventListener('click', signOut);
+  $('acct-switch').addEventListener('click', signOut);
+
+  document.querySelectorAll('.acct-back').forEach(function (btn) {
+    btn.addEventListener('click', function () { showAcctView(btn.getAttribute('data-back') || 'menu'); });
+  });
+  document.querySelectorAll('[data-open]').forEach(function (btn) {
+    btn.addEventListener('click', function () { showAcctView(btn.getAttribute('data-open')); });
+  });
+
+  $('acct-activity').addEventListener('click', async function () {
+    if (!account) return;
+    var next = account.activity_on === false;
+    try {
+      var res = await fetch('/api/me', {
+        method: 'PATCH',
+        headers: headers(true),
+        body: JSON.stringify({ activity_on: next })
+      });
+      var data = await res.json();
+      if (data.ok) {
+        account = data.account;
+        paintAccount();
+      }
+    } catch (e) {}
+  });
+
+  $('settings-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    $('settings-status').textContent = 'Saving…';
+    try {
+      var res = await fetch('/api/me', {
+        method: 'PATCH',
+        headers: headers(true),
+        body: JSON.stringify({
+          display_name: $('set-name').value.trim(),
+          company: $('set-company').value.trim(),
+          activity_on: $('set-activity').checked
+        })
+      });
+      var data = await res.json();
+      if (!data.ok) { $('settings-status').textContent = data.error || 'Could not save'; return; }
+      account = data.account;
+      paintAccount();
+      $('settings-status').textContent = 'Saved';
+    } catch (err) {
+      $('settings-status').textContent = 'Network error';
+    }
+  });
+
+  async function sendInvite(email, statusId) {
+    var status = $(statusId);
+    status.textContent = 'Sending…';
+    try {
+      var res = await fetch('/api/invites', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({ email: email })
+      });
+      var data = await res.json();
+      if (!data.ok) { status.textContent = data.error || 'Could not invite'; return; }
+      status.textContent = 'Invite sent to ' + email;
+      refreshAccount();
+    } catch (err) {
+      status.textContent = 'Network error';
+    }
+  }
+
+  $('invite-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    sendInvite($('invite-email').value.trim(), 'invite-status');
+    $('invite-email').value = '';
+  });
+  $('add-invite-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    sendInvite($('add-invite-email').value.trim(), 'add-invite-status');
+    $('add-invite-email').value = '';
+  });
+
+  $('compose-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    $('compose-status').textContent = 'Sending…';
+    try {
+      var res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({ body: $('compose-body').value.trim() })
+      });
+      var data = await res.json();
+      if (!data.ok) { $('compose-status').textContent = data.error || 'Could not send'; return; }
+      $('compose-body').value = '';
+      $('compose-status').textContent = 'Sent';
+      await refreshAccount();
+      showAcctView('messages');
+    } catch (err) {
+      $('compose-status').textContent = 'Network error';
+    }
+  });
+
+  $('recents-list').addEventListener('click', function (e) {
+    var item = e.target.closest('.acct-item');
+    if (!item) return;
+    var label = item.getAttribute('data-label') || '';
+    closeAccount();
+    if (label) {
+      $('hero-input').value = label;
+      runHeroSearch(label);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !$('account-overlay').hidden) closeAccount();
+  });
+
+  async function bootSession() {
+    $('design-canvas').classList.add('signed-out');
+    tickClock();
+    setInterval(tickClock, 30000);
+    if (!authToken) {
+      setSignedIn(null);
+      return;
+    }
+    try {
+      var res = await fetch('/api/me', { headers: headers() });
+      var data = await res.json();
+      if (data.ok && data.account) {
+        setSignedIn(data.account, authToken);
+        refreshAccount();
+      } else {
+        authToken = '';
+        localStorage.removeItem('wp_tcs_token');
+        setSignedIn(null);
+      }
+    } catch (e) {
+      setSignedIn(null);
+    }
+  }
+
+  bootSession();
 })();

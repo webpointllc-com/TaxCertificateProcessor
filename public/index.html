@@ -25,6 +25,10 @@
           <span class="pill" id="db-pill">DB …</span>
           <span class="pill" id="spul-pill">S-PUL ready</span>
           <span class="pill" id="passport-pill">Passport …</span>
+          <button type="button" class="acct-chip" id="acct-open" hidden>
+            <span class="acct-chip-ava" id="acct-chip-ava">B</span>
+            <span id="acct-chip-name">Account</span>
+          </button>
         </div>
       </header>
 
@@ -81,6 +85,258 @@
           </form>
         </aside>
       </main>
+
+      <div id="auth-gate" class="auth-gate">
+        <section class="auth-pitch">
+          <div class="brand auth-brand-row">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <div>
+              <div class="brand-name">WEBPOINT LLC</div>
+              <div class="brand-sub">Members tool — tax certificates</div>
+            </div>
+          </div>
+          <h1>Create an account to run certificates, recents, and team messages.</h1>
+          <p>Same flow as any working app: page load, sign up with email, then TCS / TPA / RDS / Search Spul. No Apple sign-in.</p>
+          <ul class="auth-points">
+            <li>Locked collector URLs — Chippewa WI LandNav first</li>
+            <li>Batches capped at 10 parcels (LandNav / demo)</li>
+            <li>Account sheet: profile, recents, updates, settings, invites, messages</li>
+          </ul>
+        </section>
+        <section class="auth-card">
+          <div class="auth-tabs" role="tablist">
+            <button type="button" class="auth-tab active" id="tab-signup" role="tab" aria-selected="true">Create account</button>
+            <button type="button" class="auth-tab" id="tab-login" role="tab" aria-selected="false">Sign in</button>
+          </div>
+          <form id="signup-form" autocomplete="on">
+            <label>Name on the account<input id="su-name" name="name" placeholder="Bill McCreary" required minlength="2"></label>
+            <label>Work email<input id="su-email" name="email" type="email" placeholder="billjr@webpointllc.com" required></label>
+            <label>Company <span class="opt">(optional)</span><input id="su-company" name="company" placeholder="Title company / tax service"></label>
+            <div class="grid-2">
+              <label>Password<input id="su-pass" name="password" type="password" minlength="8" required placeholder="8+ characters"></label>
+              <label>Confirm<input id="su-pass2" name="password2" type="password" minlength="8" required></label>
+            </div>
+            <button type="submit" class="primary" id="su-submit">Create account</button>
+          </form>
+          <form id="login-form" hidden autocomplete="on">
+            <label>Work email<input id="li-email" name="email" type="email" required></label>
+            <label>Password<input id="li-pass" name="password" type="password" required></label>
+            <button type="submit" class="primary" id="li-submit">Sign in</button>
+          </form>
+          <p id="auth-error" class="auth-error" hidden></p>
+          <p class="auth-note">Email and password only. We do not use Apple, Google, or Facebook login.</p>
+        </section>
+      </div>
+
+      <div id="account-overlay" class="account-overlay" hidden>
+        <div class="account-sheet" id="account-sheet" role="dialog" aria-label="Account">
+          <div class="acct-view" id="view-menu">
+            <div class="ios-status" aria-hidden="true">
+              <span class="ios-time" id="acct-clock">10:00</span>
+              <span class="ios-sys">
+                <span class="ios-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="ios-5g">5G</span>
+                <span class="ios-batt"><span></span></span>
+              </span>
+            </div>
+            <button type="button" class="acct-profile-row" id="acct-view-profile">
+              <span class="acct-avatar" id="acct-avatar">B</span>
+              <span class="acct-who">
+                <span class="acct-name" id="acct-name">Account</span>
+                <span class="acct-sub">View profile</span>
+              </span>
+            </button>
+            <div class="acct-rule"></div>
+            <button type="button" class="acct-row acct-row-stacked" id="acct-add">
+              <span class="acct-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+              </span>
+              <span class="acct-row-text">
+                <span class="acct-row-title">Add account</span>
+                <span class="acct-row-sub">Add a title company or colleague</span>
+              </span>
+            </button>
+            <button type="button" class="acct-row" id="acct-recents">
+              <span class="acct-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.2"/><path d="M12 8v4.4l2.8 1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="acct-row-title">Recents</span>
+            </button>
+            <button type="button" class="acct-row" id="acct-updates">
+              <span class="acct-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4.5 13.5v-2.2a7.5 7.5 0 0 1 15 0v2.2l1.3 2.2H3.2l1.3-2.2Z" stroke-linejoin="round"/><path d="M9.2 18.2a2.8 2.8 0 0 0 5.6 0" stroke-linecap="round"/></svg>
+              </span>
+              <span class="acct-row-title">Your Updates</span>
+            </button>
+            <button type="button" class="acct-row" id="acct-settings">
+              <span class="acct-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.1"/><path d="M19.4 12.8a7.6 7.6 0 0 0 .06-1.6l2-1.2-1.9-3.3-2.3.7a7.7 7.7 0 0 0-1.4-.8L15.4 4h-3.8l-.5 2.6a7.7 7.7 0 0 0-1.4.8l-2.3-.7-1.9 3.3 2 1.2a7.6 7.6 0 0 0 0 1.6l-2 1.2 1.9 3.3 2.3-.7c.44.34.9.61 1.4.82L11.6 20h3.8l.5-2.58c.5-.2.97-.48 1.4-.82l2.3.7 1.9-3.3-2-1.2Z"/></svg>
+              </span>
+              <span class="acct-row-title">Settings and privacy</span>
+            </button>
+            <div class="acct-circles">
+              <button type="button" class="acct-circle-btn" id="acct-activity">
+                <span class="acct-avatar sm" id="acct-act-ava">B</span>
+                <span class="acct-circle-label">Activity</span>
+                <span class="acct-circle-sub" id="acct-act-label">Turn on</span>
+              </button>
+              <button type="button" class="acct-circle-btn" id="acct-invite">
+                <span class="acct-plus-circle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6v12M6 12h12" stroke-linecap="round"/></svg>
+                </span>
+                <span class="acct-circle-label">Invite Friends</span>
+              </button>
+            </div>
+            <div class="acct-msg-head">
+              <button type="button" class="acct-msg-title" id="acct-messages">
+                Messages <span class="acct-chev" aria-hidden="true">›</span>
+              </button>
+              <button type="button" class="acct-compose-btn" id="acct-compose-ico" aria-label="New message">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="5.5" width="16" height="13" rx="2.2"/><path d="M8 12.2h5.5M8 15.1h8" stroke-linecap="round"/><path d="M14.6 5.5 17.8 3.2 20.5 6l-3.1 2.4" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <p class="acct-msg-copy">Share certificates and county lookups with your team, right in WebPoint.</p>
+            <button type="button" class="acct-row acct-new-msg" id="acct-new-msg">
+              <span class="acct-plus-circle sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="5.5" width="16" height="13" rx="2.2"/><path d="M8 12.2h5.5M8 15.1h8" stroke-linecap="round"/><path d="M14.6 5.5 17.8 3.2 20.5 6l-3.1 2.4" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="acct-row-title">New message</span>
+            </button>
+          </div>
+
+          <div class="acct-view" id="view-profile" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Profile</h2>
+            </div>
+            <div class="acct-profile-hero">
+              <span class="acct-avatar xl" id="prof-avatar">B</span>
+              <div>
+                <div class="acct-name" id="prof-name">Account</div>
+                <div class="acct-sub" id="prof-email"></div>
+                <div class="acct-sub" id="prof-company"></div>
+              </div>
+            </div>
+            <dl class="acct-dl">
+              <div><dt>Member since</dt><dd id="prof-since">—</dd></div>
+              <div><dt>Activity</dt><dd id="prof-activity">—</dd></div>
+            </dl>
+            <p class="acct-hint">This is the desktop profile for the same account. Recents, updates, and messages stay one tap back.</p>
+          </div>
+
+          <div class="acct-view" id="view-add" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Add account</h2>
+            </div>
+            <p class="acct-hint">Invite a title company or colleague into this shop, or switch to another WebPoint email.</p>
+            <form id="add-invite-form" class="acct-form">
+              <label>Colleague email<input id="add-invite-email" type="email" placeholder="colleague@titleco.com" required></label>
+              <button type="submit" class="primary compact">Send invite</button>
+            </form>
+            <p class="acct-inline-status" id="add-invite-status"></p>
+            <button type="button" class="ghost acct-full" id="acct-switch">Sign in with a different email</button>
+          </div>
+
+          <div class="acct-view" id="view-recents" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Recents</h2>
+            </div>
+            <div class="acct-list" id="recents-list"></div>
+          </div>
+
+          <div class="acct-view" id="view-updates" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Your Updates</h2>
+            </div>
+            <div class="acct-list" id="updates-list"></div>
+          </div>
+
+          <div class="acct-view" id="view-settings" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Settings and privacy</h2>
+            </div>
+            <form id="settings-form" class="acct-form">
+              <label>Name<input id="set-name" required minlength="2"></label>
+              <label>Company<input id="set-company"></label>
+              <label class="acct-check">
+                <input id="set-activity" type="checkbox">
+                <span>Show activity to colleagues (county lookups and batches)</span>
+              </label>
+              <button type="submit" class="primary compact">Save settings</button>
+            </form>
+            <p class="acct-inline-status" id="settings-status"></p>
+            <button type="button" class="ghost acct-full danger-ghost" id="acct-logout">Sign out</button>
+          </div>
+
+          <div class="acct-view" id="view-invite" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Invite Friends</h2>
+            </div>
+            <form id="invite-form" class="acct-form">
+              <label>Email<input id="invite-email" type="email" placeholder="name@titleco.com" required></label>
+              <button type="submit" class="primary compact">Send invite</button>
+            </form>
+            <p class="acct-inline-status" id="invite-status"></p>
+            <div class="acct-list" id="invites-list"></div>
+          </div>
+
+          <div class="acct-view" id="view-messages" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Messages</h2>
+              <button type="button" class="acct-compose-btn" id="acct-compose-from-list" aria-label="New message">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="5.5" width="16" height="13" rx="2.2"/><path d="M8 12.2h5.5M8 15.1h8" stroke-linecap="round"/><path d="M14.6 5.5 17.8 3.2 20.5 6l-3.1 2.4" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="acct-list" id="messages-list"></div>
+          </div>
+
+          <div class="acct-view" id="view-compose" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="messages" aria-label="Back">‹</button>
+              <h2>New message</h2>
+            </div>
+            <form id="compose-form" class="acct-form">
+              <label>Message<textarea id="compose-body" rows="5" placeholder="Share a certificate, file number, or county lookup…" required></textarea></label>
+              <button type="submit" class="primary compact">Send</button>
+            </form>
+            <p class="acct-inline-status" id="compose-status"></p>
+          </div>
+
+          <div class="acct-view acct-desktop-view" id="view-desktop" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Account</h2>
+            </div>
+            <div class="desktop-account-grid">
+              <article class="desk-card">
+                <span class="acct-avatar" id="desk-avatar">B</span>
+                <div class="acct-name" id="desk-name">Account</div>
+                <div class="acct-sub" id="desk-email"></div>
+                <button type="button" class="ghost compact-ghost" data-open="profile">Open profile</button>
+              </article>
+              <article class="desk-card">
+                <h3>Recents</h3>
+                <div id="desk-recents" class="acct-list compact-list"></div>
+              </article>
+              <article class="desk-card">
+                <h3>Your Updates</h3>
+                <div id="desk-updates" class="acct-list compact-list"></div>
+              </article>
+              <article class="desk-card">
+                <h3>Messages</h3>
+                <div id="desk-messages" class="acct-list compact-list"></div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="account-peek" id="acct-close-peek" aria-label="Close account menu"></button>
+      </div>
     </div>
   </div>
   <script src="/app.js"></script>

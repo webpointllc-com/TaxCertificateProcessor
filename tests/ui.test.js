@@ -37,4 +37,25 @@ describe('embeddable scaled UI', () => {
     assert.match(js, /\/api\/suggest/);
     assert.match(js, /googleFallback/);
   });
+
+  it('gates the app on email signup and never offers Apple login', () => {
+    assert.match(html, /id="signup-form"/);
+    assert.match(html, /id="login-form"/);
+    assert.match(html, /id="auth-gate"/);
+    assert.match(js, /\/api\/signup/);
+    assert.doesNotMatch(html, /Sign in with Apple|Apple ID|apple-signin/i);
+    assert.doesNotMatch(js, /Sign in with Apple|AppleID/i);
+  });
+
+  it('ships the mobile account sheet plus a desktop account workspace', () => {
+    assert.match(html, /id="account-sheet"/);
+    assert.match(html, /id="acct-recents"/);
+    assert.match(html, /Your Updates/);
+    assert.match(html, /Settings and privacy/);
+    assert.match(html, /Invite Friends/);
+    assert.match(html, /New message/);
+    assert.match(html, /id="view-desktop"/);
+    assert.match(css, /account-sheet/);
+    assert.match(css, /width: 390px/);
+  });
 });

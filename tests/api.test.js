@@ -7,6 +7,24 @@ const { app } = require('../src/server');
 
 let server;
 let base;
+let token;
+
+async function signIn() {
+  const email = `bill.api.${Date.now()}@webpointllc.com`;
+  const res = await fetch(`${base}/api/signup`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      display_name: 'Bill McCreary',
+      email,
+      password: 'correct-horse-battery'
+    })
+  });
+  const body = await res.json();
+  assert.equal(body.ok, true, JSON.stringify(body));
+  token = body.token;
+  return { 'Content-Type': 'application/json', 'X-Auth-Token': token };
+}
 
 describe('HTTP API', () => {
   before(async () => {
@@ -50,10 +68,13 @@ describe('HTTP API', () => {
   });
 
   it('rejects batches over 10 parcels', async () => {
+    const auth = token
+      ? { 'Content-Type': 'application/json', 'X-Auth-Token': token }
+      : await signIn();
     const parcels = Array.from({ length: 11 }, (_, i) => ({ parcel_id: 'P' + i }));
     const res = await fetch(`${base}/api/orders`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: auth,
       body: JSON.stringify({ county: 'Chippewa', state: 'WI', parcels })
     });
     assert.equal(res.status, 400);
@@ -62,9 +83,12 @@ describe('HTTP API', () => {
   });
 
   it('issues a TCS draft for a Chippewa parcel', async () => {
+    const auth = token
+      ? { 'Content-Type': 'application/json', 'X-Auth-Token': token }
+      : await signIn();
     const res = await fetch(`${base}/api/orders`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: auth,
       body: JSON.stringify({
         product: 'TCS',
         file_number: 'TEST-1',

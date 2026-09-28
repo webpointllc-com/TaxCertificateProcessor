@@ -7,6 +7,7 @@ const path = require('path');
 const express = require('express');
 const { OpenAI } = require('openai');
 const store = require('./db/store');
+const accounts = require('./db/accounts');
 const { enrichSystemPrompt, enforceLockedSpulUrl } = require('./services/taxIntelligence');
 const { parseJurisdiction, lookupForApi, suggestJurisdictions } = require('./services/urlFinder');
 const { hasUrlLock, buildLockedUrlPrefix } = require('./services/spulTruth');
@@ -52,6 +53,25 @@ function memberOk(req) {
   if (!need) return { ok: true, gated: false };
   const got = req.get('x-member-key') || req.query.k || req.body?.memberKey;
   return { ok: got === need, gated: true };
+}
+
+function tokenOf(req) {
+  const auth = req.get('authorization') || '';
+  if (/^bearer\s+/i.test(auth)) return auth.replace(/^bearer\s+/i, '').trim();
+  return (req.get('x-auth-token') || req.body?.token || req.query.token || '').trim();
+}
+
+async function resolveAccount(req) {
+  return accounts.accountForToken(tokenOf(req));
+}
+
+async function requireAccount(req, res) {
+  const account = await resolveAccount(req);
+  if (!account) {
+    res.status(401).json({ ok: false, error: 'Sign in to continue' });
+    return null;
+  }
+  return account;
 }
 
 function lookupBundle(message, county, state) {
@@ -115,6 +135,100 @@ app.get('/api/hero-examples', (req, res) => {
       ...getHeroExamples(3)
     ]
   });
+});
+
+app.post('/api/signup', async (req, res) => {
+  try {
+    const result = await accounts.signup(req.body || {});
+    if (!result.ok) return res.status(400).json(result);
+    res.status(201).json(result);
+  } catch (err) {
+    console.error('signup', err.message);
+    res.status(500).json({ ok: false, error: 'Could not create the account' });
+  }
+});
+
+app.post('/api/login', async (req, res) => {
+  try {
+    const result = await accounts.login(req.body || {});
+    if (!result.ok) return res.status(401).json(result);
+    res.json(result);
+  } catch (err) {
+    console.error('login', err.message);
+    res.status(500).json({ ok: false, error: 'Could not sign in' });
+  }
+});
+
+app.post('/api/logout', async (req, res) => {
+  await accounts.logout(tokenOf(req));
+  res.json({ ok: true });
+});
+
+app.get('/api/me', async (req, res) => {
+  const account = await resolveAccount(req);
+  if (!account) return res.status(401).json({ ok: false, error: 'Sign in to continue' });
+  res.json({ ok: true, account });
+});
+
+app.patch('/api/me', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const result = await accounts.updateAccount(account.id, req.body || {});
+  if (!result.ok) return res.status(400).json(result);
+  res.json(result);
+});
+
+app.get('/api/account', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const [recents, messages, invites, orders] = await Promise.all([
+    accounts.listRecents(account.id),
+    accounts.listMessages(account.id),
+    accounts.listInvites(account.id),
+    store.listOrders(40, account.id)
+  ]);
+  res.json({ ok: true, account, recents, messages, invites, updates: orders });
+});
+
+app.get('/api/recents', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  res.json({ ok: true, recents: await accounts.listRecents(account.id) });
+});
+
+app.post('/api/recents', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const row = await accounts.addRecent(account.id, req.body || {});
+  res.status(201).json({ ok: true, recent: row });
+});
+
+app.get('/api/messages', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  res.json({ ok: true, messages: await accounts.listMessages(account.id) });
+});
+
+app.post('/api/messages', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const result = await accounts.addMessage(account.id, req.body?.body);
+  if (!result.ok) return res.status(400).json(result);
+  res.status(201).json(result);
+});
+
+app.get('/api/invites', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  res.json({ ok: true, invites: await accounts.listInvites(account.id) });
+});
+
+app.post('/api/invites', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const result = await accounts.addInvite(account.id, req.body?.email);
+  if (!result.ok) return res.status(400).json(result);
+  res.status(201).json(result);
 });
 
 app.get('/api/lookup', (req, res) => {
@@ -233,6 +347,8 @@ app.post('/api/chat', async (req, res) => {
 });
 
 app.post('/api/orders', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
   const body = req.body || {};
   const parcels = Array.isArray(body.parcels) ? body.parcels : [];
   if (!parcels.length) return res.status(400).json({ ok: false, error: 'Add at least one parcel' });
@@ -255,7 +371,13 @@ app.post('/api/orders', async (req, res) => {
     closing_date: body.closing_date || null,
     source: 'squarespace-embed',
     notes: body.notes || '',
+    account_id: account.id,
     parcels
+  });
+  await accounts.addRecent(account.id, {
+    kind: 'order',
+    label: `${product} · ${county} County ${state}`,
+    detail: `${parcels.length} parcel${parcels.length === 1 ? '' : 's'}${body.file_number ? ' · ' + body.file_number : ''}`
   });
 
   const asOf = new Date().toISOString().slice(0, 10);
@@ -300,15 +422,21 @@ app.post('/api/orders', async (req, res) => {
 });
 
 app.get('/api/orders/:id', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
   const packed = await store.getOrder(req.params.id);
   if (!packed.order) return res.status(404).json({ ok: false, error: 'Order not found' });
+  if (packed.order.account_id && packed.order.account_id !== account.id) {
+    return res.status(404).json({ ok: false, error: 'Order not found' });
+  }
   res.json({ ok: true, ...packed });
 });
 
 app.get('/api/orders', async (req, res) => {
-  const gate = memberOk(req);
-  const rows = await store.listOrders(gate.ok ? 50 : 5);
-  res.json({ ok: true, gated: gate.gated && !gate.ok, orders: rows });
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const rows = await store.listOrders(50, account.id);
+  res.json({ ok: true, orders: rows });
 });
 
 app.get('/api/workplace', (req, res) => {
