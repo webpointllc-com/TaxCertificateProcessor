@@ -156,3 +156,86 @@ CREATE TABLE IF NOT EXISTS invites (
 
 ALTER TABLE orders ADD COLUMN IF NOT EXISTS account_id TEXT;
 CREATE INDEX IF NOT EXISTS orders_account_idx ON orders (account_id, created_at DESC);
+
+ALTER TABLE accounts ADD COLUMN IF NOT EXISTS learn_consent BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE accounts ADD COLUMN IF NOT EXISTS email_verified BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE accounts ADD COLUMN IF NOT EXISTS plan TEXT NOT NULL DEFAULT 'free';
+ALTER TABLE accounts ADD COLUMN IF NOT EXISTS search_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE accounts ADD COLUMN IF NOT EXISTS member_code_id TEXT;
+
+CREATE TABLE IF NOT EXISTS email_otps (
+  id TEXT PRIMARY KEY,
+  email TEXT NOT NULL,
+  purpose TEXT NOT NULL,
+  code_hash TEXT NOT NULL,
+  salt TEXT NOT NULL,
+  account_id TEXT,
+  attempts INTEGER NOT NULL DEFAULT 0,
+  expires_at TIMESTAMPTZ NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS email_otps_email_idx ON email_otps (email, purpose, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS member_codes (
+  id TEXT PRIMARY KEY,
+  code_hash TEXT NOT NULL,
+  salt TEXT NOT NULL,
+  code_hint TEXT NOT NULL,
+  label TEXT,
+  seats INTEGER NOT NULL DEFAULT 25,
+  redeemed INTEGER NOT NULL DEFAULT 0,
+  active BOOLEAN NOT NULL DEFAULT true,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS guest_usage (
+  session_id TEXT PRIMARY KEY,
+  search_count INTEGER NOT NULL DEFAULT 0,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS extractors (
+  id TEXT PRIMARY KEY,
+  jurisdiction_key TEXT NOT NULL,
+  county TEXT NOT NULL,
+  state TEXT NOT NULL,
+  entity TEXT,
+  search_url TEXT,
+  method JSONB NOT NULL DEFAULT '{}'::jsonb,
+  version INTEGER NOT NULL DEFAULT 1,
+  status TEXT NOT NULL DEFAULT 'active',
+  source TEXT NOT NULL DEFAULT 'seed',
+  validated BOOLEAN NOT NULL DEFAULT false,
+  notes TEXT,
+  account_id TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS extractors_key_idx ON extractors (jurisdiction_key, status, version DESC);
+
+CREATE TABLE IF NOT EXISTS extractor_versions (
+  id TEXT PRIMARY KEY,
+  extractor_id TEXT,
+  jurisdiction_key TEXT NOT NULL,
+  version INTEGER NOT NULL,
+  search_url TEXT,
+  method JSONB NOT NULL DEFAULT '{}'::jsonb,
+  source TEXT,
+  notes TEXT,
+  account_id TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS session_feedback (
+  id TEXT PRIMARY KEY,
+  account_id TEXT,
+  jurisdiction_key TEXT,
+  extractor_id TEXT,
+  kind TEXT NOT NULL,
+  body TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS session_feedback_key_idx ON session_feedback (jurisdiction_key, created_at DESC);

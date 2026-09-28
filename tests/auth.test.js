@@ -3,6 +3,7 @@
 const { describe, it, before, after } = require('node:test');
 const assert = require('node:assert/strict');
 const store = require('../src/db/store');
+const accounts = require('../src/db/accounts');
 const { app } = require('../src/server');
 
 let server;
@@ -35,30 +36,40 @@ describe('signup, session, account', () => {
   it('rejects a weak signup', async () => {
     const { res, body } = await json('/api/signup', {
       method: 'POST',
-      body: JSON.stringify({ display_name: 'B', email: 'nope', password: 'short' })
+      body: JSON.stringify({ display_name: 'B', email: 'nope' })
     });
     assert.equal(res.status, 400);
     assert.equal(body.ok, false);
   });
 
-  it('creates an account with email and password (no Apple)', async () => {
+  it('creates an account and requires the emailed 6-digit code', async () => {
     const { res, body } = await json('/api/signup', {
       method: 'POST',
       body: JSON.stringify({
         display_name: 'Bill McCreary',
         email,
-        company: 'WebPoint LLC',
-        password: 'correct-horse-battery'
+        company: 'WebPoint LLC'
       })
     });
     assert.equal(res.status, 201);
     assert.equal(body.ok, true);
+    assert.equal(body.needs_code, true);
     assert.equal(body.account.email, email);
     assert.equal(body.account.display_name, 'Bill McCreary');
     assert.equal(body.account.initial, 'B');
-    assert.ok(body.token);
+    assert.equal(body.account.plan, 'free');
+    assert.equal(body.token, undefined);
     assert.equal(body.account.password_hash, undefined);
-    token = body.token;
+    assert.match(String(body.code || ''), /^\d{6}$/);
+
+    const verified = await json('/api/verify', {
+      method: 'POST',
+      body: JSON.stringify({ email, code: body.code, purpose: 'signup' })
+    });
+    assert.equal(verified.body.ok, true);
+    assert.ok(verified.body.token);
+    assert.equal(verified.body.account.email_verified, true);
+    token = verified.body.token;
   });
 
   it('refuses a duplicate email', async () => {
@@ -66,8 +77,7 @@ describe('signup, session, account', () => {
       method: 'POST',
       body: JSON.stringify({
         display_name: 'Bill McCreary',
-        email,
-        password: 'correct-horse-battery'
+        email
       })
     });
     assert.equal(res.status, 400);
@@ -82,39 +92,78 @@ describe('signup, session, account', () => {
     assert.equal(body.account.email, email);
   });
 
-  it('logs in with the same email', async () => {
+  it('logs in by emailing a 6-digit code, not a magic link', async () => {
     const { res, body } = await json('/api/login', {
       method: 'POST',
-      body: JSON.stringify({ email, password: 'correct-horse-battery' })
+      body: JSON.stringify({ email })
     });
     assert.equal(res.status, 200);
     assert.equal(body.ok, true);
-    assert.ok(body.token);
-    token = body.token;
-  });
-
-  it('rejects a wrong password without leaking which field failed', async () => {
-    const { res, body } = await json('/api/login', {
+    assert.equal(body.needs_code, true);
+    assert.ok(body.code);
+    const verified = await json('/api/verify', {
       method: 'POST',
-      body: JSON.stringify({ email, password: 'wrong-password-xx' })
+      body: JSON.stringify({ email, code: body.code, purpose: 'login' })
     });
-    assert.equal(res.status, 401);
-    assert.match(body.error, /email or password/i);
+    assert.equal(verified.body.ok, true);
+    assert.ok(verified.body.token);
+    token = verified.body.token;
   });
 
-  it('requires auth to process a certificate batch', async () => {
+  it('rejects a wrong verification code', async () => {
+    await json('/api/login', { method: 'POST', body: JSON.stringify({ email }) });
+    const { res, body } = await json('/api/verify', {
+      method: 'POST',
+      body: JSON.stringify({ email, code: '000000', purpose: 'login' })
+    });
+    assert.equal(res.status, 400);
+    assert.match(body.error, /match|code/i);
+  });
+
+  it('lets a guest run one intelligence search, then asks for an account', async () => {
+    const sid = `guest-${Date.now()}`;
+    const first = await json('/api/intelligence', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Session-Id': sid },
+      body: JSON.stringify({ q: 'Chippewa County WI' })
+    });
+    assert.equal(first.body.ok, true, JSON.stringify(first.body));
+    assert.equal(first.body.plan, 'guest');
+    assert.equal(first.body.continue_gate, 'account');
+
+    const second = await json('/api/intelligence', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Session-Id': sid },
+      body: JSON.stringify({ q: 'Los Angeles County CA' })
+    });
+    assert.equal(second.res.status, 402);
+    assert.equal(second.body.gate, 'account');
+  });
+
+  it('requires a member code for certificate batches', async () => {
     const { res } = await json('/api/orders', {
       method: 'POST',
+      headers: { 'X-Auth-Token': token, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         county: 'Chippewa',
         state: 'WI',
         parcels: [{ parcel_id: '1' }]
       })
     });
-    assert.equal(res.status, 401);
+    assert.equal(res.status, 402);
   });
 
-  it('issues a TCS draft for the signed-in account', async () => {
+  it('unlocks members with a shop code and issues a TCS draft', async () => {
+    const issued = await accounts.issueMemberCode({ label: 'WebPoint test shop', seats: 5 });
+    assert.match(issued.code, /^WP-[A-Z0-9]{4}-[A-Z0-9]{4}$/);
+    const redeemed = await json('/api/member-code', {
+      method: 'POST',
+      headers: { 'X-Auth-Token': token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: issued.code })
+    });
+    assert.equal(redeemed.body.ok, true, JSON.stringify(redeemed.body));
+    assert.equal(redeemed.body.account.plan, 'member');
+
     const { res, body } = await json('/api/orders', {
       method: 'POST',
       headers: { 'X-Auth-Token': token, 'Content-Type': 'application/json' },

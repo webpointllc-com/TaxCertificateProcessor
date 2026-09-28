@@ -9,6 +9,8 @@
   localStorage.setItem('wp_tcs_session', sessionId);
   var memberKey = new URLSearchParams(location.search).get('k') || '';
   var lastLookup = null;
+  var exportFormat = 'html';
+  var lastQuery = '';
   var authToken = localStorage.getItem('wp_tcs_token') || '';
   var account = null;
   var accountBundle = { recents: [], messages: [], invites: [], updates: [] };
@@ -67,15 +69,17 @@
     var canvas = $('design-canvas');
     var gate = $('auth-gate');
     var chip = $('acct-open');
+    var signin = $('acct-signin');
+    canvas.classList.remove('signed-out');
     if (account) {
-      canvas.classList.remove('signed-out');
-      gate.hidden = true;
+      if (gate) gate.hidden = true;
       chip.hidden = false;
+      if (signin) signin.hidden = true;
       paintAccount();
+      maybeAskConsent();
     } else {
-      canvas.classList.add('signed-out');
-      gate.hidden = false;
       chip.hidden = true;
+      if (signin) signin.hidden = false;
       $('account-overlay').hidden = true;
     }
   }
@@ -97,12 +101,139 @@
     $('set-name').value = account.display_name;
     $('set-company').value = account.company || '';
     $('set-activity').checked = account.activity_on !== false;
+    if ($('set-learn')) $('set-learn').checked = account.learn_consent === true;
     $('acct-act-label').textContent = account.activity_on !== false ? 'On' : 'Turn on';
     $('prof-activity').textContent = account.activity_on !== false ? 'On' : 'Off';
     if (account.created_at) {
       var d = new Date(account.created_at);
       $('prof-since').textContent = isNaN(d.getTime()) ? '—' : d.toLocaleDateString();
     }
+  }
+
+  function parkSearch(where) {
+    var form = $('hero-form');
+    var slot = $(where === 'header' ? 'header-search-slot' : 'home-search-slot');
+    if (form && slot && form.parentNode !== slot) slot.appendChild(form);
+  }
+
+  function showHome() {
+    parkSearch('home');
+    $('view-home').hidden = false;
+    $('view-results').hidden = true;
+    $('mac-window').classList.add('home');
+    $('mac-window').classList.remove('results');
+    $('about-trigger').hidden = false;
+    $('gen-pill').hidden = true;
+    $('search-clear').hidden = true;
+    if ($('search-error')) $('search-error').hidden = true;
+  }
+
+  function showResults() {
+    parkSearch('header');
+    $('view-home').hidden = true;
+    $('view-results').hidden = false;
+    $('mac-window').classList.remove('home');
+    $('mac-window').classList.add('results');
+    $('about-trigger').hidden = true;
+    $('search-clear').hidden = !$('hero-input').value;
+  }
+
+  function maybeAskConsent() {
+    if (account && account.is_member && account.learn_consent !== true) $('perm-overlay').hidden = false;
+  }
+
+  var pendingEmail = '';
+  var pendingPurpose = 'signup';
+
+  function showGatePanel(name) {
+    $('gate-account').hidden = name !== 'account';
+    $('verify-form').hidden = name !== 'verify';
+    $('member-form').hidden = name !== 'member';
+  }
+
+  function openGate(kind, title, copy) {
+    if (title) $('gate-title').textContent = title;
+    if (copy) $('gate-copy').textContent = copy;
+    $('auth-gate').hidden = false;
+    showGatePanel(kind || 'account');
+  }
+
+  function closeGate() {
+    $('auth-gate').hidden = true;
+  }
+
+  function isMember() {
+    return account && (account.is_member || account.plan === 'member');
+  }
+
+  function handleGate(data) {
+    if (!data || data.ok) return false;
+    if (data.gate === 'member') {
+      if (!account) {
+        openGate('account', 'Create a free account to continue', 'Then enter the member code from your shop lead.');
+      } else {
+        openGate('member');
+      }
+      return true;
+    }
+    if (data.gate === 'account' || data.status === 401) {
+      openGate('account', 'Create a free account to continue', 'One search is included. Members unlock the rest.');
+      return true;
+    }
+    return false;
+  }
+
+  function insightIcon(id) {
+    var icons = {
+      trend: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16l5-5 4 3 7-8"/><path d="M14 6h6v6"/></svg>',
+      payment: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="m8.5 12.5 2.4 2.4 4.6-5.2"/></svg>',
+      zoning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg>',
+      comps: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-6 8 6v9H4v-9z"/><path d="M9 20v-6h6v6"/></svg>'
+    };
+    return icons[id] || '◆';
+  }
+
+  function paintInsights(list) {
+    $('insights-list').innerHTML = (list || []).map(function (item) {
+      return '<li><span class="insight-ico">' + insightIcon(item.id) + '</span><div><strong>' + escapeHtml(item.title) + '</strong><em>' +
+        escapeHtml(item.value) + '</em><span>' + escapeHtml(item.detail || '') + '</span></div></li>';
+    }).join('');
+  }
+
+  function paintResults(data) {
+    var card = data.card || {};
+    var money = data.money || {};
+    lastLookup = data.lookup;
+    $('res-place').textContent = (card.county || '') + (card.state ? ' County, ' + card.state : '');
+    $('res-verified').hidden = !card.verified;
+    $('res-apn').textContent = card.apn ? ('APN ' + card.apn) : (card.label || 'Search result');
+    $('res-addr').textContent = card.address || card.entity || '';
+    $('f-county').textContent = card.county || '—';
+    $('f-state').textContent = card.state || '—';
+    $('f-year').textContent = card.tax_year || '—';
+    $('f-status').textContent = card.tax_status || '—';
+    $('f-assessed').textContent = money.assessed || '—';
+    $('f-land').textContent = money.land || '—';
+    $('f-impr').textContent = money.improvement || '—';
+    $('f-tax').textContent = money.total_tax || '—';
+    $('res-summary').textContent = card.summary || '';
+    var url = (data.lookup && (data.lookup.officialUrl || data.lookup.lockedUrl)) || card.collector_url || '';
+    var link = $('res-collector');
+    if (url) { link.href = url; link.hidden = false; } else { link.hidden = true; }
+    paintInsights(card.insights);
+    var methodSteps = ((data.extractor && data.extractor.method && data.extractor.method.steps) || []).map(function (s) {
+      return '• ' + s;
+    }).join('\n');
+    $('tab-overview').textContent = [card.summary || '', methodSteps].filter(Boolean).join('\n\n');
+    $('heal-status').textContent = data.extractor
+      ? ('Working extractor v' + data.extractor.version + ' · ' + (data.extractor.status || 'active'))
+      : '';
+    $('heal-form').hidden = true;
+    if (data.lookup && data.lookup.jurisdiction) {
+      $('county').value = data.lookup.jurisdiction.county || $('county').value;
+      if (data.lookup.jurisdiction.state) $('state').value = data.lookup.jurisdiction.state;
+    }
+    showResults();
   }
 
   function tickClock() {
@@ -189,6 +320,25 @@
     } catch (e) {}
   }
 
+  async function loadUsage() {
+    if (!account) return;
+    if ($('usage-learn')) $('usage-learn').textContent = account.learn_consent ? 'On' : 'Off';
+    if ($('usage-plan')) $('usage-plan').textContent = isMember() ? 'Members' : 'Free';
+    try {
+      var res = await fetch('/api/extractors/stats', { headers: headers() });
+      var data = await res.json();
+      var slots = data.slots || {};
+      if ($('usage-catalog')) $('usage-catalog').textContent = String(slots.catalog || '—');
+      if ($('usage-active')) $('usage-active').textContent = String(slots.active || 0);
+      if ($('usage-extractors')) {
+        $('usage-extractors').innerHTML = listOrEmpty(data.working || [], function (ex) {
+          return '<article class="acct-item"><strong>' + escapeHtml((ex.county || '') + ' County, ' + (ex.state || '')) + '</strong><span>' +
+            escapeHtml('v' + ex.version + ' · ' + (ex.entity || '')) + '</span></article>';
+        }, 'No working extractors saved from sessions yet.');
+      }
+    } catch (e) {}
+  }
+
   async function rememberRecent(kind, label, detail) {
     if (!authToken || !label) return;
     try {
@@ -204,10 +354,10 @@
     try { await fetch('/api/logout', { method: 'POST', headers: headers(true) }); } catch (e) {}
     authToken = '';
     localStorage.removeItem('wp_tcs_token');
+    setAuthError('');
     account = null;
     accountBundle = { recents: [], messages: [], invites: [], updates: [] };
     setSignedIn(null);
-    $('tab-login').click();
   }
 
   function el(html) {
@@ -311,7 +461,11 @@
         })
       });
       var data = await res.json();
-      if (!data.ok) { setStatus(data.error || 'Order failed'); return; }
+      if (!data.ok) {
+        if (handleGate(data)) { setStatus(data.error || ''); return; }
+        setStatus(data.error || 'Order failed');
+        return;
+      }
       lastLookup = data.lookup;
       setStatus('Order ' + data.order.id.slice(0, 8) + ' · ' + (data.order.status || 'issued') + ' · ' + (data.lookup.entity || ''));
       renderCerts(data);
@@ -423,32 +577,44 @@
   async function runHeroSearch(q) {
     q = (q || document.getElementById('hero-input').value || '').trim();
     if (!q) return;
+    lastQuery = q;
     hideSuggest();
+    $('hero-input').value = q;
+    if ($('search-error')) { $('search-error').hidden = true; $('search-error').textContent = ''; }
+    $('gen-pill').hidden = false;
+    $('mac-window').classList.add('results');
+    $('mac-window').classList.remove('home');
+    parkSearch('header');
     try {
-      var res = await fetch('/api/lookup?q=' + encodeURIComponent(q), { headers: headers() });
+      var res = await fetch('/api/intelligence', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({ q: q, format: exportFormat })
+      });
       var data = await res.json();
-      lastLookup = data;
-      if (data.jurisdiction && data.jurisdiction.county) {
-        document.getElementById('county').value = data.jurisdiction.county;
-        if (data.jurisdiction.state) document.getElementById('state').value = data.jurisdiction.state;
+      $('gen-pill').hidden = true;
+      if (!data.ok) {
+        if (handleGate(data)) {
+          parkSearch('header');
+          return;
+        }
+        var err = data.error || 'Search failed';
+        if ($('search-error')) { $('search-error').hidden = false; $('search-error').textContent = err; }
+        showHome();
+        setStatus(err);
+        return;
       }
-      renderSpulFromLookup(
-        data,
-        data.urlLocked ? 'Locked official tax search page.' : 'No invented URL — operator correction needed.'
-      );
-      rememberRecent(
-        'search',
-        data.jurisdiction && data.jurisdiction.county
-          ? (data.jurisdiction.county + ' County ' + (data.jurisdiction.state || ''))
-          : q,
-        data.urlLocked ? 'Locked collector URL' : (data.source || 'Lookup')
-      );
-      setStatus(
-        data.urlLocked
-          ? ('Locked: ' + (data.entity || data.jurisdiction.county || 'collector'))
-          : (data.error || data.source || 'No locked collector URL')
-      );
+      paintResults(data);
+      if (data.lookup) renderSpulFromLookup(data.lookup, data.card && data.card.summary);
+      if (data.continue_gate === 'account' && !account) {
+        openGate('account', 'Create a free account to continue', 'You can still read this result. The next search needs an account.');
+      } else if (data.continue_gate === 'member' && account && !isMember()) {
+        openGate('member');
+      }
     } catch (e) {
+      $('gen-pill').hidden = true;
+      showHome();
+      if ($('search-error')) { $('search-error').hidden = false; $('search-error').textContent = 'Lookup unavailable'; }
       setStatus('Lookup unavailable');
     }
   }
@@ -605,13 +771,18 @@
   $('tab-signup').addEventListener('click', function () { showAuthTab('signup'); });
   $('tab-login').addEventListener('click', function () { showAuthTab('login'); });
 
+  function beginVerify(data) {
+    pendingEmail = data.email || pendingEmail;
+    pendingPurpose = data.purpose || 'signup';
+    $('verify-copy').textContent = 'We sent a 6-digit code to ' + pendingEmail + '.';
+    $('otp-input').value = '';
+    $('otp-error').hidden = true;
+    openGate('verify');
+  }
+
   $('signup-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     setAuthError('');
-    if ($('su-pass').value !== $('su-pass2').value) {
-      setAuthError('Passwords do not match');
-      return;
-    }
     $('su-submit').disabled = true;
     try {
       var res = await fetch('/api/signup', {
@@ -620,13 +791,12 @@
         body: JSON.stringify({
           display_name: $('su-name').value.trim(),
           email: $('su-email').value.trim(),
-          company: $('su-company').value.trim(),
-          password: $('su-pass').value
+          company: $('su-company').value.trim()
         })
       });
       var data = await res.json();
       if (!data.ok) { setAuthError(data.error || 'Could not create the account'); return; }
-      setSignedIn(data.account, data.token);
+      beginVerify(data);
     } catch (err) {
       setAuthError('Network error creating the account');
     } finally {
@@ -642,19 +812,76 @@
       var res = await fetch('/api/login', {
         method: 'POST',
         headers: headers(true),
-        body: JSON.stringify({
-          email: $('li-email').value.trim(),
-          password: $('li-pass').value
-        })
+        body: JSON.stringify({ email: $('li-email').value.trim() })
       });
       var data = await res.json();
       if (!data.ok) { setAuthError(data.error || 'Could not sign in'); return; }
-      setSignedIn(data.account, data.token);
+      beginVerify(data);
     } catch (err) {
       setAuthError('Network error signing in');
     } finally {
       $('li-submit').disabled = false;
     }
+  });
+
+  $('verify-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    $('otp-error').hidden = true;
+    try {
+      var res = await fetch('/api/verify', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({
+          email: pendingEmail,
+          code: $('otp-input').value.trim(),
+          purpose: pendingPurpose
+        })
+      });
+      var data = await res.json();
+      if (!data.ok) {
+        $('otp-error').hidden = false;
+        $('otp-error').textContent = data.error || 'That code does not match';
+        return;
+      }
+      setSignedIn(data.account, data.token);
+      closeGate();
+      if (!isMember()) openGate('member');
+    } catch (err) {
+      $('otp-error').hidden = false;
+      $('otp-error').textContent = 'Network error';
+    }
+  });
+
+  async function redeemMember(code, errorId) {
+    var err = $(errorId);
+    if (err) { err.hidden = true; err.textContent = ''; }
+    var res = await fetch('/api/member-code', {
+      method: 'POST',
+      headers: headers(true),
+      body: JSON.stringify({ code: code })
+    });
+    var data = await res.json();
+    if (!data.ok) {
+      if (err) { err.hidden = false; err.textContent = data.error || 'That code is not valid'; }
+      return false;
+    }
+    account = data.account;
+    paintAccount();
+    closeGate();
+    maybeAskConsent();
+    return true;
+  }
+
+  $('member-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    await redeemMember($('member-code').value.trim(), 'member-error');
+  });
+  $('usage-member-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    $('usage-member-status').textContent = 'Checking…';
+    var ok = await redeemMember($('usage-member-code').value.trim(), 'usage-member-status');
+    $('usage-member-status').textContent = ok ? 'Members unlocked' : ($('usage-member-status').textContent || 'Could not unlock');
+    if (ok) loadUsage();
   });
 
   $('acct-open').addEventListener('click', function () { openAccount('menu'); });
@@ -664,6 +891,7 @@
   $('acct-recents').addEventListener('click', function () { showAcctView('recents'); });
   $('acct-updates').addEventListener('click', function () { showAcctView('updates'); });
   $('acct-settings').addEventListener('click', function () { showAcctView('settings'); });
+  $('acct-usage').addEventListener('click', function () { showAcctView('usage'); loadUsage(); });
   $('acct-invite').addEventListener('click', function () { showAcctView('invite'); });
   $('acct-messages').addEventListener('click', function () { showAcctView('messages'); });
   $('acct-compose-ico').addEventListener('click', function () { showAcctView('compose'); });
@@ -706,7 +934,8 @@
         body: JSON.stringify({
           display_name: $('set-name').value.trim(),
           company: $('set-company').value.trim(),
-          activity_on: $('set-activity').checked
+          activity_on: $('set-activity').checked,
+          learn_consent: $('set-learn') ? $('set-learn').checked : account.learn_consent
         })
       });
       var data = await res.json();
@@ -784,7 +1013,6 @@
   });
 
   async function bootSession() {
-    $('design-canvas').classList.add('signed-out');
     tickClock();
     setInterval(tickClock, 30000);
     if (!authToken) {
@@ -808,4 +1036,91 @@
   }
 
   bootSession();
+
+  $('go-home').addEventListener('click', function () {
+    $('hero-input').value = '';
+    showHome();
+  });
+  $('open-batch').addEventListener('click', function () {
+    if (!isMember()) {
+      if (!account) openGate('account', 'Create a free account to continue', 'Batches are a members feature. Your shop lead has the code.');
+      else openGate('member');
+      return;
+    }
+    $('batch-overlay').hidden = false;
+  });
+  $('acct-signin').addEventListener('click', function () {
+    showAuthTab('login');
+    openGate('account', 'Sign in', 'We’ll email a 6-digit code. No passwords in this step, and no login links.');
+  });
+  $('gate-close').addEventListener('click', closeGate);
+  $('auth-gate').addEventListener('click', function (e) {
+    if (e.target === $('auth-gate')) closeGate();
+  });
+  $('close-batch').addEventListener('click', function () { $('batch-overlay').hidden = true; });
+  $('search-clear').addEventListener('click', function () {
+    $('hero-input').value = '';
+    showHome();
+  });
+  $('format-btn').addEventListener('click', function () {
+    $('format-menu').hidden = !$('format-menu').hidden;
+    $('country-menu').hidden = true;
+  });
+  $('country-btn').addEventListener('click', function () {
+    $('country-menu').hidden = !$('country-menu').hidden;
+    $('format-menu').hidden = true;
+  });
+  $('format-menu').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-format]');
+    if (!btn) return;
+    exportFormat = btn.getAttribute('data-format');
+    $('format-btn').innerHTML = (exportFormat === 'pdf' ? 'PDF' : 'HTML') + ' <span>▾</span>';
+    $('format-menu').hidden = true;
+  });
+  $('about-trigger').addEventListener('click', function () { $('about-overlay').hidden = false; });
+  $('close-about').addEventListener('click', function () { $('about-overlay').hidden = true; });
+  $('about-overlay').addEventListener('click', function (e) {
+    if (e.target === $('about-overlay')) $('about-overlay').hidden = true;
+  });
+  $('heal-toggle').addEventListener('click', function () {
+    $('heal-form').hidden = !$('heal-form').hidden;
+  });
+  $('perm-allow').addEventListener('click', async function () {
+    var res = await fetch('/api/consent', { method: 'POST', headers: headers(true), body: JSON.stringify({ learn_consent: true }) });
+    var data = await res.json();
+    if (data.ok) account = data.account;
+    $('perm-overlay').hidden = true;
+    paintAccount();
+  });
+  $('perm-later').addEventListener('click', function () { $('perm-overlay').hidden = true; });
+  $('heal-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    $('heal-status').textContent = 'Validating extractor…';
+    try {
+      var res = await fetch('/api/extractors/heal', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({ q: lastQuery || $('hero-input').value, feedback: $('heal-feedback').value })
+      });
+      var data = await res.json();
+      if (!data.ok) {
+        if (handleGate(data)) { $('heal-status').textContent = data.error || ''; return; }
+        $('heal-status').textContent = data.error || 'Could not save extractor';
+        return;
+      }
+      $('heal-feedback').value = '';
+      $('heal-status').textContent = data.message || 'Saved';
+      if (data.card) paintResults(data);
+    } catch (err) {
+      $('heal-status').textContent = 'Network error';
+    }
+  });
+  document.querySelectorAll('.res-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.res-tab').forEach(function (t) { t.classList.toggle('on', t === tab); });
+      document.querySelectorAll('.tab-panel').forEach(function (p) {
+        p.classList.toggle('on', p.id === 'tab-' + tab.getAttribute('data-tab'));
+      });
+    });
+  });
 })();

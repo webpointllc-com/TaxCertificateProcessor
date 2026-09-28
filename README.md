@@ -47,6 +47,7 @@ Bind `0.0.0.0:$PORT`. Starter plan for a paid members tool (Free spin-down after
 Set in the dashboard (never commit):
 
 - `GROQ_API_KEY` — Search Spul LLM. Lookup + certificate drafts work without it.
+- `MEMBER_ISSUE_KEY` — optional. Header `X-Issue-Key` for minting shop member codes after a payment. Never commit this.
 - `MEMBER_EMBED_KEY` — optional. Put `?k=...` on the members-page iframe so the public onrender URL can be limited later.
 - `WORKPLACE_CLONE_PATH` — only needed on a machine that can see the Passport.
 
@@ -57,7 +58,7 @@ Set in the dashboard (never commit):
 3. Paste `public/SQUARESPACE_EMBED.html` (update the `src` host after the first Render deploy).
 4. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
 5. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide** and **Architecture**.
-6. Page load opens **Create account / Sign in** (email + password, no Apple). After signup the processor is live. The avatar opens a mobile account sheet (profile, recents, updates, settings, invites, messages) and **View profile** opens the desktop account workspace. Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
+6. Page load shows the same Property Tax Intelligence window members use. One search is free. After that: create a free account (we email a 6-digit code — no Apple/Google, no magic login links). Members is one plan, unlocked with a shop code WebPoint issues after payment (`WP-XXXX-XXXX`). The avatar opens the account sheet (profile, recents, updates, settings, usage, invites, messages). Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
 
 Optional script tag (host will match the request):
 

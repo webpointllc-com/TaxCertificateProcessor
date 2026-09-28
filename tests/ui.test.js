@@ -42,9 +42,24 @@ describe('embeddable scaled UI', () => {
     assert.match(html, /id="signup-form"/);
     assert.match(html, /id="login-form"/);
     assert.match(html, /id="auth-gate"/);
+    assert.match(html, /id="verify-form"/);
+    assert.match(html, /id="member-form"/);
     assert.match(js, /\/api\/signup/);
-    assert.doesNotMatch(html, /Sign in with Apple|Apple ID|apple-signin/i);
+    assert.match(js, /\/api\/verify/);
+    assert.match(js, /\/api\/member-code/);
+    assert.doesNotMatch(html, /Sign in with Apple|Apple ID|apple-signin|Sign in with Google|Continue with Google/i);
     assert.doesNotMatch(js, /Sign in with Apple|AppleID/i);
+  });
+
+  it('ships the generative search home matching the Property Tax Intelligence window', () => {
+    assert.match(html, /Search county, parcel number, or address/);
+    assert.match(html, /id="view-home"/);
+    assert.match(html, /id="view-results"/);
+    assert.match(html, /Key Property Tax Insights/);
+    assert.match(html, /id="perm-overlay"/);
+    assert.match(html, /id="heal-form"/);
+    assert.match(js, /\/api\/intelligence/);
+    assert.match(js, /\/api\/extractors\/heal/);
   });
 
   it('ships the mobile account sheet plus a desktop account workspace', () => {

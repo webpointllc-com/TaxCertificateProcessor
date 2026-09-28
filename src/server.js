@@ -8,6 +8,14 @@ const express = require('express');
 const { OpenAI } = require('openai');
 const store = require('./db/store');
 const accounts = require('./db/accounts');
+const extractors = require('./db/extractors');
+const {
+  parseSearchQuery,
+  buildCard,
+  formatMoney,
+  resolveHealedUrl,
+  methodFromFeedback
+} = require('./services/searchIntelligence');
 const { enrichSystemPrompt, enforceLockedSpulUrl } = require('./services/taxIntelligence');
 const { parseJurisdiction, lookupForApi, suggestJurisdictions } = require('./services/urlFinder');
 const { hasUrlLock, buildLockedUrlPrefix } = require('./services/spulTruth');
@@ -68,7 +76,7 @@ async function resolveAccount(req) {
 async function requireAccount(req, res) {
   const account = await resolveAccount(req);
   if (!account) {
-    res.status(401).json({ ok: false, error: 'Sign in to continue' });
+    res.status(401).json({ ok: false, gate: 'account', error: 'Sign in to continue' });
     return null;
   }
   return account;
@@ -121,6 +129,8 @@ app.get('/api/health', async (req, res) => {
     firstCounty: { county: 'Chippewa', state: 'WI' },
     db: store.usingPostgres() ? 'postgres' : 'memory',
     groq: Boolean(groq),
+    model: groq ? GROQ_MODEL : 'spul-db',
+    extractors: await extractors.stats(),
     workplace: scan,
     lastImport
   });
@@ -139,7 +149,7 @@ app.get('/api/hero-examples', (req, res) => {
 
 app.post('/api/signup', async (req, res) => {
   try {
-    const result = await accounts.signup(req.body || {});
+    const result = await accounts.signup({ ...(req.body || {}), sessionId: sessionIdOf(req) });
     if (!result.ok) return res.status(400).json(result);
     res.status(201).json(result);
   } catch (err) {
@@ -150,13 +160,44 @@ app.post('/api/signup', async (req, res) => {
 
 app.post('/api/login', async (req, res) => {
   try {
-    const result = await accounts.login(req.body || {});
+    const result = await accounts.requestLoginCode(req.body || {});
     if (!result.ok) return res.status(401).json(result);
     res.json(result);
   } catch (err) {
     console.error('login', err.message);
     res.status(500).json({ ok: false, error: 'Could not sign in' });
   }
+});
+
+app.post('/api/verify', async (req, res) => {
+  try {
+    const result = await accounts.verifyOtp(req.body || {});
+    if (!result.ok) return res.status(400).json(result);
+    res.json(result);
+  } catch (err) {
+    console.error('verify', err.message);
+    res.status(500).json({ ok: false, error: 'Could not confirm that code' });
+  }
+});
+
+app.post('/api/member-code', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const result = await accounts.redeemMemberCode(account.id, req.body?.code || req.body?.member_code);
+  if (!result.ok) return res.status(400).json(result);
+  res.json(result);
+});
+
+app.post('/api/member-codes', async (req, res) => {
+  const need = process.env.MEMBER_ISSUE_KEY;
+  if (!need) return res.status(404).json({ ok: false, error: 'Not found' });
+  const got = req.get('x-issue-key') || req.body?.issue_key;
+  if (got !== need) return res.status(404).json({ ok: false, error: 'Not found' });
+  const result = await accounts.issueMemberCode({
+    label: req.body?.label,
+    seats: req.body?.seats
+  });
+  res.status(201).json(result);
 });
 
 app.post('/api/logout', async (req, res) => {
@@ -229,6 +270,192 @@ app.post('/api/invites', async (req, res) => {
   const result = await accounts.addInvite(account.id, req.body?.email);
   if (!result.ok) return res.status(400).json(result);
   res.status(201).json(result);
+});
+
+app.post('/api/consent', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const allow = req.body?.learn_consent !== false;
+  const result = await accounts.updateAccount(account.id, { learn_consent: allow });
+  res.json(result);
+});
+
+app.get('/api/extractors/stats', async (req, res) => {
+  const { loadCounties } = require('./services/urlFinder');
+  const slots = await extractors.stats();
+  slots.catalog = loadCounties().length;
+  const working = await extractors.listActive(12);
+  res.json({ ok: true, slots, working, model: groq ? GROQ_MODEL : 'spul-db' });
+});
+
+app.get('/api/extractors', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const q = (req.query.q || '').trim();
+  const parsed = parseSearchQuery(q);
+  if (!parsed.county) return res.status(400).json({ ok: false, error: 'Provide a county and state' });
+  const lookup = lookupBundle(parsed.raw, parsed.county, parsed.state);
+  if (!lookup.ok) return res.status(400).json(lookup);
+  const slot = await extractors.ensureSlot(lookup);
+  res.json({ ok: true, extractor: slot, lookup });
+});
+
+app.post('/api/intelligence', async (req, res) => {
+  const account = await resolveAccount(req);
+  const q = String(req.body?.q || req.body?.query || '').trim();
+  if (!q) return res.status(400).json({ ok: false, error: 'Search county, parcel number, or address' });
+  const parsed = parseSearchQuery(q);
+  const lookup = lookupBundle(parsed.raw, parsed.county, parsed.state);
+  if (!lookup.ok) return res.status(400).json(lookup);
+  const access = await accounts.consumeSearch({ account, sessionId: sessionIdOf(req) });
+  if (!access.ok) return res.status(access.status || 402).json(access);
+  const slot = await extractors.ensureSlot(lookup);
+  const card = buildCard({ parsed, lookup, extractor: slot, amounts: req.body?.amounts });
+  if (account) {
+    await accounts.addRecent(account.id, {
+      kind: 'search',
+      label: card.label,
+      detail: lookup.urlLocked ? 'Locked collector URL' : 'No locked collector URL'
+    });
+  }
+  if (account && account.learn_consent) {
+    await extractors.addFeedback({
+      accountId: account.id,
+      jurisdictionKey: lookup.key,
+      extractorId: slot.id,
+      kind: 'search',
+      body: q
+    });
+  }
+  let talk = card.summary;
+  if (groq) {
+    try {
+      const locked = lookup.officialUrl || '';
+      const completion = await groq.chat.completions.create({
+        model: GROQ_MODEL,
+        temperature: 0.1,
+        max_tokens: 280,
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You are WebPoint Property Tax Intelligence. Talk the user through the locked tax collecting entity only. NEVER invent URLs or dollar amounts. If amounts are unknown, say to confirm on the collector page. Cite the entity name and the locked URL exactly.'
+          },
+          {
+            role: 'user',
+            content: `Query: ${q}\nEntity: ${lookup.entity}\nLocked URL: ${locked || '(none)'}\nExtractor v${slot.version} status ${slot.status}\nURL locked: ${Boolean(lookup.urlLocked)}\nWrite 2 short sentences for the Property Tax Summary.`
+          }
+        ]
+      });
+      const text = completion.choices?.[0]?.message?.content?.trim();
+      if (text) talk = text;
+    } catch (err) {
+      console.error('intelligence llm', err.message);
+    }
+  }
+  card.summary = talk;
+  res.json({
+    ok: true,
+    query: q,
+    format: req.body?.format === 'pdf' ? 'pdf' : 'html',
+    parsed,
+    lookup,
+    extractor: slot,
+    plan: access.plan,
+    continue_gate: access.plan === 'member' ? null : access.plan === 'free' ? 'member' : 'account',
+    card,
+    money: {
+      assessed: formatMoney(card.assessed),
+      land: formatMoney(card.land),
+      improvement: formatMoney(card.improvement),
+      total_tax: formatMoney(card.total_tax)
+    }
+  });
+});
+
+app.post('/api/extractors/heal', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const member = accounts.memberRequired(account);
+  if (!member.ok) return res.status(member.status).json(member);
+  if (!account.learn_consent) {
+    return res.status(403).json({
+      ok: false,
+      error: 'Allow session learning in the permissions dialog so this extractor can be saved for the tax collecting entity.'
+    });
+  }
+  const feedback = String(req.body?.feedback || req.body?.body || '').trim();
+  if (feedback.length < 8) {
+    return res.status(400).json({ ok: false, error: 'Describe what changed on the collector page' });
+  }
+  const q = String(req.body?.q || req.body?.query || '').trim();
+  const parsed = parseSearchQuery(q || feedback);
+  const lookup = lookupBundle(parsed.raw || q, parsed.county, parsed.state);
+  if (!lookup.ok) return res.status(400).json(lookup);
+  const previous = await extractors.ensureSlot(lookup);
+  const urlDecision = resolveHealedUrl(lookup, req.body?.proposed_url);
+  let method = methodFromFeedback(feedback, lookup, previous);
+  if (groq) {
+    try {
+      const completion = await groq.chat.completions.create({
+        model: GROQ_MODEL,
+        temperature: 0,
+        max_tokens: 400,
+        messages: [
+          {
+            role: 'system',
+            content:
+              'Return JSON only: {"steps":["..."],"search_by":["parcel","owner"],"notes":"..."}. You are repairing a tax-collector EXTRACTOR. Never invent a URL. The search_url is locked if provided.'
+          },
+          {
+            role: 'user',
+            content: `Entity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nPrior method: ${JSON.stringify(previous.method)}\nUser feedback: ${feedback}`
+          }
+        ]
+      });
+      const text = completion.choices?.[0]?.message?.content || '';
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        const parsedMethod = JSON.parse(jsonMatch[0]);
+        if (Array.isArray(parsedMethod.steps) && parsedMethod.steps.length) method = parsedMethod;
+      }
+    } catch (err) {
+      console.error('heal llm', err.message);
+    }
+  }
+  const saved = await extractors.saveNewVersion({
+    previous,
+    lookup,
+    method,
+    notes: feedback,
+    source: 'user_session',
+    accountId: account.id,
+    searchUrl: urlDecision.url || previous.search_url
+  });
+  await extractors.addFeedback({
+    accountId: account.id,
+    jurisdictionKey: lookup.key,
+    extractorId: saved.id,
+    kind: 'heal',
+    body: feedback
+  });
+  const card = buildCard({ parsed, lookup: { ...lookup, officialUrl: saved.search_url || lookup.officialUrl }, extractor: saved });
+  res.json({
+    ok: true,
+    healed: true,
+    urlRejected: urlDecision.rejected,
+    urlReason: urlDecision.reason,
+    extractor: saved,
+    lookup,
+    card,
+    money: {
+      assessed: formatMoney(card.assessed),
+      land: formatMoney(card.land),
+      improvement: formatMoney(card.improvement),
+      total_tax: formatMoney(card.total_tax)
+    },
+    message: `Saved extractor v${saved.version} for ${saved.entity || saved.county + ' County'} (${saved.state}). Working search page: ${saved.search_url || 'not locked'}.`
+  });
 });
 
 app.get('/api/lookup', (req, res) => {
@@ -349,6 +576,8 @@ app.post('/api/chat', async (req, res) => {
 app.post('/api/orders', async (req, res) => {
   const account = await requireAccount(req, res);
   if (!account) return;
+  const member = accounts.memberRequired(account);
+  if (!member.ok) return res.status(member.status).json(member);
   const body = req.body || {};
   const parcels = Array.isArray(body.parcels) ? body.parcels : [];
   if (!parcels.length) return res.status(400).json({ ok: false, error: 'Add at least one parcel' });
@@ -474,7 +703,7 @@ app.get('/embed.js', (req, res) => {
     wrap.className='wp-tcs-embed-root';
     wrap.innerHTML='<iframe class="wp-tcs-frame" title="WebPoint Tax Certificate Processor" src="'+src+'" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="clipboard-read; clipboard-write"></iframe>';
     var st=document.createElement('style');
-    st.textContent='.wp-tcs-embed-root{box-sizing:border-box;width:100%;margin:0 auto;position:relative;padding-top:62.5%}.wp-tcs-frame{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:16px;background:#050b20}';
+    st.textContent='.wp-tcs-embed-root{box-sizing:border-box;width:100%;margin:0 auto;position:relative;padding-top:62.5%}.wp-tcs-frame{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:16px;background:#cfeaf8}';
     d.parentNode.insertBefore(st,d);
     d.parentNode.insertBefore(wrap,d);
   })();`);

@@ -3,6 +3,7 @@
 const { describe, it, before, after } = require('node:test');
 const assert = require('node:assert/strict');
 const store = require('../src/db/store');
+const accounts = require('../src/db/accounts');
 const { app } = require('../src/server');
 
 let server;
@@ -16,13 +17,27 @@ async function signIn() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       display_name: 'Bill McCreary',
-      email,
-      password: 'correct-horse-battery'
+      email
     })
   });
-  const body = await res.json();
+  const created = await res.json();
+  assert.equal(created.ok, true, JSON.stringify(created));
+  const ver = await fetch(`${base}/api/verify`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, code: created.code, purpose: 'signup' })
+  });
+  const body = await ver.json();
   assert.equal(body.ok, true, JSON.stringify(body));
   token = body.token;
+  const issued = await accounts.issueMemberCode({ label: 'api test', seats: 5 });
+  const redeemed = await fetch(`${base}/api/member-code`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token },
+    body: JSON.stringify({ code: issued.code })
+  });
+  const member = await redeemed.json();
+  assert.equal(member.ok, true, JSON.stringify(member));
   return { 'Content-Type': 'application/json', 'X-Auth-Token': token };
 }
 

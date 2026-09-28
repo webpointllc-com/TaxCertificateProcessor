@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const accounts = require('./accounts');
+const extractors = require('./extractors');
 
 const SCHEMA_PATH = path.join(__dirname, 'schema.sql');
 const MAX_PARCELS = 10;
@@ -32,6 +33,7 @@ async function init() {
   if (!url) {
     seedMemoryKnowledge();
     accounts.attachPool(null);
+    extractors.attachPool(null);
     return { mode: 'memory' };
   }
   const { Pool } = require('pg');
@@ -42,6 +44,7 @@ async function init() {
   const sql = fs.readFileSync(SCHEMA_PATH, 'utf8');
   await pool.query(sql);
   accounts.attachPool(pool);
+  extractors.attachPool(pool);
   await seedPostgresKnowledge();
   return { mode: 'postgres' };
 }
@@ -329,6 +332,7 @@ async function close() {
     pool = null;
   }
   accounts.attachPool(null);
+  extractors.attachPool(null);
 }
 
 module.exports = {

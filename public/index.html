@@ -5,46 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebPoint — Tax Certificate Processor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <div id="scale-outer">
     <div id="design-canvas">
-      <header class="topbar">
-        <div class="brand">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <div>
-            <div class="brand-name">WEBPOINT LLC</div>
-            <div class="brand-sub">Tax Certificate Processor</div>
-          </div>
-        </div>
-        <div class="top-pills">
-          <a class="pill guide-link" href="/manual.html">User guide</a>
-          <a class="pill guide-link" href="/architecture.html">Architecture</a>
-          <span class="pill" id="db-pill">DB …</span>
-          <span class="pill" id="spul-pill">S-PUL ready</span>
-          <span class="pill" id="passport-pill">Passport …</span>
-          <button type="button" class="acct-chip" id="acct-open" hidden>
-            <span class="acct-chip-ava" id="acct-chip-ava">B</span>
-            <span id="acct-chip-name">Account</span>
+      <div class="mac-window home" id="mac-window">
+        <header class="mac-bar">
+          <div class="traffic" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+          <button type="button" class="wp-mark" id="go-home" aria-label="WebPoint home">
+            <span class="wp-cloud-mini" aria-hidden="true"></span>
+            <span>WebPoint</span>
           </button>
-        </div>
-      </header>
-
-      <nav class="modules" aria-label="Products">
-        <button class="mod active" data-product="TCS">TCS<span>Tax certificates</span></button>
-        <button class="mod" data-product="TPA">TPA<span>Portfolio analysis</span></button>
-        <button class="mod" data-product="RDS">RDS<span>Recorded documents</span></button>
-        <button class="mod" data-product="SPUL">S-PUL<span>Search page locator</span></button>
-      </nav>
-
-      <main class="workspace">
-        <section class="panel order-panel">
-          <div class="panel-head">
-            <h1 id="panel-title">Tax Certification System</h1>
-            <p id="panel-copy">Collector-current certificate drafts. First county: Chippewa, Wisconsin.</p>
+          <div id="header-search-slot" class="header-search-slot"></div>
+          <div class="mac-right">
+            <button type="button" class="mac-label" id="about-trigger">Property Tax Intelligence</button>
+            <span class="gen-pill" id="gen-pill" hidden><span class="spin"></span> Generating property tax intelligence...</span>
+            <button type="button" class="text-signin" id="acct-signin">Sign in</button>
+            <button type="button" class="acct-chip light-chip" id="acct-open" hidden>
+              <span class="acct-chip-ava" id="acct-chip-ava">B</span>
+              <span id="acct-chip-name" class="sr-only">Account</span>
+            </button>
           </div>
+        </header>
+
+        <section id="view-home" class="view-home">
+          <button type="button" class="hero-cloud" id="open-batch" aria-label="Upload a 10-parcel batch">
+            <span class="cloud-body"></span>
+            <span class="cloud-arrow"><svg viewBox="0 0 24 24"><path d="M12 16V7M8.5 10.5 12 7l3.5 3.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div id="home-search-slot" class="home-search-slot">
+            <form id="hero-form" class="mac-search" role="search" autocomplete="off">
+              <label class="sr-only" for="hero-input">Search county tax portal</label>
+              <span class="mac-search-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+              </span>
+              <input id="hero-input" placeholder="Search county, parcel number, or address..." autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="hero-suggest" aria-expanded="false">
+              <button type="button" class="mac-clear" id="search-clear" hidden aria-label="Clear">×</button>
+              <button type="submit" class="mac-go" id="hero-go" aria-label="Search">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <div id="hero-suggest" class="suggest-list" hidden role="listbox"></div>
+            </form>
+          </div>
+          <div class="home-pills">
+            <div class="pill-drop">
+              <button type="button" class="soft-pill" id="country-btn">United States <span>▾</span></button>
+              <div class="pill-menu" id="country-menu" hidden>
+                <button type="button" data-country="US">United States</button>
+              </div>
+            </div>
+            <div class="pill-drop">
+              <button type="button" class="soft-pill" id="format-btn">PDF / HTML <span>▾</span></button>
+              <div class="pill-menu" id="format-menu" hidden>
+                <button type="button" data-format="html">HTML</button>
+                <button type="button" data-format="pdf">PDF</button>
+              </div>
+            </div>
+          </div>
+          <p class="search-error" id="search-error" hidden></p>
+          <div id="hero-chips" class="hero-chips" aria-label="Example searches" hidden></div>
+        </section>
+
+        <section id="view-results" class="view-results" hidden>
+          <div class="results-grid">
+            <div class="parcel-col">
+              <div class="place-row">
+                <span class="pin" aria-hidden="true"></span>
+                <span id="res-place">County, ST</span>
+                <span class="verified" id="res-verified" hidden><span class="vdot"></span> Verified</span>
+              </div>
+              <h1 id="res-apn">APN</h1>
+              <p class="res-addr" id="res-addr"></p>
+              <div class="fact-grid">
+                <div><span>County</span><strong id="f-county">—</strong></div>
+                <div><span>State</span><strong id="f-state">—</strong></div>
+                <div><span>Tax Year</span><strong id="f-year">—</strong></div>
+                <div><span>Tax Status</span><strong id="f-status">—</strong></div>
+                <div><span>Assessed Value</span><strong id="f-assessed">—</strong></div>
+                <div><span>Land Value</span><strong id="f-land">—</strong></div>
+                <div><span>Improvement Value</span><strong id="f-impr">—</strong></div>
+                <div><span>Total Tax (Est.)</span><strong id="f-tax">—</strong></div>
+              </div>
+              <article class="summary-card">
+                <h2>Property Tax Summary</h2>
+                <p id="res-summary"></p>
+                <a class="summary-cta" id="res-collector" href="#" target="_blank" rel="noopener">View detailed tax history, related parcels, and more <span>›</span></a>
+              </article>
+            </div>
+            <aside class="insights-col">
+              <h2>Key Property Tax Insights</h2>
+              <ul id="insights-list" class="insight-list"></ul>
+              <button type="button" class="heal-toggle" id="heal-toggle">Extractor needs an update?</button>
+              <form id="heal-form" class="heal-box" hidden>
+                <label>Fix this extractor<textarea id="heal-feedback" rows="3" placeholder="What changed on this tax collecting entity’s search page?" required minlength="8"></textarea></label>
+                <button type="submit" class="soft-cta" id="heal-submit">Save as working extractor</button>
+                <p class="heal-status" id="heal-status"></p>
+              </form>
+            </aside>
+          </div>
+          <nav class="res-tabs" aria-label="Result sections">
+            <button type="button" class="res-tab on" data-tab="overview">Overview</button>
+            <button type="button" class="res-tab" data-tab="history">Tax History</button>
+            <button type="button" class="res-tab" data-tab="map">Parcel Map</button>
+            <button type="button" class="res-tab" data-tab="docs">Documents</button>
+            <button type="button" class="res-tab" data-tab="nearby">Nearby Properties</button>
+          </nav>
+          <div class="tab-panels">
+            <div class="tab-panel on" id="tab-overview"></div>
+            <div class="tab-panel" id="tab-history">Tax history is taken only from the locked collector page — we do not invent prior-year amounts.</div>
+            <div class="tab-panel" id="tab-map">Parcel maps are not invented. Use the locked collector / GIS link when the jurisdiction has one.</div>
+            <div class="tab-panel" id="tab-docs">TCS / TPA / RDS documents appear after you process a batch.</div>
+            <div class="tab-panel" id="tab-nearby">Nearby comps appear only when a saved extractor returns them.</div>
+          </div>
+        </section>
+      </div>
+
+      <div id="batch-overlay" class="batch-overlay" hidden>
+        <div class="batch-card">
+          <div class="batch-head">
+            <h1 id="panel-title">Tax Certification System</h1>
+            <button type="button" class="ghost" id="close-batch">Close</button>
+          </div>
+          <nav class="modules" aria-label="Products">
+            <button class="mod active" data-product="TCS">TCS<span>Tax certificates</span></button>
+            <button class="mod" data-product="TPA">TPA<span>Portfolio analysis</span></button>
+            <button class="mod" data-product="RDS">RDS<span>Recorded documents</span></button>
+            <button class="mod" data-product="SPUL">S-PUL<span>Search page locator</span></button>
+          </nav>
+          <p id="panel-copy">Collector-current certificate drafts. First county: Chippewa, Wisconsin.</p>
           <div class="grid-2">
             <label>File number<input id="file-number" placeholder="Closing file #"></label>
             <label>Client<input id="client-name" placeholder="Title / tax service"></label>
@@ -64,68 +154,83 @@
           </div>
           <div id="order-status" class="status-line"></div>
           <div id="cert-list"></div>
-        </section>
-
-        <aside class="panel chat-panel">
-          <div class="panel-head">
-            <h1>Search Spul</h1>
-            <p>Type a county. The locked collector URL appears first. RAG explains after — never invented links.</p>
-          </div>
-          <form id="hero-form" class="hero-search" role="search" autocomplete="off">
-            <label class="sr-only" for="hero-input">Search county tax portal</label>
-            <input id="hero-input" placeholder="Chippewa County WI" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="hero-suggest" aria-expanded="false">
-            <button type="submit" class="primary compact" id="hero-go">Search</button>
-            <div id="hero-suggest" class="suggest-list" hidden role="listbox"></div>
-          </form>
-          <div id="hero-chips" class="hero-chips" aria-label="Example searches"></div>
-          <div id="messages" class="messages"></div>
-          <form id="chat-form" class="chat-form">
+          <div id="messages" class="messages" hidden></div>
+          <form id="chat-form" class="chat-form" hidden>
             <input id="chat-input" placeholder="Ask how to search or pay…" autocomplete="off">
             <button type="submit" class="primary compact">Ask</button>
           </form>
-        </aside>
-      </main>
+        </div>
+      </div>
 
-      <div id="auth-gate" class="auth-gate">
-        <section class="auth-pitch">
-          <div class="brand auth-brand-row">
-            <span class="brand-mark" aria-hidden="true"></span>
-            <div>
-              <div class="brand-name">WEBPOINT LLC</div>
-              <div class="brand-sub">Members tool — tax certificates</div>
-            </div>
+      <div id="perm-overlay" class="perm-overlay" hidden>
+        <div class="perm-card" role="dialog" aria-labelledby="perm-title" aria-modal="true">
+          <h2 id="perm-title">Allow WebPoint to learn from this session?</h2>
+          <p>When an extractor is wrong, your feedback updates the saved working extractor for that <strong>tax collecting entity and state</strong>. Locked Search Spul URLs stay locked. We never invent collector links or tax amounts.</p>
+          <p>That is how this catalog stays current each year: session feedback, validated, then saved as extractor vN for that agent slot (~2,000 tax collecting entities).</p>
+          <div class="perm-actions">
+            <button type="button" class="primary" id="perm-allow">Allow learning</button>
+            <button type="button" class="ghost" id="perm-later">Not now</button>
           </div>
-          <h1>Create an account to run certificates, recents, and team messages.</h1>
-          <p>Same flow as any working app: page load, sign up with email, then TCS / TPA / RDS / Search Spul. No Apple sign-in.</p>
-          <ul class="auth-points">
-            <li>Locked collector URLs — Chippewa WI LandNav first</li>
-            <li>Batches capped at 10 parcels (LandNav / demo)</li>
-            <li>Account sheet: profile, recents, updates, settings, invites, messages</li>
-          </ul>
-        </section>
-        <section class="auth-card">
-          <div class="auth-tabs" role="tablist">
-            <button type="button" class="auth-tab active" id="tab-signup" role="tab" aria-selected="true">Create account</button>
-            <button type="button" class="auth-tab" id="tab-login" role="tab" aria-selected="false">Sign in</button>
+        </div>
+      </div>
+
+      <div id="about-overlay" class="perm-overlay about-overlay" hidden>
+        <div class="perm-card about-card" role="dialog" aria-labelledby="about-title">
+          <button type="button" class="about-x" id="close-about" aria-label="Close">×</button>
+          <h2 id="about-title">About WebPoint LLC</h2>
+          <p><strong>Proven experience.</strong> Over 50 years of specialized property tax data collection. We pioneered the industry’s first browser-based tax search platform.</p>
+          <p>In <strong>2001</strong> we launched the first internet-based Texas Tax Certificate system for the nation’s largest title provider. Today this members tool is the generative search engine on top of that catalog: locked collector URLs, TCS / TPA / RDS batches, and extractors that heal from consented sessions.</p>
+          <p><strong>Easier integrations. Smarter automations. Instant delivery.</strong></p>
+          <div class="about-links">
+            <a class="guide-link" href="/manual.html">User guide</a>
+            <a class="guide-link" href="/architecture.html">Architecture</a>
           </div>
-          <form id="signup-form" autocomplete="on">
-            <label>Name on the account<input id="su-name" name="name" placeholder="Bill McCreary" required minlength="2"></label>
-            <label>Work email<input id="su-email" name="email" type="email" placeholder="billjr@webpointllc.com" required></label>
-            <label>Company <span class="opt">(optional)</span><input id="su-company" name="company" placeholder="Title company / tax service"></label>
-            <div class="grid-2">
-              <label>Password<input id="su-pass" name="password" type="password" minlength="8" required placeholder="8+ characters"></label>
-              <label>Confirm<input id="su-pass2" name="password2" type="password" minlength="8" required></label>
+        </div>
+      </div>
+
+      <span class="sr-only" id="db-pill"></span>
+      <span class="sr-only" id="spul-pill"></span>
+      <span class="sr-only" id="passport-pill"></span>
+
+      <div id="auth-gate" class="perm-overlay gate-overlay" hidden>
+        <div class="perm-card gate-card" role="dialog" aria-labelledby="gate-title" aria-modal="true">
+          <button type="button" class="about-x" id="gate-close" aria-label="Close">×</button>
+          <div id="gate-account">
+            <h2 id="gate-title">Create a free account to continue</h2>
+            <p id="gate-copy">One search is included. Members unlock unlimited search, batches, and extractor updates.</p>
+            <div class="auth-tabs" role="tablist">
+              <button type="button" class="auth-tab active" id="tab-signup" role="tab" aria-selected="true">Create account</button>
+              <button type="button" class="auth-tab" id="tab-login" role="tab" aria-selected="false">Sign in</button>
             </div>
-            <button type="submit" class="primary" id="su-submit">Create account</button>
+            <form id="signup-form" autocomplete="on">
+              <label>Name<input id="su-name" name="name" placeholder="Your name" required minlength="2"></label>
+              <label>Work email<input id="su-email" name="email" type="email" placeholder="you@titleco.com" required></label>
+              <label>Company <span class="opt">(optional)</span><input id="su-company" name="company" placeholder="Title company / tax service"></label>
+              <button type="submit" class="primary" id="su-submit">Email me a code</button>
+            </form>
+            <form id="login-form" hidden autocomplete="on">
+              <label>Work email<input id="li-email" name="email" type="email" required></label>
+              <button type="submit" class="primary" id="li-submit">Email me a code</button>
+            </form>
+            <p id="auth-error" class="auth-error" hidden></p>
+            <p class="auth-note">We email a 6-digit code. No Apple, Google, or login links.</p>
+          </div>
+          <form id="verify-form" class="gate-verify" hidden>
+            <h2>Enter the 6-digit code</h2>
+            <p id="verify-copy">We sent a code to your email.</p>
+            <label class="sr-only" for="otp-input">Verification code</label>
+            <input id="otp-input" name="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••" required>
+            <button type="submit" class="primary" id="otp-submit">Confirm</button>
+            <p class="auth-error" id="otp-error" hidden></p>
           </form>
-          <form id="login-form" hidden autocomplete="on">
-            <label>Work email<input id="li-email" name="email" type="email" required></label>
-            <label>Password<input id="li-pass" name="password" type="password" required></label>
-            <button type="submit" class="primary" id="li-submit">Sign in</button>
+          <form id="member-form" class="gate-member" hidden>
+            <h2>Members</h2>
+            <p>One plan. Your shop lead receives a code from WebPoint after payment. Enter it here — we do not email login links to colleagues.</p>
+            <label>Member code<input id="member-code" name="member_code" placeholder="WP-XXXX-XXXX" autocomplete="off" required></label>
+            <button type="submit" class="primary" id="member-submit">Unlock members</button>
+            <p class="auth-error" id="member-error" hidden></p>
           </form>
-          <p id="auth-error" class="auth-error" hidden></p>
-          <p class="auth-note">Email and password only. We do not use Apple, Google, or Facebook login.</p>
-        </section>
+        </div>
       </div>
 
       <div id="account-overlay" class="account-overlay" hidden>
@@ -153,7 +258,7 @@
               </span>
               <span class="acct-row-text">
                 <span class="acct-row-title">Add account</span>
-                <span class="acct-row-sub">Add a title company or colleague</span>
+                <span class="acct-row-sub">They sign up, then use your shop’s member code</span>
               </span>
             </button>
             <button type="button" class="acct-row" id="acct-recents">
@@ -177,6 +282,12 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.1"/><path d="M19.4 12.8a7.6 7.6 0 0 0 .06-1.6l2-1.2-1.9-3.3-2.3.7a7.7 7.7 0 0 0-1.4-.8L15.4 4h-3.8l-.5 2.6a7.7 7.7 0 0 0-1.4.8l-2.3-.7-1.9 3.3 2 1.2a7.6 7.6 0 0 0 0 1.6l-2 1.2 1.9 3.3 2.3-.7c.44.34.9.61 1.4.82L11.6 20h3.8l.5-2.58c.5-.2.97-.48 1.4-.82l2.3.7 1.9-3.3-2-1.2Z"/></svg>
               </span>
               <span class="acct-row-title">Settings and privacy</span>
+            </button>
+            <button type="button" class="acct-row" id="acct-usage">
+              <span class="acct-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 14v2M12 10v6M16 8v8" stroke-linecap="round"/></svg>
+              </span>
+              <span class="acct-row-title">Usage and plan</span>
             </button>
             <div class="acct-circles">
               <button type="button" class="acct-circle-btn" id="acct-activity">
@@ -276,10 +387,34 @@
                 <input id="set-activity" type="checkbox">
                 <span>Show activity to colleagues (county lookups and batches)</span>
               </label>
+              <label class="acct-check">
+                <input id="set-learn" type="checkbox">
+                <span>Allow extractor learning from my sessions</span>
+              </label>
               <button type="submit" class="primary compact">Save settings</button>
             </form>
             <p class="acct-inline-status" id="settings-status"></p>
             <button type="button" class="ghost acct-full danger-ghost" id="acct-logout">Sign out</button>
+          </div>
+
+          <div class="acct-view" id="view-usage" hidden>
+            <div class="acct-subhead">
+              <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
+              <h2>Usage and plan</h2>
+            </div>
+            <p class="acct-hint">One plan: Members. Ask your shop lead for the code WebPoint issued after payment. We do not send login links.</p>
+            <dl class="acct-dl" id="usage-dl">
+              <div><dt>Plan</dt><dd id="usage-plan">Free</dd></div>
+              <div><dt>Learning</dt><dd id="usage-learn">Off</dd></div>
+              <div><dt>Catalog slots</dt><dd id="usage-catalog">—</dd></div>
+              <div><dt>Working extractors</dt><dd id="usage-active">—</dd></div>
+            </dl>
+            <form id="usage-member-form" class="acct-form">
+              <label>Member code<input id="usage-member-code" placeholder="WP-XXXX-XXXX" autocomplete="off"></label>
+              <button type="submit" class="primary compact">Unlock members</button>
+            </form>
+            <p class="acct-inline-status" id="usage-member-status"></p>
+            <div class="acct-list" id="usage-extractors"></div>
           </div>
 
           <div class="acct-view" id="view-invite" hidden>
@@ -287,9 +422,10 @@
               <button type="button" class="acct-back" data-back="menu" aria-label="Back">‹</button>
               <h2>Invite Friends</h2>
             </div>
+            <p class="acct-hint">Give colleagues your shop’s member code. They create their own account and punch it in. We do not email login links.</p>
             <form id="invite-form" class="acct-form">
-              <label>Email<input id="invite-email" type="email" placeholder="name@titleco.com" required></label>
-              <button type="submit" class="primary compact">Send invite</button>
+              <label>Note a colleague<input id="invite-email" type="email" placeholder="name@titleco.com" required></label>
+              <button type="submit" class="primary compact">Save note</button>
             </form>
             <p class="acct-inline-status" id="invite-status"></p>
             <div class="acct-list" id="invites-list"></div>
