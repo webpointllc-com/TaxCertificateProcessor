@@ -157,32 +157,29 @@
         <div class="perm-card gate-card" role="dialog" aria-labelledby="gate-title" aria-modal="true">
           <button type="button" class="about-x" id="gate-close" aria-label="Close">×</button>
           <div id="gate-account">
-            <h2 id="gate-title">Create a free account to continue</h2>
-            <p id="gate-copy">Try one search first. Then create an account — email and password, Google, or Apple. A shop code is only if your lead bought seats.</p>
+            <h2 id="gate-title">Sign in to search</h2>
+            <p id="gate-copy">Your question is saved. Sign in or create an account to run it.</p>
             <div class="auth-tabs" role="tablist">
-              <button type="button" class="auth-tab active" id="tab-signup" role="tab" aria-selected="true">Create account</button>
-              <button type="button" class="auth-tab" id="tab-login" role="tab" aria-selected="false">Sign in</button>
+              <button type="button" class="auth-tab active" id="tab-login" role="tab" aria-selected="true">Sign in</button>
+              <button type="button" class="auth-tab" id="tab-signup" role="tab" aria-selected="false">Create account</button>
             </div>
             <div class="oauth-stack">
               <button type="button" class="oauth-btn" id="oauth-google">Continue with Google</button>
               <button type="button" class="oauth-btn" id="oauth-apple">Continue with Apple</button>
             </div>
             <p class="oauth-or">or use email</p>
-            <form id="signup-form" autocomplete="on">
-              <label>Name<input id="su-name" name="name" placeholder="Your name" required minlength="2"></label>
-              <label>Work email<input id="su-email" name="email" type="email" placeholder="you@titleco.com" required></label>
-              <label>Password<input id="su-password" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></label>
-              <label>Confirm password<input id="su-password2" name="password2" type="password" autocomplete="new-password" minlength="8" required></label>
-              <label>Company <span class="opt">(optional)</span><input id="su-company" name="company" placeholder="Title company / tax service"></label>
-              <button type="submit" class="primary" id="su-submit">Create account</button>
-            </form>
-            <form id="login-form" hidden autocomplete="on">
-              <label>Work email<input id="li-email" name="email" type="email" required></label>
+            <form id="login-form" autocomplete="on">
+              <label>Email<input id="li-email" name="email" type="email" required></label>
               <label>Password<input id="li-password" name="password" type="password" autocomplete="current-password" required></label>
               <button type="submit" class="primary" id="li-submit">Sign in</button>
             </form>
+            <form id="signup-form" hidden autocomplete="on">
+              <label>Email<input id="su-email" name="email" type="email" placeholder="you@titleco.com" required></label>
+              <label>Password<input id="su-password" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></label>
+              <button type="submit" class="primary" id="su-submit">Create account</button>
+            </form>
             <p id="auth-error" class="auth-error" hidden></p>
-            <p class="auth-note">Email accounts get a confirmation link to click. After that you can attach a shop member code, or skip and keep the one free search.</p>
+            <p class="auth-note">We’ll email a confirmation link. Employer code after that, or skip for one free search.</p>
           </div>
           <div id="confirm-panel" class="gate-confirm" hidden>
             <h2>Check your email</h2>

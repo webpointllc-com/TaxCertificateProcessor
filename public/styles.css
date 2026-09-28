@@ -374,11 +374,12 @@ button.mac-label {
   border: 0; background: transparent; font-family: inherit; cursor: pointer;
   font-size: 13px; font-weight: 600; color: #3b6dff; padding: 4px 8px;
 }
-.gate-card { max-width: 440px; }
+.gate-card { max-width: 400px; padding: 22px 24px 18px; }
+.gate-card h2 { font-size: 20px; margin-bottom: 6px; }
 .gate-card form { display: flex; flex-direction: column; gap: 10px; }
-.gate-card .auth-tabs { margin: 14px 0 12px; }
+.gate-card .auth-tabs { margin: 12px 0 10px; }
 .gate-card .primary { width: 100%; margin-top: 4px; }
-.gate-card .auth-note { margin-top: 12px; color: #8b97a8; font-size: 12px; }
+.gate-card .auth-note { margin-top: 10px; color: #8b97a8; font-size: 12px; }
 .gate-card .auth-error { color: #c2410c; font-size: 13px; }
 .oauth-stack { display: flex; flex-direction: column; gap: 8px; }
 .oauth-btn {

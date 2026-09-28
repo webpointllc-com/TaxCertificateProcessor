@@ -92,9 +92,14 @@ function formatMemberCode(raw) {
   return String(raw || '').trim().toUpperCase();
 }
 
+function nameFromEmail(email) {
+  const local = String(email || '').split('@')[0].trim();
+  return local.length >= 2 ? local : 'Member';
+}
+
 async function signup({ email, password, display_name, company, sessionId }) {
   email = String(email || '').trim().toLowerCase();
-  display_name = String(display_name || '').trim();
+  display_name = String(display_name || '').trim() || nameFromEmail(email);
   password = String(password || '');
   company = String(company || '').trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {

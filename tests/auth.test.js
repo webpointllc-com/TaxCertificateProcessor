@@ -42,6 +42,21 @@ describe('signup, session, account', () => {
     assert.equal(body.ok, false);
   });
 
+  it('derives the account name from email when signup is email and password only', async () => {
+    const fresh = `jane.doe.${Date.now()}@webpointllc.com`;
+    const { res, body } = await json('/api/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: fresh,
+        password: 'webpoint1'
+      })
+    });
+    assert.equal(res.status, 201);
+    assert.equal(body.ok, true);
+    assert.equal(body.account.display_name, fresh.split('@')[0]);
+    assert.equal(body.account.email_verified, false);
+  });
+
   it('requires a password of 8+ characters', async () => {
     const { res, body } = await json('/api/signup', {
       method: 'POST',

@@ -49,10 +49,14 @@ describe('embeddable scaled UI', () => {
     assert.match(html, /id="member-skip"/);
     assert.match(html, /Continue with Google/);
     assert.match(html, /Continue with Apple/);
+    assert.match(html, /Sign in to search/);
     assert.match(js, /\/api\/signup/);
     assert.match(js, /\/api\/confirm/);
     assert.match(js, /\/api\/auth\/' \+ provider \+ '\/start/);
     assert.match(js, /\/api\/member-code/);
+    assert.match(js, /displayNameFromEmail/);
+    assert.doesNotMatch(html, /id="su-name"|id="su-password2"|id="su-company"/);
+    assert.doesNotMatch(js, /su-name|su-password2|su-company/);
     assert.doesNotMatch(html, /Email me a code|6-digit/);
     assert.doesNotMatch(js, /\/api\/verify/);
   });

@@ -187,7 +187,7 @@
     }
     if (data.gate === 'account' || data.status === 401) {
       if (lastQuery) sessionStorage.setItem('wp_pending_q', lastQuery);
-      openGate('account', 'Sign in to search', 'Create a free account or sign in. Your question is saved and runs after you confirm.');
+      openGate('account', 'Sign in to search', 'Your question is saved. Sign in or create an account to run it.', 'login');
       return true;
     }
     if (data.gate === 'confirm') {
@@ -588,7 +588,7 @@
     $('hero-input').value = q;
     if ($('search-error')) { $('search-error').hidden = true; $('search-error').textContent = ''; }
     if (!account) {
-      openGate('account', 'Sign in to search', 'Create a free account or sign in. Your question is saved.');
+      openGate('account', 'Sign in to search', 'Your question is saved. Sign in or create an account to run it.', 'login');
       return;
     }
     $('gen-pill').hidden = false;
@@ -846,23 +846,24 @@
   $('oauth-google').addEventListener('click', function () { startOAuth('google'); });
   $('oauth-apple').addEventListener('click', function () { startOAuth('apple'); });
 
+  function displayNameFromEmail(email) {
+    var local = String(email || '').split('@')[0].trim();
+    return local.length >= 2 ? local : 'Member';
+  }
+
   $('signup-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     setAuthError('');
-    if ($('su-password').value !== $('su-password2').value) {
-      setAuthError('Passwords do not match');
-      return;
-    }
+    var email = $('su-email').value.trim();
     $('su-submit').disabled = true;
     try {
       var res = await fetch('/api/signup', {
         method: 'POST',
         headers: headers(true),
         body: JSON.stringify({
-          display_name: $('su-name').value.trim(),
-          email: $('su-email').value.trim(),
-          password: $('su-password').value,
-          company: $('su-company').value.trim()
+          display_name: displayNameFromEmail(email),
+          email: email,
+          password: $('su-password').value
         })
       });
       var data = await res.json();
