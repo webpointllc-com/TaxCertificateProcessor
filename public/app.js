@@ -221,10 +221,7 @@
     var link = $('res-collector');
     if (url) { link.href = url; link.hidden = false; } else { link.hidden = true; }
     paintInsights(card.insights);
-    var methodSteps = ((data.extractor && data.extractor.method && data.extractor.method.steps) || []).map(function (s) {
-      return '• ' + s;
-    }).join('\n');
-    $('tab-overview').textContent = [card.summary || '', methodSteps].filter(Boolean).join('\n\n');
+    $('tab-overview').textContent = card.summary || '';
     $('heal-status').textContent = data.extractor
       ? ('Working extractor v' + data.extractor.version + ' · ' + (data.extractor.status || 'active'))
       : '';
@@ -735,18 +732,17 @@
     .then(function (h) {
       var db = document.getElementById('db-pill');
       db.textContent = h.db === 'postgres' ? 'Postgres live' : 'Local memory DB';
-      db.className = 'pill ' + (h.db === 'postgres' ? 'ok' : 'warn');
+      db.className = 'sr-only';
       var pass = document.getElementById('passport-pill');
       if (h.workplace && h.workplace.found) {
         pass.textContent = 'Passport clone found';
-        pass.className = 'pill ok';
       } else {
         pass.textContent = 'Passport not mounted';
-        pass.className = 'pill warn';
       }
+      pass.className = 'sr-only';
       var spul = document.getElementById('spul-pill');
       spul.textContent = h.groq ? 'S-PUL + Groq' : 'S-PUL database';
-      spul.className = 'pill ok';
+      spul.className = 'sr-only';
     })
     .catch(function () {});
 

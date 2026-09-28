@@ -44,7 +44,9 @@ function buildInsights(lookup, extractor) {
       id: 'trend',
       title: 'Assessment Trend',
       value: locked ? 'Confirm on collector' : 'No locked collector URL',
-      detail: extractor?.method?.notes || 'Year-over-year figures are taken only from the tax collecting entity.'
+      detail: locked
+        ? 'Year-over-year figures are taken only from the tax collecting entity.'
+        : 'This jurisdiction still needs a validated extractor.'
     },
     {
       id: 'payment',
