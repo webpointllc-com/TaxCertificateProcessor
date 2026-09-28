@@ -49,8 +49,7 @@ html, body {
 
 .g-bar {
   height: 56px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
   gap: 16px;
   padding: 0 20px;
@@ -59,7 +58,7 @@ html, body {
   border: 0; background: transparent; cursor: pointer;
   font-family: inherit; font-weight: 800; font-size: 18px; color: #1b2433;
 }
-.g-right { display: flex; align-items: center; gap: 12px; }
+.g-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
 .mac-window.home .g-mini { visibility: hidden; }
 .mac-window.home #header-search-slot { display: none; }
 .g-home {
