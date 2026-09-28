@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "description": "Real user phrasing for generative SPUL training and test:scenarios",
+  "scenarios": [
+    {
+      "id": "sd-pay-taxes",
+      "userMessage": "Pay my property taxes San Diego CA",
+      "expectedCounty": "San Diego",
+      "expectedState": "CA",
+      "mustContainUrlHost": "sdttc.com",
+      "forbiddenHosts": ["arcc.sandiegocounty.gov", "google.com"],
+      "intent": "pay_taxes_search_by_name"
+    },
+    {
+      "id": "sd-last-name",
+      "userMessage": "San Diego CA property tax search by last name",
+      "expectedCounty": "San Diego",
+      "expectedState": "CA",
+      "mustContainUrlHost": "sdttc.com",
+      "forbiddenHosts": ["arcc.sandiegocounty.gov"],
+      "intent": "pay_taxes_search_by_name"
+    },
+    {
+      "id": "denver-bill",
+      "userMessage": "Denver CO tax bill lookup",
+      "expectedCounty": "Denver",
+      "expectedState": "CO",
+      "mustContainUrlHost": "spatialest.com",
+      "forbiddenHosts": ["denvergov.org/Assessor", "google.com"],
+      "intent": "pay_taxes_search_by_name"
+    },
+    {
+      "id": "denver-property",
+      "userMessage": "where do I pay property taxes Denver Colorado",
+      "expectedCounty": "Denver",
+      "expectedState": "CO",
+      "mustContainUrlHost": "spatialest.com",
+      "forbiddenHosts": ["denvergov.org"],
+      "intent": "pay_taxes"
+    },
+    {
+      "id": "travis-pay",
+      "userMessage": "Pay my property taxes Travis County TX",
+      "expectedCounty": "Travis",
+      "expectedState": "TX",
+      "mustContainUrlHost": "travis",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes",
+      "notes": "DB may return CAD search; user intent is tax office — disambiguate in prompt"
+    },
+    {
+      "id": "travis-cad-query",
+      "userMessage": "Travis County CAD property search",
+      "expectedCounty": "Travis",
+      "expectedState": "TX",
+      "mustContainUrlHost": "travis",
+      "forbiddenHosts": ["google.com"],
+      "intent": "tx_cad_property_search"
+    },
+    {
+      "id": "bell-tx",
+      "userMessage": "Bell County TX property tax search",
+      "expectedCounty": "Bell",
+      "expectedState": "TX",
+      "mustContainUrlHost": "bell",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes_search_by_name"
+    },
+    {
+      "id": "harris-tx",
+      "userMessage": "Harris County Texas pay property taxes online",
+      "expectedCounty": "Harris",
+      "expectedState": "TX",
+      "mustContainUrlHost": "harris",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes"
+    },
+    {
+      "id": "cook-treasurer",
+      "userMessage": "Cook County IL property tax treasurer search",
+      "expectedCounty": "Cook",
+      "expectedState": "IL",
+      "mustContainUrlHost": "cookcounty",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes_search_by_name"
+    },
+    {
+      "id": "cook-pay",
+      "userMessage": "pay property taxes Cook County Illinois",
+      "expectedCounty": "Cook",
+      "expectedState": "IL",
+      "mustContainUrlHost": "cookcounty",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes"
+    },
+    {
+      "id": "dallas-tx",
+      "userMessage": "Dallas County TX property tax search",
+      "expectedCounty": "Dallas",
+      "expectedState": "TX",
+      "mustContainUrlHost": "dallas",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes_search_by_name"
+    },
+    {
+      "id": "miami-dade",
+      "userMessage": "Miami-Dade FL property tax search by owner",
+      "expectedCounty": "Miami Dade",
+      "expectedState": "FL",
+      "mustContainUrlHost": "",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes_search_by_name",
+      "optional": true
+    },
+    {
+      "id": "maricopa-az",
+      "userMessage": "Maricopa County AZ pay property taxes",
+      "expectedCounty": "Maricopa",
+      "expectedState": "AZ",
+      "mustContainUrlHost": "maricopa",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes"
+    },
+    {
+      "id": "king-wa",
+      "userMessage": "King County WA property tax lookup",
+      "expectedCounty": "King",
+      "expectedState": "WA",
+      "mustContainUrlHost": "",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes_search_by_name",
+      "optional": true
+    },
+    {
+      "id": "orange-ca",
+      "userMessage": "Orange County California property tax payment search",
+      "expectedCounty": "Orange",
+      "expectedState": "CA",
+      "mustContainUrlHost": "",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes",
+      "optional": true
+    },
+    {
+      "id": "bexar-tx",
+      "userMessage": "Bexar County TX tax office property search",
+      "expectedCounty": "Bexar",
+      "expectedState": "TX",
+      "mustContainUrlHost": "bcad",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes",
+      "optional": true
+    },
+    {
+      "id": "tarrant-tx",
+      "userMessage": "Tarrant County Texas property tax search",
+      "expectedCounty": "Tarrant",
+      "expectedState": "TX",
+      "mustContainUrlHost": "tarrant",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes_search_by_name",
+      "optional": true
+    },
+    {
+      "id": "fulton-ga",
+      "userMessage": "Fulton County GA property tax search",
+      "expectedCounty": "Fulton",
+      "expectedState": "GA",
+      "mustContainUrlHost": "",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes",
+      "optional": true
+    },
+    {
+      "id": "wayne-mi",
+      "userMessage": "Wayne County MI property tax search",
+      "expectedCounty": "Wayne",
+      "expectedState": "MI",
+      "mustContainUrlHost": "",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes_search_by_name",
+      "optional": true
+    },
+    {
+      "id": "clark-nv",
+      "userMessage": "Clark County NV pay property taxes",
+      "expectedCounty": "Clark",
+      "expectedState": "NV",
+      "mustContainUrlHost": "",
+      "forbiddenHosts": ["google.com"],
+      "intent": "pay_taxes",
+      "optional": true
+    },
+    {
+      "id": "off-topic",
+      "userMessage": "what is the weather in Austin",
+      "expectedCounty": null,
+      "expectedState": null,
+      "mustContainUrlHost": "",
+      "forbiddenHosts": [],
+      "intent": "off_topic",
+      "expectNoUrl": true
+    },
+    {
+      "id": "tx-williamson-tax",
+      "userMessage": "Williamson County TX tax office property search",
+      "expectedCounty": "Williamson",
+      "expectedState": "TX",
+      "mustContainUrlHost": "wilco",
+      "forbiddenHosts": ["google.com"],
+      "intent": "tx_tax_office_not_cad"
+    },
+    {
+      "id": "parcel-search",
+      "userMessage": "search property taxes by parcel number Los Angeles CA",
+      "expectedCounty": "Los Angeles",
+      "expectedState": "CA",
+      "mustContainUrlHost": "",
+      "forbiddenHosts": ["google.com"],
+      "intent": "search_by_parcel",
+      "optional": true
+    },
+    {
+      "id": "account-number",
+      "userMessage": "Hillsborough County FL tax account number lookup",
+      "expectedCounty": "Hillsborough",
+      "expectedState": "FL",
+      "mustContainUrlHost": "",
+      "forbiddenHosts": ["google.com"],
+      "intent": "search_by_account",
+      "optional": true
+    }
+  ]
+}

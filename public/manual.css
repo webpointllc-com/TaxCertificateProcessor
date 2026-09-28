@@ -1,0 +1,171 @@
+/* User manual — same 1280×800 canvas as the tool. Full borders, no left stripes. */
+.modules-5 .mod {
+  font-size: 13px;
+  padding: 10px 12px;
+}
+
+.manual-section {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: auto;
+  flex: 1;
+}
+.manual-section.active { display: flex; }
+
+.kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.hero-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+  background: linear-gradient(135deg, var(--blue), #fff 48%, var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede { color: var(--muted); font-size: 13px; line-height: 1.5; }
+.lede strong { color: var(--text); font-weight: 700; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.stat-card, .step-card, .faq-card, .product-card {
+  background: var(--fill);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.stat-card h3, .step-card h3, .product-card h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 4px 0 4px;
+}
+.stat-card p, .step-card p, .product-card p, .faq-card p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.stat-card a, .faq-card a, .mock-cert a, .product-card a { color: var(--blue); }
+.stat-card .codeish {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--blue);
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #3ec4ff, #1a7ad4);
+  color: #041226;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 0 12px var(--glow);
+}
+
+.field-table {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 6px 10px;
+  font-size: 12px;
+}
+.field-table dt {
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 10px;
+  padding-top: 6px;
+}
+.field-table dd {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.faq-card h3 { font-size: 13px; margin-bottom: 4px; }
+
+.aside-title { font-size: 15px; font-weight: 700; }
+.aside-copy { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+.diagram-frame {
+  background: rgba(4, 10, 28, 0.55);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 0 28px rgba(40, 160, 255, 0.08);
+}
+.diagram-frame svg { width: 100%; height: auto; display: block; }
+
+.embed-card {
+  background: rgba(16, 40, 90, 0.45);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.embed-card h3 { font-size: 12px; margin-bottom: 6px; }
+.embed-card pre {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: rgba(0,0,0,0.28);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.mock-cert {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.mock-cert strong { display: block; font-size: 13px; margin-bottom: 4px; }
+.mock-cert p { font-size: 12px; color: var(--muted); line-height: 1.45; }
+.mock-cert a { color: var(--blue); }
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: var(--fill);
+  color: var(--text);
+}
+
+.note-ok {
+  border: 1px solid rgba(61, 220, 138, 0.35);
+  background: rgba(61, 220, 138, 0.1);
+  color: var(--ok);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.note-warn {
+  border: 1px solid rgba(240, 193, 75, 0.35);
+  background: rgba(240, 193, 75, 0.1);
+  color: var(--warn);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}

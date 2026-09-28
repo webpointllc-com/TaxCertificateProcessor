@@ -1,0 +1,1966 @@
+{
+  "WI:horry": {
+    "state": "SC",
+    "county": "Horry"
+  },
+  "MD:princegeorge": {
+    "state": "MD",
+    "county": "Prince George"
+  },
+  "MD:princegeorges": {
+    "state": "MD",
+    "county": "Prince George"
+  },
+  "DC:washington": {
+    "state": "DC",
+    "county": "District Of Columbia"
+  },
+  "DC:washingtondc": {
+    "state": "DC",
+    "county": "District Of Columbia"
+  },
+  "FL:miamidade": {
+    "state": "FL",
+    "county": "Miami Dade"
+  },
+  "FL:miamdade": {
+    "state": "FL",
+    "county": "Miami Dade"
+  },
+  "FL:hillsbourgh": {
+    "state": "FL",
+    "county": "Hillsborough"
+  },
+  "FL:naussau": {
+    "state": "FL",
+    "county": "Nassau"
+  },
+  "FL:puertorico": {
+    "state": "PR",
+    "county": "Puerto Rico"
+  },
+  "AL:balwin": {
+    "state": "AL",
+    "county": "Baldwin"
+  },
+  "AL:choctow": {
+    "state": "AL",
+    "county": "Choctaw"
+  },
+  "AL:dekab": {
+    "state": "AL",
+    "county": "De Kalb"
+  },
+  "AL:dekalb": {
+    "state": "AL",
+    "county": "De Kalb"
+  },
+  "AL:jeffeson": {
+    "state": "AL",
+    "county": "Jefferson"
+  },
+  "AL:jefferonbessemer": {
+    "state": "AL",
+    "county": "Jefferson"
+  },
+  "AL:mongomery": {
+    "state": "AL",
+    "county": "Montgomery"
+  },
+  "AL:stclaire": {
+    "state": "AL",
+    "county": "St Clair"
+  },
+  "AL:stclair": {
+    "state": "AL",
+    "county": "St Clair"
+  },
+  "AL:talladaga": {
+    "state": "AL",
+    "county": "Talladega"
+  },
+  "AL:tallapaloosa": {
+    "state": "AL",
+    "county": "Tallapoosa"
+  },
+  "AL:tuscaloossa": {
+    "state": "AL",
+    "county": "Tuscaloosa"
+  },
+  "AR:craigsheadcunty": {
+    "state": "AR",
+    "county": "Craighead"
+  },
+  "AR:sabastian": {
+    "state": "AR",
+    "county": "Sebastian"
+  },
+  "AZ:cocinino": {
+    "state": "AZ",
+    "county": "Coconino"
+  },
+  "CA:almeda": {
+    "state": "CA",
+    "county": "Alameda"
+  },
+  "CA:sanbernadino": {
+    "state": "CA",
+    "county": "San Bernardino"
+  },
+  "CA:sanbernaardino": {
+    "state": "CA",
+    "county": "San Bernardino"
+  },
+  "CA:canbernardino": {
+    "state": "CA",
+    "county": "San Bernardino"
+  },
+  "CA:sanjaoquin": {
+    "state": "CA",
+    "county": "San Joaquin"
+  },
+  "CA:canjaoquin": {
+    "state": "CA",
+    "county": "San Joaquin"
+  },
+  "CA:sanqoaquin": {
+    "state": "CA",
+    "county": "San Joaquin"
+  },
+  "CA:cantaclara": {
+    "state": "CA",
+    "county": "Santa Clara"
+  },
+  "CA:conracosta": {
+    "state": "CA",
+    "county": "Contra Costa"
+  },
+  "CA:medocino": {
+    "state": "CA",
+    "county": "Mendocino"
+  },
+  "CA:mendecino": {
+    "state": "CA",
+    "county": "Mendocino"
+  },
+  "CA:menocino": {
+    "state": "CA",
+    "county": "Mendocino"
+  },
+  "CA:sanoma": {
+    "state": "CA",
+    "county": "Sonoma"
+  },
+  "CA:sarcamento": {
+    "state": "CA",
+    "county": "Sacramento"
+  },
+  "CA:santaclarita": {
+    "state": "CA",
+    "county": "Los Angeles"
+  },
+  "CO:admas": {
+    "state": "CO",
+    "county": "Adams"
+  },
+  "CO:broomfieldcitycounty": {
+    "state": "CO",
+    "county": "Broomfield"
+  },
+  "CT:greenwhichtown": {
+    "state": "CT",
+    "county": "Greenwich"
+  },
+  "CT:harfordcity": {
+    "state": "CT",
+    "county": "Hartford"
+  },
+  "CT:hartordcity": {
+    "state": "CT",
+    "county": "Hartford"
+  },
+  "IL:efingham": {
+    "state": "IL",
+    "county": "Effingham"
+  },
+  "IL:cookcountytreasurer": {
+    "state": "IL",
+    "county": "Cook Treasurer"
+  },
+  "IN:koscuisco": {
+    "state": "IN",
+    "county": "Kosciusko"
+  },
+  "LA:jeffeson": {
+    "state": "LA",
+    "county": "Jefferson"
+  },
+  "LA:lafayatte": {
+    "state": "LA",
+    "county": "Lafayette"
+  },
+  "LA:nitchitoches": {
+    "state": "LA",
+    "county": "Natchitoches"
+  },
+  "LA:terrebone": {
+    "state": "LA",
+    "county": "Terrebonne"
+  },
+  "LA:orleansperish": {
+    "state": "LA",
+    "county": "Orleans"
+  },
+  "LA:ascensionperish": {
+    "state": "LA",
+    "county": "Ascension"
+  },
+  "LA:terrebonneperish": {
+    "state": "LA",
+    "county": "Terrebonne"
+  },
+  "GA:fultoncities": {
+    "state": "GA",
+    "county": "Fulton"
+  },
+  "GA:atlantacity": {
+    "state": "GA",
+    "county": "Fulton"
+  },
+  "GA:atlanta": {
+    "state": "GA",
+    "county": "Fulton"
+  },
+  "GA:fultonsolidwaste": {
+    "state": "GA",
+    "county": "Fulton"
+  },
+  "GA:rowwellcity": {
+    "state": "GA",
+    "county": "Fulton"
+  },
+  "KY:warnerrobinscity": {
+    "state": "GA",
+    "county": "Houston"
+  },
+  "NY:nycdof": {
+    "state": "NY",
+    "county": "New York City"
+  },
+  "NY:manhattanboro": {
+    "state": "NY",
+    "county": "New York City"
+  },
+  "NY:brooklynboro": {
+    "state": "NY",
+    "county": "New York City"
+  },
+  "NY:queensboro": {
+    "state": "NY",
+    "county": "New York City"
+  },
+  "NY:bronxboro": {
+    "state": "NY",
+    "county": "Bronx"
+  },
+  "NY:statenislandboro": {
+    "state": "NY",
+    "county": "Richmond"
+  },
+  "PR:crim": {
+    "state": "PR",
+    "county": "CRIM"
+  },
+  "PR:puertorico": {
+    "state": "PR",
+    "county": "Puerto Rico"
+  },
+  "WI:portagecity": {
+    "state": "WI",
+    "county": "Portage"
+  },
+  "GA:catoosaco": {
+    "state": "GA",
+    "county": "Catoosa"
+  },
+  "GA:bartowco": {
+    "state": "GA",
+    "county": "Bartow"
+  },
+  "GA:bullochco": {
+    "state": "GA",
+    "county": "Bulloch"
+  },
+  "GA:camdenco": {
+    "state": "GA",
+    "county": "Camden"
+  },
+  "GA:smyrnacity": {
+    "state": "GA",
+    "county": "Smyrna"
+  },
+  "NH:merrimactown": {
+    "state": "NH",
+    "county": "Merrimack Town"
+  },
+  "NM:sandovalco": {
+    "state": "NM",
+    "county": "Sandoval"
+  },
+  "NM:santafeco": {
+    "state": "NM",
+    "county": "Santa Fe"
+  },
+  "UT:saltlakeco": {
+    "state": "UT",
+    "county": "Salt Lake"
+  },
+  "VA:augustaco": {
+    "state": "VA",
+    "county": "Augusta"
+  },
+  "VA:culpeperco": {
+    "state": "VA",
+    "county": "Culpeper"
+  },
+  "VA:fauquierco": {
+    "state": "VA",
+    "county": "Fauquier"
+  },
+  "VA:orangeco": {
+    "state": "VA",
+    "county": "Orange"
+  },
+  "VA:pulaskico": {
+    "state": "VA",
+    "county": "Pulaski"
+  },
+  "VA:warrenco": {
+    "state": "VA",
+    "county": "Warren"
+  },
+  "CA:contracostaco": {
+    "state": "CA",
+    "county": "Contra Costa"
+  },
+  "CA:orangeco": {
+    "state": "CA",
+    "county": "Orange"
+  },
+  "CA:riversideco": {
+    "state": "CA",
+    "county": "Riverside"
+  },
+  "CA:sacramentoco": {
+    "state": "CA",
+    "county": "Sacramento"
+  },
+  "CA:sanbernardinoco": {
+    "state": "CA",
+    "county": "San Bernardino"
+  },
+  "CA:sandiegoco": {
+    "state": "CA",
+    "county": "San Diego"
+  },
+  "CA:sanfranciscoco": {
+    "state": "CA",
+    "county": "San Francisco"
+  },
+  "CA:sanmateoco": {
+    "state": "CA",
+    "county": "San Mateo"
+  },
+  "CA:venturaco": {
+    "state": "CA",
+    "county": "Ventura"
+  },
+  "VA:loudon": {
+    "state": "VA",
+    "county": "Loudoun"
+  },
+  "NH:merrimac": {
+    "state": "NH",
+    "county": "Merrimack"
+  },
+  "PA:philadelphiacity": {
+    "state": "PA",
+    "county": "Philadelphia"
+  },
+  "LA:shreveportcity": {
+    "state": "LA",
+    "county": "Shreveport"
+  },
+  "SC:charlston": {
+    "state": "SC",
+    "county": "Charleston"
+  },
+  "NC:mecklenberg": {
+    "state": "NC",
+    "county": "Mecklenburg"
+  },
+  "NY:albanycity": {
+    "state": "NY",
+    "county": "Albany"
+  },
+  "NY:cantontown": {
+    "state": "NY",
+    "county": "Clinton"
+  },
+  "NY:chanangotown": {
+    "state": "NY",
+    "county": "Chenango"
+  },
+  "NY:cliftontown": {
+    "state": "NY",
+    "county": "Clinton"
+  },
+  "NY:delawaretown": {
+    "state": "NY",
+    "county": "Delaware"
+  },
+  "NY:fentontown": {
+    "state": "NY",
+    "county": "Fulton"
+  },
+  "NY:mainetown": {
+    "state": "NY",
+    "county": "Wayne"
+  },
+  "MI:granblanctownship": {
+    "state": "MI",
+    "county": "Grand Blanc Township"
+  },
+  "AZ:maricopaco": {
+    "state": "AZ",
+    "county": "Maricopa"
+  },
+  "FL:stjohn": {
+    "state": "FL",
+    "county": "St Johns"
+  },
+  "MA:cambridgecity": {
+    "state": "MA",
+    "county": "Cambridge"
+  },
+  "NY:onandaga": {
+    "state": "NY",
+    "county": "Onondaga"
+  },
+  "IN:kosciusco": {
+    "state": "IN",
+    "county": "Kosciusko"
+  },
+  "PA:alleghany": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "WV:greenbriar": {
+    "state": "WV",
+    "county": "Greenbrier"
+  },
+  "MD:annearundelco": {
+    "state": "MD",
+    "county": "Anne Arundel"
+  },
+  "MD:montgomeryco": {
+    "state": "MD",
+    "county": "Montgomery"
+  },
+  "IL:vermillion": {
+    "state": "IL",
+    "county": "Vermilion"
+  },
+  "RI:newportcity": {
+    "state": "RI",
+    "county": "Newport"
+  },
+  "VA:stpetersburgcity": {
+    "state": "VA",
+    "county": "Petersburg"
+  },
+  "RI:bristoltown": {
+    "state": "RI",
+    "county": "Bristol"
+  },
+  "MI:redfordtownship": {
+    "state": "MI",
+    "county": "Bedford Township"
+  },
+  "IN:stark": {
+    "state": "IN",
+    "county": "Starke"
+  },
+  "WI:manitowac": {
+    "state": "WI",
+    "county": "Manitowoc"
+  },
+  "WI:oskoshcity": {
+    "state": "WI",
+    "county": "Oshkosh City"
+  },
+  "VA:culpepper": {
+    "state": "VA",
+    "county": "Culpeper"
+  },
+  "MD:aberdeencity": {
+    "state": "MD",
+    "county": "Aberdeen"
+  },
+  "MA:gloucestercity": {
+    "state": "MA",
+    "county": "Gloucester"
+  },
+  "MI:vanburentownship": {
+    "state": "MI",
+    "county": "Van Buren"
+  },
+  "NY:gatestown": {
+    "state": "NY",
+    "county": "Yates"
+  },
+  "NY:greecetown": {
+    "state": "NY",
+    "county": "Greene"
+  },
+  "GA:roswellcity": {
+    "state": "GA",
+    "county": "Roswell"
+  },
+  "WI:lacrossecity": {
+    "state": "WI",
+    "county": "La Crosse"
+  },
+  "ME:falmouthtown": {
+    "state": "ME",
+    "county": "Falmouth"
+  },
+  "MS:wearetown": {
+    "state": "MS",
+    "county": "Leake"
+  },
+  "NE:liincoln": {
+    "state": "NE",
+    "county": "Lincoln"
+  },
+  "GA:gwinnet": {
+    "state": "GA",
+    "county": "Gwinnett"
+  },
+  "GA:cantoncity": {
+    "state": "GA",
+    "county": "Clayton"
+  },
+  "GA:acworthcity": {
+    "state": "GA",
+    "county": "Worth"
+  },
+  "WI:fondulac": {
+    "state": "WI",
+    "county": "Fond Du Lac"
+  },
+  "WI:lacross": {
+    "state": "WI",
+    "county": "La Crosse"
+  },
+  "NC:meclenburg": {
+    "state": "NC",
+    "county": "Mecklenburg"
+  },
+  "NJ:middletowntownship": {
+    "state": "NJ",
+    "county": "Middle Twp"
+  },
+  "NY:chenangotown": {
+    "state": "NY",
+    "county": "Chenango"
+  },
+  "MN:macleod": {
+    "state": "MN",
+    "county": "Mc Leod"
+  },
+  "TX:elpasocity": {
+    "state": "TX",
+    "county": "El Paso"
+  },
+  "GA:emmanuel": {
+    "state": "GA",
+    "county": "Emanuel"
+  },
+  "GA:eastpointecity": {
+    "state": "GA",
+    "county": "East Point City"
+  },
+  "VA:matthews": {
+    "state": "VA",
+    "county": "Mathews"
+  },
+  "RI:providencecity": {
+    "state": "RI",
+    "county": "Providence"
+  },
+  "IN:clarke": {
+    "state": "IN",
+    "county": "Clark"
+  },
+  "VA:powhatten": {
+    "state": "VA",
+    "county": "Powhatan"
+  },
+  "MD:carrol": {
+    "state": "MD",
+    "county": "Carroll"
+  },
+  "NC:onslaw": {
+    "state": "NC",
+    "county": "Onslow"
+  },
+  "WI:ashlandtown": {
+    "state": "WI",
+    "county": "Ashland"
+  },
+  "WI:eauclair": {
+    "state": "WI",
+    "county": "Eau Claire"
+  },
+  "MI:chippewatownship": {
+    "state": "MI",
+    "county": "Chippewa"
+  },
+  "MI:ontwatownship": {
+    "state": "MI",
+    "county": "Ottawa"
+  },
+  "WI:trempeleau": {
+    "state": "WI",
+    "county": "Trempealeau"
+  },
+  "MI:clydetownship": {
+    "state": "MI",
+    "county": "Clare"
+  },
+  "IN:davies": {
+    "state": "IN",
+    "county": "Daviess"
+  },
+  "TX:goosecreekcisd": {
+    "state": "TX",
+    "county": "Goose Creek ISD"
+  },
+  "WI:waukeshacity": {
+    "state": "WI",
+    "county": "Waukesha"
+  },
+  "MA:weymouth": {
+    "state": "MA",
+    "county": "Plymouth"
+  },
+  "IL:cookcountyclerk": {
+    "state": "IL",
+    "county": "Cook County"
+  },
+  "IL:stclaire": {
+    "state": "IL",
+    "county": "St Clair"
+  },
+  "IN:kosckiusko": {
+    "state": "IN",
+    "county": "Kosciusko"
+  },
+  "WI:trumpealeau": {
+    "state": "WI",
+    "county": "Trempealeau"
+  },
+  "IN:whitely": {
+    "state": "IN",
+    "county": "White"
+  },
+  "IN:carrol": {
+    "state": "IN",
+    "county": "Carroll"
+  },
+  "TN:knoxsvillecity": {
+    "state": "TN",
+    "county": "Knoxville City"
+  },
+  "TX:montage": {
+    "state": "TX",
+    "county": "Montague"
+  },
+  "NY:yorktownschools": {
+    "state": "NY",
+    "county": "Yorktown School"
+  },
+  "WI:cudahaycity": {
+    "state": "WI",
+    "county": "Cudahy City"
+  },
+  "WV:capbell": {
+    "state": "WV",
+    "county": "Cabell"
+  },
+  "MD:allegheny": {
+    "state": "MD",
+    "county": "Allegany"
+  },
+  "PA:alleghenya": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyb": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyc": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyd": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenye": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyf": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyg": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyh": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyi": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyj": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyk": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyl": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenym": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyn": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyo": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:alleghenyp": {
+    "state": "PA",
+    "county": "Allegheny"
+  },
+  "PA:northhampton": {
+    "state": "PA",
+    "county": "Northampton"
+  },
+  "MN:leseuer": {
+    "state": "MN",
+    "county": "Le Sueur"
+  },
+  "GA:futon": {
+    "state": "GA",
+    "county": "Fulton"
+  },
+  "IN:jacksonfd": {
+    "state": "IN",
+    "county": "Jackson"
+  },
+  "IN:johnshon": {
+    "state": "IN",
+    "county": "Johnson"
+  },
+  "IN:warrenfd": {
+    "state": "IN",
+    "county": "Warren"
+  },
+  "TX:atacosa": {
+    "state": "TX",
+    "county": "Atascosa"
+  },
+  "MI:milantownship": {
+    "state": "MI",
+    "county": "Milan"
+  },
+  "WI:marinett": {
+    "state": "WI",
+    "county": "Marinette"
+  },
+  "WI:wasburn": {
+    "state": "WI",
+    "county": "Washburn"
+  },
+  "WI:foxpointevillage": {
+    "state": "WI",
+    "county": "Fox Point Village"
+  },
+  "WI:glendalevillage": {
+    "state": "WI",
+    "county": "Glendale"
+  },
+  "WI:kawaunee": {
+    "state": "WI",
+    "county": "Kewaunee"
+  },
+  "VA:dickensen": {
+    "state": "VA",
+    "county": "Dickenson"
+  },
+  "NY:eastchestertown": {
+    "state": "NY",
+    "county": "East Rochester"
+  },
+  "MI:macombetownship": {
+    "state": "MI",
+    "county": "Macomb Township"
+  },
+  "SC:chestercity": {
+    "state": "SC",
+    "county": "Chester"
+  },
+  "VA:yorktown": {
+    "state": "VA",
+    "county": "York"
+  },
+  "IN:hendircks": {
+    "state": "IN",
+    "county": "Hendricks"
+  },
+  "IN:stueben": {
+    "state": "IN",
+    "county": "Steuben"
+  },
+  "IN:sulivan": {
+    "state": "IN",
+    "county": "Sullivan"
+  },
+  "KS:waubansee": {
+    "state": "KS",
+    "county": "Wabaunsee"
+  },
+  "MN:noble": {
+    "state": "MN",
+    "county": "Nobles"
+  },
+  "SC:greewood": {
+    "state": "SC",
+    "county": "Greenwood"
+  },
+  "IA:pottawatamie": {
+    "state": "IA",
+    "county": "Pottawattamie"
+  },
+  "KS:pottawatamie": {
+    "state": "KS",
+    "county": "Pottawatomie"
+  },
+  "TX:casscad": {
+    "state": "TX",
+    "county": "Camp CAD"
+  },
+  "IN:sullivanfd": {
+    "state": "IN",
+    "county": "Sulivan FD"
+  },
+  "TX:harriscomud109": {
+    "state": "TX",
+    "county": "Harris MUD109"
+  },
+  "FL:fayette": {
+    "state": "FL",
+    "county": "Lafayette"
+  },
+  "GA:vidaliacity": {
+    "state": "GA",
+    "county": "Vidalia"
+  },
+  "TX:colliin": {
+    "state": "TX",
+    "county": "Collin"
+  },
+  "TX:goosecreedisd": {
+    "state": "TX",
+    "county": "Goose Creek ISD"
+  },
+  "VA:petersburcity": {
+    "state": "VA",
+    "county": "Petersburg City"
+  },
+  "GA:gwinett": {
+    "state": "GA",
+    "county": "Gwinnett"
+  },
+  "LA:harhancity": {
+    "state": "LA",
+    "county": "Harahan City"
+  },
+  "TX:chamber": {
+    "state": "TX",
+    "county": "Chambers"
+  },
+  "WI:fonddulaccity": {
+    "state": "WI",
+    "county": "Fond Du Lac"
+  },
+  "MD:worchester": {
+    "state": "MD",
+    "county": "Dorchester"
+  },
+  "MI:alconatwp": {
+    "state": "MI",
+    "county": "Alcona"
+  },
+  "WI:wihitefishbayvillage": {
+    "state": "WI",
+    "county": "Whitefish Bay Village"
+  },
+  "NJ:southplainfiledboro": {
+    "state": "NJ",
+    "county": "South Plainfield"
+  },
+  "WI:brunett": {
+    "state": "WI",
+    "county": "Burnett"
+  },
+  "WI:washaura": {
+    "state": "WI",
+    "county": "Washburn"
+  },
+  "KS:sedgewick": {
+    "state": "KS",
+    "county": "Sedgwick"
+  },
+  "RI:rrovidenctcity": {
+    "state": "RI",
+    "county": "Providence"
+  },
+  "NY:romecity": {
+    "state": "NY",
+    "county": "Broome"
+  },
+  "TX:harriscad": {
+    "state": "TX",
+    "county": "Harrison CAD"
+  },
+  "AL:selby": {
+    "state": "AL",
+    "county": "Shelby"
+  },
+  "IL:sangamom": {
+    "state": "IL",
+    "county": "Sangamon"
+  },
+  "TX:median": {
+    "state": "TX",
+    "county": "Medina"
+  },
+  "WI:kensohacity": {
+    "state": "WI",
+    "county": "Kenosha"
+  },
+  "WV:jeferson": {
+    "state": "WV",
+    "county": "Jefferson"
+  },
+  "NJ:westorangetown": {
+    "state": "NJ",
+    "county": "West Orange"
+  },
+  "KY:davies": {
+    "state": "KY",
+    "county": "Daviess"
+  },
+  "IN:warwick": {
+    "state": "IN",
+    "county": "Warrick"
+  },
+  "VA:chesterfiled": {
+    "state": "VA",
+    "county": "Chesterfield"
+  },
+  "MS:forest": {
+    "state": "MS",
+    "county": "Forrest"
+  },
+  "NJ:berlin": {
+    "state": "NJ",
+    "county": "Bergen"
+  },
+  "NJ:montclairtown": {
+    "state": "NJ",
+    "county": "Montclair Twp"
+  },
+  "MI:haytownship": {
+    "state": "MI",
+    "county": "Handy Township"
+  },
+  "MI:lyontwp": {
+    "state": "MI",
+    "county": "Iron"
+  },
+  "WI:layfayette": {
+    "state": "WI",
+    "county": "Lafayette"
+  },
+  "IL:hchenry": {
+    "state": "IL",
+    "county": "Mc Henry"
+  },
+  "IL:stevenson": {
+    "state": "IL",
+    "county": "Stephenson"
+  },
+  "VA:appomatox": {
+    "state": "VA",
+    "county": "Appomattox"
+  },
+  "FL:duvall": {
+    "state": "FL",
+    "county": "Duval"
+  },
+  "IL:champaing": {
+    "state": "IL",
+    "county": "Champaign"
+  },
+  "NC:waynesvilletown": {
+    "state": "NC",
+    "county": "Waynesville"
+  },
+  "TX:milamcad": {
+    "state": "TX",
+    "county": "Mills CAD"
+  },
+  "TN:clairborne": {
+    "state": "TN",
+    "county": "Claiborne"
+  },
+  "MN:yellowmadicine": {
+    "state": "MN",
+    "county": "Yellow Medicine"
+  },
+  "MN:marshal": {
+    "state": "MN",
+    "county": "Marshall"
+  },
+  "WI:eauclairecity": {
+    "state": "WI",
+    "county": "Eau Claire"
+  },
+  "TX:ftbend": {
+    "state": "TX",
+    "county": "Fort Bend"
+  },
+  "LA:tangipahoaparisha": {
+    "state": "LA",
+    "county": "Tangipahoa Parish"
+  },
+  "LA:tangipahoaparishb": {
+    "state": "LA",
+    "county": "Tangipahoa Parish"
+  },
+  "LA:tangipahoaparishc": {
+    "state": "LA",
+    "county": "Tangipahoa Parish"
+  },
+  "TX:harriscg": {
+    "state": "TX",
+    "county": "Harris"
+  },
+  "MD:caroll": {
+    "state": "MD",
+    "county": "Carroll"
+  },
+  "MD:fredrick": {
+    "state": "MD",
+    "county": "Frederick"
+  },
+  "WI:villas": {
+    "state": "WI",
+    "county": "Vilas"
+  },
+  "GA:deklab": {
+    "state": "GA",
+    "county": "De Kalb"
+  },
+  "VA:russel": {
+    "state": "VA",
+    "county": "Russell"
+  },
+  "TX:santefeisd": {
+    "state": "TX",
+    "county": "Santa Fe ISD"
+  },
+  "NY:yorktowntownsd": {
+    "state": "NY",
+    "county": "Yorktown Town"
+  },
+  "NJ:oceantownship": {
+    "state": "NJ",
+    "county": "Ocean"
+  },
+  "MI:ontwatsp": {
+    "state": "MI",
+    "county": "Ottawa"
+  },
+  "MI:hurontsp": {
+    "state": "MI",
+    "county": "Huron"
+  },
+  "WA:snohomosh": {
+    "state": "WA",
+    "county": "Snohomish"
+  },
+  "IA:pottawaattamie": {
+    "state": "IA",
+    "county": "Pottawattamie"
+  },
+  "TN:summer": {
+    "state": "TN",
+    "county": "Sumner"
+  },
+  "KY:bullit": {
+    "state": "KY",
+    "county": "Bullitt"
+  },
+  "SC:northagustacity": {
+    "state": "SC",
+    "county": "North Augusta City"
+  },
+  "VA:mechlenburg": {
+    "state": "VA",
+    "county": "Mecklenburg"
+  },
+  "LA:shrevportcity": {
+    "state": "LA",
+    "county": "Shreveport"
+  },
+  "NY:cortlandttownship": {
+    "state": "NY",
+    "county": "Cortland"
+  },
+  "WI:forrest": {
+    "state": "WI",
+    "county": "Forest"
+  },
+  "WI:marithon": {
+    "state": "WI",
+    "county": "Marathon"
+  },
+  "WI:waupauca": {
+    "state": "WI",
+    "county": "Waupaca"
+  },
+  "NC:guliford": {
+    "state": "NC",
+    "county": "Guilford"
+  },
+  "OH:lorian": {
+    "state": "OH",
+    "county": "Logan"
+  },
+  "WI:milwuakeecity": {
+    "state": "WI",
+    "county": "Milwaukee"
+  },
+  "NJ:gallowaytown": {
+    "state": "NJ",
+    "county": "Galloway"
+  },
+  "NJ:woodbridgetwn": {
+    "state": "NJ",
+    "county": "Woodbridge Twp"
+  },
+  "OH:ashtbaula": {
+    "state": "OH",
+    "county": "Ashtabula"
+  },
+  "NJ:morristowntownship": {
+    "state": "NJ",
+    "county": "Morris Twp"
+  },
+  "RI:bristoltownship": {
+    "state": "RI",
+    "county": "Bristol"
+  },
+  "NY:schenectadycity": {
+    "state": "NY",
+    "county": "Schenectady"
+  },
+  "MI:canton": {
+    "state": "MI",
+    "county": "Carlton"
+  },
+  "MI:redford": {
+    "state": "MI",
+    "county": "Wexford"
+  },
+  "NY:eastchestertownship": {
+    "state": "NY",
+    "county": "East Rochester"
+  },
+  "IN:henricks": {
+    "state": "IN",
+    "county": "Hendricks"
+  },
+  "MN:lillielacs": {
+    "state": "MN",
+    "county": "Mille Lacs"
+  },
+  "MN:ottertrail": {
+    "state": "MN",
+    "county": "Ottertail"
+  },
+  "TN:carksvillecity": {
+    "state": "TN",
+    "county": "Clarksville City"
+  },
+  "MA:arlingtontwn": {
+    "state": "MA",
+    "county": "Arlington Town"
+  },
+  "OR:clackamus": {
+    "state": "OR",
+    "county": "Clackamas"
+  },
+  "WI:jeffersona": {
+    "state": "WI",
+    "county": "Jefferson"
+  },
+  "WI:jeffersonb": {
+    "state": "WI",
+    "county": "Jefferson"
+  },
+  "WI:racinea": {
+    "state": "WI",
+    "county": "Racine"
+  },
+  "WI:racineb": {
+    "state": "WI",
+    "county": "Racine"
+  },
+  "WI:racinec": {
+    "state": "WI",
+    "county": "Racine"
+  },
+  "WI:racined": {
+    "state": "WI",
+    "county": "Racine"
+  },
+  "WI:washingtona": {
+    "state": "WI",
+    "county": "Washington"
+  },
+  "WI:washingtonb": {
+    "state": "WI",
+    "county": "Washington"
+  },
+  "WI:washingtonc": {
+    "state": "WI",
+    "county": "Washington"
+  },
+  "PA:leghigh": {
+    "state": "PA",
+    "county": "Lehigh"
+  },
+  "NJ:unioncity": {
+    "state": "NJ",
+    "county": "Union"
+  },
+  "NM:santefe": {
+    "state": "NM",
+    "county": "Santa Fe"
+  },
+  "WI:milwaukecity": {
+    "state": "WI",
+    "county": "Milwaukee City"
+  },
+  "WI:steventspointcity": {
+    "state": "WI",
+    "county": "Stevens Point City"
+  },
+  "WV:kanawhacity": {
+    "state": "WV",
+    "county": "Kanawha"
+  },
+  "VA:fredrick": {
+    "state": "VA",
+    "county": "Frederick"
+  },
+  "TX:brazzoria": {
+    "state": "TX",
+    "county": "Brazoria"
+  },
+  "TX:montgomerty": {
+    "state": "TX",
+    "county": "Montgomery"
+  },
+  "MN:millielacs": {
+    "state": "MN",
+    "county": "Mille Lacs"
+  },
+  "MD:hargerstowncity": {
+    "state": "MD",
+    "county": "Hagerstown City"
+  },
+  "TX:richarsonisd": {
+    "state": "TX",
+    "county": "Richardson ISD"
+  },
+  "TX:tarranta": {
+    "state": "TX",
+    "county": "Tarrant"
+  },
+  "TX:tarrantb": {
+    "state": "TX",
+    "county": "Tarrant"
+  },
+  "TX:bexara": {
+    "state": "TX",
+    "county": "Bexar"
+  },
+  "TX:bexarb": {
+    "state": "TX",
+    "county": "Bexar"
+  },
+  "TX:bexarc": {
+    "state": "TX",
+    "county": "Bexar"
+  },
+  "TX:bexard": {
+    "state": "TX",
+    "county": "Bexar"
+  },
+  "TX:bexare": {
+    "state": "TX",
+    "county": "Bexar"
+  },
+  "NH:merrimacktownship": {
+    "state": "NH",
+    "county": "Merrimack"
+  },
+  "OH:loga": {
+    "state": "OH",
+    "county": "Logan"
+  },
+  "OH:montgomerty": {
+    "state": "OH",
+    "county": "Montgomery"
+  },
+  "NJ:morristown": {
+    "state": "NJ",
+    "county": "Morris Twp"
+  },
+  "IL:kanakee": {
+    "state": "IL",
+    "county": "Kankakee"
+  },
+  "NC:meckenburg": {
+    "state": "NC",
+    "county": "Mecklenburg"
+  },
+  "VA:campbella": {
+    "state": "VA",
+    "county": "Campbell"
+  },
+  "VA:campbellb": {
+    "state": "VA",
+    "county": "Campbell"
+  },
+  "VA:campbellc": {
+    "state": "VA",
+    "county": "Campbell"
+  },
+  "TX:vanzandtcada": {
+    "state": "TX",
+    "county": "Van Zandt CAD"
+  },
+  "TX:vanzandtcadb": {
+    "state": "TX",
+    "county": "Van Zandt CAD"
+  },
+  "TX:mcclennan": {
+    "state": "TX",
+    "county": "Mc Lennan"
+  },
+  "LA:stmarysparish": {
+    "state": "LA",
+    "county": "St Mary Parish"
+  },
+  "TX:sanparticio": {
+    "state": "TX",
+    "county": "San Patricio"
+  },
+  "TX:wallercity": {
+    "state": "TX",
+    "county": "Waller"
+  },
+  "MI:benninigtontownship": {
+    "state": "MI",
+    "county": "Bennington Township"
+  },
+  "WA:calrk": {
+    "state": "WA",
+    "county": "Clark"
+  },
+  "VA:albermarle": {
+    "state": "VA",
+    "county": "Albemarle"
+  },
+  "NJ:morristownship": {
+    "state": "NJ",
+    "county": "Morris"
+  },
+  "WI:burnette": {
+    "state": "WI",
+    "county": "Burnett"
+  },
+  "TX:utillitytax": {
+    "state": "TX",
+    "county": "Utility Tax"
+  },
+  "MS:hind": {
+    "state": "MS",
+    "county": "Hinds"
+  },
+  "VA:forfolkcity": {
+    "state": "VA",
+    "county": "Norfolk City"
+  },
+  "TX:channeviewisd": {
+    "state": "TX",
+    "county": "Channelview ISD"
+  },
+  "OR:multonomah": {
+    "state": "OR",
+    "county": "Multnomah"
+  },
+  "GA:gwinnette": {
+    "state": "GA",
+    "county": "Gwinnett"
+  },
+  "NM:bernalilo": {
+    "state": "NM",
+    "county": "Bernalillo"
+  },
+  "VA:norflokcity": {
+    "state": "VA",
+    "county": "Norfolk"
+  },
+  "TX:montogomery": {
+    "state": "TX",
+    "county": "Montgomery"
+  },
+  "VA:alexandracity": {
+    "state": "VA",
+    "county": "Alexandria City"
+  },
+  "MI:detriotcity": {
+    "state": "MI",
+    "county": "Detroit"
+  },
+  "PA:philadelphacity": {
+    "state": "PA",
+    "county": "Philadelphia"
+  },
+  "IL:cooktreasuer": {
+    "state": "IL",
+    "county": "Cook Treasurer"
+  },
+  "IL:tazwell": {
+    "state": "IL",
+    "county": "Tazewell"
+  },
+  "OR:wahsington": {
+    "state": "OR",
+    "county": "Washington"
+  },
+  "TX:irvindisd": {
+    "state": "TX",
+    "county": "Irving ISD"
+  },
+  "NM:donnaana": {
+    "state": "NM",
+    "county": "Dona Ana"
+  },
+  "MD:annearunel": {
+    "state": "MD",
+    "county": "Anne Arundel"
+  },
+  "KY:mccreacken": {
+    "state": "KY",
+    "county": "Mc Cracken"
+  },
+  "NC:mecklwnburg": {
+    "state": "NC",
+    "county": "Mecklenburg"
+  },
+  "WI:warrencity": {
+    "state": "WI",
+    "county": "Barron"
+  },
+  "AK:matanuskasusitnaborough": {
+    "state": "AK",
+    "county": "Matanuska Susitna"
+  },
+  "VA:portsmouthcitysw": {
+    "state": "VA",
+    "county": "Portsmouth City"
+  },
+  "MI:catotownship": {
+    "state": "MI",
+    "county": "Cass"
+  },
+  "TX:jacks": {
+    "state": "TX",
+    "county": "Jack"
+  },
+  "TX:lambcad": {
+    "state": "TX",
+    "county": "Camp CAD"
+  },
+  "TX:gains": {
+    "state": "TX",
+    "county": "Gaines"
+  },
+  "VA:pittsylavania": {
+    "state": "VA",
+    "county": "Pittsylvania"
+  },
+  "TX:irving": {
+    "state": "TX",
+    "county": "Loving"
+  },
+  "WI:chipewa": {
+    "state": "WI",
+    "county": "Chippewa"
+  },
+  "LA:caddoassessor": {
+    "state": "LA",
+    "county": "Caddo"
+  },
+  "WI:milwuakee": {
+    "state": "WI",
+    "county": "Milwaukee"
+  },
+  "WV:woods": {
+    "state": "WV",
+    "county": "Wood"
+  },
+  "IN:hendrick": {
+    "state": "IN",
+    "county": "Hendricks"
+  },
+  "IN:marionauction": {
+    "state": "IN",
+    "county": "Marion Auctions"
+  },
+  "KY:olham": {
+    "state": "KY",
+    "county": "Oldham"
+  },
+  "MO:green": {
+    "state": "MO",
+    "county": "Greene"
+  },
+  "MA:worcestercity": {
+    "state": "MA",
+    "county": "Worcester"
+  },
+  "MA:barnstabletown": {
+    "state": "MA",
+    "county": "Barnstable"
+  },
+  "VA:hamptioncity": {
+    "state": "VA",
+    "county": "Hampton City"
+  },
+  "VA:hamptoncitycity": {
+    "state": "VA",
+    "county": "Hampton City"
+  },
+  "AK:matanuskasusitnaboro": {
+    "state": "AK",
+    "county": "Matanuska Susitna"
+  },
+  "MI:cantoncity": {
+    "state": "MI",
+    "county": "Carlton"
+  },
+  "CT:ellingtontown": {
+    "state": "CT",
+    "county": "Ellington"
+  },
+  "MI:genessee": {
+    "state": "MI",
+    "county": "Genesee"
+  },
+  "KY:barren35": {
+    "state": "KY",
+    "county": "Barren"
+  },
+  "KY:warren35": {
+    "state": "KY",
+    "county": "Warren"
+  },
+  "OH:augllaize": {
+    "state": "OH",
+    "county": "Auglaize"
+  },
+  "NY:chataqua": {
+    "state": "NY",
+    "county": "Chautauqua"
+  },
+  "KY:bulitt": {
+    "state": "KY",
+    "county": "Bullitt"
+  },
+  "MI:amiratownship": {
+    "state": "MI",
+    "county": "Almira Township"
+  },
+  "MI:gandrapidscity": {
+    "state": "MI",
+    "county": "Grand Rapids City"
+  },
+  "IL:mcclean": {
+    "state": "IL",
+    "county": "Mc Lean"
+  },
+  "VA:lunenberg": {
+    "state": "VA",
+    "county": "Lunenburg"
+  },
+  "VA:culpepertown": {
+    "state": "VA",
+    "county": "Culpeper"
+  },
+  "NY:cortlandttown": {
+    "state": "NY",
+    "county": "Cortland"
+  },
+  "GA:americuscity": {
+    "state": "GA",
+    "county": "Americus"
+  },
+  "GA:westpointcity": {
+    "state": "GA",
+    "county": "West Point"
+  },
+  "PA:shuylkill": {
+    "state": "PA",
+    "county": "Schuylkill"
+  },
+  "NY:rennsselaer": {
+    "state": "NY",
+    "county": "Rensselaer"
+  },
+  "KS:pottawattamie": {
+    "state": "KS",
+    "county": "Pottawatomie"
+  },
+  "GA:folkstoncity": {
+    "state": "GA",
+    "county": "Folkston"
+  },
+  "NE:salines": {
+    "state": "NE",
+    "county": "Saline"
+  },
+  "MN:steven": {
+    "state": "MN",
+    "county": "Stevens"
+  },
+  "KY:mtsterlingcity": {
+    "state": "KY",
+    "county": "Mt Sterling"
+  },
+  "WI:monitowoc": {
+    "state": "WI",
+    "county": "Manitowoc"
+  },
+  "TX:milamad": {
+    "state": "TX",
+    "county": "Milam"
+  },
+  "KS:bourboun": {
+    "state": "KS",
+    "county": "Bourbon"
+  },
+  "VA:petesburgcity": {
+    "state": "VA",
+    "county": "Petersburg City"
+  },
+  "IL:cooclerk": {
+    "state": "IL",
+    "county": "Cook Clerk"
+  },
+  "MN:murry": {
+    "state": "MN",
+    "county": "Murray"
+  },
+  "WI:wayne": {
+    "state": "WI",
+    "county": "Dane"
+  },
+  "KS:wabunsee": {
+    "state": "KS",
+    "county": "Wabaunsee"
+  },
+  "WI:tempealeau": {
+    "state": "WI",
+    "county": "Trempealeau"
+  },
+  "MN:leseur": {
+    "state": "MN",
+    "county": "Le Sueur"
+  },
+  "TN:crocket": {
+    "state": "TN",
+    "county": "Crockett"
+  },
+  "WI:marquettecity": {
+    "state": "WI",
+    "county": "Marquette"
+  },
+  "LA:grentacity": {
+    "state": "LA",
+    "county": "Grant"
+  },
+  "MD:garret": {
+    "state": "MD",
+    "county": "Garrett"
+  },
+  "NE:filmore": {
+    "state": "NE",
+    "county": "Fillmore"
+  },
+  "KS:marshal": {
+    "state": "KS",
+    "county": "Marshall"
+  },
+  "KS:mitchel": {
+    "state": "KS",
+    "county": "Mitchell"
+  },
+  "WI:bayfeild": {
+    "state": "WI",
+    "county": "Bayfield"
+  },
+  "VA:williamburgcity": {
+    "state": "VA",
+    "county": "Williamsburg City"
+  },
+  "MN:filmore": {
+    "state": "MN",
+    "county": "Fillmore"
+  },
+  "WI:marintette": {
+    "state": "WI",
+    "county": "Marinette"
+  },
+  "GA:powederspringscity": {
+    "state": "GA",
+    "county": "Powder Springs City"
+  },
+  "MD:havredegrancecity": {
+    "state": "MD",
+    "county": "Havre De Grace City"
+  },
+  "TX:sommervell": {
+    "state": "TX",
+    "county": "Somervell"
+  },
+  "KS:wabaunsse": {
+    "state": "KS",
+    "county": "Wabaunsee"
+  },
+  "OH:maimi": {
+    "state": "OH",
+    "county": "Miami"
+  },
+  "TX:titascad": {
+    "state": "TX",
+    "county": "Titus CAD"
+  },
+  "VA:mecklenberg": {
+    "state": "VA",
+    "county": "Mecklenburg"
+  },
+  "WI:menomineetown": {
+    "state": "WI",
+    "county": "Menominee"
+  },
+  "NH:epsontown": {
+    "state": "NH",
+    "county": "Epsom Town"
+  },
+  "LA:grenta": {
+    "state": "LA",
+    "county": "Grant"
+  },
+  "NE:colfox": {
+    "state": "NE",
+    "county": "Colfax"
+  },
+  "NE:merrill": {
+    "state": "NE",
+    "county": "Morrill"
+  },
+  "NC:surfcitytown": {
+    "state": "NC",
+    "county": "Surf City"
+  },
+  "WI:columia": {
+    "state": "WI",
+    "county": "Columbia"
+  },
+  "TX:somervelle": {
+    "state": "TX",
+    "county": "Somervell"
+  },
+  "TX:texascity": {
+    "state": "TX",
+    "county": "Bexar"
+  },
+  "TX:miliam": {
+    "state": "TX",
+    "county": "Milam"
+  },
+  "UT:caron": {
+    "state": "UT",
+    "county": "Carbon"
+  },
+  "WI:winniebago": {
+    "state": "WI",
+    "county": "Winnebago"
+  },
+  "TX:matagorga": {
+    "state": "TX",
+    "county": "Matagorda"
+  },
+  "WI:ozuakee": {
+    "state": "WI",
+    "county": "Ozaukee"
+  },
+  "WI:richalnd": {
+    "state": "WI",
+    "county": "Richland"
+  },
+  "TX:aliefsd": {
+    "state": "TX",
+    "county": "Alief ISD"
+  },
+  "NV:wahsoe": {
+    "state": "NV",
+    "county": "Washoe"
+  },
+  "NC:meckleburg": {
+    "state": "NC",
+    "county": "Mecklenburg"
+  },
+  "TX:klienisd": {
+    "state": "TX",
+    "county": "Alief ISD"
+  },
+  "TX:harrismud24": {
+    "state": "TX",
+    "county": "Harris MUD36"
+  },
+  "VA:virginabeachcity": {
+    "state": "VA",
+    "county": "Virginia Beach City"
+  },
+  "TN:knoxvillcity": {
+    "state": "TN",
+    "county": "Knoxville City"
+  },
+  "WV:raliegh": {
+    "state": "WV",
+    "county": "Raleigh"
+  },
+  "TX:liberity": {
+    "state": "TX",
+    "county": "Liberty"
+  },
+  "MO:montineau": {
+    "state": "MO",
+    "county": "Moniteau"
+  },
+  "IN:warrwick": {
+    "state": "IN",
+    "county": "Warrick"
+  },
+  "WV:berkley": {
+    "state": "WV",
+    "county": "Berkeley"
+  },
+  "TX:hildalgo": {
+    "state": "TX",
+    "county": "Hidalgo"
+  },
+  "MI:berrian": {
+    "state": "MI",
+    "county": "Berrien"
+  },
+  "IN:vandenburgh": {
+    "state": "IN",
+    "county": "Vanderburgh"
+  },
+  "TX:gaudalupe": {
+    "state": "TX",
+    "county": "Guadalupe"
+  },
+  "MT:ravali": {
+    "state": "MT",
+    "county": "Ravalli"
+  },
+  "AZ:maricopamh": {
+    "state": "AZ",
+    "county": "Maricopa"
+  },
+  "LA:bosierparish": {
+    "state": "LA",
+    "county": "Bossier Parish"
+  },
+  "OK:camanche": {
+    "state": "OK",
+    "county": "Comanche"
+  },
+  "GA:catoosamh": {
+    "state": "GA",
+    "county": "Catoosa"
+  },
+  "GA:cherokeemh": {
+    "state": "GA",
+    "county": "Cherokee"
+  },
+  "GA:cobbmh": {
+    "state": "GA",
+    "county": "Cobb"
+  },
+  "MO:taneyy": {
+    "state": "MO",
+    "county": "Taney"
+  },
+  "LA:desotoparrish": {
+    "state": "LA",
+    "county": "De Soto Parish"
+  }
+}

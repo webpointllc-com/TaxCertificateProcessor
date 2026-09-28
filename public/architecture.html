@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPoint — How Search Spul is wired</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/architecture.css">
+</head>
+<body>
+  <div id="scale-outer">
+    <div id="design-canvas">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">WEBPOINT LLC</div>
+            <div class="brand-sub">Tax Certificate Processor · Architecture</div>
+          </div>
+        </div>
+        <div class="top-pills">
+          <a class="pill guide-link" href="/">Open tool</a>
+          <a class="pill guide-link" href="/manual.html">User guide</a>
+          <span class="pill ok">Pay: Render web + Postgres</span>
+          <span class="pill warn" id="passport-pill">Passport not on this VM</span>
+        </div>
+      </header>
+
+      <nav class="modules" aria-label="Cost legend">
+        <button type="button" class="mod active" data-legend="members">Members<span>Squarespace page Bill already has</span></button>
+        <button type="button" class="mod" data-legend="paid">We pay<span>Render Node Starter + PostgreSQL</span></button>
+        <button type="button" class="mod" data-legend="free">We do not pay<span>SPUL files, sheet, Groq free, Passport</span></button>
+        <button type="button" class="mod" data-legend="lock">URL law<span>Chippewa WI → LandNav only</span></button>
+      </nav>
+
+      <main class="workspace arch-workspace">
+        <section class="panel order-panel">
+          <div class="panel-head">
+            <h1>Sellable path — member to collector URL</h1>
+            <p>Identical 1280×800 desktop layout, scaled into the members iframe. No extra search vendors.</p>
+          </div>
+          <div class="flow">
+            <article class="node node-member">
+              <p class="kicker">Already yours · $0 extra</p>
+              <h3>Squarespace members page</h3>
+              <p>webpointllc.com paid area. Code Block pastes <span class="mono">SQUARESPACE_EMBED.html</span>. Iframe 62.5% (800/1280).</p>
+            </article>
+            <div class="arrow" aria-hidden="true">↓ iframe</div>
+            <article class="node node-paid">
+              <p class="kicker">Paid · sellable surface</p>
+              <h3>Render web service</h3>
+              <p>Node on <span class="mono">0.0.0.0:$PORT</span>, Starter, Oregon. Blueprint: <span class="mono">render.yaml</span>. Health: <span class="mono">/api/health</span>.</p>
+            </article>
+            <div class="split">
+              <div class="arrow" aria-hidden="true">↙</div>
+              <div class="arrow" aria-hidden="true">↓</div>
+              <div class="arrow" aria-hidden="true">↘</div>
+            </div>
+            <div class="trio">
+              <article class="node node-paid">
+                <p class="kicker">Paid</p>
+                <h3>Render PostgreSQL 16</h3>
+                <p>Basic 256MB. Orders, parcels, certificates, conversation log. <span class="mono">tsvector</span> RAG — no embeddings API.</p>
+              </article>
+              <article class="node node-free">
+                <p class="kicker">In-repo · $0</p>
+                <h3>Search Spul files</h3>
+                <p><span class="mono">counties.json</span> + golden locks. ~2,923 WPT Production Log jurisdictions. Chippewa → LandNav.</p>
+              </article>
+              <article class="node node-free">
+                <p class="kicker">Optional · free tier</p>
+                <h3>Groq LLM</h3>
+                <p>Only if <span class="mono">GROQ_API_KEY</span> is set. Fills ACTIONS/CONTEXT. Never invents collector URLs.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel chat-panel">
+          <div class="panel-head">
+            <h1>Operator notes</h1>
+            <p>What is live, what is not, and the blinking-green WD Passport.</p>
+          </div>
+          <div class="op-stack">
+            <article class="node node-lock">
+              <p class="kicker">Hard lock</p>
+              <h3>Chippewa County, WI</h3>
+              <p>Official tax search is the Catalis LandNav portal. <span class="mono">chippewacounty.gov</span> is dead. Guest Sign In. Max 10 parcels.</p>
+            </article>
+            <article class="node node-free">
+              <p class="kicker">Source disk · not mounted here</p>
+              <h3>WD Passport clone</h3>
+              <p>This cloud VM has no USB and no self-hosted Mac worker. Blinking green means power, not “Finder can see it.” Follow the steps below on the Mac the drive is plugged into.</p>
+            </article>
+            <ol class="finder-steps">
+              <li>Disk Utility → View → Show All Devices. Look for Western Digital / Passport. If it is listed but grey: click it → Mount.</li>
+              <li>If format is NTFS or exFAT and Mount fails: System Settings → Privacy &amp; Security → Files and Folders / Full Disk Access — enable Terminal, Disk Utility, and Cursor. Then “Allow” any External Volumes prompt.</li>
+              <li>NTFS often needs macFUSE + Mounty (or Microsoft NTFS). Powered + unsupported FS = blinking green, empty Finder.</li>
+              <li>Finder → Go → Computer (⇧⌘C). Also Go → Go to Folder → <span class="mono">/Volumes</span>.</li>
+              <li>Once mounted, find the <span class="mono">workplace-technologies</span> clone. In Terminal: <span class="mono">export WORKPLACE_CLONE_PATH="/Volumes/…/clone"</span> then <span class="mono">npm run import:workplace</span>.</li>
+            </ol>
+            <article class="node">
+              <p class="kicker">Not paid SaaS</p>
+              <h3>We do not buy</h3>
+              <p>No Pinecone, Algolia, Elastic Cloud, OpenAI embeddings, or extra search vendors. Render MCP OAuth cannot finish in the cloud agent — apply the Blueprint in the dashboard.</p>
+            </article>
+          </div>
+        </aside>
+      </main>
+    </div>
+  </div>
+  <script src="/architecture.js"></script>
+</body>
+</html>
