@@ -18,6 +18,7 @@ const {
   resolveHealedUrl,
   methodFromFeedback
 } = require('./services/searchIntelligence');
+const operator = require('./services/operator');
 const { enrichSystemPrompt, enforceLockedSpulUrl } = require('./services/taxIntelligence');
 const { parseJurisdiction, lookupForApi, suggestJurisdictions } = require('./services/urlFinder');
 const { hasUrlLock, buildLockedUrlPrefix } = require('./services/spulTruth');
@@ -134,6 +135,7 @@ app.get('/api/health', async (req, res) => {
     groq: Boolean(groq),
     model: groq ? GROQ_MODEL : 'spul-db',
     extractors: await extractors.stats(),
+    operator: { central: true },
     oauth: oauth.oauthStatus(),
     workplace: scan,
     lastImport
@@ -400,27 +402,35 @@ app.get('/api/extractors', async (req, res) => {
 app.post('/api/intelligence', async (req, res) => {
   const account = await resolveAccount(req);
   const q = String(req.body?.q || req.body?.query || '').trim();
-  if (!q) return res.status(400).json({ ok: false, error: 'Search county, parcel number, or address' });
-  const parsed = parseSearchQuery(q);
-  const lookup = lookupBundle(parsed.raw, parsed.county, parsed.state);
-  if (!lookup.ok) return res.status(400).json(lookup);
-  const access = await accounts.consumeSearch({ account, sessionId: sessionIdOf(req) });
-  if (!access.ok) return res.status(access.status || 402).json(access);
-  const slot = await extractors.ensureSlot(lookup);
-  const card = buildCard({ parsed, lookup, extractor: slot, amounts: req.body?.amounts });
-  if (account) {
+  if (!q) return res.status(400).json({ ok: false, error: 'What property are you researching today?' });
+  const access = await accounts.consumeSearch({ account, taskId: req.body?.task_id });
+  if (!access.ok) return res.status(access.status || 401).json(access);
+  const routedQ = access.follow_up && access.task?.prompt ? `${q}\n${access.task.prompt}` : q;
+  const routed = await operator.dispatch({ q: routedQ, accountId: account?.id });
+  if (!routed.ok) return res.status(400).json(routed);
+  const { parsed, lookup, agent, discoveries } = routed;
+  let task = access.task || null;
+  if (!access.follow_up && account) {
+    task = await accounts.startTask({
+      accountId: account.id,
+      prompt: q,
+      jurisdictionKey: lookup.key
+    });
+  }
+  const card = buildCard({ parsed, lookup, extractor: agent, amounts: req.body?.amounts });
+  if (account && !access.follow_up) {
     await accounts.addRecent(account.id, {
       kind: 'search',
       label: card.label,
-      detail: lookup.urlLocked ? 'Locked collector URL' : 'No locked collector URL'
+      detail: lookup.urlLocked ? 'County agent · locked collector URL' : 'County agent · no locked URL'
     });
   }
   if (account && account.learn_consent) {
     await extractors.addFeedback({
       accountId: account.id,
       jurisdictionKey: lookup.key,
-      extractorId: slot.id,
-      kind: 'search',
+      extractorId: agent.id,
+      kind: access.follow_up ? 'follow_up' : 'search',
       body: q
     });
   }
@@ -428,6 +438,14 @@ app.post('/api/intelligence', async (req, res) => {
   if (groq) {
     try {
       const locked = lookup.officialUrl || '';
+      const memoryBits = [
+        agent.parcel_format ? `Parcel format: ${agent.parcel_format}` : '',
+        Array.isArray(agent.exceptions) && agent.exceptions.length
+          ? `Known exceptions: ${agent.exceptions.slice(-3).map((e) => e.value || e.kind).join('; ')}`
+          : ''
+      ]
+        .filter(Boolean)
+        .join('\n');
       const completion = await groq.chat.completions.create({
         model: GROQ_MODEL,
         temperature: 0.1,
@@ -436,11 +454,11 @@ app.post('/api/intelligence', async (req, res) => {
           {
             role: 'system',
             content:
-              'You are WebPoint Property Tax Intelligence. Talk the user through the locked tax collecting entity only. NEVER invent URLs or dollar amounts. If amounts are unknown, say to confirm on the collector page. Cite the entity name and the locked URL exactly.'
+              'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. If amounts are unknown, say to confirm on the collector page.'
           },
           {
             role: 'user',
-            content: `Query: ${q}\nEntity: ${lookup.entity}\nLocked URL: ${locked || '(none)'}\nExtractor v${slot.version} status ${slot.status}\nURL locked: ${Boolean(lookup.urlLocked)}\nWrite 2 short sentences for the Property Tax Summary.`
+            content: `Query: ${q}\nCounty agent: ${lookup.key}\nEntity: ${lookup.entity}\nLocked URL: ${locked || '(none)'}\nExtractor v${agent.version}\n${memoryBits}\nWrite 2 short sentences.`
           }
         ]
       });
@@ -454,12 +472,21 @@ app.post('/api/intelligence', async (req, res) => {
   res.json({
     ok: true,
     query: q,
+    task_id: task?.id || null,
+    follow_up: Boolean(access.follow_up),
     format: req.body?.format === 'pdf' ? 'pdf' : 'html',
     parsed,
     lookup,
-    extractor: slot,
+    extractor: agent,
+    agent,
+    operator: {
+      role: 'central',
+      routed_to: routed.routed_to,
+      shared: true,
+      discoveries: discoveries || []
+    },
     plan: access.plan,
-    continue_gate: access.plan === 'member' ? null : access.plan === 'free' ? 'member' : 'account',
+    continue_gate: access.plan === 'member' ? null : 'member',
     card,
     money: {
       assessed: formatMoney(card.assessed),

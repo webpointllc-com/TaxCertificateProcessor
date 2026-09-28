@@ -11,6 +11,8 @@
   var lastLookup = null;
   var exportFormat = 'html';
   var lastQuery = '';
+  var researchTaskId = '';
+  var pendingQuery = sessionStorage.getItem('wp_pending_q') || '';
   var authToken = localStorage.getItem('wp_tcs_token') || '';
   var account = null;
   var accountBundle = { recents: [], messages: [], invites: [], updates: [] };
@@ -163,6 +165,12 @@
     $('auth-gate').hidden = true;
   }
 
+  function flushPendingSearch() {
+    var q = pendingQuery || sessionStorage.getItem('wp_pending_q') || '';
+    if (!q || !account) return;
+    runHeroSearch(q);
+  }
+
   function isMember() {
     return account && (account.is_member || account.plan === 'member');
   }
@@ -178,7 +186,12 @@
       return true;
     }
     if (data.gate === 'account' || data.status === 401) {
-      openGate('account', 'Create a free account to continue', 'One free search is included. Sign in with email, Google, or Apple to keep going.');
+      if (lastQuery) sessionStorage.setItem('wp_pending_q', lastQuery);
+      openGate('account', 'Sign in to search', 'Create a free account or sign in. Your question is saved and runs after you confirm.');
+      return true;
+    }
+    if (data.gate === 'confirm') {
+      openGate('confirm');
       return true;
     }
     return false;
@@ -203,33 +216,26 @@
 
   function paintResults(data) {
     var card = data.card || {};
-    var money = data.money || {};
     lastLookup = data.lookup;
+    researchTaskId = data.task_id || researchTaskId || '';
     $('res-place').textContent = (card.county || '') + (card.state ? ' County, ' + card.state : '');
-    $('res-verified').hidden = !card.verified;
-    $('res-apn').textContent = card.apn ? ('APN ' + card.apn) : (card.label || 'Search result');
-    $('res-addr').textContent = card.address || card.entity || '';
-    $('f-county').textContent = card.county || '—';
-    $('f-state').textContent = card.state || '—';
-    $('f-year').textContent = card.tax_year || '—';
-    $('f-status').textContent = card.tax_status || '—';
-    $('f-assessed').textContent = money.assessed || '—';
-    $('f-land').textContent = money.land || '—';
-    $('f-impr').textContent = money.improvement || '—';
-    $('f-tax').textContent = money.total_tax || '—';
     $('res-summary').textContent = card.summary || '';
     var url = (data.lookup && (data.lookup.officialUrl || data.lookup.lockedUrl)) || card.collector_url || '';
     var link = $('res-collector');
     if (url) { link.href = url; link.hidden = false; } else { link.hidden = true; }
-    paintInsights(card.insights);
-    $('tab-overview').textContent = card.summary || '';
-    $('heal-status').textContent = data.extractor
-      ? ('Working extractor v' + data.extractor.version + ' · ' + (data.extractor.status || 'active'))
+    var agent = data.agent || data.extractor || {};
+    var bits = [];
+    if (data.operator && data.operator.routed_to) bits.push('County agent ' + data.operator.routed_to);
+    if (agent.parcel_format) bits.push('parcel pattern ' + agent.parcel_format);
+    if (agent.version) bits.push('v' + agent.version);
+    $('agent-note').textContent = bits.join(' · ');
+    $('heal-status').textContent = agent.version
+      ? ('Shared with every user of this county · extractor v' + agent.version)
       : '';
     $('heal-form').hidden = true;
     if (data.lookup && data.lookup.jurisdiction) {
-      $('county').value = data.lookup.jurisdiction.county || $('county').value;
-      if (data.lookup.jurisdiction.state) $('state').value = data.lookup.jurisdiction.state;
+      if ($('county')) $('county').value = data.lookup.jurisdiction.county || $('county').value;
+      if (data.lookup.jurisdiction.state && $('state')) $('state').value = data.lookup.jurisdiction.state;
     }
     showResults();
   }
@@ -572,28 +578,38 @@
     runHeroSearch(item.county + ' County ' + item.state);
   }
 
-  async function runHeroSearch(q) {
+  async function runHeroSearch(q, opts) {
     q = (q || document.getElementById('hero-input').value || '').trim();
     if (!q) return;
     lastQuery = q;
+    pendingQuery = q;
+    sessionStorage.setItem('wp_pending_q', q);
     hideSuggest();
     $('hero-input').value = q;
     if ($('search-error')) { $('search-error').hidden = true; $('search-error').textContent = ''; }
+    if (!account) {
+      openGate('account', 'Sign in to search', 'Create a free account or sign in. Your question is saved.');
+      return;
+    }
     $('gen-pill').hidden = false;
     $('mac-window').classList.add('results');
     $('mac-window').classList.remove('home');
     parkSearch('header');
     try {
+      var body = { q: q, format: exportFormat };
+      if (opts && opts.taskId) body.task_id = opts.taskId;
       var res = await fetch('/api/intelligence', {
         method: 'POST',
         headers: headers(true),
-        body: JSON.stringify({ q: q, format: exportFormat })
+        body: JSON.stringify(body)
       });
       var data = await res.json();
       $('gen-pill').hidden = true;
       if (!data.ok) {
         if (handleGate(data)) {
-          parkSearch('header');
+          parkSearch('home');
+          showHome();
+          $('hero-input').value = q;
           return;
         }
         var err = data.error || 'Search failed';
@@ -602,13 +618,9 @@
         setStatus(err);
         return;
       }
+      sessionStorage.removeItem('wp_pending_q');
+      pendingQuery = '';
       paintResults(data);
-      if (data.lookup) renderSpulFromLookup(data.lookup, data.card && data.card.summary);
-      if (data.continue_gate === 'account' && !account) {
-        openGate('account', 'Create a free account to continue', 'You can still read this result. The next search needs an account.');
-      } else if (data.continue_gate === 'member' && account && !isMember()) {
-        openGate('member');
-      }
     } catch (e) {
       $('gen-pill').hidden = true;
       showHome();
@@ -625,6 +637,16 @@
     }
     runHeroSearch();
   });
+
+  if ($('followup-form')) {
+    $('followup-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = $('followup-input').value.trim();
+      if (!q) return;
+      $('followup-input').value = '';
+      runHeroSearch(q, { taskId: researchTaskId });
+    });
+  }
 
   document.getElementById('hero-input').addEventListener('input', function () {
     var q = document.getElementById('hero-input').value.trim();
@@ -771,6 +793,7 @@
   function offerMemberCode() {
     if (!account || isMember()) {
       closeGate();
+      flushPendingSearch();
       return;
     }
     var remaining = account.searches_remaining;
@@ -922,6 +945,7 @@
     paintAccount();
     closeGate();
     maybeAskConsent();
+    flushPendingSearch();
     return true;
   }
 
@@ -931,6 +955,7 @@
   });
   $('member-skip').addEventListener('click', function () {
     closeGate();
+    flushPendingSearch();
   });
   $('usage-member-form').addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -1107,6 +1132,7 @@
         setSignedIn(data.account, authToken);
         refreshAccount();
         if ((confirmed || oauthFlag) && !isMember()) offerMemberCode();
+        else flushPendingSearch();
       } else {
         authToken = '';
         localStorage.removeItem('wp_tcs_token');

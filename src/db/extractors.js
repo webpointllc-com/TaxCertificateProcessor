@@ -45,9 +45,23 @@ function publicExtractor(row) {
     source: row.source || 'seed',
     validated: row.validated !== false && row.validated !== 0,
     notes: row.notes || '',
+    parcel_format: row.parcel_format || '',
+    exceptions: parseJson(row.exceptions, []),
+    layout: parseJson(row.layout, {}),
+    role: 'county_agent',
     updated_at: row.updated_at,
     created_at: row.created_at
   };
+}
+
+function parseJson(value, fallback) {
+  if (value == null || value === '') return fallback;
+  if (typeof value === 'object') return value;
+  try {
+    return JSON.parse(value);
+  } catch {
+    return fallback;
+  }
 }
 
 function defaultMethod(lookup) {
@@ -99,6 +113,9 @@ async function ensureSlot(lookup) {
     source: 'seed',
     validated: Boolean(lookup.urlLocked),
     notes: lookup.urlLocked ? 'Seeded from locked Search Spul URL' : 'No locked collector URL — waiting for a validated extractor',
+    parcel_format: '',
+    exceptions: [],
+    layout: {},
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };
@@ -135,6 +152,9 @@ async function saveNewVersion({ previous, lookup, method, notes, source, account
     source: source || 'heal',
     validated: true,
     notes: notes || '',
+    parcel_format: previous?.parcel_format || '',
+    exceptions: previous?.exceptions || [],
+    layout: previous?.layout || {},
     account_id: accountId || null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
@@ -144,11 +164,12 @@ async function saveNewVersion({ previous, lookup, method, notes, source, account
     await pool.query(`UPDATE extractors SET status = 'superseded', updated_at = now() WHERE jurisdiction_key = $1 AND status = 'active'`, [key]);
     await pool.query(
       `INSERT INTO extractors
-        (id, jurisdiction_key, county, state, entity, search_url, method, version, status, source, validated, notes, account_id)
-       VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb,$8,$9,$10,$11,$12,$13)`,
+        (id, jurisdiction_key, county, state, entity, search_url, method, version, status, source, validated, notes, account_id, parcel_format, exceptions, layout)
+       VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb,$8,$9,$10,$11,$12,$13,$14,$15::jsonb,$16::jsonb)`,
       [
         row.id, row.jurisdiction_key, row.county, row.state, row.entity, row.search_url,
-        JSON.stringify(row.method), row.version, row.status, row.source, row.validated, row.notes, row.account_id
+        JSON.stringify(row.method), row.version, row.status, row.source, row.validated, row.notes, row.account_id,
+        row.parcel_format || '', JSON.stringify(row.exceptions || []), JSON.stringify(row.layout || {})
       ]
     );
     await pool.query(
@@ -193,6 +214,75 @@ async function markBroken(jurisdictionKey, notes) {
     }
   }
   return findActive(jurisdictionKey);
+}
+
+async function rememberDiscovery({ agent, lookup, discoveries, accountId }) {
+  const key = agent?.jurisdiction_key || lookup?.key;
+  if (!key) return agent;
+  const current = (await findActive(key)) || agent;
+  let parcel_format = current.parcel_format || '';
+  let exceptions = Array.isArray(current.exceptions) ? current.exceptions.slice() : [];
+  const layout = current.layout && typeof current.layout === 'object' ? { ...current.layout } : {};
+  let changed = false;
+  for (const d of discoveries || []) {
+    if (d.kind === 'parcel_format' && d.value) {
+      if (!parcel_format) {
+        parcel_format = d.value;
+        changed = true;
+      } else if (d.value !== parcel_format) {
+        const already = exceptions.some((e) => e.kind === 'parcel_format_variant' && e.value === d.value);
+        if (!already) {
+          exceptions.push({
+            kind: 'parcel_format_variant',
+            value: d.value,
+            sample: d.sample || '',
+            at: new Date().toISOString()
+          });
+          changed = true;
+        }
+      }
+    }
+    if (d.kind === 'url_change_detected') {
+      exceptions.push({
+        kind: 'url_mismatch',
+        observed: d.value,
+        kept: d.kept,
+        at: new Date().toISOString()
+      });
+      changed = true;
+    }
+    if (d.kind === 'exception' || d.kind === 'layout') {
+      exceptions.push({
+        kind: d.kind,
+        value: d.value,
+        account_id: accountId || null,
+        at: new Date().toISOString()
+      });
+      changed = true;
+    }
+  }
+  exceptions = exceptions.slice(-40);
+  if (!changed) return current;
+  const mem = memory.extractors.find((e) => e.id === current.id);
+  if (mem) {
+    mem.parcel_format = parcel_format;
+    mem.exceptions = exceptions;
+    mem.layout = layout;
+    mem.updated_at = new Date().toISOString();
+  } else {
+    current.parcel_format = parcel_format;
+    current.exceptions = exceptions;
+    current.layout = layout;
+  }
+  if (usingPostgres()) {
+    await pool.query(
+      `UPDATE extractors
+       SET parcel_format = $2, exceptions = $3::jsonb, layout = $4::jsonb, updated_at = now()
+       WHERE id = $1`,
+      [current.id, parcel_format, JSON.stringify(exceptions), JSON.stringify(layout)]
+    );
+  }
+  return findActive(key);
 }
 
 async function addFeedback({ accountId, jurisdictionKey, kind, body, extractorId }) {
@@ -265,6 +355,7 @@ module.exports = {
   findActive,
   saveNewVersion,
   markBroken,
+  rememberDiscovery,
   addFeedback,
   listActive,
   stats,

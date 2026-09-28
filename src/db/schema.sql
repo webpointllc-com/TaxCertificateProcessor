@@ -216,6 +216,20 @@ CREATE TABLE IF NOT EXISTS extractors (
 
 CREATE INDEX IF NOT EXISTS extractors_key_idx ON extractors (jurisdiction_key, status, version DESC);
 
+ALTER TABLE extractors ADD COLUMN IF NOT EXISTS parcel_format TEXT;
+ALTER TABLE extractors ADD COLUMN IF NOT EXISTS exceptions JSONB NOT NULL DEFAULT '[]'::jsonb;
+ALTER TABLE extractors ADD COLUMN IF NOT EXISTS layout JSONB NOT NULL DEFAULT '{}'::jsonb;
+
+CREATE TABLE IF NOT EXISTS search_sessions (
+  id TEXT PRIMARY KEY,
+  account_id TEXT NOT NULL REFERENCES accounts (id) ON DELETE CASCADE,
+  prompt TEXT NOT NULL,
+  jurisdiction_key TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS search_sessions_account_idx ON search_sessions (account_id, created_at DESC);
+
 CREATE TABLE IF NOT EXISTS extractor_versions (
   id TEXT PRIMARY KEY,
   extractor_id TEXT,

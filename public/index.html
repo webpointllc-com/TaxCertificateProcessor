@@ -12,16 +12,12 @@
   <div id="scale-outer">
     <div id="design-canvas">
       <div class="mac-window home" id="mac-window">
-        <header class="mac-bar">
-          <div class="traffic" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i></div>
-          <button type="button" class="wp-mark" id="go-home" aria-label="WebPoint home">
-            <span class="wp-cloud-mini" aria-hidden="true"></span>
-            <span>WebPoint</span>
-          </button>
+        <header class="g-bar">
+          <button type="button" class="g-mini" id="go-home" aria-label="WebPoint home">WebPoint</button>
           <div id="header-search-slot" class="header-search-slot"></div>
-          <div class="mac-right">
-            <button type="button" class="mac-label" id="about-trigger">Property Tax Intelligence</button>
-            <span class="gen-pill" id="gen-pill" hidden><span class="spin"></span> Generating property tax intelligence...</span>
+          <div class="g-right">
+            <span class="gen-pill" id="gen-pill" hidden><span class="spin"></span> Searching…</span>
+            <button type="button" class="mac-label" id="about-trigger">About</button>
             <button type="button" class="text-signin" id="acct-signin">Sign in</button>
             <button type="button" class="acct-chip light-chip" id="acct-open" hidden>
               <span class="acct-chip-ava" id="acct-chip-ava">B</span>
@@ -30,18 +26,16 @@
           </div>
         </header>
 
-        <section id="view-home" class="view-home">
-          <button type="button" class="hero-cloud" id="open-batch" aria-label="Upload a 10-parcel batch">
-            <span class="cloud-body"></span>
-            <span class="cloud-arrow"><svg viewBox="0 0 24 24"><path d="M12 16V7M8.5 10.5 12 7l3.5 3.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </button>
+        <section id="view-home" class="g-home">
+          <h1 class="g-logo" id="g-logo">WebPoint</h1>
+          <p class="g-ask">What property are you researching today?</p>
           <div id="home-search-slot" class="home-search-slot">
-            <form id="hero-form" class="mac-search" role="search" autocomplete="off">
-              <label class="sr-only" for="hero-input">Search county tax portal</label>
+            <form id="hero-form" class="g-search" role="search" autocomplete="off">
+              <label class="sr-only" for="hero-input">Search</label>
               <span class="mac-search-ico" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
               </span>
-              <input id="hero-input" placeholder="Search county, parcel number, or address..." autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="hero-suggest" aria-expanded="false">
+              <input id="hero-input" placeholder="County, parcel, address, or a tax question" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="hero-suggest" aria-expanded="false">
               <button type="button" class="mac-clear" id="search-clear" hidden aria-label="Clear">×</button>
               <button type="submit" class="mac-go" id="hero-go" aria-label="Search">
                 <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
@@ -49,77 +43,44 @@
               <div id="hero-suggest" class="suggest-list" hidden role="listbox"></div>
             </form>
           </div>
-          <div class="home-pills">
-            <div class="pill-drop">
-              <button type="button" class="soft-pill" id="country-btn">United States <span>▾</span></button>
-              <div class="pill-menu" id="country-menu" hidden>
-                <button type="button" data-country="US">United States</button>
-              </div>
-            </div>
-            <div class="pill-drop">
-              <button type="button" class="soft-pill" id="format-btn">PDF / HTML <span>▾</span></button>
-              <div class="pill-menu" id="format-menu" hidden>
-                <button type="button" data-format="html">HTML</button>
-                <button type="button" data-format="pdf">PDF</button>
-              </div>
-            </div>
-          </div>
           <p class="search-error" id="search-error" hidden></p>
-          <div id="hero-chips" class="hero-chips" aria-label="Example searches" hidden></div>
         </section>
 
-        <section id="view-results" class="view-results" hidden>
-          <div class="results-grid">
-            <div class="parcel-col">
-              <div class="place-row">
-                <span class="pin" aria-hidden="true"></span>
-                <span id="res-place">County, ST</span>
-                <span class="verified" id="res-verified" hidden><span class="vdot"></span> Verified</span>
-              </div>
-              <h1 id="res-apn">APN</h1>
-              <p class="res-addr" id="res-addr"></p>
-              <div class="fact-grid">
-                <div><span>County</span><strong id="f-county">—</strong></div>
-                <div><span>State</span><strong id="f-state">—</strong></div>
-                <div><span>Tax Year</span><strong id="f-year">—</strong></div>
-                <div><span>Tax Status</span><strong id="f-status">—</strong></div>
-                <div><span>Assessed Value</span><strong id="f-assessed">—</strong></div>
-                <div><span>Land Value</span><strong id="f-land">—</strong></div>
-                <div><span>Improvement Value</span><strong id="f-impr">—</strong></div>
-                <div><span>Total Tax (Est.)</span><strong id="f-tax">—</strong></div>
-              </div>
-              <article class="summary-card">
-                <h2>Property Tax Summary</h2>
-                <p id="res-summary"></p>
-                <a class="summary-cta" id="res-collector" href="#" target="_blank" rel="noopener">View detailed tax history, related parcels, and more <span>›</span></a>
-              </article>
-            </div>
-            <aside class="insights-col">
-              <h2>Key Property Tax Insights</h2>
-              <ul id="insights-list" class="insight-list"></ul>
-              <button type="button" class="heal-toggle" id="heal-toggle">Extractor needs an update?</button>
-              <form id="heal-form" class="heal-box" hidden>
-                <label>Fix this extractor<textarea id="heal-feedback" rows="3" placeholder="What changed on this tax collecting entity’s search page?" required minlength="8"></textarea></label>
-                <button type="submit" class="soft-cta" id="heal-submit">Save as working extractor</button>
-                <p class="heal-status" id="heal-status"></p>
-              </form>
-            </aside>
-          </div>
-          <nav class="res-tabs" aria-label="Result sections">
-            <button type="button" class="res-tab on" data-tab="overview">Overview</button>
-            <button type="button" class="res-tab" data-tab="history">Tax History</button>
-            <button type="button" class="res-tab" data-tab="map">Parcel Map</button>
-            <button type="button" class="res-tab" data-tab="docs">Documents</button>
-            <button type="button" class="res-tab" data-tab="nearby">Nearby Properties</button>
-          </nav>
-          <div class="tab-panels">
-            <div class="tab-panel on" id="tab-overview"></div>
-            <div class="tab-panel" id="tab-history">Tax history is taken only from the locked collector page — we do not invent prior-year amounts.</div>
-            <div class="tab-panel" id="tab-map">Parcel maps are not invented. Use the locked collector / GIS link when the jurisdiction has one.</div>
-            <div class="tab-panel" id="tab-docs">TCS / TPA / RDS documents appear after you process a batch.</div>
-            <div class="tab-panel" id="tab-nearby">Nearby comps appear only when a saved extractor returns them.</div>
-          </div>
+        <section id="view-results" class="g-results" hidden>
+          <article class="g-answer">
+            <p class="g-kicker" id="res-place"></p>
+            <p id="res-summary"></p>
+            <a class="g-link" id="res-collector" href="#" target="_blank" rel="noopener" hidden>Open official tax search</a>
+            <p class="g-agent" id="agent-note"></p>
+            <div id="answer-thread" class="g-thread"></div>
+            <form id="followup-form" class="g-follow">
+              <label class="sr-only" for="followup-input">Follow-up</label>
+              <input id="followup-input" placeholder="Ask a follow-up — same search, no extra credit" autocomplete="off">
+              <button type="submit" class="primary compact">Ask</button>
+            </form>
+            <button type="button" class="heal-toggle" id="heal-toggle">This collector page changed</button>
+            <form id="heal-form" class="heal-box" hidden>
+              <label>Tell the county agent<textarea id="heal-feedback" rows="3" placeholder="New URL layout, parcel format, or exception for this tax collecting entity" required minlength="8"></textarea></label>
+              <button type="submit" class="soft-cta" id="heal-submit">Save for every user of this county</button>
+              <p class="heal-status" id="heal-status"></p>
+            </form>
+          </article>
         </section>
+        <div hidden>
+          <ul id="insights-list"></ul>
+          <span id="res-verified"></span>
+          <span id="res-apn"></span>
+          <span id="res-addr"></span>
+          <span id="f-county"></span><span id="f-state"></span><span id="f-year"></span><span id="f-status"></span>
+          <span id="f-assessed"></span><span id="f-land"></span><span id="f-impr"></span><span id="f-tax"></span>
+          <div id="tab-overview"></div>
+          <div id="hero-chips"></div>
+          <button type="button" id="open-batch">Batch</button>
+          <button type="button" id="country-btn"></button>
+          <button type="button" id="format-btn"></button>
+          <div id="country-menu" hidden></div>
+          <div id="format-menu" hidden></div>
+        </div>
       </div>
 
       <div id="batch-overlay" class="batch-overlay" hidden>

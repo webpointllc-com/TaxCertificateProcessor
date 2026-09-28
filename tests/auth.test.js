@@ -168,38 +168,21 @@ describe('signup, session, account', () => {
     assert.ok(result.token);
   });
 
-  it('lets a guest run one intelligence search, then asks for an account', async () => {
+  it('requires sign-in before an intelligence search', async () => {
     const sid = `guest-${Date.now()}`;
     const first = await json('/api/intelligence', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Session-Id': sid },
       body: JSON.stringify({ q: 'Chippewa County WI' })
     });
-    assert.equal(first.body.ok, true, JSON.stringify(first.body));
-    assert.equal(first.body.plan, 'guest');
-    assert.equal(first.body.continue_gate, 'account');
-
-    const second = await json('/api/intelligence', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Session-Id': sid },
-      body: JSON.stringify({ q: 'Los Angeles County CA' })
-    });
-    assert.equal(second.res.status, 402);
-    assert.equal(second.body.gate, 'account');
+    assert.equal(first.res.status, 401);
+    assert.equal(first.body.gate, 'account');
   });
 
-  it('uses up the free search when a guest later creates an account', async () => {
-    const sid = `guest-used-${Date.now()}`;
-    const guest = await json('/api/intelligence', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Session-Id': sid },
-      body: JSON.stringify({ q: 'Chippewa County WI' })
-    });
-    assert.equal(guest.body.ok, true);
+  it('gives a confirmed account one free search, then asks for a shop code', async () => {
     const usedEmail = `bill.used.${Date.now()}@webpointllc.com`;
     const created = await json('/api/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Session-Id': sid },
       body: JSON.stringify({
         display_name: 'Used Guest',
         email: usedEmail,
@@ -211,7 +194,22 @@ describe('signup, session, account', () => {
       body: JSON.stringify({ token: created.body.confirm_token })
     });
     assert.equal(confirmed.body.ok, true);
-    assert.equal(confirmed.body.account.searches_remaining, 0);
+    const first = await json('/api/intelligence', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Auth-Token': confirmed.body.token },
+      body: JSON.stringify({ q: 'Chippewa County WI' })
+    });
+    assert.equal(first.body.ok, true, JSON.stringify(first.body));
+    assert.equal(first.body.plan, 'free');
+    assert.ok(first.body.task_id);
+    assert.equal(first.body.operator.role, 'central');
+    const follow = await json('/api/intelligence', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Auth-Token': confirmed.body.token },
+      body: JSON.stringify({ q: 'How do I search by owner?', task_id: first.body.task_id })
+    });
+    assert.equal(follow.body.ok, true, JSON.stringify(follow.body));
+    assert.equal(follow.body.follow_up, true);
     const next = await json('/api/intelligence', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Auth-Token': confirmed.body.token },

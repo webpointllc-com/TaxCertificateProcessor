@@ -17,7 +17,8 @@ const memory = {
   invites: [],
   otps: [],
   memberCodes: [],
-  guestUsage: []
+  guestUsage: [],
+  tasks: []
 };
 
 let pool = null;
@@ -502,36 +503,76 @@ async function incrementAccountSearch(accountId) {
   return row.search_count;
 }
 
-function searchDecision(account, guestCount) {
-  if (account?.is_member || account?.plan === 'member') {
-    return { ok: true, plan: 'member' };
-  }
-  if (account) {
-    const used = Number(account.search_count) || 0;
-    if (used < FREE_SEARCHES) return { ok: true, plan: 'free' };
+function searchDecision(account) {
+  if (!account) {
     return {
       ok: false,
-      gate: 'member',
-      error: 'Enter your shop’s member code to keep searching.',
-      status: 402
+      gate: 'account',
+      error: 'Sign in or create an account to search.',
+      status: 401
     };
   }
-  if ((Number(guestCount) || 0) < FREE_SEARCHES) return { ok: true, plan: 'guest' };
+  if (account.email_verified === false) {
+    return {
+      ok: false,
+      gate: 'confirm',
+      error: 'Confirm the link we emailed before searching.',
+      status: 403
+    };
+  }
+  if (account.is_member || account.plan === 'member') {
+    return { ok: true, plan: 'member' };
+  }
+  const used = Number(account.search_count) || 0;
+  if (used < FREE_SEARCHES) return { ok: true, plan: 'free' };
   return {
     ok: false,
-    gate: 'account',
-    error: 'Create a free account to continue.',
+    gate: 'member',
+    error: 'Your complimentary search has been used. Continue with a shop code from your employer.',
     status: 402
   };
 }
 
-async function consumeSearch({ account, sessionId }) {
-  const guestCount = account ? 0 : await guestSearchCount(sessionId);
-  const decision = searchDecision(account, guestCount);
+async function consumeSearch({ account, taskId }) {
+  if (account && taskId) {
+    const existing = await findTask(account.id, taskId);
+    if (existing) return { ok: true, plan: account.plan === 'member' ? 'member' : 'free', follow_up: true, task: existing };
+  }
+  const decision = searchDecision(account);
   if (!decision.ok) return decision;
   if (account) await incrementAccountSearch(account.id);
-  else await incrementGuestSearch(sessionId);
   return decision;
+}
+
+async function startTask({ accountId, prompt, jurisdictionKey }) {
+  const row = {
+    id: id(),
+    account_id: accountId,
+    prompt: String(prompt || '').slice(0, 2000),
+    jurisdiction_key: jurisdictionKey || '',
+    created_at: new Date().toISOString()
+  };
+  if (usingPostgres()) {
+    await pool.query(
+      `INSERT INTO search_sessions (id, account_id, prompt, jurisdiction_key) VALUES ($1,$2,$3,$4)`,
+      [row.id, row.account_id, row.prompt, row.jurisdiction_key]
+    );
+  } else {
+    memory.tasks.push(row);
+  }
+  return row;
+}
+
+async function findTask(accountId, taskId) {
+  if (!accountId || !taskId) return null;
+  if (usingPostgres()) {
+    const { rows } = await pool.query(
+      `SELECT * FROM search_sessions WHERE id = $1 AND account_id = $2`,
+      [taskId, accountId]
+    );
+    return rows[0] || null;
+  }
+  return memory.tasks.find((t) => t.id === taskId && t.account_id === accountId) || null;
 }
 
 function memberRequired(account) {
@@ -710,6 +751,7 @@ function resetMemory() {
   memory.otps.length = 0;
   memory.memberCodes.length = 0;
   memory.guestUsage.length = 0;
+  memory.tasks.length = 0;
 }
 
 module.exports = {
@@ -734,6 +776,8 @@ module.exports = {
   listInvites,
   publicAccount,
   consumeSearch,
+  startTask,
+  findTask,
   memberRequired,
   issueMemberCode,
   redeemMemberCode,

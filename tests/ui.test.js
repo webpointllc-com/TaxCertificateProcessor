@@ -57,15 +57,21 @@ describe('embeddable scaled UI', () => {
     assert.doesNotMatch(js, /\/api\/verify/);
   });
 
-  it('ships the generative search home matching the Property Tax Intelligence window', () => {
-    assert.match(html, /Search county, parcel number, or address/);
+  it('ships a Google-style search home, not a dashboard', () => {
+    assert.match(html, /What property are you researching today/);
     assert.match(html, /id="view-home"/);
     assert.match(html, /id="view-results"/);
-    assert.match(html, /Key Property Tax Insights/);
+    assert.match(html, /class="g-logo"/);
+    assert.match(html, /id="hero-input"/);
+    assert.match(html, /id="followup-form"/);
+    assert.doesNotMatch(html, /Key Property Tax Insights/);
+    assert.doesNotMatch(html, /United States/);
     assert.match(html, /id="perm-overlay"/);
     assert.match(html, /id="heal-form"/);
     assert.match(js, /\/api\/intelligence/);
     assert.match(js, /\/api\/extractors\/heal/);
+    assert.match(js, /wp_pending_q/);
+    assert.match(js, /wp_tcs_token/);
   });
 
   it('ships the mobile account sheet plus a desktop account workspace', () => {

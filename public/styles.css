@@ -47,6 +47,82 @@ html, body {
   flex-direction: column;
 }
 
+.g-bar {
+  height: 56px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+}
+.g-mini {
+  border: 0; background: transparent; cursor: pointer;
+  font-family: inherit; font-weight: 800; font-size: 18px; color: #1b2433;
+}
+.g-right { display: flex; align-items: center; gap: 12px; }
+.mac-window.home .g-mini { visibility: hidden; }
+.mac-window.home #header-search-slot { display: none; }
+.g-home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 40px 80px;
+}
+.g-logo {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #1b2433;
+  line-height: 1;
+}
+.g-ask { color: #5b6b80; font-size: 16px; }
+.home-search-slot { width: 640px; max-width: 100%; }
+.g-search, .mac-search {
+  position: relative;
+  display: flex; align-items: center;
+  height: 52px;
+  background: #fff;
+  border: 1px solid #dce6f0;
+  border-radius: 999px;
+  padding: 0 8px 0 18px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.08);
+}
+.g-search:hover, .g-search:focus-within {
+  box-shadow: 0 2px 12px rgba(32, 33, 36, 0.16);
+}
+.g-search input, .mac-search input {
+  flex: 1; border: 0; background: transparent; box-shadow: none;
+  font-size: 16px; color: #1b2433; padding: 0 10px;
+}
+.g-results {
+  flex: 1; min-height: 0; overflow: auto;
+  padding: 8px 80px 32px;
+}
+.g-answer {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.g-kicker { font-size: 13px; color: #5b6b80; font-weight: 600; }
+.g-answer #res-summary { font-size: 16px; line-height: 1.55; color: #1b2433; }
+.g-link {
+  color: #1a0dab; font-weight: 600; text-decoration: none; font-size: 15px;
+}
+.g-link:hover { text-decoration: underline; }
+.g-agent { font-size: 12px; color: #7b8aa0; }
+.g-follow {
+  display: flex; gap: 8px; margin-top: 8px;
+}
+.g-follow input {
+  flex: 1; background: #fff; border: 1px solid #dce6f0; border-radius: 999px;
+  padding: 10px 16px; font-size: 14px;
+}
+.g-thread { display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3b4a5c; }
+
 .mac-window {
   position: relative;
   flex: 1;
@@ -88,7 +164,8 @@ html, body {
 }
 .mac-window.home .mac-go { width: 40px; height: 40px; }
 .mac-window.home .mac-search input { font-size: 15px; }
-.mac-window.results .header-search-slot .mac-search { width: 100%; max-width: 640px; }
+.mac-window.results .header-search-slot .mac-search,
+.mac-window.results .header-search-slot .g-search { width: 100%; max-width: 640px; }
 .traffic { display: flex; gap: 6px; }
 .traffic i { width: 12px; height: 12px; border-radius: 50%; display: block; }
 .traffic .r { background: #ff5f57; }
