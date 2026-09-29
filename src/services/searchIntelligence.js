@@ -2,6 +2,7 @@
 
 const { parseJurisdiction, lookupForApi } = require('./urlFinder');
 const { isRealHttpUrl, isGoogleFallbackUrl } = require('./spulTruth');
+const drProduction = require('./drProduction');
 
 function isPlaceholderApn(value) {
   const t = String(value || '').replace(/[–]/g, '-').trim();
@@ -13,7 +14,8 @@ function extractApn(raw) {
   const labeled =
     raw.match(/\b(?:APN|PIN|folio|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*([A-Za-z0-9][A-Za-z0-9\-]{4,})/i);
   const hyphenated = raw.match(/\b(\d{1,4}[-–]\d{1,4}[-–]\d{1,4}(?:[-–]\d{1,4}){0,3})\b/);
-  const candidate = (labeled && labeled[1]) || (hyphenated && hyphenated[1]) || '';
+  const longId = raw.match(/\b(\d{8,15})\b/);
+  const candidate = (labeled && labeled[1]) || (hyphenated && hyphenated[1]) || (longId && longId[1]) || '';
   const apn = candidate.replace(/[–]/g, '-');
   if (!apn || isPlaceholderApn(apn)) return '';
   return apn;
@@ -36,6 +38,7 @@ function parseSearchQuery(q) {
   const withoutApn = raw
     .replace(/\b(?:APN|PIN|folio|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*[A-Za-z0-9\-]{4,}/gi, ' ')
     .replace(/\b\d{1,4}[-–]\d{1,4}[-–]\d{1,4}(?:[-–]\d{1,4}){0,3}\b/g, ' ')
+    .replace(/\b\d{8,15}\b/g, ' ')
     .replace(/[·|]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -136,27 +139,41 @@ function buildCard({ parsed, lookup, extractor, amounts }) {
   };
 }
 
-function buildCertificate({ parsed, lookup, extractor, amounts, card }) {
+function buildCertificate({ parsed, lookup, extractor, amounts, card, query }) {
   const c = card || buildCard({ parsed, lookup, extractor, amounts });
   const locked = Boolean(lookup && lookup.urlLocked && (lookup.officialUrl || lookup.lockedUrl));
+  const production = drProduction.llmBlock({
+    lookupKey: lookup?.key || `${c.state}-${c.county}`,
+    county: c.county,
+    state: c.state,
+    parcel: c.apn,
+    message: query || parsed?.raw || ''
+  });
+  const row = production.row || {};
+  const fromSheet = (header, fallback) => {
+    const v = row[header];
+    if (v !== null && v !== undefined && v !== '') return v;
+    if (fallback !== null && fallback !== undefined && fallback !== '') return fallback;
+    return null;
+  };
   return {
     collecting_entity: lookup.entity || '',
     state_entity: lookup.entityNote || '',
     county: c.county || '',
     state: c.state || '',
-    apn: c.apn || '',
+    apn: c.apn || row['Parcel Number'] || '',
     address: c.address || '',
-    parcel_format: lookup.parcelFormat || extractor?.parcel_format || '',
+    parcel_format: lookup.parcelFormat || extractor?.parcel_format || production.parcel_format || '',
     search_url: locked ? lookup.officialUrl || lookup.lockedUrl : null,
     url_locked: locked,
-    tax_year: c.tax_year,
+    tax_year: fromSheet('Bill Year', c.tax_year),
     tax_status: c.tax_status,
     assessed_values: {
-      total: c.assessed,
-      land: c.land,
-      improvement: c.improvement
+      total: fromSheet('Total Assessed Value', c.assessed),
+      land: fromSheet('Land Value', c.land),
+      improvement: fromSheet('Improvement Value', c.improvement)
     },
-    total_tax: c.total_tax,
+    total_tax: fromSheet('Bill Amount', c.total_tax),
     tax_rate_area: null,
     exemptions: null,
     special_assessments: null,
@@ -165,7 +182,8 @@ function buildCertificate({ parsed, lookup, extractor, amounts, card }) {
     taxing_authorities: null,
     layout: lookup.layout || extractor?.layout || null,
     method: lookup.method || extractor?.method || null,
-    source: locked ? 'locked_collector_portal' : 'needs_collector_confirmation'
+    production,
+    source: locked ? 'locked_collector_portal' : production.on_file ? 'finale_production_row' : 'needs_collector_confirmation'
   };
 }
 

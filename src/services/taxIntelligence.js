@@ -3,6 +3,7 @@ const path = require('path');
 const { lookupForApi } = require('./urlFinder');
 const { hasUrlLock, enforceLockedSpulUrl, isGoogleFallbackUrl } = require('./spulTruth');
 const { buildScenarioContext, getFewShotExamples } = require('./scenarioRouter');
+const drProduction = require('./drProduction');
 
 const statutesPath = path.join(__dirname, '../../data/statutes.json');
 let statutesCache = null;
@@ -125,6 +126,15 @@ No verified collector search URL — SPUL_CONFIDENCE must be not_found. Do not i
 
 REMINDER: Copy the URL above exactly into SPUL_URL. Do not use any other URL.
 ${entityType === 'appraisal_district' ? 'NOTE: This entry is an appraisal district search (not the tax collector). State this clearly in SPUL_CONTEXT.' : ''}`;
+
+  const production = options.productionBlock || drProduction.llmBlock({
+    lookupKey: `${(state || '').toUpperCase()}-${county || ''}`,
+    county,
+    state,
+    parcel: options.parcel || '',
+    message: options.message || ''
+  });
+  injection += `\n${drProduction.productionPrompt(production)}`;
 
   return STRICT_BASE + injection;
 }

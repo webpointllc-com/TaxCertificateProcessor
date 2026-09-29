@@ -8,6 +8,7 @@ const {
   isGenericCountyHomepage
 } = require('./spulTruth');
 const { parseJurisdictionRaw } = require('./parseJurisdiction');
+const drProduction = require('./drProduction');
 
 const countiesPath = path.join(__dirname, '../../data/counties.json');
 const goldenPath = path.join(__dirname, '../../data/golden_overrides.json');
@@ -222,7 +223,8 @@ function findPropertyURL(county, state) {
         layout: golden.layout || playbook?.layout || null,
         method: golden.method || playbook?.method || null,
         howFound: playbook?.how_found || golden.howFound || '',
-        parcelFormat: golden.parcelFormat || playbook?.parcel_format || ''
+        parcelFormat: golden.parcelFormat || playbook?.parcel_format || drProduction.parcelFormatFor(`${(golden.state || state || '').toUpperCase()}-${golden.county || county}`) || '',
+        production: drProduction.attachLayout(`${(golden.state || state || '').toUpperCase()}-${golden.county || county}`)
       };
     }
     if (golden.verified === false || golden.coverageStatus === 'needs_correction') {
@@ -257,10 +259,14 @@ function findPropertyURL(county, state) {
       rdsURL: c.rdsURL || '',
       gisURL: c.gisURL || '',
       treasurerURL: c.treasurerURL || '',
-      layout: c.layout || book?.layout || null,
+      layout: {
+        ...(c.layout || book?.layout || {}),
+        production: drProduction.attachLayout(`${c.state}-${c.county}`)
+      },
       method: book?.method || null,
       howFound: book?.how_found || '',
-      parcelFormat: c.parcelFormat || book?.parcel_format || '',
+      parcelFormat: c.parcelFormat || book?.parcel_format || drProduction.parcelFormatFor(`${c.state}-${c.county}`) || '',
+      production: drProduction.attachLayout(`${c.state}-${c.county}`),
       probeStatus: c.probeStatus || probeVerdictFor(c.searchURL, c.key),
       probeReason: c.probeReason || '',
       lastProbed: c.lastProbed || ''

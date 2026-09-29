@@ -26,6 +26,7 @@ const { buildLockedUrlPrefix } = require('./services/spulTruth');
 const { matchScenario } = require('./services/scenarioRouter');
 const { scanWorkplaceClone, inventoryRepo } = require('../scripts/workplace-scan');
 const { launchPlan } = require('./launchPlan');
+const drProduction = require('./services/drProduction');
 
 const PORT = process.env.PORT || 3000;
 const FRAME_ANCESTORS = [
@@ -425,6 +426,13 @@ app.post('/api/intelligence', async (req, res) => {
     });
   }
   const card = buildCard({ parsed, lookup, extractor: agent, amounts: req.body?.amounts });
+  const production = drProduction.llmBlock({
+    lookupKey: lookup.key,
+    county: lookup.jurisdiction?.county || parsed.county,
+    state: lookup.jurisdiction?.state || parsed.state,
+    parcel: parsed.apn,
+    message: q
+  });
   if (account && !access.follow_up) {
     await accounts.addRecent(account.id, {
       kind: 'search',
@@ -441,12 +449,19 @@ app.post('/api/intelligence', async (req, res) => {
       body: q
     });
   }
-  let talk = card.summary;
+  let talk = production.isolated_field
+    ? production.speak
+    : production.on_file
+      ? `${production.speak} ${card.summary}`
+      : card.summary;
   const memoryBits = [
     agent.parcel_format ? `Parcel format: ${agent.parcel_format}` : '',
     Array.isArray(agent.exceptions) && agent.exceptions.length
       ? `Known exceptions: ${agent.exceptions.slice(-3).map((e) => e.value || e.kind).join('; ')}`
-      : ''
+      : '',
+    production.isolated_field
+      ? `User named field: ${production.isolated_field.header} = ${production.isolated_field.empty ? '(empty)' : production.isolated_field.value}`
+      : 'Talk about the whole DR Production Results row. Do not lecture columns unless named.'
   ]
     .filter(Boolean)
     .join('\n');
@@ -457,11 +472,11 @@ app.post('/api/intelligence', async (req, res) => {
       {
         role: 'system',
         content:
-          'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. Present a collector link only when it is locked and verified. If it is not locked, ask the user to confirm the tax collecting entity search page. If amounts are unknown, say to confirm on the collector page.'
+          'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. Present a collector link only when it is locked and verified. If it is not locked, ask the user to confirm the tax collecting entity search page. Speak about the DR Production Results document as one row for this parcel. Isolate a single column only when the user named that field. Empty cells stay empty. Parcel formats are per county on the extractor.'
       },
       {
         role: 'user',
-        content: `Query: ${q}\nCounty agent: ${lookup.key}\nEntity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nExtractor v${agent.version}\n${memoryBits}\nWrite 2 short sentences.`
+        content: `Query: ${q}\nCounty agent: ${lookup.key}\nEntity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nExtractor v${agent.version}\n${memoryBits}\nProduction: ${production.speak}\nWrite 2 short sentences.`
       }
     ]
   });
@@ -490,7 +505,14 @@ app.post('/api/intelligence', async (req, res) => {
     plan: access.plan,
     continue_gate: access.plan === 'member' ? null : 'member',
     card,
-    certificate: buildCertificate({ parsed, lookup, extractor: agent, amounts: req.body?.amounts, card }),
+    certificate: buildCertificate({
+      parsed,
+      lookup,
+      extractor: agent,
+      amounts: req.body?.amounts,
+      card,
+      query: q
+    }),
     money: {
       assessed: formatMoney(card.assessed),
       land: formatMoney(card.land),
@@ -609,6 +631,32 @@ app.get('/api/coverage', (req, res) => {
   });
 });
 
+app.get('/api/production', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const q = String(req.query.q || req.query.query || '').trim();
+  const parsed = parseSearchQuery(q || `${req.query.county || ''} ${req.query.state || ''} ${req.query.parcel || ''}`);
+  const county = parsed.county || req.query.county;
+  const state = parsed.state || req.query.state;
+  if (!county || !state) {
+    return res.status(400).json({ ok: false, error: 'Name a county and state, e.g. Hamilton OH or Sangamon, IL' });
+  }
+  const lookup = lookupForApi(county, state);
+  const key = `${(lookup.canonicalState || state).toUpperCase()}-${lookup.canonicalCounty || county}`;
+  const block = drProduction.llmBlock({
+    lookupKey: key,
+    county: lookup.canonicalCounty || county,
+    state: lookup.canonicalState || state,
+    parcel: parsed.apn || req.query.parcel,
+    message: q || req.query.field || ''
+  });
+  res.json({
+    ok: true,
+    lookup: { key, urlLocked: Boolean(lookup.urlLocked), officialUrl: lookup.officialUrl || null },
+    production: block
+  });
+});
+
 app.get('/api/launch-plan', (req, res) => {
   res.json({
     ok: true,
@@ -640,7 +688,11 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
     : '';
 
   const systemContent =
-    enrichSystemPrompt(jurisdiction.county, jurisdiction.state, { scenarioMatch }) +
+    enrichSystemPrompt(jurisdiction.county, jurisdiction.state, {
+      scenarioMatch,
+      message,
+      parcel: parsed.apn
+    }) +
     ragBlock +
     `\nYou may also draft TCS/TPA/RDS workflow steps. Still never invent collector URLs.`;
 

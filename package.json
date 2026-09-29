@@ -10,6 +10,7 @@
     "map:build": "node scripts/build-us-map.js",
     "migrate": "node scripts/migrate.js",
     "import:workplace": "node scripts/import-workplace.js",
+    "import:finale": "node scripts/import-finale.js",
     "import:master": "node scripts/import-master-counties.js",
     "sync:sheet": "node scripts/sync-sheet-counties.js",
     "test": "node --test tests/*.test.js"

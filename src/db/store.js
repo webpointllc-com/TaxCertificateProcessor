@@ -186,7 +186,23 @@ function defaultChunks() {
         'Chippewa WI is locked to the LandNav Catalis portal, not chippewacounty.gov.',
         'San Diego CA is locked to Treasurer-Tax Collector WebPayments, not ARCC.',
         'Harris TX is locked to myharriscountytax.com, not harriscountytx.gov.',
-        'Cook IL is locked to the County Treasurer PIN search, not cookcountypropertyinfo.com.'
+        'Cook IL is locked to the County Treasurer PIN search, not cookcountypropertyinfo.com.',
+        'DR Production Results (finale/) is the output document: 40 columns, one row per parcel in a county/state.',
+        'Talk about that whole row. Isolate a single column only when the user names that field.',
+        'Parcel formats differ by county and live on the county extractor (self-heal / user feedback). Empty cells stay empty.'
+      ].join(' ')
+    },
+    {
+      id: 'playbook-dr-production',
+      jurisdiction_key: null,
+      kind: 'playbook',
+      title: 'DR Production Results — finale folder',
+      body: [
+        'Workplace/WebPoint production workbooks live in finale/. Same columns for OH-Hamilton, CT-HartfordCity, IL-Sangamon.',
+        'Columns: Agency Name, Reference, Tax Id, Parcel Number, CYR Dlq, PYR Dlq, Tax Sale, Parcel Notes, As Of, Bill Year, Bill Type, Bill Number, Bill Notes, Bill Amount, Balance Due, four installment date/amount/balance sets, redemption fields, Total Assessed Value, Improvement Value, Land Value, Owner 1 Name, Legal Description.',
+        'Sangamon CR/Orig and PIN/Acq on older screenshots map to CYR Dlq and PYR Dlq.',
+        'The LLM may discuss the meaning of the document. It only singles out a field when the user asks about that field for the parcel in that county/state.',
+        'Extractors heal from session feedback: parcel_format variants, layout notes, locked URL stays locked.'
       ].join(' ')
     }
   ];

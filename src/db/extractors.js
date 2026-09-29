@@ -1,6 +1,7 @@
 'use strict';
 
 const crypto = require('crypto');
+const drProduction = require('../services/drProduction');
 
 const memory = {
   extractors: [],
@@ -79,8 +80,9 @@ function defaultMethod(lookup) {
   return {
     steps: [
       `Open the official ${entity} tax search page`,
-      fields ? `Target the search fields: ${fields}` : 'Search by parcel / APN / account number',
+      fields ? `Target the search fields: ${fields}` : 'Search by parcel / APN / account number using this county\'s parcel format (do not reuse another county\'s hyphenation)',
       'Search by owner last name (entering less is more)',
+      'Fill the DR Production Results row (finale/ 40-column document) for this parcel. Talk about the whole row unless the user names one field.',
       'Confirm current and delinquent amounts on that collector page before closing'
     ],
     search_by: lookup.layout?.search_by || ['parcel', 'owner', 'address'],
@@ -110,6 +112,11 @@ async function ensureSlot(lookup) {
   const county = lookup.jurisdiction?.county || lookup.canonicalCounty || '';
   const state = (lookup.jurisdiction?.state || lookup.canonicalState || '').toUpperCase();
   const url = lookup.officialUrl || lookup.lockedUrl || lookup.url || '';
+  const production = drProduction.attachLayout(key);
+  const layout =
+    lookup.layout && typeof lookup.layout === 'object'
+      ? { ...lookup.layout, production }
+      : { production };
   const row = {
     id: id(),
     jurisdiction_key: key,
@@ -124,21 +131,22 @@ async function ensureSlot(lookup) {
     validated: Boolean(lookup.urlLocked),
     notes: lookup.urlLocked
       ? (lookup.howFound || 'Seeded from locked Search Spul URL')
-      : 'No locked collector URL — waiting for a validated extractor',
-    parcel_format: lookup.parcelFormat || '',
+      : 'No locked collector URL — waiting for a validated extractor. Output document is DR Production Results (finale/).',
+    parcel_format: lookup.parcelFormat || drProduction.parcelFormatFor(key) || '',
     exceptions: [],
-    layout: lookup.layout && typeof lookup.layout === 'object' ? lookup.layout : {},
+    layout,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };
   if (usingPostgres()) {
     await pool.query(
       `INSERT INTO extractors
-        (id, jurisdiction_key, county, state, entity, search_url, method, version, status, source, validated, notes)
-       VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb,$8,$9,$10,$11,$12)`,
+        (id, jurisdiction_key, county, state, entity, search_url, method, version, status, source, validated, notes, parcel_format, exceptions, layout)
+       VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb,$8,$9,$10,$11,$12,$13,$14::jsonb,$15::jsonb)`,
       [
         row.id, row.jurisdiction_key, row.county, row.state, row.entity, row.search_url,
-        JSON.stringify(row.method), row.version, row.status, row.source, row.validated, row.notes
+        JSON.stringify(row.method), row.version, row.status, row.source, row.validated, row.notes,
+        row.parcel_format || '', JSON.stringify(row.exceptions || []), JSON.stringify(row.layout || {})
       ]
     );
   } else {

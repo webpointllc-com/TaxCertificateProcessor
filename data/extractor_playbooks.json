@@ -336,5 +336,71 @@
       ],
       "notes": "Cloudflare challenge for automated clients; humans can open the portal."
     }
+  },
+  "OH-Hamilton": {
+    "county": "Hamilton",
+    "state": "OH",
+    "collector": "Hamilton County OH tax collecting entity (not yet locked)",
+    "state_entity": "Ohio — county treasurer / auditor roles split values vs collection. Do not treat hamiltoncountyohio.gov as a parcel tax search.",
+    "search_url": "",
+    "parcel_format": "###-####-####-##",
+    "how_found": "finale/OH-Hamilton-DR-ProductionResults09042026.xlsx is a DR Production Results pull. Catalog hamiltoncountyohio.gov is a homepage — not locked. Empty search_url until the collector search page is confirmed.",
+    "layout": {
+      "search_by": ["parcel", "owner", "address"],
+      "production_document": "DR Production Results"
+    },
+    "method": {
+      "search_by": ["parcel", "owner", "address"],
+      "steps": [
+        "Identify the Hamilton County OH tax collecting entity search page with the user. Do not invent a host.",
+        "Search with this county's parcel format ###-####-####-## (example 224-0001-0166-00). Do not reuse another state's hyphenation.",
+        "Fill the 40-column DR Production Results row in finale/. Speak about the whole row unless the user names one field."
+      ],
+      "notes": "Self-heal: user feedback updates this extractor's parcel_format / exceptions. Output document is always the DR sheet."
+    }
+  },
+  "CT-HartfordCity": {
+    "county": "Hartford City",
+    "state": "CT",
+    "collector": "Hartford CT city tax collecting entity (not yet locked)",
+    "state_entity": "Connecticut — municipalities collect. hartfordct.gov probed HTTP 403; do not present it as a search page.",
+    "search_url": "",
+    "parcel_format": "#########",
+    "how_found": "finale/CT-HartfordCity-DR-ProductionResults09042026.xlsx. Catalog city hub is dead (403). Agency name CT-HartfordCity also answers Hartford, CT searches for production rows.",
+    "layout": {
+      "search_by": ["parcel", "owner"],
+      "production_document": "DR Production Results"
+    },
+    "method": {
+      "search_by": ["parcel", "owner"],
+      "steps": [
+        "Ask which Hartford collector search page they use. Do not invent a URL.",
+        "Parcel / tax id on this production file is a numeric id (example 248461389), not Hamilton-style hyphens.",
+        "Fill the DR Production Results row. Isolate a column only when the user names it."
+      ],
+      "notes": "Hartford City vs Hartford County catalog rows share this production workbook until a collector URL is locked."
+    }
+  },
+  "IL-Sangamon": {
+    "county": "Sangamon",
+    "state": "IL",
+    "collector": "Sangamon County IL tax collecting entity (not yet locked)",
+    "state_entity": "Illinois — County Treasurer collects; Assessor is values. sangamonil.gov is a homepage. tax.sangamonil.gov appeared in a live probe and is not locked until confirmed as the treasurer search.",
+    "search_url": "",
+    "parcel_format": "tax id and parcel number may differ",
+    "how_found": "Operator screenshot of the Sangamon, IL production sheet. xlsx not in finale/ yet; one row is in finale/samples.json. Search 'Sangamon, IL' and 'Sangamon IL' are the same slot.",
+    "layout": {
+      "search_by": ["parcel", "tax_id", "owner"],
+      "production_document": "DR Production Results"
+    },
+    "method": {
+      "search_by": ["parcel", "tax_id", "owner"],
+      "steps": [
+        "Sangamon parcel number and tax id can be different numbers on the same row. Do not force another county's format.",
+        "Do not present sangamonil.gov as the collector search. Confirm the treasurer search page with the user.",
+        "Fill the same 40-column DR Production Results document. Talk about the whole row unless a field is named."
+      ],
+      "notes": "Screenshot sample parcel 221033704235 / tax id 221030037. Drop the workbook into finale/ when it is available."
+    }
   }
 }
