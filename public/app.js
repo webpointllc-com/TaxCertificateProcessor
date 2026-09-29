@@ -224,11 +224,9 @@
     var link = $('res-collector');
     if (url) { link.href = url; link.hidden = false; } else { link.hidden = true; }
     var agent = data.agent || data.extractor || {};
-    var bits = [];
-    if (data.operator && data.operator.routed_to) bits.push('County agent ' + data.operator.routed_to);
-    if (agent.parcel_format) bits.push('parcel pattern ' + agent.parcel_format);
-    if (agent.version) bits.push('v' + agent.version);
-    $('agent-note').textContent = bits.join(' · ');
+    var handoff = data.handoff || (data.operator && data.operator.handoff) || {};
+    var badge = (handoff.to && handoff.to.badge) || '';
+    $('agent-note').textContent = badge;
     $('heal-status').textContent = agent.version
       ? ('Shared with every user of this county · extractor v' + agent.version)
       : '';

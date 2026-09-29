@@ -76,6 +76,7 @@ describe('embeddable scaled UI', () => {
     assert.match(js, /\/api\/extractors\/heal/);
     assert.match(js, /wp_pending_q/);
     assert.match(js, /wp_tcs_token/);
+    assert.match(js, /handoff\.to/);
   });
 
   it('ships the mobile account sheet plus a desktop account workspace', () => {

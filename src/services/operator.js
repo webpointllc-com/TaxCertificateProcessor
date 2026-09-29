@@ -43,6 +43,25 @@ function detectDiscoveries({ parsed, lookup, agent }) {
   return discoveries;
 }
 
+function handoffOf(lookup, agent) {
+  const county = lookup.jurisdiction?.county || lookup.canonicalCounty || '';
+  const state = lookup.jurisdiction?.state || lookup.canonicalState || '';
+  const place = [county, state].filter(Boolean).join(', ');
+  const entity = lookup.entity || agent.entity || 'tax collecting entity';
+  const badge = place ? `${place} · ${entity}` : entity;
+  return {
+    seamless: true,
+    from: { role: 'central', label: 'WebPoint' },
+    to: {
+      role: 'county_agent',
+      key: lookup.key,
+      label: place || lookup.key,
+      entity,
+      badge
+    }
+  };
+}
+
 async function dispatch({ q, accountId, feedback }) {
   const parsed = parseSearchQuery(q);
   if (!parsed.county) {
@@ -60,6 +79,7 @@ async function dispatch({ q, accountId, feedback }) {
   const next = discoveries.length
     ? await extractors.rememberDiscovery({ agent, lookup, discoveries, accountId })
     : agent;
+  const handoff = handoffOf(lookup, next);
   return {
     ok: true,
     operator: 'central',
@@ -68,7 +88,8 @@ async function dispatch({ q, accountId, feedback }) {
     lookup,
     agent: next,
     discoveries,
-    shared: true
+    shared: true,
+    handoff
   };
 }
 
@@ -76,5 +97,6 @@ module.exports = {
   inferParcelPattern,
   detectDiscoveries,
   lookupOf,
+  handoffOf,
   dispatch
 };

@@ -480,8 +480,10 @@ app.post('/api/intelligence', async (req, res) => {
       role: 'central',
       routed_to: routed.routed_to,
       shared: true,
-      discoveries: discoveries || []
+      discoveries: discoveries || [],
+      handoff: routed.handoff
     },
+    handoff: routed.handoff,
     plan: access.plan,
     continue_gate: access.plan === 'member' ? null : 'member',
     card,
