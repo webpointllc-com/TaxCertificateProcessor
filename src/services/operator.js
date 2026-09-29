@@ -65,9 +65,17 @@ function handoffOf(lookup, agent) {
 async function dispatch({ q, accountId, feedback }) {
   const parsed = parseSearchQuery(q);
   if (!parsed.county) {
+    if (parsed.apn) {
+      return {
+        ok: false,
+        collaborate: true,
+        error: `I have parcel ${parsed.apn} but need the county and state — for example San Diego CA — before I can open a tax collecting entity search page.`
+      };
+    }
     return {
       ok: false,
-      error: 'Name a county and state, e.g. Chippewa County WI'
+      collaborate: true,
+      error: 'Name a county and state, e.g. San Diego CA or Chippewa County WI'
     };
   }
   const lookup = lookupOf(parsed);

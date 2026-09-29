@@ -65,16 +65,26 @@ function parseJson(value, fallback) {
 }
 
 function defaultMethod(lookup) {
+  if (lookup.method && Array.isArray(lookup.method.steps) && lookup.method.steps.length) {
+    return {
+      steps: lookup.method.steps.slice(0, 12),
+      search_by: lookup.method.search_by || lookup.layout?.search_by || ['parcel', 'owner', 'address'],
+      notes: lookup.method.notes || lookup.entityNote || lookup.howFound || ''
+    };
+  }
   const entity = lookup.entity || 'the tax collecting entity';
+  const fields = Array.isArray(lookup.layout?.fields)
+    ? lookup.layout.fields.map((f) => f.label || f.role).filter(Boolean).join(', ')
+    : '';
   return {
     steps: [
       `Open the official ${entity} tax search page`,
-      'Search by parcel / APN / account number',
+      fields ? `Target the search fields: ${fields}` : 'Search by parcel / APN / account number',
       'Search by owner last name (entering less is more)',
       'Confirm current and delinquent amounts on that collector page before closing'
     ],
-    search_by: ['parcel', 'owner', 'address'],
-    notes: lookup.entityNote || lookup.source || ''
+    search_by: lookup.layout?.search_by || ['parcel', 'owner', 'address'],
+    notes: lookup.entityNote || lookup.howFound || lookup.source || ''
   };
 }
 
@@ -112,10 +122,12 @@ async function ensureSlot(lookup) {
     status: 'active',
     source: 'seed',
     validated: Boolean(lookup.urlLocked),
-    notes: lookup.urlLocked ? 'Seeded from locked Search Spul URL' : 'No locked collector URL — waiting for a validated extractor',
-    parcel_format: '',
+    notes: lookup.urlLocked
+      ? (lookup.howFound || 'Seeded from locked Search Spul URL')
+      : 'No locked collector URL — waiting for a validated extractor',
+    parcel_format: lookup.parcelFormat || '',
     exceptions: [],
-    layout: {},
+    layout: lookup.layout && typeof lookup.layout === 'object' ? lookup.layout : {},
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };

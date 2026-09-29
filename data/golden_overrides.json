@@ -10,12 +10,14 @@
     ],
     "verified": true,
     "entityType": "tax_collector",
-    "entityNote": "Catalis / LandNav public portal. Guest Sign In. Search by parcel #, owner last name, or address. Treasurer collects postponed/delinquent tax; local municipal treasurers collect current December/January installments. Max 10 parcels per payment transaction.",
+    "entityNote": "Catalis / LandNav public portal. Guest Sign In via form#GuestLoginForm POST /login/GuestLogin. Do not use StaffLoginForm. After guest entry, search by parcel #, owner last name, or address. Treasurer collects postponed/delinquent tax; local municipal treasurers collect current December/January installments. Max 10 parcels per payment transaction.",
     "vendor": "catalis_landnav",
     "entity": "Chippewa County WI Treasurer — LandNav public portal",
     "rdsURL": "https://www.chippewacountywi.gov/451/Online-Real-Estate-Search",
     "gisURL": "https://mapping.chippewacountywi.gov/",
-    "treasurerURL": "https://chippewacountywi.gov/169/Treasurer"
+    "treasurerURL": "https://chippewacountywi.gov/169/Treasurer",
+    "parcelFormat": "##-###-#-###",
+    "howFound": "Live GET 2026-09-29: login page 200 title Catalis - Login. form#GuestLoginForm action=/login/GuestLogin. chippewacounty.gov is dead; official county site is chippewacountywi.gov."
   },
   "CA-SanDiego": {
     "county": "San Diego",
@@ -26,9 +28,12 @@
       "arcc.sandiegocounty.gov"
     ],
     "verified": true,
-    "entityNote": "Treasurer WebPayments property tax search — not the Assessor ARCC site",
+    "entityType": "tax_collector",
+    "entityNote": "Treasurer-Tax Collector WebPayments property tax search — not the Assessor/Recorder/County Clerk (ARCC) site. SPA search: Parcel Number, Owner, Mailing Address, or Unsecured Bill Number.",
     "vendor": "sdttc_webpayments",
-    "entity": "San Diego County Treasurer-Tax Collector"
+    "entity": "San Diego County Treasurer-Tax Collector",
+    "parcelFormat": "###-###-##-##",
+    "howFound": "Live GET 2026-09-29: /WebPayments/CoSDTreasurer2/search 200 title WebPayments. React bundle labels Search Property Tax Information with three options: Parcel Number, Mailing Address, Unsecured Bill Number. Reject ARCC assessor host."
   },
   "CO-Denver": {
     "county": "Denver",
@@ -39,8 +44,75 @@
       "denvergov.org/Assessor"
     ],
     "verified": true,
-    "entityNote": "Spatialest interactive search — not denvergov.org Assessor brochure page",
+    "entityType": "tax_collector",
+    "entityNote": "Spatialest interactive property record search — not the denvergov.org Assessor brochure page.",
     "vendor": "spatialest",
-    "entity": "City and County of Denver — Property Record Search"
+    "entity": "City and County of Denver — Property Record Search",
+    "howFound": "Live GET 2026-09-29: property.spatialest.com/co/denver 200 title City & County of Denver - Property Record Search. Client-rendered Spatialest app. Reject assessor brochure."
+  },
+  "IL-Cook": {
+    "county": "Cook",
+    "state": "IL",
+    "searchURL": "https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+    "rejectURLs": [
+      "https://www.cookcountypropertyinfo.com/",
+      "cookcountypropertyinfo.com"
+    ],
+    "verified": true,
+    "entityType": "tax_collector",
+    "entityNote": "Illinois: County Treasurer collects. PIN search is five boxes on setsearchparameters.aspx. cookcountypropertyinfo.com is assessment lookup — not the pay/search collector page.",
+    "vendor": "cook_treasurer",
+    "entity": "Cook County Treasurer",
+    "parcelFormat": "##-##-###-###-####",
+    "howFound": "Live GET 2026-09-29: cookcountytreasurer.com/yourpropertytaxoverviewsearch.aspx redirects to setsearchparameters.aspx 200. PIN inputs txtPIN1–txtPIN5. Catalog had assessment portal; treasurer is the tax collecting entity."
+  },
+  "TX-Harris": {
+    "county": "Harris",
+    "state": "TX",
+    "searchURL": "https://myharriscountytax.com/",
+    "rejectURLs": [
+      "https://www.harriscountytx.gov/",
+      "harriscountytx.gov",
+      "esearch.harriscountytax.org"
+    ],
+    "verified": true,
+    "entityType": "tax_collector",
+    "entityNote": "Texas: Tax Assessor-Collector collects; CAD does not. Search/pay at myharriscountytax.com (service of the Harris County Tax Office). hctax.net is the office hub; harriscountytx.gov is only the county homepage.",
+    "vendor": "myharriscountytax",
+    "entity": "Harris County Tax Assessor-Collector",
+    "treasurerURL": "https://www.hctax.net/Property/PropertyTax",
+    "howFound": "Live GET 2026-09-29: hctax.net 200 Harris County Tax Office with Search Tax Statements → myharriscountytax.com 200 title MyHarrisCountyTax - A service of the Harris County Tax Office. Catalog URL harriscountytx.gov is a county homepage, not a parcel search."
+  },
+  "CA-Orange": {
+    "county": "Orange",
+    "state": "CA",
+    "searchURL": "https://taxbill.octreasurer.gov/",
+    "rejectURLs": [
+      "https://www.ocgov.com/",
+      "ocgov.com"
+    ],
+    "verified": true,
+    "entityType": "tax_collector",
+    "entityNote": "OC Treasurer-Tax Collector tax bill search (Angular SPA). Search and pay secured, unsecured, and supplemental.",
+    "vendor": "octreasurer_taxbill",
+    "entity": "Orange County Treasurer-Tax Collector",
+    "howFound": "Live GET 2026-09-29: taxbill.octreasurer.gov 200 title Tax Search | OC Treasurer-Tax Collector. app-root SPA. Meta description: Search and pay Orange County property tax bills online."
+  },
+  "AZ-Maricopa": {
+    "county": "Maricopa",
+    "state": "AZ",
+    "searchURL": "",
+    "rejectURLs": [
+      "https://www.maricopa.gov/5524/Property-Search",
+      "https://www.maricopa.gov/468/Treasurer"
+    ],
+    "verified": false,
+    "coverageStatus": "needs_correction",
+    "entityType": "tax_collector",
+    "entityNote": "Catalog URL /5524/Property-Search returned HTTP 404 on 2026-09-29. /468/Treasurer redirected to Medical Examiner. Treasurer hub treasurer.maricopa.gov is live but is not a confirmed parcel search form. Do not present a collector link until the user confirms the parcel inquiry page.",
+    "vendor": "",
+    "entity": "Maricopa County Treasurer",
+    "treasurerURL": "https://treasurer.maricopa.gov/",
+    "howFound": "Live GET 2026-09-29: maricopa.gov/5524/Property-Search 404 CivicEngage Custom404. treasurer.maricopa.gov 200 Treasurer's Office shell; ParcelInquiry path served the same shell without a server-rendered search form. Unlocked until confirmed with the user."
   }
 }

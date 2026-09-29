@@ -119,6 +119,43 @@ function defaultChunks() {
       ].join(' ')
     },
     {
+      id: 'playbook-ca-sandiego-ttc',
+      jurisdiction_key: 'CA-SanDiego',
+      kind: 'playbook',
+      title: 'San Diego County CA — Treasurer-Tax Collector WebPayments',
+      body: [
+        'Tax collecting entity: San Diego County Treasurer-Tax Collector.',
+        'Search: https://wps.sdttc.com/WebPayments/CoSDTreasurer2/search',
+        'Reject: arcc.sandiegocounty.gov (Assessor/Recorder/County Clerk — not the pay/search page).',
+        'SPA search options: Parcel Number (###-###-##-##), Owner, Mailing Address, Unsecured Bill Number. Button Begin Search.',
+        'Casual queries like “parcel 325-061-08-00 in San Diego CA” route here. Present the link only because this URL is locked.'
+      ].join(' ')
+    },
+    {
+      id: 'playbook-il-cook-treasurer',
+      jurisdiction_key: 'IL-Cook',
+      kind: 'playbook',
+      title: 'Cook County IL — Treasurer PIN search',
+      body: [
+        'Illinois: County Treasurer collects. Assessor/propertyinfo is values.',
+        'Search: https://www.cookcountytreasurer.com/setsearchparameters.aspx',
+        'PIN is five inputs txtPIN1–txtPIN5 (##-##-###-###-####).',
+        'Reject cookcountypropertyinfo.com as the pay-taxes URL.'
+      ].join(' ')
+    },
+    {
+      id: 'playbook-tx-harris-tac',
+      jurisdiction_key: 'TX-Harris',
+      kind: 'playbook',
+      title: 'Harris County TX — Tax Assessor-Collector',
+      body: [
+        'Texas: Tax Assessor-Collector collects. CAD does not.',
+        'Search/pay: https://myharriscountytax.com/',
+        'Office hub: https://www.hctax.net/Property/PropertyTax',
+        'Reject harriscountytx.gov (county homepage, not a parcel search).'
+      ].join(' ')
+    },
+    {
       id: 'playbook-workplace-tcs',
       jurisdiction_key: null,
       kind: 'workplace',
@@ -143,8 +180,13 @@ function defaultChunks() {
         'SPUL finds the official real property TAX SEARCH PAGE — where residents look up and pay taxes.',
         'TAX COLLECTOR / TREASURER is the payment search page. ASSESSOR / CAD is values only unless the DB says otherwise.',
         'Never invent URLs. Use the locked URL from golden_overrides or counties.json.',
-        'When confidence is verified or pattern_matched and the URL is real http(s), the URL is HARD LOCKED.',
-        'Chippewa WI is locked to the LandNav Catalis portal, not chippewacounty.gov.'
+        'When confidence is verified and the URL is a real collector search page, the URL is HARD LOCKED and may be shown.',
+        'Do not present a link for a county homepage, a 404 catalog row, an assessor/CAD brochure, or a pattern that is not sure.',
+        'If the lock is missing, work with the user to name the tax collecting entity and the search page. Never invent a host.',
+        'Chippewa WI is locked to the LandNav Catalis portal, not chippewacounty.gov.',
+        'San Diego CA is locked to Treasurer-Tax Collector WebPayments, not ARCC.',
+        'Harris TX is locked to myharriscountytax.com, not harriscountytx.gov.',
+        'Cook IL is locked to the County Treasurer PIN search, not cookcountypropertyinfo.com.'
       ].join(' ')
     }
   ];

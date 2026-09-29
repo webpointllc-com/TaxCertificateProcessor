@@ -13,11 +13,37 @@ function isRealHttpUrl(url) {
   return typeof url === 'string' && /^https?:\/\//i.test(url) && !isGoogleFallbackUrl(url);
 }
 
-function hasUrlLock(confidence, url) {
-  return (
-    (confidence === 'verified' || confidence === 'pattern_matched') &&
-    isRealHttpUrl(url)
-  );
+const SEARCH_PAGE_HINT =
+  /search|propertytax|property-tax|taxbill|webpayments|landnav|spatialest|esearch|qpublic|treasurer|taxcollector|tax-collector|taxoffice|paytax|payments|parcel|setsearchparameters|myharris|hctax|beacon|countygovservices|catalis/i;
+
+function isGenericCountyHomepage(url, meta = {}) {
+  if (!isRealHttpUrl(url)) return true;
+  const vendor = `${meta.vendor || ''} ${url}`;
+  if (/landnav|spatialest|sdttc|esearch|qpublic|beacon|countygovservices|tyler|catalis|webpayments/i.test(vendor)) {
+    return false;
+  }
+  const blob = `${meta.entity || ''} ${meta.entityNote || ''}`;
+  const entitySaysHomepage = /\b(county site|municipal site|county hub|official .* government)\b/i.test(blob);
+  try {
+    const u = new URL(url);
+    const host = u.hostname.replace(/^www\./i, '');
+    const path = (u.pathname || '/').replace(/\/+$/, '') || '/';
+    const hay = `${host}${path}${u.hash || ''}`;
+    if (SEARCH_PAGE_HINT.test(hay)) return false;
+    if (entitySaysHomepage && (path === '/' || path.split('/').filter(Boolean).length <= 1)) return true;
+  } catch {
+    return true;
+  }
+  return false;
+}
+
+function hasUrlLock(confidence, url, meta = {}) {
+  if (!isRealHttpUrl(url)) return false;
+  if (confidence !== 'verified' && confidence !== 'pattern_matched') return false;
+  if (meta.allowHomepage) return true;
+  if (meta.source && /golden_override/i.test(String(meta.source))) return true;
+  if (isGenericCountyHomepage(url, meta)) return false;
+  return true;
 }
 
 function enforceLockedSpulUrl(responseText, lockedUrl, confidence) {
@@ -48,6 +74,7 @@ module.exports = {
   compactJurisdictionName,
   isGoogleFallbackUrl,
   isRealHttpUrl,
+  isGenericCountyHomepage,
   hasUrlLock,
   enforceLockedSpulUrl,
   buildLockedUrlPrefix

@@ -21,7 +21,7 @@ const {
 const operator = require('./services/operator');
 const { enrichSystemPrompt, enforceLockedSpulUrl } = require('./services/taxIntelligence');
 const { parseJurisdiction, lookupForApi, suggestJurisdictions } = require('./services/urlFinder');
-const { hasUrlLock, buildLockedUrlPrefix } = require('./services/spulTruth');
+const { buildLockedUrlPrefix } = require('./services/spulTruth');
 const { matchScenario } = require('./services/scenarioRouter');
 const { scanWorkplaceClone, inventoryRepo } = require('../scripts/workplace-scan');
 
@@ -106,11 +106,12 @@ function lookupBundle(message, county, state) {
 }
 
 function synthesizeSpul(lookup) {
-  const url = lookup.url || lookup.lockedUrl || '';
+  const url = lookup.officialUrl || lookup.lockedUrl || '';
+  const conf = lookup.urlLocked ? (lookup.confidence || 'verified') : 'not_found';
   return [
-    `SPUL_URL: ${url}`,
+    `SPUL_URL: ${url || '(none — do not invent a link)'}`,
     `SPUL_ENTITY: ${lookup.entity || 'Property tax search'}`,
-    `SPUL_CONFIDENCE: ${lookup.confidence || 'not_found'}`,
+    `SPUL_CONFIDENCE: ${conf}`,
     'SPUL_ACTIONS:',
     '- Search by owner last name',
     '- Search by parcel / account number',
@@ -454,7 +455,7 @@ app.post('/api/intelligence', async (req, res) => {
       {
         role: 'system',
         content:
-          'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. If amounts are unknown, say to confirm on the collector page.'
+          'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. Present a collector link only when it is locked and verified. If it is not locked, ask the user to confirm the tax collecting entity search page. If amounts are unknown, say to confirm on the collector page.'
       },
       {
         role: 'user',
@@ -601,12 +602,13 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
   const sid = sessionIdOf(req);
 
   const scenarioMatch = matchScenario(message);
-  const parsed = parseJurisdiction(message);
-  const jurisdiction = parsed.county ? parsed : { county: null, state: null };
+  const parsed = parseSearchQuery(message);
+  const jurisdiction = parsed.county ? { county: parsed.county, state: parsed.state } : { county: null, state: null };
   const lookup = jurisdiction.county
     ? lookupForApi(jurisdiction.county, jurisdiction.state)
     : null;
-  const urlLocked = lookup && hasUrlLock(lookup.confidence, lookup.url);
+  const urlLocked = Boolean(lookup && lookup.urlLocked);
+  const lockedUrl = (lookup && lookup.officialUrl) || '';
   const jurKey = jurisdiction.county
     ? `${(jurisdiction.state || '').toUpperCase()}-${jurisdiction.county}`
     : null;
@@ -622,13 +624,13 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
     ragBlock +
     `\nYou may also draft TCS/TPA/RDS workflow steps. Still never invent collector URLs.`;
 
-  let fullResponse = urlLocked && lookup.url
-    ? buildLockedUrlPrefix(lookup.url, lookup.confidence, lookup.entity)
+  let fullResponse = urlLocked && lockedUrl
+    ? buildLockedUrlPrefix(lockedUrl, lookup.confidence, lookup.entity)
     : '';
 
   const finish = async () => {
-    if (urlLocked && lookup.url) {
-      fullResponse = enforceLockedSpulUrl(fullResponse, lookup.url, lookup.confidence);
+    if (urlLocked && lockedUrl) {
+      fullResponse = enforceLockedSpulUrl(fullResponse, lockedUrl, lookup.confidence);
     }
     await store.addConversation(sid, 'user', message, null);
     await store.addConversation(sid, 'assistant', fullResponse, llm.status().model);
@@ -655,15 +657,15 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
     'Cache-Control': 'no-cache',
     Connection: 'keep-alive'
   });
-  if (urlLocked && lookup.url) {
+  if (urlLocked && lockedUrl) {
     res.write(`data: ${JSON.stringify({ type: 'meta', scenarioId: scenarioMatch.scenarioId, urlLocked: true })}\n\n`);
   }
 
   try {
     const history = await store.historyFor(sid);
     const userContent =
-      urlLocked && lookup.url
-        ? `${message}\n\n[URL already verified in SPUL database. Output SPUL_ENTITY, SPUL_CONFIDENCE, SPUL_ACTIONS, SPUL_CONTEXT only — SPUL_URL is locked to: ${lookup.url}]`
+      urlLocked && lockedUrl
+        ? `${message}\n\n[URL already verified in SPUL database. Output SPUL_ENTITY, SPUL_CONFIDENCE, SPUL_ACTIONS, SPUL_CONTEXT only — SPUL_URL is locked to: ${lockedUrl}]`
         : message;
     const stream = await llm.streamGroq({
       messages: [

@@ -1,0 +1,278 @@
+{
+  "_meta": {
+    "probed_on": "2026-09-29",
+    "method": "Personal live HTTP GET with a desktop browser UA. Collector vs assessor: lock only the tax collecting entity search/pay page. Present a link only when that page is confirmed. County homepages and 404 catalog rows are not locks. XPaths are from the live HTML when the form is server-rendered; SPA labels are from the compiled bundle.",
+    "catalog": {
+      "counties": 3241,
+      "verified_http": 1758,
+      "empty_or_unverified": 1483,
+      "google_fallback": 0,
+      "county_site_entities": 817
+    }
+  },
+  "CA-SanDiego": {
+    "county": "San Diego",
+    "state": "CA",
+    "collector": "San Diego County Treasurer-Tax Collector",
+    "state_entity": "California — county Treasurer-Tax Collector collects secured property tax (Cal. Rev. & Tax. Code). Assessor/Recorder/County Clerk (ARCC) is values/records, not the pay/search page.",
+    "search_url": "https://wps.sdttc.com/WebPayments/CoSDTreasurer2/search",
+    "parcel_format": "###-###-##-##",
+    "how_found": "Opened the Treasurer-Tax Collector WebPayments search URL (not sandiegocounty.gov assessor ARCC). Live 200, title WebPayments, React SPA at /webpayments/static/js/main.5bea859a.js. Bundle strings: Search Property Tax Information; Search by one of the following 3 options; Parcel Number; Owner; Option 2: Mailing Address; Option 3: Unsecured Bill Number; Begin Search.",
+    "layout": {
+      "spa": true,
+      "search_by": ["parcel", "owner", "address", "unsecured_bill"],
+      "fields": [
+        {
+          "role": "parcel",
+          "label": "Parcel Number",
+          "xpath": "//label[contains(., 'Parcel Number')]/following::input[1] | //input[@aria-label='Parcel Number']"
+        },
+        {
+          "role": "owner",
+          "label": "Owner",
+          "xpath": "//label[contains(., 'Owner')]/following::input[1] | //input[@aria-label='Owner']"
+        },
+        {
+          "role": "address",
+          "label": "Mailing Address",
+          "xpath": "//label[contains(., 'Mailing Address')]/following::input[1]"
+        },
+        {
+          "role": "unsecured_bill",
+          "label": "Unsecured Bill Number",
+          "xpath": "//label[contains(., 'Unsecured Bill Number')]/following::input[1]"
+        },
+        {
+          "role": "submit",
+          "label": "Begin Search",
+          "xpath": "//button[contains(., 'Begin Search')] | //input[@value='Begin Search']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": ["parcel", "owner", "address", "unsecured_bill"],
+      "steps": [
+        "Open https://wps.sdttc.com/WebPayments/CoSDTreasurer2/search (Treasurer-Tax Collector WebPayments). Never ARCC.",
+        "Search by Parcel Number first (San Diego format ###-###-##-##, e.g. 325-061-08-00).",
+        "If the parcel is unknown, search by owner last name or mailing address.",
+        "Unsecured bills use Option 3: Unsecured Bill Number.",
+        "Confirm amounts on that collector page before closing."
+      ],
+      "notes": "SPA: form controls render after JS. Target labels Parcel Number / Owner / Mailing Address."
+    }
+  },
+  "WI-Chippewa": {
+    "county": "Chippewa",
+    "state": "WI",
+    "collector": "Chippewa County Treasurer — Catalis LandNav public portal",
+    "state_entity": "Wisconsin — county treasurer collects postponed/delinquent real estate tax (Wis. Stat. ch. 74). Current December/January installments are paid to the LOCAL municipal treasurer.",
+    "search_url": "https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/",
+    "parcel_format": "##-###-#-###",
+    "how_found": "Live 200 title Catalis - Login. Guest form is public; staff form is not. Official county site chippewacountywi.gov; chippewacounty.gov is dead.",
+    "layout": {
+      "spa": false,
+      "search_by": ["parcel", "owner", "address"],
+      "fields": [
+        {
+          "role": "guest_signin",
+          "label": "Guest Sign In",
+          "xpath": "//form[@id='GuestLoginForm']"
+        },
+        {
+          "role": "guest_submit",
+          "label": "Guest login submit",
+          "xpath": "//form[@id='GuestLoginForm']//*[@type='submit' or self::button]"
+        }
+      ],
+      "reject_xpath": ["//form[@id='StaffLoginForm']"]
+    },
+    "method": {
+      "search_by": ["parcel", "owner", "address"],
+      "steps": [
+        "Open the LandNav login URL.",
+        "Submit form#GuestLoginForm (Guest Sign In). Do not use StaffLoginForm.",
+        "Search by parcel number, owner last name (less is more), or house number + street.",
+        "Max 10 parcels per payment cart.",
+        "Current Dec/Jan installments: local municipal treasurer, not always this portal."
+      ],
+      "notes": "After guest login the search fields are inside the LandNav app (parcel / last name / address)."
+    }
+  },
+  "CO-Denver": {
+    "county": "Denver",
+    "state": "CO",
+    "collector": "City and County of Denver — Spatialest property record search",
+    "state_entity": "Colorado — combined city-and-county. Spatialest is the interactive record search; denvergov.org/Assessor is a brochure.",
+    "search_url": "https://property.spatialest.com/co/denver#/",
+    "how_found": "Live 200 title City & County of Denver - Property Record Search. Client-rendered Spatialest. Reject denvergov.org/Assessor.",
+    "layout": {
+      "spa": true,
+      "search_by": ["parcel", "owner", "address"],
+      "fields": [
+        {
+          "role": "search",
+          "label": "Property search",
+          "xpath": "//input[contains(@placeholder,'Search') or contains(@aria-label,'Search')]"
+        }
+      ]
+    },
+    "method": {
+      "search_by": ["parcel", "owner", "address"],
+      "steps": [
+        "Open https://property.spatialest.com/co/denver#/",
+        "Use the Spatialest search box for parcel, owner, or address.",
+        "Do not send the user to denvergov.org/Assessor."
+      ],
+      "notes": "SPA — search input is painted after JS."
+    }
+  },
+  "IL-Cook": {
+    "county": "Cook",
+    "state": "IL",
+    "collector": "Cook County Treasurer",
+    "state_entity": "Illinois — County Treasurer collects; Assessor sets values. cookcountypropertyinfo.com is assessment, not the pay page.",
+    "search_url": "https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+    "parcel_format": "##-##-###-###-####",
+    "how_found": "Live redirect yourpropertytaxoverviewsearch.aspx → setsearchparameters.aspx 200. Server-rendered PIN boxes txtPIN1–txtPIN5.",
+    "layout": {
+      "spa": false,
+      "search_by": ["parcel"],
+      "fields": [
+        {
+          "role": "pin1",
+          "label": "PIN box 1",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN1']"
+        },
+        {
+          "role": "pin2",
+          "label": "PIN box 2",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN2']"
+        },
+        {
+          "role": "pin3",
+          "label": "PIN box 3",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN3']"
+        },
+        {
+          "role": "pin4",
+          "label": "PIN box 4",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN4']"
+        },
+        {
+          "role": "pin5",
+          "label": "PIN box 5",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN5']"
+        },
+        {
+          "role": "submit",
+          "label": "Continue",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_cmdContinue']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": ["parcel"],
+      "steps": [
+        "Open https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+        "Enter the 14-digit PIN across the five boxes (##-##-###-###-####).",
+        "Submit Continue. Confirm tax due on the Treasurer result — not cookcountypropertyinfo.com."
+      ],
+      "notes": "PIN is split across five inputs. form#form1 posts to setsearchparameters.aspx."
+    }
+  },
+  "TX-Harris": {
+    "county": "Harris",
+    "state": "TX",
+    "collector": "Harris County Tax Assessor-Collector",
+    "state_entity": "Texas — Tax Assessor-Collector collects. CAD (harriscountytax.org / appraisal) is values only. Never send a pay-taxes user to the CAD or to harriscountytx.gov.",
+    "search_url": "https://myharriscountytax.com/",
+    "how_found": "Live hctax.net 200 Tax Office hub, Search Tax Statements points to myharriscountytax.com 200. Catalog harriscountytx.gov is a county homepage.",
+    "layout": {
+      "spa": true,
+      "search_by": ["account", "parcel", "owner", "address"],
+      "fields": [
+        {
+          "role": "search",
+          "label": "Search for...",
+          "xpath": "//input[contains(@placeholder,'Search') or contains(@aria-label,'Search')]"
+        }
+      ]
+    },
+    "method": {
+      "search_by": ["account", "parcel", "owner", "address"],
+      "steps": [
+        "Open https://myharriscountytax.com/ — service of the Harris County Tax Office.",
+        "Search the account / parcel there. Do not use harriscountytx.gov.",
+        "Office hub for context only: https://www.hctax.net/Property/PropertyTax"
+      ],
+      "notes": "Pay portal is a SPA. Receipt search on hctax.net uses #txtSearchReceiptValue — that is receipts, not the parcel tax search."
+    }
+  },
+  "CA-Orange": {
+    "county": "Orange",
+    "state": "CA",
+    "collector": "Orange County Treasurer-Tax Collector",
+    "state_entity": "California — county Treasurer-Tax Collector.",
+    "search_url": "https://taxbill.octreasurer.gov/",
+    "how_found": "Live 200 title Tax Search | OC Treasurer-Tax Collector. Angular app-root. Description: search and pay secured, unsecured, and supplemental.",
+    "layout": {
+      "spa": true,
+      "search_by": ["parcel", "account", "address"],
+      "fields": [
+        {
+          "role": "search",
+          "label": "Tax Search",
+          "xpath": "//app-root//input[contains(@placeholder,'parcel') or contains(@placeholder,'Search') or contains(@aria-label,'Search')]"
+        }
+      ]
+    },
+    "method": {
+      "search_by": ["parcel", "account", "address"],
+      "steps": [
+        "Open https://taxbill.octreasurer.gov/",
+        "Search the tax bill (parcel / account). Confirm amounts there."
+      ],
+      "notes": "Angular SPA — inputs render in app-root after JS."
+    }
+  },
+  "CA-LosAngeles": {
+    "county": "Los Angeles",
+    "state": "CA",
+    "collector": "Los Angeles County Treasurer and Tax Collector",
+    "state_entity": "California — TTC collects. Assessor is values. propertytax.lacounty.gov is the public tax portal landing (200 on 2026-09-29) and links to ttc.lacounty.gov pay options. It is not itself the AIN form.",
+    "search_url": "https://www.propertytax.lacounty.gov/",
+    "how_found": "Live 200 title Los Angeles County - Property Tax Portal. Pay-your-property-taxes on ttc.lacounty.gov is informational. Keep the portal URL as the locked public entry; work with the user if they need a specific AIN inquiry form.",
+    "layout": {
+      "spa": false,
+      "search_by": ["parcel"],
+      "fields": []
+    },
+    "method": {
+      "search_by": ["parcel"],
+      "steps": [
+        "Open https://www.propertytax.lacounty.gov/ (LA County Property Tax Portal).",
+        "Use Public Inquiry / tax bill tools on that portal. AIN is the LA parcel identifier.",
+        "Do not send the user to assessor.lacounty.gov for paying taxes."
+      ],
+      "notes": "Portal landing, not a single AIN input. Link is locked because it is the official tax portal, not an assessor brochure."
+    }
+  },
+  "AZ-Maricopa": {
+    "county": "Maricopa",
+    "state": "AZ",
+    "collector": "Maricopa County Treasurer",
+    "state_entity": "Arizona — County Treasurer collects.",
+    "search_url": "",
+    "how_found": "Catalog /5524/Property-Search is HTTP 404 (CivicEngage Custom404) on 2026-09-29. /468/Treasurer redirected to Medical Examiner. treasurer.maricopa.gov is a live office shell without a confirmed parcel form. No link until the user confirms the inquiry page.",
+    "layout": { "spa": true, "search_by": ["parcel"], "fields": [] },
+    "method": {
+      "search_by": ["parcel"],
+      "steps": [
+        "Do not open the 404 catalog URL.",
+        "Ask the user which Maricopa Treasurer parcel inquiry page they use.",
+        "Treasurer hub for orientation only: https://treasurer.maricopa.gov/"
+      ],
+      "notes": "Unlocked on purpose. Presenting a 404 or a homepage would be incorrect."
+    }
+  }
+}

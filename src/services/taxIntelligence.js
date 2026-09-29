@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { findPropertyURL } = require('./urlFinder');
+const { lookupForApi } = require('./urlFinder');
 const { hasUrlLock, enforceLockedSpulUrl, isGoogleFallbackUrl } = require('./spulTruth');
 const { buildScenarioContext, getFewShotExamples } = require('./scenarioRouter');
 
@@ -71,7 +71,7 @@ No jurisdiction detected. Ask the user to provide county name and state (e.g., "
 
   const statutes = loadStatutes();
   const stateData = statutes[state.toUpperCase()];
-  const urlResult = findPropertyURL(county, state);
+  const urlResult = lookupForApi(county, state);
   const entityType = urlResult.entityType || 'tax_collector';
   const entityNote = urlResult.entityNote || '';
   const scenarioBlock = buildScenarioContext(county, state, urlResult, scenarioMatch);
@@ -84,8 +84,8 @@ ${scenarioBlock}
 County: ${county}, ${state}
 Entity type: ${entityType}
 Entity note: ${entityNote || 'none'}
-Official Search URL: ${urlResult.url || '(none — tell user SPUL needs operator correction)'}
-Confidence: ${urlResult.confidence}
+Official Search URL: ${urlResult.officialUrl || '(none — tell user SPUL needs operator correction)'}
+Confidence: ${urlResult.urlLocked ? urlResult.confidence : 'not_found'}
 Source: ${urlResult.source}`;
 
   if (stateData) {
@@ -101,24 +101,24 @@ Interest: ${stateData.interestRateCap}`;
 FORBIDDEN (never put in SPUL_URL): ${urlResult.rejectURLs.join(', ')}`;
   }
 
-  const locked = hasUrlLock(urlResult.confidence, urlResult.url);
+  const locked = Boolean(urlResult.urlLocked && urlResult.officialUrl);
   if (locked) {
     injection += `
 
 HARD LOCK (mandatory — database source of truth):
-SPUL_URL MUST be exactly: ${urlResult.url}
+SPUL_URL MUST be exactly: ${urlResult.officialUrl}
 Any other URL is forbidden. Do not substitute assessor homepages, CAD sites, or Google links.
 SPUL_CONFIDENCE MUST be: ${urlResult.confidence}
 When URL is locked, output SPUL_URL first exactly as shown, then SPUL_ENTITY, SPUL_CONFIDENCE, SPUL_ACTIONS, SPUL_CONTEXT only.`;
-  } else if (urlResult.url && !isGoogleFallbackUrl(urlResult.url)) {
+  } else if (urlResult.url && !isGoogleFallbackUrl(urlResult.url) && !urlResult.homepageOnly) {
     injection += `
 
-DB URL present (pattern_matched): use this URL in SPUL_URL exactly: ${urlResult.url}
-Do not invent a different host.`;
-  } else if (isGoogleFallbackUrl(urlResult.url)) {
+DB URL present but NOT locked for presentation: do not put it in SPUL_URL unless JURISDICTION DATA confidence is verified.
+Ask the user to confirm the tax collecting entity search page. Do not invent a different host.`;
+  } else if (isGoogleFallbackUrl(urlResult.url) || !urlResult.url) {
     injection += `
 
-No verified DB URL — SPUL_CONFIDENCE must be not_found. Do not invent county URLs.`;
+No verified collector search URL — SPUL_CONFIDENCE must be not_found. Do not invent county URLs. Work with the user to name the tax collecting entity.`;
   }
 
   injection += `

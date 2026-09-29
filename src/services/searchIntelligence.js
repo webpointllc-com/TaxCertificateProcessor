@@ -3,24 +3,48 @@
 const { parseJurisdiction, lookupForApi } = require('./urlFinder');
 const { isRealHttpUrl, isGoogleFallbackUrl } = require('./spulTruth');
 
+function isPlaceholderApn(value) {
+  const t = String(value || '').replace(/[–]/g, '-').trim();
+  if (!t) return true;
+  return /^(x+|#+|\*+|\?+)(?:[-\s](x+|#+|\*+|\?+))+$/i.test(t);
+}
+
+function extractApn(raw) {
+  const labeled =
+    raw.match(/\b(?:APN|PIN|folio|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*([A-Za-z0-9][A-Za-z0-9\-]{4,})/i);
+  const hyphenated = raw.match(/\b(\d{1,4}[-–]\d{1,4}[-–]\d{1,4}(?:[-–]\d{1,4}){0,3})\b/);
+  const candidate = (labeled && labeled[1]) || (hyphenated && hyphenated[1]) || '';
+  const apn = candidate.replace(/[–]/g, '-');
+  if (!apn || isPlaceholderApn(apn)) return '';
+  return apn;
+}
+
+function extractAddress(raw, apn) {
+  const street = raw.match(
+    /\b(\d{1,6}\s+[A-Za-z][A-Za-z0-9 .,'#-]{2,60}\s+(?:st|street|ave|avenue|rd|road|blvd|boulevard|dr|drive|ln|lane|way|ct|court|hwy|highway|pkwy|cir|circle|pl|place|trl|trail|ter|terrace)\b\.?)/i
+  );
+  if (!street) return '';
+  const addr = street[1].trim();
+  if (apn && addr.includes(apn)) return '';
+  if (/\b(county|apn|parcel|pin|folio)\b/i.test(addr)) return '';
+  return addr;
+}
+
 function parseSearchQuery(q) {
   const raw = String(q || '').trim();
-  const apnMatch =
-    raw.match(/\b(?:APN|PIN|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*([A-Za-z0-9][A-Za-z0-9\-]{4,})/i) ||
-    raw.match(/\b(\d{2,4}[-–]\d{2,4}[-–]\d{2,4}(?:[-–]\d{2,4})?)\b/);
-  const apn = apnMatch ? apnMatch[1].replace(/[–]/g, '-') : '';
+  const apn = extractApn(raw);
   const withoutApn = raw
-    .replace(/\b(?:APN|PIN|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*[A-Za-z0-9\-]{4,}/gi, ' ')
+    .replace(/\b(?:APN|PIN|folio|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*[A-Za-z0-9\-]{4,}/gi, ' ')
+    .replace(/\b\d{1,4}[-–]\d{1,4}[-–]\d{1,4}(?:[-–]\d{1,4}){0,3}\b/g, ' ')
     .replace(/[·|]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
   let jur = parseJurisdiction(withoutApn);
   if (!jur.county) jur = parseJurisdiction(raw);
-  const addrMatch = raw.match(/\b(\d{1,6}\s+[A-Za-z0-9][A-Za-z0-9 .,'#-]{6,80})/);
   return {
     raw,
     apn,
-    address: addrMatch && !/county|apn|parcel/i.test(addrMatch[1]) ? addrMatch[1].trim() : '',
+    address: extractAddress(raw, apn),
     county: jur.county || null,
     state: jur.state || null
   };
@@ -76,7 +100,10 @@ function buildSummary({ parsed, lookup, extractor }) {
   const url = lookup.officialUrl || '';
   const apn = parsed.apn ? ` Parcel ${parsed.apn}.` : '';
   if (!lookup.urlLocked) {
-    return `${entity || 'This jurisdiction'} is in the catalog but has no locked collector URL. We will not invent a search page. Use Fix extractor after you confirm the official tax collecting entity page.`;
+    const candidate = lookup.homepageOnly
+      ? ' The catalog only has a county homepage, which is not the tax collecting entity search page.'
+      : '';
+    return `${entity || 'This jurisdiction'} is in the catalog but has no locked collector search URL.${candidate} We will not present a link until the tax collecting entity search page is confirmed. Tell me the collector name or the page you use to search by parcel.`;
   }
   const version = extractor?.version ? ` Extractor v${extractor.version} is the working slot for ${lookup.jurisdiction?.county || parsed.county} County, ${lookup.jurisdiction?.state || parsed.state}.` : '';
   return `${entity} is the locked tax collecting entity.${apn} Search and pay on the official page (${url}). Confirm amounts there before closing.${version}`;
@@ -151,6 +178,8 @@ function methodFromFeedback(feedback, lookup, previous) {
 
 module.exports = {
   parseSearchQuery,
+  extractApn,
+  isPlaceholderApn,
   buildCard,
   buildSummary,
   formatMoney,
