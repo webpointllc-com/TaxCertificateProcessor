@@ -12,7 +12,7 @@
     "entityType": "tax_collector",
     "entityNote": "Catalis / LandNav public portal. Guest Sign In via form#GuestLoginForm POST /login/GuestLogin. Do not use StaffLoginForm. After guest entry, search by parcel #, owner last name, or address. Treasurer collects postponed/delinquent tax; local municipal treasurers collect current December/January installments. Max 10 parcels per payment transaction.",
     "vendor": "catalis_landnav",
-    "entity": "Chippewa County WI Treasurer — LandNav public portal",
+    "entity": "Chippewa County WI Treasurer \u2014 LandNav public portal",
     "rdsURL": "https://www.chippewacountywi.gov/451/Online-Real-Estate-Search",
     "gisURL": "https://mapping.chippewacountywi.gov/",
     "treasurerURL": "https://chippewacountywi.gov/169/Treasurer",
@@ -29,7 +29,7 @@
     ],
     "verified": true,
     "entityType": "tax_collector",
-    "entityNote": "Treasurer-Tax Collector WebPayments property tax search — not the Assessor/Recorder/County Clerk (ARCC) site. SPA search: Parcel Number, Owner, Mailing Address, or Unsecured Bill Number.",
+    "entityNote": "Treasurer-Tax Collector WebPayments property tax search \u2014 not the Assessor/Recorder/County Clerk (ARCC) site. SPA search: Parcel Number, Owner, Mailing Address, or Unsecured Bill Number.",
     "vendor": "sdttc_webpayments",
     "entity": "San Diego County Treasurer-Tax Collector",
     "parcelFormat": "###-###-##-##",
@@ -45,9 +45,9 @@
     ],
     "verified": true,
     "entityType": "tax_collector",
-    "entityNote": "Spatialest interactive property record search — not the denvergov.org Assessor brochure page.",
+    "entityNote": "Spatialest interactive property record search \u2014 not the denvergov.org Assessor brochure page.",
     "vendor": "spatialest",
-    "entity": "City and County of Denver — Property Record Search",
+    "entity": "City and County of Denver \u2014 Property Record Search",
     "howFound": "Live GET 2026-09-29: property.spatialest.com/co/denver 200 title City & County of Denver - Property Record Search. Client-rendered Spatialest app. Reject assessor brochure."
   },
   "IL-Cook": {
@@ -60,11 +60,11 @@
     ],
     "verified": true,
     "entityType": "tax_collector",
-    "entityNote": "Illinois: County Treasurer collects. PIN search is five boxes on setsearchparameters.aspx. cookcountypropertyinfo.com is assessment lookup — not the pay/search collector page.",
+    "entityNote": "Illinois: County Treasurer collects. PIN search is five boxes on setsearchparameters.aspx. cookcountypropertyinfo.com is assessment lookup \u2014 not the pay/search collector page.",
     "vendor": "cook_treasurer",
     "entity": "Cook County Treasurer",
     "parcelFormat": "##-##-###-###-####",
-    "howFound": "Live GET 2026-09-29: cookcountytreasurer.com/yourpropertytaxoverviewsearch.aspx redirects to setsearchparameters.aspx 200. PIN inputs txtPIN1–txtPIN5. Catalog had assessment portal; treasurer is the tax collecting entity."
+    "howFound": "Live GET 2026-09-29: cookcountytreasurer.com/yourpropertytaxoverviewsearch.aspx redirects to setsearchparameters.aspx 200. PIN inputs txtPIN1\u2013txtPIN5. Catalog had assessment portal; treasurer is the tax collecting entity."
   },
   "TX-Harris": {
     "county": "Harris",
@@ -81,7 +81,7 @@
     "vendor": "myharriscountytax",
     "entity": "Harris County Tax Assessor-Collector",
     "treasurerURL": "https://www.hctax.net/Property/PropertyTax",
-    "howFound": "Live GET 2026-09-29: hctax.net 200 Harris County Tax Office with Search Tax Statements → myharriscountytax.com 200 title MyHarrisCountyTax - A service of the Harris County Tax Office. Catalog URL harriscountytx.gov is a county homepage, not a parcel search."
+    "howFound": "Live GET 2026-09-29: hctax.net 200 Harris County Tax Office with Search Tax Statements \u2192 myharriscountytax.com 200 title MyHarrisCountyTax - A service of the Harris County Tax Office. Catalog URL harriscountytx.gov is a county homepage, not a parcel search."
   },
   "CA-Orange": {
     "county": "Orange",
@@ -127,7 +127,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "properlytaxes",
-    "entity": "LaRue County KY — PVDNet / Properly Taxes",
+    "entity": "LaRue County KY \u2014 PVDNet / Properly Taxes",
     "entityNote": "S-PUL Searching inventory. Sheriff tax portal at view.properlytaxes.com (PVDNet), not laruecounty.org. Screenshot spelling view.propertytaxes.com does not resolve.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET view.properlytaxes.com/index?id=192&loc=2 200 title PVDNet Web Portal."
   },
@@ -143,8 +143,8 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Logan County KY — ECCLIX County Clerk tax",
-    "entityNote": "S-PUL Searching inventory. KY clerk/sheriff tax is ECCLIX (ecclix.com), not the county homepage. eclix.com is a parked page — do not lock it.",
+    "entity": "Logan County KY \u2014 ECCLIX County Clerk tax",
+    "entityNote": "S-PUL Searching inventory. KY clerk/sheriff tax is ECCLIX (ecclix.com), not the county homepage. eclix.com is a parked page \u2014 do not lock it.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET ecclix.com/ecclix/login.aspx 200 title County Clerk's Office."
   },
   "KY-Madison": {
@@ -159,7 +159,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Madison County KY — ECCLIX County Clerk tax",
+    "entity": "Madison County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not madisoncountyky.gov.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -175,7 +175,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "properlytaxes",
-    "entity": "Marshall County KY — PVDNet / Properly Taxes",
+    "entity": "Marshall County KY \u2014 PVDNet / Properly Taxes",
     "entityNote": "S-PUL Searching inventory. PVDNet portal, not the county homepage.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -191,7 +191,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Mason County KY — ECCLIX County Clerk tax",
+    "entity": "Mason County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -207,7 +207,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "McCracken County KY — ECCLIX County Clerk tax",
+    "entity": "McCracken County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not mccrackencountyky.gov.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -223,7 +223,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Meade County KY — ECCLIX County Clerk tax",
+    "entity": "Meade County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not meadeky.gov.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -239,7 +239,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Montgomery County KY — ECCLIX County Clerk tax",
+    "entity": "Montgomery County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -255,7 +255,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Muhlenberg County KY — ECCLIX County Clerk tax",
+    "entity": "Muhlenberg County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not muhlenbergcounty.org.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -271,7 +271,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "csi_ky",
-    "entity": "Oldham County KY — CSI current tax search",
+    "entity": "Oldham County KY \u2014 CSI current tax search",
     "entityNote": "S-PUL Searching inventory. Current tax at ptax1.csiky.com/oldham_current/. Screenshot host ptax.oldham.celky.com does not resolve.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET ptax1.csiky.com/oldham_current/ 200."
   },
@@ -287,7 +287,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Owen County KY — ECCLIX County Clerk tax",
+    "entity": "Owen County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -303,7 +303,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Scott County KY — ECCLIX County Clerk tax",
+    "entity": "Scott County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not scottky.gov.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -319,7 +319,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Simpson County KY — ECCLIX County Clerk tax",
+    "entity": "Simpson County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -335,7 +335,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Spencer County KY — ECCLIX County Clerk tax",
+    "entity": "Spencer County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -351,7 +351,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Union County KY — ECCLIX County Clerk tax",
+    "entity": "Union County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not unioncountyky.org.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -367,7 +367,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Warren County KY — ECCLIX County Clerk tax",
+    "entity": "Warren County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not warrencountyky.gov.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -383,7 +383,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Whitley County KY — ECCLIX County Clerk tax",
+    "entity": "Whitley County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the fiscal court homepage.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -399,14 +399,14 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "eclix",
-    "entity": "Woodford County KY — ECCLIX County Clerk tax",
+    "entity": "Woodford County KY \u2014 ECCLIX County Clerk tax",
     "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not woodfordcounty.ky.gov.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
   "LA-AllenParish": {
     "county": "Allen Parish",
     "state": "LA",
-    "searchURL": "https://snstaxpayments.com/",
+    "searchURL": "https://snstaxpayments.com/allen",
     "rejectURLs": [
       "https://www.allenparishpolicejury.com/",
       "allenparishpolicejury.com",
@@ -415,14 +415,14 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "snstaxpayments",
-    "entity": "Allen Parish LA Sheriff — SNS tax payments",
+    "entity": "Allen Parish LA Sheriff \u2014 SNS tax payments",
     "entityNote": "S-PUL Searching inventory. Parish sheriff search/pay at snstaxpayments.com, not the Police Jury homepage. sntaxpayments.com is a placeholder.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET snstaxpayments.com 200 title Online Property Tax Payments."
   },
   "LA-BeauregardParish": {
     "county": "Beauregard Parish",
     "state": "LA",
-    "searchURL": "https://snstaxpayments.com/",
+    "searchURL": "https://snstaxpayments.com/beauregard",
     "rejectURLs": [
       "https://www.beauparish.org/",
       "beauparish.org",
@@ -431,7 +431,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "snstaxpayments",
-    "entity": "Beauregard Parish LA Sheriff — SNS tax payments",
+    "entity": "Beauregard Parish LA Sheriff \u2014 SNS tax payments",
     "entityNote": "S-PUL Searching inventory. Parish sheriff search/pay at snstaxpayments.com, not beauparish.org.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
   },
@@ -446,7 +446,7 @@
     "verified": true,
     "entityType": "tax_collector",
     "vendor": "parish_sheriff",
-    "entity": "Bossier Parish LA Sheriff — property details",
+    "entity": "Bossier Parish LA Sheriff \u2014 property details",
     "entityNote": "S-PUL Searching inventory. Sheriff property-details search, not bossierparishla.gov.",
     "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET bossiersheriff.com/property-details 200."
   }

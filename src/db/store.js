@@ -187,6 +187,7 @@ function defaultChunks() {
         'San Diego CA is locked to Treasurer-Tax Collector WebPayments, not ARCC.',
         'Harris TX is locked to myharriscountytax.com, not harriscountytx.gov.',
         'Cook IL is locked to the County Treasurer PIN search, not cookcountypropertyinfo.com.',
+        'The live Squarespace Searching page and Bill Validated HTML (County_Names_Urls_BillValidated.html) are the same S-PUL URL registry. KY clerk/sheriff tax is ECCLIX at ecclix.com, not parked eclix.com. LaRue/Marshall KY use view.properlytaxes.com (PVDNet). Oldham KY uses ptax1.csiky.com. LA parishes use snstaxpayments.com parish paths or the sheriff property-details page.',
         'DR Production Results (finale/) is the output document: 40 columns, one row per parcel in a county/state.',
         'Talk about that whole row. Isolate a single column only when the user names that field.',
         'Parcel formats differ by county and live on the county extractor (self-heal / user feedback). Empty cells stay empty.'

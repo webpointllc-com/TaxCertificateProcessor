@@ -60,7 +60,7 @@ describe('S-PUL Searching inventory fusion', () => {
   it('locks Allen and Bossier Parish LA to sheriff pay portals', () => {
     const allen = lookupForApi('Allen Parish', 'LA');
     assert.equal(allen.urlLocked, true);
-    assert.match(allen.officialUrl, /snstaxpayments\.com/i);
+    assert.match(allen.officialUrl, /snstaxpayments\.com\/allen/i);
     assert.doesNotMatch(allen.officialUrl, /allenparishpolicejury/i);
     assert.doesNotMatch(allen.officialUrl, /:\/\/sntaxpayments\.com/i);
 
@@ -68,6 +68,28 @@ describe('S-PUL Searching inventory fusion', () => {
     assert.equal(bossier.urlLocked, true);
     assert.match(bossier.officialUrl, /bossiersheriff\.com\/property-details/i);
     assert.doesNotMatch(bossier.officialUrl, /bossierparishla\.gov/i);
+  });
+
+  it('ships the Bill Validated Searching HTML with Logan ECCLIX', () => {
+    const html = fs.readFileSync(
+      path.join(__dirname, '..', 'public', 'County_Names_Urls_BillValidated.html'),
+      'utf8'
+    );
+    assert.match(html, /County Tax Collector Index — Bill Validated/);
+    assert.match(html, /Logan/i);
+    assert.match(html, /ecclix\.com/i);
+    assert.doesNotMatch(html, /border-left\s*:/);
+  });
+
+  it('gives Logan KY an ECCLIX extractor the LLM can follow', () => {
+    const lookup = lookupForApi('Logan', 'KY');
+    assert.equal(lookup.urlLocked, true);
+    assert.ok(lookup.method);
+    assert.ok(lookup.method.steps.some((s) => /ecclix|ECCLIX|Clerk/i.test(s)));
+    const prompt = require('../src/services/taxIntelligence').enrichSystemPrompt('Logan', 'KY');
+    assert.match(prompt, /EXTRACTOR/);
+    assert.match(prompt, /ecclix\.com/i);
+    assert.match(prompt, /ctl00_Content_UserName|County Clerk/i);
   });
 
   it('does not steal Chippewa LandNav or unlock Maricopa', () => {

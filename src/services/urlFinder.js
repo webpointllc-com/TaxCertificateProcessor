@@ -107,24 +107,42 @@ function findGoldenOverride(county, state) {
   return null;
 }
 
+let vendorPlaybookCache = null;
+
 function loadPlaybooks() {
   if (playbookCache !== null) return playbookCache;
   playbookCache = {};
+  vendorPlaybookCache = {};
   if (!fs.existsSync(playbooksPath)) return playbookCache;
   try {
     const raw = JSON.parse(fs.readFileSync(playbooksPath, 'utf8'));
     const entries = raw && raw.playbooks ? raw.playbooks : raw;
+    vendorPlaybookCache = (raw && raw._vendors) || {};
     for (const [key, val] of Object.entries(entries || {})) {
       if (key.startsWith('_')) continue;
       playbookCache[key] = val;
     }
   } catch {
     playbookCache = {};
+    vendorPlaybookCache = {};
   }
   return playbookCache;
 }
 
-function playbookFor(county, state) {
+function vendorPlaybook(vendor, url) {
+  loadPlaybooks();
+  const books = vendorPlaybookCache || {};
+  if (vendor && books[vendor]) return books[vendor];
+  const u = String(url || '');
+  if (/ecclix\.com/i.test(u)) return books.eclix || null;
+  if (/properlytaxes\.com/i.test(u)) return books.properlytaxes || null;
+  if (/snstaxpayments\.com/i.test(u)) return books.snstaxpayments || null;
+  if (/csiky\.com/i.test(u)) return books.csi_ky || null;
+  if (/bossiersheriff\.com/i.test(u)) return books.parish_sheriff || null;
+  return null;
+}
+
+function playbookFor(county, state, hint = {}) {
   const st = (state || '').toUpperCase().trim();
   const co = compactName(county);
   const books = loadPlaybooks();
@@ -134,7 +152,7 @@ function playbookFor(county, state) {
     if (!val || !val.county) continue;
     if ((val.state || key.split('-')[0]) === st && compactName(val.county) === co) return val;
   }
-  return null;
+  return vendorPlaybook(hint.vendor, hint.url);
 }
 
 function loadProbeResults() {
@@ -165,6 +183,7 @@ function invalidateGoldenCache() {
   goldenCache = null;
   aliasCache = null;
   playbookCache = null;
+  vendorPlaybookCache = null;
   probeCache = null;
 }
 
@@ -204,7 +223,10 @@ function findPropertyURL(county, state) {
   const normalizedState = state ? state.toUpperCase().trim() : '';
 
   const golden = findGoldenOverride(county, state);
-  const playbook = playbookFor(county, state);
+  const playbook = playbookFor(county, state, {
+    vendor: golden?.vendor,
+    url: golden?.searchURL
+  });
   if (golden) {
     if (golden.searchURL && isRealHttpUrl(golden.searchURL)) {
       return {
@@ -461,6 +483,7 @@ module.exports = {
   parseJurisdiction,
   parseJurisdictionRaw,
   playbookFor,
+  vendorPlaybook,
   probeVerdictFor,
   invalidateCountiesCache,
   loadCounties,

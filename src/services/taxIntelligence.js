@@ -102,6 +102,16 @@ Interest: ${stateData.interestRateCap}`;
 FORBIDDEN (never put in SPUL_URL): ${urlResult.rejectURLs.join(', ')}`;
   }
 
+  if (urlResult.method && Array.isArray(urlResult.method.steps) && urlResult.method.steps.length) {
+    injection += `
+EXTRACTOR (captured HTML / Searching inventory — follow these steps; do not invent a different host):
+${urlResult.method.steps.map((s) => `- ${s}`).join('\n')}`;
+  }
+  if (urlResult.vendor) {
+    injection += `
+Vendor: ${urlResult.vendor}`;
+  }
+
   const locked = Boolean(urlResult.urlLocked && urlResult.officialUrl);
   if (locked) {
     injection += `

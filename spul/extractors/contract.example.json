@@ -1,0 +1,19 @@
+{
+  "key": "TX-Travis",
+  "state": "TX",
+  "county": "Travis",
+  "url": "https://www.traviscad.org/property-search/",
+  "source": "Search",
+  "evidence": {
+    "method": "http_head_get_or_deepshake_offline",
+    "status": 200,
+    "finalUrl": "https://www.traviscad.org/property-search/",
+    "checkedAt": "2026-09-14T00:00:00.000Z"
+  },
+  "extractor": {
+    "platform": "generic",
+    "search_inputs": ["owner_name", "parcel_id", "address"],
+    "hint": "Use owner name, parcel/account ID, or street address."
+  },
+  "active": true
+}
