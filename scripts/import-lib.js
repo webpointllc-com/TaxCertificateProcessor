@@ -135,8 +135,17 @@ function detectVendor(url) {
     if (h.includes('egov') || h.includes('e-gov')) return 'egov';
     if (h.includes('county-taxes.com') || h.includes('county-taxes.net')) return 'county_taxes';
     if (h.includes('eproptax')) return 'eproptax';
-    if (h.includes('county-taxes.com') || h.includes('county-taxes.net')) return 'county_taxes';
-    if (h.includes('eproptax')) return 'eproptax';
+    if (h.includes('ecclix.com') || h.includes('eclix.com')) return 'eclix';
+    if (h.includes('properlytaxes.com') || h.includes('propertytaxes.com')) return 'properlytaxes';
+    if (h.includes('snstaxpayments.com') || h.includes('sntaxpayments.com')) return 'snstaxpayments';
+    if (h.includes('csiky.com') || h.includes('celky.com')) return 'csi_ky';
+    if (h.includes('bossiersheriff.com')) return 'parish_sheriff';
+    if (h.includes('qpaybill.com')) return 'qpaybill';
+    if (h.includes('g-uts.com')) return 'guts_taxbills';
+    if (h.includes('eztaxonline')) return 'eztaxonline';
+    if (h.includes('capturecama.com')) return 'capturecama';
+    if (h.includes('signatureinfo.com')) return 'signatureinfo';
+    if (h.includes('trueautomation.com')) return 'trueautomation';
   } catch {
     /* ignore */
   }

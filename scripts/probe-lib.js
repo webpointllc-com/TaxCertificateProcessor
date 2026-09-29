@@ -3,7 +3,7 @@
 const { isRealHttpUrl, isGoogleFallbackUrl } = require('../src/services/spulTruth');
 
 const COLLECTOR_HOST =
-  /landnav\.com|spatialest\.com|sdttc\.com|webpayments|(?:^|[/.])taxbill\.|myharriscountytax|catalis|govpaynow|paygov\.us|pay\.paygov|propertytax\.ark\.org|propertytax\.lacounty|propertytax\.alameda|propertytax\.knoxcounty|propertytax\.vi\.gov|eproptax|setsearchparameters|county-taxes\.com|county-taxes\.net|myeasygov|dekalbtax|mptsweb\.com\/.+\/tax\/search|devnetwedge|qpaybill|cit-e\.net\/.+taxbill|altags\.com\/.+(property|proptax)|tax\.[a-z0-9.-]+\/.+commonsearch|pp-[a-z0-9-]+\.app\.landnav/i;
+  /landnav\.com|spatialest\.com|sdttc\.com|webpayments|(?:^|[/.])taxbill\.|myharriscountytax|catalis|govpaynow|paygov\.us|pay\.paygov|propertytax\.ark\.org|propertytax\.lacounty|propertytax\.alameda|propertytax\.knoxcounty|propertytax\.vi\.gov|eproptax|setsearchparameters|county-taxes\.com|county-taxes\.net|myeasygov|dekalbtax|mptsweb\.com\/.+\/tax\/search|devnetwedge|qpaybill|cit-e\.net\/.+taxbill|altags\.com\/.+(property|proptax)|tax\.[a-z0-9.-]+\/.+commonsearch|pp-[a-z0-9-]+\.app\.landnav|ecclix\.com|properlytaxes\.com|snstaxpayments\.com|csiky\.com|bossiersheriff|g-uts\.com|eztaxonline|stpsopayments|pay-jeffersonky-sheriff|fayettesheriff|jessaminesheriff|hopkinscountysheriff|municipalonlinepayments|ptax1\.csiky/i;
 
 const ASSESSOR_HOST =
   /qpublic\.net|\bqpublic\b|beacon\.|schneidercorp|countygovservices|capturecama|\/assessor|assessor\.|arcc\.|propertyappraiser|\/appraisal|\/cad\b|\bcad\.org\b|pcpao\.|hcpafl\.|scpafl\.|appraisal.?district/i;

@@ -98,10 +98,18 @@ describe('only present a collector link when sure', () => {
     assert.doesNotMatch(lookup.officialUrl || '', /alachuacollector\.com\/?$/i);
   });
 
-  it('does not present a generic county homepage as the collector search', () => {
+  it('locks King WA to the Searching treasury property-tax page, not kingcounty.gov', () => {
     const lookup = lookupForApi('King', 'WA');
+    assert.equal(lookup.urlLocked, true);
+    assert.match(lookup.officialUrl, /info\.kingcounty\.gov\/finance\/treasury\/propertytax/i);
+    assert.doesNotMatch(lookup.officialUrl, /^https?:\/\/(www\.)?kingcounty\.gov\/?$/i);
+  });
+
+  it('does not present a generic county homepage as the collector search', () => {
+    const lookup = lookupForApi('Hamilton', 'OH');
     assert.equal(lookup.urlLocked, false);
     assert.equal(lookup.officialUrl, null);
+    assert.equal(lookup.homepageOnly, true);
   });
 });
 

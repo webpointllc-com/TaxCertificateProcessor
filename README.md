@@ -6,7 +6,7 @@ This repo is no longer the placeholder app. It fuses:
 
 | Source | What we took |
 | --- | --- |
-| **Search Spul** (`search-spul-test`) | Locked collector URLs, Groq RAG prompt injection, county DB, correction/golden override rules |
+| **Search Spul** (`search-spul-test` + Squarespace **Searching**) | Locked collector URLs from the live Searching registry (`data/spul_searching_inventory.json`), Groq RAG prompt injection, county DB, correction/golden override rules |
 | **Workplace Technologies TCS / TPA / RDS** | Certificate, portfolio, and recorded-document products (clone lives on the WD Passport — GitHub org is empty) |
 | **Real-Time-Tax** | `ScaleToFit` 1280×800 identical-desktop embed, Squarespace `frame-ancestors`, session-without-3rd-party-cookies |
 | **DEP Highlighter** | WebPoint visual language (no left accent stripes) |
@@ -123,6 +123,7 @@ S-PUL must know every jurisdiction on the [WPT Production Log](https://docs.goog
 ```bash
 npm run sync:sheet          # fetch sheet, merge stubs, apply golden locks
 npm run import:master       # optional local MASTER_VALIDATED ndjson + golden
+npm run import:searching    # fuse Squarespace Searching / searchpages URL grid
 ```
 
 Missing sheet counties are stored with `coverageStatus: needs_correction` and **no invented URL**. Typos such as `WI-Horry` alias to `SC-Horry`. Catalog: `data/wpt_production_counties.json`.

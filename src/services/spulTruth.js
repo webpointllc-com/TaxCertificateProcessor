@@ -14,12 +14,16 @@ function isRealHttpUrl(url) {
 }
 
 const SEARCH_PAGE_HINT =
-  /search|propertytax|property-tax|taxbill|webpayments|landnav|spatialest|esearch|qpublic|treasurer|taxcollector|tax-collector|taxoffice|paytax|payments|parcel|setsearchparameters|myharris|hctax|beacon|countygovservices|catalis|county-taxes|eproptax/i;
+  /search|propertytax|property-tax|taxbill|webpayments|landnav|spatialest|esearch|qpublic|treasurer|taxcollector|tax-collector|taxoffice|paytax|payments|parcel|setsearchparameters|myharris|hctax|beacon|countygovservices|catalis|county-taxes|eproptax|eclix|ecclix|properlytaxes|snstax|sntaxpayments|csiky|celky|qpaybill|eztax|g-uts|ptax|sheriff|wildfiresearch/i;
 
 function isGenericCountyHomepage(url, meta = {}) {
   if (!isRealHttpUrl(url)) return true;
   const vendor = `${meta.vendor || ''} ${url}`;
-  if (/landnav|spatialest|sdttc|esearch|qpublic|beacon|countygovservices|tyler|catalis|webpayments/i.test(vendor)) {
+  if (
+    /landnav|spatialest|sdttc|esearch|qpublic|beacon|countygovservices|tyler|catalis|webpayments|eclix|ecclix|properlytaxes|snstax|csiky|celky|qpaybill|eztax/i.test(
+      vendor
+    )
+  ) {
     return false;
   }
   const blob = `${meta.entity || ''} ${meta.entityNote || ''}`;
