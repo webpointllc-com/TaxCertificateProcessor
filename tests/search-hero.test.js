@@ -70,4 +70,21 @@ describe('hero search HTTP', () => {
     assert.equal(body.jurisdiction.county, 'Chippewa');
     assert.equal(body.jurisdiction.state, 'WI');
   });
+
+  it('GET /api/suggest California returns counties in CA', async () => {
+    const res = await fetch(`${base}/api/suggest?q=California`);
+    const body = await res.json();
+    assert.equal(body.ok, true);
+    assert.ok(body.suggestions.length > 0);
+    assert.ok(body.suggestions.every((s) => s.state === 'CA'));
+  });
+
+  it('GET /api/coverage reports catalog rows and locked collector count', async () => {
+    const res = await fetch(`${base}/api/coverage`);
+    const body = await res.json();
+    assert.equal(body.ok, true);
+    assert.ok(body.rows >= 3000);
+    assert.ok(body.locked > 0);
+    assert.match(body.badge, /catalog slots/i);
+  });
 });

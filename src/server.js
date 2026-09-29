@@ -14,13 +14,14 @@ const llm = require('./services/llm');
 const {
   parseSearchQuery,
   buildCard,
+  buildCertificate,
   formatMoney,
   resolveHealedUrl,
   methodFromFeedback
 } = require('./services/searchIntelligence');
 const operator = require('./services/operator');
 const { enrichSystemPrompt, enforceLockedSpulUrl } = require('./services/taxIntelligence');
-const { parseJurisdiction, lookupForApi, suggestJurisdictions } = require('./services/urlFinder');
+const { parseJurisdiction, lookupForApi, suggestJurisdictions, catalogCoverage } = require('./services/urlFinder');
 const { buildLockedUrlPrefix } = require('./services/spulTruth');
 const { matchScenario } = require('./services/scenarioRouter');
 const { scanWorkplaceClone, inventoryRepo } = require('../scripts/workplace-scan');
@@ -488,6 +489,7 @@ app.post('/api/intelligence', async (req, res) => {
     plan: access.plan,
     continue_gate: access.plan === 'member' ? null : 'member',
     card,
+    certificate: buildCertificate({ parsed, lookup, extractor: agent, amounts: req.body?.amounts, card }),
     money: {
       assessed: formatMoney(card.assessed),
       land: formatMoney(card.land),
@@ -594,6 +596,16 @@ app.get('/api/suggest', (req, res) => {
   const q = (req.query.q || req.query.query || '').trim();
   const limit = Number(req.query.limit) || 8;
   res.json({ ok: true, q, suggestions: suggestJurisdictions(q, limit) });
+});
+
+app.get('/api/coverage', (req, res) => {
+  const coverage = catalogCoverage();
+  res.json({
+    ok: true,
+    ...coverage,
+    badge: `${coverage.rows.toLocaleString('en-US')} catalog slots`,
+    locked_badge: `${coverage.locked.toLocaleString('en-US')} locked collector portals`
+  });
 });
 
 app.post(['/api/chat', '/v1/chat'], async (req, res) => {

@@ -128,6 +128,7 @@
     $('gen-pill').hidden = true;
     $('search-clear').hidden = true;
     if ($('search-error')) $('search-error').hidden = true;
+    syncUsMap();
   }
 
   function showResults() {
@@ -138,6 +139,64 @@
     $('mac-window').classList.add('results');
     $('about-trigger').hidden = true;
     $('search-clear').hidden = !$('hero-input').value;
+  }
+
+  var MAP_KEY = 'wp_map_shown';
+  var mapLoaded = false;
+
+  function dismissUsMap() {
+    try { sessionStorage.setItem(MAP_KEY, '1'); } catch (e) {}
+    var wrap = $('us-map-wrap');
+    var home = $('view-home');
+    if (wrap) wrap.classList.add('is-away');
+    if (home) home.classList.remove('has-map');
+  }
+
+  function syncUsMap() {
+    var wrap = $('us-map-wrap');
+    var home = $('view-home');
+    if (!wrap || !home) return;
+    var shown = false;
+    try { shown = Boolean(sessionStorage.getItem(MAP_KEY)); } catch (e) {}
+    if (shown) {
+      wrap.hidden = true;
+      wrap.classList.add('is-away');
+      home.classList.remove('has-map');
+      return;
+    }
+    wrap.hidden = false;
+    wrap.classList.remove('is-away');
+    home.classList.add('has-map');
+    loadUsMap();
+  }
+
+  function loadUsMap() {
+    if (mapLoaded) return;
+    mapLoaded = true;
+    fetch('/us-map.svg')
+      .then(function (r) { return r.text(); })
+      .then(function (svg) {
+        var host = $('us-map');
+        if (!host) return;
+        host.innerHTML = svg;
+        host.querySelectorAll('.us-state').forEach(function (path) {
+          path.addEventListener('click', function () {
+            host.querySelectorAll('.us-state.is-active').forEach(function (n) { n.classList.remove('is-active'); });
+            path.classList.add('is-active');
+            var name = path.getAttribute('data-name') || path.getAttribute('data-st') || '';
+            if (!name) return;
+            $('hero-input').value = name;
+            $('hero-input').focus();
+            fetch('/api/suggest?q=' + encodeURIComponent(name), { headers: headers() })
+              .then(function (r) { return r.json(); })
+              .then(function (data) { paintSuggest(data.suggestions || []); })
+              .catch(function () {});
+          });
+        });
+      })
+      .catch(function () {
+        mapLoaded = false;
+      });
   }
 
   function maybeAskConsent() {
@@ -582,6 +641,7 @@
     lastQuery = q;
     pendingQuery = q;
     sessionStorage.setItem('wp_pending_q', q);
+    dismissUsMap();
     hideSuggest();
     $('hero-input').value = q;
     if ($('search-error')) { $('search-error').hidden = true; $('search-error').textContent = ''; }
@@ -766,6 +826,17 @@
       spul.className = 'sr-only';
     })
     .catch(function () {});
+
+  fetch('/api/coverage', { headers: headers() })
+    .then(function (r) { return r.json(); })
+    .then(function (c) {
+      if (!c || !c.ok) return;
+      var n = $('badge-catalog');
+      if (n) n.textContent = c.badge || (c.rows + ' catalog slots');
+    })
+    .catch(function () {});
+
+  syncUsMap();
 
   function setAuthError(msg) {
     var n = $('auth-error');

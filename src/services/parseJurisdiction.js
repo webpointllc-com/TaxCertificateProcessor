@@ -169,6 +169,12 @@ function parseJurisdictionRaw(message) {
     }
   }
 
+  const bare = msg.replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  if (STATE_NAMES[bare]) return { county: null, state: STATE_NAMES[bare] };
+  if (/^[a-z]{2}$/.test(bare) && STATE_MAP[bare] && !AMBIGUOUS_ABBR.has(bare)) {
+    return { county: null, state: STATE_MAP[bare] };
+  }
+
   return { county: null, state: null };
 }
 

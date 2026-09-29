@@ -373,6 +373,7 @@ function suggestJurisdictions(query, limit = 8) {
   const needle = compactName(raw.replace(/\bcounty\b/gi, ' '));
   const counties = loadCounties();
   const scored = [];
+  const stateOnly = Boolean(parsed.state && !parsed.county);
 
   for (const c of counties) {
     const cname = compactName(c.county);
@@ -384,6 +385,8 @@ function suggestJurisdictions(query, limit = 8) {
       (!parsed.state || parsed.state === c.state)
     ) {
       score = 10;
+    } else if (stateOnly && c.state === parsed.state) {
+      score = c.verified || isRealHttpUrl(c.searchURL) ? 5 : 3;
     } else if (needle && cname.startsWith(needle)) {
       score = 6;
     } else if (needle.length >= 3 && cname.includes(needle)) {
@@ -425,6 +428,27 @@ function suggestJurisdictions(query, limit = 8) {
   return out;
 }
 
+function catalogCoverage() {
+  const counties = loadCounties();
+  const summary = {
+    rows: counties.length,
+    collector_search: 0,
+    assessor_search: 0,
+    homepage: 0,
+    dead: 0,
+    unknown_live: 0,
+    empty: 0,
+    locked: 0
+  };
+  for (const c of counties) {
+    const golden = c.importSource === 'golden_override' && c.verified === true;
+    const verdict = c.probeStatus || (golden ? 'collector_search' : isRealHttpUrl(c.searchURL) ? 'unknown_live' : 'empty');
+    summary[verdict] = (summary[verdict] || 0) + 1;
+    if (verdict === 'collector_search' || golden) summary.locked += 1;
+  }
+  return summary;
+}
+
 module.exports = {
   findPropertyURL,
   lookupForApi,
@@ -439,5 +463,6 @@ module.exports = {
   findGoldenOverride,
   resolveAlias,
   compactName,
-  suggestJurisdictions
+  suggestJurisdictions,
+  catalogCoverage
 };

@@ -3,7 +3,7 @@
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const { parseSearchQuery } = require('../src/services/searchIntelligence');
-const { parseJurisdiction, lookupForApi } = require('../src/services/urlFinder');
+const { parseJurisdiction, lookupForApi, suggestJurisdictions } = require('../src/services/urlFinder');
 const operator = require('../src/services/operator');
 
 describe('casual parcel-in-place parser', () => {
@@ -48,6 +48,15 @@ describe('casual parcel-in-place parser', () => {
     const parsed = parseJurisdiction('San Diego CA');
     assert.match(parsed.county, /san diego/i);
     assert.equal(parsed.state, 'CA');
+  });
+
+  it('treats a map click of California as a state filter, not a county', () => {
+    const parsed = parseJurisdiction('California');
+    assert.equal(parsed.county, null);
+    assert.equal(parsed.state, 'CA');
+    const hits = suggestJurisdictions('California', 8);
+    assert.ok(hits.length > 0);
+    assert.ok(hits.every((h) => h.state === 'CA'));
   });
 });
 

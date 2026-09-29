@@ -136,6 +136,39 @@ function buildCard({ parsed, lookup, extractor, amounts }) {
   };
 }
 
+function buildCertificate({ parsed, lookup, extractor, amounts, card }) {
+  const c = card || buildCard({ parsed, lookup, extractor, amounts });
+  const locked = Boolean(lookup && lookup.urlLocked && (lookup.officialUrl || lookup.lockedUrl));
+  return {
+    collecting_entity: lookup.entity || '',
+    state_entity: lookup.entityNote || '',
+    county: c.county || '',
+    state: c.state || '',
+    apn: c.apn || '',
+    address: c.address || '',
+    parcel_format: lookup.parcelFormat || extractor?.parcel_format || '',
+    search_url: locked ? lookup.officialUrl || lookup.lockedUrl : null,
+    url_locked: locked,
+    tax_year: c.tax_year,
+    tax_status: c.tax_status,
+    assessed_values: {
+      total: c.assessed,
+      land: c.land,
+      improvement: c.improvement
+    },
+    total_tax: c.total_tax,
+    tax_rate_area: null,
+    exemptions: null,
+    special_assessments: null,
+    outstanding_liens: null,
+    payment_schedule: null,
+    taxing_authorities: null,
+    layout: lookup.layout || extractor?.layout || null,
+    method: lookup.method || extractor?.method || null,
+    source: locked ? 'locked_collector_portal' : 'needs_collector_confirmation'
+  };
+}
+
 function resolveHealedUrl(lookup, proposedUrl) {
   const locked = lookup.officialUrl || lookup.lockedUrl || '';
   const proposed = String(proposedUrl || '').trim();
@@ -181,6 +214,7 @@ module.exports = {
   extractApn,
   isPlaceholderApn,
   buildCard,
+  buildCertificate,
   buildSummary,
   formatMoney,
   resolveHealedUrl,
