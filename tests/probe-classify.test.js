@@ -87,6 +87,37 @@ describe('live seed probe classifier', () => {
     assert.equal(shouldLock(hit.verdict), true);
   });
 
+  it('does not lock a CAD appraisal site as the collector', () => {
+    const hit = classifyProbe({
+      url: 'https://www.hayscad.org/',
+      status: 200,
+      html: '<title>Hays County, Texas Appraisal District Property Record Search</title><form><input name="parcel" placeholder="Parcel"></form>'
+    });
+    assert.equal(hit.verdict, 'assessor_search');
+    assert.equal(shouldLock(hit.verdict), false);
+  });
+
+  it('does not treat HowdoIPayMyTaxBill on an assessor host as a collector search', () => {
+    const hit = classifyProbe({
+      url: 'https://assessor.santacruzcountyca.gov/PropertyTaxInformation/HowdoIPayMyTaxBill.aspx',
+      status: 200,
+      html: '<title>How do I Pay My Tax Bill?</title>'
+    });
+    assert.notEqual(hit.verdict, 'collector_search');
+    assert.equal(shouldLock(hit.verdict), false);
+  });
+
+  it('does not lock a county-taxes URL that redirected off the vendor onto a news page', () => {
+    const hit = classifyProbe({
+      url: 'https://pinellas.county-taxes.com/public',
+      finalUrl: 'https://pinellastaxcollector.gov/news/2026closure/',
+      status: 200,
+      html: '<title>Pinellas Tax Collector Closure 2026</title>'
+    });
+    assert.notEqual(hit.verdict, 'collector_search');
+    assert.equal(shouldLock(hit.verdict), false);
+  });
+
   it('keeps a 404 county-taxes host dead so we do not invent portals', () => {
     const hit = classifyProbe({
       url: 'https://nosuchflcounty.county-taxes.com/public',

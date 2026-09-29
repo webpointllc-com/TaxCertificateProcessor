@@ -3,19 +3,19 @@
 const { isRealHttpUrl, isGoogleFallbackUrl } = require('../src/services/spulTruth');
 
 const COLLECTOR_HOST =
-  /landnav|spatialest|sdttc|webpayments|taxbill|myharris|hctax|catalis|govpay|paygov|propertytax\.|eproptax|setsearchparameters|taxcollector|tax-collector|county-taxes\.com|county-taxes\.net|myeasygov|dekalbtax|tax\.[a-z0-9.-]+\/.+commonsearch|altags\.com\/.+(property|proptax)/i;
+  /landnav\.com|spatialest\.com|sdttc\.com|webpayments|(?:^|[/.])taxbill\.|myharriscountytax|catalis|govpaynow|paygov\.us|pay\.paygov|propertytax\.ark\.org|propertytax\.lacounty|propertytax\.alameda|propertytax\.knoxcounty|propertytax\.vi\.gov|eproptax|setsearchparameters|county-taxes\.com|county-taxes\.net|myeasygov|dekalbtax|mptsweb\.com\/.+\/tax\/search|devnetwedge|qpaybill|cit-e\.net\/.+taxbill|altags\.com\/.+(property|proptax)|tax\.[a-z0-9.-]+\/.+commonsearch|pp-[a-z0-9-]+\.app\.landnav/i;
+
+const ASSESSOR_HOST =
+  /qpublic\.net|\bqpublic\b|beacon\.|schneidercorp|countygovservices|capturecama|\/assessor|assessor\.|arcc\.|propertyappraiser|\/appraisal|\/cad\b|\bcad\.org\b|pcpao\.|hcpafl\.|scpafl\.|appraisal.?district/i;
 
 const COLLECTOR_TITLE =
-  /\b(tax(es)? (search|bill|payment)|webpayments?|pay (your )?propert(y|ies) tax(es)?|property tax(es)? (search|portal|inquiry|bill)|tax payment portal|landnav|catalis|search or pay)\b/i;
+  /\b(tax(es)? (search|bill|payment)|webpayments?|pay (your )?propert(y|ies) tax(es)?|property tax(es)? (search|portal|inquiry|bill)|tax payment portal|landnav|catalis|search or pay|property tax inquiry)\b/i;
 
 const CLOUDFLARE =
   /just a moment|attention required|cf-ray|cdn-cgi\/challenge|checking your browser/i;
 
 const SITE_SEARCH_NAME =
   /^(s|q|query|search|search_query|keywords|sitesearch|site_search)$/i;
-
-const ASSESSOR_HOST =
-  /qpublic\.net|\bqpublic\b|beacon\.|schneidercorp|countygovservices|capturecama|\/assessor|arcc\.|propertyappraiser|\/appraisal|\/cad\b/i;
 
 const ASSESSOR_TITLE =
   /\b(assessor|property appraiser|appraisal district|\bcad\b|assessor-recorder|arcc)\b/i;
@@ -86,6 +86,11 @@ function pathOf(url) {
 function classifyProbe({ url, finalUrl, status, html, error, entity, entityNote, entityType, vendor }) {
   const href = finalUrl || url || '';
   const hrefs = `${url || ''} ${finalUrl || ''}`;
+  const redirectedOffVendor =
+    /county-taxes\.(com|net)/i.test(url || '') &&
+    finalUrl &&
+    !/county-taxes\.(com|net)/i.test(finalUrl);
+  const hostHay = redirectedOffVendor ? finalUrl : hrefs;
   if (isGoogleFallbackUrl(href)) {
     return { verdict: 'dead', reason: 'google_fallback' };
   }
@@ -95,11 +100,11 @@ function classifyProbe({ url, finalUrl, status, html, error, entity, entityNote,
   if (error === 'timeout') return { verdict: 'dead', reason: 'timeout' };
   if (error === 'enotfound' || error === 'dns') return { verdict: 'dead', reason: 'dns' };
   const bodyPreview = String(html || '').slice(0, 4000);
-  const collectorHostEarly = COLLECTOR_HOST.test(hrefs);
+  const collectorHostEarly = COLLECTOR_HOST.test(hostHay);
   if (
     (status === 403 || status === 401) &&
     collectorHostEarly &&
-    (CLOUDFLARE.test(`${extractTitle(html)} ${bodyPreview}`) || /county-taxes\.(com|net)/i.test(hrefs))
+    (CLOUDFLARE.test(`${extractTitle(html)} ${bodyPreview}`) || /county-taxes\.(com|net)/i.test(hostHay))
   ) {
     return {
       verdict: 'collector_search',
@@ -126,20 +131,31 @@ function classifyProbe({ url, finalUrl, status, html, error, entity, entityNote,
   }
 
   const path = pathOf(href);
-  const collectorHost = COLLECTOR_HOST.test(hrefs) || COLLECTOR_HOST.test(vendor || '');
+  const collectorHost = COLLECTOR_HOST.test(hostHay) || COLLECTOR_HOST.test(vendor || '');
   const assessorHost = ASSESSOR_HOST.test(hrefs);
   const hasSearchFields = fields.length > 0;
+  const hasParcelOrAccount = fields.some((f) => f.role === 'parcel' || f.role === 'account');
   const collectorTitle = COLLECTOR_TITLE.test(title);
   const assessorish = assessorHost || ASSESSOR_TITLE.test(title) || ASSESSOR_TITLE.test(blob);
   const payish = /\b(pay|payment|tax bill|webpayments|treasurer|tax collector|tax office)\b/i.test(blob + title);
   const homepageEntity = /\b(county site|municipal site|county hub)\b/i.test(`${entity || ''} ${entityNote || ''}`);
+  const howToPayPage = /how (do i )?pay|faq-items|payment-information|payment options|voter\/registration/i.test(`${href} ${title}`);
+  const googleRedirect = /google\.com\/url/i.test(hrefs);
 
-  if (assessorHost && !payish && !collectorHost) {
+  if (googleRedirect) {
+    return { verdict: 'dead', reason: 'google_redirect', title, fields };
+  }
+
+  if (assessorHost && !collectorHost) {
     return { verdict: 'assessor_search', reason: 'assessor_host', title, fields };
   }
 
-  if (collectorHost || collectorTitle || (hasSearchFields && (collectorTitle || payish))) {
-    if (assessorish && !payish && !collectorHost) {
+  if (howToPayPage && !collectorHost && !hasParcelOrAccount) {
+    return { verdict: 'unknown_live', reason: 'howto_pay_page', title, fields };
+  }
+
+  if (collectorHost || collectorTitle || (hasParcelOrAccount && (collectorTitle || payish))) {
+    if (assessorish && !collectorHost) {
       return { verdict: 'assessor_search', reason: 'assessor_form', title, fields };
     }
     return { verdict: 'collector_search', reason: collectorHost ? 'known_collector_host' : 'search_form', title, fields };

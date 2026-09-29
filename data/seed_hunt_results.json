@@ -1,0 +1,5297 @@
+{
+  "huntedAt": "2026-09-29T07:34:30.827Z",
+  "method": "Reclassify stored probes; live-GET Florida county-taxes.com/public (403 Cloudflare on a host that 404s for non-participants = portal exists); crawl catalog pages for vendor/pay-search links; lock only collector_search. Empty rows stay empty.",
+  "summary": {
+    "uniqueUrls": 2280,
+    "probed": 1762,
+    "collector_search": 218,
+    "assessor_search": 0,
+    "homepage": 1149,
+    "dead": 269,
+    "unknown_live": 126,
+    "empty": 1481,
+    "rows": 3243,
+    "upgrades": 111,
+    "added": 2,
+    "reclassified": 235
+  },
+  "upgrades": [
+    {
+      "key": "AL-Dale",
+      "from": "https://www.dalecountyrevenue.com/proptax.php",
+      "to": "https://www.dalecountyrevenue.com/home/homenew/property-tax/pay-property-tax/",
+      "reason": "search_form"
+    },
+    {
+      "key": "AL-Morgan",
+      "from": "https://www.morgancountyrevenue.com/property-search",
+      "to": "https://www.morgancountyrevenue.com/how-to-pay-your-taxes",
+      "reason": "search_form"
+    },
+    {
+      "key": "CA-Modoc",
+      "from": "https://www.co.modoc.ca.us/",
+      "to": "https://common2.mptsweb.com/mbc/modoc/tax/search",
+      "reason": "search_form"
+    },
+    {
+      "key": "CA-SanMateo",
+      "from": "https://www.smcacre.org/",
+      "to": "http://sanmateocountytaxcollector.org/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "CA-SantaCruz",
+      "from": "https://www.santacruzcountyca.gov/Departments/Assessor.aspx",
+      "to": "https://assessor.santacruzcountyca.gov/PropertyTaxInformation/HowdoIPayMyTaxBill.aspx",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "CA-Siskiyou",
+      "from": "https://www.co.siskiyou.ca.us/",
+      "to": "https://www.siskiyoucounty.gov/treasurer-taxcollector/page/tax-collection",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "CT-GreenwichTown",
+      "from": "https://www.greenwichct.gov/",
+      "to": "https://www.greenwichct.gov/313/Tax-Collector",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "CT-SomersTown",
+      "from": "https://www.somersct.gov/",
+      "to": "https://www.mytaxbill.org/inet/bill/home.do?town=somers",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "FL-Alachua",
+      "from": "https://www.alachuacollector.com/",
+      "to": "https://alachua.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Bay",
+      "from": "https://baypa.org/",
+      "to": "https://bay.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Brevard",
+      "from": "https://www.bcpao.us/",
+      "to": "https://brevard.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Broward",
+      "from": "https://bcpa.net/",
+      "to": "https://broward.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Charlotte",
+      "from": "https://www.charlottepa.org/",
+      "to": "https://charlotte.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Citrus",
+      "from": "https://www.citruspa.org:443/_dnn/",
+      "to": "https://citrus.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Collier",
+      "from": "https://www.collierappraiser.com/",
+      "to": "https://collier.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Duval",
+      "from": "https://pa.coj.net/",
+      "to": "https://duval.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Escambia",
+      "from": "https://www.escpa.org/",
+      "to": "https://escambia.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Flagler",
+      "from": "https://www.flaglerpa.com/",
+      "to": "https://flagler.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Hernando",
+      "from": "",
+      "to": "https://hernando.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Hillsborough",
+      "from": "https://gis.hcpafl.org/propertysearch/",
+      "to": "https://hillsborough.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-IndianRiver",
+      "from": "https://www.irpa.org/",
+      "to": "https://indianriver.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Lake",
+      "from": "https://www.lakecopropappr.com/",
+      "to": "https://lake.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Lee",
+      "from": "https://www.leepa.org/",
+      "to": "https://lee.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Leon",
+      "from": "https://www.leonpa.gov/",
+      "to": "https://leon.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Manatee",
+      "from": "https://www.manateepa.com/",
+      "to": "https://manatee.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Martin",
+      "from": "https://www.pa.martin.fl.us/",
+      "to": "https://martin.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-MiamiDade",
+      "from": "https://www.miamidade.gov/pa/property-search.asp",
+      "to": "https://miamidade.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Monroe",
+      "from": "https://www.monroecounty-fl.gov/",
+      "to": "https://monroe.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Nassau",
+      "from": "https://www.nassaupa.com/",
+      "to": "https://nassau.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Okaloosa",
+      "from": "https://www.okaloosapa.com/",
+      "to": "https://okaloosa.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Orange",
+      "from": "https://www.ocpafl.org/",
+      "to": "https://orange.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Osceola",
+      "from": "https://www.osceola.org/",
+      "to": "https://osceola.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Pasco",
+      "from": "https://www.pascocountyfl.net/",
+      "to": "https://pasco.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-SantaRosa",
+      "from": "https://www.santarosa.fl.gov/",
+      "to": "https://santarosa.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Seminole",
+      "from": "https://www.seminolecountyfl.gov/",
+      "to": "https://seminole.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-StLucie",
+      "from": "https://www.paslc.gov/",
+      "to": "https://stlucie.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Volusia",
+      "from": "https://www.volusia.org/",
+      "to": "https://volusia.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "FL-Walton",
+      "from": "https://www.waltonpa.org/",
+      "to": "https://walton.county-taxes.com/public",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "GA-Troup",
+      "from": "https://www.troupcountyga.gov/",
+      "to": "https://pay.troupcountytax.com/?_gl=1*dkbtfx*_ga*MjA5OTc0Mzc1Ny4xNzcyNDY3MDA0*_ga_WV71YMGB5G*czE3NzI0NjcwMDMkbzEkZzAkdDE3NzI0NjcwMDMkajYwJGwwJGgw",
+      "reason": "search_form"
+    },
+    {
+      "key": "GA-WestPoint",
+      "from": "https://www.cityofwestpointga.com/",
+      "to": "https://cityofwestpointga.com/faq-items/how-do-i-pay-property-taxes/",
+      "reason": "search_form"
+    },
+    {
+      "key": "HI-Honolulu",
+      "from": "https://www.realpropertyhonolulu.com/",
+      "to": "https://www.hawaiipropertytax.com/",
+      "reason": "collector_host_cloudflare"
+    },
+    {
+      "key": "IL-CookTreasurer",
+      "from": "https://www.cookcountytreasurer.com/",
+      "to": "https://www.cookcountytreasurer.com/understandingyourtaxbill.aspx",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IL-Madison",
+      "from": "https://www.madisoncountyil.gov/treasurer/",
+      "to": "https://madisonil.devnetwedge.com/",
+      "reason": "search_form"
+    },
+    {
+      "key": "IL-Monroe",
+      "from": "https://monroecountyil.gov/departments/treasurers-office/",
+      "to": "https://www.govpayments.com/il_monroe",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IL-Peoria",
+      "from": "https://www.peoriacounty.gov/",
+      "to": "http://propertytax.peoriacounty.gov/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IL-RockIsland",
+      "from": "https://www.rockislandcountyil.gov/",
+      "to": "https://www.rockislandcountyil.gov/350/Property-Tax-Search",
+      "reason": "search_form"
+    },
+    {
+      "key": "IL-Stephenson",
+      "from": "https://www.stephensoncountyil.gov/",
+      "to": "https://stephensonil.devnetwedge.com/",
+      "reason": "search_form"
+    },
+    {
+      "key": "IL-Tazewell",
+      "from": "https://www.tazewell-il.gov/",
+      "to": "https://tazewellil.devnetwedge.com/",
+      "reason": "search_form"
+    },
+    {
+      "key": "IL-Will",
+      "from": "https://www.willcounty.gov/",
+      "to": "https://www.govpaynow.com/gps/user/plc/7627",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Fountain",
+      "from": "https://www.fountaincounty.net/",
+      "to": "http://www.govpaynow.com/gps/user/plc/5256",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Grant",
+      "from": "https://www.grantcounty.net/",
+      "to": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=16481",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Greene",
+      "from": "https://www.co.greene.in.us/",
+      "to": "https://www.govpaynow.com/gps/user/cyg/plc/a00437",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Henry",
+      "from": "https://www.henrycounty.in.gov/",
+      "to": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?action=view&amp;transactionTypeId=168",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Howard",
+      "from": "https://www.howardcounty.in.gov/",
+      "to": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=24088",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Kosciusko",
+      "from": "https://www.kcgov.us/",
+      "to": "https://id-kootenai.publicaccessnow.com/Treasurer/TaxSearch.aspx",
+      "reason": "search_form"
+    },
+    {
+      "key": "IN-LaGrange",
+      "from": "https://www.lagrangecounty.org/",
+      "to": "https://pay.paygov.us/EndUser/ParcelSearch.aspx?ttid=10838",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Noble",
+      "from": "https://noblecounty.in.gov/",
+      "to": "https://govpayments.com/in_noble/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Randolph",
+      "from": "https://www.in.gov/counties/randolph/",
+      "to": "https://www.in.gov/counties/randolph/departments/treasurer/httpslowtaxinfo.com",
+      "reason": "search_form"
+    },
+    {
+      "key": "IN-Spencer",
+      "from": "https://www.spencercounty.in.gov/",
+      "to": "https://govpayments.com/in_spencer",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Warrick",
+      "from": "https://www.warrickcounty.gov/property-tax",
+      "to": "https://paygov.us/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "IN-Wayne",
+      "from": "https://waynecounty.in.gov/",
+      "to": "https://www.govpaynow.com/gps/user/plc/8212",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "KS-Johnson",
+      "from": "https://www.jocogov.org/",
+      "to": "https://taxbill.jocogov.org/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "KY-AlexandriaCity",
+      "from": "https://alexandriaky.gov/",
+      "to": "https://alexandria.campbell.ky.pontemsoftware.com/",
+      "reason": "search_form"
+    },
+    {
+      "key": "MI-Cass",
+      "from": "https://www.casscountymi.org/",
+      "to": "https://www.casscountymi.org/1347/3367/Property-Tax-Search",
+      "reason": "search_form"
+    },
+    {
+      "key": "MI-Clinton",
+      "from": "https://www.clinton-county.org/",
+      "to": "https://www.govpaynow.com/gps/user/plc/a000dj",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "MI-FlintCity",
+      "from": "https://www.cityofflint.com/",
+      "to": "https://www.cityofflint.com/online-service/pay-property-taxes/",
+      "reason": "search_form"
+    },
+    {
+      "key": "MI-Midland",
+      "from": "https://www.co.midland.mi.us/",
+      "to": "https://pay.govpros.us/mi/midland/taxes",
+      "reason": "search_form"
+    },
+    {
+      "key": "MN-Fillmore",
+      "from": "https://www.co.fillmore.mn.us/",
+      "to": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=15151",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "MN-Hennepin",
+      "from": "https://www.hennepin.us/",
+      "to": "https://www.hennepincounty.gov/services/property/property-taxes/pay-property-taxes",
+      "reason": "search_form"
+    },
+    {
+      "key": "MN-Hubbard",
+      "from": "https://www.co.hubbard.mn.us/",
+      "to": "https://catalisgov.com/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "MN-Rice",
+      "from": "https://www.co.rice.mn.us/",
+      "to": "https://www.ricecountymn.gov/242",
+      "reason": "search_form"
+    },
+    {
+      "key": "MO-Pettis",
+      "from": "https://www.pettiscomo.com/",
+      "to": "http://pettismo.devnetwedge.com/",
+      "reason": "search_form"
+    },
+    {
+      "key": "MS-Forrest",
+      "from": "https://www.forrestcountyms.us/",
+      "to": "https://www.forrestcountytax.com/",
+      "reason": "search_form"
+    },
+    {
+      "key": "MS-Lafayette",
+      "from": "https://www.lafayettems.com/",
+      "to": "https://www.lafayettems.com/how-do-i/pay-property-taxes/",
+      "reason": "search_form"
+    },
+    {
+      "key": "NC-Dare",
+      "from": "https://tax.darecountync.gov/",
+      "to": "https://property.spatialest.com/nc/dare#/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "NC-Durham",
+      "from": "https://www.dconc.gov/",
+      "to": "https://property.spatialest.com/nc/durham-tax/#/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "NC-Forsyth",
+      "from": "https://www.forsythcountync.gov/tax/",
+      "to": "https://property.spatialest.com/nc/forsyth#/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "NC-Mecklenburg",
+      "from": "https://www.mecknc.gov/",
+      "to": "https://tax.mecknc.gov/services/pay",
+      "reason": "search_form"
+    },
+    {
+      "key": "NC-Wake",
+      "from": "https://www.wake.gov/departments-government/tax-administration",
+      "to": "https://services.wake.gov/ptax/main/billing/",
+      "reason": "search_form"
+    },
+    {
+      "key": "ND-Barnes",
+      "from": "https://www.barnescounty.us/",
+      "to": "http://ndpropertytax.org/tax/disclaimer.asp?cid=02",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "ND-Dunn",
+      "from": "https://www.dunncountynd.org/",
+      "to": "https://dunncountynd.gov/pay-tax-online",
+      "reason": "search_form"
+    },
+    {
+      "key": "ND-Morton",
+      "from": "https://www.mortonnd.org/",
+      "to": "https://www.mortonnd.gov/propertyinformation",
+      "reason": "search_form"
+    },
+    {
+      "key": "ND-Pembina",
+      "from": "https://www.pembinacountynd.gov/",
+      "to": "http://ndpropertytax.org/tax/tax.asp",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "ND-Stutsman",
+      "from": "https://www.stutsmancounty.gov/departments/tax-equalization/property-tax-calculator/",
+      "to": "http://www.ndpropertytax.com/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "NJ-CliftonCity",
+      "from": "https://www.cliftonnj.org/",
+      "to": "https://www.govpaynow.com/gps/user/cyg/plc/a0076t",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "NJ-HaworthBoro",
+      "from": "https://www.haworthnj.org/",
+      "to": "https://www.haworthnj.org/pay",
+      "reason": "search_form"
+    },
+    {
+      "key": "NJ-SpringfieldTwp",
+      "from": "https://springfield-nj.us/",
+      "to": "https://www.cit-e.net/springfield-nj/cit-e-access/TaxBill_Std/?TID=132&#038;TPID=12728?",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "NJ-UpperDeerfieldTwp",
+      "from": "https://upperdeerfield.com/",
+      "to": "https://upperdeerfield.com/pay-tax-utility-bills/",
+      "reason": "search_form"
+    },
+    {
+      "key": "OH-Hardin",
+      "from": "https://www.hardincountyohio.gov/",
+      "to": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=10138",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "OH-Madison",
+      "from": "https://www.co.madison.oh.us/",
+      "to": "https://treasurer.co.madison.oh.us/payment-information",
+      "reason": "search_form"
+    },
+    {
+      "key": "SC-Greenville",
+      "from": "https://www.greenvillecounty.org/",
+      "to": "https://www.greenvillecounty.org/TaxCollector/OnlineTax.aspx",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "SC-Lancaster",
+      "from": "https://www.lancastercountysc.gov/",
+      "to": "https://lancastersctax.qpaybill.com/Taxes/TaxesDefaultType4.aspx",
+      "reason": "search_form"
+    },
+    {
+      "key": "SC-Union",
+      "from": "https://www.countyofunion.org/",
+      "to": "https://uniontreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx",
+      "reason": "search_form"
+    },
+    {
+      "key": "TN-Knox",
+      "from": "https://www.knoxcounty.org/",
+      "to": "https://propertytax.knoxcountytn.gov/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "TX-BobLeardInterests",
+      "from": "https://www.bli-tax.com/",
+      "to": "https://bli-tax.com/records/",
+      "reason": "search_form"
+    },
+    {
+      "key": "TX-GalenaParkISD",
+      "from": "https://www.galenaparkisd.com/",
+      "to": "https://www.hctax.net/Voter/Registration",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "TX-SchleicherCAD",
+      "from": "https://www.schleichercad.org/",
+      "to": "https://tax.co.schleicher.tx.us/",
+      "reason": "search_form"
+    },
+    {
+      "key": "TX-Wichita",
+      "from": "https://www.wichitacounty.org/",
+      "to": "https://www.kansas.gov/propertytax/",
+      "reason": "search_form"
+    },
+    {
+      "key": "VA-Loudoun",
+      "from": "https://www.loudoun.gov/",
+      "to": "https://www.loudoun.gov/paytaxes",
+      "reason": "search_form"
+    },
+    {
+      "key": "WI-Adams",
+      "from": "https://www.co.adams.wi.us/",
+      "to": "https://www.google.com/url?q=https%3A%2F%2Fpp-adams-co-wi-fb.app.landnav.com%2FLogin&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw3zBdpon9l9Gvx1wTMjQrSL",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "WI-Dane",
+      "from": "https://www.countyofdane.com/",
+      "to": "https://treasurer.danecounty.gov/taxpayment",
+      "reason": "search_form"
+    },
+    {
+      "key": "WI-Dunn",
+      "from": "https://dunncountywi.gov/treasurer",
+      "to": "https://pp-dunn-co-wi-fb.app.landnav.com/login",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "WI-FoxPointVillage",
+      "from": "https://www.villageoffoxpoint.com/",
+      "to": "https://pp-milwaukee-co-wi-fb.app.landnav.com/",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "WI-GreenfieldCity",
+      "from": "https://www.ci.greenfield.wi.us/",
+      "to": "https://pp-milwaukee-co-wi-fb.app.landnav.com/Login",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "WI-Marquette",
+      "from": "https://www.marquettecountywi.gov/treasurer/",
+      "to": "https://pp-marquette-co-wi-fb.app.landnav.com/Login",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "WI-Pepin",
+      "from": "https://www.co.pepin.wi.us/",
+      "to": "http://www.co.pepin.wi.us/index.asp?SEC=48CD6F75-A051-4AA6-AD80-A83F07C6F409&amp;Type=B_BASIC",
+      "reason": "search_form"
+    },
+    {
+      "key": "WI-Richland",
+      "from": "https://www.co.richland.wi.us/",
+      "to": "https://pp-richland-co-wi-fb.app.landnav.com/Login",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "WI-StFrancisCity",
+      "from": "https://stfranciswi.org/",
+      "to": "https://stfranciswi.org/index.asp?SEC=1BAC8914-4680-4F13-9BBD-649FB38B55B8",
+      "reason": "search_form"
+    },
+    {
+      "key": "WI-Vernon",
+      "from": "https://www.vernoncountywi.gov/",
+      "to": "https://pp-vernon-co-wi-fb.app.landnav.com/Login",
+      "reason": "known_collector_host"
+    },
+    {
+      "key": "WI-Vilas",
+      "from": "https://www.vilascountywi.gov/",
+      "to": "https://www.vilascountywi.gov/departments/administration___officials/treasurer/payments.php",
+      "reason": "search_form"
+    },
+    {
+      "key": "WI-Wood",
+      "from": "https://www.woodcountywi.gov/",
+      "to": "https://pp-wood-co-wi-fb.app.landnav.com/Login",
+      "reason": "known_collector_host"
+    }
+  ],
+  "added": [
+    {
+      "county": "Clay",
+      "url": "https://clay.county-taxes.com/public"
+    },
+    {
+      "county": "Sumter",
+      "url": "https://sumter.county-taxes.com/public"
+    }
+  ],
+  "discovered": [
+    {
+      "fromKey": "AL-Coffee",
+      "fromUrl": "https://www.coffeecountyrevenue.com/property.html",
+      "href": "https://coffeecountyal.governmentwindow.com/tax.html",
+      "text": "Search &amp; Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "AL",
+      "county": "Coffee"
+    },
+    {
+      "fromKey": "AK-MatanuskaSusitna",
+      "fromUrl": "https://myproperty.matsugov.us/index.aspx",
+      "href": "https://myproperty.matsu.gov/taxmaps",
+      "text": "Search Tax Maps",
+      "reason": "pay_search_cta",
+      "state": "AK",
+      "county": "Matanuska Susitna"
+    },
+    {
+      "fromKey": "AL-Mobile",
+      "fromUrl": "https://esearch.mobilecopropertytax.com/",
+      "href": "https://esearch.mobilecopropertytax.com/",
+      "text": "Mobile County Property Search",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Mobile"
+    },
+    {
+      "fromKey": "AL-Mobile",
+      "fromUrl": "https://esearch.mobilecopropertytax.com/",
+      "href": "https://www.mobilecopropertytax.com/",
+      "text": "Homepage",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Mobile"
+    },
+    {
+      "fromKey": "AL-Mobile",
+      "fromUrl": "https://esearch.mobilecopropertytax.com/",
+      "href": "https://esearch.mobilecopropertytax.com/Search/Help",
+      "text": "Click Here for our Help page",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Mobile"
+    },
+    {
+      "fromKey": "AL-Mobile",
+      "fromUrl": "https://esearch.mobilecopropertytax.com/",
+      "href": "https://esearch.mobilecopropertytax.com/TermsOfUse",
+      "text": "Terms and Conditions",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Mobile"
+    },
+    {
+      "fromKey": "AL-Dale",
+      "fromUrl": "https://www.dalecountyrevenue.com/proptax.php",
+      "href": "https://www.dalecountyrevenue.com/home/homenew/property-tax/pay-property-tax/",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "AL",
+      "county": "Dale"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/",
+      "text": "",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/home/taxpayer-search-and-pay/",
+      "text": "Search & Pay Taxes (current)",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/home/property/",
+      "text": "Property (current)",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/home/manufactured-homes/",
+      "text": "Manufactured Homes (current)",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/home/news/main/",
+      "text": "News (current)",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/home/links/",
+      "text": "Links (current)",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/home/contact-us/",
+      "text": "Contact (current)",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://altags.com/tallapoosa_revenue/default.aspx",
+      "text": "&nbsp;&nbsp;Search &amp; Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/Documents/Main/NEW%20Tax%20Lien%20Auction%20Sale-1).pdf",
+      "text": "TAX LIEN",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/Documents/Main/2025%20First%20Class%20Advertisement%20List.pdf",
+      "text": "2025 Tax Lien Sale First Class Notices",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/Documents/Main/Tax%20Lien%20Auction.pdf",
+      "text": "TAX LIEN AUCTION",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/Documents/Main/Tax%20Lien%20Sale%20FAQS.pdf",
+      "text": "TAX LIEN SALE FAQs",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Tallapoosa",
+      "fromUrl": "https://www.tallapoosapropertytax.com/",
+      "href": "https://www.tallapoosapropertytax.com/home/site-map/main/",
+      "text": "Site Map",
+      "reason": "vendor_link",
+      "state": "AL",
+      "county": "Tallapoosa"
+    },
+    {
+      "fromKey": "AL-Morgan",
+      "fromUrl": "https://www.morgancountyrevenue.com/property-search",
+      "href": "https://www.morgancountyrevenue.com/how-to-pay-your-taxes",
+      "text": "How to Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "AL",
+      "county": "Morgan"
+    },
+    {
+      "fromKey": "AL-Lauderdale",
+      "fromUrl": "https://lauderdalecountyal.gov/index.php/online-tax-records/",
+      "href": "https://www.alproptax.com/",
+      "text": "Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "AL",
+      "county": "Lauderdale"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/",
+      "text": "",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/Overview/0",
+      "text": "Property Tax Overview",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/Overview/1",
+      "text": "How the Property Tax System Works",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/Overview/2",
+      "text": "Areas of Responsibliity",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/SelfService",
+      "text": "Self-Service Options",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/ContestingValue",
+      "text": "Contesting Your Property Value",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/HowMuchDoIOwe",
+      "text": "How Much Do I Owe?",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://ttc.lacounty.gov/pay-your-property-taxes/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/AdjAnnual",
+      "text": "Adjusted Annual Property Tax Bill",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/AdjSupplemental",
+      "text": "Adjusted Supplemental Property Tax Bill",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/AnnualSecuredProperty",
+      "text": "Annual Secured Property Tax Bill",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/images/Tax-Bills/4-2024-25%20Annual%20Secured%20Property%20Tax%20Bill%20Insert.pdf",
+      "text": "Annual Secured Property Tax Bill Insert",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/AnnualSecuredPropertyTaxInformationStatement",
+      "text": "Annual Secured Property Tax Information Statement",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/NoticeofDelinquency",
+      "text": "Notice of Delinquency",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/PaymentActivityNotice",
+      "text": "Payment Activity Notice",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/StatementOfPriorYear",
+      "text": "Statement of Prior Year Taxes",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/SubstitueSecuredProperty",
+      "text": "Substitute Secured Property Tax Bill",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/SupplementalSecuredProperty",
+      "text": "Supplemental Secured Property Tax Bill",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/UnSecuredPriorYear",
+      "text": "Unsecured Prior Year Bill",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-LosAngeles",
+      "fromUrl": "https://www.propertytax.lacounty.gov/",
+      "href": "https://www.propertytax.lacounty.gov/Home/UnSecuredPropertyTax",
+      "text": "Unsecured Property Tax Bill",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Los Angeles"
+    },
+    {
+      "fromKey": "CA-Modoc",
+      "fromUrl": "https://www.co.modoc.ca.us/",
+      "href": "https://common2.mptsweb.com/mbc/modoc/tax/search",
+      "text": "pay property taxes",
+      "reason": "pay_search_cta",
+      "state": "CA",
+      "county": "Modoc"
+    },
+    {
+      "fromKey": "CA-SanMateo",
+      "fromUrl": "https://www.smcacre.org/",
+      "href": "http://sanmateocountytaxcollector.org/",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "CA",
+      "county": "San Mateo"
+    },
+    {
+      "fromKey": "CA-SanFrancisco",
+      "fromUrl": "https://sfassessor.org/",
+      "href": "https://www.sf.gov/information--important-dates-if-you-own-property/",
+      "text": "Important dates if you own property Learn about deadlines to file an assessment appeal, pay property tax, and more.",
+      "reason": "pay_search_cta",
+      "state": "CA",
+      "county": "San Francisco"
+    },
+    {
+      "fromKey": "CA-Merced",
+      "fromUrl": "https://www.co.merced.ca.us/",
+      "href": "https://www.countyofmerced.com/2527",
+      "text": "View or Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "CA",
+      "county": "Merced"
+    },
+    {
+      "fromKey": "CA-Siskiyou",
+      "fromUrl": "https://www.co.siskiyou.ca.us/",
+      "href": "https://www.siskiyoucounty.gov/treasurer-taxcollector/page/tax-collection",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "CA",
+      "county": "Siskiyou"
+    },
+    {
+      "fromKey": "CO-Denver",
+      "fromUrl": "https://property.spatialest.com/co/denver#/",
+      "href": "https://property.spatialest.com/co/denver",
+      "text": "City & County of Denver - Property Record Search",
+      "reason": "vendor_link",
+      "state": "CO",
+      "county": "Denver"
+    },
+    {
+      "fromKey": "CO-ElPaso",
+      "fromUrl": "https://assessor.elpasoco.com/",
+      "href": "https://www.paydici.com/el-paso-county-treasurer/search/landing",
+      "text": "Search Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "CO",
+      "county": "El Paso"
+    },
+    {
+      "fromKey": "CO-ElPaso",
+      "fromUrl": "https://assessor.elpasoco.com/",
+      "href": "https://property.spatialest.com/co/elpaso/#/",
+      "text": "Search For A Real Property Parcel",
+      "reason": "vendor_link",
+      "state": "CO",
+      "county": "El Paso"
+    },
+    {
+      "fromKey": "CO-ElPaso",
+      "fromUrl": "https://assessor.elpasoco.com/",
+      "href": "https://community.spatialest.com/co/elpaso/#/Area-Overview/map/38.815245,-104.50332400000002,10",
+      "text": "",
+      "reason": "vendor_link",
+      "state": "CO",
+      "county": "El Paso"
+    },
+    {
+      "fromKey": "CO-ElPaso",
+      "fromUrl": "https://assessor.elpasoco.com/",
+      "href": "https://community.spatialest.com/co/elpaso/#/Area-Overview/map/38.78527789161732,-104.53765627539065,10",
+      "text": "",
+      "reason": "vendor_link",
+      "state": "CO",
+      "county": "El Paso"
+    },
+    {
+      "fromKey": "CT-Ellington",
+      "fromUrl": "https://www.ellington-ct.gov/",
+      "href": "https://www.ellington-ct.gov/departments-and-services/tax-revenue-collector/online-tax-payments",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "CT",
+      "county": "Ellington"
+    },
+    {
+      "fromKey": "CA-Ventura",
+      "fromUrl": "https://www.ventura.org/ceo/assessor/",
+      "href": "https://venturacounty.gov/ttc/pay-your-taxes/",
+      "text": "Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "CA",
+      "county": "Ventura"
+    },
+    {
+      "fromKey": "CA-SantaCruz",
+      "fromUrl": "https://www.santacruzcountyca.gov/Departments/Assessor.aspx",
+      "href": "https://assessor.santacruzcountyca.gov/PropertyTaxInformation/HowdoIPayMyTaxBill.aspx",
+      "text": "How do I Pay My Tax Bill?",
+      "reason": "vendor_link",
+      "state": "CA",
+      "county": "Santa Cruz"
+    },
+    {
+      "fromKey": "CT-GreenwichTown",
+      "fromUrl": "https://www.greenwichct.gov/",
+      "href": "https://www.greenwichct.gov/313/Tax-Collector",
+      "text": "Pay Tax View Tax Bills and Pay Online",
+      "reason": "pay_search_cta",
+      "state": "CT",
+      "county": "Greenwich Town"
+    },
+    {
+      "fromKey": "CT-SomersTown",
+      "fromUrl": "https://www.somersct.gov/",
+      "href": "https://www.mytaxbill.org/inet/bill/home.do?town=somers",
+      "text": "Taxes",
+      "reason": "vendor_link",
+      "state": "CT",
+      "county": "Somers Town"
+    },
+    {
+      "fromKey": "CT-SomersTown",
+      "fromUrl": "https://www.somersct.gov/",
+      "href": "https://www.mytaxbill.org/inet/bill/home.do?search=2&town=somerswpca",
+      "text": "Pay Sewer Bill Online",
+      "reason": "vendor_link",
+      "state": "CT",
+      "county": "Somers Town"
+    },
+    {
+      "fromKey": "FL-Lake",
+      "fromUrl": "https://www.lakecopropappr.com/",
+      "href": "https://lake.county-taxes.com/public/search/property_tax",
+      "text": "Tax Bill",
+      "reason": "vendor_link",
+      "state": "FL",
+      "county": "Lake"
+    },
+    {
+      "fromKey": "FL-Seminole",
+      "fromUrl": "https://www.seminolecountyfl.gov/",
+      "href": "https://www.seminolecountyfl.gov/departments-services/development-services/pay-online-for-building-permits",
+      "text": "Pay Online for Building Permits",
+      "reason": "pay_search_cta",
+      "state": "FL",
+      "county": "Seminole"
+    },
+    {
+      "fromKey": "FL-Alachua",
+      "fromUrl": "https://www.alachuacollector.com/",
+      "href": "https://alachua.county-taxes.com/tourist",
+      "text": "Pay My Tourist Development Tax",
+      "reason": "vendor_link",
+      "state": "FL",
+      "county": "Alachua"
+    },
+    {
+      "fromKey": "FL-Alachua",
+      "fromUrl": "https://www.alachuacollector.com/",
+      "href": "https://county-taxes.net/alachua",
+      "text": "Pay my Taxes",
+      "reason": "vendor_link",
+      "state": "FL",
+      "county": "Alachua"
+    },
+    {
+      "fromKey": "FL-Alachua",
+      "fromUrl": "https://www.alachuacollector.com/",
+      "href": "https://alachua.county-taxes.com/public",
+      "text": "Sign Up for E-Bills",
+      "reason": "vendor_link",
+      "state": "FL",
+      "county": "Alachua"
+    },
+    {
+      "fromKey": "FL-Alachua",
+      "fromUrl": "https://www.alachuacollector.com/",
+      "href": "https://www.county-taxes.net/alachua",
+      "text": "Purchase or View Specialty License Plate or Pre-Sale Voucher",
+      "reason": "vendor_link",
+      "state": "FL",
+      "county": "Alachua"
+    },
+    {
+      "fromKey": "FL-Alachua",
+      "fromUrl": "https://www.alachuacollector.com/",
+      "href": "https://county-taxes.net/dmv/alachua/vehicle-registration",
+      "text": "Renew Vehicle Registration",
+      "reason": "vendor_link",
+      "state": "FL",
+      "county": "Alachua"
+    },
+    {
+      "fromKey": "FL-Alachua",
+      "fromUrl": "https://www.alachuacollector.com/",
+      "href": "https://county-taxes.net/alachua/property-tax",
+      "text": "Pay my Taxes",
+      "reason": "vendor_link",
+      "state": "FL",
+      "county": "Alachua"
+    },
+    {
+      "fromKey": "FL-Pasco",
+      "fromUrl": "https://www.pascocountyfl.net/",
+      "href": "https://www.pascocountyfl.gov/how_do_i/pay_online.php",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "FL",
+      "county": "Pasco"
+    },
+    {
+      "fromKey": "GA-Burke",
+      "fromUrl": "https://www.burkecounty-ga.gov/",
+      "href": "https://www.burkecountytax.com/taxes.html",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Burke"
+    },
+    {
+      "fromKey": "GA-Americus",
+      "fromUrl": "https://www.americusga.gov/",
+      "href": "https://www.americusga.gov/community/pay_online_.php",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Americus"
+    },
+    {
+      "fromKey": "GA-Americus",
+      "fromUrl": "https://www.americusga.gov/",
+      "href": "https://americus.mygovhub.com/#/",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Americus"
+    },
+    {
+      "fromKey": "GA-Americus",
+      "fromUrl": "https://www.americusga.gov/",
+      "href": "https://americusga.governmentwindow.com/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Americus"
+    },
+    {
+      "fromKey": "GA-Bartow",
+      "fromUrl": "https://www.bartowga.org/",
+      "href": "https://bartowcountyga.governmentwindow.com/tax.html",
+      "text": "Search Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Bartow"
+    },
+    {
+      "fromKey": "GA-Colquitt",
+      "fromUrl": "https://www.colquittcountyga.gov/",
+      "href": "http://colquittcountytax.com/taxes",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Colquitt"
+    },
+    {
+      "fromKey": "GA-Crawford",
+      "fromUrl": "https://www.crawfordcountyga.org/",
+      "href": "https://crawfordproperty.assurancegov.com/Property/Search",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Crawford"
+    },
+    {
+      "fromKey": "GA-Coffee",
+      "fromUrl": "https://www.coffeecounty.us/",
+      "href": "https://www.coffeecounty.us/187/Mapping-Appraisal",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Coffee"
+    },
+    {
+      "fromKey": "GA-Fayette",
+      "fromUrl": "https://www.fayettecountyga.gov/",
+      "href": "https://www.fayettecountyga.gov/services/pay_online/index.php",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Fayette"
+    },
+    {
+      "fromKey": "GA-Fayette",
+      "fromUrl": "https://www.fayettecountyga.gov/",
+      "href": "https://fayettecountyga.governmentwindow.com/captcha.html?requested_page=%2Ftax.html",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Fayette"
+    },
+    {
+      "fromKey": "GA-EastPointCity",
+      "fromUrl": "https://www.eastpointcity.org/",
+      "href": "https://bsaonline.com/OnlinePayment/OnlinePaymentSearch/?PaymentApplicationType=4&#038;uid=2757",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "East Point City"
+    },
+    {
+      "fromKey": "GA-EastPointCity",
+      "fromUrl": "https://www.eastpointcity.org/",
+      "href": "https://bsaonline.com/Home/Index?uid=2757",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "East Point City"
+    },
+    {
+      "fromKey": "GA-Folkston",
+      "fromUrl": "https://www.cityoffolkston-ga.gov/",
+      "href": "https://www.ncourt.com/x-landing/default.aspx?id=271",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Folkston"
+    },
+    {
+      "fromKey": "GA-GainesvilleCity",
+      "fromUrl": "https://www.gainesville.org/",
+      "href": "https://gainesvillega.governmentwindow.com/tax.html",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Gainesville City"
+    },
+    {
+      "fromKey": "GA-Heard",
+      "fromUrl": "https://www.heardcountyga.com/",
+      "href": "https://heardcountypay.com/",
+      "text": "Pay Your Property Tax Bill Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Heard"
+    },
+    {
+      "fromKey": "GA-Emanuel",
+      "fromUrl": "https://www.emanuelco-ga.gov/",
+      "href": "https://emanuelcountyga.governmentwindow.com/tax.html",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Emanuel"
+    },
+    {
+      "fromKey": "GA-Jones",
+      "fromUrl": "https://www.jonescountyga.org/",
+      "href": "https://www.jonescountytaxes.com/",
+      "text": "Pay Your Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Jones"
+    },
+    {
+      "fromKey": "GA-Spaulding",
+      "fromUrl": "https://www.spaldingcounty.com/",
+      "href": "https://www.spaldingcounty.com/i-want-to/pay-online",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Spaulding"
+    },
+    {
+      "fromKey": "GA-Ware",
+      "fromUrl": "https://www.warecountyga.gov/",
+      "href": "https://www.warecountytax.com/",
+      "text": "Tax Payments Find information on property taxes, view/pay your tax bill online, as well as renew your motor vehicle tag!",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Ware"
+    },
+    {
+      "fromKey": "GA-Troup",
+      "fromUrl": "https://www.troupcountyga.gov/",
+      "href": "https://troupcountytax.com/",
+      "text": "Search & Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Troup"
+    },
+    {
+      "fromKey": "GA-Troup",
+      "fromUrl": "https://www.troupcountyga.gov/",
+      "href": "https://pay.troupcountytax.com/?_gl=1*dkbtfx*_ga*MjA5OTc0Mzc1Ny4xNzcyNDY3MDA0*_ga_WV71YMGB5G*czE3NzI0NjcwMDMkbzEkZzAkdDE3NzI0NjcwMDMkajYwJGwwJGgw",
+      "text": "Search & Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Troup"
+    },
+    {
+      "fromKey": "GA-WestPoint",
+      "fromUrl": "https://www.cityofwestpointga.com/",
+      "href": "https://cityofwestpointga.com/faq-items/how-do-i-pay-property-taxes/",
+      "text": "How do I pay property taxes?",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "West Point"
+    },
+    {
+      "fromKey": "IA-Johnson",
+      "fromUrl": "https://www.johnsoncountyiowa.gov/",
+      "href": "https://www.johnsoncountyiowa.gov/i-need-to/pay-taxes-or-fees",
+      "text": "Pay taxes or fees",
+      "reason": "pay_search_cta",
+      "state": "IA",
+      "county": "Johnson"
+    },
+    {
+      "fromKey": "IA-Johnson",
+      "fromUrl": "https://www.johnsoncountyiowa.gov/",
+      "href": "https://www.johnsoncountyiowa.gov/county-attorney/capps",
+      "text": "Pay taxes, fees or court costs",
+      "reason": "pay_search_cta",
+      "state": "IA",
+      "county": "Johnson"
+    },
+    {
+      "fromKey": "HI-Honolulu",
+      "fromUrl": "https://www.realpropertyhonolulu.com/",
+      "href": "https://www.hawaiipropertytax.com/",
+      "text": "Hawaii County RPAD",
+      "reason": "vendor_link",
+      "state": "HI",
+      "county": "Honolulu"
+    },
+    {
+      "fromKey": "HI-Honolulu",
+      "fromUrl": "https://www.realpropertyhonolulu.com/",
+      "href": "https://www.mauipropertytax.com/",
+      "text": "Maui County RPAD",
+      "reason": "vendor_link",
+      "state": "HI",
+      "county": "Honolulu"
+    },
+    {
+      "fromKey": "GA-Wilkinson",
+      "fromUrl": "https://wilkinsoncounty.net/",
+      "href": "https://wilkinson.paytaxes.net/customer/launch.php",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "GA",
+      "county": "Wilkinson"
+    },
+    {
+      "fromKey": "GU-Guam",
+      "fromUrl": "https://www.guamtax.com/",
+      "href": "https://pay.guam.gov/pg/payments.aspx",
+      "text": "What you can pay online.",
+      "reason": "pay_search_cta",
+      "state": "GU",
+      "county": "Guam"
+    },
+    {
+      "fromKey": "IA-Linn",
+      "fromUrl": "https://www.linncounty.org/",
+      "href": "https://www.linncountyiowa.gov/203/Property-Tax",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IA",
+      "county": "Linn"
+    },
+    {
+      "fromKey": "IA-Poweshiek",
+      "fromUrl": "https://www.poweshiekcounty.org/",
+      "href": "https://pay.iowataxandtags.org/Taxes/Step2?CountyID=79",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IA",
+      "county": "Poweshiek"
+    },
+    {
+      "fromKey": "IA-Worth",
+      "fromUrl": "https://www.worthcountyiowa.gov/",
+      "href": "https://www.iowatreasurers.org/index.php?module=parceldetail&amp;idCounty=98",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IA",
+      "county": "Worth"
+    },
+    {
+      "fromKey": "IL-Grundy",
+      "fromUrl": "http://www.grundycountyil.gov/services/treasurer/",
+      "href": "https://ap.grundyco.org/",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Grundy"
+    },
+    {
+      "fromKey": "IL-Grundy",
+      "fromUrl": "http://www.grundycountyil.gov/services/treasurer/",
+      "href": "https://payments.municipay.com/il_grundy/search/eddb0110",
+      "text": "Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Grundy"
+    },
+    {
+      "fromKey": "IL-CookTreasurer",
+      "fromUrl": "https://www.cookcountytreasurer.com/",
+      "href": "https://www.cookcountytreasurer.com/payonlinewithyourbankaccount.aspx",
+      "text": "Pay Online with Your Bank Account",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Cook Treasurer"
+    },
+    {
+      "fromKey": "IL-CookTreasurer",
+      "fromUrl": "https://www.cookcountytreasurer.com/",
+      "href": "https://www.cookcountytreasurer.com/payonlinewithyourcreditcard.aspx",
+      "text": "Pay Online with Your Credit Card",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Cook Treasurer"
+    },
+    {
+      "fromKey": "IL-CookTreasurer",
+      "fromUrl": "https://www.cookcountytreasurer.com/",
+      "href": "https://www.cookcountytreasurer.com/understandingyourtaxbill.aspx",
+      "text": "Understanding Your Tax Bill",
+      "reason": "vendor_link",
+      "state": "IL",
+      "county": "Cook Treasurer"
+    },
+    {
+      "fromKey": "IA-Woodbury",
+      "fromUrl": "https://www.woodburycountyiowa.gov/",
+      "href": "https://www.iowatreasurers.org/index.php?module=parceldetail&amp;idCounty=97",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IA",
+      "county": "Woodbury"
+    },
+    {
+      "fromKey": "IL-Cook",
+      "fromUrl": "https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+      "href": "https://www.cookcountytreasurer.com/payonlinewithyourbankaccount.aspx",
+      "text": "Pay Online with Your Bank Account",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Cook"
+    },
+    {
+      "fromKey": "IL-Cook",
+      "fromUrl": "https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+      "href": "https://www.cookcountytreasurer.com/payonlinewithyourcreditcard.aspx",
+      "text": "Pay Online with Your Credit Card",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Cook"
+    },
+    {
+      "fromKey": "IL-Cook",
+      "fromUrl": "https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+      "href": "https://www.cookcountytreasurer.com/understandingyourtaxbill.aspx",
+      "text": "Understanding Your Tax Bill",
+      "reason": "vendor_link",
+      "state": "IL",
+      "county": "Cook"
+    },
+    {
+      "fromKey": "IL-Jefferson",
+      "fromUrl": "https://www.jeffersoncounty.illinois.gov/",
+      "href": "https://www.jeffersoncounty.illinois.gov/services/treasurercollector/property_taxes_and_online_payment.php",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Jefferson"
+    },
+    {
+      "fromKey": "IL-Logan",
+      "fromUrl": "https://www.logancountyil.gov/index.php?lang=en",
+      "href": "https://logancountyil.us/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Logan"
+    },
+    {
+      "fromKey": "IL-Logan",
+      "fromUrl": "https://www.logancountyil.gov/index.php?lang=en",
+      "href": "https://logancountyil.us/#",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Logan"
+    },
+    {
+      "fromKey": "IL-Madison",
+      "fromUrl": "https://www.madisoncountyil.gov/treasurer/",
+      "href": "https://www.madisoncountyil.gov/treasurer/treasurer/index.php",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Madison"
+    },
+    {
+      "fromKey": "IL-Madison",
+      "fromUrl": "https://www.madisoncountyil.gov/treasurer/",
+      "href": "https://madisonil.devnetwedge.com/",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Madison"
+    },
+    {
+      "fromKey": "IL-Madison",
+      "fromUrl": "https://www.madisoncountyil.gov/treasurer/",
+      "href": "https://www.madisoncountyil.gov/treasurer/treasurer/pay_taxes.php",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Madison"
+    },
+    {
+      "fromKey": "IL-Madison",
+      "fromUrl": "https://www.madisoncountyil.gov/treasurer/",
+      "href": "https://www.madisoncountyil.gov/treasurer/treasurer/pay_taxes_phone.php",
+      "text": "Pay Taxes By Phone",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Madison"
+    },
+    {
+      "fromKey": "IL-Jackson",
+      "fromUrl": "https://www.jacksoncounty-il.gov/",
+      "href": "https://www.jacksoncounty-il.gov/303/Pay",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Jackson"
+    },
+    {
+      "fromKey": "IL-Monroe",
+      "fromUrl": "https://monroecountyil.gov/departments/treasurers-office/",
+      "href": "https://www.govpayments.com/il_monroe",
+      "text": "Pay Taxes",
+      "reason": "vendor_link",
+      "state": "IL",
+      "county": "Monroe"
+    },
+    {
+      "fromKey": "IL-Henry",
+      "fromUrl": "https://www.henrycty.com/",
+      "href": "https://www.henrycty.com/406/Pay-Online",
+      "text": "Pay Online Pay your bills online quickly and easily",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Henry"
+    },
+    {
+      "fromKey": "IL-McLean",
+      "fromUrl": "https://www.mcleancountyil.gov/",
+      "href": "https://www.govtechtaxpro.com/parceldetail.php?idCounty=14064",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Mc Lean"
+    },
+    {
+      "fromKey": "IL-Stephenson",
+      "fromUrl": "https://www.stephensoncountyil.gov/",
+      "href": "https://allpaid.com/payments#/plc-search/plc-details/a0000c",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Stephenson"
+    },
+    {
+      "fromKey": "IL-Stephenson",
+      "fromUrl": "https://www.stephensoncountyil.gov/",
+      "href": "https://stephensonil.devnetwedge.com/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Stephenson"
+    },
+    {
+      "fromKey": "IL-StClair",
+      "fromUrl": "https://www.co.st-clair.il.us/",
+      "href": "https://www.co.st-clair.il.us/events/last-day-to-pay-taxes-2332",
+      "text": "Tax Deadline Last Day To Pay Taxes Fri &#183; Oct 30 2026",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "St Clair"
+    },
+    {
+      "fromKey": "IL-Sangamon",
+      "fromUrl": "https://www.sangamonil.gov/",
+      "href": "https://tax.sangamonil.gov/SangamonCountyWeb/app/homeAction.action",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Sangamon"
+    },
+    {
+      "fromKey": "IL-RockIsland",
+      "fromUrl": "https://www.rockislandcountyil.gov/",
+      "href": "https://www.rockislandcountyil.gov/350/Property-Tax-Search",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Rock Island"
+    },
+    {
+      "fromKey": "IL-Peoria",
+      "fromUrl": "https://www.peoriacounty.gov/",
+      "href": "http://propertytax.peoriacounty.gov/",
+      "text": "Property Tax Info",
+      "reason": "vendor_link",
+      "state": "IL",
+      "county": "Peoria"
+    },
+    {
+      "fromKey": "IL-Greene",
+      "fromUrl": "https://www.greenecountyil.org/",
+      "href": "https://propertytaxonline.org/Home/Home.aspx",
+      "text": "View/Pay My Taxes",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Greene"
+    },
+    {
+      "fromKey": "IL-Tazewell",
+      "fromUrl": "https://www.tazewell-il.gov/",
+      "href": "https://tazewellil.devnetwedge.com/",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Tazewell"
+    },
+    {
+      "fromKey": "IN-Bartholomew",
+      "fromUrl": "https://www.bartholomew.in.gov/",
+      "href": "https://www.invoicecloud.com/portal/(S(wmrm3c45pd4exyf2sgycdd45))/Site.aspx?G=8e7c3b31-79c4-48f6-a293-0b9ab1897285",
+      "text": "View/Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Bartholomew"
+    },
+    {
+      "fromKey": "IN-Brown",
+      "fromUrl": "https://www.browncounty-in.gov/",
+      "href": "https://www.invoicecloud.com/portal/(S(rgxxuhfsuwfenpah25lld0tb))/2/Site.aspx?G=ae6cebce-0a42-4bde-aeb9-61b1c82463b9",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Brown"
+    },
+    {
+      "fromKey": "IL-Macoupin",
+      "fromUrl": "https://www.macoupincountyil.gov/",
+      "href": "https://il981.cichosting.com/atasportal/",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Macoupin"
+    },
+    {
+      "fromKey": "IN-Cass",
+      "fromUrl": "https://www.casscounty.in.gov/",
+      "href": "https://www.in.gov/counties/cass/departments/treasurers-office",
+      "text": "Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Cass"
+    },
+    {
+      "fromKey": "IL-Will",
+      "fromUrl": "https://www.willcounty.gov/",
+      "href": "https://willcounty.gov/County-Offices/Budget-Finance/Treasurer-Office",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IL",
+      "county": "Will"
+    },
+    {
+      "fromKey": "IL-Will",
+      "fromUrl": "https://www.willcounty.gov/",
+      "href": "https://www.govpaynow.com/gps/user/plc/7627",
+      "text": "Online Payments Land Use, Sheriff or Health Citation",
+      "reason": "vendor_link",
+      "state": "IL",
+      "county": "Will"
+    },
+    {
+      "fromKey": "IL-Will",
+      "fromUrl": "https://www.willcounty.gov/",
+      "href": "https://www.govpaynow.com/gps/user/plc/7628",
+      "text": "Online Payments Animal Control",
+      "reason": "vendor_link",
+      "state": "IL",
+      "county": "Will"
+    },
+    {
+      "fromKey": "IN-Clay",
+      "fromUrl": "https://www.claycounty.in.gov/",
+      "href": "https://www.in.gov/govpayments.com/in_clay",
+      "text": "Pay Property Tax",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Clay"
+    },
+    {
+      "fromKey": "IN-Dubois",
+      "fromUrl": "https://www.duboiscountyin.org/",
+      "href": "https://www.duboiscountyin.us/#/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Dubois"
+    },
+    {
+      "fromKey": "IN-Grant",
+      "fromUrl": "https://www.grantcounty.net/",
+      "href": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=16481",
+      "text": "Online Payment Options",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Grant"
+    },
+    {
+      "fromKey": "IN-Grant",
+      "fromUrl": "https://www.grantcounty.net/",
+      "href": "https://www.in.gov/counties/grant/county-offices/treasurers/payments-and-services/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Grant"
+    },
+    {
+      "fromKey": "IN-Fountain",
+      "fromUrl": "https://www.fountaincounty.net/",
+      "href": "https://www.fountaincounty.net/topic/index.php?topicid=81&structureid=17",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Fountain"
+    },
+    {
+      "fromKey": "IN-Fountain",
+      "fromUrl": "https://www.fountaincounty.net/",
+      "href": "http://www.govpaynow.com/gps/user/plc/5256",
+      "text": "Pay Probation/Court Fees Online",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Fountain"
+    },
+    {
+      "fromKey": "IN-Fountain",
+      "fromUrl": "https://www.fountaincounty.net/",
+      "href": "https://lowtaxinfo.com/fountaincounty",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Fountain"
+    },
+    {
+      "fromKey": "IN-Henry",
+      "fromUrl": "https://www.henrycounty.in.gov/",
+      "href": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?action=view&amp;transactionTypeId=168",
+      "text": "Make a Payment",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Henry"
+    },
+    {
+      "fromKey": "IN-Howard",
+      "fromUrl": "https://www.howardcounty.in.gov/",
+      "href": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=24088",
+      "text": "Pay Court Fines and Fees",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Howard"
+    },
+    {
+      "fromKey": "IN-Howard",
+      "fromUrl": "https://www.howardcounty.in.gov/",
+      "href": "https://www.invoicecloud.com/HowardCounty",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Howard"
+    },
+    {
+      "fromKey": "IN-Jackson",
+      "fromUrl": "https://www.jacksoncounty.in.gov/",
+      "href": "https://www.jacksoncounty.in.gov/government/departments_i-z/treasurer/property_tax_payments.php",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Jackson"
+    },
+    {
+      "fromKey": "IN-Jackson",
+      "fromUrl": "https://www.jacksoncounty.in.gov/",
+      "href": "https://billpay.forte.net/jacksoncointax/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Jackson"
+    },
+    {
+      "fromKey": "IN-Lake",
+      "fromUrl": "https://lakecountyin.gov/",
+      "href": "https://in-lake-treasurer2.governmax.com/collectmax/collect30.asp",
+      "text": "Search Property Tax Records",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Lake"
+    },
+    {
+      "fromKey": "IN-LaGrange",
+      "fromUrl": "https://www.lagrangecounty.org/",
+      "href": "https://pay.paygov.us/EndUser/ParcelSearch.aspx?ttid=10838",
+      "text": "Property Taxes",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "La Grange"
+    },
+    {
+      "fromKey": "IN-LaGrange",
+      "fromUrl": "https://www.lagrangecounty.org/",
+      "href": "https://pay.paygov.us/EndUser/LocationCode.aspx",
+      "text": "Online Bill Pay (Not for Property Tax)",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "La Grange"
+    },
+    {
+      "fromKey": "IN-Fayette",
+      "fromUrl": "https://www.co.fayette.in.us/",
+      "href": "https://billpay.forte.net/fayettetreasurerweb1/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Fayette"
+    },
+    {
+      "fromKey": "IN-Greene",
+      "fromUrl": "https://www.co.greene.in.us/",
+      "href": "https://www.govpaynow.com/gps/user/cyg/plc/a00437",
+      "text": "CLICK HERE TO PAY PROBATION FEES",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Greene"
+    },
+    {
+      "fromKey": "IN-Kosciusko",
+      "fromUrl": "https://www.kcgov.us/",
+      "href": "https://id-kootenai.publicaccessnow.com/Treasurer/TaxSearch.aspx",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Kosciusko"
+    },
+    {
+      "fromKey": "IN-Hendricks",
+      "fromUrl": "https://www.co.hendricks.in.us/",
+      "href": "https://lowtaxinfo.com/hendrickscounty/#/SearchView",
+      "text": "View, Print, Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Hendricks"
+    },
+    {
+      "fromKey": "IN-Noble",
+      "fromUrl": "https://noblecounty.in.gov/",
+      "href": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=10039",
+      "text": "Pay Traffic Tickets",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Noble"
+    },
+    {
+      "fromKey": "IN-Noble",
+      "fromUrl": "https://noblecounty.in.gov/",
+      "href": "https://sec.paygov.us/selecttransactiontype.aspx?action=view&amp;transactionTypeId=10058",
+      "text": "Pay Small Claims &amp; Judgements",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Noble"
+    },
+    {
+      "fromKey": "IN-Noble",
+      "fromUrl": "https://noblecounty.in.gov/",
+      "href": "https://sec.paygov.us/selecttransactiontype.aspx?action=view&amp;transactionTypeId=10042",
+      "text": "Pay Fines &amp; Costs",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Noble"
+    },
+    {
+      "fromKey": "IN-Noble",
+      "fromUrl": "https://noblecounty.in.gov/",
+      "href": "https://govpayments.com/in_noble/",
+      "text": "Pay Property Taxes Online",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Noble"
+    },
+    {
+      "fromKey": "IN-Owen",
+      "fromUrl": "https://www.owencounty.in.gov/",
+      "href": "https://www.owencounty.in.gov/public-services/property-taxes/",
+      "text": "💰 Pay Property Tax Online",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Owen"
+    },
+    {
+      "fromKey": "IN-Parke",
+      "fromUrl": "https://parkecounty.in.gov/",
+      "href": "https://www.govtechtaxpro.com//parceldetail.php?idcounty=15061",
+      "text": "PAY PROPERTY TAXES ONLINE",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Parke"
+    },
+    {
+      "fromKey": "IN-Randolph",
+      "fromUrl": "https://www.in.gov/counties/randolph/",
+      "href": "https://www.in.gov/counties/randolph/departments/treasurer/httpslowtaxinfo.com",
+      "text": "Pay Your Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Randolph"
+    },
+    {
+      "fromKey": "IN-Spencer",
+      "fromUrl": "https://www.spencercounty.in.gov/",
+      "href": "https://govpayments.com/in_spencer",
+      "text": "Online Payments",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Spencer"
+    },
+    {
+      "fromKey": "IN-Warrick",
+      "fromUrl": "https://www.warrickcounty.gov/property-tax",
+      "href": "https://paygov.us/",
+      "text": "FEES/TICKETS TO CLERK",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Warrick"
+    },
+    {
+      "fromKey": "IN-Warrick",
+      "fromUrl": "https://www.warrickcounty.gov/property-tax",
+      "href": "https://www.warrickcounty.gov/property-tax",
+      "text": "PAY PROPERTY TAXES",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Warrick"
+    },
+    {
+      "fromKey": "IN-Wabash",
+      "fromUrl": "https://www.wabashcounty.in.gov/",
+      "href": "https://beacon.schneidercorp.com/Application.aspx?AppID=167&LayerID=2153&PageTypeID=2&PageID=1112",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Wabash"
+    },
+    {
+      "fromKey": "IN-Wayne",
+      "fromUrl": "https://waynecounty.in.gov/",
+      "href": "https://www.govpaynow.com/gps/user/cyg/plc/a004ga",
+      "text": "Pay Community Corrections Fees",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Wayne"
+    },
+    {
+      "fromKey": "IN-Wayne",
+      "fromUrl": "https://waynecounty.in.gov/",
+      "href": "https://www.govpaynow.com/gps/user/plc/8212",
+      "text": "Pay Probation Fees",
+      "reason": "vendor_link",
+      "state": "IN",
+      "county": "Wayne"
+    },
+    {
+      "fromKey": "IN-Wayne",
+      "fromUrl": "https://waynecounty.in.gov/",
+      "href": "https://billpay.forte.net/waynecointax/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Wayne"
+    },
+    {
+      "fromKey": "IN-White",
+      "fromUrl": "https://www.whitecounty.in.gov/",
+      "href": "https://payments.municipay.com/in_white/search",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "White"
+    },
+    {
+      "fromKey": "IN-White",
+      "fromUrl": "https://www.whitecounty.in.gov/",
+      "href": "https://payments.municipay.com/in_white",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "White"
+    },
+    {
+      "fromKey": "IN-Starke",
+      "fromUrl": "https://www.starke.in.gov/",
+      "href": "https://lowtaxinfo.com/starkecounty/#/SearchView",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Starke"
+    },
+    {
+      "fromKey": "KS-Johnson",
+      "fromUrl": "https://www.jocogov.org/",
+      "href": "https://taxbill.jocogov.org/",
+      "text": "Pay taxes",
+      "reason": "vendor_link",
+      "state": "KS",
+      "county": "Johnson"
+    },
+    {
+      "fromKey": "KS-Johnson",
+      "fromUrl": "https://www.jocogov.org/",
+      "href": "https://www.jocogov.org/pay-online",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "KS",
+      "county": "Johnson"
+    },
+    {
+      "fromKey": "IN-Wells",
+      "fromUrl": "https://www.wellscounty.org/",
+      "href": "https://billpay.forte.net/wellscointax/",
+      "text": "View/Pay Tax Bills",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Wells"
+    },
+    {
+      "fromKey": "KS-Lyon",
+      "fromUrl": "https://www.lyoncounty.org/",
+      "href": "https://ks1058.cichosting.com/ttp/tax/",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "KS",
+      "county": "Lyon"
+    },
+    {
+      "fromKey": "KS-Shawnee",
+      "fromUrl": "https://www.snco.us/",
+      "href": "https://ikan.ks.gov/",
+      "text": "Pay Your Taxes the Easy Way! Skip the line — pay online anytime with iKan!",
+      "reason": "pay_search_cta",
+      "state": "KS",
+      "county": "Shawnee"
+    },
+    {
+      "fromKey": "KY-AlexandriaCity",
+      "fromUrl": "https://alexandriaky.gov/",
+      "href": "https://alexandria.campbell.ky.pontemsoftware.com/",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "KY",
+      "county": "Alexandria City"
+    },
+    {
+      "fromKey": "IN-Rush",
+      "fromUrl": "https://www.rushcounty.in.gov/",
+      "href": "https://lowtaxinfo.com/rushcounty",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Rush"
+    },
+    {
+      "fromKey": "IN-Whitley",
+      "fromUrl": "https://www.whitleycounty.in.gov/",
+      "href": "https://billpay.forte.net/whitleycotreasurer",
+      "text": "Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "IN",
+      "county": "Whitley"
+    },
+    {
+      "fromKey": "KS-Sedgwick",
+      "fromUrl": "https://www.sedgwickcounty.org/",
+      "href": "https://ssc.sedgwickcounty.org/propertytax/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "KS",
+      "county": "Sedgwick"
+    },
+    {
+      "fromKey": "LA-LafayetteParish",
+      "fromUrl": "https://www.lafayettela.gov/",
+      "href": "https://www.lafayettela.gov/property-taxes/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "LA",
+      "county": "Lafayette Parish"
+    },
+    {
+      "fromKey": "MD-Caroline",
+      "fromUrl": "https://www.carolinemd.org/",
+      "href": "https://selfservice.carolinemd.org/",
+      "text": "Search/Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MD",
+      "county": "Caroline"
+    },
+    {
+      "fromKey": "MD-Cecil",
+      "fromUrl": "https://www.ccgov.org/",
+      "href": "https://www.cecilcountymd.gov/761/Pay-Online",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MD",
+      "county": "Cecil"
+    },
+    {
+      "fromKey": "MD-Garrett",
+      "fromUrl": "https://www.garrettcounty.org/",
+      "href": "https://www.garrettcountymd.gov/citizen",
+      "text": "IconSvgFile Pay Online Citizen Connect",
+      "reason": "pay_search_cta",
+      "state": "MD",
+      "county": "Garrett"
+    },
+    {
+      "fromKey": "MD-Garrett",
+      "fromUrl": "https://www.garrettcounty.org/",
+      "href": "https://www.garrettcountymd.gov/citizen/search",
+      "text": "IconSvgFile Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "MD",
+      "county": "Garrett"
+    },
+    {
+      "fromKey": "MD-Washington",
+      "fromUrl": "https://www.washco-md.net/",
+      "href": "https://washingtoncountymd.munisselfservice.com/css/citizens/default.aspx",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MD",
+      "county": "Washington"
+    },
+    {
+      "fromKey": "MD-Calvert",
+      "fromUrl": "https://www.calvertcountymd.gov/",
+      "href": "https://www.calvertcountymd.gov/169/Pay",
+      "text": "Pay Online Pay and report online",
+      "reason": "pay_search_cta",
+      "state": "MD",
+      "county": "Calvert"
+    },
+    {
+      "fromKey": "MD-Worcester",
+      "fromUrl": "https://www.co.worcester.md.us/",
+      "href": "https://selfservice.co.worcester.md.us/css/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "MD",
+      "county": "Worcester"
+    },
+    {
+      "fromKey": "MI-AlmiraTownship",
+      "fromUrl": "https://www.almiratownship.org/",
+      "href": "https://intellipay.cpteller.com/terminal/portal/?op=tcSxXjdubfrS",
+      "text": "Pay Taxes Now",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Almira Township"
+    },
+    {
+      "fromKey": "MI-BrownstownTownship",
+      "fromUrl": "https://www.brownstown-mi.org/",
+      "href": "https://www.brownstown-mi.org/government/township_departments/treasurer/online_tax_payments.php",
+      "text": "Pay Tax Bill Online",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Brownstown Township"
+    },
+    {
+      "fromKey": "MI-BrownstownTownship",
+      "fromUrl": "https://www.brownstown-mi.org/",
+      "href": "https://www.brownstown-mi.org/i_want_to/pay_for.php",
+      "text": "Online Payments Pay tax or water bill, permit fees and more.",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Brownstown Township"
+    },
+    {
+      "fromKey": "MI-CantonTownship",
+      "fromUrl": "https://www.canton-mi.org/",
+      "href": "https://www.canton-mi.org/bsa",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Canton Township"
+    },
+    {
+      "fromKey": "MI-Clinton",
+      "fromUrl": "https://www.clinton-county.org/",
+      "href": "https://www.govpaynow.com/gps/user/plc/a000dj",
+      "text": "Probate Court Costs",
+      "reason": "vendor_link",
+      "state": "MI",
+      "county": "Clinton"
+    },
+    {
+      "fromKey": "MI-FerndaleCity",
+      "fromUrl": "https://www.ferndalemi.gov/",
+      "href": "https://www.ferndalemi.gov/Government/Services%20List/Pay%20Property%20Taxes",
+      "text": "TAXES Learn about &amp; pay your property taxes",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Ferndale City"
+    },
+    {
+      "fromKey": "MI-Cass",
+      "fromUrl": "https://www.casscountymi.org/",
+      "href": "https://www.casscountymi.org/1347/3367/Property-Tax-Search",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Cass"
+    },
+    {
+      "fromKey": "MI-FlintCity",
+      "fromUrl": "https://www.cityofflint.com/",
+      "href": "https://www.cityofflint.com/online-service/pay-property-taxes/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Flint City"
+    },
+    {
+      "fromKey": "MI-FarmingtonHillsCity",
+      "fromUrl": "https://www.fhgov.com/",
+      "href": "https://www.fhgov.com/taxes/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Farmington Hills City"
+    },
+    {
+      "fromKey": "MI-HandyTownship",
+      "fromUrl": "https://www.handytownship.org/",
+      "href": "https://bsaonline.com/OnlinePayment/OnlinePaymentSearch/?PaymentApplicationType=4&uid=178",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Handy Township"
+    },
+    {
+      "fromKey": "MI-Milan",
+      "fromUrl": "https://www.milanmi.gov/",
+      "href": "https://www.milanmi.gov/services/pay_online.php",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Milan"
+    },
+    {
+      "fromKey": "MI-PeninsulaTownship",
+      "fromUrl": "https://www.peninsulatownship.com/",
+      "href": "https://www.peninsulatownship.com/search-tax-information.html",
+      "text": "Search Tax Information",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Peninsula Township"
+    },
+    {
+      "fromKey": "MI-NoviCity",
+      "fromUrl": "https://www.cityofnovi.org/",
+      "href": "https://www.invoicecloud.com/portal/(S(fdlct4ljqgtlzzkv0jms35ko))/2/Site.aspx?G=aded1d05-7490-4f57-b8dd-b39a62f28711",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Novi City"
+    },
+    {
+      "fromKey": "MI-StClairTownship",
+      "fromUrl": "https://stclairtwpmi.gov/",
+      "href": "https://bsaonline.com/Home/MunicipalityHome?uid=693",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "St Clair Township"
+    },
+    {
+      "fromKey": "MI-VanBurenTown",
+      "fromUrl": "https://www.vanburen-mi.org/",
+      "href": "https://bsaonline.com/?uid=296&sitetransition=true",
+      "text": "Pay Tax & Utility Bills",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Van Buren Town"
+    },
+    {
+      "fromKey": "MI-Midland",
+      "fromUrl": "https://www.co.midland.mi.us/",
+      "href": "https://pay.govpros.us/mi/midland/taxes",
+      "text": "PAY PROPERTY TAXES",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Midland"
+    },
+    {
+      "fromKey": "MI-TexasCharterTownship",
+      "fromUrl": "https://www.texastownship.org/",
+      "href": "https://bsaonline.com/OnlinePayment/OnlinePaymentSearch?PaymentApplicationType=4&amp;uid=434",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Texas Charter Township"
+    },
+    {
+      "fromKey": "MN-Anoka",
+      "fromUrl": "https://www.anokacountymn.gov/",
+      "href": "https://pay.anokacountymn.gov/",
+      "text": "Pay property taxes",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Anoka"
+    },
+    {
+      "fromKey": "MN-Benton",
+      "fromUrl": "https://www.co.benton.mn.us/",
+      "href": "https://property.bentoncountymn.gov/",
+      "text": "Pay Your Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Benton"
+    },
+    {
+      "fromKey": "MN-Douglas",
+      "fromUrl": "https://www.douglascountymn.gov/",
+      "href": "https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Douglas",
+      "text": "Douglas County Pay property taxes Click here to pay by credit card or e-check.",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Douglas"
+    },
+    {
+      "fromKey": "MN-Fillmore",
+      "fromUrl": "https://www.co.fillmore.mn.us/",
+      "href": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=15151",
+      "text": "Online Tax Payments",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Fillmore"
+    },
+    {
+      "fromKey": "MN-Cook",
+      "fromUrl": "https://www.co.cook.mn.us/",
+      "href": "https://beacon.schneidercorp.com/Application.aspx?App=CookCountyMN&PageType=Search",
+      "text": "Property Info & Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Cook"
+    },
+    {
+      "fromKey": "MN-Hennepin",
+      "fromUrl": "https://www.hennepin.us/",
+      "href": "https://www.hennepincounty.gov/services/property/property-taxes/pay-property-taxes",
+      "text": "Pay property taxes",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Hennepin"
+    },
+    {
+      "fromKey": "MN-Hubbard",
+      "fromUrl": "https://www.co.hubbard.mn.us/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Hubbard"
+    },
+    {
+      "fromKey": "MN-Hubbard",
+      "fromUrl": "https://www.co.hubbard.mn.us/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Hubbard"
+    },
+    {
+      "fromKey": "MN-Marshall",
+      "fromUrl": "https://www.co.marshall.mn.us/",
+      "href": "https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Marshall",
+      "text": "PAY YOUR PROPERTY TAX ONLINE",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Marshall"
+    },
+    {
+      "fromKey": "MN-McLeod",
+      "fromUrl": "https://www.co.mcleod.mn.us/",
+      "href": "https://www.mcleodcountymn.gov/Departments/Auditor%20Treasurer/Direct%20Payment%20Plan.pdf",
+      "text": "Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Mc Leod"
+    },
+    {
+      "fromKey": "MN-McLeod",
+      "fromUrl": "https://www.co.mcleod.mn.us/",
+      "href": "https://publicaccess.mcleodcountymn.gov/search/commonsearch.aspx?mode=combined",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Mc Leod"
+    },
+    {
+      "fromKey": "MN-Meeker",
+      "fromUrl": "https://www.co.meeker.mn.us/",
+      "href": "https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Meeker",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Meeker"
+    },
+    {
+      "fromKey": "MN-Pine",
+      "fromUrl": "https://www.co.pine.mn.us/",
+      "href": "https://www.pinecountymn.gov/departments/auditor/pay_your_property_taxes.php",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Pine"
+    },
+    {
+      "fromKey": "MN-Rice",
+      "fromUrl": "https://www.co.rice.mn.us/",
+      "href": "https://www.ricecountymn.gov/242",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Rice"
+    },
+    {
+      "fromKey": "MN-Swift",
+      "fromUrl": "https://www.swiftcounty.com/",
+      "href": "http://tax.cptmn.us/PTaxPortal/#/parcelSearch/Swift",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Swift"
+    },
+    {
+      "fromKey": "MN-Swift",
+      "fromUrl": "https://www.swiftcounty.com/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Swift"
+    },
+    {
+      "fromKey": "MN-Swift",
+      "fromUrl": "https://www.swiftcounty.com/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Swift"
+    },
+    {
+      "fromKey": "MO-Boone",
+      "fromUrl": "https://www.showmeboone.com/",
+      "href": "https://www.boonemo.gov/collector/payment-methods.asp",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MO",
+      "county": "Boone"
+    },
+    {
+      "fromKey": "MN-Wilkin",
+      "fromUrl": "https://www.co.wilkin.mn.us/",
+      "href": "https://www.co.wilkin.mn.us/index.asp?SEC=B622CFE0-3302-40E6-AE78-94EFB9BE7879&amp;DE=E73D0D2A-A790-4099-BDDB-1E18A56D6266&amp;Type=B_BASIC",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Wilkin"
+    },
+    {
+      "fromKey": "MN-Wilkin",
+      "fromUrl": "https://www.co.wilkin.mn.us/",
+      "href": "https://wilkincounty.gov/index.asp?SEC=B622CFE0-3302-40E6-AE78-94EFB9BE7879&amp;DE=E73D0D2A-A790-4099-BDDB-1E18A56D6266&amp;Type=B_BASIC",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Wilkin"
+    },
+    {
+      "fromKey": "MN-Wilkin",
+      "fromUrl": "https://www.co.wilkin.mn.us/",
+      "href": "http://wilkincounty.gov/index.asp?SEC=B622CFE0-3302-40E6-AE78-94EFB9BE7879&amp;DE=E73D0D2A-A790-4099-BDDB-1E18A56D6266&amp;Type=B_BASIC",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Wilkin"
+    },
+    {
+      "fromKey": "MN-Wilkin",
+      "fromUrl": "https://www.co.wilkin.mn.us/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Wilkin"
+    },
+    {
+      "fromKey": "MN-Wilkin",
+      "fromUrl": "https://www.co.wilkin.mn.us/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Wilkin"
+    },
+    {
+      "fromKey": "MN-YellowMedicine",
+      "fromUrl": "https://www.co.ym.mn.gov/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Yellow Medicine"
+    },
+    {
+      "fromKey": "MN-YellowMedicine",
+      "fromUrl": "https://www.co.ym.mn.gov/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "MN",
+      "county": "Yellow Medicine"
+    },
+    {
+      "fromKey": "MN-Winona",
+      "fromUrl": "https://www.co.winona.mn.us/",
+      "href": "https://beacon.schneidercorp.com/Application.aspx?AppID=597&amp;LayerID=9787&amp;PageTypeID=2&amp;PageID=4325",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "MN",
+      "county": "Winona"
+    },
+    {
+      "fromKey": "MO-Cass",
+      "fromUrl": "https://www.casscounty.com/",
+      "href": "http://www.casscountycollector.com/",
+      "text": "Pay/Search Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "MO",
+      "county": "Cass"
+    },
+    {
+      "fromKey": "MO-Christian",
+      "fromUrl": "https://christiancountymo.gov/",
+      "href": "http://www.christiancountycollector.com/wrapper.php",
+      "text": "Pay Your Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "MO",
+      "county": "Christian"
+    },
+    {
+      "fromKey": "MO-Pettis",
+      "fromUrl": "https://www.pettiscomo.com/",
+      "href": "http://pettismo.devnetwedge.com/",
+      "text": "&#x1F4B0; Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "MO",
+      "county": "Pettis"
+    },
+    {
+      "fromKey": "MS-Forrest",
+      "fromUrl": "https://www.forrestcountyms.us/",
+      "href": "https://www.forrestcountytax.com/",
+      "text": "PAY TAXES 2025",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Forrest"
+    },
+    {
+      "fromKey": "MS-Greene",
+      "fromUrl": "https://www.greenecountyms.gov/",
+      "href": "https://linkprotect.cudasvc.com/url?a=https%3a%2f%2fcsC0f04.na1.hs-sales-engage.com%2fCtc%2fT7%2b23284%2fcsC0f04%2fJl22-6qcW7lCdLW6lZ3mDW7q9DYs4w5ttpW85n2_t2Xll7mW7xvShW8vJDTyW5LPq6n1Y2mgnW467xpP3yy87cN80b-RQJtbT-W1NqcNy8f0yRwW1G33n21M11B-W8C_q5L4w1g-HW563CVt6j157sW6Ft_PX129JSpW51hHNY4KpxkZN8KdXZM1DtQDW6J4hBn8K7MqVW1RfQxQ3QYhJpVC66917QRYcxW7nm4R590khNwW5h82X88_rDfqW5__4Q37v8dptW7K7r3H9bvMmbW22kqM342N7yQN677ZGtMblrNW2pMWlQ6Gt3mfW6FQJ6X6css2Zf1QWkwv04&c=E,1,mY99J1-c87D-HQML8ox88Sdxbqr_Ea94E1n3MC5fDkDejC-P6ONfg9miEgDq6V380yudkY8EFS0sXOBo4DNSukN_1aQqGdPj7vKZGlrJ6cE,&typo=1",
+      "text": "Click Here to Pay Property Tax &amp; Car Tag Renewals",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Greene"
+    },
+    {
+      "fromKey": "MS-Hinds",
+      "fromUrl": "https://www.hindscountyms.com/",
+      "href": "http://www.co.hinds.ms.us/pgs/apps/real_property_billing_roll_query.asp",
+      "text": "Pay Your Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Hinds"
+    },
+    {
+      "fromKey": "MS-Hinds",
+      "fromUrl": "https://www.hindscountyms.com/",
+      "href": "https://www.hindscountyms.com/pay-online",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Hinds"
+    },
+    {
+      "fromKey": "MS-Hancock",
+      "fromUrl": "https://www.hancockcounty.ms.gov/",
+      "href": "https://www.hancockcounty.ms.gov/quicklinks.aspx?CID=40",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Hancock"
+    },
+    {
+      "fromKey": "MO-Polk",
+      "fromUrl": "https://www.polkcountymo.gov/",
+      "href": "https://polkcountymo.gov/collectors-office/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "MO",
+      "county": "Polk"
+    },
+    {
+      "fromKey": "MS-MadisonStepOneOnly",
+      "fromUrl": "https://www.madison-co.com/",
+      "href": "https://madison.ibcpayments.com/",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Madison Step One Only"
+    },
+    {
+      "fromKey": "MS-MadisonStepOneOnly",
+      "fromUrl": "https://www.madison-co.com/",
+      "href": "https://taxes.paystar.io/app/customer/madison-county-tax",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Madison Step One Only"
+    },
+    {
+      "fromKey": "MS-Madison",
+      "fromUrl": "https://www.madison-co.com/",
+      "href": "https://madison.ibcpayments.com/",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Madison"
+    },
+    {
+      "fromKey": "MS-Madison",
+      "fromUrl": "https://www.madison-co.com/",
+      "href": "https://taxes.paystar.io/app/customer/madison-county-tax",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Madison"
+    },
+    {
+      "fromKey": "MS-Jackson",
+      "fromUrl": "https://www.co.jackson.ms.us/",
+      "href": "https://co-jackson-ms-taxpayments.us/#/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Jackson"
+    },
+    {
+      "fromKey": "MS-Alcorn",
+      "fromUrl": "https://www.alcorncounty.org/",
+      "href": "http://www.deltacomputersystems.com/MS/MS02/INDEX.HTML",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Alcorn"
+    },
+    {
+      "fromKey": "MS-PearlRiver",
+      "fromUrl": "https://www.pearlrivercounty.net/",
+      "href": "https://www.pearlrivercounty.net/146/Pay-Online",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Pearl River"
+    },
+    {
+      "fromKey": "MS-Stone",
+      "fromUrl": "https://www.stonecountyms.gov/",
+      "href": "http://www.deltacomputersystems.com/MS/MS66/plinkquerym.html",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Stone"
+    },
+    {
+      "fromKey": "MS-Washington",
+      "fromUrl": "https://www.washingtoncounty.ms/",
+      "href": "https://www.ncourt.com/x-press/x-onlinepayments.aspx?juris=93F09EE2-1D57-4346-BC6C-14A32C754171",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Washington"
+    },
+    {
+      "fromKey": "MO-Scott",
+      "fromUrl": "https://www.scottcountymo.com/",
+      "href": "http://www.scottcocollector.com/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "MO",
+      "county": "Scott"
+    },
+    {
+      "fromKey": "MT-Missoula",
+      "fromUrl": "https://www.missoulacounty.gov/",
+      "href": "https://www.missoulacounty.gov/buildings-property/pay-property-taxes/",
+      "text": "Pay property taxes",
+      "reason": "pay_search_cta",
+      "state": "MT",
+      "county": "Missoula"
+    },
+    {
+      "fromKey": "MT-Missoula",
+      "fromUrl": "https://www.missoulacounty.gov/",
+      "href": "https://itax.missoulacounty.us/itax/",
+      "text": "Pay property taxes",
+      "reason": "pay_search_cta",
+      "state": "MT",
+      "county": "Missoula"
+    },
+    {
+      "fromKey": "MS-Neshoba",
+      "fromUrl": "https://www.neshobacounty.net/",
+      "href": "http://deltacomputersystems.com/MS/MS50/INDEX.HTML",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Neshoba"
+    },
+    {
+      "fromKey": "MS-Lafayette",
+      "fromUrl": "https://www.lafayettems.com/",
+      "href": "https://www.lafayettems.com/how-do-i/pay-property-taxes/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Lafayette"
+    },
+    {
+      "fromKey": "MS-Lamar",
+      "fromUrl": "https://www.lamarcountyms.gov/",
+      "href": "https://www.deltacomputersystems.com/MS/MS37/INDEX.HTML",
+      "text": "Pay Taxes Online (Delta)",
+      "reason": "pay_search_cta",
+      "state": "MS",
+      "county": "Lamar"
+    },
+    {
+      "fromKey": "NC-Alexander",
+      "fromUrl": "https://alexandercountync.gov/departments/tax-office/",
+      "href": "https://alexander.ustaxdata.com/TaxSearch.cfm",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Alexander"
+    },
+    {
+      "fromKey": "NC-Bertie",
+      "fromUrl": "http://www.co.bertie.nc.us/",
+      "href": "http://bertie.webtaxpay.com/",
+      "text": "Pay Tax Bill",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Bertie"
+    },
+    {
+      "fromKey": "NC-Dare",
+      "fromUrl": "https://tax.darecountync.gov/",
+      "href": "https://property.spatialest.com/nc/dare#/",
+      "text": "Property Records",
+      "reason": "vendor_link",
+      "state": "NC",
+      "county": "Dare"
+    },
+    {
+      "fromKey": "NC-Dare",
+      "fromUrl": "https://tax.darecountync.gov/",
+      "href": "https://tax.darecountync.gov/taxbill.php",
+      "text": "Tax Bill",
+      "reason": "vendor_link",
+      "state": "NC",
+      "county": "Dare"
+    },
+    {
+      "fromKey": "NC-Guilford",
+      "fromUrl": "https://www.guilfordcountync.gov/government/departments-and-agencies/tax-department",
+      "href": "https://bcpwa.ncptscloud.com/guilfordtax/",
+      "text": "View and Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Guilford"
+    },
+    {
+      "fromKey": "NC-Guilford",
+      "fromUrl": "https://www.guilfordcountync.gov/government/departments-and-agencies/tax-department",
+      "href": "https://bcpwa.ncptscloud.com/Guilford/bill-search",
+      "text": "2026 Tax Bill Search Find 2026 tax bills with our online bill search.",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Guilford"
+    },
+    {
+      "fromKey": "NC-Forsyth",
+      "fromUrl": "https://www.forsythcountync.gov/tax/",
+      "href": "https://www.forsythcountync.gov/Tax/taxbill.aspx",
+      "text": "Tax Bill Online Services",
+      "reason": "vendor_link",
+      "state": "NC",
+      "county": "Forsyth"
+    },
+    {
+      "fromKey": "NC-Forsyth",
+      "fromUrl": "https://www.forsythcountync.gov/tax/",
+      "href": "https://property.spatialest.com/nc/forsyth#/",
+      "text": "read more +",
+      "reason": "vendor_link",
+      "state": "NC",
+      "county": "Forsyth"
+    },
+    {
+      "fromKey": "NC-Forsyth",
+      "fromUrl": "https://www.forsythcountync.gov/tax/",
+      "href": "https://www.forsythcountync.gov/tax/taxbill.aspx",
+      "text": "read more +",
+      "reason": "vendor_link",
+      "state": "NC",
+      "county": "Forsyth"
+    },
+    {
+      "fromKey": "NC-Henderson",
+      "fromUrl": "https://www.hendersoncountync.gov/",
+      "href": "https://www.hendersoncountync.gov/tax/page/pay-taxes-online",
+      "text": "Pay property taxes",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Henderson"
+    },
+    {
+      "fromKey": "NC-Currituck",
+      "fromUrl": "https://currituckcountync.gov/tax/",
+      "href": "https://currituck.munisselfservice.com/citizens/default.aspx",
+      "text": "Pay Tax",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Currituck"
+    },
+    {
+      "fromKey": "NC-Lee",
+      "fromUrl": "https://www.leecountync.gov/",
+      "href": "https://leecountync.gov/how_do_i/pay_online.php",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Lee"
+    },
+    {
+      "fromKey": "NC-Johnston",
+      "fromUrl": "https://www.johnstonnc.com/",
+      "href": "https://www.johnstonnc.gov/content.cfm?id=177",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Johnston"
+    },
+    {
+      "fromKey": "NC-Johnston",
+      "fromUrl": "https://www.johnstonnc.com/",
+      "href": "https://www.johnstonnc.gov/paytaxes",
+      "text": "Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Johnston"
+    },
+    {
+      "fromKey": "NC-Mecklenburg",
+      "fromUrl": "https://www.mecknc.gov/",
+      "href": "https://tax.mecknc.gov/services/pay",
+      "text": "Pay Taxes and Fees",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Mecklenburg"
+    },
+    {
+      "fromKey": "NC-Durham",
+      "fromUrl": "https://www.dconc.gov/",
+      "href": "https://property.spatialest.com/nc/durham-tax/#/",
+      "text": "Taxes",
+      "reason": "vendor_link",
+      "state": "NC",
+      "county": "Durham"
+    },
+    {
+      "fromKey": "NC-Cumberland",
+      "fromUrl": "https://www.cumberlandcountync.gov/departments/tax-group/tax",
+      "href": "https://www.cumberlandcountync.gov/top-navigation-groups/business/property/property-tax-search",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Cumberland"
+    },
+    {
+      "fromKey": "NC-Cumberland",
+      "fromUrl": "https://www.cumberlandcountync.gov/departments/tax-group/tax",
+      "href": "https://www.cumberlandcountync.gov/top-navigation-groups/your-gov/resources-services/search-pay-tax-bills",
+      "text": "Search &amp; Pay Tax Bills",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Cumberland"
+    },
+    {
+      "fromKey": "NC-Cumberland",
+      "fromUrl": "https://www.cumberlandcountync.gov/departments/tax-group/tax",
+      "href": "https://www.cumberlandcountync.gov/departments/tax-group/tax/tax-bill-options/search-tax-bills",
+      "text": "Search Tax Bills",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Cumberland"
+    },
+    {
+      "fromKey": "NC-Cumberland",
+      "fromUrl": "https://www.cumberlandcountync.gov/departments/tax-group/tax",
+      "href": "https://www.cumberlandcountync.gov/departments/tax-group/tax/tax-bill-options/pay-tax-bills",
+      "text": "Pay Your Tax Bill",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Cumberland"
+    },
+    {
+      "fromKey": "MI-AureliusTownship",
+      "fromUrl": "https://www.aureliustwp.org/",
+      "href": "https://www.aureliustwp.org/last-day-to-pay-taxes-without-penalty-is-9-14/",
+      "text": "Last day to pay taxes without penalty is 9/14",
+      "reason": "pay_search_cta",
+      "state": "MI",
+      "county": "Aurelius Township"
+    },
+    {
+      "fromKey": "NC-Jackson",
+      "fromUrl": "https://www.jacksonnc.org/",
+      "href": "https://www.invoicecloud.com/JacksonCountyNC",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Jackson"
+    },
+    {
+      "fromKey": "NC-Robeson",
+      "fromUrl": "https://www.robesoncountync.gov/tax",
+      "href": "https://www.ustaxdata.com/nc/robeson/robesontaxSearch.cfm",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Robeson"
+    },
+    {
+      "fromKey": "NC-Robeson",
+      "fromUrl": "https://www.robesoncountync.gov/tax",
+      "href": "https://www.ustaxdata.com/nc/robeson/robesonsearch.cfm",
+      "text": "Pay Tax Bill Online",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Robeson"
+    },
+    {
+      "fromKey": "NC-Orange",
+      "fromUrl": "https://www.orangecountync.gov/",
+      "href": "https://www.orangecountync.gov/728/Tax-Administration",
+      "text": "Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Orange"
+    },
+    {
+      "fromKey": "NC-Wake",
+      "fromUrl": "https://www.wake.gov/departments-government/tax-administration",
+      "href": "https://services.wake.gov/ptax/main/billing/",
+      "text": "Search Tax Bills",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Wake"
+    },
+    {
+      "fromKey": "NC-RockyMountCity",
+      "fromUrl": "https://www.rockymountnc.gov/",
+      "href": "https://www.rockymountnc.gov/169/Payment-Options",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NC",
+      "county": "Rocky Mount City"
+    },
+    {
+      "fromKey": "ND-Pembina",
+      "fromUrl": "https://www.pembinacountynd.gov/",
+      "href": "https://public.pointandpay.net/collect/partner/pembinacountyauditortreasurer",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "ND",
+      "county": "Pembina"
+    },
+    {
+      "fromKey": "ND-Pembina",
+      "fromUrl": "https://www.pembinacountynd.gov/",
+      "href": "http://ndpropertytax.org/tax/tax.asp",
+      "text": "Property Tax Information",
+      "reason": "vendor_link",
+      "state": "ND",
+      "county": "Pembina"
+    },
+    {
+      "fromKey": "ND-Barnes",
+      "fromUrl": "https://www.barnescounty.us/",
+      "href": "http://ndpropertytax.org/tax/disclaimer.asp?cid=02",
+      "text": "Property Tax Search",
+      "reason": "vendor_link",
+      "state": "ND",
+      "county": "Barnes"
+    },
+    {
+      "fromKey": "ND-LaMoure",
+      "fromUrl": "https://www.lamourecountynd.com/",
+      "href": "https://lamourecountynd.com/treasurer",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "ND",
+      "county": "La Moure"
+    },
+    {
+      "fromKey": "ND-Stutsman",
+      "fromUrl": "https://www.stutsmancounty.gov/departments/tax-equalization/property-tax-calculator/",
+      "href": "http://www.ndpropertytax.com/",
+      "text": "Property Tax Info",
+      "reason": "vendor_link",
+      "state": "ND",
+      "county": "Stutsman"
+    },
+    {
+      "fromKey": "ND-Dunn",
+      "fromUrl": "https://www.dunncountynd.org/",
+      "href": "https://dunncountynd.gov/pay-tax-online",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "ND",
+      "county": "Dunn"
+    },
+    {
+      "fromKey": "ND-Dunn",
+      "fromUrl": "https://www.dunncountynd.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "ND",
+      "county": "Dunn"
+    },
+    {
+      "fromKey": "ND-Dunn",
+      "fromUrl": "https://www.dunncountynd.org/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "ND",
+      "county": "Dunn"
+    },
+    {
+      "fromKey": "ND-Morton",
+      "fromUrl": "https://www.mortonnd.org/",
+      "href": "https://www.mortonnd.gov/propertyinformation",
+      "text": "Pay Tax/Property Look-up",
+      "reason": "pay_search_cta",
+      "state": "ND",
+      "county": "Morton"
+    },
+    {
+      "fromKey": "ND-Morton",
+      "fromUrl": "https://www.mortonnd.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "ND",
+      "county": "Morton"
+    },
+    {
+      "fromKey": "ND-Morton",
+      "fromUrl": "https://www.mortonnd.org/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "ND",
+      "county": "Morton"
+    },
+    {
+      "fromKey": "ND-McKenzie",
+      "fromUrl": "https://www.mckenziecounty.net/",
+      "href": "https://mckenziecountynd.gov/payments/",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "ND",
+      "county": "Mc Kenzie"
+    },
+    {
+      "fromKey": "NE-Buffalo",
+      "fromUrl": "https://www.buffalocounty.ne.gov/",
+      "href": "https://nebraskataxesonline.us/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NE",
+      "county": "Buffalo"
+    },
+    {
+      "fromKey": "NE-Buffalo",
+      "fromUrl": "https://www.buffalocounty.ne.gov/",
+      "href": "http://www.nebraskataxesonline.us/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NE",
+      "county": "Buffalo"
+    },
+    {
+      "fromKey": "NE-Otoe",
+      "fromUrl": "https://www.otoecountyne.gov/",
+      "href": "https://nto.us/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NE",
+      "county": "Otoe"
+    },
+    {
+      "fromKey": "NE-Otoe",
+      "fromUrl": "https://www.otoecountyne.gov/",
+      "href": "https://www.nebraska.gov/apps-courts-epayments/public/index",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NE",
+      "county": "Otoe"
+    },
+    {
+      "fromKey": "NE-York",
+      "fromUrl": "https://www.yorkcounty.ne.gov/",
+      "href": "https://nto.us/search.aspx?county=York",
+      "text": "Pay Taxes Online (Real Estate / Property)",
+      "reason": "pay_search_cta",
+      "state": "NE",
+      "county": "York"
+    },
+    {
+      "fromKey": "NH-DanvilleTown",
+      "fromUrl": "https://www.townofdanville.org/",
+      "href": "https://nhtaxkiosk.com/?KIOSKID=DANVILLE",
+      "text": "Review / Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NH",
+      "county": "Danville Town"
+    },
+    {
+      "fromKey": "NH-FitzwilliamTown",
+      "fromUrl": "https://www.fitzwilliam-nh.gov/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NH",
+      "county": "Fitzwilliam Town"
+    },
+    {
+      "fromKey": "NH-FitzwilliamTown",
+      "fromUrl": "https://www.fitzwilliam-nh.gov/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "NH",
+      "county": "Fitzwilliam Town"
+    },
+    {
+      "fromKey": "NH-TiltonTown",
+      "fromUrl": "https://www.tiltonnh.org/",
+      "href": "https://nhtaxkiosk.com/default.aspx",
+      "text": "View & Pay Tax Bills",
+      "reason": "pay_search_cta",
+      "state": "NH",
+      "county": "Tilton Town"
+    },
+    {
+      "fromKey": "NH-StrathamTown",
+      "fromUrl": "https://www.strathamnh.gov/",
+      "href": "https://pay.eb2gov.com/StrathamNH",
+      "text": "Pay Online: Taxes, Motor Vehicles, Dog Licenses",
+      "reason": "pay_search_cta",
+      "state": "NH",
+      "county": "Stratham Town"
+    },
+    {
+      "fromKey": "NH-WentworthTown",
+      "fromUrl": "https://www.wentworth-nh.org/",
+      "href": "https://wentworth.nhtaxkiosk.com/",
+      "text": "Navigate to Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "NH",
+      "county": "Wentworth Town"
+    },
+    {
+      "fromKey": "NJ-AllendaleBoro",
+      "fromUrl": "https://www.allendalenj.gov/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0201",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Allendale Boro"
+    },
+    {
+      "fromKey": "NJ-AndoverTwp",
+      "fromUrl": "https://www.andovertwp.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1902",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Andover Twp"
+    },
+    {
+      "fromKey": "NJ-AtlanticCity",
+      "fromUrl": "https://www.acnj.gov/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0102",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Atlantic City"
+    },
+    {
+      "fromKey": "NJ-AudubonBoro",
+      "fromUrl": "https://www.audubonnj.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0401",
+      "text": "Pay Property Tax &amp; Sewer Bills Online (opens in new window/tab)",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Audubon Boro"
+    },
+    {
+      "fromKey": "NJ-AvonbytheseaBoro",
+      "fromUrl": "https://www.avonbytheseanj.com/",
+      "href": "https://www.avonbytheseanj.com/departments/office_of_tax_collections/wipp_online_payments.php",
+      "text": "Pay Tax & Water/Sewer Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Avonbythesea Boro"
+    },
+    {
+      "fromKey": "NJ-AllowayTwp",
+      "fromUrl": "https://www.allowaytownship.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1701",
+      "text": "View and Pay Tax &#038; Utilities Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Alloway Twp"
+    },
+    {
+      "fromKey": "NH-ManchesterCity",
+      "fromUrl": "https://www.manchesternh.gov/",
+      "href": "https://www.manchesternh.gov/Residents/e-Services/Pay-Online",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NH",
+      "county": "Manchester City"
+    },
+    {
+      "fromKey": "NJ-BrigantineCity",
+      "fromUrl": "https://brigantinebeach.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0103",
+      "text": "PAY ONLINE TAX, WATER/SEWER",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Brigantine City"
+    },
+    {
+      "fromKey": "NJ-BrickTownship",
+      "fromUrl": "https://www.bricknj.gov/",
+      "href": "https://www.bricknj.gov/departments/tax_collector/pay_taxes_online.php",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Brick Township"
+    },
+    {
+      "fromKey": "NJ-ButlerBoro",
+      "fromUrl": "https://www.butlerborough.com/",
+      "href": "https://www.butlerborough.com/cn/webpage.cfm?tpid=16679",
+      "text": "Pay your Taxes, Electric and Water &amp; Sewer bills.",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Butler Boro"
+    },
+    {
+      "fromKey": "NJ-BuenaVistaTwp",
+      "fromUrl": "https://buenavistanj.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0105",
+      "text": "PAY TAXES",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Buena Vista Twp"
+    },
+    {
+      "fromKey": "NJ-CarneysPointTwp",
+      "fromUrl": "https://www.carneyspointtwp.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1702",
+      "text": "Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Carneys Point Twp"
+    },
+    {
+      "fromKey": "NJ-CaldwellBoroughTwp",
+      "fromUrl": "https://caldwell-nj.com/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Caldwell Borough Twp"
+    },
+    {
+      "fromKey": "NJ-CaldwellBoroughTwp",
+      "fromUrl": "https://caldwell-nj.com/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Caldwell Borough Twp"
+    },
+    {
+      "fromKey": "NJ-BelmarBoro",
+      "fromUrl": "https://www.belmar.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1307",
+      "text": "PAY TAXES & WATER",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Belmar Boro"
+    },
+    {
+      "fromKey": "NJ-CliftonCity",
+      "fromUrl": "https://www.cliftonnj.org/",
+      "href": "https://www.govpaynow.com/gps/user/cyg/plc/a0076t",
+      "text": "Clerk Open Public Records Requests",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Clifton City"
+    },
+    {
+      "fromKey": "NJ-CliftonCity",
+      "fromUrl": "https://www.cliftonnj.org/",
+      "href": "https://www.govpaynow.com/gps/user/cyg/plc/a007ag",
+      "text": "Clerk Permits",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Clifton City"
+    },
+    {
+      "fromKey": "NJ-CliftonCity",
+      "fromUrl": "https://www.cliftonnj.org/",
+      "href": "https://www.govpaynow.com/gps/user/cyg/plc/a0076u",
+      "text": "Clerk Vital Statistics",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Clifton City"
+    },
+    {
+      "fromKey": "NJ-ChesterTwp",
+      "fromUrl": "https://www.chestertownship.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1407",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Chester Twp"
+    },
+    {
+      "fromKey": "NJ-EatontownBoro",
+      "fromUrl": "https://www.eatontownnj.com/",
+      "href": "https://www.eatontownnj.com/517/WIPP-Online-Payment-Taxes-Only",
+      "text": "Pay Tax Bills Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Eatontown Boro"
+    },
+    {
+      "fromKey": "NJ-EnglishtownBoro",
+      "fromUrl": "https://www.englishtownnj.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1313",
+      "text": "Click Here To Pay Tax/Utility Bills",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Englishtown Boro"
+    },
+    {
+      "fromKey": "NJ-ElkTwp",
+      "fromUrl": "https://elktownshipnj.gov/",
+      "href": "https://wipp.edmundsgovtech.cloud/home?wippId=0804",
+      "text": "Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Elk Twp"
+    },
+    {
+      "fromKey": "NJ-EmersonBoro",
+      "fromUrl": "https://emersonnj.gov/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0214",
+      "text": "View & Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Emerson Boro"
+    },
+    {
+      "fromKey": "NJ-EmersonBoro",
+      "fromUrl": "https://emersonnj.gov/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Emerson Boro"
+    },
+    {
+      "fromKey": "NJ-EmersonBoro",
+      "fromUrl": "https://emersonnj.gov/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Emerson Boro"
+    },
+    {
+      "fromKey": "NJ-FarHillsBoro",
+      "fromUrl": "https://www.farhillsnj.org/",
+      "href": "https://www.farhillsnj.org/tax_and_sewer_collector.php",
+      "text": "Pay Tax and Sewer Payments Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Far Hills Boro"
+    },
+    {
+      "fromKey": "NJ-FairLawnBoro",
+      "fromUrl": "https://www.fairlawn.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Fair Lawn Boro"
+    },
+    {
+      "fromKey": "NJ-FairLawnBoro",
+      "fromUrl": "https://www.fairlawn.org/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Fair Lawn Boro"
+    },
+    {
+      "fromKey": "NJ-FranklinLakesBoro",
+      "fromUrl": "https://www.franklinlakes.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp0220/",
+      "text": "Review/Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Franklin Lakes Boro"
+    },
+    {
+      "fromKey": "NJ-FranklinLakesBoro",
+      "fromUrl": "https://www.franklinlakes.org/",
+      "href": "https://www.franklinlakes.org/payonline",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Franklin Lakes Boro"
+    },
+    {
+      "fromKey": "NJ-FranklinLakesBoro",
+      "fromUrl": "https://www.franklinlakes.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Franklin Lakes Boro"
+    },
+    {
+      "fromKey": "NJ-FranklinLakesBoro",
+      "fromUrl": "https://www.franklinlakes.org/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Franklin Lakes Boro"
+    },
+    {
+      "fromKey": "NJ-GlassboroBoro",
+      "fromUrl": "https://www.glassboro.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?modFilter=TU&wippid=0806",
+      "text": "Pay Tax/Utility Bill",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Glassboro Boro"
+    },
+    {
+      "fromKey": "NJ-FranklinTwp",
+      "fromUrl": "https://www.franklintownshipnj.org/",
+      "href": "https://www.franklintownshipnj.org/166/Tax-Office",
+      "text": "Payments Pay your tax bill online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Franklin Twp"
+    },
+    {
+      "fromKey": "NJ-HackensackCity",
+      "fromUrl": "https://www.hackensack.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0223",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Hackensack City"
+    },
+    {
+      "fromKey": "NJ-HaddonfieldBoro",
+      "fromUrl": "https://www.haddonfieldnj.org/",
+      "href": "http://wipp.edmundsassoc.com/Wipp0417",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Haddonfield Boro"
+    },
+    {
+      "fromKey": "NJ-GreenwichTwp",
+      "fromUrl": "https://www.greenwichtwp.com/",
+      "href": "https://wippii.edmundsassoc.com/Wipp0807/",
+      "text": "Pay Tax and Utility Bills",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Greenwich Twp"
+    },
+    {
+      "fromKey": "NJ-HarveyCedarsBoro",
+      "fromUrl": "https://www.harveycedars.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1510",
+      "text": "PAY TAXES / UTILITIES",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Harvey Cedars Boro"
+    },
+    {
+      "fromKey": "NJ-FairviewBoro",
+      "fromUrl": "https://www.fairviewborough.com/",
+      "href": "https://www.fairviewborough.com/government/documents/resident-forms/online-services/352-pay-taxes-online/file",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Fairview Boro"
+    },
+    {
+      "fromKey": "NJ-HaworthBoro",
+      "fromUrl": "https://www.haworthnj.org/",
+      "href": "https://www.haworthnj.org/pay",
+      "text": "Property Taxes Inquiry or Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Haworth Boro"
+    },
+    {
+      "fromKey": "NJ-HaworthBoro",
+      "fromUrl": "https://www.haworthnj.org/",
+      "href": "http://wipp.edmundsassoc.com/Wipp/?wippid=0226",
+      "text": "View/Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Haworth Boro"
+    },
+    {
+      "fromKey": "NJ-HaworthBoro",
+      "fromUrl": "https://www.haworthnj.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Haworth Boro"
+    },
+    {
+      "fromKey": "NJ-HaworthBoro",
+      "fromUrl": "https://www.haworthnj.org/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Haworth Boro"
+    },
+    {
+      "fromKey": "NJ-HightstownBoro",
+      "fromUrl": "https://www.hightstownborough.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1104#new_tab",
+      "text": "Pay Taxes/Utilities Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Hightstown Boro"
+    },
+    {
+      "fromKey": "NJ-HillsdaleBoro",
+      "fromUrl": "https://www.hillsdalenj.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Hillsdale Boro"
+    },
+    {
+      "fromKey": "NJ-HillsdaleBoro",
+      "fromUrl": "https://www.hillsdalenj.org/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Hillsdale Boro"
+    },
+    {
+      "fromKey": "NJ-HowellTwp",
+      "fromUrl": "https://www.twp.howell.nj.us/",
+      "href": "https://www.twp.howell.nj.us/544/ViewPay-Bill-Online",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Howell Twp"
+    },
+    {
+      "fromKey": "NJ-JamesburgBoro",
+      "fromUrl": "https://www.jamesburgborough.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1208",
+      "text": "Pay Your Taxes and Sewer Bills Here!",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Jamesburg Boro"
+    },
+    {
+      "fromKey": "NJ-LaurelSpringsBoro",
+      "fromUrl": "https://www.laurelsprings-nj.com/",
+      "href": "https://www.laurelsprings-nj.com/1306/Tax-Sewer-Pay-Online",
+      "text": "Tax &amp; Sewer - Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Laurel Springs Boro"
+    },
+    {
+      "fromKey": "NJ-HarrisonTwp",
+      "fromUrl": "https://www.harrisontwp.us/",
+      "href": "https://harrisontwp.us/featured/pay-taxes/",
+      "text": "Pay Taxes &#038; Sewer",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Harrison Twp"
+    },
+    {
+      "fromKey": "NJ-LittleFerryBoro",
+      "fromUrl": "https://www.littleferrynj.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp0230/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Little Ferry Boro"
+    },
+    {
+      "fromKey": "NJ-LongportBoro",
+      "fromUrl": "https://www.longportnj.gov/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0115",
+      "text": "Pay your Taxes & Utilities Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Longport Boro"
+    },
+    {
+      "fromKey": "NJ-LowerTwp",
+      "fromUrl": "https://www.townshipoflower.org/",
+      "href": "https://wipp.edmundsgovtech.cloud/home?wippId=0505",
+      "text": "PAY ONLINE",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Lower Twp"
+    },
+    {
+      "fromKey": "NJ-MantuaTwp",
+      "fromUrl": "https://www.mantuatownship.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0810",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Mantua Twp"
+    },
+    {
+      "fromKey": "NJ-MidlandParkBoro",
+      "fromUrl": "https://www.midlandparknj.gov/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0235",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Midland Park Boro"
+    },
+    {
+      "fromKey": "NJ-LivingstonTwp",
+      "fromUrl": "https://www.livingstonnj.org/",
+      "href": "https://www.livingstonnj.org/1409/Pay-Taxes-and-Utility-Bills-Online",
+      "text": "Lookup/Pay Online eBill Notifications",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Livingston Twp"
+    },
+    {
+      "fromKey": "NJ-MiddletownTwp",
+      "fromUrl": "https://www.middletownnj.org/",
+      "href": "https://middletownnj.org/254/Online-Payments-Registrations",
+      "text": "pay online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Middletown Twp"
+    },
+    {
+      "fromKey": "NJ-MiddletownTwp",
+      "fromUrl": "https://www.middletownnj.org/",
+      "href": "https://www.middletownnj.org/278/Tax-Collection",
+      "text": "Tax Collection / Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Middletown Twp"
+    },
+    {
+      "fromKey": "NJ-MountArlingtonBoro",
+      "fromUrl": "https://mountarlingtonnj.org/",
+      "href": "http://mountarlingtonnj.org/online-payments/",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Mount Arlington Boro"
+    },
+    {
+      "fromKey": "NJ-MorristownTown",
+      "fromUrl": "https://www.townofmorristown.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Morristown Town"
+    },
+    {
+      "fromKey": "NJ-MorristownTown",
+      "fromUrl": "https://www.townofmorristown.org/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Morristown Town"
+    },
+    {
+      "fromKey": "NJ-MountLaurelTwp",
+      "fromUrl": "https://www.mountlaurel.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp0324/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Mount Laurel Twp"
+    },
+    {
+      "fromKey": "NJ-MountainsideBoro",
+      "fromUrl": "https://www.mountainside-nj.com/",
+      "href": "https://wipp.edmundsgovtech.cloud/home?wippId=2010#",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Mountainside Boro"
+    },
+    {
+      "fromKey": "NJ-NorthHaledonBoro",
+      "fromUrl": "https://www.northhaledon.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1606",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "North Haledon Boro"
+    },
+    {
+      "fromKey": "NJ-NewHanoverTwp",
+      "fromUrl": "https://www.newhanovertwp.com/",
+      "href": "https://www.newhanovertwp.com/taxation",
+      "text": "PAY TAXES",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "New Hanover Twp"
+    },
+    {
+      "fromKey": "NJ-OceanTwp",
+      "fromUrl": "https://www.oceantwp.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Powered By Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Ocean Twp"
+    },
+    {
+      "fromKey": "NJ-TabernacleTwp",
+      "fromUrl": "https://www.tabernacle-nj.gov/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0335",
+      "text": "Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Tabernacle Twp"
+    },
+    {
+      "fromKey": "NJ-TotowaBoro",
+      "fromUrl": "https://www.totowanj.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1612",
+      "text": "PAY YOUR TAX AND WATER BILLS HERE",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Totowa Boro"
+    },
+    {
+      "fromKey": "NJ-SpringfieldTwp",
+      "fromUrl": "https://springfield-nj.us/",
+      "href": "https://www.cit-e.net/springfield-nj/cit-e-access/TaxBill_Std/?TID=132&#038;TPID=12728?",
+      "text": "Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Springfield Twp"
+    },
+    {
+      "fromKey": "NJ-SpringfieldTwp",
+      "fromUrl": "https://springfield-nj.us/",
+      "href": "https://www.cit-e.net/springfield-nj/cit-e-access/TaxBill_Std/?TID=132&TPID=12728%3E",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Springfield Twp"
+    },
+    {
+      "fromKey": "NJ-UpperTwp",
+      "fromUrl": "https://uppertownship.com/",
+      "href": "https://uppertownship.com/wp-content/uploads/2026/03/Direct-Withdrawal.pdf",
+      "text": "Pay Tax Bill With Electronic Debit Form",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Upper Twp"
+    },
+    {
+      "fromKey": "NJ-UpperTwp",
+      "fromUrl": "https://uppertownship.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp0511/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Upper Twp"
+    },
+    {
+      "fromKey": "NJ-UpperTwp",
+      "fromUrl": "https://uppertownship.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0511",
+      "text": "PAY YOUR TAXES",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Upper Twp"
+    },
+    {
+      "fromKey": "NJ-UnionTwp",
+      "fromUrl": "https://www.uniontownship.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=2019",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Union Twp"
+    },
+    {
+      "fromKey": "NJ-VeronaTwp",
+      "fromUrl": "https://www.veronanj.org/",
+      "href": "https://www.veronanj.org/payabill",
+      "text": "Pay Tax/Utility",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Verona Twp"
+    },
+    {
+      "fromKey": "NJ-TuckertonBoro",
+      "fromUrl": "https://www.tuckertonborough.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1533",
+      "text": "Pay Tax Bill",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Tuckerton Boro"
+    },
+    {
+      "fromKey": "NJ-WanaqueBoro",
+      "fromUrl": "https://www.wanaqueborough.com/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "NJ",
+      "county": "Wanaque Boro"
+    },
+    {
+      "fromKey": "NJ-OceanportBoro",
+      "fromUrl": "https://www.oceanportboro.com/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=1338",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Oceanport Boro"
+    },
+    {
+      "fromKey": "NJ-WashingtonTwp",
+      "fromUrl": "https://www.twp.washington.nj.us/",
+      "href": "https://www.twp.washington.nj.us/residents/pay_your_taxes/index.php",
+      "text": "Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Washington Twp"
+    },
+    {
+      "fromKey": "NJ-WashingtonTwp",
+      "fromUrl": "https://www.twp.washington.nj.us/",
+      "href": "http://wipp.edmundsassoc.com/Wipp0818",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Washington Twp"
+    },
+    {
+      "fromKey": "NJ-WashingtonTwp",
+      "fromUrl": "https://www.twp.washington.nj.us/",
+      "href": "https://wipp.edmundsassoc.com/Wipp0818/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Washington Twp"
+    },
+    {
+      "fromKey": "NJ-WestCapeMayBoro",
+      "fromUrl": "https://www.westcapemay.us/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0512",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "West Cape May Boro"
+    },
+    {
+      "fromKey": "NJ-UpperDeerfieldTwp",
+      "fromUrl": "https://upperdeerfield.com/",
+      "href": "https://upperdeerfield.com/pay-tax-utility-bills/",
+      "text": "Pay Tax &#038; Utility Bills",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Upper Deerfield Twp"
+    },
+    {
+      "fromKey": "NJ-VinelandCity",
+      "fromUrl": "https://www.vinelandcity.org/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=0614",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "NJ",
+      "county": "Vineland City"
+    },
+    {
+      "fromKey": "NY-Wayne",
+      "fromUrl": "https://waynecountyny.gov/",
+      "href": "https://waynecountyny.gov/535/Pay-Your-Taxes",
+      "text": "Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "NY",
+      "county": "Wayne"
+    },
+    {
+      "fromKey": "NY-WhitePlainsCity",
+      "fromUrl": "https://www.cityofwhiteplains.com/",
+      "href": "https://cwp.munisselfservice.com/citizens/default.aspx",
+      "text": "Pay Taxes/Utility Bills Online",
+      "reason": "pay_search_cta",
+      "state": "NY",
+      "county": "White Plains City"
+    },
+    {
+      "fromKey": "NY-WhitePlains",
+      "fromUrl": "https://www.cityofwhiteplains.com/",
+      "href": "https://cwp.munisselfservice.com/citizens/default.aspx",
+      "text": "Pay Taxes/Utility Bills Online",
+      "reason": "pay_search_cta",
+      "state": "NY",
+      "county": "White Plains"
+    },
+    {
+      "fromKey": "OH-Butler",
+      "fromUrl": "https://www.butlercountyohio.org/",
+      "href": "https://www.bcohio.gov/pay_online/index.php",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "OH",
+      "county": "Butler"
+    },
+    {
+      "fromKey": "OH-Hardin",
+      "fromUrl": "https://www.hardincountyohio.gov/",
+      "href": "https://hardincountyohio.gov/treasurer-payment-methods/",
+      "text": ".cls-1 { fill: #fff; stroke-width: 0px; } Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "OH",
+      "county": "Hardin"
+    },
+    {
+      "fromKey": "OH-Hardin",
+      "fromUrl": "https://www.hardincountyohio.gov/",
+      "href": "https://pay.paygov.us/EndUser/PaymentAgency.aspx?ttid=10138",
+      "text": "Click Here",
+      "reason": "vendor_link",
+      "state": "OH",
+      "county": "Hardin"
+    },
+    {
+      "fromKey": "OH-Hocking",
+      "fromUrl": "https://www.co.hocking.oh.us/",
+      "href": "https://auditor.hocking.us/",
+      "text": "Pay Tax",
+      "reason": "pay_search_cta",
+      "state": "OH",
+      "county": "Hocking"
+    },
+    {
+      "fromKey": "OH-Huron",
+      "fromUrl": "https://www.huroncounty-oh.gov/",
+      "href": "https://www.huroncounty-oh.gov/departments/clerk_of_courts/pay_online.php",
+      "text": "- Pay Online",
+      "reason": "pay_search_cta",
+      "state": "OH",
+      "county": "Huron"
+    },
+    {
+      "fromKey": "OH-Madison",
+      "fromUrl": "https://www.co.madison.oh.us/",
+      "href": "https://treasurer.co.madison.oh.us/payment-information",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "OH",
+      "county": "Madison"
+    },
+    {
+      "fromKey": "OH-Mahoning",
+      "fromUrl": "https://www.mahoningcountyoh.gov/",
+      "href": "https://www.mahoningcountyoh.gov/219/Making-A-Payment",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "OH",
+      "county": "Mahoning"
+    },
+    {
+      "fromKey": "SC-Cherokee",
+      "fromUrl": "https://www.cherokeecountysc.gov/",
+      "href": "https://cherokeecountysc.gov/treasurer/",
+      "text": "Pay Taxes?",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Cherokee"
+    },
+    {
+      "fromKey": "SC-Lancaster",
+      "fromUrl": "https://www.lancastercountysc.gov/",
+      "href": "https://lancastersctax.qpaybill.com/Taxes/TaxesDefaultType4.aspx",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Lancaster"
+    },
+    {
+      "fromKey": "SC-Florence",
+      "fromUrl": "https://www.florenceco.org/",
+      "href": "https://taxes.paystar.io/florence-county-tax",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Florence"
+    },
+    {
+      "fromKey": "SC-Greenville",
+      "fromUrl": "https://www.greenvillecounty.org/",
+      "href": "https://www.greenvillecounty.org/TaxCollector/OnlineTax.aspx",
+      "text": "Pay your property taxes online",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Greenville"
+    },
+    {
+      "fromKey": "SC-Greenville",
+      "fromUrl": "https://www.greenvillecounty.org/",
+      "href": "https://www.greenvillecounty.org/disclaimer/PublicRecords.aspx?DirURL=TaxQuery",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Greenville"
+    },
+    {
+      "fromKey": "SC-Jasper",
+      "fromUrl": "https://www.jaspercountysc.gov/",
+      "href": "https://taxes.paystar.io/app/customer/jasper-county-tax",
+      "text": "Pay Taxes Pay your taxes online.",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Jasper"
+    },
+    {
+      "fromKey": "SC-Union",
+      "fromUrl": "https://www.countyofunion.org/",
+      "href": "https://uniontreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx",
+      "text": "PAY TAXES",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Union"
+    },
+    {
+      "fromKey": "SD-Brown",
+      "fromUrl": "https://brown.sd.us/",
+      "href": "http://tax.brown.sd.us/taxweb/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "SD",
+      "county": "Brown"
+    },
+    {
+      "fromKey": "SD-Brown",
+      "fromUrl": "https://brown.sd.us/",
+      "href": "http://64.68.162.215/taxweb/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "SD",
+      "county": "Brown"
+    },
+    {
+      "fromKey": "SC-Colleton",
+      "fromUrl": "https://www.colletoncounty.org/",
+      "href": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1046&amp;LayerID=23500&amp;PageTypeID=2&amp;PageID=9798",
+      "text": "Search Property Tax Records (opens in a new tab)",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Colleton"
+    },
+    {
+      "fromKey": "SD-Pennington",
+      "fromUrl": "https://www.pennco.org/",
+      "href": "https://docs.pennco.org/apps/PropertyTax2/Default.aspx",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "SD",
+      "county": "Pennington"
+    },
+    {
+      "fromKey": "TN-Knox",
+      "fromUrl": "https://www.knoxcounty.org/",
+      "href": "https://propertytax.knoxcountytn.gov/",
+      "text": "Look Up &amp; Pay Taxes",
+      "reason": "vendor_link",
+      "state": "TN",
+      "county": "Knox"
+    },
+    {
+      "fromKey": "TN-Knox",
+      "fromUrl": "https://www.knoxcounty.org/",
+      "href": "https://trustee.knoxcounty.org/",
+      "text": "Property Tax Due And Want To Pay Online?",
+      "reason": "pay_search_cta",
+      "state": "TN",
+      "county": "Knox"
+    },
+    {
+      "fromKey": "TN-Hawkins",
+      "fromUrl": "https://www.hawkinscountytn.gov/",
+      "href": "https://hawkins.renewgov.com/",
+      "text": "Pay Property Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TN",
+      "county": "Hawkins"
+    },
+    {
+      "fromKey": "TN-Hawkins",
+      "fromUrl": "https://www.hawkinscountytn.gov/",
+      "href": "https://hawkins-tn.mygovonline.com/?mod=propertytax&mode=public_lookup",
+      "text": "Pay Property Tax Online",
+      "reason": "pay_search_cta",
+      "state": "TN",
+      "county": "Hawkins"
+    },
+    {
+      "fromKey": "TN-MorristownCity",
+      "fromUrl": "https://www.mymorristown.com/",
+      "href": "https://www.mymorristown.com/departments/taxes/index.php",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "TN",
+      "county": "Morristown City"
+    },
+    {
+      "fromKey": "SC-Orangeburg",
+      "fromUrl": "https://www.orangeburgcounty.org/",
+      "href": "https://www.orangeburgcounty.org/373/Pay-Taxes-Online",
+      "text": "Online Tax Payments Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "SC",
+      "county": "Orangeburg"
+    },
+    {
+      "fromKey": "TN-Rutherford",
+      "fromUrl": "https://www.rutherfordcountytn.gov/",
+      "href": "https://trustee.pay.rutherfordcountytn.gov/#/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TN",
+      "county": "Rutherford"
+    },
+    {
+      "fromKey": "TN-Rutherford",
+      "fromUrl": "https://www.rutherfordcountytn.gov/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "TN",
+      "county": "Rutherford"
+    },
+    {
+      "fromKey": "TN-Rutherford",
+      "fromUrl": "https://www.rutherfordcountytn.gov/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "TN",
+      "county": "Rutherford"
+    },
+    {
+      "fromKey": "TX-ASW",
+      "fromUrl": "https://www.aswtax.com/",
+      "href": "http://aswportal.azurewebsites.net/search/list",
+      "text": "Click Here to Pay Your Tax Bill",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "ASW"
+    },
+    {
+      "fromKey": "TX-BobLeardInterests",
+      "fromUrl": "https://www.bli-tax.com/",
+      "href": "https://bli-tax.com/records/",
+      "text": "View-Print-Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Bob Leard Interests"
+    },
+    {
+      "fromKey": "TX-CarrolltonFarmersBranchISD",
+      "fromUrl": "https://www.cfbisd.edu/",
+      "href": "https://www.cfbisd.edu/departments/business-support-services/tax-office",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Carrollton Farmers Branch ISD"
+    },
+    {
+      "fromKey": "TX-CampCAD",
+      "fromUrl": "https://www.campcad.org/",
+      "href": "https://certifiedpayments.net/PaymentWizard_2.aspx",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Camp CAD"
+    },
+    {
+      "fromKey": "TX-ClearLakeCityWaterAuthority",
+      "fromUrl": "https://www.clcwa.org/",
+      "href": "https://www.clcwa.org/_files/ugd/6e2815_69cd4d6be4c74bfb9cf1f021a43e586a.pdf",
+      "text": "PAY PROPERTY TAX",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Clear Lake City Water Authority"
+    },
+    {
+      "fromKey": "TX-ColoradoCAD",
+      "fromUrl": "https://www.coloradocad.org/",
+      "href": "https://certifiedpayments.net/index.aspx?BureauCode=7334020",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Colorado CAD"
+    },
+    {
+      "fromKey": "TX-DallasCountyURD",
+      "fromUrl": "https://www.dcurd.org/",
+      "href": "https://dcurd.txproperty.tax/",
+      "text": "Account Search &amp; Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Dallas County URD"
+    },
+    {
+      "fromKey": "TN-Sullivan",
+      "fromUrl": "https://www.sullivancountytn.gov/",
+      "href": "https://sullivantntrustee.gov/property-tax/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "TN",
+      "county": "Sullivan"
+    },
+    {
+      "fromKey": "TX-DeerParkCity",
+      "fromUrl": "https://www.deerparktx.gov/",
+      "href": "https://deerparktx.gov/1060/Online-Payments",
+      "text": "Pay Online Pay water bill, taxes, permit fees, citations, &amp; more.&nbsp;",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Deer Park City"
+    },
+    {
+      "fromKey": "TX-FortBend",
+      "fromUrl": "https://www.fortbendcountytx.gov/",
+      "href": "https://www.fortbendcountytx.gov/your-county/make-a-payment",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Fort Bend"
+    },
+    {
+      "fromKey": "TX-Harris",
+      "fromUrl": "https://myharriscountytax.com/",
+      "href": "https://payments.myharriscountytax.com/",
+      "text": "Continue as Guest",
+      "reason": "vendor_link",
+      "state": "TX",
+      "county": "Harris"
+    },
+    {
+      "fromKey": "TX-Harris",
+      "fromUrl": "https://myharriscountytax.com/",
+      "href": "https://payments.myharriscountytax.com/oauth/login",
+      "text": "Sign In or Sign Up",
+      "reason": "vendor_link",
+      "state": "TX",
+      "county": "Harris"
+    },
+    {
+      "fromKey": "TX-HarrisMUD386",
+      "fromUrl": "https://www.hmcmud386.org/",
+      "href": "https://mds.firstbilling.com/Account",
+      "text": "View/Pay Your Water/Sewer Bill Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Harris MUD386"
+    },
+    {
+      "fromKey": "TX-HarrisMUD386",
+      "fromUrl": "https://www.hmcmud386.org/",
+      "href": "https://www.utilitytaxservice.com/AccountSrch",
+      "text": "Pay Your Tax Bill Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Harris MUD386"
+    },
+    {
+      "fromKey": "TX-Jones",
+      "fromUrl": "https://jonescad.org/",
+      "href": "https://certifiedpayments.net/index.aspx?BureauCode=2492811",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Jones"
+    },
+    {
+      "fromKey": "TX-GalenaParkISD",
+      "fromUrl": "https://www.galenaparkisd.com/",
+      "href": "https://www.hctax.net/Voter/Registration",
+      "text": "Voter Registration (opens in new window/tab)",
+      "reason": "vendor_link",
+      "state": "TX",
+      "county": "Galena Park ISD"
+    },
+    {
+      "fromKey": "TX-McAllenCity",
+      "fromUrl": "https://www.mcallen.net/",
+      "href": "https://mcallen.go2gov.net/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Mc Allen City"
+    },
+    {
+      "fromKey": "TX-LiveOakCAD",
+      "fromUrl": "https://www.liveoakappraisal.com/",
+      "href": "https://certifiedpayments.net/index.aspx?BureauCode=4512685",
+      "text": "Pay Taxes Online - Certified Payments",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Live Oak CAD"
+    },
+    {
+      "fromKey": "TX-LiveOakCAD",
+      "fromUrl": "https://www.liveoakappraisal.com/",
+      "href": "https://www.liveoakappraisal.com/Home/ThirdPartyVendor",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Live Oak CAD"
+    },
+    {
+      "fromKey": "TX-McLennan",
+      "fromUrl": "https://www.co.mclennan.tx.us/",
+      "href": "https://actweb.acttax.com/mclennan/mclennan/index.jsp",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Mc Lennan"
+    },
+    {
+      "fromKey": "TX-NorthwestDallasCountyFCD",
+      "fromUrl": "https://www.nwdallasfcd.com/",
+      "href": "https://nwfcd.propertytaxpayments.net/search",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Northwest Dallas County FCD"
+    },
+    {
+      "fromKey": "TX-SchleicherCAD",
+      "fromUrl": "https://www.schleichercad.org/",
+      "href": "https://tax.co.schleicher.tx.us/",
+      "text": "PAY TAXES ONLINE",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Schleicher CAD"
+    },
+    {
+      "fromKey": "TX-ScurryCAD",
+      "fromUrl": "https://www.scurrytex.com/",
+      "href": "https://scurrytax.us/",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Scurry CAD"
+    },
+    {
+      "fromKey": "TX-Tarrant",
+      "fromUrl": "https://www.tarrantcountytx.gov/",
+      "href": "https://www.tax.tarrantcountytx.gov/search",
+      "text": "Pay Property Tax",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Tarrant"
+    },
+    {
+      "fromKey": "TX-ValwoodImprovementAuthority",
+      "fromUrl": "https://valwood.com/",
+      "href": "https://www.dallascounty.org/tax",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Valwood Improvement Authority"
+    },
+    {
+      "fromKey": "TX-Wichita",
+      "fromUrl": "https://www.wichitacounty.org/",
+      "href": "https://www.kansas.gov/propertytax/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Wichita"
+    },
+    {
+      "fromKey": "TX-Wilson",
+      "fromUrl": "https://www.wilsoncountytx.gov/",
+      "href": "https://www.wilsoncountytx.gov/page/wilson.PropertyTaxSearch",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Wilson"
+    },
+    {
+      "fromKey": "TX-WoodlandsMud",
+      "fromUrl": "https://www.woodlandswater.org/taxes/",
+      "href": "https://woodlandswater.org/bill-pay/",
+      "text": "View/Pay Bill",
+      "reason": "pay_search_cta",
+      "state": "TX",
+      "county": "Woodlands Mud"
+    },
+    {
+      "fromKey": "UT-Salt Lake",
+      "fromUrl": "https://www.saltlakecounty.gov/property-tax/",
+      "href": "https://www.saltlakecounty.gov/treasurer/property-taxes/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "UT",
+      "county": "Salt Lake"
+    },
+    {
+      "fromKey": "VA-Accomack",
+      "fromUrl": "https://www.co.accomack.va.us/",
+      "href": "https://www.accomack.gov/702/Pay-Taxes#/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Accomack"
+    },
+    {
+      "fromKey": "VA-Appomattox",
+      "fromUrl": "https://www.appomattoxcountyva.gov/",
+      "href": "https://www.appomattoxcountyva.gov/237/How-to-Pay-Your-Taxes",
+      "text": "Pay Your Taxes",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Appomattox"
+    },
+    {
+      "fromKey": "VA-Carroll",
+      "fromUrl": "https://www.carrollcountyva.gov/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=CARR",
+      "text": "Search & Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Carroll"
+    },
+    {
+      "fromKey": "VA-CityOfHopewell",
+      "fromUrl": "https://www.hopewellva.gov/",
+      "href": "https://www.hopewellva.gov/271/Online-Payments",
+      "text": "Online Payments View/pay a bill",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "City Of Hopewell"
+    },
+    {
+      "fromKey": "VA-Essex",
+      "fromUrl": "https://www.essexva.gov/",
+      "href": "https://wipp.edmundsassoc.com/Wipp/?wippid=ESEX&amp;modFilter=TU",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Essex"
+    },
+    {
+      "fromKey": "VA-HopewellCity",
+      "fromUrl": "https://www.hopewellva.gov/",
+      "href": "https://www.hopewellva.gov/271/Online-Payments",
+      "text": "Online Payments View/pay a bill",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Hopewell City"
+    },
+    {
+      "fromKey": "UT-Washington",
+      "fromUrl": "https://www.washco.utah.gov/",
+      "href": "https://www.washco.utah.gov/departments/treasurer/payment-options/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "UT",
+      "county": "Washington"
+    },
+    {
+      "fromKey": "UT-Juab",
+      "fromUrl": "https://www.juabcounty.gov/",
+      "href": "https://secureinstantpayments.com/sip/?ID=11594",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "UT",
+      "county": "Juab"
+    },
+    {
+      "fromKey": "VA-Mecklenburg",
+      "fromUrl": "https://www.mecklenburgva.com/",
+      "href": "https://meckweb.mecklenburgva.com/Applications/trapps/default.htm",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Mecklenburg"
+    },
+    {
+      "fromKey": "VA-Hanover",
+      "fromUrl": "https://www.hanovercounty.gov/",
+      "href": "https://www.hanovercounty.gov/382",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Hanover"
+    },
+    {
+      "fromKey": "VA-JamesCity",
+      "fromUrl": "https://jamescitycountyva.gov/",
+      "href": "https://www.invoicecloud.com/portal/(S(i5pqahgiao24zwi1mflza0jv))/2/Site.aspx?G=789a8d3a-a10d-41de-b1ff-4a2f9a349d13",
+      "text": "Pay Taxes/Bills Online",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "James City"
+    },
+    {
+      "fromKey": "VA-Loudoun",
+      "fromUrl": "https://www.loudoun.gov/",
+      "href": "https://www.loudoun.gov/paytaxes",
+      "text": "PAY TAXES",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Loudoun"
+    },
+    {
+      "fromKey": "VA-Page",
+      "fromUrl": "https://www.pagecounty.virginia.gov/",
+      "href": "https://eservices.pagecounty.virginia.gov/applications/txapps/index.htm",
+      "text": "e-Commissioner Inquiry (File and Pay Online)",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Page"
+    },
+    {
+      "fromKey": "VA-SuffolkCity",
+      "fromUrl": "https://www.suffolkva.us/",
+      "href": "http://www.suffolkvatax.us/",
+      "text": "Online Payments Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Suffolk City"
+    },
+    {
+      "fromKey": "WA-King",
+      "fromUrl": "https://kingcounty.gov/",
+      "href": "https://kingcounty.gov/en/dept/executive-services/buildings-property/treasury-operations/property-tax",
+      "text": "Pay property taxes",
+      "reason": "pay_search_cta",
+      "state": "WA",
+      "county": "King"
+    },
+    {
+      "fromKey": "WI-Adams",
+      "fromUrl": "https://www.co.adams.wi.us/",
+      "href": "https://www.google.com/url?q=https%3A%2F%2Fpp-adams-co-wi-fb.app.landnav.com%2FLogin&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw3zBdpon9l9Gvx1wTMjQrSL",
+      "text": "Pay Taxes",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Adams"
+    },
+    {
+      "fromKey": "WI-Chippewa",
+      "fromUrl": "https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/",
+      "href": "https://pp-chippewa-co-wi-fb.app.landnav.com/Home",
+      "text": "CHIPPEWA COUNTY PUBLIC PORTAL",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Chippewa"
+    },
+    {
+      "fromKey": "WI-Chippewa",
+      "fromUrl": "https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/",
+      "href": "https://pp-chippewa-co-wi-fb.app.landnav.com/Login",
+      "text": "Login",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Chippewa"
+    },
+    {
+      "fromKey": "WI-Chippewa",
+      "fromUrl": "https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/",
+      "href": "https://pp-chippewa-co-wi-fb.app.landnav.com/Login/Logout",
+      "text": "",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Chippewa"
+    },
+    {
+      "fromKey": "WI-Chippewa",
+      "fromUrl": "https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/",
+      "href": "https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/content/PublicPortalInstructions-ChippewaCounty.pdf",
+      "text": "How to Make a Tax Payment",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Chippewa"
+    },
+    {
+      "fromKey": "WI-Clark",
+      "fromUrl": "https://www.clarkcountywi.gov/treasurer",
+      "href": "https://client.pointandpay.net/web/ClarkCountyTreasurerWI",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Clark"
+    },
+    {
+      "fromKey": "VA-WilliamsburgCity",
+      "fromUrl": "https://www.williamsburgva.gov/",
+      "href": "https://www.williamsburgva.gov/790/Online-Services",
+      "text": "Pay Online Make Online Payments",
+      "reason": "pay_search_cta",
+      "state": "VA",
+      "county": "Williamsburg City"
+    },
+    {
+      "fromKey": "WI-Dane",
+      "fromUrl": "https://www.countyofdane.com/",
+      "href": "https://treasurer.danecounty.gov/taxpayment",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Dane"
+    },
+    {
+      "fromKey": "WI-Dunn",
+      "fromUrl": "https://dunncountywi.gov/treasurer",
+      "href": "https://pp-dunn-co-wi-fb.app.landnav.com/login",
+      "text": "Look Up Tax Information - C atalis",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Dunn"
+    },
+    {
+      "fromKey": "WI-Dunn",
+      "fromUrl": "https://dunncountywi.gov/treasurer",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Dunn"
+    },
+    {
+      "fromKey": "WI-Dunn",
+      "fromUrl": "https://dunncountywi.gov/treasurer",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Dunn"
+    },
+    {
+      "fromKey": "WI-Green Lake",
+      "fromUrl": "https://www.greenlakecountywi.gov/departments/treasurer/",
+      "href": "https://greenlake.transcendenttech.com/LandRecords/",
+      "text": "Pay Taxes Here",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Green Lake"
+    },
+    {
+      "fromKey": "WI-FoxPointVillage",
+      "fromUrl": "https://www.villageoffoxpoint.com/",
+      "href": "https://pp-milwaukee-co-wi-fb.app.landnav.com/",
+      "text": "Tax & Assessment Information",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Fox Point Village"
+    },
+    {
+      "fromKey": "WI-Green",
+      "fromUrl": "https://www.greencountywi.org/",
+      "href": "https://www.greencountywi.org/615/Pay-Taxes-Online",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Green"
+    },
+    {
+      "fromKey": "WI-Jackson",
+      "fromUrl": "https://www.co.jackson.wi.us/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Jackson"
+    },
+    {
+      "fromKey": "WI-Jackson",
+      "fromUrl": "https://www.co.jackson.wi.us/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Jackson"
+    },
+    {
+      "fromKey": "WI-Iowa",
+      "fromUrl": "https://www.iowacountywi.gov/",
+      "href": "https://www.iowacounty.org/paytaxes",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Iowa"
+    },
+    {
+      "fromKey": "WI-Kewaunee",
+      "fromUrl": "https://www.kewauneeco.org/",
+      "href": "https://www.kewauneeco.org/departments/county-treasurer/payment-options/",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Kewaunee"
+    },
+    {
+      "fromKey": "WI-GreenfieldCity",
+      "fromUrl": "https://www.ci.greenfield.wi.us/",
+      "href": "https://www.ci.greenfield.wi.us/145/pay",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Greenfield City"
+    },
+    {
+      "fromKey": "WI-GreenfieldCity",
+      "fromUrl": "https://www.ci.greenfield.wi.us/",
+      "href": "https://pp-milwaukee-co-wi-fb.app.landnav.com/Login",
+      "text": "Tax Data",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Greenfield City"
+    },
+    {
+      "fromKey": "WI-NeenahCity",
+      "fromUrl": "https://www.ci.neenah.wi.us/",
+      "href": "https://www.ci.neenah.wi.us/pay-online/",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Neenah City"
+    },
+    {
+      "fromKey": "WI-Polk",
+      "fromUrl": "https://www.polkcountywi.gov/treasurer/",
+      "href": "https://www.polkcountywi.gov/treasurer/government/elected_officials/treasurer/index.php",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Polk"
+    },
+    {
+      "fromKey": "WI-Polk",
+      "fromUrl": "https://www.polkcountywi.gov/treasurer/",
+      "href": "https://www.polkcountywi.gov/treasurer/government/elected_officials/treasurer/property_tax_search.php",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Polk"
+    },
+    {
+      "fromKey": "WI-Pepin",
+      "fromUrl": "https://www.co.pepin.wi.us/",
+      "href": "http://www.co.pepin.wi.us/index.asp?SEC=48CD6F75-A051-4AA6-AD80-A83F07C6F409&amp;Type=B_BASIC",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Pepin"
+    },
+    {
+      "fromKey": "WI-Pepin",
+      "fromUrl": "https://www.co.pepin.wi.us/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Pepin"
+    },
+    {
+      "fromKey": "WI-Pepin",
+      "fromUrl": "https://www.co.pepin.wi.us/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Pepin"
+    },
+    {
+      "fromKey": "WI-Price",
+      "fromUrl": "https://www.co.price.wi.us/",
+      "href": "http://records.co.price.wi.us/Access/master.asp",
+      "text": "Property Tax Search",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Price"
+    },
+    {
+      "fromKey": "WI-Vernon",
+      "fromUrl": "https://www.vernoncountywi.gov/",
+      "href": "https://pp-vernon-co-wi-fb.app.landnav.com/Login",
+      "text": "Tax & Parcel Search",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Vernon"
+    },
+    {
+      "fromKey": "WI-Vernon",
+      "fromUrl": "https://www.vernoncountywi.gov/",
+      "href": "https://www.vernoncountywi.gov/how_do_i/pay_online.php",
+      "text": "Pay Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Vernon"
+    },
+    {
+      "fromKey": "WI-Vilas",
+      "fromUrl": "https://www.vilascountywi.gov/",
+      "href": "https://www.vilascountywi.gov/departments/administration___officials/treasurer/payments.php",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Vilas"
+    },
+    {
+      "fromKey": "WI-Vilas",
+      "fromUrl": "https://www.vilascountywi.gov/",
+      "href": "https://www.vilascountywi.gov/departments/administration___officials/treasurer/pay_property_taxes_online.php",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Vilas"
+    },
+    {
+      "fromKey": "WI-StFrancisCity",
+      "fromUrl": "https://stfranciswi.org/",
+      "href": "https://pp-milwaukee-co-wi-fb.app.landnav.com/Login",
+      "text": "View Property Taxes",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "St Francis City"
+    },
+    {
+      "fromKey": "WI-StFrancisCity",
+      "fromUrl": "https://stfranciswi.org/",
+      "href": "https://stfranciswi.org/index.asp?SEC=1BAC8914-4680-4F13-9BBD-649FB38B55B8",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "St Francis City"
+    },
+    {
+      "fromKey": "WI-StFrancisCity",
+      "fromUrl": "https://stfranciswi.org/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "St Francis City"
+    },
+    {
+      "fromKey": "WI-StFrancisCity",
+      "fromUrl": "https://stfranciswi.org/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "St Francis City"
+    },
+    {
+      "fromKey": "WI-Richland",
+      "fromUrl": "https://www.co.richland.wi.us/",
+      "href": "https://pp-richland-co-wi-fb.app.landnav.com/Login",
+      "text": "Tax Information",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Richland"
+    },
+    {
+      "fromKey": "WI-Richland",
+      "fromUrl": "https://www.co.richland.wi.us/",
+      "href": "https://catalisgov.com/",
+      "text": "Government Websites by Catalis",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Richland"
+    },
+    {
+      "fromKey": "WI-Richland",
+      "fromUrl": "https://www.co.richland.wi.us/",
+      "href": "https://catalisgov.com/privacy-policy/",
+      "text": "Privacy Policy",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Richland"
+    },
+    {
+      "fromKey": "WI-Ozaukee",
+      "fromUrl": "https://www.co.ozaukee.wi.us/",
+      "href": "https://www.ascent.co.ozaukee.wi.us/LandRecords/",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Ozaukee"
+    },
+    {
+      "fromKey": "WI-Wood",
+      "fromUrl": "https://www.woodcountywi.gov/",
+      "href": "https://pp-wood-co-wi-fb.app.landnav.com/Login",
+      "text": "Property Tax Search",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Wood"
+    },
+    {
+      "fromKey": "WI-Wood",
+      "fromUrl": "https://www.woodcountywi.gov/",
+      "href": "https://www.woodcountywi.gov/Departments/Treasurer/TaxPayment.aspx",
+      "text": "Pay Property Taxes",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Wood"
+    },
+    {
+      "fromKey": "WV-Cabell",
+      "fromUrl": "https://www.cabellcounty.org/",
+      "href": "http://cabell.softwaresystems.com/indexp.html",
+      "text": "Pay Tax Online",
+      "reason": "pay_search_cta",
+      "state": "WV",
+      "county": "Cabell"
+    },
+    {
+      "fromKey": "WV-Harrison",
+      "fromUrl": "https://www.harrisoncountywv.gov/",
+      "href": "http://harrison.softwaresystems.com:8383/index.html?sm=ee",
+      "text": "Pay Your Taxes Online (opens in new tab)",
+      "reason": "pay_search_cta",
+      "state": "WV",
+      "county": "Harrison"
+    },
+    {
+      "fromKey": "WV-Berkeley",
+      "fromUrl": "https://www.berkeleywv.org/",
+      "href": "https://www.berkeleywv.org/183",
+      "text": "Pay Taxes/Fees",
+      "reason": "pay_search_cta",
+      "state": "WV",
+      "county": "Berkeley"
+    },
+    {
+      "fromKey": "WV-Mercer",
+      "fromUrl": "https://mercercountywv.com/",
+      "href": "http://mercer.softwaresystems.com/index.html",
+      "text": "Pay Property Taxes 5",
+      "reason": "pay_search_cta",
+      "state": "WV",
+      "county": "Mercer"
+    },
+    {
+      "fromKey": "WV-Putnam",
+      "fromUrl": "https://putnamcountywv.gov/",
+      "href": "http://putnam.softwaresystems.com/index.html",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "WV",
+      "county": "Putnam"
+    },
+    {
+      "fromKey": "WI-Washington",
+      "fromUrl": "https://www.washcowisco.gov/",
+      "href": "https://www.washcowisco.gov/departments/county_treasurer/pay_taxes_online",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Washington"
+    },
+    {
+      "fromKey": "WV-Preston",
+      "fromUrl": "https://prestoncountywv.gov/",
+      "href": "http://preston.softwaresystems.com/index.html",
+      "text": "Pay Taxes",
+      "reason": "pay_search_cta",
+      "state": "WV",
+      "county": "Preston"
+    },
+    {
+      "fromKey": "WI-Marquette",
+      "fromUrl": "https://www.marquettecountywi.gov/treasurer/",
+      "href": "https://pp-marquette-co-wi-fb.app.landnav.com/Login",
+      "text": "",
+      "reason": "vendor_link",
+      "state": "WI",
+      "county": "Marquette"
+    },
+    {
+      "fromKey": "WI-Marquette",
+      "fromUrl": "https://www.marquettecountywi.gov/treasurer/",
+      "href": "https://client.pointandpay.net/web/MarquetteCountyWI",
+      "text": "Pay Taxes Online",
+      "reason": "pay_search_cta",
+      "state": "WI",
+      "county": "Marquette"
+    }
+  ]
+}

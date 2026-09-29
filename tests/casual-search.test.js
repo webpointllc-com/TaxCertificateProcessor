@@ -82,6 +82,13 @@ describe('only present a collector link when sure', () => {
     assert.match(String(lookup.rejectURLs || []), /5524\/Property-Search/);
   });
 
+  it('locks Alachua to the county-taxes search/pay portal, not the office homepage', () => {
+    const lookup = lookupForApi('Alachua', 'FL');
+    assert.equal(lookup.urlLocked, true);
+    assert.match(lookup.officialUrl, /alachua\.county-taxes\.com\/public/i);
+    assert.doesNotMatch(lookup.officialUrl || '', /alachuacollector\.com\/?$/i);
+  });
+
   it('does not present a generic county homepage as the collector search', () => {
     const lookup = lookupForApi('King', 'WA');
     assert.equal(lookup.urlLocked, false);

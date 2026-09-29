@@ -1,13 +1,13 @@
 {
   "_meta": {
     "probed_on": "2026-09-29",
-    "method": "Personal live HTTP GET with a desktop browser UA. Collector vs assessor: lock only the tax collecting entity search/pay page. Present a link only when that page is confirmed. County homepages and 404 catalog rows are not locks. XPaths are from the live HTML when the form is server-rendered; SPA labels are from the compiled bundle.",
+    "method": "Personal live HTTP GET of every catalog searchURL (desktop Chrome UA, 12s timeout). Lock only a confirmed tax-collecting-entity search/pay page. County homepages, property-appraiser/CAD hosts, 404s, and Cloudflare-off-vendor redirects are not locks. Empty rows stay empty — no invented URLs. Florida: official collector pages (Alachua /property-taxes/, Brevard SEARCH or PAY ONLINE, Sarasota View/Pay Taxes) point at {county}.county-taxes.com/public; that host 403s behind Cloudflare when it exists and 404s when it does not. XPaths are from live HTML when the form is server-rendered; SPA labels are from the compiled bundle.",
     "catalog": {
-      "counties": 3241,
-      "verified_http": 1758,
-      "empty_or_unverified": 1483,
-      "google_fallback": 0,
-      "county_site_entities": 817
+      "counties": 3243,
+      "unique_urls_probed": 2280,
+      "collector_search_locks": "confirmed vendor/search portals only (county-taxes.com, LandNav, Spatialest, WebPayments, eProptax, ark.org, treasurer PIN, etc.)",
+      "empty_or_unverified": "homepage / assessor / dead / unknown_live / empty remain needs_correction until a collector search page is confirmed",
+      "google_fallback": 0
     }
   },
   "CA-SanDiego": {
@@ -273,6 +273,68 @@
         "Treasurer hub for orientation only: https://treasurer.maricopa.gov/"
       ],
       "notes": "Unlocked on purpose. Presenting a 404 or a homepage would be incorrect."
+    }
+  },
+  "FL-Alachua": {
+    "county": "Alachua",
+    "state": "FL",
+    "collector": "Alachua County Tax Collector",
+    "state_entity": "Florida — the elected county Tax Collector collects; the Property Appraiser is values only.",
+    "search_url": "https://alachua.county-taxes.com/public",
+    "how_found": "Live GET alachuacollector.com 200 is the office homepage (CMS site search name=search_query is not parcel search). /property-taxes/ 200 title Property Taxes – Alachua County Tax Collector links SEARCH/PAY to https://alachua.county-taxes.com/public and county-taxes.net/alachua. Bot GET of the vendor URL is Cloudflare 403 Just a moment; the host 404s for Florida counties that do not use the vendor, so 403 means the portal exists. Same vendor CTA is labeled SEARCH or PAY ONLINE on Brevard and View/Pay Taxes on Sarasota.",
+    "layout": {
+      "spa": true,
+      "search_by": ["parcel", "owner", "address"],
+      "fields": [
+        {
+          "role": "search",
+          "label": "Search or pay property taxes",
+          "xpath": "//input[contains(@placeholder,'parcel') or contains(@aria-label,'Search') or contains(@placeholder,'Search')]"
+        }
+      ]
+    },
+    "method": {
+      "search_by": ["parcel", "owner", "address"],
+      "steps": [
+        "Open https://alachua.county-taxes.com/public (Search or Pay), not the alachuacollector.com homepage.",
+        "Search by parcel / account / owner on that vendor portal.",
+        "Do not send a pay-taxes user to the Property Appraiser."
+      ],
+      "notes": "Cloudflare may challenge automated clients; a browser can open the public portal. Guest search is on county-taxes.com/public."
+    }
+  },
+  "CA-Alameda": {
+    "county": "Alameda",
+    "state": "CA",
+    "collector": "Alameda County Treasurer-Tax Collector",
+    "state_entity": "California — county Treasurer-Tax Collector.",
+    "search_url": "https://propertytax.alamedacountyca.gov/",
+    "how_found": "Catalog URL propertytax.alamedacountyca.gov live 200. Hostname is the official property-tax portal (same pattern as LA County propertytax.lacounty.gov). HTML is an Imperva/bot-wall shell with no server-rendered title; still the TTC portal, not the assessor.",
+    "layout": { "spa": true, "search_by": ["parcel"], "fields": [] },
+    "method": {
+      "search_by": ["parcel"],
+      "steps": [
+        "Open https://propertytax.alamedacountyca.gov/",
+        "Use the Treasurer-Tax Collector property tax search there."
+      ],
+      "notes": "Bot-wall SPA. Present the portal URL; work with the user if a specific AIN form is needed."
+    }
+  },
+  "CA-Sacramento": {
+    "county": "Sacramento",
+    "state": "CA",
+    "collector": "Sacramento County Department of Finance — eProptax",
+    "state_entity": "California — county collects via the Treasurer-Tax Collector / Department of Finance eProptax system.",
+    "search_url": "https://eproptax.saccounty.gov/",
+    "how_found": "Live GET eproptax.saccounty.gov returns Cloudflare 403 Just a moment. That is the official eProptax collector portal, not a dead row. Do not present assessor.saccounty.gov as the pay/search page.",
+    "layout": { "spa": true, "search_by": ["parcel"], "fields": [] },
+    "method": {
+      "search_by": ["parcel"],
+      "steps": [
+        "Open https://eproptax.saccounty.gov/",
+        "Search/pay the tax bill on eProptax."
+      ],
+      "notes": "Cloudflare challenge for automated clients; humans can open the portal."
     }
   }
 }
