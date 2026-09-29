@@ -16,7 +16,7 @@ You are Cursor Grok. Complete all of the following in one run. Do not boil the o
 - **Chippewa County, WI is HARD LOCKED** to Catalis LandNav: `https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/` (Guest Sign In). Reject `chippewacounty.gov` (dead). Treasurer + RDS stay on `chippewacountywi.gov`. LandNav payment cap = **10 parcels** (UI + API).
 - **UI law:** 100% scale-to-fit **1280×800** identical desktop layout scaled into the iframe (`padding-top: 62.5%`). WebPoint aesthetic: dark navy `#050b20`, cyan glow, **full borders on every panel**, **NO left accent stripes**. Fonts: DM Sans / DM Mono.
 - **Bind HTTP to `0.0.0.0:$PORT`.** Render disk is ephemeral — Postgres for anything that must survive a deploy.
-- **Pay for hardly anything except Render web + Render PostgreSQL.** Do not add Pinecone, Algolia, Elastic Cloud, OpenAI embeddings, SerpAPI, browserless, or any new paid search vendor.
+- **Pay for hardly anything except Render web + Render PostgreSQL ($14/mo).** Do not add Pinecone, Algolia, Elastic Cloud, OpenAI embeddings, SerpAPI, browserless, or any new paid search vendor. Do not migrate the live path to a new AWS ALB/ECS/RDS/NAT stack for cost — that is $45–90/mo. AWS is allowed only as a later swap onto **already-paid** idle capacity (`Dockerfile` + `DATABASE_URL`).
 - `npm test` must pass. Commit, push, update PR #2.
 
 ## 1. Stack truth (do not invent paid SaaS)
@@ -25,8 +25,9 @@ You are Cursor Grok. Complete all of the following in one run. Do not boil the o
 
 **Hosting we PAY for (the sellable surface):**
 
-- Render **web service**, Node, Starter, Oregon, `0.0.0.0:$PORT`, health `/api/health`.
+- Render **web service**, Node, Starter, Oregon, `0.0.0.0:$PORT`, health `/api/health` and `/healthz`.
 - Render **PostgreSQL 16** (Blueprint name `webpoint-tcs-db`, Basic 256MB). Orders / parcels / certificates / conversation log / `tsvector` RAG. `DATABASE_URL` via `fromDatabase` in `render.yaml`.
+- Swap prep (do not execute until load requires it): `Dockerfile`, `docs/HOST_SWAP.md`, `deploy/ecs-task-definition.example.json`. Same env vars on App Runner/ECS.
 
 **We do NOT pay for:**
 

@@ -28,6 +28,39 @@ function usingPostgres() {
   return Boolean(pool);
 }
 
+function postgresSslConfig(url) {
+  const mode = String(process.env.DATABASE_SSL || 'auto').toLowerCase();
+  if (mode === '0' || mode === 'false' || mode === 'disable' || mode === 'off') return undefined;
+  if (mode === '1' || mode === 'true' || mode === 'require') return { rejectUnauthorized: false };
+  const u = String(url || '');
+  if (/render\.com|rds\.amazonaws\.com|amazonaws\.com|sslmode=require/i.test(u)) {
+    return { rejectUnauthorized: false };
+  }
+  return undefined;
+}
+
+function poolOptions(url) {
+  const max = Math.max(1, Math.min(Number(process.env.PGPOOL_MAX) || 10, 80));
+  return {
+    connectionString: url,
+    max,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 8000,
+    ssl: postgresSslConfig(url)
+  };
+}
+
+function poolStats() {
+  if (!pool) return { attached: false, max: 0 };
+  return {
+    attached: true,
+    max: pool.options?.max || 0,
+    total: pool.totalCount,
+    idle: pool.idleCount,
+    waiting: pool.waitingCount
+  };
+}
+
 async function init() {
   const url = process.env.DATABASE_URL;
   if (!url) {
@@ -37,10 +70,7 @@ async function init() {
     return { mode: 'memory' };
   }
   const { Pool } = require('pg');
-  pool = new Pool({
-    connectionString: url,
-    ssl: /render\.com/i.test(url) ? { rejectUnauthorized: false } : undefined
-  });
+  pool = new Pool(poolOptions(url));
   const sql = fs.readFileSync(SCHEMA_PATH, 'utf8');
   await pool.query(sql);
   accounts.attachPool(pool);
@@ -339,6 +369,9 @@ module.exports = {
   MAX_PARCELS,
   init,
   usingPostgres,
+  postgresSslConfig,
+  poolOptions,
+  poolStats,
   searchKnowledge,
   createOrder,
   saveCertificates,

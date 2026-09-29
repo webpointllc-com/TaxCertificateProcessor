@@ -4,7 +4,10 @@
 #   • Web Starter $7/mo  — always-on, no 15-minute spin-down inside Squarespace
 #   • Postgres Basic 256MB $7/mo — durable chat, feedback, accounts, county-agent memory
 #   • Groq Llama 3.3 70B — workhorse LLM (key in Dashboard, never git)
-# Anthropic / Google / Apple keys are added in the Dashboard later. AWS is a later swap.
+# Anthropic / Google / Apple keys are added in the Dashboard later.
+# Do not replace this Blueprint with greenfield AWS this month.
+# ALB + Fargate + RDS + NAT is $45-90/mo vs this stack at $14/mo.
+# Dockerfile is the later host swap onto idle AWS, not a product rewrite.
 #
 # Apply: https://dashboard.render.com/blueprint/new?repo=https://github.com/webpointllc-com/TaxCertificateProcessor
 # Pay first: https://dashboard.render.com/billing

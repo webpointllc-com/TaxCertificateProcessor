@@ -48,6 +48,8 @@ describe('architecture diagram', () => {
     assert.doesNotMatch(blueprint, /plan: free/);
     assert.match(blueprint, /GROQ_API_KEY/);
     assert.match(blueprint, /sync: false/);
+    assert.match(html, /Dockerfile/);
+    assert.match(html, /\$45–90|\$45-90/);
   });
 
   it('ships a Squarespace iframe that preserves 800/1280 aspect', () => {
@@ -76,6 +78,7 @@ describe('paste-ready agent prompt', () => {
     assert.match(prompt, /do not overwrite/i);
     assert.match(prompt, /Pinecone/);
     assert.match(prompt, /PR #2|pull\/2/);
+    assert.match(prompt, /already-paid|idle capacity/i);
   });
 });
 

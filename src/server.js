@@ -36,6 +36,7 @@ const FRAME_ANCESTORS = [
 
 const app = express();
 app.disable('x-powered-by');
+app.set('trust proxy', 1);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
@@ -118,7 +119,7 @@ function synthesizeSpul(lookup) {
   ].join('\n');
 }
 
-app.get(['/api/health', '/v1/health'], async (req, res) => {
+app.get(['/api/health', '/v1/health', '/healthz'], async (req, res) => {
   const scan = scanWorkplaceClone();
   const lastImport = await store.latestImport();
   const models = llm.status();
@@ -134,6 +135,12 @@ app.get(['/api/health', '/v1/health'], async (req, res) => {
     extractors: await extractors.stats(),
     operator: { central: true },
     oauth: oauth.oauthStatus(),
+    swap: {
+      ready: true,
+      public_origin: process.env.PUBLIC_ORIGIN || null,
+      pool: store.poolStats(),
+      bind: `0.0.0.0:${PORT}`
+    },
     workplace: scan,
     lastImport
   });
@@ -874,6 +881,20 @@ async function main() {
   const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`Tax Certificate Processor on 0.0.0.0:${PORT} db=${db.mode} llm=${llm.status().model} workplace=${scan.found}`);
   });
+  const drain = (signal) => {
+    console.log(signal, 'draining');
+    server.close(async () => {
+      try {
+        await store.close();
+      } catch (err) {
+        console.error(err);
+      }
+      process.exit(0);
+    });
+    setTimeout(() => process.exit(1), 15000).unref();
+  };
+  process.on('SIGTERM', () => drain('SIGTERM'));
+  process.on('SIGINT', () => drain('SIGINT'));
   return server;
 }
 

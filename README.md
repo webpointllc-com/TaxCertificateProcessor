@@ -26,7 +26,7 @@ The importer inventories SQL dumps, CSVs, JSON, and app trees and records them i
 
 ## Database choice: Render PostgreSQL
 
-Use **Render PostgreSQL** (not SQLite, not Mongo, not a spreadsheet, not AWS RDS yet).
+Use **Render PostgreSQL** (not SQLite, not Mongo, not a spreadsheet). Do not stand up a second AWS RDS this month unless you are pointing `DATABASE_URL` at an **already-paid** instance.
 
 Why:
 
@@ -35,7 +35,7 @@ Why:
 - `pg` full-text search (`tsvector`) is the RAG retrieval layer that works **without** an embeddings API. Groq does chat, not embeddings.
 - JSONB holds collector payloads until the Passport dump tells us the exact columns.
 - Same private network as the web service (`DATABASE_URL` via `fromDatabase` in `render.yaml`).
-- Testing conversations on `/v1/chat` and `/v1/feedback` survive deploys. When you later swap to AWS, `pg_dump` the same schema — the Node app already binds `0.0.0.0:$PORT`.
+- Testing conversations on `/v1/chat` and `/v1/feedback` survive deploys. The Node app is host-agnostic (`0.0.0.0:$PORT` + `DATABASE_URL`). A later AWS cutover is `pg_dump` + the `Dockerfile`, not a product rewrite.
 
 Plan: **Basic 256MB ($7/mo)**. Do **not** use Free Postgres (expires in 30 days). Region: **Oregon**.
 
@@ -43,7 +43,7 @@ SQLite/memory is only the local test fallback when `DATABASE_URL` is unset. Prod
 
 ## Server + LLM (the decision)
 
-**Launch on Render, not AWS.** AWS is a later cutover once the product is taking paid load and you want a dedicated GPU box. Render Starter is the professional always-on surface for a Squarespace iframe (Free web spin-down after 15 minutes looks broken to members).
+**Launch on Render, not a new AWS bill.** A greenfield ALB + Fargate + RDS + NAT stack is $45–90/mo. Render Starter + Postgres is **$14/mo** and is the professional Squarespace iframe host (Free web spin-down after 15 minutes looks broken to members). Ride existing idle AWS only if that capacity is already on the bill.
 
 **Claude 4.6 is the coding agent. It is not the production tax LLM.** Production stack:
 
@@ -63,10 +63,14 @@ Node is async, so Starter is not Gunicorn’s “2 workers = 2 chats.” Chat st
 | Render Postgres **Basic 256MB** | **$7** | $84 | Yes — durable memory |
 | Groq Llama 3.3 70B | $0–15 at launch volume | ~$0–180 | Free key first; card later |
 | Anthropic API | $0 | $0 | Off until we turn it on |
-| AWS / GPU box | $0 | $0 | Not this launch |
+| **Greenfield AWS** (ALB + Fargate + RDS + NAT) | **$45–90** | $540–1,080 | No — more expensive until ~500+ users |
 | **Total to turn it on** | **$14** | **$168** | |
 
-At ~200 users expect ~$14 compute + ~$40–80 Groq. Do not buy RunPod/Lambda until year 2.
+Render **is** scalable at an affordable rate through a few hundred concurrent researchers. Starter is 512MB / 0.5 CPU, one instance — fine for launch. Standard ($25) and Pro ($85, autoscale) are the next rungs. Node is async, so this is not Gunicorn’s two-chat ceiling.
+
+**AWS is not cheaper just because the company already has an AWS login.** A *new* production stack (ALB ~$16 + Fargate ~$15–25 + RDS ~$12–25 + NAT Gateway ~$32) is **3–6× Render** before Groq. AWS wins only when (a) this app sits on **idle RDS/ECS you already pay for** (marginal cost near $0), or (b) you are north of ~500–1,200 users with reserved capacity. Same Node app either way: `0.0.0.0:$PORT` + `DATABASE_URL`. `Dockerfile` is the swap, not a rewrite of the product.
+
+Do not buy RunPod/Lambda until year 2. Do not rebuild every flow onto AWS to “save money” at 50 users — that is how a $14 tool becomes a $70 tool that still talks to Groq.
 
 Pay: [Render billing](https://dashboard.render.com/billing) → Apply Blueprint → paste Groq key from [console.groq.com/keys](https://console.groq.com/keys).
 
@@ -92,6 +96,15 @@ npm install
 npm test
 npm start   # http://localhost:3000
 ```
+
+Same process in Docker (Render and a later AWS cutover use this image):
+
+```bash
+docker build -t webpoint-tcs .
+docker run --rm -p 3000:3000 -e PORT=3000 webpoint-tcs
+```
+
+Cutover runbook when load actually requires AWS: [`docs/HOST_SWAP.md`](docs/HOST_SWAP.md). ECS example: [`deploy/ecs-task-definition.example.json`](deploy/ecs-task-definition.example.json).
 
 ## Chippewa County WI (first county)
 
