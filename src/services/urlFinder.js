@@ -13,10 +13,12 @@ const countiesPath = path.join(__dirname, '../../data/counties.json');
 const goldenPath = path.join(__dirname, '../../data/golden_overrides.json');
 const aliasesPath = path.join(__dirname, '../../data/sheet_aliases.json');
 const playbooksPath = path.join(__dirname, '../../data/extractor_playbooks.json');
+const probePath = path.join(__dirname, '../../data/seed_probe_results.json');
 let countiesCache = null;
 let goldenCache = null;
 let aliasCache = null;
 let playbookCache = null;
+let probeCache = null;
 
 function compactName(s) {
   return compactJurisdictionName(s);
@@ -134,10 +136,35 @@ function playbookFor(county, state) {
   return null;
 }
 
+function loadProbeResults() {
+  if (probeCache !== null) return probeCache;
+  probeCache = { byUrl: {}, byKey: {} };
+  if (!fs.existsSync(probePath)) return probeCache;
+  try {
+    const raw = JSON.parse(fs.readFileSync(probePath, 'utf8'));
+    probeCache = {
+      byUrl: raw.byUrl || {},
+      byKey: raw.byKey || {},
+      summary: raw.summary || {}
+    };
+  } catch {
+    probeCache = { byUrl: {}, byKey: {} };
+  }
+  return probeCache;
+}
+
+function probeVerdictFor(url, key) {
+  const report = loadProbeResults();
+  if (url && report.byUrl[url] && report.byUrl[url].verdict) return report.byUrl[url].verdict;
+  if (key && report.byKey[key] && report.byKey[key].verdict) return report.byKey[key].verdict;
+  return '';
+}
+
 function invalidateGoldenCache() {
   goldenCache = null;
   aliasCache = null;
   playbookCache = null;
+  probeCache = null;
 }
 
 function invalidateCountiesCache() {
@@ -233,7 +260,10 @@ function findPropertyURL(county, state) {
       layout: c.layout || book?.layout || null,
       method: book?.method || null,
       howFound: book?.how_found || '',
-      parcelFormat: c.parcelFormat || book?.parcel_format || ''
+      parcelFormat: c.parcelFormat || book?.parcel_format || '',
+      probeStatus: c.probeStatus || probeVerdictFor(c.searchURL, c.key),
+      probeReason: c.probeReason || '',
+      lastProbed: c.lastProbed || ''
     };
   };
 
@@ -401,6 +431,7 @@ module.exports = {
   parseJurisdiction,
   parseJurisdictionRaw,
   playbookFor,
+  probeVerdictFor,
   invalidateCountiesCache,
   loadCounties,
   hasUrlLock,

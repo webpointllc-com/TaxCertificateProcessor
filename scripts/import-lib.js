@@ -133,6 +133,10 @@ function detectVendor(url) {
     if (h.includes('civicplus')) return 'civicplus';
     if (h.includes('tyler') || h.includes('tylertech')) return 'tyler';
     if (h.includes('egov') || h.includes('e-gov')) return 'egov';
+    if (h.includes('county-taxes.com') || h.includes('county-taxes.net')) return 'county_taxes';
+    if (h.includes('eproptax')) return 'eproptax';
+    if (h.includes('county-taxes.com') || h.includes('county-taxes.net')) return 'county_taxes';
+    if (h.includes('eproptax')) return 'eproptax';
   } catch {
     /* ignore */
   }

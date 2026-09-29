@@ -14,7 +14,7 @@ function isRealHttpUrl(url) {
 }
 
 const SEARCH_PAGE_HINT =
-  /search|propertytax|property-tax|taxbill|webpayments|landnav|spatialest|esearch|qpublic|treasurer|taxcollector|tax-collector|taxoffice|paytax|payments|parcel|setsearchparameters|myharris|hctax|beacon|countygovservices|catalis/i;
+  /search|propertytax|property-tax|taxbill|webpayments|landnav|spatialest|esearch|qpublic|treasurer|taxcollector|tax-collector|taxoffice|paytax|payments|parcel|setsearchparameters|myharris|hctax|beacon|countygovservices|catalis|county-taxes|eproptax/i;
 
 function isGenericCountyHomepage(url, meta = {}) {
   if (!isRealHttpUrl(url)) return true;
@@ -42,6 +42,7 @@ function hasUrlLock(confidence, url, meta = {}) {
   if (confidence !== 'verified' && confidence !== 'pattern_matched') return false;
   if (meta.allowHomepage) return true;
   if (meta.source && /golden_override/i.test(String(meta.source))) return true;
+  if (meta.probeStatus && meta.probeStatus !== 'collector_search') return false;
   if (isGenericCountyHomepage(url, meta)) return false;
   return true;
 }
