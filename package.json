@@ -5,6 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
+    "pay": "bash scripts/ru.sh",
     "dev": "node --watch src/server.js",
     "map:build": "node scripts/build-us-map.js",
     "migrate": "node scripts/migrate.js",

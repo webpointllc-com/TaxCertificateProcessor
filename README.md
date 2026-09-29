@@ -72,7 +72,7 @@ Render **is** scalable at an affordable rate through a few hundred concurrent re
 
 Do not buy RunPod/Lambda until year 2. Do not rebuild every flow onto AWS to “save money” at 50 users — that is how a $14 tool becomes a $70 tool that still talks to Groq.
 
-Pay: [Render billing](https://dashboard.render.com/billing) → Apply Blueprint → paste Groq key from [console.groq.com/keys](https://console.groq.com/keys).
+Pay: open [`/pay.html`](public/pay.html) (or `npm run pay` / `bash scripts/ru.sh`). That page has the selected stack (Starter web + Postgres Basic 256MB = **$14/mo**) and a **Prep to pay** toggle. Flip it to jump straight to [Render billing](https://dashboard.render.com/billing), then [Apply Blueprint](https://dashboard.render.com/blueprint/new?repo=https://github.com/webpointllc-com/TaxCertificateProcessor), then paste Groq key from [console.groq.com/keys](https://console.groq.com/keys) into the Render Dashboard (never git).
 
 ## Squarespace members page
 
@@ -94,7 +94,9 @@ Optional script tag (host will match the request):
 ```bash
 npm install
 npm test
-npm start   # http://localhost:3000
+npm start          # http://localhost:3000
+npm run pay        # chmod ru.sh, copy Claude handoff, open billing, start 0.0.0.0:$PORT
+# then: /pay.html?prep=1  and  /embed-preview.html  (62.5% iframe, working now)
 ```
 
 Same process in Docker (Render and a later AWS cutover use this image):

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPoint — Embed preview</title>
+  <style>
+    html, body { margin: 0; background: #cfeaf8; font-family: Inter, system-ui, sans-serif; }
+    .bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 18px; color: #1b2433;
+    }
+    .bar a { color: #3b6dff; font-weight: 700; text-decoration: none; }
+    .wp-tcs-embed-root {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      padding-top: 62.5%;
+    }
+    .wp-tcs-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 16px;
+      background: #cfeaf8;
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <strong>Squarespace-shaped embed (62.5% = 800/1280) against this origin — working now</strong>
+    <a href="/pay.html?prep=1">Pay / launch</a>
+  </div>
+  <div class="wp-tcs-embed-root">
+    <iframe
+      class="wp-tcs-frame"
+      src="/"
+      title="WebPoint Tax Certificate Processor"
+      allow="clipboard-read; clipboard-write"
+    ></iframe>
+  </div>
+</body>
+</html>

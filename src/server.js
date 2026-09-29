@@ -25,6 +25,7 @@ const { parseJurisdiction, lookupForApi, suggestJurisdictions, catalogCoverage }
 const { buildLockedUrlPrefix } = require('./services/spulTruth');
 const { matchScenario } = require('./services/scenarioRouter');
 const { scanWorkplaceClone, inventoryRepo } = require('../scripts/workplace-scan');
+const { launchPlan } = require('./launchPlan');
 
 const PORT = process.env.PORT || 3000;
 const FRAME_ANCESTORS = [
@@ -605,6 +606,13 @@ app.get('/api/coverage', (req, res) => {
     ...coverage,
     badge: `${coverage.rows.toLocaleString('en-US')} catalog slots`,
     locked_badge: `${coverage.locked.toLocaleString('en-US')} locked collector portals`
+  });
+});
+
+app.get('/api/launch-plan', (req, res) => {
+  res.json({
+    ok: true,
+    ...launchPlan
   });
 });
 
