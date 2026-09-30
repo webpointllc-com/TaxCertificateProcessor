@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('fs');
 const path = require('path');
 const store = require('../src/db/store');
+const extractors = require('../src/db/extractors');
 const { app } = require('../src/server');
 const siteValidator = require('../src/services/siteValidator');
 const { lookupForApi } = require('../src/services/urlFinder');
@@ -75,7 +76,40 @@ describe('site validator + DR look-for heads', () => {
     assert.match(md, /validate:apply/);
     assert.match(md, /28 days/);
     assert.match(md, /extractor\/session|extractors\/session/);
+    assert.match(md, /keep_lock/);
     assert.doesNotMatch(md, /bypass Cloudflare/i);
+  });
+
+  it('keeps verified collectors locked after the 2k+ apply and records how', () => {
+    const apply = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '..', 'data', 'validation_apply.json'), 'utf8')
+    );
+    const run = siteValidator.loadLastRun();
+    assert.ok(run.probed >= 1400, run.probed);
+    assert.equal(run.lookFor.includes('Parcel Number'), true);
+    assert.ok(apply.keptLocked >= 1000, apply.keptLocked);
+    assert.ok(apply.probed >= 2000, apply.probed);
+    assert.equal(lookupForApi('King', 'WA').urlLocked, true);
+    assert.equal(lookupForApi('Hamilton', 'OH').urlLocked, false);
+    const applySrc = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'apply-validation.js'), 'utf8');
+    assert.match(applySrc, /keep_lock/);
+    assert.match(applySrc, /wasVerified/);
+  });
+
+  it('prefers a newer Postgres validation run over the file report', async () => {
+    const file = siteValidator.loadLastRun();
+    const newer = {
+      generatedAt: '2099-01-01T00:00:00.000Z',
+      probed: 1,
+      counts: { collector_search: 1 },
+      lookForHits: {},
+      how: ['test']
+    };
+    assert.equal(siteValidator.fresherRun(file, newer), newer);
+    await extractors.recordValidationRun(file);
+    const latest = await extractors.latestValidationRun();
+    assert.ok(latest.probed >= 1400);
+    assert.equal(siteValidator.staleRun(file, 28), false);
   });
 });
 

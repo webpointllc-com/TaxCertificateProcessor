@@ -63,10 +63,28 @@ On a Mac with T7: `npm run deepshake:mac`.
 | When | What |
 | --- | --- |
 | Per county, live | Search → county agent → Open official tax search → session ported |
-| Every ~28 days | Always-on Render Starter (`VALIDATE_MONTHLY` not `0`) re-runs `validate-extractors.js` if `validation_run.json` is stale |
+| Every ~28 days | Always-on Render Starter (`VALIDATE_MONTHLY` not `0`) re-runs `validate-extractors.js` if `validation_run.json` is stale, then upserts `validation_runs` in Postgres |
+| After each pass | Operator `validate:apply` + git commit so catalog locks survive deploys (Render disk is ephemeral) |
 | Before a release | Operator runs the three npm commands above |
 
 Set `VALIDATE_MONTHLY=0` to disable the in-process monthly tick (tests and one-off boxes).
+
+## Latest full pass (2026-09-30)
+
+How this update was done (copy this path every month):
+
+1. Union `data/extractor_urls.json` (2,030 usable Search URLs) + Searching inventory + operator locks.
+2. Drop google.com, `{parcel}` templates, and blanks. Collapse shared vendor hosts so **1,477 unique GETs** cover **2,226 county keys**.
+3. `GET` each URL. Classify collector / assessor / homepage / dead. Sniff the DR look-for heads above.
+4. Cloudflare JS / timeout / no-form collector hosts go on `data/deepshake_queue.json` for a **signed-in user Chrome tab** (`POST /api/extractors/session`). No fingerprint spoof, no challenge solver.
+5. `npm run validate:apply` writes probe evidence onto `data/counties.json`. Golden overrides still win. OH-Hamilton / CT-HartfordCity / IL-Sangamon stay unlocked. Already-verified collectors stay `collector_search` even if this GET is 403/timeout (`keep_lock`) and queue DeepShake.
+6. Report files + Postgres `validation_runs` (when `DATABASE_URL` is set) so Render’s ephemeral disk does not erase the last pass.
+
+Results this pass:
+
+- DR heads found on page: Parcel Number 556, Tax Id 381, Owner 1 Name 296, Legal Description 465, Bill Year 136, Balance Due 78, As Of 48, Bill Amount 11.
+- `collector_search` 132 · Cloudflare 158 · DeepShake queue 618 · dead HTTP 752 · unknown_live 381 · homepage 185 · assessor_search 27.
+- Apply: **13 newly verified**, 1,045 kept locked, 601 dead-but-locked queued for DeepShake, 32 golden skipped, Hamilton/Hartford/Sangamon still unlocked.
 
 ## Honest limits
 

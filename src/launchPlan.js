@@ -16,7 +16,7 @@ const launchPlan = {
   validator: {
     command: 'npm run validate:extractors && npm run validate:apply',
     lookFor: 'DR Production Results column heads',
-    monthly: 'Starter web re-runs when validation_run.json is older than 28 days — no extra Render cron bill this month',
+    monthly: 'Starter web re-runs when validation_run.json is older than 28 days and upserts validation_runs in Postgres — no extra Render cron bill this month',
     deepshake: 'User Chrome tab via /api/extractors/session. Cloudflare is not bypassed.'
   },
   repo: REPO,

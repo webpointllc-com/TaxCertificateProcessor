@@ -114,12 +114,12 @@ function main() {
         if (hit.finalUrl && /^https?:/i.test(hit.finalUrl) && row.searchURL === hit.url) {
           row.searchURL = hit.finalUrl;
         }
-      } else if (hit.verdict === 'dead' && wasVerified) {
+      } else if (wasVerified) {
         row.probeStatus = 'collector_search';
-        row.probeReason = `http_dead_keep_lock:${hit.reason || hit.status}`;
+        row.probeReason = `keep_lock:${hit.verdict}:${hit.reason || hit.status || ''}`;
         row.layout.deepshake_handshake_recommended = true;
         stats.keptLocked += 1;
-        stats.queuedDeadLocked += 1;
+        if (hit.verdict === 'dead') stats.queuedDeadLocked += 1;
       } else {
         row.probeStatus = hit.verdict;
         row.probeReason = hit.reason || row.probeReason;

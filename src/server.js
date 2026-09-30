@@ -393,7 +393,7 @@ app.get('/api/extractors/stats', async (req, res) => {
   const slots = await extractors.stats();
   slots.catalog = loadCounties().length;
   const working = await extractors.listActive(12);
-  const run = siteValidator.loadLastRun();
+  const run = await extractors.latestValidationRun();
   const queue = siteValidator.loadQueue();
   res.json({
     ok: true,
@@ -431,9 +431,9 @@ app.get('/api/extractors', async (req, res) => {
   });
 });
 
-app.get('/api/validation', (req, res) => {
+app.get('/api/validation', async (req, res) => {
   const siteValidator = require('./services/siteValidator');
-  const run = siteValidator.loadLastRun();
+  const run = await extractors.latestValidationRun();
   const queue = siteValidator.loadQueue();
   res.json({
     ok: true,
@@ -1066,7 +1066,13 @@ function scheduleMonthlyValidation() {
     });
     child.on('error', (err) => console.error('monthly-validate', err.message));
   };
-  setTimeout(tick, 45000).unref();
+  setTimeout(() => {
+    const last = siteValidator.loadLastRun();
+    if (last && last.probed) {
+      extractors.recordValidationRun(last).catch((err) => console.error('validation-seed', err.message));
+    }
+    tick();
+  }, 45000).unref();
   setInterval(tick, 24 * 60 * 60 * 1000).unref();
 }
 

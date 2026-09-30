@@ -98,10 +98,21 @@ function loadQueue() {
   }
 }
 
+function runTime(run) {
+  const then = Date.parse(run && run.generatedAt);
+  return Number.isFinite(then) ? then : 0;
+}
+
+function fresherRun(fileRun, dbRun) {
+  if (!fileRun) return dbRun || null;
+  if (!dbRun) return fileRun;
+  return runTime(dbRun) > runTime(fileRun) ? dbRun : fileRun;
+}
+
 function staleRun(run, days = 28) {
   if (!run || !run.generatedAt) return true;
-  const then = Date.parse(run.generatedAt);
-  if (!Number.isFinite(then)) return true;
+  const then = runTime(run);
+  if (!then) return true;
   return Date.now() - then > days * 24 * 60 * 60 * 1000;
 }
 
@@ -119,6 +130,7 @@ module.exports = {
   handshake,
   loadLastRun,
   loadQueue,
+  fresherRun,
   staleRun,
   skipPlaybookKey,
   RUN_PATH,

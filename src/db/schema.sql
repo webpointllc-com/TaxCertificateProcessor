@@ -260,8 +260,15 @@ CREATE TABLE IF NOT EXISTS validation_runs (
   generated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   probed INTEGER NOT NULL DEFAULT 0,
   counts JSONB NOT NULL DEFAULT '{}'::jsonb,
+  look_for_hits JSONB NOT NULL DEFAULT '{}'::jsonb,
+  method TEXT,
+  how JSONB NOT NULL DEFAULT '[]'::jsonb,
   notes TEXT
 );
+
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS look_for_hits JSONB NOT NULL DEFAULT '{}'::jsonb;
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS method TEXT;
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS how JSONB NOT NULL DEFAULT '[]'::jsonb;
 
 CREATE TABLE IF NOT EXISTS extractor_portal_sessions (
   id TEXT PRIMARY KEY,

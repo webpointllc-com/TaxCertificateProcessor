@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-09-30T18:29:21.953Z",
+  "method": "http_get_form_sniff + DR column heads",
+  "how": [
+    "Union ExtractorUrls dump + Searching inventory + operator locks.",
+    "Skip google.com, {parcel} templates, and blank URLs.",
+    "GET each URL. Classify collector / assessor / homepage / dead.",
+    "Sniff DR Production Results column heads (Parcel Number, Tax Id, Owner 1 Name, …).",
+    "Cloudflare JS / no-form collector hosts → DeepShake queue for a real Chrome user session.",
+    "Apply collector_search evidence with npm run validate:apply. Golden overrides still win.",
+    "OH-Hamilton / CT-HartfordCity / IL-Sangamon stay unlocked until a collector search page is confirmed.",
+    "Monthly: Starter web re-runs this when the last report is older than 28 days. Per-county: /api/extractors/session from the signed-in user tab."
+  ],
+  "deepshake": "queue_user_chrome_session",
+  "probed": 1477,
+  "counts": {
+    "collector_search": 132,
+    "hasDrFields": 653,
+    "needsDeepShake": 618,
+    "unknown_live": 381,
+    "homepage": 185,
+    "assessor_search": 27,
+    "dead": 752,
+    "cloudflare": 158
+  },
+  "lookForHits": {
+    "Parcel Number": 556,
+    "Tax Id": 381,
+    "Legal Description": 465,
+    "Owner 1 Name": 296,
+    "As Of": 48,
+    "Bill Year": 136,
+    "Balance Due": 78,
+    "Bill Amount": 11
+  },
+  "lookFor": [
+    "Parcel Number",
+    "Tax Id",
+    "Owner 1 Name",
+    "Legal Description",
+    "Bill Amount",
+    "Balance Due",
+    "As Of",
+    "Bill Year"
+  ]
+}

@@ -6,7 +6,8 @@ const drProduction = require('../services/drProduction');
 const memory = {
   extractors: [],
   versions: [],
-  feedback: []
+  feedback: [],
+  validationRuns: []
 };
 
 let pool = null;
@@ -404,10 +405,76 @@ async function recordPortalSession({ accountId, sessionId, jurisdictionKey, even
   return row;
 }
 
+function mapValidationRow(row) {
+  if (!row) return null;
+  return {
+    generatedAt: row.generated_at || row.generatedAt,
+    probed: row.probed || 0,
+    counts: row.counts || {},
+    lookForHits: row.look_for_hits || row.lookForHits || {},
+    method: row.method || '',
+    how: row.how || [],
+    lookFor: row.lookFor
+  };
+}
+
+async function recordValidationRun(run) {
+  const mapped = {
+    generatedAt: run.generatedAt || new Date().toISOString(),
+    probed: Number(run.probed) || 0,
+    counts: run.counts || {},
+    lookForHits: run.lookForHits || {},
+    method: run.method || '',
+    how: Array.isArray(run.how) ? run.how : [],
+    lookFor: run.lookFor || []
+  };
+  memory.validationRuns.push(mapped);
+  if (memory.validationRuns.length > 12) memory.validationRuns.splice(0, memory.validationRuns.length - 12);
+  if (usingPostgres()) {
+    const existing = await pool.query(
+      `SELECT id FROM validation_runs WHERE generated_at = $1 LIMIT 1`,
+      [mapped.generatedAt]
+    );
+    if (!existing.rows.length) {
+      await pool.query(
+        `INSERT INTO validation_runs
+          (id, generated_at, probed, counts, look_for_hits, method, how, notes)
+         VALUES ($1,$2,$3,$4::jsonb,$5::jsonb,$6,$7::jsonb,$8)`,
+        [
+          id(),
+          mapped.generatedAt,
+          mapped.probed,
+          JSON.stringify(mapped.counts),
+          JSON.stringify(mapped.lookForHits),
+          mapped.method,
+          JSON.stringify(mapped.how),
+          mapped.how.join(' ')
+        ]
+      );
+    }
+  }
+  return mapped;
+}
+
+async function latestValidationRun() {
+  let dbRun = null;
+  if (usingPostgres()) {
+    const { rows } = await pool.query(
+      `SELECT * FROM validation_runs ORDER BY generated_at DESC LIMIT 1`
+    );
+    dbRun = mapValidationRow(rows[0]);
+  } else if (memory.validationRuns.length) {
+    dbRun = memory.validationRuns[memory.validationRuns.length - 1];
+  }
+  const siteValidator = require('../services/siteValidator');
+  return siteValidator.fresherRun(siteValidator.loadLastRun(), dbRun);
+}
+
 function resetMemory() {
   memory.extractors.length = 0;
   memory.versions.length = 0;
   memory.feedback.length = 0;
+  memory.validationRuns.length = 0;
 }
 
 module.exports = {
@@ -419,6 +486,8 @@ module.exports = {
   rememberDiscovery,
   addFeedback,
   recordPortalSession,
+  recordValidationRun,
+  latestValidationRun,
   listActive,
   stats,
   defaultMethod,

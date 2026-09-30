@@ -229,7 +229,7 @@ function defaultChunks() {
         'Every usable ExtractorUrls / Searching URL is validated with HTTP GET + form sniff. The fields we look for are the DR Production Results column heads: Parcel Number, Tax Id, Owner 1 Name, Legal Description, Bill Amount, Balance Due, As Of, Bill Year.',
         'Cloudflare JS challenges are not bypassed. They go on the DeepShake queue and open in the signed-in user\'s real Chrome tab (/api/extractors/session). That session heals the county extractor.',
         'npm run validate:extractors then npm run validate:apply. Golden overrides win. OH-Hamilton, CT-HartfordCity, IL-Sangamon stay unlocked until a collector search page is confirmed.',
-        'Monthly: the always-on Render Starter process re-runs validation when the last report is older than 28 days. Per-county: each user portal open is a session. Same method every update so results stay comparable.'
+        'Monthly: the always-on Render Starter process re-runs validation when the last report is older than 28 days and writes validation_runs to Postgres (disk JSON is ephemeral on Render). Per-county: each signed-in Open official tax search posts /api/extractors/session. Same method every update so results stay comparable. Apply to counties.json is the git catalog step — already-verified collectors stay locked on a flaky GET.'
       ].join(' ')
     },
     {

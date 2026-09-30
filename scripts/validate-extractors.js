@@ -196,6 +196,16 @@ async function main() {
   );
   fs.writeFileSync(HITS_PATH, JSON.stringify({ generatedAt: run.generatedAt, hits }, null, 2) + '\n');
 
+  try {
+    const store = require('../src/db/store');
+    const extractors = require('../src/db/extractors');
+    await store.init();
+    await extractors.recordValidationRun(run);
+    await store.close();
+  } catch (err) {
+    process.stderr.write(`validate-extractors persist: ${err.message}\n`);
+  }
+
   process.stdout.write(
     JSON.stringify(
       {
