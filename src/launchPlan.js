@@ -13,6 +13,12 @@ const launchPlan = {
   liveOrigin: 'https://tax-certificate-processor.onrender.com',
   searchingPage: 'https://webpointllc.com/searching',
   searchingIframeClass: 'wp-tcs-frame',
+  validator: {
+    command: 'npm run validate:extractors && npm run validate:apply',
+    lookFor: 'DR Production Results column heads',
+    monthly: 'Starter web re-runs when validation_run.json is older than 28 days — no extra Render cron bill this month',
+    deepshake: 'User Chrome tab via /api/extractors/session. Cloudflare is not bypassed.'
+  },
   repo: REPO,
   selected: [
     {

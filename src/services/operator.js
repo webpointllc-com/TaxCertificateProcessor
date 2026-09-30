@@ -88,6 +88,12 @@ async function dispatch({ q, accountId, feedback }) {
     ? await extractors.rememberDiscovery({ agent, lookup, discoveries, accountId })
     : agent;
   const handoff = handoffOf(lookup, next);
+  const siteValidator = require('./siteValidator');
+  const deepshake = siteValidator.handshake({
+    lookup: { ...lookup, key: lookup.key },
+    extractor: next,
+    sessionId: null
+  });
   return {
     ok: true,
     operator: 'central',
@@ -97,7 +103,8 @@ async function dispatch({ q, accountId, feedback }) {
     agent: next,
     discoveries,
     shared: true,
-    handoff
+    handoff,
+    deepshake
   };
 }
 

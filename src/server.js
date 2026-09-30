@@ -389,10 +389,28 @@ app.post('/api/consent', async (req, res) => {
 
 app.get('/api/extractors/stats', async (req, res) => {
   const { loadCounties } = require('./services/urlFinder');
+  const siteValidator = require('./services/siteValidator');
   const slots = await extractors.stats();
   slots.catalog = loadCounties().length;
   const working = await extractors.listActive(12);
-  res.json({ ok: true, slots, working, model: llm.status().model });
+  const run = siteValidator.loadLastRun();
+  const queue = siteValidator.loadQueue();
+  res.json({
+    ok: true,
+    slots,
+    working,
+    model: llm.status().model,
+    validation: run
+      ? {
+          generatedAt: run.generatedAt,
+          probed: run.probed,
+          counts: run.counts,
+          stale: siteValidator.staleRun(run),
+          lookFor: run.lookFor || siteValidator.lookForHeaders(),
+          deepshakeQueue: (queue.rows || []).length
+        }
+      : { stale: true, lookFor: siteValidator.lookForHeaders() }
+  });
 });
 
 app.get('/api/extractors', async (req, res) => {
@@ -404,7 +422,66 @@ app.get('/api/extractors', async (req, res) => {
   const lookup = lookupBundle(parsed.raw, parsed.county, parsed.state);
   if (!lookup.ok) return res.status(400).json(lookup);
   const slot = await extractors.ensureSlot(lookup);
-  res.json({ ok: true, extractor: slot, lookup });
+  const siteValidator = require('./services/siteValidator');
+  res.json({
+    ok: true,
+    extractor: slot,
+    lookup,
+    deepshake: siteValidator.handshake({ lookup, extractor: slot, sessionId: sessionIdOf(req) })
+  });
+});
+
+app.get('/api/validation', (req, res) => {
+  const siteValidator = require('./services/siteValidator');
+  const run = siteValidator.loadLastRun();
+  const queue = siteValidator.loadQueue();
+  res.json({
+    ok: true,
+    lookFor: siteValidator.lookForHeaders(),
+    stale: siteValidator.staleRun(run),
+    run: run
+      ? {
+          generatedAt: run.generatedAt,
+          probed: run.probed,
+          counts: run.counts,
+          lookForHits: run.lookForHits,
+          how: run.how
+        }
+      : null,
+    deepshakeQueue: (queue.rows || []).length
+  });
+});
+
+app.post('/api/extractors/session', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const q = String(req.body?.q || req.body?.query || '').trim();
+  const parsed = parseSearchQuery(q);
+  const lookup = parsed.county
+    ? lookupBundle(parsed.raw || q, parsed.county, parsed.state)
+    : req.body?.county && req.body?.state
+      ? lookupBundle(`${req.body.county} ${req.body.state}`, req.body.county, req.body.state)
+      : { ok: false, error: 'Provide a county and state' };
+  if (!lookup.ok) return res.status(400).json(lookup);
+  await extractors.ensureSlot(lookup);
+  const siteValidator = require('./services/siteValidator');
+  const fields = Array.isArray(req.body?.fields) ? req.body.fields : siteValidator.lookForHeaders();
+  const row = await extractors.recordPortalSession({
+    accountId: account.id,
+    sessionId: sessionIdOf(req),
+    jurisdictionKey: lookup.key,
+    event: req.body?.event || 'opened_portal',
+    fields,
+    notes: req.body?.notes || ''
+  });
+  res.json({
+    ok: true,
+    session: row,
+    deepshake: siteValidator.handshake({
+      lookup,
+      sessionId: sessionIdOf(req)
+    })
+  });
 });
 
 app.post('/api/intelligence', async (req, res) => {
@@ -502,6 +579,7 @@ app.post('/api/intelligence', async (req, res) => {
       handoff: routed.handoff
     },
     handoff: routed.handoff,
+    deepshake: routed.deepshake || null,
     plan: access.plan,
     continue_gate: access.plan === 'member' ? null : 'member',
     card,
@@ -971,7 +1049,25 @@ async function main() {
   };
   process.on('SIGTERM', () => drain('SIGTERM'));
   process.on('SIGINT', () => drain('SIGINT'));
+  scheduleMonthlyValidation();
   return server;
+}
+
+function scheduleMonthlyValidation() {
+  if (process.env.VALIDATE_MONTHLY === '0') return;
+  const { spawn } = require('child_process');
+  const siteValidator = require('./services/siteValidator');
+  const tick = () => {
+    if (!siteValidator.staleRun(siteValidator.loadLastRun(), 28)) return;
+    const child = spawn(process.execPath, [path.join(__dirname, '..', 'scripts', 'validate-extractors.js')], {
+      cwd: path.join(__dirname, '..'),
+      stdio: 'ignore',
+      detached: false
+    });
+    child.on('error', (err) => console.error('monthly-validate', err.message));
+  };
+  setTimeout(tick, 45000).unref();
+  setInterval(tick, 24 * 60 * 60 * 1000).unref();
 }
 
 if (require.main === module) {

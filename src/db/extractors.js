@@ -363,6 +363,47 @@ async function stats() {
   return tally;
 }
 
+async function recordPortalSession({ accountId, sessionId, jurisdictionKey, event, fields, notes }) {
+  const headers = Array.isArray(fields) ? fields.filter(Boolean).slice(0, 40) : [];
+  const row = {
+    id: id(),
+    account_id: accountId || null,
+    session_id: sessionId || null,
+    jurisdiction_key: jurisdictionKey || '',
+    event: String(event || 'opened_portal').slice(0, 80),
+    fields: headers,
+    notes: String(notes || '').slice(0, 1000),
+    created_at: new Date().toISOString()
+  };
+  if (usingPostgres()) {
+    await pool.query(
+      `INSERT INTO extractor_portal_sessions
+        (id, account_id, session_id, jurisdiction_key, event, fields, notes)
+       VALUES ($1,$2,$3,$4,$5,$6::jsonb,$7)`,
+      [row.id, row.account_id, row.session_id, row.jurisdiction_key, row.event, JSON.stringify(row.fields), row.notes]
+    );
+  }
+  const agent = await findActive(jurisdictionKey);
+  if (agent) {
+    await rememberDiscovery({
+      agent,
+      lookup: { key: jurisdictionKey },
+      accountId,
+      discoveries: [
+        { kind: 'layout', value: `portal_session:${row.event}` },
+        headers.length ? { kind: 'exception', value: `look_for ${headers.join(', ')}` } : null
+      ].filter(Boolean)
+    });
+  }
+  await addFeedback({
+    accountId,
+    jurisdictionKey,
+    kind: 'portal_session',
+    body: `${row.event} ${headers.join(', ')} ${row.notes}`.trim()
+  });
+  return row;
+}
+
 function resetMemory() {
   memory.extractors.length = 0;
   memory.versions.length = 0;
@@ -377,6 +418,7 @@ module.exports = {
   markBroken,
   rememberDiscovery,
   addFeedback,
+  recordPortalSession,
   listActive,
   stats,
   defaultMethod,

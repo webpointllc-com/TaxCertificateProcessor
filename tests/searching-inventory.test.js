@@ -124,10 +124,13 @@ describe('S-PUL Searching inventory fusion', () => {
   it('ships DeepShake Mac hunt and the cloud HTTP substitute', () => {
     const hunt = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'deepshake-hunt-mac.sh'), 'utf8');
     const hybrid = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'hybrid-revalidate.js'), 'utf8');
+    const validate = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'validate-extractors.js'), 'utf8');
     const sniff = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'searching-chrome-sniff.mjs'), 'utf8');
     assert.match(hunt, /Darwin/);
     assert.match(hunt, /revalidate:searching/);
-    assert.match(hybrid, /spul_searching_inventory/);
+    assert.match(hybrid, /validate-extractors/);
+    assert.match(validate, /extractor_urls\.json/);
+    assert.match(validate, /DR Production Results/);
     assert.match(sniff, /SQS_SITE/);
     assert.match(sniff, /Do not pass them as argv/);
     assert.doesNotMatch(sniff, /process\.argv\[2\]/);

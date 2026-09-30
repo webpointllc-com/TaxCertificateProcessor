@@ -60,5 +60,15 @@
     { "header": "Land Value", "key": "land_value", "aliases": ["land"], "meaning": "Land assessed value." },
     { "header": "Owner 1 Name", "key": "owner_1_name", "aliases": ["owner", "owner name"], "meaning": "Primary owner as returned by the collector." },
     { "header": "Legal Description", "key": "legal_description", "aliases": ["legal", "legal desc"], "meaning": "Legal description when the collector provides one." }
+  ],
+  "portal_look_for": [
+    { "header": "Parcel Number", "roles": ["parcel"], "hints": ["parcel", "apn", "pin", "folio"] },
+    { "header": "Tax Id", "roles": ["account"], "hints": ["tax id", "account", "bill number"] },
+    { "header": "Owner 1 Name", "roles": ["owner"], "hints": ["owner", "last name"] },
+    { "header": "Legal Description", "roles": ["address"], "hints": ["situs", "address", "legal"] },
+    { "header": "Bill Amount", "roles": ["amount"], "hints": ["bill amount", "tax amount"] },
+    { "header": "Balance Due", "roles": ["amount"], "hints": ["balance", "amount due"] },
+    { "header": "As Of", "roles": ["date"], "hints": ["as of", "as-of"] },
+    { "header": "Bill Year", "roles": ["year"], "hints": ["tax year", "bill year"] }
   ]
 }

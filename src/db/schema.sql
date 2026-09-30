@@ -254,3 +254,25 @@ CREATE TABLE IF NOT EXISTS session_feedback (
 );
 
 CREATE INDEX IF NOT EXISTS session_feedback_key_idx ON session_feedback (jurisdiction_key, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS validation_runs (
+  id TEXT PRIMARY KEY,
+  generated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  probed INTEGER NOT NULL DEFAULT 0,
+  counts JSONB NOT NULL DEFAULT '{}'::jsonb,
+  notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS extractor_portal_sessions (
+  id TEXT PRIMARY KEY,
+  account_id TEXT,
+  session_id TEXT,
+  jurisdiction_key TEXT NOT NULL,
+  event TEXT NOT NULL,
+  fields JSONB NOT NULL DEFAULT '[]'::jsonb,
+  notes TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS extractor_portal_sessions_key_idx
+  ON extractor_portal_sessions (jurisdiction_key, created_at DESC);

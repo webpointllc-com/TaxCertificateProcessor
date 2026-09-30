@@ -18,17 +18,17 @@ This folder defines the **contract** between:
 
 The canonical operator index is **https://webpointllc.com/searching**. Top of that page is the Render TCS iframe; the grid under it is the collector URL registry this contract protects.
 
-DeepShake AppleScript is Darwin + `/Volumes/T7` only. Cloud agents run the HTTP substitute:
+How to validate (same every time): [`docs/VALIDATION.md`](../../docs/VALIDATION.md).
 
 ```bash
-npm run revalidate:searching         # hybrid GET + form sniff of Searching inventory
-bash scripts/deepshake-hunt-mac.sh   # from repo root, on Darwin + T7 mounted
-cursor worker start                  # so cloud agents can see the volume
+npm run validate:extractors         # HTTP GET + DR column-head sniff of the 2k+ union
+npm run validate:apply              # evidenced collector_search only; golden wins
+bash scripts/deepshake-hunt-mac.sh  # Darwin + T7
 ```
 
-Optional Chrome unlock of the live Searching page uses env `SQS_SITE` / `SQS_INDEX` (never git, never argv): `scripts/searching-chrome-sniff.mjs`.
+Cloudflare JS challenges are queued for a **real Chrome user session** (`POST /api/extractors/session`). We do not bypass Cloudflare from the datacenter.
 
-When DeepShake (or Playwright offline) produces a better Search URL, emit a row matching `contract.example.json` and merge via golden overrides — never invent a host.
+When DeepShake (or a user tab) produces a better Search URL, emit a row matching `contract.example.json` and merge via golden overrides — never invent a host.
 
 ## Related scripts (already in repo)
 

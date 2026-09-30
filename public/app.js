@@ -282,6 +282,17 @@
     var url = (data.lookup && (data.lookup.officialUrl || data.lookup.lockedUrl)) || card.collector_url || '';
     var link = $('res-collector');
     if (url) { link.href = url; link.hidden = false; } else { link.hidden = true; }
+    var look = $('res-lookfor');
+    var shake = data.deepshake || {};
+    if (look) {
+      var heads = (shake.lookFor || []).slice(0, 8);
+      if (heads.length) {
+        look.hidden = false;
+        look.textContent = (shake.recommended ? 'DeepShake in your Chrome tab — look for: ' : 'Look for on this collector: ') + heads.join(', ');
+      } else {
+        look.hidden = true;
+      }
+    }
     var agent = data.agent || data.extractor || {};
     var handoff = data.handoff || (data.operator && data.operator.handoff) || {};
     var badge = (handoff.to && handoff.to.badge) || '';
@@ -562,9 +573,30 @@
     var data = await res.json();
     lastLookup = data;
     var url = officialUrlOf(data);
-    if (url) window.open(url, '_blank', 'noopener');
-    else setStatus(data.error || data.source || 'No locked collector URL');
+    if (url) {
+      window.open(url, '_blank', 'noopener');
+      portPortalSession(q, url);
+    } else setStatus(data.error || data.source || 'No locked collector URL');
   });
+
+  function portPortalSession(q, url) {
+    if (!authToken) return;
+    fetch('/api/extractors/session', {
+      method: 'POST',
+      headers: headers(true),
+      body: JSON.stringify({
+        q: q || lastQuery,
+        event: 'opened_portal',
+        notes: url || ''
+      })
+    }).catch(function () {});
+  }
+
+  if ($('res-collector')) {
+    $('res-collector').addEventListener('click', function () {
+      portPortalSession(lastQuery, $('res-collector').href);
+    });
+  }
 
   function renderSpulFromLookup(lookup, extra) {
     var url = officialUrlOf(lookup);
