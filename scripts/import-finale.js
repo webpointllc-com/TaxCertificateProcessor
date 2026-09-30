@@ -12,6 +12,10 @@ fs.mkdirSync(finale, { recursive: true });
 const downloads = process.env.HOME
   ? [
       [
+        path.join(process.env.HOME, 'Downloads', 'OH-Hamilton -DR-Production Results09042026 (4).xlsx'),
+        path.join(finale, 'OH-Hamilton-DR-ProductionResults09042026.xlsx')
+      ],
+      [
         path.join(process.env.HOME, 'Downloads', 'OH-Hamilton -DR-Production Results09042026 (1).xlsx'),
         path.join(finale, 'OH-Hamilton-DR-ProductionResults09042026.xlsx')
       ],

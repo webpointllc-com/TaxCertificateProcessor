@@ -6,7 +6,13 @@ function compactJurisdictionName(s) {
 }
 
 function isGoogleFallbackUrl(url) {
-  return typeof url === 'string' && /google\.com\/search/i.test(url);
+  if (typeof url !== 'string' || !url) return false;
+  try {
+    const host = new URL(url).hostname.replace(/^www\./i, '').toLowerCase();
+    return host === 'google.com' || host.endsWith('.google.com');
+  } catch {
+    return /google\.com/i.test(url);
+  }
 }
 
 function isRealHttpUrl(url) {

@@ -42,6 +42,8 @@ CANONICAL OPERATOR INDEX:
 - Live page: ${page.canonicalUrl || 'https://webpointllc.com/searching'}
 - Top of that page is the Tax Certificate Processor iframe (class ${cls}, src ${src}). Same snippet as public/SQUARESPACE_EMBED.html. Render billing, OTP, and membership are operator-owned — this model does not invent a paywall.
 - Below the iframe is the ${label} (${n} validated collector URLs). That live list, public/County_Names_Urls_BillValidated.html, and data/spul_searching_inventory.json are the same registry.
+- The Development Extractor table dump (data/extractor_urls.txt) is the same extractor family. Prefer a Search URL over Base. Never lock google.com, {parcel} templates, or empty rows. Searching inventory + golden overrides win when they disagree with a raw Base URL.
+- Output document is DR Production Results (finale/, 40 columns). Talk about the whole row for this parcel. Isolate a column only when the user names it. User/live feedback heals that county's extractor (parcel_format / exceptions); a locked collector URL stays locked.
 - KY clerk/sheriff tax is ECCLIX at ecclix.com (not parked eclix.com). PVDNet is view.properlytaxes.com. Oldham KY is ptax1.csiky.com. LA sheriff SNS is snstaxpayments.com.
 - Never invent URLs. Never echo site passwords, index access codes, or OTP secrets.`;
 }

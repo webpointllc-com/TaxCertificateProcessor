@@ -56,9 +56,7 @@ function pickTargets(inventory, locks) {
     source: row.source || 'inventory'
   }));
 
-  const prefer = [...lockRows, ...inventoryRows.filter((r) => VENDOR_HOST.test(r.url || ''))];
-  const rest = inventoryRows.filter((r) => !VENDOR_HOST.test(r.url || ''));
-  const ordered = ALL ? [...lockRows, ...inventoryRows] : [...prefer, ...rest];
+  const ordered = ALL ? [...lockRows, ...inventoryRows] : prefer;
 
   const out = [];
   for (const row of ordered) {

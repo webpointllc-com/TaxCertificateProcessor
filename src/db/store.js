@@ -208,6 +208,19 @@ function defaultChunks() {
       ].join(' ')
     },
     {
+      id: 'playbook-extractor-table',
+      jurisdiction_key: null,
+      kind: 'spul',
+      title: 'Extractor table dump + DR Production Results + live feedback',
+      body: [
+        'Workplace extractors live as one row per ST-CountyToken. The Development dump ExtractorUrls.txt (data/extractor_urls.txt) lists SearchUrl vs BaseUrl. Search wins. google.com, {parcel} templates, and blank URLs are not locks.',
+        'Squarespace Searching / data/spul_searching_inventory.json is the cleaned overlay of that table. Golden overrides and operator locks still win.',
+        'OH-Hamilton, CT-HartfordCity, IL-Sangamon keep empty search_url until the collector search page is confirmed even if the dump has a treasurer/homepage path.',
+        'The document those extractors fill is DR Production Results in finale/ — 40 columns, same headers every county. Talk whole-row unless the user names a field. Empty cells stay empty.',
+        'User and live session feedback (/v1/feedback) heals that county extractor: parcel_format variants, layout notes, exceptions. A locked collector URL is not replaced by a guessed host.'
+      ].join(' ')
+    },
+    {
       id: 'playbook-dr-production',
       jurisdiction_key: null,
       kind: 'playbook',

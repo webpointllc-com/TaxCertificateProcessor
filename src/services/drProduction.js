@@ -202,6 +202,7 @@ function productionPrompt(block) {
     }.`,
     isolateLine,
     `On file: ${block.on_file ? 'yes' : 'no'}. ${block.speak}`,
+    'Seeds for this row: finale/ workbooks, Searching inventory, Extractor table dump, then user/live feedback on this county extractor. Parcel format is per county.',
     'Empty cells stay empty. Never invent a collector URL or a dollar amount.'
   ].join('\n');
 }

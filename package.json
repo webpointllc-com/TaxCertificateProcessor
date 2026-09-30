@@ -13,6 +13,7 @@
     "import:finale": "node scripts/import-finale.js",
     "import:master": "node scripts/import-master-counties.js",
     "import:searching": "node scripts/import-searching-inventory.js",
+    "import:extractor-urls": "node scripts/import-extractor-urls.js",
     "seed:searching-extractors": "python3 scripts/seed-searching-extractors.py",
     "revalidate:searching": "node scripts/hybrid-revalidate.js",
     "deepshake:mac": "bash scripts/deepshake-hunt-mac.sh",

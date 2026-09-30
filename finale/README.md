@@ -6,7 +6,7 @@ Current sheets (same 40 columns):
 
 | File | Agency | Notes |
 | --- | --- | --- |
-| `OH-Hamilton-DR-ProductionResults09042026.xlsx` | OH-Hamilton | Hamilton County, Ohio. Parcel format `###-####-####-##`. |
+| `OH-Hamilton-DR-ProductionResults09042026.xlsx` | OH-Hamilton | Hamilton County, Ohio. Parcel format `###-####-####-##`. Same bytes as the `(4)` Downloads drop. |
 | `CT-HartfordCity-DR-ProductionResults09042026.xlsx` | CT-HartfordCity | Hartford, Connecticut (city slot). Numeric tax id / parcel. |
 | *(xlsx pending)* | IL-Sangamon | Sangamon, Illinois. One screenshot row is in `samples.json` until the workbook lands. |
 
