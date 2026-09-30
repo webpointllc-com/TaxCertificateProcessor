@@ -13,6 +13,7 @@ const { CLOUDFLARE, extractFields, extractTitle } = require('../../scripts/probe
 
 const RUN_PATH = path.join(__dirname, '../../data/validation_run.json');
 const QUEUE_PATH = path.join(__dirname, '../../data/deepshake_queue.json');
+const FAMILY_PATH = path.join(__dirname, '../../data/family_matrix.json');
 const PLAYBOOK_SKIP = new Set(['OH-Hamilton', 'CT-HartfordCity', 'IL-Sangamon']);
 
 function lookForSpec() {
@@ -64,6 +65,8 @@ function handshake({ lookup, extractor, sessionId, hit } = {}) {
   const portal = (lookup && (lookup.officialUrl || lookup.lockedUrl || lookup.candidateUrl)) || '';
   const gated = Boolean(hit && needsDeepShake(hit)) || Boolean(lookup && !lookup.urlLocked);
   const recommended = Boolean(portal) && (gated || (hit && cloudflareGated(hit)));
+  const vendorFamily = require('./vendorFamily');
+  const family = vendorFamily.classify(portal || (extractor && extractor.search_url), 1);
   return {
     recommended,
     reason: hit && cloudflareGated(hit)
@@ -75,8 +78,15 @@ function handshake({ lookup, extractor, sessionId, hit } = {}) {
     openIn: 'user_chrome_tab',
     sessionId: sessionId || null,
     countyKey: lookup?.key || extractor?.jurisdiction_key || null,
+    family: family.family,
+    familyKind: family.kind,
+    pat: {
+      prefix: 'wptpat_',
+      scopes: ['portal_session', 'look_for'],
+      agreement: 'minted_on_signed_in_open'
+    },
     lookFor: lookForHeaders(),
-    note: 'Open the tax collecting entity in the signed-in user\'s real Chrome tab. Cloudflare challenges need that session. Do not invent a URL. Fill the DR Production Results row from what the collector shows.'
+    note: 'Open the tax collecting entity in the signed-in user\'s real Chrome tab. A wptpat_ portal access token is minted for that click. Cloudflare challenges need that session. Do not invent a URL. Do not forge a biometric.'
   };
 }
 
@@ -84,6 +94,15 @@ function loadLastRun() {
   if (!fs.existsSync(RUN_PATH)) return null;
   try {
     return JSON.parse(fs.readFileSync(RUN_PATH, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+function loadFamilyMatrix() {
+  if (!fs.existsSync(FAMILY_PATH)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(FAMILY_PATH, 'utf8'));
   } catch {
     return null;
   }
@@ -130,9 +149,11 @@ module.exports = {
   handshake,
   loadLastRun,
   loadQueue,
+  loadFamilyMatrix,
   fresherRun,
   staleRun,
   skipPlaybookKey,
   RUN_PATH,
-  QUEUE_PATH
+  QUEUE_PATH,
+  FAMILY_PATH
 };

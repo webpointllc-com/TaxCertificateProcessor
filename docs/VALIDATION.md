@@ -30,22 +30,39 @@ OH-Hamilton, CT-HartfordCity, and IL-Sangamon stay **unlocked** until a collecto
 ## Update commands (same every time)
 
 ```bash
+npm run validate:families          # one sample per vendor family (the monthly path)
 npm run import:extractor-urls      # refresh dump JSON if the txt changed
-npm run validate:extractors        # HTTP GET + DR field sniff of the full union (~2k URLs)
+npm run validate:extractors        # optional full HTTP GET of unique URLs before a release
 npm run validate:apply             # write probeStatus / verified onto counties.json
 npm test
 ```
 
-`npm run revalidate:searching` is the same validator (hybrid-revalidate delegates).
+`npm run revalidate:searching` is the unique-URL HTTP validator.
 
 Reports written:
 
 | File | Role |
 | --- | --- |
-| `data/validation_run.json` | counts, look-for hits, **how** this pass was done |
+| `data/family_matrix.json` | **Replicable monthly pass** — one row per vendor family |
+| `data/validation_run.json` | unique-URL HTTP counts, look-for hits, **how** |
 | `data/validation_hits.json` | compact per-URL evidence (no HTML bodies) |
 | `data/deepshake_queue.json` | Cloudflare / no-form / timeout — open in user Chrome |
 | `data/validation_apply.json` | what apply changed |
+
+## Vendor family matrix (process of elimination)
+
+Do not open 2,000 Chrome tabs. Collapse by host family, then look at **URL specificity**:
+
+| Specificity | Meaning | Lock? |
+| --- | --- | --- |
+| 0 | Bare homepage shared by many keys (e.g. 296 NJ towns → lots.signatureinfo.com/) | No — hub, user picks county in-session |
+| 1 | Shared vendor login/search (ECCLIX, Munis) | Keep existing locks; do not mass-verify |
+| 2–3 | County token in path or query (Delta AL/AL08, GovOS /brevard/property-tax) | Yes, if family kind is collector |
+| assessor / payment_hub | Beacon, qPublic, TrueAutomation, Invoice Cloud | Never collector |
+
+Cloudflare collector families (`county-taxes`, LandNav, SNS, ECCLIX) use a **signed-in user Chrome tab**. That click mints a `wptpat_` portal access token (PAT agreement: prefix, secret shown once, SHA-256 at rest, 24h, scopes `portal_session` + `look_for`). We do not forge biometrics or spoof Cloudflare.
+
+Optional: `node scripts/validate-families.js --chrome` dump-dom for **non-CF** samples only, 12s timeout, isolated profile.
 
 ## Cloudflare / DeepShake
 
@@ -62,8 +79,9 @@ On a Mac with T7: `npm run deepshake:mac`.
 
 | When | What |
 | --- | --- |
-| Per county, live | Search → county agent → Open official tax search → session ported |
-| Every ~28 days | Always-on Render Starter (`VALIDATE_MONTHLY` not `0`) re-runs `validate-extractors.js` if `validation_run.json` is stale, then upserts `validation_runs` in Postgres |
+| Per county, live | Search → county agent → Open official tax search → `wptpat_` minted, session ported |
+| Every ~28 days | Always-on Render Starter re-runs `validate-families.js` (O(families)). Full unique-URL GET is a release command, not the monthly tick |
+| After each pass | Operator `validate:apply` + git commit so catalog locks survive deploys (Render disk is ephemeral) |
 | After each pass | Operator `validate:apply` + git commit so catalog locks survive deploys (Render disk is ephemeral) |
 | Before a release | Operator runs the three npm commands above |
 
@@ -85,6 +103,14 @@ Results this pass:
 - DR heads found on page: Parcel Number 556, Tax Id 381, Owner 1 Name 296, Legal Description 465, Bill Year 136, Balance Due 78, As Of 48, Bill Amount 11.
 - `collector_search` 132 · Cloudflare 158 · DeepShake queue 618 · dead HTTP 752 · unknown_live 381 · homepage 185 · assessor_search 27.
 - Apply: **13 newly verified**, 1,045 kept locked, 601 dead-but-locked queued for DeepShake, 32 golden skipped, Hamilton/Hartford/Sangamon still unlocked.
+
+## Family matrix pass (2026-09-30)
+
+The replicable monthly path is `npm run validate:families` (~10s): collapse rows by vendor family, HTTP-sample only known collector families that are not Cloudflare, mint `wptpat_` when a signed-in user opens a gated portal.
+
+- Extractor+inventory rows collapse to **730 families** (2,297 unique key+URL rows).
+- Known collector 28 · assessor 3 · hub 3 · payment hub 4 · long-tail unknown waits for a user PAT session (not 692 Chrome tabs).
+- **200 county-specific lockable URLs** (Delta `AL/AL08`, AR `?county=`, GovOS `/brevard/property-tax`). 296 NJ towns on lots.signatureinfo.com/ stay a hub.
 
 ## Honest limits
 

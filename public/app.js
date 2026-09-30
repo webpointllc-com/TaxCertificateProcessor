@@ -589,7 +589,14 @@
         event: 'opened_portal',
         notes: url || ''
       })
-    }).catch(function () {});
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data && data.pat && data.pat.token) {
+          try { sessionStorage.setItem('wptpat', data.pat.token); } catch (e) {}
+        }
+      })
+      .catch(function () {});
   }
 
   if ($('res-collector')) {

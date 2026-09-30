@@ -477,6 +477,7 @@ app.post('/api/extractors/session', async (req, res) => {
   res.json({
     ok: true,
     session: row,
+    pat: row.pat || null,
     deepshake: siteValidator.handshake({
       lookup,
       sessionId: sessionIdOf(req)
@@ -1058,8 +1059,8 @@ function scheduleMonthlyValidation() {
   const { spawn } = require('child_process');
   const siteValidator = require('./services/siteValidator');
   const tick = () => {
-    if (!siteValidator.staleRun(siteValidator.loadLastRun(), 28)) return;
-    const child = spawn(process.execPath, [path.join(__dirname, '..', 'scripts', 'validate-extractors.js')], {
+    if (!siteValidator.staleRun(siteValidator.loadFamilyMatrix() || siteValidator.loadLastRun(), 28)) return;
+    const child = spawn(process.execPath, [path.join(__dirname, '..', 'scripts', 'validate-families.js')], {
       cwd: path.join(__dirname, '..'),
       stdio: 'ignore',
       detached: false

@@ -14,10 +14,10 @@ const launchPlan = {
   searchingPage: 'https://webpointllc.com/searching',
   searchingIframeClass: 'wp-tcs-frame',
   validator: {
-    command: 'npm run validate:extractors && npm run validate:apply',
+    command: 'npm run validate:families && npm run validate:extractors && npm run validate:apply',
     lookFor: 'DR Production Results column heads',
-    monthly: 'Starter web re-runs when validation_run.json is older than 28 days and upserts validation_runs in Postgres — no extra Render cron bill this month',
-    deepshake: 'User Chrome tab via /api/extractors/session. Cloudflare is not bypassed.'
+    monthly: 'Starter web re-runs the vendor-family matrix when family_matrix.json is older than 28 days (O(families), not O(counties)). Cloudflare families wait for a signed-in Chrome tab + wptpat_ token.',
+    deepshake: 'User Chrome tab via /api/extractors/session mints a wptpat_ portal access token. Cloudflare is not bypassed. Biometrics are not forged.'
   },
   repo: REPO,
   selected: [

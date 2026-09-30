@@ -226,10 +226,10 @@ function defaultChunks() {
       kind: 'spul',
       title: 'Monthly + per-county site validator',
       body: [
-        'Every usable ExtractorUrls / Searching URL is validated with HTTP GET + form sniff. The fields we look for are the DR Production Results column heads: Parcel Number, Tax Id, Owner 1 Name, Legal Description, Bill Amount, Balance Due, As Of, Bill Year.',
-        'Cloudflare JS challenges are not bypassed. They go on the DeepShake queue and open in the signed-in user\'s real Chrome tab (/api/extractors/session). That session heals the county extractor.',
-        'npm run validate:extractors then npm run validate:apply. Golden overrides win. OH-Hamilton, CT-HartfordCity, IL-Sangamon stay unlocked until a collector search page is confirmed.',
-        'Monthly: the always-on Render Starter process re-runs validation when the last report is older than 28 days and writes validation_runs to Postgres (disk JSON is ephemeral on Render). Per-county: each signed-in Open official tax search posts /api/extractors/session. Same method every update so results stay comparable. Apply to counties.json is the git catalog step — already-verified collectors stay locked on a flaky GET.'
+        'Monthly work is a vendor-family matrix (npm run validate:families): one sample per host family, not 2k Chrome tabs. Shared homepages (lots.signatureinfo.com × 296) are hubs, not mass locks. Assessor SaaS stays assessor.',
+        'Cloudflare JS challenges are not bypassed. Those families wait for the signed-in user\'s real Chrome tab. That click mints a wptpat_ portal access token (prefix, hash at rest, 24h, scopes portal_session + look_for). Biometrics are not forged.',
+        'npm run validate:families then, before a release, npm run validate:extractors && npm run validate:apply. Golden overrides win. OH-Hamilton, CT-HartfordCity, IL-Sangamon stay unlocked until a collector search page is confirmed.',
+        'Monthly: Render Starter re-runs validate-families.js when the last report is older than 28 days. Per-county: Open official tax search posts /api/extractors/session and stores wptpat_ in the tab. Apply to counties.json is the git catalog step — already-verified collectors stay locked on a flaky GET.'
       ].join(' ')
     },
     {

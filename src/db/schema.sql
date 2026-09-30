@@ -278,8 +278,12 @@ CREATE TABLE IF NOT EXISTS extractor_portal_sessions (
   event TEXT NOT NULL,
   fields JSONB NOT NULL DEFAULT '[]'::jsonb,
   notes TEXT,
+  token_hash TEXT,
+  expires_at TIMESTAMPTZ,
+  family_id TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE INDEX IF NOT EXISTS extractor_portal_sessions_key_idx
-  ON extractor_portal_sessions (jurisdiction_key, created_at DESC);
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS token_hash TEXT;
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ;
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS family_id TEXT;

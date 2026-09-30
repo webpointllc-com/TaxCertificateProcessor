@@ -73,8 +73,10 @@ describe('site validator + DR look-for heads', () => {
   it('documents the repeatable update path', () => {
     const md = fs.readFileSync(path.join(__dirname, '..', 'docs', 'VALIDATION.md'), 'utf8');
     assert.match(md, /validate:extractors/);
+    assert.match(md, /validate:families/);
     assert.match(md, /validate:apply/);
     assert.match(md, /28 days/);
+    assert.match(md, /wptpat_/);
     assert.match(md, /extractor\/session|extractors\/session/);
     assert.match(md, /keep_lock/);
     assert.doesNotMatch(md, /bypass Cloudflare/i);
