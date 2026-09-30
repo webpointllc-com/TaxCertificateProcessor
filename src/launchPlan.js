@@ -11,6 +11,8 @@ const launchPlan = {
   blueprintUrl: `https://dashboard.render.com/blueprint/new?repo=${REPO}`,
   groqKeysUrl: 'https://console.groq.com/keys',
   liveOrigin: 'https://tax-certificate-processor.onrender.com',
+  searchingPage: 'https://webpointllc.com/searching',
+  searchingIframeClass: 'wp-tcs-frame',
   repo: REPO,
   selected: [
     {

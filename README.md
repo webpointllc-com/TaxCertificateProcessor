@@ -76,12 +76,15 @@ Pay: open [`/pay.html`](public/pay.html) (or `npm run pay` / `bash scripts/ru.sh
 
 ## Squarespace members page
 
-1. Create the paid members area on [webpointllc.com](https://webpointllc.com).
-2. On the paid page, add a **Code Block**.
-3. Paste `public/SQUARESPACE_EMBED.html` (update the `src` host after the first Render deploy).
-4. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
-5. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide** and **Architecture**.
-6. Members land on the Google-style search bar. Sign in is required before a research task. Email/password plus a confirmation link; Google/Apple light up when those keys are set on Render. Shop code `WP-XXXX-XXXX` or skip for one free task. Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
+The live operator page is [webpointllc.com/searching](https://webpointllc.com/searching). Layout is already decided:
+
+1. **Top** — Tax Certificate Processor iframe (`class="wp-tcs-frame"`, `src="https://tax-certificate-processor.onrender.com/"`). Paste `public/SQUARESPACE_EMBED.html`. Render billing and OTP are operator-owned.
+2. **Below** — County Tax Collecting Entity Index (~1,675 validated collector URLs). Same registry as `data/spul_searching_inventory.json` and `public/County_Names_Urls_BillValidated.html`.
+3. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
+4. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide** and **Architecture**.
+5. Members land on the Google-style search bar. Sign in is required before a research task. Email/password plus a confirmation link; Google/Apple light up when those keys are set on Render. Shop code `WP-XXXX-XXXX` or skip for one free task. Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
+
+Site passwords and Restricted Index access codes stay with the operator. They are never stored in this repo.
 
 Optional script tag (host will match the request):
 

@@ -187,10 +187,24 @@ function defaultChunks() {
         'San Diego CA is locked to Treasurer-Tax Collector WebPayments, not ARCC.',
         'Harris TX is locked to myharriscountytax.com, not harriscountytx.gov.',
         'Cook IL is locked to the County Treasurer PIN search, not cookcountypropertyinfo.com.',
-        'The live Squarespace Searching page and Bill Validated HTML (County_Names_Urls_BillValidated.html) are the same S-PUL URL registry. KY clerk/sheriff tax is ECCLIX at ecclix.com, not parked eclix.com. LaRue/Marshall KY use view.properlytaxes.com (PVDNet). Oldham KY uses ptax1.csiky.com. LA parishes use snstaxpayments.com parish paths or the sheriff property-details page.',
+        'The live Squarespace Searching page https://webpointllc.com/searching is the canonical operator index. Top of that page is the Tax Certificate Processor iframe (class wp-tcs-frame, src https://tax-certificate-processor.onrender.com/) — same public/SQUARESPACE_EMBED.html snippet. Render billing and OTP are operator-owned. Below the iframe is the County Tax Collecting Entity Index (~1,675 validated entries). That index, Bill Validated HTML (County_Names_Urls_BillValidated.html), and data/spul_searching_inventory.json are the same S-PUL URL registry. KY clerk/sheriff tax is ECCLIX at ecclix.com, not parked eclix.com. LaRue/Marshall KY use view.properlytaxes.com (PVDNet). Oldham KY uses ptax1.csiky.com. LA parishes use snstaxpayments.com parish paths or the sheriff property-details page. Never echo site passwords or index access codes.',
         'DR Production Results (finale/) is the output document: 40 columns, one row per parcel in a county/state.',
         'Talk about that whole row. Isolate a single column only when the user names that field.',
         'Parcel formats differ by county and live on the county extractor (self-heal / user feedback). Empty cells stay empty.'
+      ].join(' ')
+    },
+    {
+      id: 'playbook-searching-index',
+      jurisdiction_key: null,
+      kind: 'spul',
+      title: 'webpointllc.com/searching — operator index + Render TCS iframe',
+      body: [
+        'Canonical operator page: https://webpointllc.com/searching (Squarespace Searching).',
+        'The top slot is not a second product: it is the Tax Certificate Processor iframe class wp-tcs-frame src https://tax-certificate-processor.onrender.com/ with 1280×800 ScaleToFit (padding-top 62.5%). That is public/SQUARESPACE_EMBED.html.',
+        'Render Starter web + Postgres billing, OTP, and Squarespace membership gates are operator-owned. The model does not invent a paywall or store site passwords.',
+        'Under the iframe: County Tax Collecting Entity Index, 1,675 validated collector URLs. Same registry as data/spul_searching_inventory.json and public/County_Names_Urls_BillValidated.html.',
+        'When a county is named, copy the locked collector URL from JURISDICTION DATA. Do not send users to assessor/CAD homepages when a collector search URL is locked.',
+        'Vendor hosts: ecclix.com (not eclix.com), view.properlytaxes.com (not propertytaxes.com), ptax1.csiky.com (not celky.com), snstaxpayments.com (not sntaxpayments.com).'
       ].join(' ')
     },
     {

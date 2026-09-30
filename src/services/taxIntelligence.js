@@ -6,13 +6,44 @@ const { buildScenarioContext, getFewShotExamples } = require('./scenarioRouter')
 const drProduction = require('./drProduction');
 
 const statutesPath = path.join(__dirname, '../../data/statutes.json');
+const searchingPagePath = path.join(__dirname, '../../data/searching_page.json');
 let statutesCache = null;
+let searchingPageCache = null;
 
 function loadStatutes() {
   if (!statutesCache) {
     statutesCache = JSON.parse(fs.readFileSync(statutesPath, 'utf8'));
   }
   return statutesCache;
+}
+
+function loadSearchingPage() {
+  if (searchingPageCache) return searchingPageCache;
+  try {
+    searchingPageCache = JSON.parse(fs.readFileSync(searchingPagePath, 'utf8'));
+  } catch {
+    searchingPageCache = {
+      canonicalUrl: 'https://webpointllc.com/searching',
+      topSlot: { class: 'wp-tcs-frame', src: 'https://tax-certificate-processor.onrender.com/' },
+      index: { label: 'County Tax Collecting Entity Index', validatedEntries: 1675 }
+    };
+  }
+  return searchingPageCache;
+}
+
+function searchingIndexBlock() {
+  const page = loadSearchingPage();
+  const src = page.topSlot?.src || 'https://tax-certificate-processor.onrender.com/';
+  const cls = page.topSlot?.class || 'wp-tcs-frame';
+  const label = page.index?.label || 'County Tax Collecting Entity Index';
+  const n = page.index?.validatedEntries || 1675;
+  return `
+CANONICAL OPERATOR INDEX:
+- Live page: ${page.canonicalUrl || 'https://webpointllc.com/searching'}
+- Top of that page is the Tax Certificate Processor iframe (class ${cls}, src ${src}). Same snippet as public/SQUARESPACE_EMBED.html. Render billing, OTP, and membership are operator-owned — this model does not invent a paywall.
+- Below the iframe is the ${label} (${n} validated collector URLs). That live list, public/County_Names_Urls_BillValidated.html, and data/spul_searching_inventory.json are the same registry.
+- KY clerk/sheriff tax is ECCLIX at ecclix.com (not parked eclix.com). PVDNet is view.properlytaxes.com. Oldham KY is ptax1.csiky.com. LA sheriff SNS is snstaxpayments.com.
+- Never invent URLs. Never echo site passwords, index access codes, or OTP secrets.`;
 }
 
 function formatFewShots() {
@@ -48,6 +79,7 @@ ABSOLUTE RULES:
 4. NEVER fabricate or invent URLs. Use only the URL provided in JURISDICTION DATA below.
 5. The SPUL_URL field MUST contain exactly the URL from JURISDICTION DATA — do not substitute.
 6. No paragraphs. Use the exact output format.
+${searchingIndexBlock()}
 ${formatFewShots()}
 
 OUTPUT FORMAT (use every time):

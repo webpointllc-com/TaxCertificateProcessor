@@ -16,22 +16,27 @@ This folder defines the **contract** between:
 
 ## DeepShake status
 
-DeepShake did **not** run in cloud agents (no `/Volumes/T7`). On Bill’s Mac:
+The canonical operator index is **https://webpointllc.com/searching**. Top of that page is the Render TCS iframe; the grid under it is the collector URL registry this contract protects.
+
+DeepShake AppleScript is Darwin + `/Volumes/T7` only. Cloud agents run the HTTP substitute:
 
 ```bash
+npm run revalidate:searching         # hybrid GET + form sniff of Searching inventory
 bash scripts/deepshake-hunt-mac.sh   # from repo root, on Darwin + T7 mounted
 cursor worker start                  # so cloud agents can see the volume
 ```
 
-When DeepShake (or Playwright offline) produces a better Search URL, emit a row matching `contract.example.json` and merge via `scripts/apply-url-fixes.js` or a future importer.
+Optional Chrome unlock of the live Searching page uses env `SQS_SITE` / `SQS_INDEX` (never git, never argv): `scripts/searching-chrome-sniff.mjs`.
+
+When DeepShake (or Playwright offline) produces a better Search URL, emit a row matching `contract.example.json` and merge via golden overrides — never invent a host.
 
 ## Related scripts (already in repo)
 
 | Script | Role |
 | --- | --- |
 | `../scripts/hybrid-revalidate.js` | Cloud-safe HTTP substitute for DeepShake |
-| `../scripts/remainder-revalidate.js` | Dead/uncertain recovery |
-| `../scripts/apply-url-fixes.js` | Apply evidenced URL replacements |
+| `../scripts/deepshake-hunt-mac.sh` | Darwin + T7 name hunt |
+| `../scripts/searching-chrome-sniff.mjs` | Optional Chrome pass; secrets from env only |
 
 ## Handshake fields (from beta — keep the shape)
 

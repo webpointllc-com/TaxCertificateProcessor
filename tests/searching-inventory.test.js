@@ -90,6 +90,47 @@ describe('S-PUL Searching inventory fusion', () => {
     assert.match(prompt, /EXTRACTOR/);
     assert.match(prompt, /ecclix\.com/i);
     assert.match(prompt, /ctl00_Content_UserName|County Clerk/i);
+    assert.match(prompt, /webpointllc\.com\/searching/);
+    assert.match(prompt, /tax-certificate-processor\.onrender\.com/);
+  });
+
+  it('teaches the LLM the Searching index and Render top iframe without secrets', async () => {
+    const page = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '..', 'data', 'searching_page.json'), 'utf8')
+    );
+    assert.equal(page.canonicalUrl, 'https://webpointllc.com/searching');
+    assert.equal(page.topSlot.class, 'wp-tcs-frame');
+    assert.equal(page.topSlot.src, 'https://tax-certificate-processor.onrender.com/');
+    assert.equal(page.index.validatedEntries, 1675);
+    assert.match(page.gates.squarespaceSitePassword, /never store/i);
+    assert.match(page.gates.restrictedIndexAccessCode, /never store/i);
+
+    const prompt = require('../src/services/taxIntelligence').enrichSystemPrompt('', '');
+    assert.match(prompt, /CANONICAL OPERATOR INDEX/);
+    assert.match(prompt, /webpointllc\.com\/searching/);
+    assert.match(prompt, /wp-tcs-frame/);
+    assert.match(prompt, /tax-certificate-processor\.onrender\.com/);
+    assert.match(prompt, /1,?675/);
+    assert.doesNotMatch(prompt, /SQS_SITE|SQS_INDEX/);
+
+    const store = require('../src/db/store');
+    await store.init();
+    const chunks = await store.searchKnowledge('searching index render iframe');
+    const blob = chunks.map((c) => `${c.title} ${c.body}`).join('\n');
+    assert.match(blob, /webpointllc\.com\/searching/);
+    assert.match(blob, /wp-tcs-frame/);
+  });
+
+  it('ships DeepShake Mac hunt and the cloud HTTP substitute', () => {
+    const hunt = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'deepshake-hunt-mac.sh'), 'utf8');
+    const hybrid = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'hybrid-revalidate.js'), 'utf8');
+    const sniff = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'searching-chrome-sniff.mjs'), 'utf8');
+    assert.match(hunt, /Darwin/);
+    assert.match(hunt, /revalidate:searching/);
+    assert.match(hybrid, /spul_searching_inventory/);
+    assert.match(sniff, /SQS_SITE/);
+    assert.match(sniff, /Do not pass them as argv/);
+    assert.doesNotMatch(sniff, /process\.argv\[2\]/);
   });
 
   it('does not steal Chippewa LandNav or unlock Maricopa', () => {

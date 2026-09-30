@@ -1,0 +1,31 @@
+{
+  "canonicalUrl": "https://webpointllc.com/searching",
+  "pageTitle": "Searching",
+  "owner": "WebPoint LLC",
+  "topSlot": {
+    "kind": "iframe",
+    "class": "wp-tcs-frame",
+    "src": "https://tax-certificate-processor.onrender.com/",
+    "embedFile": "public/SQUARESPACE_EMBED.html",
+    "scale": "1280x800 ScaleToFit, padding-top 62.5%",
+    "note": "This is the Tax Certificate Processor. Render billing, OTP, and Squarespace membership are operator-owned. The iframe is not a second product."
+  },
+  "index": {
+    "label": "County Tax Collecting Entity Index",
+    "validatedEntries": 1675,
+    "inventoryFile": "data/spul_searching_inventory.json",
+    "validatedHtml": "public/County_Names_Urls_BillValidated.html",
+    "operatorLocks": "data/spul_searching_operator_locks.json"
+  },
+  "hosts": {
+    "ecclix.com": "KY clerk/sheriff tax (ECCLIX). Not parked eclix.com.",
+    "view.properlytaxes.com": "PVDNet. Not view.propertytaxes.com.",
+    "ptax1.csiky.com": "Oldham KY current tax. Not ptax.oldham.celky.com.",
+    "snstaxpayments.com": "LA sheriff SNS. Not sntaxpayments.com."
+  },
+  "gates": {
+    "squarespaceSitePassword": "operator-owned, never store here",
+    "restrictedIndexAccessCode": "operator-owned, never store here",
+    "renderBillingOtp": "operator-owned, never store here"
+  }
+}

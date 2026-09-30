@@ -14,6 +14,8 @@
     "import:master": "node scripts/import-master-counties.js",
     "import:searching": "node scripts/import-searching-inventory.js",
     "seed:searching-extractors": "python3 scripts/seed-searching-extractors.py",
+    "revalidate:searching": "node scripts/hybrid-revalidate.js",
+    "deepshake:mac": "bash scripts/deepshake-hunt-mac.sh",
     "sync:sheet": "node scripts/sync-sheet-counties.js",
     "test": "node --test tests/*.test.js"
   },
