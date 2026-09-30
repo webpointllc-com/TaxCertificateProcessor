@@ -29,19 +29,28 @@
         <section id="view-home" class="g-home">
           <h1 class="g-logo" id="g-logo">WebPoint</h1>
           <p class="g-ask">What property are you researching today?</p>
+          <div id="us-map-wrap" class="us-map-wrap" hidden>
+            <div id="us-map" class="us-map" role="application" aria-label="Map of the United States. Select a state to narrow your search."></div>
+            <p class="us-map-hint">Select a state to narrow your search</p>
+          </div>
           <div id="home-search-slot" class="home-search-slot">
             <form id="hero-form" class="g-search" role="search" autocomplete="off">
               <label class="sr-only" for="hero-input">Search</label>
               <span class="mac-search-ico" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
               </span>
-              <input id="hero-input" placeholder="County, parcel, address, or a tax question" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="hero-suggest" aria-expanded="false">
+              <input id="hero-input" placeholder="Enter county, APN, address, or owner name..." autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="hero-suggest" aria-expanded="false">
               <button type="button" class="mac-clear" id="search-clear" hidden aria-label="Clear">×</button>
               <button type="submit" class="mac-go" id="hero-go" aria-label="Search">
                 <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
               </button>
               <div id="hero-suggest" class="suggest-list" hidden role="listbox"></div>
             </form>
+          </div>
+          <div class="trust-badges" id="trust-badges">
+            <span id="badge-catalog">Catalog live-probed</span>
+            <span>Collector link only when locked</span>
+            <span>Amounts confirmed on the collector</span>
           </div>
           <p class="search-error" id="search-error" hidden></p>
         </section>
@@ -51,6 +60,7 @@
             <p class="g-kicker" id="res-place"></p>
             <p id="res-summary"></p>
             <a class="g-link" id="res-collector" href="#" target="_blank" rel="noopener" hidden>Open official tax search</a>
+            <p class="g-lookfor" id="res-lookfor" hidden></p>
             <p class="g-agent" id="agent-note"></p>
             <div id="answer-thread" class="g-thread"></div>
             <form id="followup-form" class="g-follow">
@@ -145,6 +155,7 @@
           <div class="about-links">
             <a class="guide-link" href="/manual.html">User guide</a>
             <a class="guide-link" href="/architecture.html">Architecture</a>
+            <a class="guide-link" href="/pay.html">Pay / launch</a>
           </div>
         </div>
       </div>

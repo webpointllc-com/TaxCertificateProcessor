@@ -128,6 +128,7 @@
     $('gen-pill').hidden = true;
     $('search-clear').hidden = true;
     if ($('search-error')) $('search-error').hidden = true;
+    syncUsMap();
   }
 
   function showResults() {
@@ -138,6 +139,64 @@
     $('mac-window').classList.add('results');
     $('about-trigger').hidden = true;
     $('search-clear').hidden = !$('hero-input').value;
+  }
+
+  var MAP_KEY = 'wp_map_shown';
+  var mapLoaded = false;
+
+  function dismissUsMap() {
+    try { sessionStorage.setItem(MAP_KEY, '1'); } catch (e) {}
+    var wrap = $('us-map-wrap');
+    var home = $('view-home');
+    if (wrap) wrap.classList.add('is-away');
+    if (home) home.classList.remove('has-map');
+  }
+
+  function syncUsMap() {
+    var wrap = $('us-map-wrap');
+    var home = $('view-home');
+    if (!wrap || !home) return;
+    var shown = false;
+    try { shown = Boolean(sessionStorage.getItem(MAP_KEY)); } catch (e) {}
+    if (shown) {
+      wrap.hidden = true;
+      wrap.classList.add('is-away');
+      home.classList.remove('has-map');
+      return;
+    }
+    wrap.hidden = false;
+    wrap.classList.remove('is-away');
+    home.classList.add('has-map');
+    loadUsMap();
+  }
+
+  function loadUsMap() {
+    if (mapLoaded) return;
+    mapLoaded = true;
+    fetch('/us-map.svg')
+      .then(function (r) { return r.text(); })
+      .then(function (svg) {
+        var host = $('us-map');
+        if (!host) return;
+        host.innerHTML = svg;
+        host.querySelectorAll('.us-state').forEach(function (path) {
+          path.addEventListener('click', function () {
+            host.querySelectorAll('.us-state.is-active').forEach(function (n) { n.classList.remove('is-active'); });
+            path.classList.add('is-active');
+            var name = path.getAttribute('data-name') || path.getAttribute('data-st') || '';
+            if (!name) return;
+            $('hero-input').value = name;
+            $('hero-input').focus();
+            fetch('/api/suggest?q=' + encodeURIComponent(name), { headers: headers() })
+              .then(function (r) { return r.json(); })
+              .then(function (data) { paintSuggest(data.suggestions || []); })
+              .catch(function () {});
+          });
+        });
+      })
+      .catch(function () {
+        mapLoaded = false;
+      });
   }
 
   function maybeAskConsent() {
@@ -223,12 +282,21 @@
     var url = (data.lookup && (data.lookup.officialUrl || data.lookup.lockedUrl)) || card.collector_url || '';
     var link = $('res-collector');
     if (url) { link.href = url; link.hidden = false; } else { link.hidden = true; }
+    var look = $('res-lookfor');
+    var shake = data.deepshake || {};
+    if (look) {
+      var heads = (shake.lookFor || []).slice(0, 8);
+      if (heads.length) {
+        look.hidden = false;
+        look.textContent = (shake.recommended ? 'DeepShake in your Chrome tab — look for: ' : 'Look for on this collector: ') + heads.join(', ');
+      } else {
+        look.hidden = true;
+      }
+    }
     var agent = data.agent || data.extractor || {};
-    var bits = [];
-    if (data.operator && data.operator.routed_to) bits.push('County agent ' + data.operator.routed_to);
-    if (agent.parcel_format) bits.push('parcel pattern ' + agent.parcel_format);
-    if (agent.version) bits.push('v' + agent.version);
-    $('agent-note').textContent = bits.join(' · ');
+    var handoff = data.handoff || (data.operator && data.operator.handoff) || {};
+    var badge = (handoff.to && handoff.to.badge) || '';
+    $('agent-note').textContent = badge;
     $('heal-status').textContent = agent.version
       ? ('Shared with every user of this county · extractor v' + agent.version)
       : '';
@@ -505,9 +573,37 @@
     var data = await res.json();
     lastLookup = data;
     var url = officialUrlOf(data);
-    if (url) window.open(url, '_blank', 'noopener');
-    else setStatus(data.error || data.source || 'No locked collector URL');
+    if (url) {
+      window.open(url, '_blank', 'noopener');
+      portPortalSession(q, url);
+    } else setStatus(data.error || data.source || 'No locked collector URL');
   });
+
+  function portPortalSession(q, url) {
+    if (!authToken) return;
+    fetch('/api/extractors/session', {
+      method: 'POST',
+      headers: headers(true),
+      body: JSON.stringify({
+        q: q || lastQuery,
+        event: 'opened_portal',
+        notes: url || ''
+      })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data && data.pat && data.pat.token) {
+          try { sessionStorage.setItem('wptpat', data.pat.token); } catch (e) {}
+        }
+      })
+      .catch(function () {});
+  }
+
+  if ($('res-collector')) {
+    $('res-collector').addEventListener('click', function () {
+      portPortalSession(lastQuery, $('res-collector').href);
+    });
+  }
 
   function renderSpulFromLookup(lookup, extra) {
     var url = officialUrlOf(lookup);
@@ -584,6 +680,7 @@
     lastQuery = q;
     pendingQuery = q;
     sessionStorage.setItem('wp_pending_q', q);
+    dismissUsMap();
     hideSuggest();
     $('hero-input').value = q;
     if ($('search-error')) { $('search-error').hidden = true; $('search-error').textContent = ''; }
@@ -768,6 +865,17 @@
       spul.className = 'sr-only';
     })
     .catch(function () {});
+
+  fetch('/api/coverage', { headers: headers() })
+    .then(function (r) { return r.json(); })
+    .then(function (c) {
+      if (!c || !c.ok) return;
+      var n = $('badge-catalog');
+      if (n) n.textContent = c.badge || (c.rows + ' catalog slots');
+    })
+    .catch(function () {});
+
+  syncUsMap();
 
   function setAuthError(msg) {
     var n = $('auth-error');

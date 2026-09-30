@@ -254,3 +254,36 @@ CREATE TABLE IF NOT EXISTS session_feedback (
 );
 
 CREATE INDEX IF NOT EXISTS session_feedback_key_idx ON session_feedback (jurisdiction_key, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS validation_runs (
+  id TEXT PRIMARY KEY,
+  generated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  probed INTEGER NOT NULL DEFAULT 0,
+  counts JSONB NOT NULL DEFAULT '{}'::jsonb,
+  look_for_hits JSONB NOT NULL DEFAULT '{}'::jsonb,
+  method TEXT,
+  how JSONB NOT NULL DEFAULT '[]'::jsonb,
+  notes TEXT
+);
+
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS look_for_hits JSONB NOT NULL DEFAULT '{}'::jsonb;
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS method TEXT;
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS how JSONB NOT NULL DEFAULT '[]'::jsonb;
+
+CREATE TABLE IF NOT EXISTS extractor_portal_sessions (
+  id TEXT PRIMARY KEY,
+  account_id TEXT,
+  session_id TEXT,
+  jurisdiction_key TEXT NOT NULL,
+  event TEXT NOT NULL,
+  fields JSONB NOT NULL DEFAULT '[]'::jsonb,
+  notes TEXT,
+  token_hash TEXT,
+  expires_at TIMESTAMPTZ,
+  family_id TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS token_hash TEXT;
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ;
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS family_id TEXT;

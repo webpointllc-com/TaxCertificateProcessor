@@ -70,6 +70,54 @@ html, body {
   gap: 18px;
   padding: 0 40px 80px;
 }
+.g-home.has-map {
+  justify-content: flex-start;
+  padding-top: 10px;
+  padding-bottom: 24px;
+  gap: 10px;
+}
+.g-home.has-map .g-logo { font-size: 40px; }
+.us-map-wrap {
+  width: 520px;
+  max-width: 100%;
+  max-height: 340px;
+  margin: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
+}
+.us-map-wrap.is-away {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+.us-map {
+  width: 520px;
+  height: 306px;
+  max-width: 100%;
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.04));
+}
+.us-map svg { width: 100%; height: 100%; display: block; }
+.us-map .us-state { cursor: pointer; fill: transparent; }
+.us-map .us-state:hover { fill: rgba(219,234,254,0.8); }
+.us-map .us-state.is-active { fill: rgba(191,219,254,0.9); }
+.us-map-hint {
+  margin-top: 6px;
+  text-align: center;
+  color: #94A3B8;
+  font-size: 11.5px;
+  font-weight: 400;
+}
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+  color: #64748B;
+  font-size: 12px;
+  font-weight: 500;
+}
+.home-search-slot { width: 580px; max-width: 100%; }
 .g-logo {
   font-size: 64px;
   font-weight: 800;
@@ -78,7 +126,6 @@ html, body {
   line-height: 1;
 }
 .g-ask { color: #5b6b80; font-size: 16px; }
-.home-search-slot { width: 640px; max-width: 100%; }
 .g-search, .mac-search {
   position: relative;
   display: flex; align-items: center;
@@ -151,7 +198,7 @@ html, body {
 .mac-window.results .mac-label { display: none; }
 .mac-window.home .gen-pill { display: none !important; }
 .home-search-slot {
-  width: 560px;
+  width: 580px;
   max-width: 100%;
   z-index: 5;
 }
@@ -341,7 +388,16 @@ button.mac-label {
   background: #3b6dff; color: #fff; border: 0; border-radius: 10px;
   padding: 10px 12px; font-weight: 700; font-family: inherit; cursor: pointer;
 }
-.heal-status { font-size: 12px; color: #5b6b80; min-height: 16px; margin-top: 6px; }
+.g-lookfor {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border: 1px solid #d7e3ef;
+  border-radius: 12px;
+  background: #f4f8fc;
+  color: #3d4f63;
+  font-size: 13px;
+  line-height: 1.45;
+}
 .res-tabs {
   display: flex; gap: 22px; padding: 8px 4px 0; border-top: 1px solid #eef2f7; margin-top: 8px;
 }

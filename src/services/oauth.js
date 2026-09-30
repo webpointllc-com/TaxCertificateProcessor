@@ -13,6 +13,8 @@ function oauthStatus() {
 }
 
 function originOf(req) {
+  const forced = String(process.env.PUBLIC_ORIGIN || '').replace(/\/$/, '');
+  if (forced) return forced;
   const proto = (req.get('x-forwarded-proto') || req.protocol || 'http').split(',')[0].trim();
   const host = req.get('x-forwarded-host') || req.get('host');
   return `${proto}://${host}`;

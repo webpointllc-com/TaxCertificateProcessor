@@ -1,0 +1,1491 @@
+{
+  "_meta": {
+    "probed_on": "2026-09-29",
+    "method": "Personal live HTTP GET of every catalog searchURL (desktop Chrome UA, 12s timeout). Lock only a confirmed tax-collecting-entity search/pay page. County homepages, property-appraiser/CAD hosts, 404s, and Cloudflare-off-vendor redirects are not locks. Empty rows stay empty \u2014 no invented URLs. Florida: official collector pages (Alachua /property-taxes/, Brevard SEARCH or PAY ONLINE, Sarasota View/Pay Taxes) point at {county}.county-taxes.com/public; that host 403s behind Cloudflare when it exists and 404s when it does not. XPaths are from live HTML when the form is server-rendered; SPA labels are from the compiled bundle.",
+    "catalog": {
+      "counties": 3243,
+      "unique_urls_probed": 2280,
+      "collector_search_locks": "confirmed vendor/search portals only (county-taxes.com, LandNav, Spatialest, WebPayments, eProptax, ark.org, treasurer PIN, etc.)",
+      "empty_or_unverified": "homepage / assessor / dead / unknown_live / empty remain needs_correction until a collector search page is confirmed",
+      "google_fallback": 0
+    },
+    "searching_html": "public/County_Names_Urls_BillValidated.html from s-pul-front_end-Betavalid-tinder-55de. Live vendor HTML captured 2026-09-29."
+  },
+  "CA-SanDiego": {
+    "county": "San Diego",
+    "state": "CA",
+    "collector": "San Diego County Treasurer-Tax Collector",
+    "state_entity": "California \u2014 county Treasurer-Tax Collector collects secured property tax (Cal. Rev. & Tax. Code). Assessor/Recorder/County Clerk (ARCC) is values/records, not the pay/search page.",
+    "search_url": "https://wps.sdttc.com/WebPayments/CoSDTreasurer2/search",
+    "parcel_format": "###-###-##-##",
+    "how_found": "Opened the Treasurer-Tax Collector WebPayments search URL (not sandiegocounty.gov assessor ARCC). Live 200, title WebPayments, React SPA at /webpayments/static/js/main.5bea859a.js. Bundle strings: Search Property Tax Information; Search by one of the following 3 options; Parcel Number; Owner; Option 2: Mailing Address; Option 3: Unsecured Bill Number; Begin Search.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel",
+        "owner",
+        "address",
+        "unsecured_bill"
+      ],
+      "fields": [
+        {
+          "role": "parcel",
+          "label": "Parcel Number",
+          "xpath": "//label[contains(., 'Parcel Number')]/following::input[1] | //input[@aria-label='Parcel Number']"
+        },
+        {
+          "role": "owner",
+          "label": "Owner",
+          "xpath": "//label[contains(., 'Owner')]/following::input[1] | //input[@aria-label='Owner']"
+        },
+        {
+          "role": "address",
+          "label": "Mailing Address",
+          "xpath": "//label[contains(., 'Mailing Address')]/following::input[1]"
+        },
+        {
+          "role": "unsecured_bill",
+          "label": "Unsecured Bill Number",
+          "xpath": "//label[contains(., 'Unsecured Bill Number')]/following::input[1]"
+        },
+        {
+          "role": "submit",
+          "label": "Begin Search",
+          "xpath": "//button[contains(., 'Begin Search')] | //input[@value='Begin Search']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address",
+        "unsecured_bill"
+      ],
+      "steps": [
+        "Open https://wps.sdttc.com/WebPayments/CoSDTreasurer2/search (Treasurer-Tax Collector WebPayments). Never ARCC.",
+        "Search by Parcel Number first (San Diego format ###-###-##-##, e.g. 325-061-08-00).",
+        "If the parcel is unknown, search by owner last name or mailing address.",
+        "Unsecured bills use Option 3: Unsecured Bill Number.",
+        "Confirm amounts on that collector page before closing."
+      ],
+      "notes": "SPA: form controls render after JS. Target labels Parcel Number / Owner / Mailing Address."
+    }
+  },
+  "WI-Chippewa": {
+    "county": "Chippewa",
+    "state": "WI",
+    "collector": "Chippewa County Treasurer \u2014 Catalis LandNav public portal",
+    "state_entity": "Wisconsin \u2014 county treasurer collects postponed/delinquent real estate tax (Wis. Stat. ch. 74). Current December/January installments are paid to the LOCAL municipal treasurer.",
+    "search_url": "https://pp-chippewa-co-wi-fb.app.landnav.com/login/index/",
+    "parcel_format": "##-###-#-###",
+    "how_found": "Live 200 title Catalis - Login. Guest form is public; staff form is not. Official county site chippewacountywi.gov; chippewacounty.gov is dead.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "fields": [
+        {
+          "role": "guest_signin",
+          "label": "Guest Sign In",
+          "xpath": "//form[@id='GuestLoginForm']"
+        },
+        {
+          "role": "guest_submit",
+          "label": "Guest login submit",
+          "xpath": "//form[@id='GuestLoginForm']//*[@type='submit' or self::button]"
+        }
+      ],
+      "reject_xpath": [
+        "//form[@id='StaffLoginForm']"
+      ]
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "steps": [
+        "Open the LandNav login URL.",
+        "Submit form#GuestLoginForm (Guest Sign In). Do not use StaffLoginForm.",
+        "Search by parcel number, owner last name (less is more), or house number + street.",
+        "Max 10 parcels per payment cart.",
+        "Current Dec/Jan installments: local municipal treasurer, not always this portal."
+      ],
+      "notes": "After guest login the search fields are inside the LandNav app (parcel / last name / address)."
+    }
+  },
+  "CO-Denver": {
+    "county": "Denver",
+    "state": "CO",
+    "collector": "City and County of Denver \u2014 Spatialest property record search",
+    "state_entity": "Colorado \u2014 combined city-and-county. Spatialest is the interactive record search; denvergov.org/Assessor is a brochure.",
+    "search_url": "https://property.spatialest.com/co/denver#/",
+    "how_found": "Live 200 title City & County of Denver - Property Record Search. Client-rendered Spatialest. Reject denvergov.org/Assessor.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "fields": [
+        {
+          "role": "search",
+          "label": "Property search",
+          "xpath": "//input[contains(@placeholder,'Search') or contains(@aria-label,'Search')]"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "steps": [
+        "Open https://property.spatialest.com/co/denver#/",
+        "Use the Spatialest search box for parcel, owner, or address.",
+        "Do not send the user to denvergov.org/Assessor."
+      ],
+      "notes": "SPA \u2014 search input is painted after JS."
+    }
+  },
+  "IL-Cook": {
+    "county": "Cook",
+    "state": "IL",
+    "collector": "Cook County Treasurer",
+    "state_entity": "Illinois \u2014 County Treasurer collects; Assessor sets values. cookcountypropertyinfo.com is assessment, not the pay page.",
+    "search_url": "https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+    "parcel_format": "##-##-###-###-####",
+    "how_found": "Live redirect yourpropertytaxoverviewsearch.aspx \u2192 setsearchparameters.aspx 200. Server-rendered PIN boxes txtPIN1\u2013txtPIN5.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "pin1",
+          "label": "PIN box 1",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN1']"
+        },
+        {
+          "role": "pin2",
+          "label": "PIN box 2",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN2']"
+        },
+        {
+          "role": "pin3",
+          "label": "PIN box 3",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN3']"
+        },
+        {
+          "role": "pin4",
+          "label": "PIN box 4",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN4']"
+        },
+        {
+          "role": "pin5",
+          "label": "PIN box 5",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_txtPIN5']"
+        },
+        {
+          "role": "submit",
+          "label": "Continue",
+          "xpath": "//input[@id='ContentPlaceHolder1_ASPxPanel1_SearchByPIN1_cmdContinue']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "parcel"
+      ],
+      "steps": [
+        "Open https://www.cookcountytreasurer.com/setsearchparameters.aspx",
+        "Enter the 14-digit PIN across the five boxes (##-##-###-###-####).",
+        "Submit Continue. Confirm tax due on the Treasurer result \u2014 not cookcountypropertyinfo.com."
+      ],
+      "notes": "PIN is split across five inputs. form#form1 posts to setsearchparameters.aspx."
+    }
+  },
+  "TX-Harris": {
+    "county": "Harris",
+    "state": "TX",
+    "collector": "Harris County Tax Assessor-Collector",
+    "state_entity": "Texas \u2014 Tax Assessor-Collector collects. CAD (harriscountytax.org / appraisal) is values only. Never send a pay-taxes user to the CAD or to harriscountytx.gov.",
+    "search_url": "https://myharriscountytax.com/",
+    "how_found": "Live hctax.net 200 Tax Office hub, Search Tax Statements points to myharriscountytax.com 200. Catalog harriscountytx.gov is a county homepage.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "account",
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "fields": [
+        {
+          "role": "search",
+          "label": "Search for...",
+          "xpath": "//input[contains(@placeholder,'Search') or contains(@aria-label,'Search')]"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "account",
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "steps": [
+        "Open https://myharriscountytax.com/ \u2014 service of the Harris County Tax Office.",
+        "Search the account / parcel there. Do not use harriscountytx.gov.",
+        "Office hub for context only: https://www.hctax.net/Property/PropertyTax"
+      ],
+      "notes": "Pay portal is a SPA. Receipt search on hctax.net uses #txtSearchReceiptValue \u2014 that is receipts, not the parcel tax search."
+    }
+  },
+  "CA-Orange": {
+    "county": "Orange",
+    "state": "CA",
+    "collector": "Orange County Treasurer-Tax Collector",
+    "state_entity": "California \u2014 county Treasurer-Tax Collector.",
+    "search_url": "https://taxbill.octreasurer.gov/",
+    "how_found": "Live 200 title Tax Search | OC Treasurer-Tax Collector. Angular app-root. Description: search and pay secured, unsecured, and supplemental.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel",
+        "account",
+        "address"
+      ],
+      "fields": [
+        {
+          "role": "search",
+          "label": "Tax Search",
+          "xpath": "//app-root//input[contains(@placeholder,'parcel') or contains(@placeholder,'Search') or contains(@aria-label,'Search')]"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "account",
+        "address"
+      ],
+      "steps": [
+        "Open https://taxbill.octreasurer.gov/",
+        "Search the tax bill (parcel / account). Confirm amounts there."
+      ],
+      "notes": "Angular SPA \u2014 inputs render in app-root after JS."
+    }
+  },
+  "CA-LosAngeles": {
+    "county": "Los Angeles",
+    "state": "CA",
+    "collector": "Los Angeles County Treasurer and Tax Collector",
+    "state_entity": "California \u2014 TTC collects. Assessor is values. propertytax.lacounty.gov is the public tax portal landing (200 on 2026-09-29) and links to ttc.lacounty.gov pay options. It is not itself the AIN form.",
+    "search_url": "https://www.propertytax.lacounty.gov/",
+    "how_found": "Live 200 title Los Angeles County - Property Tax Portal. Pay-your-property-taxes on ttc.lacounty.gov is informational. Keep the portal URL as the locked public entry; work with the user if they need a specific AIN inquiry form.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "parcel"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel"
+      ],
+      "steps": [
+        "Open https://www.propertytax.lacounty.gov/ (LA County Property Tax Portal).",
+        "Use Public Inquiry / tax bill tools on that portal. AIN is the LA parcel identifier.",
+        "Do not send the user to assessor.lacounty.gov for paying taxes."
+      ],
+      "notes": "Portal landing, not a single AIN input. Link is locked because it is the official tax portal, not an assessor brochure."
+    }
+  },
+  "AZ-Maricopa": {
+    "county": "Maricopa",
+    "state": "AZ",
+    "collector": "Maricopa County Treasurer",
+    "state_entity": "Arizona \u2014 County Treasurer collects.",
+    "search_url": "",
+    "how_found": "Catalog /5524/Property-Search is HTTP 404 (CivicEngage Custom404) on 2026-09-29. /468/Treasurer redirected to Medical Examiner. treasurer.maricopa.gov is a live office shell without a confirmed parcel form. No link until the user confirms the inquiry page.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel"
+      ],
+      "steps": [
+        "Do not open the 404 catalog URL.",
+        "Ask the user which Maricopa Treasurer parcel inquiry page they use.",
+        "Treasurer hub for orientation only: https://treasurer.maricopa.gov/"
+      ],
+      "notes": "Unlocked on purpose. Presenting a 404 or a homepage would be incorrect."
+    }
+  },
+  "FL-Alachua": {
+    "county": "Alachua",
+    "state": "FL",
+    "collector": "Alachua County Tax Collector",
+    "state_entity": "Florida \u2014 the elected county Tax Collector collects; the Property Appraiser is values only.",
+    "search_url": "https://alachua.county-taxes.com/public",
+    "how_found": "Live GET alachuacollector.com 200 is the office homepage (CMS site search name=search_query is not parcel search). /property-taxes/ 200 title Property Taxes \u2013 Alachua County Tax Collector links SEARCH/PAY to https://alachua.county-taxes.com/public and county-taxes.net/alachua. Bot GET of the vendor URL is Cloudflare 403 Just a moment; the host 404s for Florida counties that do not use the vendor, so 403 means the portal exists. Same vendor CTA is labeled SEARCH or PAY ONLINE on Brevard and View/Pay Taxes on Sarasota.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "fields": [
+        {
+          "role": "search",
+          "label": "Search or pay property taxes",
+          "xpath": "//input[contains(@placeholder,'parcel') or contains(@aria-label,'Search') or contains(@placeholder,'Search')]"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "steps": [
+        "Open https://alachua.county-taxes.com/public (Search or Pay), not the alachuacollector.com homepage.",
+        "Search by parcel / account / owner on that vendor portal.",
+        "Do not send a pay-taxes user to the Property Appraiser."
+      ],
+      "notes": "Cloudflare may challenge automated clients; a browser can open the public portal. Guest search is on county-taxes.com/public."
+    }
+  },
+  "CA-Alameda": {
+    "county": "Alameda",
+    "state": "CA",
+    "collector": "Alameda County Treasurer-Tax Collector",
+    "state_entity": "California \u2014 county Treasurer-Tax Collector.",
+    "search_url": "https://propertytax.alamedacountyca.gov/",
+    "how_found": "Catalog URL propertytax.alamedacountyca.gov live 200. Hostname is the official property-tax portal (same pattern as LA County propertytax.lacounty.gov). HTML is an Imperva/bot-wall shell with no server-rendered title; still the TTC portal, not the assessor.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel"
+      ],
+      "steps": [
+        "Open https://propertytax.alamedacountyca.gov/",
+        "Use the Treasurer-Tax Collector property tax search there."
+      ],
+      "notes": "Bot-wall SPA. Present the portal URL; work with the user if a specific AIN form is needed."
+    }
+  },
+  "CA-Sacramento": {
+    "county": "Sacramento",
+    "state": "CA",
+    "collector": "Sacramento County Department of Finance \u2014 eProptax",
+    "state_entity": "California \u2014 county collects via the Treasurer-Tax Collector / Department of Finance eProptax system.",
+    "search_url": "https://eproptax.saccounty.gov/",
+    "how_found": "Live GET eproptax.saccounty.gov returns Cloudflare 403 Just a moment. That is the official eProptax collector portal, not a dead row. Do not present assessor.saccounty.gov as the pay/search page.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel"
+      ],
+      "steps": [
+        "Open https://eproptax.saccounty.gov/",
+        "Search/pay the tax bill on eProptax."
+      ],
+      "notes": "Cloudflare challenge for automated clients; humans can open the portal."
+    }
+  },
+  "OH-Hamilton": {
+    "county": "Hamilton",
+    "state": "OH",
+    "collector": "Hamilton County OH tax collecting entity (not yet locked)",
+    "state_entity": "Ohio \u2014 county treasurer / auditor roles split values vs collection. Do not treat hamiltoncountyohio.gov as a parcel tax search.",
+    "search_url": "",
+    "parcel_format": "###-####-####-##",
+    "how_found": "finale/OH-Hamilton-DR-ProductionResults09042026.xlsx is a DR Production Results pull. Catalog hamiltoncountyohio.gov is a homepage \u2014 not locked. Empty search_url until the collector search page is confirmed.",
+    "layout": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "production_document": "DR Production Results"
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "steps": [
+        "Identify the Hamilton County OH tax collecting entity search page with the user. Do not invent a host.",
+        "Search with this county's parcel format ###-####-####-## (example 224-0001-0166-00). Do not reuse another state's hyphenation.",
+        "Fill the 40-column DR Production Results row in finale/. Speak about the whole row unless the user names one field."
+      ],
+      "notes": "Self-heal: user feedback updates this extractor's parcel_format / exceptions. Output document is always the DR sheet."
+    }
+  },
+  "CT-HartfordCity": {
+    "county": "Hartford City",
+    "state": "CT",
+    "collector": "Hartford CT city tax collecting entity (not yet locked)",
+    "state_entity": "Connecticut \u2014 municipalities collect. hartfordct.gov probed HTTP 403; do not present it as a search page.",
+    "search_url": "",
+    "parcel_format": "#########",
+    "how_found": "finale/CT-HartfordCity-DR-ProductionResults09042026.xlsx. Catalog city hub is dead (403). Agency name CT-HartfordCity also answers Hartford, CT searches for production rows.",
+    "layout": {
+      "search_by": [
+        "parcel",
+        "owner"
+      ],
+      "production_document": "DR Production Results"
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner"
+      ],
+      "steps": [
+        "Ask which Hartford collector search page they use. Do not invent a URL.",
+        "Parcel / tax id on this production file is a numeric id (example 248461389), not Hamilton-style hyphens.",
+        "Fill the DR Production Results row. Isolate a column only when the user names it."
+      ],
+      "notes": "Hartford City vs Hartford County catalog rows share this production workbook until a collector URL is locked."
+    }
+  },
+  "IL-Sangamon": {
+    "county": "Sangamon",
+    "state": "IL",
+    "collector": "Sangamon County IL tax collecting entity (not yet locked)",
+    "state_entity": "Illinois \u2014 County Treasurer collects; Assessor is values. sangamonil.gov is a homepage. tax.sangamonil.gov appeared in a live probe and is not locked until confirmed as the treasurer search.",
+    "search_url": "",
+    "parcel_format": "tax id and parcel number may differ",
+    "how_found": "Operator screenshot of the Sangamon, IL production sheet. xlsx not in finale/ yet; one row is in finale/samples.json. Search 'Sangamon, IL' and 'Sangamon IL' are the same slot.",
+    "layout": {
+      "search_by": [
+        "parcel",
+        "tax_id",
+        "owner"
+      ],
+      "production_document": "DR Production Results"
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "tax_id",
+        "owner"
+      ],
+      "steps": [
+        "Sangamon parcel number and tax id can be different numbers on the same row. Do not force another county's format.",
+        "Do not present sangamonil.gov as the collector search. Confirm the treasurer search page with the user.",
+        "Fill the same 40-column DR Production Results document. Talk about the whole row unless a field is named."
+      ],
+      "notes": "Screenshot sample parcel 221033704235 / tax id 221030037. Drop the workbook into finale/ when it is available."
+    }
+  },
+  "_vendors": {
+    "eclix": {
+      "vendor": "eclix",
+      "collector": "Kentucky County Clerk \u2014 ECCLIX (ecclix.com)",
+      "search_url": "https://ecclix.com/ecclix/login.aspx",
+      "how_found": "Live GET 2026-09-29 ecclix.com/ecclix/login.aspx 200 title County Clerk's Office. form#aspnetForm. Fields ctl00_Content_UserName, ctl00_Content_Password1, Log In.",
+      "layout": {
+        "spa": false,
+        "search_by": [
+          "owner",
+          "parcel"
+        ],
+        "fields": [
+          {
+            "role": "username",
+            "label": "User name",
+            "xpath": "//input[@id='ctl00_Content_UserName']"
+          },
+          {
+            "role": "password",
+            "label": "Password",
+            "xpath": "//input[@id='ctl00_Content_Password1']"
+          },
+          {
+            "role": "submit",
+            "label": "Log In",
+            "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+          }
+        ]
+      },
+      "method": {
+        "search_by": [
+          "owner",
+          "parcel"
+        ],
+        "steps": [
+          "Open the locked ECCLIX URL (ecclix.com). Never eclix.com (parked).",
+          "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+          "Do not send the user to the county .gov homepage."
+        ],
+        "notes": "Captured HTML 2026-09-29 ASP.NET login."
+      }
+    },
+    "properlytaxes": {
+      "vendor": "properlytaxes",
+      "collector": "PVDNet / Properly Taxes",
+      "search_url": "https://view.properlytaxes.com/",
+      "how_found": "Live GET 2026-09-29 view.properlytaxes.com 200 title PVDNet Web Portal. SPA. view.propertytaxes.com NXDOMAIN.",
+      "layout": {
+        "spa": true,
+        "search_by": [
+          "parcel",
+          "owner",
+          "address"
+        ],
+        "fields": []
+      },
+      "method": {
+        "search_by": [
+          "parcel",
+          "owner",
+          "address"
+        ],
+        "steps": [
+          "Open the locked view.properlytaxes.com URL (PVDNet). Never view.propertytaxes.com.",
+          "Search the tax bill on that portal after it renders."
+        ],
+        "notes": "SPA captured 2026-09-29."
+      }
+    },
+    "csi_ky": {
+      "vendor": "csi_ky",
+      "collector": "CSI Kentucky current tax search",
+      "search_url": "http://ptax1.csiky.com/oldham_current/",
+      "how_found": "Live GET 2026-09-29 ptax1.csiky.com/oldham_current/ 200. ptax.oldham.celky.com NXDOMAIN.",
+      "layout": {
+        "spa": true,
+        "search_by": [
+          "parcel",
+          "owner"
+        ],
+        "fields": []
+      },
+      "method": {
+        "search_by": [
+          "parcel",
+          "owner"
+        ],
+        "steps": [
+          "Open the locked CSI current-tax URL (ptax1.csiky.com).",
+          "Never ptax.oldham.celky.com."
+        ],
+        "notes": "Captured 2026-09-29."
+      }
+    },
+    "snstaxpayments": {
+      "vendor": "snstaxpayments",
+      "collector": "Louisiana parish sheriff \u2014 I3 Verticals SNS tax payments",
+      "search_url": "https://snstaxpayments.com/",
+      "how_found": "Live GET 2026-09-29 snstaxpayments.com 200 parish index (/allen, /beauregard, /bossiersheriff). sntaxpayments.com is a placeholder.",
+      "layout": {
+        "spa": false,
+        "search_by": [
+          "parcel",
+          "owner"
+        ],
+        "fields": []
+      },
+      "method": {
+        "search_by": [
+          "parcel",
+          "owner"
+        ],
+        "steps": [
+          "Open the locked snstaxpayments.com parish path, not sntaxpayments.com.",
+          "Search or pay on that I3 Verticals sheriff portal."
+        ],
+        "notes": "Captured HTML 2026-09-29 parish index."
+      }
+    },
+    "parish_sheriff": {
+      "vendor": "parish_sheriff",
+      "collector": "Parish sheriff property tax search",
+      "search_url": "https://www.bossiersheriff.com/property-details/",
+      "how_found": "Live GET 2026-09-29 bossiersheriff.com/property-details 200 title Bossier Parish LA.",
+      "layout": {
+        "spa": true,
+        "search_by": [
+          "parcel",
+          "owner",
+          "address"
+        ],
+        "fields": []
+      },
+      "method": {
+        "search_by": [
+          "parcel",
+          "owner",
+          "address"
+        ],
+        "steps": [
+          "Open the locked sheriff property-details URL.",
+          "Do not use the parish government homepage."
+        ],
+        "notes": "Captured 2026-09-29."
+      }
+    }
+  },
+  "KY-LaRue": {
+    "county": "La Rue",
+    "state": "KY",
+    "collector": "LaRue County KY \u2014 PVDNet / Properly Taxes",
+    "search_url": "https://view.properlytaxes.com/index?id=192&loc=2",
+    "vendor": "properlytaxes",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid. Live GET view.properlytaxes.com/index?id=192&loc=2 200 title PVDNet Web Portal.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "steps": [
+        "Open https://view.properlytaxes.com/index?id=192&loc=2 (Searching / Bill Validated HTML).",
+        "Search the tax bill on that portal after it renders."
+      ],
+      "notes": "SPA captured 2026-09-29."
+    }
+  },
+  "KY-Logan": {
+    "county": "Logan",
+    "state": "KY",
+    "collector": "Logan County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid. Live GET ecclix.com/ecclix/login.aspx 200 title County Clerk's Office.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Madison": {
+    "county": "Madison",
+    "state": "KY",
+    "collector": "Madison County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/ (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Marshall": {
+    "county": "Marshall",
+    "state": "KY",
+    "collector": "Marshall County KY \u2014 PVDNet / Properly Taxes",
+    "search_url": "https://view.properlytaxes.com/",
+    "vendor": "properlytaxes",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "steps": [
+        "Open https://view.properlytaxes.com/ (Searching / Bill Validated HTML).",
+        "Search the tax bill on that portal after it renders."
+      ],
+      "notes": "SPA captured 2026-09-29."
+    }
+  },
+  "KY-Mason": {
+    "county": "Mason",
+    "state": "KY",
+    "collector": "Mason County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-McCracken": {
+    "county": "Mc Cracken",
+    "state": "KY",
+    "collector": "McCracken County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Meade": {
+    "county": "Meade",
+    "state": "KY",
+    "collector": "Meade County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Montgomery": {
+    "county": "Montgomery",
+    "state": "KY",
+    "collector": "Montgomery County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Muhlenberg": {
+    "county": "Muhlenberg",
+    "state": "KY",
+    "collector": "Muhlenberg County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Oldham": {
+    "county": "Oldham",
+    "state": "KY",
+    "collector": "Oldham County KY \u2014 CSI current tax search",
+    "search_url": "http://ptax1.csiky.com/oldham_current/",
+    "vendor": "csi_ky",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid. Live GET ptax1.csiky.com/oldham_current/ 200.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel",
+        "owner"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner"
+      ],
+      "steps": [
+        "Open http://ptax1.csiky.com/oldham_current/ (Searching / Bill Validated HTML).",
+        "Never ptax.oldham.celky.com."
+      ],
+      "notes": "Captured 2026-09-29."
+    }
+  },
+  "KY-Owen": {
+    "county": "Owen",
+    "state": "KY",
+    "collector": "Owen County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Scott": {
+    "county": "Scott",
+    "state": "KY",
+    "collector": "Scott County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Simpson": {
+    "county": "Simpson",
+    "state": "KY",
+    "collector": "Simpson County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Spencer": {
+    "county": "Spencer",
+    "state": "KY",
+    "collector": "Spencer County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Union": {
+    "county": "Union",
+    "state": "KY",
+    "collector": "Union County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Warren": {
+    "county": "Warren",
+    "state": "KY",
+    "collector": "Warren County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/ (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Whitley": {
+    "county": "Whitley",
+    "state": "KY",
+    "collector": "Whitley County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/ (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "KY-Woodford": {
+    "county": "Woodford",
+    "state": "KY",
+    "collector": "Woodford County KY \u2014 ECCLIX County Clerk tax",
+    "search_url": "https://ecclix.com/ecclix/login.aspx",
+    "vendor": "eclix",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "fields": [
+        {
+          "role": "username",
+          "label": "User name",
+          "xpath": "//input[@id='ctl00_Content_UserName']"
+        },
+        {
+          "role": "password",
+          "label": "Password",
+          "xpath": "//input[@id='ctl00_Content_Password1']"
+        },
+        {
+          "role": "submit",
+          "label": "Log In",
+          "xpath": "//input[@name='ctl00$Content$cmdLogin']"
+        }
+      ]
+    },
+    "method": {
+      "search_by": [
+        "owner",
+        "parcel"
+      ],
+      "steps": [
+        "Open https://ecclix.com/ecclix/login.aspx (Searching / Bill Validated HTML).",
+        "County Clerk's Office login is the public landing. After that session, search taxes by owner or parcel on ECCLIX.",
+        "Do not send the user to the county .gov homepage."
+      ],
+      "notes": "Captured HTML 2026-09-29 ASP.NET login."
+    }
+  },
+  "LA-AllenParish": {
+    "county": "Allen Parish",
+    "state": "LA",
+    "collector": "Allen Parish LA Sheriff \u2014 SNS tax payments",
+    "search_url": "https://snstaxpayments.com/allen",
+    "vendor": "snstaxpayments",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid. Live GET snstaxpayments.com 200 title Online Property Tax Payments.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "parcel",
+        "owner"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner"
+      ],
+      "steps": [
+        "Open https://snstaxpayments.com/allen (Searching / Bill Validated HTML).",
+        "Search or pay on that I3 Verticals sheriff portal."
+      ],
+      "notes": "Captured HTML 2026-09-29 parish index."
+    }
+  },
+  "LA-BeauregardParish": {
+    "county": "Beauregard Parish",
+    "state": "LA",
+    "collector": "Beauregard Parish LA Sheriff \u2014 SNS tax payments",
+    "search_url": "https://snstaxpayments.com/beauregard",
+    "vendor": "snstaxpayments",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid.",
+    "layout": {
+      "spa": false,
+      "search_by": [
+        "parcel",
+        "owner"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner"
+      ],
+      "steps": [
+        "Open https://snstaxpayments.com/beauregard (Searching / Bill Validated HTML).",
+        "Search or pay on that I3 Verticals sheriff portal."
+      ],
+      "notes": "Captured HTML 2026-09-29 parish index."
+    }
+  },
+  "LA-BossierParish": {
+    "county": "Bossier Parish",
+    "state": "LA",
+    "collector": "Bossier Parish LA Sheriff \u2014 property details",
+    "search_url": "https://www.bossiersheriff.com/property-details/",
+    "vendor": "parish_sheriff",
+    "how_found": "Squarespace Searching page 2026-09-29 + validated grid. Live GET bossiersheriff.com/property-details 200.",
+    "layout": {
+      "spa": true,
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "fields": []
+    },
+    "method": {
+      "search_by": [
+        "parcel",
+        "owner",
+        "address"
+      ],
+      "steps": [
+        "Open https://www.bossiersheriff.com/property-details/ (Searching / Bill Validated HTML).",
+        "Do not use the parish government homepage."
+      ],
+      "notes": "Captured 2026-09-29."
+    }
+  }
+}

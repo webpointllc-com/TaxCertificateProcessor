@@ -2,25 +2,52 @@
 
 const { parseJurisdiction, lookupForApi } = require('./urlFinder');
 const { isRealHttpUrl, isGoogleFallbackUrl } = require('./spulTruth');
+const drProduction = require('./drProduction');
+
+function isPlaceholderApn(value) {
+  const t = String(value || '').replace(/[–]/g, '-').trim();
+  if (!t) return true;
+  return /^(x+|#+|\*+|\?+)(?:[-\s](x+|#+|\*+|\?+))+$/i.test(t);
+}
+
+function extractApn(raw) {
+  const labeled =
+    raw.match(/\b(?:APN|PIN|folio|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*([A-Za-z0-9][A-Za-z0-9\-]{4,})/i);
+  const hyphenated = raw.match(/\b(\d{1,4}[-–]\d{1,4}[-–]\d{1,4}(?:[-–]\d{1,4}){0,3})\b/);
+  const longId = raw.match(/\b(\d{8,15})\b/);
+  const candidate = (labeled && labeled[1]) || (hyphenated && hyphenated[1]) || (longId && longId[1]) || '';
+  const apn = candidate.replace(/[–]/g, '-');
+  if (!apn || isPlaceholderApn(apn)) return '';
+  return apn;
+}
+
+function extractAddress(raw, apn) {
+  const street = raw.match(
+    /\b(\d{1,6}\s+[A-Za-z][A-Za-z0-9 .,'#-]{2,60}\s+(?:st|street|ave|avenue|rd|road|blvd|boulevard|dr|drive|ln|lane|way|ct|court|hwy|highway|pkwy|cir|circle|pl|place|trl|trail|ter|terrace)\b\.?)/i
+  );
+  if (!street) return '';
+  const addr = street[1].trim();
+  if (apn && addr.includes(apn)) return '';
+  if (/\b(county|apn|parcel|pin|folio)\b/i.test(addr)) return '';
+  return addr;
+}
 
 function parseSearchQuery(q) {
   const raw = String(q || '').trim();
-  const apnMatch =
-    raw.match(/\b(?:APN|PIN|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*([A-Za-z0-9][A-Za-z0-9\-]{4,})/i) ||
-    raw.match(/\b(\d{2,4}[-–]\d{2,4}[-–]\d{2,4}(?:[-–]\d{2,4})?)\b/);
-  const apn = apnMatch ? apnMatch[1].replace(/[–]/g, '-') : '';
+  const apn = extractApn(raw);
   const withoutApn = raw
-    .replace(/\b(?:APN|PIN|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*[A-Za-z0-9\-]{4,}/gi, ' ')
+    .replace(/\b(?:APN|PIN|folio|parcel(?:\s*(?:id|number|#))?)\s*[:#·.\-]*\s*[A-Za-z0-9\-]{4,}/gi, ' ')
+    .replace(/\b\d{1,4}[-–]\d{1,4}[-–]\d{1,4}(?:[-–]\d{1,4}){0,3}\b/g, ' ')
+    .replace(/\b\d{8,15}\b/g, ' ')
     .replace(/[·|]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
   let jur = parseJurisdiction(withoutApn);
   if (!jur.county) jur = parseJurisdiction(raw);
-  const addrMatch = raw.match(/\b(\d{1,6}\s+[A-Za-z0-9][A-Za-z0-9 .,'#-]{6,80})/);
   return {
     raw,
     apn,
-    address: addrMatch && !/county|apn|parcel/i.test(addrMatch[1]) ? addrMatch[1].trim() : '',
+    address: extractAddress(raw, apn),
     county: jur.county || null,
     state: jur.state || null
   };
@@ -76,7 +103,10 @@ function buildSummary({ parsed, lookup, extractor }) {
   const url = lookup.officialUrl || '';
   const apn = parsed.apn ? ` Parcel ${parsed.apn}.` : '';
   if (!lookup.urlLocked) {
-    return `${entity || 'This jurisdiction'} is in the catalog but has no locked collector URL. We will not invent a search page. Use Fix extractor after you confirm the official tax collecting entity page.`;
+    const candidate = lookup.homepageOnly
+      ? ' The catalog only has a county homepage, which is not the tax collecting entity search page.'
+      : '';
+    return `${entity || 'This jurisdiction'} is in the catalog but has no locked collector search URL.${candidate} We will not present a link until the tax collecting entity search page is confirmed. Tell me the collector name or the page you use to search by parcel.`;
   }
   const version = extractor?.version ? ` Extractor v${extractor.version} is the working slot for ${lookup.jurisdiction?.county || parsed.county} County, ${lookup.jurisdiction?.state || parsed.state}.` : '';
   return `${entity} is the locked tax collecting entity.${apn} Search and pay on the official page (${url}). Confirm amounts there before closing.${version}`;
@@ -106,6 +136,54 @@ function buildCard({ parsed, lookup, extractor, amounts }) {
     entity: lookup.entity || '',
     extractor_version: extractor?.version || 1,
     extractor_status: extractor?.status || 'active'
+  };
+}
+
+function buildCertificate({ parsed, lookup, extractor, amounts, card, query }) {
+  const c = card || buildCard({ parsed, lookup, extractor, amounts });
+  const locked = Boolean(lookup && lookup.urlLocked && (lookup.officialUrl || lookup.lockedUrl));
+  const production = drProduction.llmBlock({
+    lookupKey: lookup?.key || `${c.state}-${c.county}`,
+    county: c.county,
+    state: c.state,
+    parcel: c.apn,
+    message: query || parsed?.raw || ''
+  });
+  const row = production.row || {};
+  const fromSheet = (header, fallback) => {
+    const v = row[header];
+    if (v !== null && v !== undefined && v !== '') return v;
+    if (fallback !== null && fallback !== undefined && fallback !== '') return fallback;
+    return null;
+  };
+  return {
+    collecting_entity: lookup.entity || '',
+    state_entity: lookup.entityNote || '',
+    county: c.county || '',
+    state: c.state || '',
+    apn: c.apn || row['Parcel Number'] || '',
+    address: c.address || '',
+    parcel_format: lookup.parcelFormat || extractor?.parcel_format || production.parcel_format || '',
+    search_url: locked ? lookup.officialUrl || lookup.lockedUrl : null,
+    url_locked: locked,
+    tax_year: fromSheet('Bill Year', c.tax_year),
+    tax_status: c.tax_status,
+    assessed_values: {
+      total: fromSheet('Total Assessed Value', c.assessed),
+      land: fromSheet('Land Value', c.land),
+      improvement: fromSheet('Improvement Value', c.improvement)
+    },
+    total_tax: fromSheet('Bill Amount', c.total_tax),
+    tax_rate_area: null,
+    exemptions: null,
+    special_assessments: null,
+    outstanding_liens: null,
+    payment_schedule: null,
+    taxing_authorities: null,
+    layout: lookup.layout || extractor?.layout || null,
+    method: lookup.method || extractor?.method || null,
+    production,
+    source: locked ? 'locked_collector_portal' : production.on_file ? 'finale_production_row' : 'needs_collector_confirmation'
   };
 }
 
@@ -151,7 +229,10 @@ function methodFromFeedback(feedback, lookup, previous) {
 
 module.exports = {
   parseSearchQuery,
+  extractApn,
+  isPlaceholderApn,
   buildCard,
+  buildCertificate,
   buildSummary,
   formatMoney,
   resolveHealedUrl,

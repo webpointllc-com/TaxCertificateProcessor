@@ -1,0 +1,341 @@
+{
+  "source": "Squarespace Searching page (operator screenshot 2026-09-29) + S-PUL validated grid on s-pul-front_end-Betasearchpages-best-55de",
+  "note": "The Searching UI shows vendor hosts. A few screenshot spellings (eclix.com, view.propertytaxes.com, sntaxpayments.com, ptax.oldham.celky.com) do not resolve to the live portals. Locked URLs are the live vendor hosts from the Searching inventory / validated grid.",
+  "locks": {
+    "KY-LaRue": {
+      "county": "La Rue",
+      "state": "KY",
+      "searchURL": "https://view.properlytaxes.com/index?id=192&loc=2",
+      "rejectURLs": [
+        "https://www.laruecounty.org/",
+        "laruecounty.org",
+        "view.propertytaxes.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "properlytaxes",
+      "entity": "LaRue County KY \u2014 PVDNet / Properly Taxes",
+      "entityNote": "S-PUL Searching inventory. Sheriff tax portal at view.properlytaxes.com (PVDNet), not laruecounty.org. Screenshot spelling view.propertytaxes.com does not resolve.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET view.properlytaxes.com/index?id=192&loc=2 200 title PVDNet Web Portal."
+    },
+    "KY-Logan": {
+      "county": "Logan",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.logancountyky.gov/",
+        "logancountyky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Logan County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. KY clerk/sheriff tax is ECCLIX (ecclix.com), not the county homepage. eclix.com is a parked page \u2014 do not lock it.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET ecclix.com/ecclix/login.aspx 200 title County Clerk's Office."
+    },
+    "KY-Madison": {
+      "county": "Madison",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/",
+      "rejectURLs": [
+        "https://www.madisoncountyky.gov/",
+        "madisoncountyky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Madison County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not madisoncountyky.gov.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Marshall": {
+      "county": "Marshall",
+      "state": "KY",
+      "searchURL": "https://view.properlytaxes.com/",
+      "rejectURLs": [
+        "https://www.marshallcountyky.gov/",
+        "marshallcountyky.gov",
+        "view.propertytaxes.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "properlytaxes",
+      "entity": "Marshall County KY \u2014 PVDNet / Properly Taxes",
+      "entityNote": "S-PUL Searching inventory. PVDNet portal, not the county homepage.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Mason": {
+      "county": "Mason",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.masoncountykentucky.us/",
+        "masoncountykentucky.us",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Mason County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-McCracken": {
+      "county": "Mc Cracken",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://mccrackencountyky.gov/",
+        "mccrackencountyky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "McCracken County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not mccrackencountyky.gov.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Meade": {
+      "county": "Meade",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.meadeky.gov/",
+        "meadeky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Meade County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not meadeky.gov.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Montgomery": {
+      "county": "Montgomery",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://montgomerycounty.ky.gov/",
+        "montgomerycounty.ky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Montgomery County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Muhlenberg": {
+      "county": "Muhlenberg",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.muhlenbergcounty.org/",
+        "muhlenbergcounty.org",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Muhlenberg County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not muhlenbergcounty.org.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Oldham": {
+      "county": "Oldham",
+      "state": "KY",
+      "searchURL": "http://ptax1.csiky.com/oldham_current/",
+      "rejectURLs": [
+        "https://www.oldhamcountyky.gov/",
+        "oldhamcountyky.gov",
+        "ptax.oldham.celky.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "csi_ky",
+      "entity": "Oldham County KY \u2014 CSI current tax search",
+      "entityNote": "S-PUL Searching inventory. Current tax at ptax1.csiky.com/oldham_current/. Screenshot host ptax.oldham.celky.com does not resolve.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET ptax1.csiky.com/oldham_current/ 200."
+    },
+    "KY-Owen": {
+      "county": "Owen",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.owencountyky.us/",
+        "owencountyky.us",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Owen County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Scott": {
+      "county": "Scott",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.scottky.gov/",
+        "scottky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Scott County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not scottky.gov.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Simpson": {
+      "county": "Simpson",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.simpsoncountyky.gov/",
+        "simpsoncountyky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Simpson County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Spencer": {
+      "county": "Spencer",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.spencercountyky.gov/",
+        "spencercountyky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Spencer County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the county homepage.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Union": {
+      "county": "Union",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://www.unioncountyky.org/",
+        "unioncountyky.org",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Union County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not unioncountyky.org.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Warren": {
+      "county": "Warren",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/",
+      "rejectURLs": [
+        "https://www.warrencountyky.gov/",
+        "warrencountyky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Warren County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not warrencountyky.gov.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Whitley": {
+      "county": "Whitley",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/",
+      "rejectURLs": [
+        "http://whitleycountyfiscalcourt.com/",
+        "whitleycountyfiscalcourt.com",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Whitley County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not the fiscal court homepage.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "KY-Woodford": {
+      "county": "Woodford",
+      "state": "KY",
+      "searchURL": "https://ecclix.com/ecclix/login.aspx",
+      "rejectURLs": [
+        "https://woodfordcounty.ky.gov/",
+        "woodfordcounty.ky.gov",
+        "eclix.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "eclix",
+      "entity": "Woodford County KY \u2014 ECCLIX County Clerk tax",
+      "entityNote": "S-PUL Searching inventory. ECCLIX clerk tax portal, not woodfordcounty.ky.gov.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "LA-AllenParish": {
+      "county": "Allen Parish",
+      "state": "LA",
+      "searchURL": "https://snstaxpayments.com/allen",
+      "rejectURLs": [
+        "https://www.allenparishpolicejury.com/",
+        "allenparishpolicejury.com",
+        "sntaxpayments.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "snstaxpayments",
+      "entity": "Allen Parish LA Sheriff \u2014 SNS tax payments",
+      "entityNote": "S-PUL Searching inventory. Parish sheriff search/pay at snstaxpayments.com, not the Police Jury homepage. sntaxpayments.com is a placeholder.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET snstaxpayments.com 200 title Online Property Tax Payments."
+    },
+    "LA-BeauregardParish": {
+      "county": "Beauregard Parish",
+      "state": "LA",
+      "searchURL": "https://snstaxpayments.com/beauregard",
+      "rejectURLs": [
+        "https://www.beauparish.org/",
+        "beauparish.org",
+        "sntaxpayments.com"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "snstaxpayments",
+      "entity": "Beauregard Parish LA Sheriff \u2014 SNS tax payments",
+      "entityNote": "S-PUL Searching inventory. Parish sheriff search/pay at snstaxpayments.com, not beauparish.org.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid."
+    },
+    "LA-BossierParish": {
+      "county": "Bossier Parish",
+      "state": "LA",
+      "searchURL": "https://www.bossiersheriff.com/property-details/",
+      "rejectURLs": [
+        "https://www.bossierparishla.gov/",
+        "bossierparishla.gov"
+      ],
+      "verified": true,
+      "entityType": "tax_collector",
+      "vendor": "parish_sheriff",
+      "entity": "Bossier Parish LA Sheriff \u2014 property details",
+      "entityNote": "S-PUL Searching inventory. Sheriff property-details search, not bossierparishla.gov.",
+      "howFound": "Squarespace Searching page 2026-09-29 + validated grid. Live GET bossiersheriff.com/property-details 200."
+    }
+  }
+}

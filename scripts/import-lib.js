@@ -78,12 +78,23 @@ function applyGoldenOverride(county, override) {
   const merged = { ...county };
   if (override.county) merged.county = override.county;
   if (override.state) merged.state = override.state.toUpperCase();
-  if (override.searchURL) merged.searchURL = override.searchURL;
+  if (Object.prototype.hasOwnProperty.call(override, 'searchURL')) {
+    merged.searchURL = override.searchURL || '';
+  }
   if (override.vendor) merged.vendor = override.vendor;
   if (override.entity) merged.entity = override.entity;
   if (override.entityNote) merged.entityNote = override.entityNote;
   if (override.entityType) merged.entityType = override.entityType;
-  if (override.verified === true) merged.verified = true;
+  if (override.howFound) merged.howFound = override.howFound;
+  if (override.parcelFormat) merged.parcelFormat = override.parcelFormat;
+  if (override.layout) merged.layout = override.layout;
+  if (override.verified === false) {
+    merged.verified = false;
+    merged.coverageStatus = override.coverageStatus || 'needs_correction';
+  } else if (override.verified === true) {
+    merged.verified = true;
+    merged.coverageStatus = 'verified';
+  }
   if (Array.isArray(override.rejectURLs) && override.rejectURLs.length) {
     merged.rejectURLs = override.rejectURLs;
   }
@@ -91,7 +102,9 @@ function applyGoldenOverride(county, override) {
   if (override.gisURL) merged.gisURL = override.gisURL;
   if (override.treasurerURL) merged.treasurerURL = override.treasurerURL;
   merged.importSource = 'golden_override';
-  merged.coverageStatus = 'verified';
+  if (override.verified !== false) {
+    merged.coverageStatus = merged.coverageStatus || 'verified';
+  }
   merged.lastChecked = new Date().toISOString().slice(0, 10);
   return merged;
 }
@@ -120,6 +133,19 @@ function detectVendor(url) {
     if (h.includes('civicplus')) return 'civicplus';
     if (h.includes('tyler') || h.includes('tylertech')) return 'tyler';
     if (h.includes('egov') || h.includes('e-gov')) return 'egov';
+    if (h.includes('county-taxes.com') || h.includes('county-taxes.net')) return 'county_taxes';
+    if (h.includes('eproptax')) return 'eproptax';
+    if (h.includes('ecclix.com') || h.includes('eclix.com')) return 'eclix';
+    if (h.includes('properlytaxes.com') || h.includes('propertytaxes.com')) return 'properlytaxes';
+    if (h.includes('snstaxpayments.com') || h.includes('sntaxpayments.com')) return 'snstaxpayments';
+    if (h.includes('csiky.com') || h.includes('celky.com')) return 'csi_ky';
+    if (h.includes('bossiersheriff.com')) return 'parish_sheriff';
+    if (h.includes('qpaybill.com')) return 'qpaybill';
+    if (h.includes('g-uts.com')) return 'guts_taxbills';
+    if (h.includes('eztaxonline')) return 'eztaxonline';
+    if (h.includes('capturecama.com')) return 'capturecama';
+    if (h.includes('signatureinfo.com')) return 'signatureinfo';
+    if (h.includes('trueautomation.com')) return 'trueautomation';
   } catch {
     /* ignore */
   }

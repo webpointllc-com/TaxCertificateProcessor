@@ -1,8 +1,16 @@
 # WebPoint Tax Certificate Processor — Render Blueprint
 #
-# One-time: Render Dashboard → Blueprints → New Blueprint → this repo/branch → Apply.
-# Postgres is the shared operational database (TCS orders, RAG chunks, Workplace imports).
-# Secrets (GROQ_API_KEY, MEMBER_EMBED_KEY) stay in the dashboard — never in git.
+# Launch stack (do not use Free web or Free Postgres):
+#   • Web Starter $7/mo  — always-on, no 15-minute spin-down inside Squarespace
+#   • Postgres Basic 256MB $7/mo — durable chat, feedback, accounts, county-agent memory
+#   • Groq Llama 3.3 70B — workhorse LLM (key in Dashboard, never git)
+# Anthropic / Google / Apple keys are added in the Dashboard later.
+# Do not replace this Blueprint with greenfield AWS this month.
+# ALB + Fargate + RDS + NAT is $45-90/mo vs this stack at $14/mo.
+# Dockerfile is the later host swap onto idle AWS, not a product rewrite.
+#
+# Apply: https://dashboard.render.com/blueprint/new?repo=https://github.com/webpointllc-com/TaxCertificateProcessor
+# Pay first: https://dashboard.render.com/billing
 
 databases:
   - name: webpoint-tcs-db
@@ -24,11 +32,13 @@ services:
         value: production
       - key: NODE_VERSION
         value: "20"
+      - key: MODEL_PROVIDER
+        value: groq
       - key: DATABASE_URL
         fromDatabase:
           name: webpoint-tcs-db
           property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
       - key: GROQ_API_KEY
-        sync: false
-      - key: MEMBER_EMBED_KEY
         sync: false

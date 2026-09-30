@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-09-30T18:43:00.677Z",
+  "sourceRun": "2026-09-30T18:29:21.953Z",
+  "hits": 1477,
+  "upgraded": 13,
+  "probed": 2226,
+  "skippedGolden": 32,
+  "skippedPlaybook": 3,
+  "keptLocked": 1045,
+  "queuedDeadLocked": 601
+}

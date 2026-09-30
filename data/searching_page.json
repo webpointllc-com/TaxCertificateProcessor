@@ -1,0 +1,40 @@
+{
+  "canonicalUrl": "https://webpointllc.com/searching",
+  "pageTitle": "Searching",
+  "owner": "WebPoint LLC",
+  "topSlot": {
+    "kind": "iframe",
+    "class": "wp-tcs-frame",
+    "src": "https://tax-certificate-processor.onrender.com/",
+    "embedFile": "public/SQUARESPACE_EMBED.html",
+    "scale": "1280x800 ScaleToFit, padding-top 62.5%",
+    "note": "This is the Tax Certificate Processor. Render billing, OTP, and Squarespace membership are operator-owned. The iframe is not a second product."
+  },
+  "index": {
+    "label": "County Tax Collecting Entity Index",
+    "validatedEntries": 1675,
+    "inventoryFile": "data/spul_searching_inventory.json",
+    "validatedHtml": "public/County_Names_Urls_BillValidated.html",
+    "operatorLocks": "data/spul_searching_operator_locks.json",
+    "extractorTableDump": "data/extractor_urls.txt"
+  },
+  "seeds": [
+    "DR Production Results 40-column workbooks in finale/ (OH-Hamilton, CT-HartfordCity, IL-Sangamon samples)",
+    "Development Extractor table dump data/extractor_urls.txt (Search URL preferred over Base; google.com and {parcel} templates are not locks)",
+    "Squarespace Searching inventory data/spul_searching_inventory.json — cleaned/validated overlay of that extractor table",
+    "Bill Validated HTML public/County_Names_Urls_BillValidated.html",
+    "golden_overrides.json and operator locks win over raw Base URLs",
+    "User/live /v1/feedback heals that county extractor (parcel_format, exceptions). Locked collector URL stays locked."
+  ],
+  "hosts": {
+    "ecclix.com": "KY clerk/sheriff tax (ECCLIX). Not parked eclix.com.",
+    "view.properlytaxes.com": "PVDNet. Not view.propertytaxes.com.",
+    "ptax1.csiky.com": "Oldham KY current tax. Not ptax.oldham.celky.com.",
+    "snstaxpayments.com": "LA sheriff SNS. Not sntaxpayments.com."
+  },
+  "gates": {
+    "squarespaceSitePassword": "operator-owned, never store here",
+    "restrictedIndexAccessCode": "operator-owned, never store here",
+    "renderBillingOtp": "operator-owned, never store here"
+  }
+}

@@ -9,6 +9,7 @@ const css = fs.readFileSync(path.join(__dirname, '..', 'public', 'styles.css'), 
 const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
 const js = fs.readFileSync(path.join(__dirname, '..', 'public', 'app.js'), 'utf8');
 const embed = fs.readFileSync(path.join(__dirname, '..', 'public', 'SQUARESPACE_EMBED.html'), 'utf8');
+const usMap = fs.readFileSync(path.join(__dirname, '..', 'public', 'us-map.svg'), 'utf8');
 
 describe('embeddable scaled UI', () => {
   it('uses a 1280x800 design canvas', () => {
@@ -16,6 +17,15 @@ describe('embeddable scaled UI', () => {
     assert.match(js, /DESIGN_HEIGHT = 800/);
     assert.match(css, /--design-w: 1280px/);
     assert.match(css, /--design-h: 800px/);
+  });
+
+  it('pre-renders an Albers US map for first-visit state narrowing', () => {
+    assert.match(usMap, /viewBox="-62 8 1023 602"/);
+    assert.match(usMap, /data-st="CA"/);
+    assert.match(usMap, /data-name="California"/);
+    assert.match(css, /520px/);
+    assert.match(css, /306px/);
+    assert.doesNotMatch(css, /border-left\s*:/);
   });
 
   it('does not use left accent stripes', () => {
@@ -68,14 +78,17 @@ describe('embeddable scaled UI', () => {
     assert.match(html, /class="g-logo"/);
     assert.match(html, /id="hero-input"/);
     assert.match(html, /id="followup-form"/);
+    assert.match(html, /id="us-map"/);
+    assert.match(html, /id="us-map-wrap"/);
     assert.doesNotMatch(html, /Key Property Tax Insights/);
-    assert.doesNotMatch(html, /United States/);
     assert.match(html, /id="perm-overlay"/);
     assert.match(html, /id="heal-form"/);
     assert.match(js, /\/api\/intelligence/);
     assert.match(js, /\/api\/extractors\/heal/);
     assert.match(js, /wp_pending_q/);
+    assert.match(js, /wp_map_shown/);
     assert.match(js, /wp_tcs_token/);
+    assert.match(js, /handoff\.to/);
   });
 
   it('ships the mobile account sheet plus a desktop account workspace', () => {
