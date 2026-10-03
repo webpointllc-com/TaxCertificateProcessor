@@ -295,3 +295,28 @@ describe('collector page discovery', () => {
     assert.equal(out.probed[0].url, vendor);
   });
 });
+
+describe('discovery: Texas assessor-collector wording', () => {
+  before(async () => { await store.init(); });
+  after(() => validation.setFetcher(null));
+
+  it('follows a "Tax Assessor Collector" page and a tax-office site linked by aria-label', async () => {
+    const row = unverifiedCounty();
+    const home = 'https://www.harrisonish.gov/';
+    const tac = 'https://www.harrisonish.gov/page/TaxAssessorCollector';
+    const office = 'https://www.ellistaxoffice.example.com/';
+    const portal = 'https://pp-tx.app.landnav.com/search';
+    validation.setFetcher(fakeFetch({
+      [home]: { html: `<a href="/page/TaxAssessorCollector"> Tax Assessor Collector</a><a class="x" href="${office}" aria-label="Ellis County Tax Office opens in new window">Ellis</a><a href="https://bellcad.org/">Appraisal District</a>` },
+      [tac]: { html: `<a href="${portal}">Property Tax Search</a><a href="/f.pdf">Pay your property tax (PDF)</a>` },
+      [office]: { html: COLLECTOR_HTML },
+      [portal]: { html: COLLECTOR_HTML }
+    }));
+    const out = await validation.discover({ key: row.key, url: home, maxProbes: 10 });
+    const urls = out.probed.map((p) => p.url);
+    assert.ok(urls.includes(portal), 'probes the portal linked from the assessor-collector page');
+    assert.ok(urls.includes(office), 'probes the tax office site itself');
+    assert.ok(!urls.some((u) => /bellcad|\.pdf/.test(u)), 'skips appraisal district and PDFs');
+    assert.equal(out.collector_candidates.length, 2);
+  });
+});

@@ -161,22 +161,53 @@ async function validateMany({ keys = [], concurrency = 4 } = {}) {
 // vendor link (LandNav, county-taxes, etc.) on the county or treasurer page.
 const HUB_TEXT = /\b(treasurer|tax collector|tax office|tax assessor[- ]collector|trustee|sheriff.{0,20}tax|property tax(es)?|taxes)\b/i;
 
+// Texas and others call the collector "Tax Assessor-Collector"; that is a collector, not an assessor.
+const ASSESSOR_ONLY = /\b(appraisal district|appraiser|\bcad\b|assessor(?![\s-]*collector))/i;
+const PAY_TEXT = /search or pay|pay (your )?(property )?tax|view\/?\s*pay|property tax (search|lookup|payment|statement)|tax (bill|statement) (search|lookup)|search (property )?tax(es)?|pay online|online (tax )?payments?|taxpayer portal|tax search/i;
+
+function collectorLinks(html, baseUrl) {
+  const out = probeLib.extractCollectorLinks(html, baseUrl).filter((x) => !/\.pdf($|\?)/i.test(x.href) && !ASSESSOR_ONLY.test(`${x.href} ${x.text}`));
+  const seen = new Set(out.map((x) => x.href));
+  const re = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  let m;
+  while ((m = re.exec(String(html || '')))) {
+    const tag = m[0].slice(0, m[0].indexOf('>') + 1);
+    const label = (tag.match(/aria-label=["']([^"']+)["']/i) || [])[1] || '';
+    const text = `${m[2].replace(/<[^>]+>/g, ' ')} ${label}`.replace(/\s+/g, ' ').trim().slice(0, 160);
+    if (!PAY_TEXT.test(text)) continue;
+    let abs;
+    try { abs = new URL(m[1].trim(), baseUrl).href; } catch { continue; }
+    if (!/^https?:/i.test(abs) || seen.has(abs) || /\.pdf($|\?)/i.test(abs)) continue;
+    if (ASSESSOR_ONLY.test(`${abs} ${text}`)) continue;
+    seen.add(abs);
+    out.push({ href: abs, text, reason: 'pay_search_cta' });
+    if (out.length >= 25) break;
+  }
+  return out;
+}
+
 function hubLinks(html, baseUrl, limit) {
   const out = [];
   const seen = new Set();
   const re = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
   let m;
   while ((m = re.exec(String(html || '')))) {
-    const text = m[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120);
-    if (!HUB_TEXT.test(text) || /assessor(?!.{0,5}collector)|appraisal|appraiser|\bcad\b/i.test(text)) continue;
+    const tag = m[0].slice(0, m[0].indexOf('>') + 1);
+    const label = (tag.match(/aria-label=["']([^"']+)["']/i) || [])[1] || '';
+    const text = `${m[2].replace(/<[^>]+>/g, ' ')} ${label}`.replace(/\s+/g, ' ').trim().slice(0, 160);
+    if (!HUB_TEXT.test(text) || ASSESSOR_ONLY.test(text)) continue;
     let abs;
     try { abs = new URL(m[1].trim(), baseUrl).href; } catch { continue; }
-    if (!/^https?:/i.test(abs) || seen.has(abs)) continue;
+    if (!/^https?:/i.test(abs) || seen.has(abs) || /\.pdf($|\?)/i.test(abs)) continue;
     seen.add(abs);
     out.push({ href: abs, text });
     if (out.length >= limit) break;
   }
   return out;
+}
+
+function rank(c) {
+  return { vendor_link: 0, pay_search_cta: 1, hub_page: 2 }[c.reason] ?? 3;
 }
 
 async function discover({ key, county, state, url, maxProbes = 10 } = {}) {
@@ -195,15 +226,17 @@ async function discover({ key, county, state, url, maxProbes = 10 } = {}) {
     const page = await fetcher(start);
     visited.push({ url: start, status: page.status, error: page.error });
     if (!page.html) continue;
-    addCandidates(probeLib.extractCollectorLinks(page.html, page.finalUrl || start), start, 1);
-    for (const hub of hubLinks(page.html, page.finalUrl || start, 3)) {
+    addCandidates(collectorLinks(page.html, page.finalUrl || start), start, 1);
+    for (const hub of hubLinks(page.html, page.finalUrl || start, 4)) {
+      // A "Tax Office" site is often the collector portal itself, so the hub page is a candidate too.
+      addCandidates([{ href: hub.href, text: hub.text, reason: 'hub_page' }], start, 1);
       const sub = await fetcher(hub.href);
       visited.push({ url: hub.href, status: sub.status, error: sub.error, via: hub.text });
-      if (sub.html) addCandidates(probeLib.extractCollectorLinks(sub.html, sub.finalUrl || hub.href), hub.href, 2);
+      if (sub.html) addCandidates(collectorLinks(sub.html, sub.finalUrl || hub.href), hub.href, 2);
     }
   }
   const toProbe = [...candidates.values()]
-    .sort((a, b) => (a.reason === 'vendor_link' ? 0 : 1) - (b.reason === 'vendor_link' ? 0 : 1) || a.hop - b.hop)
+    .sort((a, b) => rank(a) - rank(b) || a.hop - b.hop)
     .slice(0, Math.max(1, Math.min(maxProbes, 20)));
   const probed = [];
   for (const c of toProbe) {
