@@ -8,13 +8,43 @@
 //      of every future export, even for rows captured while it was on.
 //   3. Rows rated -1 (thumbs down) never train the model.
 //   4. forgetAccount() removes every row for an account (Delete my data).
+//   5. Retention 90d / 1y / until_delete on the account is applied to training_examples.
 
 const crypto = require('crypto');
 const accounts = require('./accounts');
 
 const MAX_CONTENT = 8000;
+const RETENTION_POLICIES = ['90d', '1y', 'until_delete'];
+const RETENTION_MS = {
+  '90d': 90 * 24 * 60 * 60 * 1000,
+  '1y': 365 * 24 * 60 * 60 * 1000,
+  until_delete: null
+};
 const memory = { examples: [] };
 let pool = null;
+
+function normalizeRetention(value) {
+  const v = String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[\s-]+/g, '_');
+  if (v === '90d' || v === '90' || v === '90_days' || v === '90days') return '90d';
+  if (v === '1y' || v === '1_year' || v === 'year' || v === '365d' || v === '12m') return '1y';
+  if (v === 'until_delete' || v === 'untildelete' || v === 'keep' || v === 'forever') return 'until_delete';
+  return null;
+}
+
+function policyOf(account) {
+  return normalizeRetention(account && account.training_retention) || 'until_delete';
+}
+
+function isExpired(createdAt, policy, nowMs = Date.now()) {
+  const windowMs = RETENTION_MS[policy];
+  if (!windowMs) return false;
+  const t = new Date(createdAt).getTime();
+  if (!Number.isFinite(t)) return false;
+  return t < nowMs - windowMs;
+}
 
 function attachPool(p) {
   pool = p;
@@ -34,7 +64,7 @@ function cleanMessages(messages) {
     .map((m) => ({ role: m.role, content: clip(m.content) }));
 }
 
-async function capture({ account, route, jurisdictionKey, messages, reply, model }) {
+async function capture({ account, route, jurisdictionKey, messages, reply, model, createdAt }) {
   if (!account || account.learn_consent !== true) return null;
   const msgs = cleanMessages(messages);
   const text = clip(reply).trim();
@@ -48,14 +78,14 @@ async function capture({ account, route, jurisdictionKey, messages, reply, model
     reply: text,
     model: model || null,
     rating: null,
-    created_at: new Date().toISOString()
+    created_at: createdAt ? new Date(createdAt).toISOString() : new Date().toISOString()
   };
   try {
     if (usingPostgres()) {
       await pool.query(
-        `INSERT INTO training_examples (id, account_id, route, jurisdiction_key, messages, reply, model)
-         VALUES ($1,$2,$3,$4,$5::jsonb,$6,$7)`,
-        [row.id, row.account_id, row.route, row.jurisdiction_key, JSON.stringify(row.messages), row.reply, row.model]
+        `INSERT INTO training_examples (id, account_id, route, jurisdiction_key, messages, reply, model, created_at)
+         VALUES ($1,$2,$3,$4,$5::jsonb,$6,$7,$8::timestamptz)`,
+        [row.id, row.account_id, row.route, row.jurisdiction_key, JSON.stringify(row.messages), row.reply, row.model, row.created_at]
       );
     } else {
       memory.examples.push(row);
@@ -83,7 +113,8 @@ async function rate({ accountId, exampleId, rating }) {
   return true;
 }
 
-async function exportExamples({ since = null, limit = 50000 } = {}) {
+async function exportExamples({ since = null, limit = 50000, now = Date.now() } = {}) {
+  await purgeExpired({ now });
   if (usingPostgres()) {
     const { rows } = await pool.query(
       `SELECT t.id, t.route, t.jurisdiction_key, t.messages, t.reply, t.model, t.rating, t.created_at
@@ -92,6 +123,11 @@ async function exportExamples({ since = null, limit = 50000 } = {}) {
         WHERE a.learn_consent = true
           AND (t.rating IS NULL OR t.rating >= 0)
           AND ($1::timestamptz IS NULL OR t.created_at >= $1::timestamptz)
+          AND (
+            COALESCE(a.training_retention, 'until_delete') = 'until_delete'
+            OR (COALESCE(a.training_retention, 'until_delete') = '90d' AND t.created_at >= now() - interval '90 days')
+            OR (COALESCE(a.training_retention, 'until_delete') = '1y' AND t.created_at >= now() - interval '1 year')
+          )
         ORDER BY t.created_at ASC
         LIMIT $2`,
       [since, limit]
@@ -104,11 +140,36 @@ async function exportExamples({ since = null, limit = 50000 } = {}) {
     if (since && row.created_at < new Date(since).toISOString()) continue;
     const acct = await accounts.findById(row.account_id);
     if (!acct || !(acct.learn_consent === true || acct.learn_consent === 1)) continue;
+    if (isExpired(row.created_at, policyOf(acct), now)) continue;
     const { account_id, ...rest } = row;
     out.push(rest);
     if (out.length >= limit) break;
   }
   return out;
+}
+
+async function purgeExpired({ now = Date.now() } = {}) {
+  if (usingPostgres()) {
+    const { rowCount } = await pool.query(
+      `DELETE FROM training_examples t
+        USING accounts a
+        WHERE t.account_id = a.id
+          AND (
+            (COALESCE(a.training_retention, 'until_delete') = '90d' AND t.created_at < now() - interval '90 days')
+            OR (COALESCE(a.training_retention, 'until_delete') = '1y' AND t.created_at < now() - interval '1 year')
+          )`
+    );
+    return rowCount;
+  }
+  const before = memory.examples.length;
+  const keep = [];
+  for (const row of memory.examples) {
+    const acct = await accounts.findById(row.account_id);
+    if (isExpired(row.created_at, policyOf(acct), now)) continue;
+    keep.push(row);
+  }
+  memory.examples = keep;
+  return before - keep.length;
 }
 
 async function forgetAccount(accountId) {
@@ -142,4 +203,16 @@ function resetMemory() {
   memory.examples = [];
 }
 
-module.exports = { attachPool, capture, rate, exportExamples, forgetAccount, stats, resetMemory };
+module.exports = {
+  attachPool,
+  capture,
+  rate,
+  exportExamples,
+  forgetAccount,
+  purgeExpired,
+  stats,
+  resetMemory,
+  normalizeRetention,
+  isExpired,
+  RETENTION_POLICIES
+};

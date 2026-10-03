@@ -252,6 +252,40 @@ describe('consent-gated training data', () => {
     assert.equal(await training.forgetAccount(acct.id), 2);
     assert.equal((await training.stats()).total, 0);
   });
+
+  it('drops 90-day-old examples when retention is 90d', async () => {
+    const acct = await makeAccount(true);
+    await accounts.updateAccount(acct.id, { training_retention: '90d' });
+    const aged = await accounts.findById(acct.id);
+    const old = new Date(Date.now() - 100 * 24 * 60 * 60 * 1000).toISOString();
+    await training.capture({ ...sample, account: aged, createdAt: old });
+    await training.capture({ ...sample, account: aged });
+    assert.equal(await training.purgeExpired(), 1);
+    assert.equal((await training.stats()).total, 1);
+    assert.equal((await training.exportExamples()).length, 1);
+  });
+
+  it('drops 1-year-old examples when retention is 1y and keeps newer ones', async () => {
+    const acct = await makeAccount(true);
+    await accounts.updateAccount(acct.id, { training_retention: '1y' });
+    const aged = await accounts.findById(acct.id);
+    const ancient = new Date(Date.now() - 400 * 24 * 60 * 60 * 1000).toISOString();
+    const mid = new Date(Date.now() - 200 * 24 * 60 * 60 * 1000).toISOString();
+    await training.capture({ ...sample, account: aged, createdAt: ancient });
+    await training.capture({ ...sample, account: aged, createdAt: mid });
+    assert.equal(await training.purgeExpired(), 1);
+    assert.equal((await training.exportExamples()).length, 1);
+  });
+
+  it('keeps old examples when retention is until_delete', async () => {
+    const acct = await makeAccount(true);
+    await accounts.updateAccount(acct.id, { training_retention: 'until_delete' });
+    const aged = await accounts.findById(acct.id);
+    const old = new Date(Date.now() - 400 * 24 * 60 * 60 * 1000).toISOString();
+    await training.capture({ ...sample, account: aged, createdAt: old });
+    assert.equal(await training.purgeExpired(), 0);
+    assert.equal((await training.exportExamples()).length, 1);
+  });
 });
 
 describe('training rate route', () => {
@@ -269,11 +303,42 @@ describe('training rate route', () => {
     await store.close();
   });
 
+  async function signedIn() {
+    const created = await (
+      await fetch(`${base}/api/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: `rate.${Date.now()}.${Math.random().toString(16).slice(2)}@example.com`,
+          password: 'correct-horse-9'
+        })
+      })
+    ).json();
+    const verified = await (
+      await fetch(`${base}/api/confirm`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: created.confirm_token })
+      })
+    ).json();
+    const token = verified.token;
+    await fetch(`${base}/api/consent`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token },
+      body: JSON.stringify({ learn_consent: true })
+    });
+    return {
+      token,
+      account: verified.account,
+      headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
+    };
+  }
+
   it('requires sign in', async () => {
     const res = await fetch(`${base}/v1/training/rate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ example_id: 'x', rating: 1 })
+      body: JSON.stringify({ training_example_id: 'x', rating: 1 })
     });
     assert.equal(res.status, 401);
   });
@@ -282,6 +347,90 @@ describe('training rate route', () => {
     const body = await (await fetch(`${base}/v1/health`)).json();
     assert.equal(typeof body.training.total, 'number');
     assert.equal(body.llm.webpoint, false);
+  });
+
+  it('search JSON carries training_example_id', async () => {
+    const { headers } = await signedIn();
+    const res = await fetch(`${base}/api/intelligence`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ q: 'Chippewa County WI' })
+    });
+    const body = await res.json();
+    assert.equal(body.ok, true);
+    assert.ok('training_example_id' in body);
+  });
+
+  it('chat JSON carries training_example_id for a consenting member', async () => {
+    training.resetMemory();
+    const { headers } = await signedIn();
+    const res = await fetch(`${base}/api/chat`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ message: 'Chippewa County WI pay property taxes' })
+    });
+    const body = await res.json();
+    assert.equal(body.ok, true);
+    assert.equal(body.mode, 'database');
+    assert.ok(body.training_example_id);
+    const rate = await fetch(`${base}/v1/training/rate`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ training_example_id: body.training_example_id, rating: 1 })
+    });
+    const rated = await rate.json();
+    assert.equal(rate.status, 200);
+    assert.equal(rated.ok, true);
+    assert.equal(rated.training_example_id, body.training_example_id);
+    assert.equal(rated.rating, 1);
+  });
+
+  it('chat SSE done event carries training_example_id', async () => {
+    training.resetMemory();
+    const own = await fakeOpenAI('stream', 'Use LandNav guest sign in');
+    const { headers } = await signedIn();
+    try {
+      await withEnv({ WEBPOINT_LLM_URL: own.url, WEBPOINT_LLM_KEY: 'rp_test' }, async () => {
+        const res = await fetch(`${base}/api/chat`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ message: 'Chippewa County WI' })
+        });
+        assert.match(res.headers.get('content-type') || '', /text\/event-stream/);
+        const text = await res.text();
+        const events = text
+          .split('\n')
+          .filter((line) => line.startsWith('data: '))
+          .map((line) => JSON.parse(line.slice(6)));
+        const done = events.find((ev) => ev.type === 'done');
+        assert.ok(done);
+        assert.ok(done.training_example_id);
+      });
+    } finally {
+      own.server.close();
+    }
+  });
+
+  it('Delete my data calls training.forgetAccount for that account', async () => {
+    training.resetMemory();
+    const { headers, token } = await signedIn();
+    const me = await (await fetch(`${base}/api/me`, { headers: { 'X-Auth-Token': token } })).json();
+    const acct = await accounts.findById(me.account.id);
+    acct.learn_consent = true;
+    await training.capture({
+      account: acct,
+      route: 'chat',
+      jurisdictionKey: 'WI-Chippewa',
+      messages: [{ role: 'user', content: 'Chippewa WI' }],
+      reply: 'LandNav guest sign in.'
+    });
+    assert.equal((await training.stats()).total, 1);
+    const res = await fetch(`${base}/api/account/delete-data`, { method: 'POST', headers });
+    const body = await res.json();
+    assert.equal(res.status, 200);
+    assert.equal(body.ok, true);
+    assert.equal(body.forgotten, 1);
+    assert.equal((await training.stats()).total, 0);
   });
 });
 

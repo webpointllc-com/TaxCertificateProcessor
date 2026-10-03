@@ -325,6 +325,7 @@ app.patch('/api/me', async (req, res) => {
   if (!account) return;
   const result = await accounts.updateAccount(account.id, req.body || {});
   if (!result.ok) return res.status(400).json(result);
+  await training.purgeExpired();
   res.json(result);
 });
 
@@ -387,6 +388,13 @@ app.post('/api/consent', async (req, res) => {
   const allow = req.body?.learn_consent !== false;
   const result = await accounts.updateAccount(account.id, { learn_consent: allow });
   res.json(result);
+});
+
+app.post(['/api/account/delete-data', '/v1/account/delete-data'], async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const forgotten = await training.forgetAccount(account.id);
+  res.json({ ok: true, forgotten, training_examples: forgotten });
 });
 
 app.get('/api/extractors/stats', async (req, res) => {
@@ -872,13 +880,18 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
     if (chunks.length) {
       fullResponse += `\n\nPLAYBOOK:\n- ${chunks[0].title}`;
     }
+    chatMessages = [
+      { role: 'system', content: systemContent },
+      { role: 'user', content: message }
+    ];
     await finish();
     res.json({
       ok: true,
       mode: 'database',
       scenarioId: scenarioMatch.scenarioId,
       urlLocked: Boolean(urlLocked),
-      content: fullResponse
+      content: fullResponse,
+      training_example_id: captured ? captured.id : null
     });
     return;
   }
@@ -928,14 +941,14 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
 app.post(['/v1/training/rate', '/api/training/rate'], async (req, res) => {
   const account = await requireAccount(req, res);
   if (!account) return;
-  const exampleId = String(req.body?.example_id || '').trim();
+  const exampleId = String(req.body?.training_example_id || req.body?.example_id || '').trim();
   const rating = Number(req.body?.rating);
   if (!exampleId || ![1, -1, 0].includes(rating)) {
-    return res.status(400).json({ ok: false, error: 'Send example_id and rating of 1, -1, or 0' });
+    return res.status(400).json({ ok: false, error: 'Send training_example_id and rating of 1, -1, or 0' });
   }
   const updated = await training.rate({ accountId: account.id, exampleId, rating });
   if (!updated) return res.status(404).json({ ok: false, error: 'No answer with that id on this account' });
-  res.json({ ok: true, example_id: exampleId, rating });
+  res.json({ ok: true, training_example_id: exampleId, example_id: exampleId, rating });
 });
 
 app.post(['/v1/feedback', '/api/feedback'], async (req, res) => {

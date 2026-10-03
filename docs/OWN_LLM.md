@@ -50,9 +50,10 @@ Merging changes nothing in production. `MODEL_PROVIDER` stays `groq` until the s
 1. Nothing is captured for anonymous users or accounts with `learn_consent = false`.
 2. Export re-checks consent at export time. Turning learning off removes that account from every future training run.
 3. Thumbs-down answers never train the model.
-4. `training.forgetAccount(id)` deletes every row. **The Delete my data endpoint must call it.**
+4. `training.forgetAccount(id)` deletes every row. **The Delete my data endpoint must call it.** (`POST /api/account/delete-data` does.)
 5. Emails, phone numbers and SSN-shaped strings are masked before data leaves the database.
 6. `training/data/` and `training/adapters/` are git-ignored. Member data never goes into the repo.
+7. Account retention (`90d` / `1y` / `until_delete`) is applied to `training_examples` on export and purge.
 
 ## Base model
 
@@ -101,8 +102,5 @@ A dedicated always-on GPU (from ~€184/mo) only makes sense past ~10 busy hours
 
 ## Not done yet
 
-- Thumbs up / down buttons in `public/app.js` that call `/v1/training/rate` with `training_example_id`.
-- Delete my data endpoint calling `training.forgetAccount()`.
-- Retention setting (90 days / 1 year) applied to `training_examples`.
 - Confirm current vLLM supports Qwen3.5 on the chosen worker image (test with one request on switch day).
 - Adapter storage location (Hugging Face private repo or RunPod network volume).

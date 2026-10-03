@@ -59,6 +59,15 @@
           <article class="g-answer">
             <p class="g-kicker" id="res-place"></p>
             <p id="res-summary"></p>
+            <div id="answer-rate" class="answer-rate" hidden>
+              <button type="button" class="rate-btn" data-rating="1" aria-label="Thumbs up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4.5A1.5 1.5 0 0 1 3 18.5v-6A1.5 1.5 0 0 1 4.5 11H7z"/><path d="M7 11l3.2-6.2A2 2 0 0 1 12 3.6h.2a1.8 1.8 0 0 1 1.7 2.4L13 9h5.4a2 2 0 0 1 2 2.3l-1.1 7A2 2 0 0 1 17.4 20H7"/></svg>
+              </button>
+              <button type="button" class="rate-btn" data-rating="-1" aria-label="Thumbs down">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13V4H4.5A1.5 1.5 0 0 0 3 5.5v6A1.5 1.5 0 0 0 4.5 13H7z"/><path d="M7 13l3.2 6.2A2 2 0 0 0 12 20.4h.2a1.8 1.8 0 0 0 1.7-2.4L13 15h5.4a2 2 0 0 0 2-2.3l-1.1-7A2 2 0 0 0 17.4 4H7"/></svg>
+              </button>
+              <span class="rate-status" id="rate-status"></span>
+            </div>
             <a class="g-link" id="res-collector" href="#" target="_blank" rel="noopener" hidden>Open official tax search</a>
             <p class="g-lookfor" id="res-lookfor" hidden></p>
             <p class="g-agent" id="agent-note"></p>
@@ -369,9 +378,18 @@
                 <input id="set-learn" type="checkbox">
                 <span>Allow extractor learning from my sessions</span>
               </label>
+              <label>Training data retention
+                <select id="set-retention">
+                  <option value="90d">90 days</option>
+                  <option value="1y">1 year</option>
+                  <option value="until_delete">Until I delete my data</option>
+                </select>
+              </label>
               <button type="submit" class="primary compact">Save settings</button>
             </form>
             <p class="acct-inline-status" id="settings-status"></p>
+            <button type="button" class="ghost acct-full danger-ghost" id="acct-delete-data">Delete my data</button>
+            <p class="acct-inline-status" id="delete-data-status"></p>
             <button type="button" class="ghost acct-full danger-ghost" id="acct-logout">Sign out</button>
           </div>
 

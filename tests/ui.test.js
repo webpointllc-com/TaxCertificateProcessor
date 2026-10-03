@@ -102,4 +102,25 @@ describe('embeddable scaled UI', () => {
     assert.match(css, /account-sheet/);
     assert.match(css, /width: 390px/);
   });
+
+  it('rates answers with thumbs that POST training_example_id', () => {
+    assert.match(html, /id="answer-rate"/);
+    assert.match(html, /aria-label="Thumbs up"/);
+    assert.match(html, /aria-label="Thumbs down"/);
+    assert.match(js, /\/v1\/training\/rate/);
+    assert.match(js, /training_example_id/);
+    assert.match(js, /ev\.type === 'done'/);
+    assert.match(js, /data\.training_example_id/);
+  });
+
+  it('lets a member delete training data and pick 90d, 1y, or until delete', () => {
+    assert.match(html, /id="acct-delete-data"/);
+    assert.match(html, /Delete my data/);
+    assert.match(html, /id="set-retention"/);
+    assert.match(html, /value="90d"/);
+    assert.match(html, /value="1y"/);
+    assert.match(html, /value="until_delete"/);
+    assert.match(js, /\/api\/account\/delete-data/);
+    assert.match(js, /training_retention/);
+  });
 });
