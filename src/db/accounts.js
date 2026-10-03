@@ -772,6 +772,7 @@ module.exports = {
   issueOtp,
   logout,
   accountForToken,
+  findById,
   updateAccount,
   addRecent,
   listRecents,

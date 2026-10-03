@@ -42,3 +42,11 @@ services:
         generateValue: true
       - key: GROQ_API_KEY
         sync: false
+      # Own model (RunPod serverless vLLM). Leave unset until the endpoint exists.
+      # Switch day: set these three, then change MODEL_PROVIDER to webpoint. Groq stays as fallback.
+      - key: WEBPOINT_LLM_URL
+        sync: false
+      - key: WEBPOINT_LLM_KEY
+        sync: false
+      - key: WEBPOINT_MODEL
+        value: webpoint

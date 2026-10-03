@@ -8,6 +8,7 @@ const express = require('express');
 const store = require('./db/store');
 const accounts = require('./db/accounts');
 const extractors = require('./db/extractors');
+const training = require('./db/training');
 const oauth = require('./services/oauth');
 const mailer = require('./services/mailer');
 const llm = require('./services/llm');
@@ -137,6 +138,7 @@ app.get(['/api/health', '/v1/health', '/healthz'], async (req, res) => {
     model: models.model,
     llm: models,
     extractors: await extractors.stats(),
+    training: await training.stats(),
     operator: { central: true },
     oauth: oauth.oauthStatus(),
     swap: {
@@ -543,10 +545,7 @@ app.post('/api/intelligence', async (req, res) => {
   ]
     .filter(Boolean)
     .join('\n');
-  const spoken = await llm.complete({
-    temperature: 0.1,
-    max_tokens: 280,
-    messages: [
+  const spokenMessages = [
       {
         role: 'system',
         content:
@@ -556,14 +555,26 @@ app.post('/api/intelligence', async (req, res) => {
         role: 'user',
         content: `Query: ${q}\nCounty agent: ${lookup.key}\nEntity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nExtractor v${agent.version}\n${memoryBits}\nProduction: ${production.speak}\nWrite 2 short sentences.`
       }
-    ]
-  });
+  ];
+  const spoken = await llm.complete({ temperature: 0.1, max_tokens: 280, messages: spokenMessages });
   if (spoken.ok && spoken.text) talk = spoken.text;
   card.summary = talk;
   await store.addConversation(sessionIdOf(req), 'user', q, null);
   await store.addConversation(sessionIdOf(req), 'assistant', talk, spoken.model || llm.status().model);
+  let captured = null;
+  if (spoken.ok && spoken.text) {
+    captured = await training.capture({
+      account,
+      route: 'search',
+      jurisdictionKey: lookup.key,
+      messages: spokenMessages,
+      reply: spoken.text,
+      model: spoken.model
+    });
+  }
   res.json({
     ok: true,
+    training_example_id: captured ? captured.id : null,
     query: q,
     task_id: task?.id || null,
     follow_up: Boolean(access.follow_up),
@@ -623,11 +634,7 @@ app.post('/api/extractors/heal', async (req, res) => {
   const previous = await extractors.ensureSlot(lookup);
   const urlDecision = resolveHealedUrl(lookup, req.body?.proposed_url);
   let method = methodFromFeedback(feedback, lookup, previous);
-  const repaired = await llm.complete({
-    heavy: true,
-    temperature: 0,
-    max_tokens: 400,
-    messages: [
+  const healMessages = [
       {
         role: 'system',
         content:
@@ -637,14 +644,24 @@ app.post('/api/extractors/heal', async (req, res) => {
         role: 'user',
         content: `Entity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nPrior method: ${JSON.stringify(previous.method)}\nUser feedback: ${feedback}`
       }
-    ]
-  });
+  ];
+  const repaired = await llm.complete({ heavy: true, temperature: 0, max_tokens: 400, messages: healMessages });
   if (repaired.ok && repaired.text) {
     try {
       const jsonMatch = repaired.text.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         const parsedMethod = JSON.parse(jsonMatch[0]);
-        if (Array.isArray(parsedMethod.steps) && parsedMethod.steps.length) method = parsedMethod;
+        if (Array.isArray(parsedMethod.steps) && parsedMethod.steps.length) {
+          method = parsedMethod;
+          await training.capture({
+            account,
+            route: 'heal',
+            jurisdictionKey: lookup.key,
+            messages: healMessages,
+            reply: jsonMatch[0],
+            model: repaired.model
+          });
+        }
       }
     } catch (err) {
       console.error('heal llm parse', err.message);
@@ -779,15 +796,30 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
     ? buildLockedUrlPrefix(lockedUrl, lookup.confidence, lookup.entity)
     : '';
 
+  const account = await resolveAccount(req).catch(() => null);
+  let answeredBy = llm.status().model;
+  let chatMessages = null;
+  let captured = null;
+
   const finish = async () => {
     if (urlLocked && lockedUrl) {
       fullResponse = enforceLockedSpulUrl(fullResponse, lockedUrl, lookup.confidence);
     }
     await store.addConversation(sid, 'user', message, null);
-    await store.addConversation(sid, 'assistant', fullResponse, llm.status().model);
+    await store.addConversation(sid, 'assistant', fullResponse, answeredBy);
+    if (chatMessages && fullResponse) {
+      captured = await training.capture({
+        account,
+        route: 'chat',
+        jurisdictionKey: jurKey,
+        messages: chatMessages,
+        reply: fullResponse,
+        model: answeredBy
+      });
+    }
   };
 
-  if (!llm.groqEnabled()) {
+  if (!llm.streamEnabled()) {
     fullResponse = synthesizeSpul(lookup || { confidence: 'not_found', entityNote: 'No jurisdiction detected.' });
     if (chunks.length) {
       fullResponse += `\n\nPLAYBOOK:\n- ${chunks[0].title}`;
@@ -818,14 +850,14 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
       urlLocked && lockedUrl
         ? `${message}\n\n[URL already verified in SPUL database. Output SPUL_ENTITY, SPUL_CONFIDENCE, SPUL_ACTIONS, SPUL_CONTEXT only — SPUL_URL is locked to: ${lockedUrl}]`
         : message;
-    const stream = await llm.streamGroq({
-      messages: [
-        { role: 'system', content: systemContent },
-        ...history.slice(-12),
-        { role: 'user', content: userContent }
-      ]
-    });
-    for await (const chunk of stream) {
+    chatMessages = [
+      { role: 'system', content: systemContent },
+      ...history.slice(-12),
+      { role: 'user', content: userContent }
+    ];
+    const opened = await llm.stream({ messages: chatMessages });
+    answeredBy = opened.model;
+    for await (const chunk of opened.stream) {
       const delta = chunk.choices[0]?.delta?.content || '';
       if (delta) {
         fullResponse += delta;
@@ -833,15 +865,29 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
       }
     }
     await finish();
-    res.write(`data: ${JSON.stringify({ type: 'done', scenarioId: scenarioMatch.scenarioId })}\n\n`);
+    res.write(`data: ${JSON.stringify({ type: 'done', scenarioId: scenarioMatch.scenarioId, model: answeredBy, training_example_id: captured ? captured.id : null })}\n\n`);
     res.end();
   } catch (err) {
-    console.error('Groq error:', err.message);
+    console.error('LLM stream error:', err.message);
     if (!fullResponse) fullResponse = synthesizeSpul(lookup || {});
     await finish();
     res.write(`data: ${JSON.stringify({ type: 'error', content: fullResponse })}\n\n`);
     res.end();
   }
+});
+
+// Thumbs up / down on a captured answer. Thumbs down keeps that answer out of training.
+app.post(['/v1/training/rate', '/api/training/rate'], async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const exampleId = String(req.body?.example_id || '').trim();
+  const rating = Number(req.body?.rating);
+  if (!exampleId || ![1, -1, 0].includes(rating)) {
+    return res.status(400).json({ ok: false, error: 'Send example_id and rating of 1, -1, or 0' });
+  }
+  const updated = await training.rate({ accountId: account.id, exampleId, rating });
+  if (!updated) return res.status(404).json({ ok: false, error: 'No answer with that id on this account' });
+  res.json({ ok: true, example_id: exampleId, rating });
 });
 
 app.post(['/v1/feedback', '/api/feedback'], async (req, res) => {

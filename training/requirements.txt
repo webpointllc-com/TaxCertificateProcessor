@@ -1,0 +1,9 @@
+# GPU training pod only. Not installed by the web app.
+# Pin exact versions on the first successful run and commit the pins.
+torch
+transformers
+peft
+trl
+datasets
+accelerate
+bitsandbytes

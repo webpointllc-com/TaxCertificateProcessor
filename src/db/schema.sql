@@ -287,3 +287,20 @@ CREATE TABLE IF NOT EXISTS extractor_portal_sessions (
 ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS token_hash TEXT;
 ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ;
 ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS family_id TEXT;
+
+-- Own-model training data. Written only for accounts with learn_consent = true.
+-- Export re-checks CURRENT consent, so turning learning off stops future use immediately.
+CREATE TABLE IF NOT EXISTS training_examples (
+  id TEXT PRIMARY KEY,
+  account_id TEXT NOT NULL,
+  route TEXT NOT NULL,
+  jurisdiction_key TEXT,
+  messages JSONB NOT NULL,
+  reply TEXT NOT NULL,
+  model TEXT,
+  rating SMALLINT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS training_examples_account_idx ON training_examples (account_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS training_examples_created_idx ON training_examples (created_at);
