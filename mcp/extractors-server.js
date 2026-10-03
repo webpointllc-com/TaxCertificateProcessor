@@ -120,6 +120,36 @@ function buildServer() {
   );
 
   server.registerTool(
+    'extractor_discover',
+    {
+      title: 'Find the collector search page for a county',
+      description:
+        'For a county whose stored URL is a homepage, assessor page or dead: open the stored page and the 2k-dump candidate, follow "pay taxes" / vendor links and treasurer or tax-collector pages (2 hops), and probe every link found. Returns best (lock-eligible first) and all collector candidates. Read-only; pass best.final_url to extractor_propose_lock.',
+      inputSchema: {
+        key: z.string().optional().describe('County key, e.g. "TX-Bell"'),
+        url: z.string().url().optional().describe('Extra start page, e.g. the county homepage'),
+        max_probes: z.number().int().min(1).max(20).default(10).describe('How many found links to probe')
+      },
+      annotations: { readOnlyHint: true, openWorldHint: true }
+    },
+    async ({ key, url, max_probes }) => {
+      const out = await validation.discover({ key, url, maxProbes: max_probes });
+      return out.ok ? reply(out) : fail(out.error);
+    }
+  );
+
+  server.registerTool(
+    'extractor_discover_batch',
+    {
+      title: 'Find collector pages for up to 10 counties',
+      description: 'Run extractor_discover on up to 10 county keys, 3 at a time. Returns how many found a collector page and each result. Read-only.',
+      inputSchema: { keys: z.array(z.string()).min(1).max(10) },
+      annotations: { readOnlyHint: true, openWorldHint: true }
+    },
+    async ({ keys }) => reply(await validation.discoverMany({ keys }))
+  );
+
+  server.registerTool(
     'extractor_propose_lock',
     {
       title: 'Propose locking a collector search URL',

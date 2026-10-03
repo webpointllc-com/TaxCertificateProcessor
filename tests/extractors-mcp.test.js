@@ -150,6 +150,8 @@ describe('internal MCP server', () => {
     const { tools } = await client.listTools();
     const names = tools.map((t) => t.name).sort();
     assert.deepEqual(names, [
+      'extractor_discover',
+      'extractor_discover_batch',
       'extractor_list',
       'extractor_lock_queue',
       'extractor_lookup',
@@ -236,5 +238,60 @@ describe('lock editor routes', () => {
     const row = unverifiedCounty();
     const res = await post('/v1/editor/locks/propose', 'claude-k', { key: row.key, url: 'https://gone.example.gov/' });
     assert.equal(res.status, 422);
+  });
+});
+
+
+describe('collector page discovery', () => {
+  before(async () => {
+    locks.resetMemory();
+    await store.init();
+  });
+  after(() => validation.setFetcher(null));
+
+  it('follows homepage -> treasurer page -> pay portal (2 hops) and returns a lock-eligible page', async () => {
+    const row = unverifiedCounty();
+    const home = 'https://www.examplecounty.gov/';
+    const treasurer = 'https://www.examplecounty.gov/treasurer';
+    const portal = 'https://pp-example.app.landnav.com/search';
+    validation.setFetcher(fakeFetch({
+      [home]: { html: '<a href="/treasurer">County Treasurer</a><a href="/parks">Parks</a>' },
+      [treasurer]: { html: '<a href="https://pp-example.app.landnav.com/search">Search or pay property taxes</a>' },
+      [portal]: { html: COLLECTOR_HTML }
+    }));
+    const out = await validation.discover({ key: row.key, url: home });
+    assert.equal(out.ok, true);
+    assert.ok(out.best, 'should find the portal');
+    assert.equal(out.best.url, portal);
+    assert.equal(out.best.hop, 2);
+    assert.equal(out.best.lock_eligible, true);
+    assert.ok(out.visited.some((v) => v.url === treasurer));
+  });
+
+  it('skips assessor links and reports nothing when no collector page exists', async () => {
+    const row = unverifiedCounty();
+    const home = 'https://www.nopay.gov/';
+    validation.setFetcher(fakeFetch({
+      [home]: { html: '<a href="https://assessor.nopay.gov/">Assessor property search</a><a href="/news">News</a>' }
+    }));
+    const out = await validation.discover({ key: row.key, url: home });
+    assert.equal(out.ok, true);
+    assert.equal(out.best, null);
+    assert.equal(out.probed.length, 0);
+  });
+
+  it('ranks vendor links first', async () => {
+    const row = unverifiedCounty();
+    const home = 'https://www.rank.gov/';
+    const vendor = 'https://pp-rank.app.landnav.com/search';
+    const cta = 'https://www.rank.gov/pay';
+    validation.setFetcher(fakeFetch({
+      [home]: { html: `<a href="${cta}">Pay your property tax</a><a href="${vendor}">Online portal</a>` },
+      [vendor]: { html: COLLECTOR_HTML },
+      [cta]: { html: '<title>How to pay</title>' }
+    }));
+    const out = await validation.discover({ key: row.key, url: home, maxProbes: 1 });
+    assert.equal(out.probed.length, 1);
+    assert.equal(out.probed[0].url, vendor);
   });
 });
