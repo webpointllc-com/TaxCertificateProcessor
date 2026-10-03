@@ -206,6 +206,8 @@ function hubLinks(html, baseUrl, limit) {
   return out;
 }
 
+const STATE_AGENCY = /comptroller\.|\.state\.[a-z]{2}\.us|(^|\/\/|\.)(revenue|dor|tax)\.[a-z]+\.gov|\/\/(www\.)?[a-z]+\.gov\/(taxes|revenue)\//i;
+
 function rank(c) {
   return { vendor_link: 0, pay_search_cta: 1, hub_page: 2 }[c.reason] ?? 3;
 }
@@ -241,7 +243,14 @@ async function discover({ key, county, state, url, maxProbes = 10 } = {}) {
   const probed = [];
   for (const c of toProbe) {
     const r = await validate({ key: row && row.key, url: c.url });
-    probed.push({ url: c.url, link_text: c.text, found_on: c.from, hop: c.hop, verdict: r.verdict, reason: r.reason, title: r.title, dr_fields: r.dr_fields || [], cloudflare: r.cloudflare, lock_eligible: Boolean(r.lock_eligible), final_url: r.final_url });
+    const finalUrl = r.final_url || c.url;
+    const vendorHost = probeLib.COLLECTOR_HOST.test(finalUrl);
+    const stateAgency = STATE_AGENCY.test(finalUrl) && !vendorHost;
+    // Discovery is stricter than a plain probe: a page found by following links must either be a
+    // known collector vendor or actually have a search form. Titles alone ("Property Tax Payment
+    // Refunds") are not enough, and statewide agency pages never belong to one county.
+    const strong = Boolean(r.lock_eligible) && !stateAgency && (vendorHost || (r.search_fields || []).length > 0);
+    probed.push({ url: c.url, link_text: c.text, found_on: c.from, hop: c.hop, verdict: r.verdict, reason: r.reason, title: r.title, search_fields: r.search_fields || [], dr_fields: r.dr_fields || [], cloudflare: r.cloudflare, lock_eligible: strong, state_agency: stateAgency, final_url: finalUrl });
   }
   const winners = probed
     .filter((p) => p.lock_eligible || (p.verdict === 'collector_search' && p.cloudflare))

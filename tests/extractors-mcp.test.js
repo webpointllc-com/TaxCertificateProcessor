@@ -320,3 +320,23 @@ describe('discovery: Texas assessor-collector wording', () => {
     assert.equal(out.collector_candidates.length, 2);
   });
 });
+
+describe('discovery: no false positives from title-only or statewide pages', () => {
+  before(async () => { await store.init(); });
+  after(() => validation.setFetcher(null));
+
+  it('does not accept the state comptroller refunds page or a title-only page', async () => {
+    const row = unverifiedCounty();
+    const home = 'https://www.stephensish.gov/';
+    const comptroller = 'https://comptroller.texas.gov/taxes/property-tax/refunds.php';
+    const titleOnly = 'https://www.stephensish.gov/pay';
+    validation.setFetcher(fakeFetch({
+      [home]: { html: `<a href="${comptroller}">Property tax search</a><a href="/pay">Pay your property tax</a>` },
+      [comptroller]: { html: '<title>Property Tax Payment Refunds</title><p>Tax collector refunds</p>' },
+      [titleOnly]: { html: '<title>Pay Property Taxes - Tax Collector</title><p>Call us.</p>' }
+    }));
+    const out = await validation.discover({ key: row.key, url: home });
+    assert.equal(out.best, null);
+    assert.ok(out.probed.find((p) => p.url === comptroller).state_agency);
+  });
+});
