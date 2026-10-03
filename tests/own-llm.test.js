@@ -217,6 +217,8 @@ describe('consent-gated training data', () => {
     const yes = await makeAccount(true);
     const row = await training.capture({ ...sample, account: yes });
     assert.ok(row && row.id);
+    assert.equal((await training.exportExamples()).length, 0, 'unreviewed rows never train');
+    assert.equal((await training.review({ exampleId: row.id, action: 'approve', reviewer: 'bill' })).ok, true);
     const rows = await training.exportExamples();
     assert.equal(rows.length, 1);
     assert.equal(rows[0].reply, sample.reply);
@@ -225,7 +227,8 @@ describe('consent-gated training data', () => {
 
   it('drops an account from export the moment it turns learning off', async () => {
     const acct = await makeAccount(true);
-    await training.capture({ ...sample, account: acct });
+    const row = await training.capture({ ...sample, account: acct });
+    await training.review({ exampleId: row.id, action: 'approve', reviewer: 'bill' });
     assert.equal((await training.exportExamples()).length, 1);
     await accounts.updateAccount(acct.id, { learn_consent: false });
     assert.equal((await training.exportExamples()).length, 0);
@@ -234,6 +237,7 @@ describe('consent-gated training data', () => {
   it('keeps thumbs-down answers out of training', async () => {
     const acct = await makeAccount(true);
     const row = await training.capture({ ...sample, account: acct });
+    await training.review({ exampleId: row.id, action: 'approve', reviewer: 'bill' });
     assert.equal(await training.rate({ accountId: acct.id, exampleId: row.id, rating: -1 }), true);
     assert.equal((await training.exportExamples()).length, 0);
   });
@@ -259,7 +263,8 @@ describe('consent-gated training data', () => {
     const aged = await accounts.findById(acct.id);
     const old = new Date(Date.now() - 100 * 24 * 60 * 60 * 1000).toISOString();
     await training.capture({ ...sample, account: aged, createdAt: old });
-    await training.capture({ ...sample, account: aged });
+    const fresh = await training.capture({ ...sample, account: aged });
+    await training.review({ exampleId: fresh.id, action: 'approve', reviewer: 'bill' });
     assert.equal(await training.purgeExpired(), 1);
     assert.equal((await training.stats()).total, 1);
     assert.equal((await training.exportExamples()).length, 1);
@@ -272,7 +277,8 @@ describe('consent-gated training data', () => {
     const ancient = new Date(Date.now() - 400 * 24 * 60 * 60 * 1000).toISOString();
     const mid = new Date(Date.now() - 200 * 24 * 60 * 60 * 1000).toISOString();
     await training.capture({ ...sample, account: aged, createdAt: ancient });
-    await training.capture({ ...sample, account: aged, createdAt: mid });
+    const kept = await training.capture({ ...sample, account: aged, createdAt: mid });
+    await training.review({ exampleId: kept.id, action: 'approve', reviewer: 'bill' });
     assert.equal(await training.purgeExpired(), 1);
     assert.equal((await training.exportExamples()).length, 1);
   });
@@ -282,7 +288,8 @@ describe('consent-gated training data', () => {
     await accounts.updateAccount(acct.id, { training_retention: 'until_delete' });
     const aged = await accounts.findById(acct.id);
     const old = new Date(Date.now() - 400 * 24 * 60 * 60 * 1000).toISOString();
-    await training.capture({ ...sample, account: aged, createdAt: old });
+    const oldRow = await training.capture({ ...sample, account: aged, createdAt: old });
+    await training.review({ exampleId: oldRow.id, action: 'approve', reviewer: 'bill' });
     assert.equal(await training.purgeExpired(), 0);
     assert.equal((await training.exportExamples()).length, 1);
   });
@@ -465,5 +472,133 @@ describe('training export', () => {
     });
     assert.deepEqual(ex.messages.map((m) => m.role), ['user', 'assistant']);
     assert.equal(ex.meta.jurisdiction_key, 'WI-Chippewa');
+  });
+});
+
+
+describe('editor protocol', () => {
+  let n = 0;
+  async function consenting() {
+    n += 1;
+    const res = await accounts.signup({ email: `editor${n}-${Date.now()}@example.com`, password: 'correct-horse-9', display_name: 'Ed Tester' });
+    await accounts.updateAccount(res.account.id, { learn_consent: true });
+    return accounts.findById(res.account.id);
+  }
+  const base = {
+    route: 'chat',
+    jurisdictionKey: 'WI-Chippewa',
+    messages: [{ role: 'user', content: 'How do I search Chippewa County WI?' }],
+    reply: 'Go to https://made-up.example.com',
+    model: 'webpoint'
+  };
+
+  before(async () => { await store.init(); });
+  beforeEach(() => training.resetMemory());
+
+  it('an edited answer trains with the fix, not the original', async () => {
+    const row = await training.capture({ ...base, account: await consenting() });
+    const out = await training.review({ exampleId: row.id, action: 'edit', correctedReply: 'Use the LandNav guest sign in.', reviewer: 'bill' });
+    assert.equal(out.ok, true);
+    const rows = await training.exportExamples();
+    assert.equal(rows.length, 1);
+    assert.equal(rows[0].reply, 'Use the LandNav guest sign in.');
+  });
+
+  it('a fix can rescue a thumbs-down answer', async () => {
+    const acct = await consenting();
+    const row = await training.capture({ ...base, account: acct });
+    await training.rate({ accountId: acct.id, exampleId: row.id, rating: -1 });
+    await training.review({ exampleId: row.id, action: 'edit', correctedReply: 'Use the LandNav guest sign in.', reviewer: 'bill' });
+    assert.equal((await training.exportExamples()).length, 1);
+  });
+
+  it('rejected answers never train', async () => {
+    const row = await training.capture({ ...base, account: await consenting() });
+    await training.review({ exampleId: row.id, action: 'reject', reviewer: 'bill' });
+    assert.equal((await training.exportExamples()).length, 0);
+  });
+
+  it('Claude can flag with a suggested fix but cannot approve', async () => {
+    const row = await training.capture({ ...base, account: await consenting() });
+    const denied = await training.review({ exampleId: row.id, action: 'approve', role: 'claude' });
+    assert.equal(denied.ok, false);
+    assert.equal(denied.status, 403);
+    const flagged = await training.review({ exampleId: row.id, action: 'flag', correctedReply: 'Use LandNav.', note: 'invented URL', role: 'claude' });
+    assert.equal(flagged.ok, true);
+    assert.equal(flagged.example.review_status, 'flagged');
+    assert.equal((await training.exportExamples()).length, 0, 'a flag never trains');
+    const queue = await training.reviewQueue({ status: 'open' });
+    assert.equal(queue[0].corrected_reply, 'Use LandNav.');
+    assert.equal(queue[0].account_id, undefined, 'editors never see account ids');
+  });
+
+  it('thumbs-down and flagged answers come first in the queue', async () => {
+    const acct = await consenting();
+    const a = await training.capture({ ...base, account: acct });
+    const b = await training.capture({ ...base, account: acct });
+    await training.rate({ accountId: acct.id, exampleId: b.id, rating: -1 });
+    const queue = await training.reviewQueue({ status: 'open' });
+    assert.equal(queue[0].id, b.id);
+    assert.equal(queue[1].id, a.id);
+  });
+
+  it('stats count what is ready to train', async () => {
+    const row = await training.capture({ ...base, account: await consenting() });
+    await training.review({ exampleId: row.id, action: 'approve', reviewer: 'bill' });
+    const s = await training.reviewStats();
+    assert.equal(s.approved, 1);
+    assert.equal(s.trainable, 1);
+  });
+});
+
+describe('editor routes', () => {
+  let server;
+  let baseUrl;
+  const saved = {};
+  before(async () => {
+    for (const k of ['EDITOR_KEY', 'CLAUDE_REVIEW_KEY', 'EDITOR_EMAILS']) saved[k] = process.env[k];
+    process.env.EDITOR_KEY = 'human-test-key';
+    process.env.CLAUDE_REVIEW_KEY = 'claude-test-key';
+    delete process.env.EDITOR_EMAILS;
+    await store.init();
+    server = await new Promise((resolve) => { const s = app.listen(0, '127.0.0.1', () => resolve(s)); });
+    baseUrl = `http://127.0.0.1:${server.address().port}`;
+  });
+  after(async () => {
+    for (const k of Object.keys(saved)) { if (saved[k] === undefined) delete process.env[k]; else process.env[k] = saved[k]; }
+    if (server) await new Promise((r) => server.close(r));
+    await store.close();
+  });
+
+  it('is closed without a key', async () => {
+    const res = await fetch(`${baseUrl}/v1/editor/queue`);
+    assert.equal(res.status, 403);
+  });
+
+  it('rejects a wrong key', async () => {
+    const res = await fetch(`${baseUrl}/v1/editor/queue`, { headers: { 'x-editor-key': 'nope' } });
+    assert.equal(res.status, 403);
+  });
+
+  it('tells the page which role the key has', async () => {
+    const human = await (await fetch(`${baseUrl}/v1/editor/queue`, { headers: { 'x-editor-key': 'human-test-key' } })).json();
+    assert.equal(human.role, 'human');
+    const claude = await (await fetch(`${baseUrl}/v1/editor/queue`, { headers: { 'x-editor-key': 'claude-test-key' } })).json();
+    assert.equal(claude.role, 'claude');
+  });
+
+  it('blocks Claude from approving over HTTP', async () => {
+    const res = await fetch(`${baseUrl}/v1/editor/review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-editor-key': 'claude-test-key' },
+      body: JSON.stringify({ example_id: 'x', action: 'approve' })
+    });
+    assert.equal(res.status, 403);
+  });
+
+  it('serves the editor page', async () => {
+    const res = await fetch(`${baseUrl}/editor.html`);
+    assert.equal(res.status, 200);
+    assert.match(await res.text(), /WebPoint Editor/);
   });
 });

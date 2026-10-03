@@ -9,6 +9,9 @@
 //   3. Rows rated -1 (thumbs down) never train the model.
 //   4. forgetAccount() removes every row for an account (Delete my data).
 //   5. Retention 90d / 1y / until_delete on the account is applied to training_examples.
+//   6. EDITOR PROTOCOL: only rows a human editor approved (or approved with a correction)
+//      are exported. Claude may flag rows with a suggested fix, but a flag never trains.
+//      Corrected replies replace the original answer in the training data.
 
 const crypto = require('crypto');
 const accounts = require('./accounts');
@@ -78,6 +81,11 @@ async function capture({ account, route, jurisdictionKey, messages, reply, model
     reply: text,
     model: model || null,
     rating: null,
+    review_status: 'pending',
+    corrected_reply: null,
+    review_note: null,
+    reviewer: null,
+    reviewed_at: null,
     created_at: createdAt ? new Date(createdAt).toISOString() : new Date().toISOString()
   };
   try {
@@ -113,15 +121,24 @@ async function rate({ accountId, exampleId, rating }) {
   return true;
 }
 
+const REVIEW_STATUSES = ['pending', 'flagged', 'approved', 'edited', 'rejected'];
+const TRAINABLE = ['approved', 'edited'];
+
+function finalReply(row) {
+  return row.review_status === 'edited' && row.corrected_reply ? row.corrected_reply : row.reply;
+}
+
 async function exportExamples({ since = null, limit = 50000, now = Date.now() } = {}) {
   await purgeExpired({ now });
   if (usingPostgres()) {
     const { rows } = await pool.query(
-      `SELECT t.id, t.route, t.jurisdiction_key, t.messages, t.reply, t.model, t.rating, t.created_at
+      `SELECT t.id, t.route, t.jurisdiction_key, t.messages, t.reply, t.corrected_reply, t.review_status,
+              t.model, t.rating, t.created_at
          FROM training_examples t
          JOIN accounts a ON a.id = t.account_id
         WHERE a.learn_consent = true
-          AND (t.rating IS NULL OR t.rating >= 0)
+          AND t.review_status IN ('approved','edited')
+          AND (t.rating IS NULL OR t.rating >= 0 OR t.review_status = 'edited')
           AND ($1::timestamptz IS NULL OR t.created_at >= $1::timestamptz)
           AND (
             COALESCE(a.training_retention, 'until_delete') = 'until_delete'
@@ -132,20 +149,116 @@ async function exportExamples({ since = null, limit = 50000, now = Date.now() } 
         LIMIT $2`,
       [since, limit]
     );
-    return rows.map((r) => ({ ...r, messages: typeof r.messages === 'string' ? JSON.parse(r.messages) : r.messages }));
+    return rows.map((r) => {
+      const messages = typeof r.messages === 'string' ? JSON.parse(r.messages) : r.messages;
+      const { corrected_reply, ...rest } = r;
+      return { ...rest, messages, reply: finalReply(r) };
+    });
   }
   const out = [];
   for (const row of memory.examples) {
-    if (row.rating != null && row.rating < 0) continue;
+    if (!TRAINABLE.includes(row.review_status)) continue;
+    if (row.rating != null && row.rating < 0 && row.review_status !== 'edited') continue;
     if (since && row.created_at < new Date(since).toISOString()) continue;
     const acct = await accounts.findById(row.account_id);
     if (!acct || !(acct.learn_consent === true || acct.learn_consent === 1)) continue;
     if (isExpired(row.created_at, policyOf(acct), now)) continue;
-    const { account_id, ...rest } = row;
-    out.push(rest);
+    const { account_id, corrected_reply, review_note, reviewer, reviewed_at, ...rest } = row;
+    out.push({ ...rest, reply: finalReply(row) });
     if (out.length >= limit) break;
   }
   return out;
+}
+
+// Editor queue. Never returns account ids or emails: editors judge answers, not people.
+function queueView(row) {
+  const messages = typeof row.messages === 'string' ? JSON.parse(row.messages) : row.messages;
+  return {
+    id: row.id,
+    route: row.route,
+    jurisdiction_key: row.jurisdiction_key,
+    question: (messages.filter((m) => m.role === 'user').pop() || {}).content || '',
+    messages,
+    reply: row.reply,
+    corrected_reply: row.corrected_reply || null,
+    model: row.model,
+    rating: row.rating,
+    review_status: row.review_status,
+    review_note: row.review_note || null,
+    reviewer: row.reviewer || null,
+    reviewed_at: row.reviewed_at || null,
+    created_at: row.created_at
+  };
+}
+
+async function reviewQueue({ status = 'pending', limit = 50 } = {}) {
+  const want = status === 'open' ? ['pending', 'flagged'] : [status];
+  if (!want.every((s) => REVIEW_STATUSES.includes(s))) return [];
+  const n = Math.max(1, Math.min(Number(limit) || 50, 200));
+  if (usingPostgres()) {
+    const { rows } = await pool.query(
+      `SELECT * FROM training_examples WHERE review_status = ANY($1::text[])
+        ORDER BY (rating = -1) DESC NULLS LAST, (review_status = 'flagged') DESC, created_at ASC LIMIT $2`,
+      [want, n]
+    );
+    return rows.map(queueView);
+  }
+  return memory.examples
+    .filter((r) => want.includes(r.review_status))
+    .sort((a, b) => (b.rating === -1) - (a.rating === -1) || (b.review_status === 'flagged') - (a.review_status === 'flagged') || (a.created_at < b.created_at ? -1 : 1))
+    .slice(0, n)
+    .map(queueView);
+}
+
+// action: approve | edit | reject | flag | reopen
+// role: 'human' can do everything; 'claude' can only flag (suggest), never approve.
+async function review({ exampleId, action, correctedReply, note, reviewer, role = 'human' }) {
+  const map = { approve: 'approved', edit: 'edited', reject: 'rejected', flag: 'flagged', reopen: 'pending' };
+  const status = map[action];
+  if (!status) return { ok: false, status: 400, error: 'action must be approve, edit, reject, flag or reopen' };
+  if (role !== 'human' && action !== 'flag') {
+    return { ok: false, status: 403, error: 'Claude can flag and suggest a fix. Only a human editor can approve, edit, reject or reopen.' };
+  }
+  const fix = correctedReply == null ? null : clip(correctedReply).trim();
+  if ((action === 'edit') && !fix) {
+    return { ok: false, status: 400, error: 'An edit needs the corrected answer' };
+  }
+  const fields = {
+    review_status: status,
+    corrected_reply: action === 'edit' || action === 'flag' ? fix : null,
+    review_note: note ? clip(note).slice(0, 2000) : null,
+    reviewer: String(reviewer || role).slice(0, 120),
+    reviewed_at: action === 'reopen' ? null : new Date().toISOString()
+  };
+  if (usingPostgres()) {
+    const { rows } = await pool.query(
+      `UPDATE training_examples
+          SET review_status = $2,
+              corrected_reply = CASE WHEN $3::text IS NULL AND $2 = 'flagged' THEN corrected_reply ELSE $3 END,
+              review_note = $4, reviewer = $5, reviewed_at = $6
+        WHERE id = $1 RETURNING *`,
+      [exampleId, fields.review_status, fields.corrected_reply, fields.review_note, fields.reviewer, fields.reviewed_at]
+    );
+    if (!rows[0]) return { ok: false, status: 404, error: 'No answer with that id' };
+    return { ok: true, example: queueView(rows[0]) };
+  }
+  const row = memory.examples.find((r) => r.id === exampleId);
+  if (!row) return { ok: false, status: 404, error: 'No answer with that id' };
+  const keepFix = fields.corrected_reply == null && status === 'flagged' ? row.corrected_reply : fields.corrected_reply;
+  Object.assign(row, fields, { corrected_reply: keepFix });
+  return { ok: true, example: queueView(row) };
+}
+
+async function reviewStats() {
+  const base = Object.fromEntries(REVIEW_STATUSES.map((s) => [s, 0]));
+  if (usingPostgres()) {
+    const { rows } = await pool.query(`SELECT review_status, count(*)::int AS n FROM training_examples GROUP BY review_status`);
+    for (const r of rows) base[r.review_status] = r.n;
+  } else {
+    for (const r of memory.examples) base[r.review_status] = (base[r.review_status] || 0) + 1;
+  }
+  base.trainable = base.approved + base.edited;
+  return base;
 }
 
 async function purgeExpired({ now = Date.now() } = {}) {
@@ -204,6 +317,10 @@ function resetMemory() {
 }
 
 module.exports = {
+  REVIEW_STATUSES,
+  reviewQueue,
+  review,
+  reviewStats,
   attachPool,
   capture,
   rate,

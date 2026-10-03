@@ -50,3 +50,12 @@ services:
         sync: false
       - key: WEBPOINT_MODEL
         value: webpoint
+      # Editor protocol (/editor.html). Nothing trains until a human approves it.
+      # EDITOR_KEY = Bill's key (approve / fix / reject). CLAUDE_REVIEW_KEY = Claude's key (flag + suggest only).
+      # EDITOR_EMAILS = optional comma list of signed-in accounts that get the human editor role.
+      - key: EDITOR_KEY
+        generateValue: true
+      - key: CLAUDE_REVIEW_KEY
+        generateValue: true
+      - key: EDITOR_EMAILS
+        sync: false

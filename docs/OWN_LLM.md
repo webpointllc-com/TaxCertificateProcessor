@@ -59,6 +59,28 @@ Merging changes nothing in production. `MODEL_PROVIDER` stays `groq` until the s
 
 `Qwen/Qwen3.5-9B` (verified on Hugging Face 2026-10-02). Override with `BASE_MODEL`. Fits one 24 GB GPU in bf16 for serving and in 4-bit for training. Confirm the license file on the model card before launch.
 
+## Editor protocol (review feedback together)
+
+Nothing the model says trains it until a person approves it. Page: `/editor.html`.
+
+| Who | Key | Can do |
+| --- | --- | --- |
+| Bill (human editor) | `EDITOR_KEY`, or a signed-in account listed in `EDITOR_EMAILS` | Approve, Save fix, Reject, Reopen |
+| Claude (reviewer) | `CLAUDE_REVIEW_KEY` | Flag with a suggested fix and a note. Never approves. |
+
+Flow for every captured answer (only from members who allowed learning):
+
+1. Lands in **To review** (`pending`). Member thumbs-down and Claude flags sort to the top.
+2. Claude's review pass reads the queue, flags answers that invent URLs or dollar amounts or miss the locked collector link, and writes the fix it would use.
+3. Bill opens `/editor.html` and decides:
+   - **Approve**: the original answer trains.
+   - **Save fix**: the corrected answer trains instead (it can rescue a thumbs-down answer).
+   - **Reject**: never trains.
+4. `scripts/export-training.js` exports **approved + fixed only**, from accounts that still allow learning.
+5. Weekly LoRA run + eval gate, as below.
+
+API: `GET /v1/editor/queue?status=open|pending|flagged|approved|edited|rejected`, `POST /v1/editor/review {example_id, action, corrected_reply?, note?}`. Header `x-editor-key`. Editors never see account ids or emails.
+
 ## Switch day (Bill pays, in this order)
 
 Each step is reversible. Nothing here costs money until step 2.

@@ -305,3 +305,11 @@ CREATE TABLE IF NOT EXISTS training_examples (
 
 CREATE INDEX IF NOT EXISTS training_examples_account_idx ON training_examples (account_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS training_examples_created_idx ON training_examples (created_at);
+
+-- Editor protocol: a human (or Claude, flagging only) reviews every captured answer before it can train.
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS review_status TEXT NOT NULL DEFAULT 'pending';
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS corrected_reply TEXT;
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS review_note TEXT;
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS reviewer TEXT;
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS reviewed_at TIMESTAMPTZ;
+CREATE INDEX IF NOT EXISTS training_examples_review_idx ON training_examples (review_status, created_at);

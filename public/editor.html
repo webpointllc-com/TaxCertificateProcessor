@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>WebPoint Editor</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --ink: #1e293b;
+      --ink-2: #64748b;
+      --ink-3: #94a3b8;
+      --line: #e2e8f0;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --font: "Inter", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font); padding: 24px 16px 64px; }
+    .wrap { max-width: 920px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+    header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    h1 { margin: 0; font-size: 20px; font-weight: 600; }
+    .sub { color: var(--ink-2); font-size: 13px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 12px; font-size: 13px; color: var(--ink-2); cursor: pointer; font-variant-numeric: tabular-nums; }
+    .chip b { color: var(--ink); font-weight: 600; }
+    .chip[aria-pressed="true"] { border-color: var(--blue); color: var(--blue); box-shadow: 0 0 0 3px rgba(59,130,246,.12); }
+    .gate { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .gate input { flex: 1; min-width: 220px; border: 1px solid var(--line); border-radius: 8px; padding: 12px; font: inherit; }
+    button { font: inherit; cursor: pointer; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 12px 18px; min-height: 48px; }
+    button:focus-visible, .chip:focus-visible, textarea:focus-visible { outline: 3px solid rgba(59,130,246,.35); outline-offset: 2px; }
+    .primary { background: var(--blue); border-color: var(--blue); color: #fff; font-weight: 600; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 12.5px; color: var(--ink-2); }
+    .tag { border-radius: 6px; padding: 2px 8px; background: #f1f5f9; color: var(--ink-2); font-weight: 500; }
+    .tag.pending { background: #eff6ff; color: var(--blue); }
+    .tag.flagged { background: #fffbeb; color: #b45309; }
+    .tag.approved, .tag.edited { background: #ecfdf5; color: #047857; }
+    .tag.rejected { background: #fef2f2; color: #b91c1c; }
+    .tag.down { background: #fef2f2; color: #b91c1c; }
+    .tag.up { background: #ecfdf5; color: #047857; }
+    .label { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 4px; }
+    .q { font-weight: 500; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .a { white-space: pre-wrap; overflow-wrap: anywhere; background: #f8fafc; border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .suggest { border: 1px solid #fde68a; background: #fffbeb; border-radius: 8px; padding: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+    textarea { width: 100%; min-height: 120px; border: 1px solid var(--line); border-radius: 8px; padding: 12px; font: inherit; resize: vertical; }
+    .note { min-height: 48px; }
+    .actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+    .approve { border-color: var(--green); color: #047857; font-weight: 600; }
+    .save { border-color: var(--blue); color: var(--blue); font-weight: 600; }
+    .reject { border-color: var(--red); color: #b91c1c; font-weight: 600; }
+    .flag { border-color: var(--amber); color: #b45309; font-weight: 600; }
+    details summary { cursor: pointer; color: var(--ink-2); font-size: 13px; }
+    details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12.5px; background: #f8fafc; border: 1px solid var(--line); border-radius: 8px; padding: 10px; max-height: 260px; overflow: auto; }
+    .empty { text-align: center; color: var(--ink-2); padding: 40px 16px; background: var(--card); border: 1px dashed var(--line); border-radius: 12px; }
+    .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 999px; font-size: 13.5px; }
+    .rules { font-size: 13px; color: var(--ink-2); }
+    .rules li { margin: 2px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>WebPoint Editor</h1>
+        <div class="sub" id="who">Review what the model learned before it trains.</div>
+      </div>
+      <div class="stats" id="stats" role="group" aria-label="Filter by review status"></div>
+    </header>
+
+    <div class="gate" id="gate">
+      <input id="key" type="password" autocomplete="off" placeholder="Editor key" aria-label="Editor key">
+      <button class="primary" id="open">Open queue</button>
+      <span class="sub">Or sign in with an editor account.</span>
+    </div>
+
+    <ul class="rules">
+      <li><b>Approve</b>: the answer is right. It trains the model.</li>
+      <li><b>Save fix</b>: your corrected answer trains the model instead.</li>
+      <li><b>Reject</b>: wrong or off-topic. It never trains.</li>
+      <li>Claude can only <b>flag</b> and suggest a fix. Nothing trains until a person approves it.</li>
+    </ul>
+
+    <main id="list" aria-live="polite"></main>
+  </div>
+  <div class="toast" id="toast" hidden></div>
+  <script src="/editor.js"></script>
+</body>
+</html>

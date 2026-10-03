@@ -138,7 +138,7 @@ app.get(['/api/health', '/v1/health', '/healthz'], async (req, res) => {
     model: models.model,
     llm: models,
     extractors: await extractors.stats(),
-    training: await training.stats(),
+    training: { ...(await training.stats()), review: await training.reviewStats() },
     operator: { central: true },
     oauth: oauth.oauthStatus(),
     swap: {
@@ -935,6 +935,67 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
     res.write(`data: ${JSON.stringify({ type: 'error', content: fullResponse })}\n\n`);
     res.end();
   }
+});
+
+// ---------- Editor protocol ----------
+// Who can review captured answers before they train the model:
+//   human editor  = header x-editor-key matching EDITOR_KEY, or a signed-in account whose email is in EDITOR_EMAILS
+//   Claude        = header x-editor-key matching CLAUDE_REVIEW_KEY (can flag + suggest a fix, never approve)
+// With none of these set, the editor is closed.
+function safeEqual(a, b) {
+  const crypto = require('crypto');
+  const x = Buffer.from(String(a || ''));
+  const y = Buffer.from(String(b || ''));
+  return x.length > 0 && x.length === y.length && crypto.timingSafeEqual(x, y);
+}
+
+async function editorOf(req) {
+  const key = req.get('x-editor-key') || '';
+  if (process.env.EDITOR_KEY && safeEqual(key, process.env.EDITOR_KEY)) return { role: 'human', name: 'editor-key' };
+  if (process.env.CLAUDE_REVIEW_KEY && safeEqual(key, process.env.CLAUDE_REVIEW_KEY)) return { role: 'claude', name: 'claude' };
+  const allowed = String(process.env.EDITOR_EMAILS || '')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  if (allowed.length) {
+    const account = await resolveAccount(req).catch(() => null);
+    if (account && allowed.includes(String(account.email || '').toLowerCase())) {
+      return { role: 'human', name: account.email };
+    }
+  }
+  return null;
+}
+
+async function requireEditor(req, res) {
+  const editor = await editorOf(req);
+  if (!editor) {
+    res.status(403).json({ ok: false, error: 'Editor access only' });
+    return null;
+  }
+  return editor;
+}
+
+app.get(['/v1/editor/queue', '/api/editor/queue'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const status = String(req.query.status || 'open');
+  const items = await training.reviewQueue({ status, limit: req.query.limit });
+  res.json({ ok: true, role: editor.role, status, stats: await training.reviewStats(), items });
+});
+
+app.post(['/v1/editor/review', '/api/editor/review'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const result = await training.review({
+    exampleId: String(req.body?.example_id || ''),
+    action: String(req.body?.action || ''),
+    correctedReply: req.body?.corrected_reply,
+    note: req.body?.note,
+    reviewer: editor.name,
+    role: editor.role
+  });
+  if (!result.ok) return res.status(result.status || 400).json(result);
+  res.json(result);
 });
 
 // Thumbs up / down on a captured answer. Thumbs down keeps that answer out of training.
