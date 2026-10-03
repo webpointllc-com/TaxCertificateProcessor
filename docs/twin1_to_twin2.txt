@@ -1,16 +1,9 @@
 READY
-sha: fa49e4b2989f9e5967943430925ad2a2a38dbdc3
+sha: 07511163981778ceb1903a20a10b3e5c92a98415
 onto: a80415025075f133353965ec6e3d217e12f54b87
-tests: 169/169 pass
+tests: 178/178 pass
 branch: feature/own-llm
 did_not_overwrite_mac: true
 
-Payday Render settings (never git):
-1. WEBPOINT_LLM_URL
-2. WEBPOINT_LLM_KEY
-3. MODEL_PROVIDER=webpoint
-
-docs/OWN_LLM.md
-
-Cursor slice on top of Twin 2 own-model: 2k dump catalog draw, consented session_feedback replay, validate:pass2.
-Mac bundle was not on this cloud VM. webpoint provider + training_examples + LoRA kept from a804150.
+Thumbs, delete-my-data (forgetAccount), retention 90d/1y/until_delete.
+Payday Render settings (never git): WEBPOINT_LLM_URL, WEBPOINT_LLM_KEY, MODEL_PROVIDER=webpoint.
