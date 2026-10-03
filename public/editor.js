@@ -2,7 +2,7 @@
   'use strict';
 
   var $ = function (id) { return document.getElementById(id); };
-  var state = { status: 'open', role: null };
+  var state = { status: 'open', role: null, view: 'answers', lockStatus: 'pending' };
   var LABELS = { open: 'To review', flagged: 'Flagged', approved: 'Approved', edited: 'Fixed', rejected: 'Rejected' };
 
   function getKey() {
@@ -166,7 +166,117 @@
     data.items.forEach(function (item) { list.appendChild(renderItem(item)); });
   }
 
-  $('open').onclick = function () { setKey($('key').value.trim()); load(); };
+
+  // ---------- Extractor locks ----------
+  function renderLockStats(data) {
+    var box = $('stats');
+    box.innerHTML = '';
+    var s = data.stats || {};
+    ['pending', 'approved', 'rejected'].forEach(function (k) {
+      var b = el('button', 'chip');
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(state.lockStatus === k));
+      b.innerHTML = { pending: 'To review', approved: 'Locked', rejected: 'Rejected' }[k] + ' <b>' + (s[k] || 0) + '</b>';
+      b.onclick = function () { state.lockStatus = k; loadLocks(); };
+      box.appendChild(b);
+    });
+    var c = data.coverage || {};
+    var t = el('span', 'chip');
+    t.innerHTML = 'Verified counties <b>' + (c.verified || 0) + '</b> of ' + (c.total || 0);
+    box.appendChild(t);
+  }
+
+  function renderLock(item) {
+    var card = el('article', 'card');
+    var meta = el('div', 'meta');
+    meta.appendChild(el('span', 'tag ' + (item.status === 'approved' ? 'approved' : item.status === 'rejected' ? 'rejected' : 'pending'), item.status));
+    meta.appendChild(el('span', 'tag', item.jurisdiction_key));
+    if (item.verdict) meta.appendChild(el('span', 'tag', item.verdict));
+    if (item.evidence && item.evidence.forced) meta.appendChild(el('span', 'tag flagged', 'needs judgment'));
+    meta.appendChild(el('span', null, 'by ' + (item.proposer || '?')));
+    meta.appendChild(el('span', null, new Date(item.created_at).toLocaleString()));
+    card.appendChild(meta);
+
+    var dl = el('dl', 'kv');
+    function row(k, v, cls) {
+      dl.appendChild(el('dt', null, k));
+      var dd = el('dd', cls || null);
+      if (v instanceof Node) dd.appendChild(v); else dd.textContent = v || '—';
+      dl.appendChild(dd);
+    }
+    var a = el('a', 'url', item.url);
+    a.href = item.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    row('Search page', a);
+    row('Page title', item.evidence && item.evidence.title);
+    row('Probe', (item.verdict || '') + (item.reason ? ' (' + item.reason + ')' : ''));
+    row('Tax-bill columns seen', (item.dr_fields || []).join(', '));
+    row('Search boxes', ((item.evidence && item.evidence.search_fields) || []).join(', '));
+    if (item.evidence && item.evidence.note) row('Proposer note', item.evidence.note);
+    if (item.review_note) row('Review note', item.review_note);
+    card.appendChild(dl);
+
+    if (state.role === 'human' && item.status === 'pending') {
+      var note = el('textarea', 'note');
+      note.placeholder = 'Why (optional)';
+      note.setAttribute('aria-label', 'Review note');
+      card.appendChild(note);
+      var actions = el('div', 'actions');
+      [['Lock this page', 'approve', 'approve'], ['Reject', 'reject', 'reject']].forEach(function (x) {
+        var b = el('button', x[1], x[0]);
+        b.type = 'button';
+        b.onclick = async function () {
+          var res = await fetch('/v1/editor/locks/decide', { method: 'POST', headers: headers(), body: JSON.stringify({ id: item.id, action: x[2], note: note.value }) });
+          var data = await res.json().catch(function () { return {}; });
+          if (!res.ok) { toast(data.error || 'That did not save'); return; }
+          toast(x[2] === 'approve' ? 'Locked. Members get this link now.' : 'Rejected');
+          loadLocks();
+        };
+        actions.appendChild(b);
+      });
+      card.appendChild(actions);
+    }
+    return card;
+  }
+
+  async function loadLocks() {
+    var res = await fetch('/v1/editor/locks?status=' + state.lockStatus, { headers: headers() });
+    var data = await res.json().catch(function () { return {}; });
+    var list = $('list');
+    list.innerHTML = '';
+    if (!res.ok) {
+      $('gate').hidden = false;
+      list.appendChild(el('div', 'empty', res.status === 403 ? 'Enter the editor key to open the queue.' : (data.error || 'Could not load locks.')));
+      return;
+    }
+    $('gate').hidden = true;
+    state.role = data.role;
+    renderLockStats(data);
+    if (!data.items.length) {
+      list.appendChild(el('div', 'empty', state.lockStatus === 'pending' ? 'No lock proposals waiting. Claude adds them here after a live probe passes.' : 'Nothing here yet.'));
+      return;
+    }
+    data.items.forEach(function (item) { list.appendChild(renderLock(item)); });
+  }
+
+  function setView(v) {
+    state.view = v;
+    $('tab-answers').setAttribute('aria-selected', String(v === 'answers'));
+    $('tab-locks').setAttribute('aria-selected', String(v === 'locks'));
+    $('rules-answers').hidden = v !== 'answers';
+    $('rules-locks').hidden = v !== 'locks';
+    refresh();
+  }
+
+  function refresh() {
+    return state.view === 'locks' ? loadLocks() : load();
+  }
+
+  $('tab-answers').onclick = function () { setView('answers'); };
+  $('tab-locks').onclick = function () { setView('locks'); };
+
+  $('open').onclick = function () { setKey($('key').value.trim()); refresh(); };
   $('key').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('open').click(); });
   load();
 })();

@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const accounts = require('./accounts');
 const extractors = require('./extractors');
 const training = require('./training');
+const extractorLocks = require('./extractorLocks');
 
 const SCHEMA_PATH = path.join(__dirname, 'schema.sql');
 const MAX_PARCELS = 10;
@@ -69,6 +70,8 @@ async function init() {
     accounts.attachPool(null);
     extractors.attachPool(null);
     training.attachPool(null);
+    extractorLocks.attachPool(null);
+    await extractorLocks.refreshRuntimeLocks();
     return { mode: 'memory' };
   }
   const { Pool } = require('pg');
@@ -78,7 +81,9 @@ async function init() {
   accounts.attachPool(pool);
   extractors.attachPool(pool);
   training.attachPool(pool);
+  extractorLocks.attachPool(pool);
   await seedPostgresKnowledge();
+  await extractorLocks.refreshRuntimeLocks();
   return { mode: 'postgres' };
 }
 
@@ -466,6 +471,7 @@ async function close() {
   accounts.attachPool(null);
   extractors.attachPool(null);
   training.attachPool(null);
+  extractorLocks.attachPool(null);
 }
 
 module.exports = {

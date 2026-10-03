@@ -9,6 +9,8 @@ const store = require('./db/store');
 const accounts = require('./db/accounts');
 const extractors = require('./db/extractors');
 const training = require('./db/training');
+const extractorLocks = require('./db/extractorLocks');
+const extractorValidation = require('./services/extractorValidation');
 const oauth = require('./services/oauth');
 const mailer = require('./services/mailer');
 const llm = require('./services/llm');
@@ -996,6 +998,61 @@ app.post(['/v1/editor/review', '/api/editor/review'], async (req, res) => {
   });
   if (!result.ok) return res.status(result.status || 400).json(result);
   res.json(result);
+});
+
+// Extractor locks: Claude or a validator proposes, a human editor approves.
+app.get(['/v1/editor/locks', '/api/editor/locks'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const status = ['pending', 'approved', 'rejected', 'all'].includes(req.query.status) ? req.query.status : 'pending';
+  res.json({
+    ok: true,
+    role: editor.role,
+    status,
+    stats: await extractorLocks.stats(),
+    coverage: extractorValidation.stats(),
+    items: await extractorLocks.list({ status, limit: req.query.limit })
+  });
+});
+
+app.post(['/v1/editor/locks/propose', '/api/editor/locks/propose'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const key = String(req.body?.key || '').trim();
+  const probe = await extractorValidation.validate({ key, url: req.body?.url });
+  if (!probe.ok) return res.status(400).json(probe);
+  if (!probe.lock_eligible && req.body?.force_review !== true) {
+    return res.status(422).json({ ok: false, error: `Probe says ${probe.verdict} (${probe.reason}). Send force_review: true with a note to queue it anyway.`, probe });
+  }
+  const row = extractorValidation.findRow(key);
+  const out = await extractorLocks.propose({
+    jurisdictionKey: probe.key || key,
+    state: row && row.state,
+    county: row && row.county,
+    url: probe.final_url || probe.url,
+    verdict: probe.verdict,
+    reason: probe.reason,
+    drFields: probe.dr_fields,
+    evidence: { title: probe.title, http_status: probe.http_status, search_fields: probe.search_fields, cloudflare: probe.cloudflare, note: req.body?.note || null, forced: req.body?.force_review === true },
+    proposer: editor.name,
+    role: editor.role
+  });
+  if (!out.ok) return res.status(out.status || 400).json(out);
+  res.json({ ...out, probe });
+});
+
+app.post(['/v1/editor/locks/decide', '/api/editor/locks/decide'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const out = await extractorLocks.decide({
+    id: String(req.body?.id || ''),
+    action: String(req.body?.action || ''),
+    note: req.body?.note,
+    reviewer: editor.name,
+    role: editor.role
+  });
+  if (!out.ok) return res.status(out.status || 400).json(out);
+  res.json(out);
 });
 
 // Thumbs up / down on a captured answer. Thumbs down keeps that answer out of training.

@@ -22,13 +22,16 @@
     "validate:pass2": "node scripts/validate-extractors.js --pass2",
     "deepshake:mac": "bash scripts/deepshake-hunt-mac.sh",
     "sync:sheet": "node scripts/sync-sheet-counties.js",
-    "test": "node --test tests/*.test.js"
+    "test": "node --test tests/*.test.js",
+    "mcp:extractors": "node mcp/extractors-server.js"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "openai": "^4.52.0",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "zod": "^3.25.76"
   },
   "engines": {
     "node": ">=18.0.0"

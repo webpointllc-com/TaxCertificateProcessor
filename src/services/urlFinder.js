@@ -375,7 +375,46 @@ function parseJurisdiction(message) {
   return { county: resolved.county, state: resolved.state };
 }
 
+// Locks a human editor approved in /editor.html (extractor_lock_proposals).
+// Loaded from Postgres at boot and after every decision; they win over the file catalog.
+const runtimeLocks = new Map();
+
+function setRuntimeLocks(entries) {
+  runtimeLocks.clear();
+  for (const e of entries || []) {
+    if (e && e.jurisdiction_key && isRealHttpUrl(e.url)) runtimeLocks.set(e.jurisdiction_key, e);
+  }
+  return runtimeLocks.size;
+}
+
+function runtimeLockFor(county, state) {
+  if (!runtimeLocks.size) return null;
+  const known = knownRecord(county, state);
+  const keys = [known && known.key, `${String(state || '').toUpperCase()}-${String(county || '').replace(/\s+/g, '')}`, `${String(state || '').toUpperCase()}-${county}`];
+  for (const k of keys) if (k && runtimeLocks.has(k)) return runtimeLocks.get(k);
+  return null;
+}
+
 function lookupForApi(county, state) {
+  const result = lookupForApiFromCatalog(county, state);
+  const lock = runtimeLockFor(county, state);
+  if (!lock) return result;
+  return {
+    ...result,
+    url: lock.url,
+    confidence: 'verified',
+    urlLocked: true,
+    lockedUrl: lock.url,
+    officialUrl: lock.url,
+    displayUrl: lock.url,
+    candidateUrl: null,
+    homepageOnly: false,
+    lockSource: 'editor_approved',
+    lockReviewer: lock.reviewer || null
+  };
+}
+
+function lookupForApiFromCatalog(county, state) {
   const result = findPropertyURL(county, state);
   const locked = hasUrlLock(result.confidence, result.url, result);
   const googleFallback = isGoogleFallbackUrl(result.url);
@@ -492,6 +531,8 @@ function catalogCoverage() {
 module.exports = {
   findPropertyURL,
   lookupForApi,
+  setRuntimeLocks,
+  runtimeLockFor,
   parseJurisdiction,
   parseJurisdictionRaw,
   playbookFor,

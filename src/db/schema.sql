@@ -313,3 +313,26 @@ ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS review_note TEXT;
 ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS reviewer TEXT;
 ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS reviewed_at TIMESTAMPTZ;
 CREATE INDEX IF NOT EXISTS training_examples_review_idx ON training_examples (review_status, created_at);
+
+-- Extractor lock proposals: Claude or a validator run proposes a collector search URL,
+-- a human editor approves it, and the approved lock overrides the file catalog at runtime.
+CREATE TABLE IF NOT EXISTS extractor_lock_proposals (
+  id TEXT PRIMARY KEY,
+  jurisdiction_key TEXT NOT NULL,
+  state TEXT,
+  county TEXT,
+  url TEXT NOT NULL,
+  verdict TEXT,
+  reason TEXT,
+  dr_fields JSONB NOT NULL DEFAULT '[]'::jsonb,
+  evidence JSONB NOT NULL DEFAULT '{}'::jsonb,
+  proposer TEXT,
+  proposer_role TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',
+  reviewer TEXT,
+  review_note TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  reviewed_at TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS extractor_lock_proposals_status_idx ON extractor_lock_proposals (status, created_at);
+CREATE INDEX IF NOT EXISTS extractor_lock_proposals_key_idx ON extractor_lock_proposals (jurisdiction_key, created_at DESC);

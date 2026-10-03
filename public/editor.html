@@ -60,6 +60,13 @@
     details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12.5px; background: #f8fafc; border: 1px solid var(--line); border-radius: 8px; padding: 10px; max-height: 260px; overflow: auto; }
     .empty { text-align: center; color: var(--ink-2); padding: 40px 16px; background: var(--card); border: 1px dashed var(--line); border-radius: 12px; }
     .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 999px; font-size: 13.5px; }
+    .tabs { display: flex; gap: 8px; border-bottom: 1px solid var(--line); }
+    .tab { border: 0; border-bottom: 3px solid transparent; border-radius: 0; background: none; padding: 10px 6px; min-height: 44px; color: var(--ink-2); font-weight: 500; }
+    .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--blue); }
+    .kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: 13.5px; }
+    .kv dt { color: var(--ink-3); }
+    .kv dd { margin: 0; overflow-wrap: anywhere; }
+    .url { color: var(--blue); overflow-wrap: anywhere; }
     .rules { font-size: 13px; color: var(--ink-2); }
     .rules li { margin: 2px 0; }
   </style>
@@ -80,11 +87,22 @@
       <span class="sub">Or sign in with an editor account.</span>
     </div>
 
-    <ul class="rules">
+    <nav class="tabs" role="tablist" aria-label="Editor queues">
+      <button class="tab" role="tab" id="tab-answers" aria-selected="true" type="button">Model answers</button>
+      <button class="tab" role="tab" id="tab-locks" aria-selected="false" type="button">Extractor locks</button>
+    </nav>
+
+    <ul class="rules" id="rules-answers">
       <li><b>Approve</b>: the answer is right. It trains the model.</li>
       <li><b>Save fix</b>: your corrected answer trains the model instead.</li>
       <li><b>Reject</b>: wrong or off-topic. It never trains.</li>
       <li>Claude can only <b>flag</b> and suggest a fix. Nothing trains until a person approves it.</li>
+    </ul>
+
+    <ul class="rules" id="rules-locks" hidden>
+      <li><b>Lock</b>: this is the county's tax collector search page. Members get this link right away.</li>
+      <li><b>Reject</b>: wrong page (assessor, homepage, dead). The county stays unlocked.</li>
+      <li>Claude proposes locks only after a live probe says it's a collector search page.</li>
     </ul>
 
     <main id="list" aria-live="polite"></main>
