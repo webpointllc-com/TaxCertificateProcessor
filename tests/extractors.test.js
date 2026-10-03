@@ -7,6 +7,7 @@ const accounts = require('../src/db/accounts');
 const { app } = require('../src/server');
 const { parseSearchQuery, resolveHealedUrl } = require('../src/services/searchIntelligence');
 const { lookupForApi } = require('../src/services/urlFinder');
+const extractors = require('../src/db/extractors');
 
 describe('search query parser', () => {
   it('reads Los Angeles County, CA, and an APN', () => {
@@ -118,5 +119,16 @@ describe('extractor self-heal', () => {
     assert.equal(saved.extractor.version, 2);
     assert.equal(saved.urlRejected, true);
     assert.match(saved.extractor.search_url, /lacounty\.gov/i);
+
+    const learned = await extractors.listFeedback({
+      keys: ['CA-Los Angeles', 'CA-LosAngeles'],
+      accountId: (await accounts.accountForToken(token)).id,
+      limit: 8
+    });
+    assert.ok(learned.length >= 1);
+    assert.ok(learned.some((row) => /Los Angeles/i.test(row.body)));
+    assert.equal(card.learned.from_catalog, true);
+    assert.ok(card.learned.feedback >= 1);
+    assert.equal(card.learned.consent, true);
   });
 });

@@ -1,0 +1,19 @@
+DISCOVER TX
+state: TX
+checked: 230
+found: 0
+cloudflare: 0
+none: 230
+skipped_non_county: 94
+file: data/runs/discover-TX.json
+head: d0725cc
+locked: false
+counties_json_edited: false
+branch: feature/own-llm
+note: HTTP discovery found no lock-eligible collector pages. 147 had no start URL; 83 had a start page and still no collector. Matches Twin 2: HTTP-only discovery is at its limit.
+
+READY (prior)
+sha: 07511163981778ceb1903a20a10b3e5c92a98415
+onto: a80415025075f133353965ec6e3d217e12f54b87
+tests: 178/178 pass
+branch: feature/own-llm

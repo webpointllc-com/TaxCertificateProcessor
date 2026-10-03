@@ -5,28 +5,33 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const { OpenAI } = require('openai');
 const store = require('./db/store');
 const accounts = require('./db/accounts');
 const extractors = require('./db/extractors');
+const training = require('./db/training');
+const extractorLocks = require('./db/extractorLocks');
+const extractorValidation = require('./services/extractorValidation');
 const oauth = require('./services/oauth');
 const mailer = require('./services/mailer');
+const llm = require('./services/llm');
 const {
   parseSearchQuery,
   buildCard,
+  buildCertificate,
   formatMoney,
   resolveHealedUrl,
   methodFromFeedback
 } = require('./services/searchIntelligence');
 const operator = require('./services/operator');
 const { enrichSystemPrompt, enforceLockedSpulUrl } = require('./services/taxIntelligence');
-const { parseJurisdiction, lookupForApi, suggestJurisdictions } = require('./services/urlFinder');
-const { hasUrlLock, buildLockedUrlPrefix } = require('./services/spulTruth');
+const { parseJurisdiction, lookupForApi, suggestJurisdictions, catalogCoverage } = require('./services/urlFinder');
+const { buildLockedUrlPrefix } = require('./services/spulTruth');
 const { matchScenario } = require('./services/scenarioRouter');
 const { scanWorkplaceClone, inventoryRepo } = require('../scripts/workplace-scan');
+const { launchPlan } = require('./launchPlan');
+const drProduction = require('./services/drProduction');
 
 const PORT = process.env.PORT || 3000;
-const GROQ_MODEL = 'llama-3.3-70b-versatile';
 const FRAME_ANCESTORS = [
   "'self'",
   'https://*.squarespace.com',
@@ -37,6 +42,7 @@ const FRAME_ANCESTORS = [
 
 const app = express();
 app.disable('x-powered-by');
+app.set('trust proxy', 1);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
@@ -46,10 +52,6 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.static(path.join(__dirname, '..', 'public')));
-
-const groq = process.env.GROQ_API_KEY
-  ? new OpenAI({ apiKey: process.env.GROQ_API_KEY, baseURL: 'https://api.groq.com/openai/v1' })
-  : null;
 
 function sessionIdOf(req) {
   return (
@@ -110,11 +112,12 @@ function lookupBundle(message, county, state) {
 }
 
 function synthesizeSpul(lookup) {
-  const url = lookup.url || lookup.lockedUrl || '';
+  const url = lookup.officialUrl || lookup.lockedUrl || '';
+  const conf = lookup.urlLocked ? (lookup.confidence || 'verified') : 'not_found';
   return [
-    `SPUL_URL: ${url}`,
+    `SPUL_URL: ${url || '(none — do not invent a link)'}`,
     `SPUL_ENTITY: ${lookup.entity || 'Property tax search'}`,
-    `SPUL_CONFIDENCE: ${lookup.confidence || 'not_found'}`,
+    `SPUL_CONFIDENCE: ${conf}`,
     'SPUL_ACTIONS:',
     '- Search by owner last name',
     '- Search by parcel / account number',
@@ -123,20 +126,29 @@ function synthesizeSpul(lookup) {
   ].join('\n');
 }
 
-app.get('/api/health', async (req, res) => {
+app.get(['/api/health', '/v1/health', '/healthz'], async (req, res) => {
   const scan = scanWorkplaceClone();
   const lastImport = await store.latestImport();
+  const models = llm.status();
   res.json({
     ok: true,
     product: 'WebPoint Tax Certificate Processor',
     modules: ['TCS', 'TPA', 'RDS', 'SPUL'],
     firstCounty: { county: 'Chippewa', state: 'WI' },
     db: store.usingPostgres() ? 'postgres' : 'memory',
-    groq: Boolean(groq),
-    model: groq ? GROQ_MODEL : 'spul-db',
+    groq: models.groq,
+    model: models.model,
+    llm: models,
     extractors: await extractors.stats(),
+    training: { ...(await training.stats()), review: await training.reviewStats() },
     operator: { central: true },
     oauth: oauth.oauthStatus(),
+    swap: {
+      ready: true,
+      public_origin: process.env.PUBLIC_ORIGIN || null,
+      pool: store.poolStats(),
+      bind: `0.0.0.0:${PORT}`
+    },
     workplace: scan,
     lastImport
   });
@@ -315,6 +327,7 @@ app.patch('/api/me', async (req, res) => {
   if (!account) return;
   const result = await accounts.updateAccount(account.id, req.body || {});
   if (!result.ok) return res.status(400).json(result);
+  await training.purgeExpired();
   res.json(result);
 });
 
@@ -379,12 +392,37 @@ app.post('/api/consent', async (req, res) => {
   res.json(result);
 });
 
+app.post(['/api/account/delete-data', '/v1/account/delete-data'], async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const forgotten = await training.forgetAccount(account.id);
+  res.json({ ok: true, forgotten, training_examples: forgotten });
+});
+
 app.get('/api/extractors/stats', async (req, res) => {
   const { loadCounties } = require('./services/urlFinder');
+  const siteValidator = require('./services/siteValidator');
   const slots = await extractors.stats();
   slots.catalog = loadCounties().length;
   const working = await extractors.listActive(12);
-  res.json({ ok: true, slots, working, model: groq ? GROQ_MODEL : 'spul-db' });
+  const run = await extractors.latestValidationRun();
+  const queue = siteValidator.loadQueue();
+  res.json({
+    ok: true,
+    slots,
+    working,
+    model: llm.status().model,
+    validation: run
+      ? {
+          generatedAt: run.generatedAt,
+          probed: run.probed,
+          counts: run.counts,
+          stale: siteValidator.staleRun(run),
+          lookFor: run.lookFor || siteValidator.lookForHeaders(),
+          deepshakeQueue: (queue.rows || []).length
+        }
+      : { stale: true, lookFor: siteValidator.lookForHeaders() }
+  });
 });
 
 app.get('/api/extractors', async (req, res) => {
@@ -396,7 +434,67 @@ app.get('/api/extractors', async (req, res) => {
   const lookup = lookupBundle(parsed.raw, parsed.county, parsed.state);
   if (!lookup.ok) return res.status(400).json(lookup);
   const slot = await extractors.ensureSlot(lookup);
-  res.json({ ok: true, extractor: slot, lookup });
+  const siteValidator = require('./services/siteValidator');
+  res.json({
+    ok: true,
+    extractor: slot,
+    lookup,
+    deepshake: siteValidator.handshake({ lookup, extractor: slot, sessionId: sessionIdOf(req) })
+  });
+});
+
+app.get('/api/validation', async (req, res) => {
+  const siteValidator = require('./services/siteValidator');
+  const run = await extractors.latestValidationRun();
+  const queue = siteValidator.loadQueue();
+  res.json({
+    ok: true,
+    lookFor: siteValidator.lookForHeaders(),
+    stale: siteValidator.staleRun(run),
+    run: run
+      ? {
+          generatedAt: run.generatedAt,
+          probed: run.probed,
+          counts: run.counts,
+          lookForHits: run.lookForHits,
+          how: run.how
+        }
+      : null,
+    deepshakeQueue: (queue.rows || []).length
+  });
+});
+
+app.post('/api/extractors/session', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const q = String(req.body?.q || req.body?.query || '').trim();
+  const parsed = parseSearchQuery(q);
+  const lookup = parsed.county
+    ? lookupBundle(parsed.raw || q, parsed.county, parsed.state)
+    : req.body?.county && req.body?.state
+      ? lookupBundle(`${req.body.county} ${req.body.state}`, req.body.county, req.body.state)
+      : { ok: false, error: 'Provide a county and state' };
+  if (!lookup.ok) return res.status(400).json(lookup);
+  await extractors.ensureSlot(lookup);
+  const siteValidator = require('./services/siteValidator');
+  const fields = Array.isArray(req.body?.fields) ? req.body.fields : siteValidator.lookForHeaders();
+  const row = await extractors.recordPortalSession({
+    accountId: account.id,
+    sessionId: sessionIdOf(req),
+    jurisdictionKey: lookup.key,
+    event: req.body?.event || 'opened_portal',
+    fields,
+    notes: req.body?.notes || ''
+  });
+  res.json({
+    ok: true,
+    session: row,
+    pat: row.pat || null,
+    deepshake: siteValidator.handshake({
+      lookup,
+      sessionId: sessionIdOf(req)
+    })
+  });
 });
 
 app.post('/api/intelligence', async (req, res) => {
@@ -418,6 +516,13 @@ app.post('/api/intelligence', async (req, res) => {
     });
   }
   const card = buildCard({ parsed, lookup, extractor: agent, amounts: req.body?.amounts });
+  const production = drProduction.llmBlock({
+    lookupKey: lookup.key,
+    county: lookup.jurisdiction?.county || parsed.county,
+    state: lookup.jurisdiction?.state || parsed.state,
+    parcel: parsed.apn,
+    message: q
+  });
   if (account && !access.follow_up) {
     await accounts.addRecent(account.id, {
       kind: 'search',
@@ -434,43 +539,70 @@ app.post('/api/intelligence', async (req, res) => {
       body: q
     });
   }
-  let talk = card.summary;
-  if (groq) {
-    try {
-      const locked = lookup.officialUrl || '';
-      const memoryBits = [
-        agent.parcel_format ? `Parcel format: ${agent.parcel_format}` : '',
-        Array.isArray(agent.exceptions) && agent.exceptions.length
-          ? `Known exceptions: ${agent.exceptions.slice(-3).map((e) => e.value || e.kind).join('; ')}`
-          : ''
-      ]
-        .filter(Boolean)
-        .join('\n');
-      const completion = await groq.chat.completions.create({
-        model: GROQ_MODEL,
-        temperature: 0.1,
-        max_tokens: 280,
-        messages: [
-          {
-            role: 'system',
-            content:
-              'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. If amounts are unknown, say to confirm on the collector page.'
-          },
-          {
-            role: 'user',
-            content: `Query: ${q}\nCounty agent: ${lookup.key}\nEntity: ${lookup.entity}\nLocked URL: ${locked || '(none)'}\nExtractor v${agent.version}\n${memoryBits}\nWrite 2 short sentences.`
-          }
-        ]
-      });
-      const text = completion.choices?.[0]?.message?.content?.trim();
-      if (text) talk = text;
-    } catch (err) {
-      console.error('intelligence llm', err.message);
-    }
-  }
+  const extractorContext = await extractors.contextFor(lookup, {
+    accountId: account?.id,
+    learnConsent: Boolean(account && account.learn_consent),
+    agent
+  });
+  let talk = production.isolated_field
+    ? production.speak
+    : production.on_file
+      ? `${production.speak} ${card.summary}`
+      : card.summary;
+  const memoryBits = [
+    agent.parcel_format ? `Parcel format: ${agent.parcel_format}` : '',
+    Array.isArray(agent.exceptions) && agent.exceptions.length
+      ? `Known exceptions: ${agent.exceptions.slice(-3).map((e) => e.value || e.kind).join('; ')}`
+      : '',
+    extractorContext.dump
+      ? `Dump ${extractorContext.dump.key} ${extractorContext.dump.source || ''} candidate: ${extractorContext.dump.url}`
+      : '',
+    extractorContext.family
+      ? `Vendor family: ${extractorContext.family.family} (${extractorContext.family.kind})`
+      : '',
+    extractorContext.feedback.length
+      ? `Learned from this account (${extractorContext.feedback.length}): ${extractorContext.feedback
+          .slice(0, 3)
+          .map((f) => f.body)
+          .join(' | ')}`
+      : '',
+    production.isolated_field
+      ? `User named field: ${production.isolated_field.header} = ${production.isolated_field.empty ? '(empty)' : production.isolated_field.value}`
+      : 'Talk about the whole DR Production Results row. Do not lecture columns unless named.'
+  ]
+    .filter(Boolean)
+    .join('\n');
+  const spokenMessages = [
+      {
+        role: 'system',
+        content:
+          'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. Present a collector link only when it is locked and verified. If it is not locked, ask the user to confirm the tax collecting entity search page. Speak about the DR Production Results document as one row for this parcel. Isolate a single column only when the user named that field. Empty cells stay empty. Parcel formats are per county on the extractor. Draw county facts from the extractor catalog (dump + playbook + vendor family). If LEARNED FEEDBACK is present, use it for this county extractor — rented model weights are not trained on this turn.' +
+          extractorContext.promptBlock
+      },
+      {
+        role: 'user',
+        content: `Query: ${q}\nCounty agent: ${lookup.key}\nEntity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nExtractor v${agent.version}\n${memoryBits}\nProduction: ${production.speak}\nWrite 2 short sentences.`
+      }
+  ];
+  const spoken = await llm.complete({ temperature: 0.1, max_tokens: 280, messages: spokenMessages });
+  if (spoken.ok && spoken.text) talk = spoken.text;
   card.summary = talk;
+  await store.addConversation(sessionIdOf(req), 'user', q, null);
+  await store.addConversation(sessionIdOf(req), 'assistant', talk, spoken.model || llm.status().model);
+  let captured = null;
+  if (spoken.ok && spoken.text) {
+    captured = await training.capture({
+      account,
+      route: 'search',
+      jurisdictionKey: lookup.key,
+      messages: spokenMessages,
+      reply: spoken.text,
+      model: spoken.model
+    });
+  }
   res.json({
     ok: true,
+    training_example_id: captured ? captured.id : null,
     query: q,
     task_id: task?.id || null,
     follow_up: Boolean(access.follow_up),
@@ -483,16 +615,36 @@ app.post('/api/intelligence', async (req, res) => {
       role: 'central',
       routed_to: routed.routed_to,
       shared: true,
-      discoveries: discoveries || []
+      discoveries: discoveries || [],
+      handoff: routed.handoff
     },
+    handoff: routed.handoff,
+    deepshake: routed.deepshake || null,
     plan: access.plan,
     continue_gate: access.plan === 'member' ? null : 'member',
     card,
+    certificate: buildCertificate({
+      parsed,
+      lookup,
+      extractor: agent,
+      amounts: req.body?.amounts,
+      card,
+      query: q
+    }),
     money: {
       assessed: formatMoney(card.assessed),
       land: formatMoney(card.land),
       improvement: formatMoney(card.improvement),
       total_tax: formatMoney(card.total_tax)
+    },
+    learned: {
+      consent: Boolean(account && account.learn_consent),
+      from_catalog: true,
+      dump: Boolean(extractorContext.dump),
+      dump_key: extractorContext.dump?.key || null,
+      family: extractorContext.family?.family || null,
+      playbook: Boolean(extractorContext.playbook),
+      feedback: extractorContext.feedback.length
     }
   });
 });
@@ -517,34 +669,44 @@ app.post('/api/extractors/heal', async (req, res) => {
   const lookup = lookupBundle(parsed.raw || q, parsed.county, parsed.state);
   if (!lookup.ok) return res.status(400).json(lookup);
   const previous = await extractors.ensureSlot(lookup);
+  const priorFeedback = await extractors.listFeedback({
+    keys: require('./services/extractorCatalog').keysFor(lookup),
+    accountId: account.id,
+    limit: 6
+  });
   const urlDecision = resolveHealedUrl(lookup, req.body?.proposed_url);
   let method = methodFromFeedback(feedback, lookup, previous);
-  if (groq) {
+  const healMessages = [
+      {
+        role: 'system',
+        content:
+          'Return JSON only: {"steps":["..."],"search_by":["parcel","owner"],"notes":"..."}. You are repairing a tax-collector EXTRACTOR. Never invent a URL. The search_url is locked if provided. Use prior learned feedback for this county when it does not conflict with the lock.'
+      },
+      {
+        role: 'user',
+        content: `Entity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nPrior method: ${JSON.stringify(previous.method)}\nPrior learned feedback: ${JSON.stringify(priorFeedback.map((f) => ({ kind: f.kind, body: f.body })))}\nUser feedback: ${feedback}`
+      }
+  ];
+  const repaired = await llm.complete({ heavy: true, temperature: 0, max_tokens: 400, messages: healMessages });
+  if (repaired.ok && repaired.text) {
     try {
-      const completion = await groq.chat.completions.create({
-        model: GROQ_MODEL,
-        temperature: 0,
-        max_tokens: 400,
-        messages: [
-          {
-            role: 'system',
-            content:
-              'Return JSON only: {"steps":["..."],"search_by":["parcel","owner"],"notes":"..."}. You are repairing a tax-collector EXTRACTOR. Never invent a URL. The search_url is locked if provided.'
-          },
-          {
-            role: 'user',
-            content: `Entity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nPrior method: ${JSON.stringify(previous.method)}\nUser feedback: ${feedback}`
-          }
-        ]
-      });
-      const text = completion.choices?.[0]?.message?.content || '';
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      const jsonMatch = repaired.text.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         const parsedMethod = JSON.parse(jsonMatch[0]);
-        if (Array.isArray(parsedMethod.steps) && parsedMethod.steps.length) method = parsedMethod;
+        if (Array.isArray(parsedMethod.steps) && parsedMethod.steps.length) {
+          method = parsedMethod;
+          await training.capture({
+            account,
+            route: 'heal',
+            jurisdictionKey: lookup.key,
+            messages: healMessages,
+            reply: jsonMatch[0],
+            model: repaired.model
+          });
+        }
       }
     } catch (err) {
-      console.error('heal llm', err.message);
+      console.error('heal llm parse', err.message);
     }
   }
   const saved = await extractors.saveNewVersion({
@@ -597,18 +759,62 @@ app.get('/api/suggest', (req, res) => {
   res.json({ ok: true, q, suggestions: suggestJurisdictions(q, limit) });
 });
 
-app.post('/api/chat', async (req, res) => {
+app.get('/api/coverage', (req, res) => {
+  const coverage = catalogCoverage();
+  res.json({
+    ok: true,
+    ...coverage,
+    badge: `${coverage.rows.toLocaleString('en-US')} catalog slots`,
+    locked_badge: `${coverage.locked.toLocaleString('en-US')} locked collector portals`
+  });
+});
+
+app.get('/api/production', async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const q = String(req.query.q || req.query.query || '').trim();
+  const parsed = parseSearchQuery(q || `${req.query.county || ''} ${req.query.state || ''} ${req.query.parcel || ''}`);
+  const county = parsed.county || req.query.county;
+  const state = parsed.state || req.query.state;
+  if (!county || !state) {
+    return res.status(400).json({ ok: false, error: 'Name a county and state, e.g. Hamilton OH or Sangamon, IL' });
+  }
+  const lookup = lookupForApi(county, state);
+  const key = `${(lookup.canonicalState || state).toUpperCase()}-${lookup.canonicalCounty || county}`;
+  const block = drProduction.llmBlock({
+    lookupKey: key,
+    county: lookup.canonicalCounty || county,
+    state: lookup.canonicalState || state,
+    parcel: parsed.apn || req.query.parcel,
+    message: q || req.query.field || ''
+  });
+  res.json({
+    ok: true,
+    lookup: { key, urlLocked: Boolean(lookup.urlLocked), officialUrl: lookup.officialUrl || null },
+    production: block
+  });
+});
+
+app.get('/api/launch-plan', (req, res) => {
+  res.json({
+    ok: true,
+    ...launchPlan
+  });
+});
+
+app.post(['/api/chat', '/v1/chat'], async (req, res) => {
   const message = (req.body?.message || '').trim();
   if (!message) return res.status(400).json({ error: 'Message is required' });
   const sid = sessionIdOf(req);
 
   const scenarioMatch = matchScenario(message);
-  const parsed = parseJurisdiction(message);
-  const jurisdiction = parsed.county ? parsed : { county: null, state: null };
+  const parsed = parseSearchQuery(message);
+  const jurisdiction = parsed.county ? { county: parsed.county, state: parsed.state } : { county: null, state: null };
   const lookup = jurisdiction.county
     ? lookupForApi(jurisdiction.county, jurisdiction.state)
     : null;
-  const urlLocked = lookup && hasUrlLock(lookup.confidence, lookup.url);
+  const urlLocked = Boolean(lookup && lookup.urlLocked);
+  const lockedUrl = (lookup && lookup.officialUrl) || '';
   const jurKey = jurisdiction.county
     ? `${(jurisdiction.state || '').toUpperCase()}-${jurisdiction.county}`
     : null;
@@ -619,35 +825,75 @@ app.post('/api/chat', async (req, res) => {
         .join('\n')}`
     : '';
 
+  const account = await resolveAccount(req).catch(() => null);
+  const extractorContext = jurisdiction.county
+    ? await extractors.contextFor(
+        {
+          ...(lookup || {}),
+          key: jurKey,
+          jurisdiction,
+          county: jurisdiction.county,
+          state: jurisdiction.state
+        },
+        {
+          accountId: account?.id,
+          learnConsent: Boolean(account && account.learn_consent)
+        }
+      )
+    : { promptBlock: '', feedback: [] };
+
   const systemContent =
-    enrichSystemPrompt(jurisdiction.county, jurisdiction.state, { scenarioMatch }) +
+    enrichSystemPrompt(jurisdiction.county, jurisdiction.state, {
+      scenarioMatch,
+      message,
+      parcel: parsed.apn,
+      extractorContext
+    }) +
     ragBlock +
     `\nYou may also draft TCS/TPA/RDS workflow steps. Still never invent collector URLs.`;
 
-  let fullResponse = urlLocked && lookup.url
-    ? buildLockedUrlPrefix(lookup.url, lookup.confidence, lookup.entity)
+  let fullResponse = urlLocked && lockedUrl
+    ? buildLockedUrlPrefix(lockedUrl, lookup.confidence, lookup.entity)
     : '';
+  let answeredBy = llm.status().model;
+  let chatMessages = null;
+  let captured = null;
 
   const finish = async () => {
-    if (urlLocked && lookup.url) {
-      fullResponse = enforceLockedSpulUrl(fullResponse, lookup.url, lookup.confidence);
+    if (urlLocked && lockedUrl) {
+      fullResponse = enforceLockedSpulUrl(fullResponse, lockedUrl, lookup.confidence);
     }
     await store.addConversation(sid, 'user', message, null);
-    await store.addConversation(sid, 'assistant', fullResponse, groq ? GROQ_MODEL : 'spul-db');
+    await store.addConversation(sid, 'assistant', fullResponse, answeredBy);
+    if (chatMessages && fullResponse) {
+      captured = await training.capture({
+        account,
+        route: 'chat',
+        jurisdictionKey: jurKey,
+        messages: chatMessages,
+        reply: fullResponse,
+        model: answeredBy
+      });
+    }
   };
 
-  if (!groq) {
+  if (!llm.streamEnabled()) {
     fullResponse = synthesizeSpul(lookup || { confidence: 'not_found', entityNote: 'No jurisdiction detected.' });
     if (chunks.length) {
       fullResponse += `\n\nPLAYBOOK:\n- ${chunks[0].title}`;
     }
+    chatMessages = [
+      { role: 'system', content: systemContent },
+      { role: 'user', content: message }
+    ];
     await finish();
     res.json({
       ok: true,
       mode: 'database',
       scenarioId: scenarioMatch.scenarioId,
       urlLocked: Boolean(urlLocked),
-      content: fullResponse
+      content: fullResponse,
+      training_example_id: captured ? captured.id : null
     });
     return;
   }
@@ -657,28 +903,24 @@ app.post('/api/chat', async (req, res) => {
     'Cache-Control': 'no-cache',
     Connection: 'keep-alive'
   });
-  if (urlLocked && lookup.url) {
+  if (urlLocked && lockedUrl) {
     res.write(`data: ${JSON.stringify({ type: 'meta', scenarioId: scenarioMatch.scenarioId, urlLocked: true })}\n\n`);
   }
 
   try {
     const history = await store.historyFor(sid);
     const userContent =
-      urlLocked && lookup.url
-        ? `${message}\n\n[URL already verified in SPUL database. Output SPUL_ENTITY, SPUL_CONFIDENCE, SPUL_ACTIONS, SPUL_CONTEXT only — SPUL_URL is locked to: ${lookup.url}]`
+      urlLocked && lockedUrl
+        ? `${message}\n\n[URL already verified in SPUL database. Output SPUL_ENTITY, SPUL_CONFIDENCE, SPUL_ACTIONS, SPUL_CONTEXT only — SPUL_URL is locked to: ${lockedUrl}]`
         : message;
-    const stream = await groq.chat.completions.create({
-      model: GROQ_MODEL,
-      temperature: 0.1,
-      max_tokens: 700,
-      stream: true,
-      messages: [
-        { role: 'system', content: systemContent },
-        ...history.slice(-12),
-        { role: 'user', content: userContent }
-      ]
-    });
-    for await (const chunk of stream) {
+    chatMessages = [
+      { role: 'system', content: systemContent },
+      ...history.slice(-12),
+      { role: 'user', content: userContent }
+    ];
+    const opened = await llm.stream({ messages: chatMessages });
+    answeredBy = opened.model;
+    for await (const chunk of opened.stream) {
       const delta = chunk.choices[0]?.delta?.content || '';
       if (delta) {
         fullResponse += delta;
@@ -686,15 +928,191 @@ app.post('/api/chat', async (req, res) => {
       }
     }
     await finish();
-    res.write(`data: ${JSON.stringify({ type: 'done', scenarioId: scenarioMatch.scenarioId })}\n\n`);
+    res.write(`data: ${JSON.stringify({ type: 'done', scenarioId: scenarioMatch.scenarioId, model: answeredBy, training_example_id: captured ? captured.id : null })}\n\n`);
     res.end();
   } catch (err) {
-    console.error('Groq error:', err.message);
+    console.error('LLM stream error:', err.message);
     if (!fullResponse) fullResponse = synthesizeSpul(lookup || {});
     await finish();
     res.write(`data: ${JSON.stringify({ type: 'error', content: fullResponse })}\n\n`);
     res.end();
   }
+});
+
+// ---------- Editor protocol ----------
+// Who can review captured answers before they train the model:
+//   human editor  = header x-editor-key matching EDITOR_KEY, or a signed-in account whose email is in EDITOR_EMAILS
+//   Claude        = header x-editor-key matching CLAUDE_REVIEW_KEY (can flag + suggest a fix, never approve)
+// With none of these set, the editor is closed.
+function safeEqual(a, b) {
+  const crypto = require('crypto');
+  const x = Buffer.from(String(a || ''));
+  const y = Buffer.from(String(b || ''));
+  return x.length > 0 && x.length === y.length && crypto.timingSafeEqual(x, y);
+}
+
+async function editorOf(req) {
+  const key = req.get('x-editor-key') || '';
+  if (process.env.EDITOR_KEY && safeEqual(key, process.env.EDITOR_KEY)) return { role: 'human', name: 'editor-key' };
+  if (process.env.CLAUDE_REVIEW_KEY && safeEqual(key, process.env.CLAUDE_REVIEW_KEY)) return { role: 'claude', name: 'claude' };
+  const allowed = String(process.env.EDITOR_EMAILS || '')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  if (allowed.length) {
+    const account = await resolveAccount(req).catch(() => null);
+    if (account && allowed.includes(String(account.email || '').toLowerCase())) {
+      return { role: 'human', name: account.email };
+    }
+  }
+  return null;
+}
+
+async function requireEditor(req, res) {
+  const editor = await editorOf(req);
+  if (!editor) {
+    res.status(403).json({ ok: false, error: 'Editor access only' });
+    return null;
+  }
+  return editor;
+}
+
+app.get(['/v1/editor/queue', '/api/editor/queue'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const status = String(req.query.status || 'open');
+  const items = await training.reviewQueue({ status, limit: req.query.limit });
+  res.json({ ok: true, role: editor.role, status, stats: await training.reviewStats(), items });
+});
+
+app.post(['/v1/editor/review', '/api/editor/review'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const result = await training.review({
+    exampleId: String(req.body?.example_id || ''),
+    action: String(req.body?.action || ''),
+    correctedReply: req.body?.corrected_reply,
+    note: req.body?.note,
+    reviewer: editor.name,
+    role: editor.role
+  });
+  if (!result.ok) return res.status(result.status || 400).json(result);
+  res.json(result);
+});
+
+// Extractor locks: Claude or a validator proposes, a human editor approves.
+app.get(['/v1/editor/locks', '/api/editor/locks'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const status = ['pending', 'approved', 'rejected', 'all'].includes(req.query.status) ? req.query.status : 'pending';
+  res.json({
+    ok: true,
+    role: editor.role,
+    status,
+    stats: await extractorLocks.stats(),
+    coverage: extractorValidation.stats(),
+    items: await extractorLocks.list({ status, limit: req.query.limit })
+  });
+});
+
+app.post(['/v1/editor/locks/propose', '/api/editor/locks/propose'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const key = String(req.body?.key || '').trim();
+  const probe = await extractorValidation.validate({ key, url: req.body?.url });
+  if (!probe.ok) return res.status(400).json(probe);
+  if (!probe.lock_eligible && req.body?.force_review !== true) {
+    return res.status(422).json({ ok: false, error: `Probe says ${probe.verdict} (${probe.reason}). Send force_review: true with a note to queue it anyway.`, probe });
+  }
+  const row = extractorValidation.findRow(key);
+  const out = await extractorLocks.propose({
+    jurisdictionKey: probe.key || key,
+    state: row && row.state,
+    county: row && row.county,
+    url: probe.final_url || probe.url,
+    verdict: probe.verdict,
+    reason: probe.reason,
+    drFields: probe.dr_fields,
+    evidence: { title: probe.title, http_status: probe.http_status, search_fields: probe.search_fields, cloudflare: probe.cloudflare, note: req.body?.note || null, forced: req.body?.force_review === true },
+    proposer: editor.name,
+    role: editor.role
+  });
+  if (!out.ok) return res.status(out.status || 400).json(out);
+  res.json({ ...out, probe });
+});
+
+app.post(['/v1/editor/locks/decide', '/api/editor/locks/decide'], async (req, res) => {
+  const editor = await requireEditor(req, res);
+  if (!editor) return;
+  const out = await extractorLocks.decide({
+    id: String(req.body?.id || ''),
+    action: String(req.body?.action || ''),
+    note: req.body?.note,
+    reviewer: editor.name,
+    role: editor.role
+  });
+  if (!out.ok) return res.status(out.status || 400).json(out);
+  res.json(out);
+});
+
+// Thumbs up / down on a captured answer. Thumbs down keeps that answer out of training.
+app.post(['/v1/training/rate', '/api/training/rate'], async (req, res) => {
+  const account = await requireAccount(req, res);
+  if (!account) return;
+  const exampleId = String(req.body?.training_example_id || req.body?.example_id || '').trim();
+  const rating = Number(req.body?.rating);
+  if (!exampleId || ![1, -1, 0].includes(rating)) {
+    return res.status(400).json({ ok: false, error: 'Send training_example_id and rating of 1, -1, or 0' });
+  }
+  const updated = await training.rate({ accountId: account.id, exampleId, rating });
+  if (!updated) return res.status(404).json({ ok: false, error: 'No answer with that id on this account' });
+  res.json({ ok: true, training_example_id: exampleId, example_id: exampleId, rating });
+});
+
+app.post(['/v1/feedback', '/api/feedback'], async (req, res) => {
+  const body = String(req.body?.feedback || req.body?.body || req.body?.message || '').trim();
+  if (body.length < 4) {
+    return res.status(400).json({ ok: false, error: 'Feedback is empty' });
+  }
+  const account = await resolveAccount(req);
+  let jurisdictionKey = String(req.body?.jurisdiction_key || req.body?.county_key || '').trim();
+  let lookup = null;
+  if (!jurisdictionKey) {
+    const bundled = lookupBundle(req.body?.q || body, req.body?.county, req.body?.state);
+    if (bundled.ok) {
+      jurisdictionKey = bundled.key;
+      lookup = bundled;
+    }
+  }
+  const row = await extractors.addFeedback({
+    accountId: account?.id || null,
+    jurisdictionKey,
+    kind: req.body?.kind || 'tjos',
+    body,
+    extractorId: req.body?.extractor_id
+  });
+  let discoveries = [];
+  if (jurisdictionKey) {
+    try {
+      const routed = await operator.dispatch({
+        q: req.body?.q || body,
+        accountId: account?.id,
+        feedback: body
+      });
+      discoveries = routed.discoveries || [];
+    } catch (err) {
+      console.error('feedback dispatch', err.message);
+    }
+  }
+  res.json({
+    ok: true,
+    persisted: true,
+    db: store.usingPostgres() ? 'postgres' : 'memory',
+    feedback: row,
+    jurisdiction_key: jurisdictionKey || null,
+    lookup,
+    discoveries
+  });
 });
 
 app.post('/api/orders', async (req, res) => {
@@ -841,9 +1259,47 @@ async function main() {
   const db = await store.init();
   const scan = scanWorkplaceClone();
   const server = app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Tax Certificate Processor on 0.0.0.0:${PORT} db=${db.mode} groq=${Boolean(groq)} workplace=${scan.found}`);
+    console.log(`Tax Certificate Processor on 0.0.0.0:${PORT} db=${db.mode} llm=${llm.status().model} workplace=${scan.found}`);
   });
+  const drain = (signal) => {
+    console.log(signal, 'draining');
+    server.close(async () => {
+      try {
+        await store.close();
+      } catch (err) {
+        console.error(err);
+      }
+      process.exit(0);
+    });
+    setTimeout(() => process.exit(1), 15000).unref();
+  };
+  process.on('SIGTERM', () => drain('SIGTERM'));
+  process.on('SIGINT', () => drain('SIGINT'));
+  scheduleMonthlyValidation();
   return server;
+}
+
+function scheduleMonthlyValidation() {
+  if (process.env.VALIDATE_MONTHLY === '0') return;
+  const { spawn } = require('child_process');
+  const siteValidator = require('./services/siteValidator');
+  const tick = () => {
+    if (!siteValidator.staleRun(siteValidator.loadFamilyMatrix() || siteValidator.loadLastRun(), 28)) return;
+    const child = spawn(process.execPath, [path.join(__dirname, '..', 'scripts', 'validate-families.js')], {
+      cwd: path.join(__dirname, '..'),
+      stdio: 'ignore',
+      detached: false
+    });
+    child.on('error', (err) => console.error('monthly-validate', err.message));
+  };
+  setTimeout(() => {
+    const last = siteValidator.loadLastRun();
+    if (last && last.probed) {
+      extractors.recordValidationRun(last).catch((err) => console.error('validation-seed', err.message));
+    }
+    tick();
+  }, 45000).unref();
+  setInterval(tick, 24 * 60 * 60 * 1000).unref();
 }
 
 if (require.main === module) {

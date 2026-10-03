@@ -15,6 +15,7 @@ const embed = fs.readFileSync(
   'utf8'
 );
 const mermaid = fs.readFileSync(path.join(__dirname, '..', 'docs', 'ARCHITECTURE.md'), 'utf8');
+const blueprint = fs.readFileSync(path.join(__dirname, '..', 'render.yaml'), 'utf8');
 const prompt = fs.readFileSync(
   path.join(__dirname, '..', 'docs', 'AGENT_PROMPT_GOOGLE_CLASS_SEARCH.md'),
   'utf8'
@@ -42,6 +43,15 @@ describe('architecture diagram', () => {
     assert.match(html, /WD Passport/);
     assert.match(html, /We do not buy/);
     assert.match(html, /Pinecone/);
+    assert.match(blueprint, /plan: starter/);
+    assert.match(blueprint, /plan: basic-256mb/);
+    assert.doesNotMatch(blueprint, /plan: free/);
+    assert.match(blueprint, /GROQ_API_KEY/);
+    assert.match(blueprint, /WEBPOINT_LLM_URL/);
+    assert.match(blueprint, /WEBPOINT_LLM_KEY/);
+    assert.match(blueprint, /sync: false/);
+    assert.match(html, /Dockerfile/);
+    assert.match(html, /\$45–90|\$45-90/);
   });
 
   it('ships a Squarespace iframe that preserves 800/1280 aspect', () => {
@@ -70,6 +80,7 @@ describe('paste-ready agent prompt', () => {
     assert.match(prompt, /do not overwrite/i);
     assert.match(prompt, /Pinecone/);
     assert.match(prompt, /PR #2|pull\/2/);
+    assert.match(prompt, /already-paid|idle capacity/i);
   });
 });
 

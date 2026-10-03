@@ -1,0 +1,7983 @@
+{
+  "generatedAt": "2026-09-30T18:29:21.953Z",
+  "rows": [
+    {
+      "key": "LA-AllenParish",
+      "url": "https://snstaxpayments.com/allen",
+      "verdict": "collector_search",
+      "reason": "known_collector_host",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "LA-BeauregardParish",
+      "url": "https://snstaxpayments.com/beauregard",
+      "verdict": "collector_search",
+      "reason": "known_collector_host",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AK-Anchorage",
+      "url": "https://www.muni.org/pw/dfhwbtta/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description",
+        "As Of",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Calhoun",
+      "url": "https://altags.com/calhoun_revenue/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description",
+        "Balance Due",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Choctaw",
+      "url": "https://www.ingproperty.com/Choctaw_Revenue/property.aspx",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Colbert",
+      "url": "http://www.deltacomputersystems.com/AL/AL20/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-DeKalb",
+      "url": "https://dekalbproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Etowah",
+      "url": "https://etowahproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Lauderdale",
+      "url": "http://www.deltacomputersystems.com/AL/AL41/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Lee",
+      "url": "http://www.deltacomputersystems.com/AL/AL43/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Limestone",
+      "url": "http://www.limestonerevenue.net/PRC/PublicPRC/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Shelby",
+      "url": "https://ptc.shelbyal.com/propsearch",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Tallapoosa",
+      "url": "http://tallapoosapropertytax.com/taxes/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AL-Winston",
+      "url": "https://winstonproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Arkansas",
+      "url": "http://www.arcountydata.com/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Benton",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Benton",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Calhoun",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Calhoun&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Chicot",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Chicot&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Clay",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Clay&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Cleburne",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Cleburne&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Craighead",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Craighead&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Dallas",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Dallas&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Faulkner",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Faulkner&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Fulton",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Fulton&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Grant",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Grant&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Greene",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Greene&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Hempstead",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Hempstead&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Jackson",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Jackson&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Johnson",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Johnson&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Lawrence",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Lawrence&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-LittleRiver",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Little River&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Logan",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Logan&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Madison",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Madison&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Mississippi",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Mississippi&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Monroe",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Monroe&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Montgomery",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Montgomery&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Nevada",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Nevada&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Newton",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Newton&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Ouachita",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Ouachita&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Perry",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Perry&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Phillips",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Phillips&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Pike",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Pike&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Poinsett",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Poinsett&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Polk",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Polk&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Pope",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Pope&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Prairie",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Prairie&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Randolph",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Randolph&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Scott",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Scott&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Searcy",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Searcy&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Sebastian",
+      "url": "https://www.arcountydata.com/index.asp",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Sharp",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Sharp&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-StFrancis",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=St. Francis&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Stone",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Stone&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Union",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Union&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-VanBuren",
+      "url": "https://www.arcountydata.com/county.asp?county=Van+Buren",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Woodruff",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Woodruff&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AR-Yell",
+      "url": "https://www.arcountydata.com/propsearch.asp?county=Yell&s=T",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AZ-Graham",
+      "url": "http://72.165.8.87/ParcelSearch/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AZ-Maricopa",
+      "url": "https://treasurer.maricopa.gov/PropertyTaxInformation/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AZ-Pima",
+      "url": "https://www.to.pima.gov/propertyInquiry/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "AZ-Pinal",
+      "url": "https://treasurer.pinal.gov/parcelinquiry/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-Alameda",
+      "url": "http://www.acgov.org/treasurer/index.htm",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-Riverside",
+      "url": "http://riversidetaxinfo.com/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-Sacramento",
+      "url": "https://eproptax.saccounty.net/",
+      "verdict": "collector_search",
+      "reason": "collector_host_cloudflare",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-SanBernardino",
+      "url": "https://www.sbcountyatc.gov/tax-services/property-tax",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-SanMateo",
+      "url": "https://www.sanmateocountytaxcollector.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-SantaClara",
+      "url": "https://www.sccgov.org/sites/tax/Pages/Santa-Clara-Tax-Collector's-Office.aspx",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Owner 1 Name"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-SantaCruz",
+      "url": "http://ttc.co.santa-cruz.ca.us/Taxbills/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description",
+        "Bill Amount"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-SBSKern",
+      "url": "http://www.kcttc.co.kern.ca.us/payment/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-SBSSanMateo",
+      "url": "http://www.sanmateocountytaxcollector.org/SMCWPS/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CA-Ventura",
+      "url": "https://taxpayment.venturacounty.gov/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CO-Adams",
+      "url": "https://adcotax.com/treasurer/treasurerweb/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CO-Boulder",
+      "url": "http://webpubapps.bouldercounty.org/treasurer/proptax/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CO-Douglas",
+      "url": "https://apps.douglas.co.us/treasurer/treasurerweb/search.jsp",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CO-Gunnison",
+      "url": "http://204.132.78.100/PropertyTaxSearch/TaxAccount/Bills/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CO-Larimer",
+      "url": "http://www.co.larimer.co.us/assessor/query/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CO-Mesa",
+      "url": "https://appz.mesacounty.us/treasurer/treasurerweb/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CO-Saguache",
+      "url": "https://saguachecountyco-treasurer.tylerhost.net/treasurer/treasurerweb/search.jsp",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CO-Weld",
+      "url": "https://www.weldtax.com/treasurer/treasurerweb/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CT-CromwellTown",
+      "url": "http://www.opaldata.net/onlinetax/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "CT-EnfieldTown",
+      "url": "https://enfield.munisselfservice.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "DE-DeweyBeachTown",
+      "url": "https://wipp.edmundsgovtech.cloud/home?wippId=334",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "DE-Kent",
+      "url": "http://kent400.co.kent.de.us/cgi-bin/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "DE-NewCastle",
+      "url": "https://www3.newcastlede.gov/parcel/search/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "DE-Sussex",
+      "url": "http://www.sussexcountyde.gov/e-service/propertytaxes/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Bradford",
+      "url": "http://qpublic.net/cgi-bin/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Brevard",
+      "url": "https://county-taxes.net/brevard/property-tax",
+      "verdict": "collector_search",
+      "reason": "collector_host_cloudflare",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Broward",
+      "url": "https://county-taxes.net/broward/broward/property-tax",
+      "verdict": "collector_search",
+      "reason": "collector_host_cloudflare",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Collier",
+      "url": "https://county-taxes.net/fl-collier/property-tax",
+      "verdict": "collector_search",
+      "reason": "collector_host_cloudflare",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Duval",
+      "url": "http://www.coj.net/departments/tax-collector.aspx",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Gadsden",
+      "url": "http://fl-gadsden-taxcollector.governmax.com/collectmax/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Lafayette",
+      "url": "http://www.lafayettetc.com/TAX/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Manatee",
+      "url": "https://secure.taxcollector.com/ptaxweb/editPropertySearch2.action?action=list",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Okaloosa",
+      "url": "http://www.okaloosatax.com/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Orange",
+      "url": "https://www.octaxcol.com/Octc/PropertyTax/Search.aspx",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Seminole",
+      "url": "https://seminolecounty.tax/services/property-taxes/property-and-tangible-taxes/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "FL-Wakulla",
+      "url": "http://www.wakullacountytaxcollector.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-AlpharettaCity",
+      "url": "https://mss.alpharetta.ga.us/MSS/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Americus",
+      "url": "https://americusga.governmentwindow.com/tax.html",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Burke",
+      "url": "https://burkeproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Cherokee",
+      "url": "http://www.cherokeega.com/applications/taxbills/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Clayton",
+      "url": "http://weba.co.clayton.ga.us/tcmcgi-bin/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Crawford",
+      "url": "https://crawfordproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Dade",
+      "url": "https://dadeproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Emanuel",
+      "url": "https://emanuelproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Fulton",
+      "url": "https://fultoncountytaxes.org/propertytax/search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Grady",
+      "url": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1065&LayerID=25364&PageTypeID=2&PageID=10318",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Gwinnett",
+      "url": "https://www.gwinnetttaxcommissioner.com/property-tax/view-pay-your-taxes",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Henry",
+      "url": "https://www.henrytc.org/taxes.html#/WildfireSearch",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Long",
+      "url": "https://www.longcountytax.com/taxes.html#/WildfireSearch",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Pickens",
+      "url": "https://pickensproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-PowderSpringsCity",
+      "url": "https://wipp.edmundsassoc.com/Wipp/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Pulaski",
+      "url": "https://pulaskicountyga.governmentwindow.com/tax.html",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-SavannahCity",
+      "url": "http://revenue.savannahga.gov/revwebpay/WebPortal/WEB_PT_MAIN.aspx?command=REPORTPARAMETERSTYLE&style=&group=RE",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Spaulding",
+      "url": "http://www.spaldingcountytax.com/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Thomas",
+      "url": "https://thomascountyga.governmentwindow.com/tax.html",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Troup",
+      "url": "https://pay.troupcountytax.com/",
+      "verdict": "collector_search",
+      "reason": "search_form",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-UnionCity",
+      "url": "https://unioncityga.governmentwindow.com/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-VestaHoldings",
+      "url": "http://blackbox1.vestaholdings.com/p9/infoaccount/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Walker",
+      "url": "https://walkerproperty.assurancegov.com/Property/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-WarnerRobinsCity",
+      "url": "https://wrga.governmentwindow.com/tax.html",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "GA-Washington",
+      "url": "https://washingtoncountyga.governmentwindow.com/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "HI-Honolulu",
+      "url": "https://qpublic.schneidercorp.com/Application.aspx?App=HonoluluCountyHI&PageType=Search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Bureau",
+      "url": "https://propertytaxonline.org/Bureau/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Christian",
+      "url": "http://www.fikeandfike.com/propertytax/Christian/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-DuPage",
+      "url": "https://propertylookup.dupagecounty.gov/search/commonsearch.aspx?mode=parid",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-DuPageClerk",
+      "url": "http://www.dupageco.org/CountyClerk/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Greene",
+      "url": "https://propertytaxonline.org/Greene/InquiryCriteria.aspx",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Jefferson",
+      "url": "http://67.36.172.145/cgi-bin/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Lake",
+      "url": "http://www.lakecountyil.gov/Treasurer/Payments/Pages/CurrentPaymentStatus.aspx",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Logan",
+      "url": "http://taxsearch.co.logan.il.us/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Monroe",
+      "url": "http://propertytaxonline.org/Monroe/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Ogle",
+      "url": "http://beacon.schneidercorp.com/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Peoria",
+      "url": "http://propertytax.peoriacounty.org/parcel/view/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Shelby",
+      "url": "https://propertytaxonline.org/Shelby/InquiryCriteria.aspx?i=1",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description",
+        "As Of",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Stark",
+      "url": "http://www.fikeandfike.com/propertytax/Stark/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-StClair",
+      "url": "http://www.co.st-clair.il.us/StClairCoWeb/PageComponents/Templates/parcel/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IL-Will",
+      "url": "https://willcountytreasurer.us/taxes.html#/WildfireSearch",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Adams",
+      "url": "http://web1.adams-county.com/pti_release/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Bartholomew",
+      "url": "https://beacon.schneidercorp.com/Application.aspx?AppID=1130&LayerID=28606&PageTypeID=2&PageID=12977",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-BentonFD",
+      "url": "http://www.itricityfreedomdata.com/content/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Blackford",
+      "url": "https://beacon.schneidercorp.com/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Boone",
+      "url": "https://www.invoicecloud.com/boonecounty",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Clark",
+      "url": "http://egis.39dn.com/egis/View/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-LaGrange",
+      "url": "https://lowtaxinfo.com/lagrangecounty/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-MarionAuctions",
+      "url": "https://liveauctions.govease.com/in/inmarion/1282/PublicPortalRecords/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Orange",
+      "url": "http://egis.39dn.com/egisv4/View/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Porter",
+      "url": "https://lowtaxinfo.com/portercounty/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Posey",
+      "url": "http://poseycountytax.com/taxes/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Putnam",
+      "url": "https://putnamin.wthgis.com/tgis/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "IN-Warren",
+      "url": "https://www.invoicecloud.com/portal/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "KS-Nemaha",
+      "url": "http://ks284.cichosting.com/ttp/tax/Search/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "KS-Pottawatomie",
+      "url": "http://www2.pottcounty.org/aspnet/Taxes/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "KS-Reno",
+      "url": "http://tax.renogov.org/ols/tax/Search/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "KS-Shawnee",
+      "url": "http://www.snco.us/treasurer/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "KS-Wyandotte",
+      "url": "http://landsweb.wycokck.org/LandsWeb/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "KY-Boyd",
+      "url": "http://taxbills.g-uts.com/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "KY-Campbell",
+      "url": "http://www.campbellcountykypva.org/tracoms_pva/cpt/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "KY-Floyd",
+      "url": "https://americanlandrecords.com/delinquent-tax?countyId=1029",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "LA-CalcasieuParish",
+      "url": "http://208.180.188.69/TCMOnline/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "LA-DeSotoParish",
+      "url": "https://snstaxpayments.com/desoto/",
+      "verdict": "collector_search",
+      "reason": "known_collector_host",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "LA-JeffersonParish",
+      "url": "https://eservices.jpso.com/eservicespt/propertytax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "LA-KennerCity",
+      "url": "https://payments.kenner.la.us/RE_PropertyTax/RETaxSelfService.aspx",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "LA-StMaryParish",
+      "url": "https://snstaxpayments.com/stmary/",
+      "verdict": "collector_search",
+      "reason": "known_collector_host",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MA-BarnstableTown",
+      "url": "https://www.invoicecloud.com/portal/2/customerlocator.aspx?iti=8&bg=e547f99d-4428-4d04-85c8-4c7b2efb3256&vsii=1",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MA-BostonCity",
+      "url": "https://www.boston.gov/real-estate-taxes?input1=",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MA-Cambridge",
+      "url": "https://www.cambridgema.gov/externallinks/paybillsonline/InvoiceCloud",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MA-WalthamCity",
+      "url": "https://web-server.city.waltham.ma.us/GovernEcomponents/WebUserInterface/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MA-WorcesterCity",
+      "url": "https://unipaygold.unibank.com/transactioninfo.aspx?TID=3486",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MA-WorcesterCityLien",
+      "url": "https://www.worcesterma.gov/finance/liens-auctions/municipal-lien",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-Allegany",
+      "url": "http://propertytaxes.allconet.org/account/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-AnneArundel",
+      "url": "https://aacounty.munisselfservice.com/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-AnneArundelUtility",
+      "url": "https://aacounty.munisselfservice.com/citizens/UtilityBilling/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-Baltimore",
+      "url": "https://mytax.baltimorecountymd.gov/rptp/portal/property-tax-payment/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-Carroll",
+      "url": "http://ccgovernment.carr.org/ccg/collect/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-CumberlandCity",
+      "url": "http://167.102.209.51/inquiry/output/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-Frederick",
+      "url": "http://frederickcountymd.munisselfservice.com/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-Garrett",
+      "url": "https://payments.garrettcounty.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-HagerstownCity",
+      "url": "https://mycity.hagerstownmd.org/MSS/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-Harford",
+      "url": "https://hcgweb01.harfordcountymd.gov/billpay?tabindex=0",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MD-HavreDeGraceCity",
+      "url": "https://wipp.edmundsassoc.com/WippHAVR/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "ME-Falmouth",
+      "url": "http://falmouthme.munisselfservice.com/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-Allegan",
+      "url": "http://is.bsasoftware.com/bsa.is/TaxServices/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-AuburnCity",
+      "url": "https://accessmygov.com/SiteSearch/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-BedfordCharterTownship",
+      "url": "https://www.bsaonline.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-BerlinTownship",
+      "url": "https://bsaonline.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-CaledoniaTownship",
+      "url": "https://bsaonline.com/SiteSearch/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-DearbornCity",
+      "url": "https://bsaonline.com/?uid=599",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-DetroitCity",
+      "url": "https://bsaonline.com/?uid=155",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-FarmingtonHillsCity",
+      "url": "https://bsaonline.com/?uid=316",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-Genesee",
+      "url": "https://www.co.genesee.mi.us/treasurer/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-HamiltonTownship",
+      "url": "https://bsaonline.com/?uid=1895",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-HartfordTownship",
+      "url": "https://bsaonline.com/?uid=1896",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-Iosco",
+      "url": "https://bsaonline.com/?uid=1995",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-Isabella",
+      "url": "http://www.fetchgis.com/isabellaLRP/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-LansingCity",
+      "url": "https://bsaonline.com/?uid=384",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-MerrittTownship",
+      "url": "https://bsaonline.com/?uid=934",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-Milan",
+      "url": "https://accessmygov.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-RedfordTown",
+      "url": "https://bsaonline.com/?uid=677",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-StClair",
+      "url": "http://www.stclaircounty.org/Offices/equalization/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-SullivanTownship",
+      "url": "https://bsaonline.com/?uid=1598",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MI-ViennaTownship",
+      "url": "https://bsaonline.com/?uid=417",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Benton",
+      "url": "https://property.bentoncountymn.gov/search/commonsearch.aspx?mode=realprop",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Chisago",
+      "url": "https://gis.chisagocounty.us/chisago_tax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Cook",
+      "url": "https://beacon.schneidercorp.com/Application.aspx?AppID=1373&LayerID=46422&PageTypeID=2&PageID=19190",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Fillmore",
+      "url": "https://beacon.schneidercorp.com/Application.aspx?AppID=1066&LayerID=25416&PageTypeID=2&PageID=10333",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Hennepin",
+      "url": "http://www16.co.hennepin.mn.us/pins/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Kanabec",
+      "url": "https://beacon.schneidercorp.com/Application.aspx?AppID=453&LayerID=6582&PageTypeID=2&PageID=3498",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-LeSueur",
+      "url": "https://beacon.schneidercorp.com/Application.aspx?AppID=248&LayerID=3190&PageTypeID=2&PageID=1710",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Lincoln",
+      "url": "https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Lincoln",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Ottertail",
+      "url": "http://ottertail.visualgov.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Pennington",
+      "url": "https://publicsearch.co.pennington.mn.us/search/commonsearch.aspx?mode=parid",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Pope",
+      "url": "https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Pope",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Ramsey",
+      "url": "https://beacon.schneidercorp.com/application.aspx?app=RamseyCountyMN&PageType=Search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Steele",
+      "url": "http://cpuimei.com/tax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MN-Wadena",
+      "url": "https://tax.cptmn.us/PTaxPortal/#/parcelSearch/Wadena",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MO-Boone",
+      "url": "http://www.showmeboone.com/collector/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MO-Dent",
+      "url": "http://dentmo.taxnet.us/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MO-Nodaway",
+      "url": "https://billpay.forte.net/NodawayMOTax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MO-StCharles",
+      "url": "http://collector.sccmo.org/ecollector/Tabs/RealEstateSearch/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MO-StLouis",
+      "url": "https://taxpayments.stlouiscountymo.gov/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MO-StLouisCity",
+      "url": "https://www.stlouis-mo.gov/data/address-search/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MO-Warren",
+      "url": "https://billpay.forte.net/WARRENCOMOCOLLECTOR/api/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Alcorn",
+      "url": "http://www.deltacomputersystems.com/MS/MS02/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Clarke",
+      "url": "http://www.deltacomputersystems.com/MS/MS12/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Forrest",
+      "url": "http://www.deltacomputersystems.com/MS/MS18/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-George",
+      "url": "http://www.deltacomputersystems.com/MS/MS20/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Greene",
+      "url": "http://www.deltacomputersystems.com/MS/MS21/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Harrison",
+      "url": "http://www.deltacomputersystems.com/cgi-lrm5/lrmcgi01?HTMCNTY=MS24",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Jackson",
+      "url": "https://co-jackson-ms-taxpayments.us/payTaxes.html#/WildfireSearch",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Lafayette",
+      "url": "http://www.deltacomputersystems.com/MS/MS36/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Lamar",
+      "url": "http://www.deltacomputersystems.com/MS/MS37/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Lauderdale",
+      "url": "http://www.deltacomputersystems.com/MS/MS38/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Lee",
+      "url": "http://www.deltacomputersystems.com/MS/MS41/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Leflore",
+      "url": "http://cdms.datasysmgt.com/dsmp/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Lowndes",
+      "url": "http://www.deltacomputersystems.com/MS/MS44/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Marshall",
+      "url": "http://www.deltacomputersystems.com/MS/MS47/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Neshoba",
+      "url": "http://www.deltacomputersystems.com/MS/MS50/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-PearlRiver",
+      "url": "http://www.deltacomputersystems.com/MS/MS55/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Perry",
+      "url": "http://www.deltacomputersystems.com/MS/MS56/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Pike",
+      "url": "http://www.deltacomputersystems.com/MS/MS57/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Rankin",
+      "url": "https://www2.rankincounty.org/TA/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Scott",
+      "url": "http://www.deltacomputersystems.com/MS/MS62/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Stone",
+      "url": "http://www.deltacomputersystems.com/MS/MS66/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Union",
+      "url": "http://www.deltacomputersystems.com/MS/MS73/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Warren",
+      "url": "http://www.deltacomputersystems.com/MS/MS75/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Washington",
+      "url": "http://www.deltacomputersystems.com/MS/MS76/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MS-Wayne",
+      "url": "http://www.deltacomputersystems.com/MS/MS77/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MT-Cascade",
+      "url": "http://itax.tylertech.com/cascademt/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MT-Glacier",
+      "url": "https://glaciercountymt.gov/departments/treasurer/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "MT-Missoula",
+      "url": "https://itax.missoulacounty.us/itax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Alexander",
+      "url": "http://alexander.ustaxdata.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Avery",
+      "url": "https://secure.webtaxpay.com/?county=avery&state=NC",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Bladen",
+      "url": "https://bladen.ustaxdata.com/TaxSearch.cfm",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Columbus",
+      "url": "http://24.172.30.162/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Cumberland",
+      "url": "https://taxpwa.co.cumberland.nc.us/publicwebaccess/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Currituck",
+      "url": "http://currituck.munisselfservice.com/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Dare",
+      "url": "https://darenctax.munisselfservice.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Forsyth",
+      "url": "https://bcpwa.ncptscloud.com/forsythtax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Guilford",
+      "url": "https://bcpwa.ncptscloud.com/guilfordtax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Henderson",
+      "url": "https://lrcpwa.ncptscloud.com/Henderson/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Hoke",
+      "url": "https://hokecountytaxes.munisselfservice.com/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-IndianTrailTown",
+      "url": "https://wipp.edmundsassoc.com/Wipp600/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Johnston",
+      "url": "https://my.johnstonnc.gov/service/johnston_county_property_tax",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Lee",
+      "url": "https://leecountync.munisselfservice.com/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Mitchell",
+      "url": "http://mitchell.webtaxpay.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Orange",
+      "url": "http://web.co.orange.nc.us/PublicWebAccess/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Polk",
+      "url": "http://cms.revize.com/revize/apps/polkcounty/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Owner 1 Name"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Randolph",
+      "url": "https://txpwa.randolphcountync.gov/publicwebaccess/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Robeson",
+      "url": "http://www.ustaxdata.com/nc/robeson/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-RockyMountCity",
+      "url": "https://rockymountnc.munisselfservice.com/css/citizens/RealEstate/Default.aspx?mode=new",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Stokes",
+      "url": "http://www.stokescountytax.com/taxes/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-SurfCity",
+      "url": "https://wipp.edmundsgovtech.cloud/home?wippId=SURF",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-TarboroTown",
+      "url": "https://wipp.edmundsassoc.com/WippTARB/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Vance",
+      "url": "http://vance.ustaxdata.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Wake",
+      "url": "https://services.wake.gov/realestate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NC-Waynesville",
+      "url": "https://waynesville.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=n",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "ND-Barnes",
+      "url": "http://www.co.stutsman.nd.us/Tax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "ND-Ward",
+      "url": "https://itax.tylertech.com/wardnd/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NJ-Brick",
+      "url": "https://apps.hlssystems.com/Brick/PropertyTaxInquiry/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NJ-HighlandsBoro",
+      "url": "https://wipp.edmundsassoc.com/Wipp/?wippid=1319",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NJ-PembertonTwp",
+      "url": "https://wipp.edmundsassoc.com/Wipp/?wippid=0329",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NJ-WashingtonTownship",
+      "url": "http://wipp.edmundsassoc.com/Wipp0818/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NM-Chaves",
+      "url": "http://eagleweb.co.chaves.nm.us/Treasurer/eagleweb/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NM-DonaAna",
+      "url": "http://treasurer.donaanacounty.org/treasurer/treasurerweb/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NM-Sandoval",
+      "url": "http://etweb.sandovalcountynm.gov/Treasurer/treasurerweb/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-AlbanyCity",
+      "url": "https://magic.collectorsolutions.com/magic-ui/OneTimePayment/albany-ny",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-BuffaloCity",
+      "url": "https://pay.buffalony.gov/form/property-tax",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Chautauqua",
+      "url": "https://app.co.chautauqua.ny.us/cctaxonline/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Columbia",
+      "url": "http://www.totalcollectionsolution.com/Entity/show/id/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-DuanesburgTown",
+      "url": "https://egov.basgov.com/duanesburg/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Essex",
+      "url": "http://www.co.essex.ny.us/Treasurer/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-GlenvilleTown",
+      "url": "https://egov.basgov.com/glenville/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Greene",
+      "url": "http://ny.greenecounty.totalcollectionsolution.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-HempsteadSchool",
+      "url": "http://mylocalgov.com/hempsteadny/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Monroe",
+      "url": "http://www.monroecountytax.org/monroe/tax/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-MountVernonCity",
+      "url": "https://infotaxonline.com/FindProperty.aspx?129",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-MountVernonCitySchools",
+      "url": "https://www.infotaxonline.com/FindProperty.aspx",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-MountVernonSchool",
+      "url": "https://www.infotaxonline.com/FindProperty.aspx?125",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-NewRochelleCity",
+      "url": "https://cnr.munisselfservice.com/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-NewYorkCityDEP",
+      "url": "https://a826-umax.dep.nyc.gov/balance",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-NiskayunaTown",
+      "url": "http://WWW.totalcollectionsolution.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Onondaga",
+      "url": "http://ocfintax.ongov.net/Imate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Rensselaer",
+      "url": "http://ny.rensselaercounty.totalcollectionsolution.com/entity",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-RotterdamTown",
+      "url": "http://www.totalcollectionsolution.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-RyeSchool",
+      "url": "https://www.infotaxonline.com/FindProperty.aspx?112",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-StLawrence",
+      "url": "http://www.taxlookup.net/stlawrence/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-SyracuseCity",
+      "url": "http://ocfintax.ongov.net/ImateSyr/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Warren",
+      "url": "https://public.warrencountyny.gov/vinyl/app/Property%20Taxes/Home/Property%20Taxes/Public%20Delinquent%20Bills",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-WhitePlains",
+      "url": "http://cwp.munisselfservice.com/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-WhitePlainsCity",
+      "url": "https://cwp.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=new",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "NY-Wyoming",
+      "url": "http://wyomingcountytreasurer.com/Property/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Allen",
+      "url": "http://allencountyohpropertytax.com/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Ashtabula",
+      "url": "http://oh-ashtabulacounty.civicplus.com/311/Treasurer",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Athens",
+      "url": "https://www.athenscountyauditor.org/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Clermont",
+      "url": "https://www.clermontauditorrealestate.org/_web/search/commonsearch.aspx?mode=parid",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Crawford",
+      "url": "http://realestate.crawford-co.org/re-search.php?item=Parn",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Cuyahoga",
+      "url": "https://treasurer.cuyahogacounty.us/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Darke",
+      "url": "http://www.darkecountyrealestate.org/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Geauga",
+      "url": "http://geaugarealink.co.geauga.oh.us/REALink/parcel/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Hardin",
+      "url": "http://realestate.co.hardin.oh.us/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Highland",
+      "url": "http://highlandcountyauditor.org/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Huron",
+      "url": "http://www.huroncountyauditor.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Jackson",
+      "url": "http://jacksoncountyauditor.org/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Knox",
+      "url": "http://knoxcountyauditor.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Lawrence",
+      "url": "http://lawrencecountytreasurer.org/TaxDetails/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Lorain",
+      "url": "https://loraincountyauditor.gov/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Mahoning",
+      "url": "https://auditor.mahoningcountyoh.gov/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Miami",
+      "url": "http://www.miamicountyauditor.org/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Montgomery",
+      "url": "http://www.mctreas.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Portage",
+      "url": "http://portagecountyauditor.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Preble",
+      "url": "http://www.preblecountyauditor.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Sandusky",
+      "url": "http://www.sanduskycountyauditor.us/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Stark",
+      "url": "https://realestate.starkcountyohio.gov/Datalets/PrintDatalet.aspx",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Tuscarawas",
+      "url": "http://auditor.co.tuscarawas.oh.us/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Union",
+      "url": "http://union.ohiorevaluations.com/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-VanWert",
+      "url": "https://auditor.vanwertcountyohio.gov/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Warren",
+      "url": "https://auditor.warrencountyohio.gov/PropertySearch/Summary/Index",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Washington",
+      "url": "http://173.249.135.94/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Williams",
+      "url": "https://realestate.williamscountyoh.gov/Search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OH-Wyandot",
+      "url": "http://realestate.co.wyandot.oh.us/re/re-search.php?item=Parn",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OK-Oklahoma",
+      "url": "http://www.oklahomacounty.org/treasurer/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OK-Tulsa",
+      "url": "https://oktaxrolls.com/searchTaxRoll/Tulsa/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "OR-Washington",
+      "url": "http://www.co.washington.or.us/AssessmentTaxation/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "PA-AlleghenyCourt",
+      "url": "https://dcr.alleghenycounty.us/Civil/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "PA-Beaver",
+      "url": "https://propertyrecords.beavercountypa.gov/search/commonsearch.aspx",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "PA-ChesterDue",
+      "url": "https://www.officialpayments.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Tax Id",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "PA-Delaware",
+      "url": "http://w01.co.delaware.pa.us/pa/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "PA-Luzerne",
+      "url": "http://nerevenue.rba.com/taxes/luzerne/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "PA-ScrantonCity",
+      "url": "http://nerevenue.rba.com/taxes/scranton/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "PA-WestMifflinSchool",
+      "url": "https://billpay.forte.net/westmifflinpaschooltax/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "PR-Special",
+      "url": "https://siscon.hacienda.gobierno.pr/ce/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "RI-WarwickCity",
+      "url": "https://www.citizenselfservice.com/MSS/citizens/RealEstate/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "SC-Beaufort",
+      "url": "https://sc-beaufort.publicaccessnow.com/Home.aspx",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TN-Anderson",
+      "url": "https://anderson.paytntaxes.com/lookup/property-tax",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TN-ChattanoogaCity",
+      "url": "https://chattanoogatn.taxandrevenue.opengov.com",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TN-Crockett",
+      "url": "http://www.crockett.tennesseetrustee.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TN-Greene",
+      "url": "http://www.greene.tennesseetrustee.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TN-HendersonvilleCity",
+      "url": "http://www.cityofhendersonville.tennesseetrustee.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TN-MemphisCity",
+      "url": "https://epayments.memphistn.gov/property/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TN-MorristownCity",
+      "url": "https://morristown.munisselfservice.com/citizens/RealEstate/Default.aspx?mode=new",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-AldineISD",
+      "url": "http://tax.aldine.k12.tx.us/TaxAldineISD/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-AndrewsISD",
+      "url": "https://andrewsisdtax.com/taxes.html/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Angelina",
+      "url": "http://propaccess.trueautomation.com/clientdb/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-ASW",
+      "url": "http://www.aswtax.com/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Atascosa",
+      "url": "https://propaccess.trueautomation.com/clientdb/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-AustinCAD",
+      "url": "http://tax.austincad.org/tax/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Bee",
+      "url": "https://actweb.acttax.com/bee/bee/index.jsp",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-BobLeardInterests",
+      "url": "http://www.bli-tax.com/tax-form/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-BowieCAD",
+      "url": "https://bowie.propertytaxpayments.net/search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-BrownCAD",
+      "url": "http://propaccess.brown-cad.org/clientdb/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-CarrolltonFarmersBranchISD",
+      "url": "https://www.texaspayments.com/057903",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Carson",
+      "url": "https://www.carsoncountytax.org/Home/Search",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Cass",
+      "url": "http://www.casscountyonline.net/tax/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Chambers",
+      "url": "https://actweb.acttax.com/chambers/chambers/index.jsp",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Cherokee",
+      "url": "https://tax.co.cherokee.tx.us/Accounts/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [
+        "Tax Id"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Clay",
+      "url": "http://www.claycad.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Collin",
+      "url": "http://taxpublic.collincountytx.gov/taxcollincounty/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Comal",
+      "url": "https://property.co.comal.tx.us/search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-CypressFairbanksISD",
+      "url": "https://actweb.acttax.com/act_webdev/cyfair/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Dallas",
+      "url": "http://www.dallascounty.org/applications/english/proptax_app/tax_intro.php",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-DeerParkCity",
+      "url": "https://actweb.acttax.com/act_webdev/deerparkcity/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-DeltaCAD",
+      "url": "http://esearch.delta-cad.org/",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Denton",
+      "url": "https://taxweb.dentoncounty.gov/search/",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-DeWitt",
+      "url": "https://www.dewittcad.org/(S(23vnxvbawv3tdhfnq2bcpznm))/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-EastlandCAD",
+      "url": "http://www.eastlandcad.org",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-FortBend",
+      "url": "http://co.fort-bend.tx.us/index.aspx?page=417",
+      "verdict": "dead",
+      "reason": "timeout",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Freestone",
+      "url": "http://www.freestonetax.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Frio",
+      "url": "http://www.friocountytax.org/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-GarlandCity",
+      "url": "https://www.texaspayments.com/057120",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-GarlandISD",
+      "url": "https://www.texaspayments.com/057909",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-GooseCreekISD",
+      "url": "https://tax.gccisd.net/search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Grayson",
+      "url": "https://grayson.propertytaxpayments.net/search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Gregg",
+      "url": "http://actweb.acttax.com/act_webdev/gregg/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Hardin",
+      "url": "https://tax.cagi.com/account-search/C100",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "As Of"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Harris",
+      "url": "https://www.hctax.net/Property/PropertyTax",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-HarrisonCAD",
+      "url": "https://tax.harrisoncad.net/",
+      "verdict": "collector_search",
+      "reason": "search_form",
+      "cloudflare": false,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Henderson",
+      "url": "https://henderson.propertytaxpayments.net/search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Hidalgo",
+      "url": "https://actweb.acttax.com/act_webdev/hidalgo/",
+      "verdict": "unknown_live",
+      "reason": "live_but_not_sure",
+      "cloudflare": false,
+      "drFields": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Balance Due"
+      ],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    },
+    {
+      "key": "TX-Hopkins",
+      "url": "https://hopkins.propertytaxpayments.net/search",
+      "verdict": "dead",
+      "reason": "http_403",
+      "cloudflare": true,
+      "drFields": [],
+      "lookFor": [
+        "Parcel Number",
+        "Tax Id",
+        "Owner 1 Name",
+        "Legal Description",
+        "Bill Amount",
+        "Balance Due",
+        "As Of",
+        "Bill Year"
+      ]
+    }
+  ]
+}

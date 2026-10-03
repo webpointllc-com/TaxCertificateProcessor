@@ -1,6 +1,6 @@
 # WebPoint Tax Certificate Processor — architecture
 
-End-user + operator map of what is actually running. **We pay for Render web + Render PostgreSQL.** Everything else is in-repo, already owned, or free-tier optional.
+End-user + operator map of what is actually running. **We pay $14/mo for Render web Starter + Render PostgreSQL.** Greenfield AWS (ALB + Fargate + RDS + NAT) is $45–90/mo and is not the launch host. Everything else is in-repo, already owned, or free-tier optional.
 
 Live visual (1280×800 scale-to-fit, WebPoint dark navy / cyan glow, full borders, no left accent stripes): [`public/architecture.html`](../public/architecture.html). Squarespace paste: [`public/SQUARESPACE_ARCHITECTURE_EMBED.html`](../public/SQUARESPACE_ARCHITECTURE_EMBED.html).
 
@@ -18,7 +18,7 @@ Live visual (1280×800 scale-to-fit, WebPoint dark navy / cyan glow, full border
 | WD Passport clone (TCS/TPA/RDS source) | Hardware Bill owns | Not mounted on the cloud VM |
 | Render MCP OAuth | Cannot complete in cloud agent | Apply Blueprint `render.yaml` in the dashboard |
 
-Do **not** add Pinecone, Algolia, Elastic Cloud, OpenAI embeddings, or other paid search vendors.
+Do **not** add Pinecone, Algolia, Elastic Cloud, OpenAI embeddings, or other paid search vendors. Do **not** stand up a second AWS VPC/ALB/NAT this month to “save money” — that bill is larger than Render until hundreds of concurrent users, unless this process rides **already-paid** idle RDS/ECS (`Dockerfile` + `DATABASE_URL`).
 
 ## How a search travels
 
@@ -60,4 +60,4 @@ flowchart TB
 
 ## Deploy
 
-Apply `render.yaml` in the Render dashboard (Blueprint). Set `GROQ_API_KEY` and optional `MEMBER_EMBED_KEY` there — never in git.
+Apply `render.yaml` in the Render dashboard (Blueprint). Set `GROQ_API_KEY` there — never in git. The same Node image (`Dockerfile`) later runs on App Runner or ECS with the same env. Cutover steps: [`HOST_SWAP.md`](HOST_SWAP.md).

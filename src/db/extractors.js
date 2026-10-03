@@ -1,11 +1,13 @@
 'use strict';
 
 const crypto = require('crypto');
+const drProduction = require('../services/drProduction');
 
 const memory = {
   extractors: [],
   versions: [],
-  feedback: []
+  feedback: [],
+  validationRuns: []
 };
 
 let pool = null;
@@ -65,16 +67,27 @@ function parseJson(value, fallback) {
 }
 
 function defaultMethod(lookup) {
+  if (lookup.method && Array.isArray(lookup.method.steps) && lookup.method.steps.length) {
+    return {
+      steps: lookup.method.steps.slice(0, 12),
+      search_by: lookup.method.search_by || lookup.layout?.search_by || ['parcel', 'owner', 'address'],
+      notes: lookup.method.notes || lookup.entityNote || lookup.howFound || ''
+    };
+  }
   const entity = lookup.entity || 'the tax collecting entity';
+  const fields = Array.isArray(lookup.layout?.fields)
+    ? lookup.layout.fields.map((f) => f.label || f.role).filter(Boolean).join(', ')
+    : '';
   return {
     steps: [
       `Open the official ${entity} tax search page`,
-      'Search by parcel / APN / account number',
+      fields ? `Target the search fields: ${fields}` : 'Search by parcel / APN / account number using this county\'s parcel format (do not reuse another county\'s hyphenation)',
       'Search by owner last name (entering less is more)',
+      'Fill the DR Production Results row (finale/ 40-column document) for this parcel. Talk about the whole row unless the user names one field.',
       'Confirm current and delinquent amounts on that collector page before closing'
     ],
-    search_by: ['parcel', 'owner', 'address'],
-    notes: lookup.entityNote || lookup.source || ''
+    search_by: lookup.layout?.search_by || ['parcel', 'owner', 'address'],
+    notes: lookup.entityNote || lookup.howFound || lookup.source || ''
   };
 }
 
@@ -100,6 +113,25 @@ async function ensureSlot(lookup) {
   const county = lookup.jurisdiction?.county || lookup.canonicalCounty || '';
   const state = (lookup.jurisdiction?.state || lookup.canonicalState || '').toUpperCase();
   const url = lookup.officialUrl || lookup.lockedUrl || lookup.url || '';
+  const catalog = require('../services/extractorCatalog');
+  const dump = catalog.dumpFor(county, state, key);
+  const urlFinder = require('../services/urlFinder');
+  if (!lookup.method) {
+    const book = urlFinder.playbookFor(county, state, { vendor: lookup.vendor, url: url || (dump && dump.url) });
+    if (book && book.method) lookup.method = book.method;
+    if (book && book.parcel_format && !lookup.parcelFormat) lookup.parcelFormat = book.parcel_format;
+  }
+  const production = drProduction.attachLayout(key);
+  const layout =
+    lookup.layout && typeof lookup.layout === 'object'
+      ? { ...lookup.layout, production }
+      : { production };
+  let notes = lookup.urlLocked
+    ? (lookup.howFound || 'Seeded from locked Search Spul URL')
+    : 'No locked collector URL — waiting for a validated extractor. Output document is DR Production Results (finale/).';
+  if (dump && dump.url && dump.url !== url) {
+    notes = `${notes} Dump ${dump.source || 'row'} URL is a candidate only: ${dump.url}`;
+  }
   const row = {
     id: id(),
     jurisdiction_key: key,
@@ -112,21 +144,22 @@ async function ensureSlot(lookup) {
     status: 'active',
     source: 'seed',
     validated: Boolean(lookup.urlLocked),
-    notes: lookup.urlLocked ? 'Seeded from locked Search Spul URL' : 'No locked collector URL — waiting for a validated extractor',
-    parcel_format: '',
+    notes,
+    parcel_format: lookup.parcelFormat || drProduction.parcelFormatFor(key) || '',
     exceptions: [],
-    layout: {},
+    layout,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };
   if (usingPostgres()) {
     await pool.query(
       `INSERT INTO extractors
-        (id, jurisdiction_key, county, state, entity, search_url, method, version, status, source, validated, notes)
-       VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb,$8,$9,$10,$11,$12)`,
+        (id, jurisdiction_key, county, state, entity, search_url, method, version, status, source, validated, notes, parcel_format, exceptions, layout)
+       VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb,$8,$9,$10,$11,$12,$13,$14::jsonb,$15::jsonb)`,
       [
         row.id, row.jurisdiction_key, row.county, row.state, row.entity, row.search_url,
-        JSON.stringify(row.method), row.version, row.status, row.source, row.validated, row.notes
+        JSON.stringify(row.method), row.version, row.status, row.source, row.validated, row.notes,
+        row.parcel_format || '', JSON.stringify(row.exceptions || []), JSON.stringify(row.layout || {})
       ]
     );
   } else {
@@ -307,6 +340,58 @@ async function addFeedback({ accountId, jurisdictionKey, kind, body, extractorId
   return row;
 }
 
+async function listFeedback({ jurisdictionKey, keys, accountId, limit } = {}) {
+  const catalog = require('../services/extractorCatalog');
+  const keyList = (Array.isArray(keys) && keys.length ? keys : catalog.keysFor({ key: jurisdictionKey }))
+    .map((k) => String(k || '').trim())
+    .filter(Boolean);
+  const cap = Math.max(1, Math.min(Number(limit) || 8, 20));
+  if (!keyList.length) return [];
+  if (usingPostgres()) {
+    const params = [keyList, cap];
+    let sql = `SELECT * FROM session_feedback WHERE jurisdiction_key = ANY($1::text[])`;
+    if (accountId) {
+      params.splice(1, 0, accountId);
+      sql += ` AND account_id = $2`;
+      sql += ` ORDER BY created_at DESC LIMIT $3`;
+    } else {
+      sql += ` ORDER BY created_at DESC LIMIT $2`;
+    }
+    const { rows } = await pool.query(sql, params);
+    return rows;
+  }
+  return memory.feedback
+    .filter((row) => keyList.includes(row.jurisdiction_key) && (!accountId || row.account_id === accountId))
+    .slice(0, cap);
+}
+
+async function contextFor(lookup = {}, { accountId, learnConsent, agent } = {}) {
+  const catalog = require('../services/extractorCatalog');
+  const urlFinder = require('../services/urlFinder');
+  const vendorFamily = require('../services/vendorFamily');
+  const county = lookup.jurisdiction?.county || lookup.canonicalCounty || lookup.county || '';
+  const state = lookup.jurisdiction?.state || lookup.canonicalState || lookup.state || '';
+  const dump = catalog.dumpFor(county, state, lookup.key || lookup.dumpKey);
+  const playbook = urlFinder.playbookFor(county, state, {
+    vendor: lookup.vendor,
+    url: lookup.officialUrl || lookup.lockedUrl || lookup.candidateUrl || (dump && dump.url)
+  });
+  const url = lookup.officialUrl || lookup.lockedUrl || lookup.candidateUrl || (dump && dump.url) || '';
+  const family = vendorFamily.classify(url, 1);
+  const keys = catalog.keysFor({ ...lookup, dumpKey: dump && dump.key, county, state });
+  const feedback = learnConsent ? await listFeedback({ keys, accountId, limit: 8 }) : [];
+  const slot = agent || (lookup.key ? await findActive(lookup.key) : null);
+  return {
+    dump,
+    playbook,
+    family,
+    feedback,
+    agent: slot || null,
+    keys,
+    promptBlock: catalog.catalogBlock(county, state, { ...lookup, dumpKey: dump && dump.key }) + catalog.learnedBlock(feedback)
+  };
+}
+
 async function listActive(limit = 40) {
   const cap = Math.max(1, Math.min(Number(limit) || 40, 200));
   if (usingPostgres()) {
@@ -343,10 +428,149 @@ async function stats() {
   return tally;
 }
 
+async function recordPortalSession({ accountId, sessionId, jurisdictionKey, event, fields, notes }) {
+  const headers = Array.isArray(fields) ? fields.filter(Boolean).slice(0, 40) : [];
+  const vendorFamily = require('../services/vendorFamily');
+  const portalAccessToken = require('../services/portalAccessToken');
+  const siteValidator = require('../services/siteValidator');
+  const agent = await findActive(jurisdictionKey);
+  const family = vendorFamily.classify(agent && agent.search_url, 1);
+  const issued = portalAccessToken.mint({
+    sessionId,
+    accountId,
+    jurisdictionKey,
+    familyId: family.family,
+    lookFor: headers.length ? headers : siteValidator.lookForHeaders()
+  });
+  const row = {
+    id: id(),
+    account_id: accountId || null,
+    session_id: sessionId || null,
+    jurisdiction_key: jurisdictionKey || '',
+    event: String(event || 'opened_portal').slice(0, 80),
+    fields: headers,
+    notes: String(notes || '').slice(0, 1000),
+    family_id: family.family,
+    token_hash: issued.token_hash,
+    expires_at: issued.expires_at,
+    created_at: new Date().toISOString()
+  };
+  if (usingPostgres()) {
+    await pool.query(
+      `INSERT INTO extractor_portal_sessions
+        (id, account_id, session_id, jurisdiction_key, event, fields, notes, token_hash, expires_at, family_id)
+       VALUES ($1,$2,$3,$4,$5,$6::jsonb,$7,$8,$9,$10)`,
+      [
+        row.id,
+        row.account_id,
+        row.session_id,
+        row.jurisdiction_key,
+        row.event,
+        JSON.stringify(row.fields),
+        row.notes,
+        row.token_hash,
+        row.expires_at,
+        row.family_id
+      ]
+    );
+  }
+  if (agent) {
+    await rememberDiscovery({
+      agent,
+      lookup: { key: jurisdictionKey },
+      accountId,
+      discoveries: [
+        { kind: 'layout', value: `portal_session:${row.event}:${family.family}` },
+        headers.length ? { kind: 'exception', value: `look_for ${headers.join(', ')}` } : null
+      ].filter(Boolean)
+    });
+  }
+  await addFeedback({
+    accountId,
+    jurisdictionKey,
+    kind: 'portal_session',
+    body: `${row.event} ${family.family} ${headers.join(', ')} ${row.notes}`.trim()
+  });
+  return {
+    id: row.id,
+    jurisdiction_key: row.jurisdiction_key,
+    event: row.event,
+    family: family.family,
+    created_at: row.created_at,
+    pat: portalAccessToken.publicHandle(issued)
+  };
+}
+
+function mapValidationRow(row) {
+  if (!row) return null;
+  return {
+    generatedAt: row.generated_at || row.generatedAt,
+    probed: row.probed || 0,
+    counts: row.counts || {},
+    lookForHits: row.look_for_hits || row.lookForHits || {},
+    method: row.method || '',
+    how: row.how || [],
+    lookFor: row.lookFor
+  };
+}
+
+async function recordValidationRun(run) {
+  const mapped = {
+    generatedAt: run.generatedAt || new Date().toISOString(),
+    probed: Number(run.probed) || 0,
+    counts: run.counts || {},
+    lookForHits: run.lookForHits || {},
+    method: run.method || '',
+    how: Array.isArray(run.how) ? run.how : [],
+    lookFor: run.lookFor || []
+  };
+  memory.validationRuns.push(mapped);
+  if (memory.validationRuns.length > 12) memory.validationRuns.splice(0, memory.validationRuns.length - 12);
+  if (usingPostgres()) {
+    const existing = await pool.query(
+      `SELECT id FROM validation_runs WHERE generated_at = $1 LIMIT 1`,
+      [mapped.generatedAt]
+    );
+    if (!existing.rows.length) {
+      await pool.query(
+        `INSERT INTO validation_runs
+          (id, generated_at, probed, counts, look_for_hits, method, how, notes)
+         VALUES ($1,$2,$3,$4::jsonb,$5::jsonb,$6,$7::jsonb,$8)`,
+        [
+          id(),
+          mapped.generatedAt,
+          mapped.probed,
+          JSON.stringify(mapped.counts),
+          JSON.stringify(mapped.lookForHits),
+          mapped.method,
+          JSON.stringify(mapped.how),
+          mapped.how.join(' ')
+        ]
+      );
+    }
+  }
+  return mapped;
+}
+
+async function latestValidationRun() {
+  let dbRun = null;
+  if (usingPostgres()) {
+    const { rows } = await pool.query(
+      `SELECT * FROM validation_runs ORDER BY generated_at DESC LIMIT 1`
+    );
+    dbRun = mapValidationRow(rows[0]);
+  } else if (memory.validationRuns.length) {
+    dbRun = memory.validationRuns[memory.validationRuns.length - 1];
+  }
+  const siteValidator = require('../services/siteValidator');
+  return siteValidator.fresherRun(siteValidator.loadLastRun(), dbRun);
+}
+
 function resetMemory() {
   memory.extractors.length = 0;
   memory.versions.length = 0;
   memory.feedback.length = 0;
+  memory.validationRuns.length = 0;
 }
 
 module.exports = {
@@ -357,6 +581,11 @@ module.exports = {
   markBroken,
   rememberDiscovery,
   addFeedback,
+  listFeedback,
+  contextFor,
+  recordPortalSession,
+  recordValidationRun,
+  latestValidationRun,
   listActive,
   stats,
   defaultMethod,

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPoint — Pay the launch stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/architecture.css">
+  <link rel="stylesheet" href="/pay.css">
+</head>
+<body>
+  <div id="scale-outer">
+    <div id="design-canvas">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">WEBPOINT LLC</div>
+            <div class="brand-sub">Tax Certificate Processor · Launch stack</div>
+          </div>
+        </div>
+        <div class="top-pills">
+          <a class="pill guide-link" href="/">Open tool</a>
+          <a class="pill guide-link" href="/architecture.html">Architecture</a>
+          <a class="pill guide-link" href="/embed-preview.html">Test embed</a>
+          <span class="pill ok" id="total-pill">$14/mo selected</span>
+        </div>
+      </header>
+
+      <main class="workspace pay-workspace">
+        <section class="panel order-panel">
+          <div class="panel-head">
+            <h1>Selected needs — real, minimal, ready to scale</h1>
+            <p>Starter web + Postgres Basic 256MB in Oregon. Same Node process later takes Standard or Pro without a rewrite.</p>
+          </div>
+          <div class="need-list" id="need-list"></div>
+          <div class="scale-row" id="scale-row"></div>
+          <p class="pay-foot" id="not-this-month"></p>
+        </section>
+
+        <aside class="panel chat-panel">
+          <div class="panel-head">
+            <h1>Prep to pay</h1>
+            <p>Flip the toggle. Card first, then Apply Blueprint. Groq key is last and never stored here.</p>
+          </div>
+          <label class="prep-switch" for="prep-toggle">
+            <input type="checkbox" id="prep-toggle">
+            <span class="prep-track" aria-hidden="true"></span>
+            <span class="prep-label">
+              <strong>Prep to pay</strong>
+              <span id="prep-state">Off — review the stack. Nothing is charged until you add a card on Render.</span>
+            </span>
+          </label>
+          <ol class="pay-steps">
+            <li>
+              <a class="pay-cta" id="btn-billing" href="https://dashboard.render.com/billing" target="_blank" rel="noopener" aria-disabled="true">1 · Open Render billing</a>
+              <span>Add the card. Starter $7 + Postgres $7 = $14/mo.</span>
+            </li>
+            <li>
+              <a class="pay-cta" id="btn-blueprint" href="https://dashboard.render.com/blueprint/new?repo=https://github.com/webpointllc-com/TaxCertificateProcessor" target="_blank" rel="noopener" aria-disabled="true">2 · Apply Blueprint</a>
+              <span>Creates <span class="mono">tax-certificate-processor</span> + <span class="mono">webpoint-tcs-db</span>.</span>
+            </li>
+            <li>
+              <a class="pay-cta" id="btn-groq" href="https://console.groq.com/keys" target="_blank" rel="noopener" aria-disabled="true">3 · Get Groq key</a>
+              <span>Paste into Render Dashboard env <span class="mono">GROQ_API_KEY</span>. Do not paste it here.</span>
+            </li>
+            <li>
+              <a class="pay-cta" id="btn-own" href="https://www.runpod.io/console/user/billing" target="_blank" rel="noopener" aria-disabled="true">4 · Own LLM (pay day)</a>
+              <span>After Claude posts the pod URL: three Render settings in <span class="mono">docs/OWN_LLM.md</span> — <span class="mono">WEBPOINT_LLM_URL</span>, <span class="mono">WEBPOINT_LLM_KEY</span>, <span class="mono">MODEL_PROVIDER=webpoint</span>. $25 RunPod credit. Groq stays fallback.</span>
+            </li>
+          </ol>
+          <div class="copy-row">
+            <button type="button" class="soft-cta" id="copy-embed">Copy Squarespace embed</button>
+            <button type="button" class="soft-cta" id="copy-handoff">Copy Claude handoff</button>
+          </div>
+          <p class="copy-status" id="copy-status" hidden></p>
+          <label class="embed-label" for="embed-box">Squarespace Code Block — live after Render is up</label>
+          <textarea id="embed-box" readonly spellcheck="false"></textarea>
+        </aside>
+      </main>
+    </div>
+  </div>
+  <script src="/pay.js"></script>
+</body>
+</html>

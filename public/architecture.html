@@ -23,7 +23,7 @@
         <div class="top-pills">
           <a class="pill guide-link" href="/">Open tool</a>
           <a class="pill guide-link" href="/manual.html">User guide</a>
-          <span class="pill ok">Pay: Render web + Postgres</span>
+          <a class="pill ok guide-link" href="/pay.html">Pay: Render web + Postgres</a>
           <span class="pill warn" id="passport-pill">Passport not on this VM</span>
         </div>
       </header>
@@ -70,9 +70,9 @@
                 <p><span class="mono">counties.json</span> + golden locks. ~2,923 WPT Production Log jurisdictions. Chippewa → LandNav.</p>
               </article>
               <article class="node node-free">
-                <p class="kicker">Optional · free tier</p>
-                <h3>Groq LLM</h3>
-                <p>Only if <span class="mono">GROQ_API_KEY</span> is set. Fills ACTIONS/CONTEXT. Never invents collector URLs.</p>
+                <p class="kicker">Workhorse · Groq</p>
+                <h3>Llama 3.3 70B</h3>
+                <p>Primary chat and county routing when <span class="mono">GROQ_API_KEY</span> is set. Anthropic is optional heavy-lift only. Never invents collector URLs.</p>
               </article>
             </div>
           </div>
@@ -104,7 +104,7 @@
             <article class="node">
               <p class="kicker">Not paid SaaS</p>
               <h3>We do not buy</h3>
-              <p>No Pinecone, Algolia, Elastic Cloud, OpenAI embeddings, or extra search vendors. Render MCP OAuth cannot finish in the cloud agent — apply the Blueprint in the dashboard.</p>
+              <p>No Pinecone, Algolia, Elastic Cloud, OpenAI embeddings, or extra search vendors. No greenfield AWS this month — ALB + Fargate + RDS + NAT is $45–90 vs Render $14. Ride idle AWS later via <span class="mono">Dockerfile</span> + <span class="mono">DATABASE_URL</span>. Apply the Blueprint after Starter + Postgres billing is on.</p>
             </article>
           </div>
         </aside>

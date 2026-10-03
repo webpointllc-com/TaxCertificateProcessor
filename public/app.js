@@ -9,6 +9,7 @@
   localStorage.setItem('wp_tcs_session', sessionId);
   var memberKey = new URLSearchParams(location.search).get('k') || '';
   var lastLookup = null;
+  var lastTrainingExampleId = '';
   var exportFormat = 'html';
   var lastQuery = '';
   var researchTaskId = '';
@@ -104,6 +105,7 @@
     $('set-company').value = account.company || '';
     $('set-activity').checked = account.activity_on !== false;
     if ($('set-learn')) $('set-learn').checked = account.learn_consent === true;
+    if ($('set-retention')) $('set-retention').value = account.training_retention || 'until_delete';
     $('acct-act-label').textContent = account.activity_on !== false ? 'On' : 'Turn on';
     $('prof-activity').textContent = account.activity_on !== false ? 'On' : 'Off';
     if (account.created_at) {
@@ -128,6 +130,7 @@
     $('gen-pill').hidden = true;
     $('search-clear').hidden = true;
     if ($('search-error')) $('search-error').hidden = true;
+    syncUsMap();
   }
 
   function showResults() {
@@ -138,6 +141,64 @@
     $('mac-window').classList.add('results');
     $('about-trigger').hidden = true;
     $('search-clear').hidden = !$('hero-input').value;
+  }
+
+  var MAP_KEY = 'wp_map_shown';
+  var mapLoaded = false;
+
+  function dismissUsMap() {
+    try { sessionStorage.setItem(MAP_KEY, '1'); } catch (e) {}
+    var wrap = $('us-map-wrap');
+    var home = $('view-home');
+    if (wrap) wrap.classList.add('is-away');
+    if (home) home.classList.remove('has-map');
+  }
+
+  function syncUsMap() {
+    var wrap = $('us-map-wrap');
+    var home = $('view-home');
+    if (!wrap || !home) return;
+    var shown = false;
+    try { shown = Boolean(sessionStorage.getItem(MAP_KEY)); } catch (e) {}
+    if (shown) {
+      wrap.hidden = true;
+      wrap.classList.add('is-away');
+      home.classList.remove('has-map');
+      return;
+    }
+    wrap.hidden = false;
+    wrap.classList.remove('is-away');
+    home.classList.add('has-map');
+    loadUsMap();
+  }
+
+  function loadUsMap() {
+    if (mapLoaded) return;
+    mapLoaded = true;
+    fetch('/us-map.svg')
+      .then(function (r) { return r.text(); })
+      .then(function (svg) {
+        var host = $('us-map');
+        if (!host) return;
+        host.innerHTML = svg;
+        host.querySelectorAll('.us-state').forEach(function (path) {
+          path.addEventListener('click', function () {
+            host.querySelectorAll('.us-state.is-active').forEach(function (n) { n.classList.remove('is-active'); });
+            path.classList.add('is-active');
+            var name = path.getAttribute('data-name') || path.getAttribute('data-st') || '';
+            if (!name) return;
+            $('hero-input').value = name;
+            $('hero-input').focus();
+            fetch('/api/suggest?q=' + encodeURIComponent(name), { headers: headers() })
+              .then(function (r) { return r.json(); })
+              .then(function (data) { paintSuggest(data.suggestions || []); })
+              .catch(function () {});
+          });
+        });
+      })
+      .catch(function () {
+        mapLoaded = false;
+      });
   }
 
   function maybeAskConsent() {
@@ -220,15 +281,26 @@
     researchTaskId = data.task_id || researchTaskId || '';
     $('res-place').textContent = (card.county || '') + (card.state ? ' County, ' + card.state : '');
     $('res-summary').textContent = card.summary || '';
+    lastTrainingExampleId = data.training_example_id || '';
+    showAnswerRate($('answer-rate'), lastTrainingExampleId);
     var url = (data.lookup && (data.lookup.officialUrl || data.lookup.lockedUrl)) || card.collector_url || '';
     var link = $('res-collector');
     if (url) { link.href = url; link.hidden = false; } else { link.hidden = true; }
+    var look = $('res-lookfor');
+    var shake = data.deepshake || {};
+    if (look) {
+      var heads = (shake.lookFor || []).slice(0, 8);
+      if (heads.length) {
+        look.hidden = false;
+        look.textContent = (shake.recommended ? 'DeepShake in your Chrome tab — look for: ' : 'Look for on this collector: ') + heads.join(', ');
+      } else {
+        look.hidden = true;
+      }
+    }
     var agent = data.agent || data.extractor || {};
-    var bits = [];
-    if (data.operator && data.operator.routed_to) bits.push('County agent ' + data.operator.routed_to);
-    if (agent.parcel_format) bits.push('parcel pattern ' + agent.parcel_format);
-    if (agent.version) bits.push('v' + agent.version);
-    $('agent-note').textContent = bits.join(' · ');
+    var handoff = data.handoff || (data.operator && data.operator.handoff) || {};
+    var badge = (handoff.to && handoff.to.badge) || '';
+    $('agent-note').textContent = badge;
     $('heal-status').textContent = agent.version
       ? ('Shared with every user of this county · extractor v' + agent.version)
       : '';
@@ -238,6 +310,67 @@
       if (data.lookup.jurisdiction.state && $('state')) $('state').value = data.lookup.jurisdiction.state;
     }
     showResults();
+  }
+
+  function showAnswerRate(wrap, exampleId) {
+    if (!wrap) return;
+    if (!exampleId) {
+      wrap.hidden = true;
+      wrap.removeAttribute('data-example-id');
+      return;
+    }
+    wrap.hidden = false;
+    wrap.setAttribute('data-example-id', exampleId);
+    wrap.querySelectorAll('.rate-btn').forEach(function (b) { b.classList.remove('on'); });
+    var status = wrap.querySelector('.rate-status');
+    if (status) status.textContent = '';
+  }
+
+  function attachAnswerRate(node, exampleId) {
+    if (!node || !exampleId) return;
+    var existing = node.querySelector('.answer-rate');
+    if (existing) {
+      showAnswerRate(existing, exampleId);
+      return;
+    }
+    var wrap = el('<div class="answer-rate"></div>');
+    wrap.innerHTML =
+      '<button type="button" class="rate-btn" data-rating="1" aria-label="Thumbs up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4.5A1.5 1.5 0 0 1 3 18.5v-6A1.5 1.5 0 0 1 4.5 11H7z"/><path d="M7 11l3.2-6.2A2 2 0 0 1 12 3.6h.2a1.8 1.8 0 0 1 1.7 2.4L13 9h5.4a2 2 0 0 1 2 2.3l-1.1 7A2 2 0 0 1 17.4 20H7"/></svg></button>' +
+      '<button type="button" class="rate-btn" data-rating="-1" aria-label="Thumbs down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13V4H4.5A1.5 1.5 0 0 0 3 5.5v6A1.5 1.5 0 0 0 4.5 13H7z"/><path d="M7 13l3.2 6.2A2 2 0 0 0 12 20.4h.2a1.8 1.8 0 0 0 1.7-2.4L13 15h5.4a2 2 0 0 0 2-2.3l-1.1-7A2 2 0 0 0 17.4 4H7"/></svg></button>' +
+      '<span class="rate-status"></span>';
+    showAnswerRate(wrap, exampleId);
+    node.appendChild(wrap);
+  }
+
+  async function postTrainingRate(exampleId, rating, wrap) {
+    if (!exampleId) return;
+    var status = wrap && wrap.querySelector('.rate-status');
+    try {
+      var res = await fetch('/v1/training/rate', {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify({ training_example_id: exampleId, rating: rating })
+      });
+      var data = await res.json().catch(function () { return {}; });
+      if (!data.ok) {
+        if (status) status.textContent = data.error || 'Could not save rating';
+        return;
+      }
+      if (wrap) {
+        wrap.querySelectorAll('.rate-btn').forEach(function (b) {
+          b.classList.toggle('on', Number(b.getAttribute('data-rating')) === rating);
+        });
+      }
+      if (status) {
+        status.textContent = rating > 0
+          ? 'Thanks — this answer can train the model.'
+          : rating < 0
+            ? 'Thanks — this answer stays out of training.'
+            : 'Rating cleared.';
+      }
+    } catch (err) {
+      if (status) status.textContent = 'Could not save rating';
+    }
   }
 
   function tickClock() {
@@ -505,9 +638,37 @@
     var data = await res.json();
     lastLookup = data;
     var url = officialUrlOf(data);
-    if (url) window.open(url, '_blank', 'noopener');
-    else setStatus(data.error || data.source || 'No locked collector URL');
+    if (url) {
+      window.open(url, '_blank', 'noopener');
+      portPortalSession(q, url);
+    } else setStatus(data.error || data.source || 'No locked collector URL');
   });
+
+  function portPortalSession(q, url) {
+    if (!authToken) return;
+    fetch('/api/extractors/session', {
+      method: 'POST',
+      headers: headers(true),
+      body: JSON.stringify({
+        q: q || lastQuery,
+        event: 'opened_portal',
+        notes: url || ''
+      })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data && data.pat && data.pat.token) {
+          try { sessionStorage.setItem('wptpat', data.pat.token); } catch (e) {}
+        }
+      })
+      .catch(function () {});
+  }
+
+  if ($('res-collector')) {
+    $('res-collector').addEventListener('click', function () {
+      portPortalSession(lastQuery, $('res-collector').href);
+    });
+  }
 
   function renderSpulFromLookup(lookup, extra) {
     var url = officialUrlOf(lookup);
@@ -584,6 +745,7 @@
     lastQuery = q;
     pendingQuery = q;
     sessionStorage.setItem('wp_pending_q', q);
+    dismissUsMap();
     hideSuggest();
     $('hero-input').value = q;
     if ($('search-error')) { $('search-error').hidden = true; $('search-error').textContent = ''; }
@@ -696,10 +858,20 @@
 
   function addMsg(role, text) {
     var n = el('<div class="msg msg-' + role + '"></div>');
-    n.textContent = text;
+    var body = el('<div class="msg-body"></div>');
+    body.textContent = text;
+    n.appendChild(body);
     document.getElementById('messages').appendChild(n);
     document.getElementById('messages').scrollTop = 99999;
     return n;
+  }
+
+  function applyChatEvent(box, ev, state) {
+    if (ev.type === 'chunk' || ev.type === 'error') {
+      var body = box.querySelector('.msg-body') || box;
+      body.textContent += ev.content || '';
+    }
+    if (ev.type === 'done' && ev.training_example_id) state.id = ev.training_example_id;
   }
 
   document.getElementById('chat-form').addEventListener('submit', async function (e) {
@@ -727,6 +899,7 @@
         var reader = res.body.getReader();
         var decoder = new TextDecoder();
         var buf = '';
+        var state = { id: null };
         while (true) {
           var chunk = await reader.read();
           if (chunk.done) break;
@@ -736,14 +909,21 @@
           lines.forEach(function (line) {
             if (line.indexOf('data: ') !== 0) return;
             try {
-              var ev = JSON.parse(line.slice(6));
-              if (ev.type === 'chunk' || ev.type === 'error') box.textContent += ev.content || '';
+              applyChatEvent(box, JSON.parse(line.slice(6)), state);
             } catch (err) {}
           });
         }
+        buf += decoder.decode();
+        if (buf.indexOf('data: ') === 0) {
+          try { applyChatEvent(box, JSON.parse(buf.slice(6).trim()), state); } catch (err) {}
+        }
+        lastTrainingExampleId = state.id || lastTrainingExampleId;
+        attachAnswerRate(box, state.id);
       } else {
         var data = await res.json();
-        addMsg('ai', data.content || JSON.stringify(data));
+        var jsonBox = addMsg('ai', data.content || JSON.stringify(data));
+        lastTrainingExampleId = data.training_example_id || lastTrainingExampleId;
+        attachAnswerRate(jsonBox, data.training_example_id);
       }
     } catch (err) {
       addMsg('ai', 'Chat unavailable. Lookup still used the locked jurisdiction database.');
@@ -768,6 +948,17 @@
       spul.className = 'sr-only';
     })
     .catch(function () {});
+
+  fetch('/api/coverage', { headers: headers() })
+    .then(function (r) { return r.json(); })
+    .then(function (c) {
+      if (!c || !c.ok) return;
+      var n = $('badge-catalog');
+      if (n) n.textContent = c.badge || (c.rows + ' catalog slots');
+    })
+    .catch(function () {});
+
+  syncUsMap();
 
   function setAuthError(msg) {
     var n = $('auth-error');
@@ -982,6 +1173,38 @@
   $('acct-logout').addEventListener('click', signOut);
   $('acct-switch').addEventListener('click', signOut);
 
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('.rate-btn');
+    if (!btn) return;
+    var wrap = btn.closest('.answer-rate');
+    var exampleId = wrap && wrap.getAttribute('data-example-id');
+    if (!exampleId) return;
+    postTrainingRate(exampleId, Number(btn.getAttribute('data-rating')), wrap);
+  });
+
+  if ($('acct-delete-data')) {
+    $('acct-delete-data').addEventListener('click', async function () {
+      if (!confirm('Delete all training examples saved from this account? This cannot be undone.')) return;
+      var status = $('delete-data-status');
+      if (status) status.textContent = 'Deleting…';
+      try {
+        var res = await fetch('/api/account/delete-data', {
+          method: 'POST',
+          headers: headers(true),
+          body: JSON.stringify({})
+        });
+        var data = await res.json().catch(function () { return {}; });
+        if (!data.ok) {
+          if (status) status.textContent = data.error || 'Could not delete training data';
+          return;
+        }
+        if (status) status.textContent = 'Deleted ' + (data.forgotten || 0) + ' training example(s).';
+      } catch (err) {
+        if (status) status.textContent = 'Could not delete training data';
+      }
+    });
+  }
+
   document.querySelectorAll('.acct-back').forEach(function (btn) {
     btn.addEventListener('click', function () { showAcctView(btn.getAttribute('data-back') || 'menu'); });
   });
@@ -1017,7 +1240,8 @@
           display_name: $('set-name').value.trim(),
           company: $('set-company').value.trim(),
           activity_on: $('set-activity').checked,
-          learn_consent: $('set-learn') ? $('set-learn').checked : account.learn_consent
+          learn_consent: $('set-learn') ? $('set-learn').checked : account.learn_consent,
+          training_retention: $('set-retention') ? $('set-retention').value : account.training_retention
         })
       });
       var data = await res.json();

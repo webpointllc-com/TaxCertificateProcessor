@@ -6,7 +6,7 @@ This repo is no longer the placeholder app. It fuses:
 
 | Source | What we took |
 | --- | --- |
-| **Search Spul** (`search-spul-test`) | Locked collector URLs, Groq RAG prompt injection, county DB, correction/golden override rules |
+| **Search Spul** (`search-spul-test` + Squarespace **Searching**) | Locked collector URLs from the live Searching registry (`data/spul_searching_inventory.json`), Groq RAG prompt injection, county DB, correction/golden override rules |
 | **Workplace Technologies TCS / TPA / RDS** | Certificate, portfolio, and recorded-document products (clone lives on the WD Passport — GitHub org is empty) |
 | **Real-Time-Tax** | `ScaleToFit` 1280×800 identical-desktop embed, Squarespace `frame-ancestors`, session-without-3rd-party-cookies |
 | **DEP Highlighter** | WebPoint visual language (no left accent stripes) |
@@ -26,7 +26,7 @@ The importer inventories SQL dumps, CSVs, JSON, and app trees and records them i
 
 ## Database choice: Render PostgreSQL
 
-Use **Render PostgreSQL** (not SQLite, not Mongo, not a spreadsheet).
+Use **Render PostgreSQL** (not SQLite, not Mongo, not a spreadsheet). Do not stand up a second AWS RDS this month unless you are pointing `DATABASE_URL` at an **already-paid** instance.
 
 Why:
 
@@ -35,30 +35,56 @@ Why:
 - `pg` full-text search (`tsvector`) is the RAG retrieval layer that works **without** an embeddings API. Groq does chat, not embeddings.
 - JSONB holds collector payloads until the Passport dump tells us the exact columns.
 - Same private network as the web service (`DATABASE_URL` via `fromDatabase` in `render.yaml`).
+- Testing conversations on `/v1/chat` and `/v1/feedback` survive deploys. The Node app is host-agnostic (`0.0.0.0:$PORT` + `DATABASE_URL`). A later AWS cutover is `pg_dump` + the `Dockerfile`, not a product rewrite.
 
-Plan: start on **Basic 256MB** (or Free only for a 30-day trial — Free Postgres expires). Region: **Oregon**, matching the other WebPoint Render services.
+Plan: **Basic 256MB ($7/mo)**. Do **not** use Free Postgres (expires in 30 days). Region: **Oregon**.
 
-SQLite is used only as an **in-memory fallback** when `DATABASE_URL` is unset (local tests). Production on Render must set `DATABASE_URL`.
+SQLite/memory is only the local test fallback when `DATABASE_URL` is unset. Production on Render must set `DATABASE_URL`.
 
-## Server choice: Render web service (Node 18+)
+## Server + LLM (the decision)
 
-Bind `0.0.0.0:$PORT`. Starter plan for a paid members tool (Free spin-down after 15 minutes will look broken inside Squarespace). Auto-deploy from this branch once the Blueprint is applied.
+**Launch on Render, not a new AWS bill.** A greenfield ALB + Fargate + RDS + NAT stack is $45–90/mo. Render Starter + Postgres is **$14/mo** and is the professional Squarespace iframe host (Free web spin-down after 15 minutes looks broken to members). Ride existing idle AWS only if that capacity is already on the bill.
 
-Set in the dashboard (never commit):
+**Claude 4.6 is the coding agent. It is not the production tax LLM.** Production stack:
 
-- `GROQ_API_KEY` — Search Spul LLM. Lookup + certificate drafts work without it.
-- `MEMBER_ISSUE_KEY` — optional. Header `X-Issue-Key` for minting shop member codes after a payment. Never commit this.
-- `MEMBER_EMBED_KEY` — optional. Put `?k=...` on the members-page iframe so the public onrender URL can be limited later.
-- `WORKPLACE_CLONE_PATH` — only needed on a machine that can see the Passport.
+| Layer | Model | Role |
+| --- | --- | --- |
+| Workhorse | Llama 3.3 70B on Groq | County lookup, intake, FAQ, routing (`MODEL_PROVIDER=groq`) |
+| Heavy lift (optional) | Anthropic Sonnet via `ANTHROPIC_API_KEY` | Extractor heal / ambiguous certificate reasoning |
+| Year 2+ | Fine-tuned Llama 70B on *your* county data | Self-hosted GPU — not this month |
+
+Node is async, so Starter is not Gunicorn’s “2 workers = 2 chats.” Chat still waits on Groq, which is hundreds of tokens/sec, not a 60s Anthropic hold.
+
+### What the boss pays this month
+
+| Item | Monthly | Annual | Required to go live |
+| --- | --- | --- | --- |
+| Render web **Starter** | **$7** | $84 | Yes — always-on iframe |
+| Render Postgres **Basic 256MB** | **$7** | $84 | Yes — durable memory |
+| Groq Llama 3.3 70B | $0–15 at launch volume | ~$0–180 | Free key first; card later |
+| Anthropic API | $0 | $0 | Off until we turn it on |
+| **Greenfield AWS** (ALB + Fargate + RDS + NAT) | **$45–90** | $540–1,080 | No — more expensive until ~500+ users |
+| **Total to turn it on** | **$14** | **$168** | |
+
+Render **is** scalable at an affordable rate through a few hundred concurrent researchers. Starter is 512MB / 0.5 CPU, one instance — fine for launch. Standard ($25) and Pro ($85, autoscale) are the next rungs. Node is async, so this is not Gunicorn’s two-chat ceiling.
+
+**AWS is not cheaper just because the company already has an AWS login.** A *new* production stack (ALB ~$16 + Fargate ~$15–25 + RDS ~$12–25 + NAT Gateway ~$32) is **3–6× Render** before Groq. AWS wins only when (a) this app sits on **idle RDS/ECS you already pay for** (marginal cost near $0), or (b) you are north of ~500–1,200 users with reserved capacity. Same Node app either way: `0.0.0.0:$PORT` + `DATABASE_URL`. `Dockerfile` is the swap, not a rewrite of the product.
+
+Do not rebuild every flow onto AWS to “save money” at 50 users — that is how a $14 tool becomes a $70 tool that still talks to Groq. Own-LLM pay day (RunPod $25 + three Render env vars) is [`docs/OWN_LLM.md`](docs/OWN_LLM.md). The catalog stays the product.
+
+Pay: open [`/pay.html`](public/pay.html) (or `npm run pay` / `bash scripts/ru.sh`). That page has the selected stack (Starter web + Postgres Basic 256MB = **$14/mo**) and a **Prep to pay** toggle. Flip it to jump straight to [Render billing](https://dashboard.render.com/billing), then [Apply Blueprint](https://dashboard.render.com/blueprint/new?repo=https://github.com/webpointllc-com/TaxCertificateProcessor), then paste Groq key from [console.groq.com/keys](https://console.groq.com/keys) into the Render Dashboard (never git).
 
 ## Squarespace members page
 
-1. Create the paid members area on [webpointllc.com](https://webpointllc.com).
-2. On the paid page, add a **Code Block**.
-3. Paste `public/SQUARESPACE_EMBED.html` (update the `src` host after the first Render deploy).
-4. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
-5. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide** and **Architecture**.
-6. Page load shows the same Property Tax Intelligence window members use. One search is free. After that: create a free account (we email a 6-digit code — no Apple/Google, no magic login links). Members is one plan, unlocked with a shop code WebPoint issues after payment (`WP-XXXX-XXXX`). The avatar opens the account sheet (profile, recents, updates, settings, usage, invites, messages). Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
+The live operator page is [webpointllc.com/searching](https://webpointllc.com/searching). Layout is already decided:
+
+1. **Top** — Tax Certificate Processor iframe (`class="wp-tcs-frame"`, `src="https://tax-certificate-processor.onrender.com/"`). Paste `public/SQUARESPACE_EMBED.html`. Render billing and OTP are operator-owned.
+2. **Below** — County Tax Collecting Entity Index (~1,675 validated collector URLs). Same registry as `data/spul_searching_inventory.json` and `public/County_Names_Urls_BillValidated.html`.
+3. The iframe is `width: 100%` with `padding-top: 62.5%` (800/1280). The tool **scale-transforms the full desktop layout** so a phone iframe is the same composition, just smaller.
+4. Optional: embed the end-user manual from `public/SQUARESPACE_MANUAL_EMBED.html` (same 62.5% iframe, `/manual.html`). The tool header includes **User guide** and **Architecture**.
+5. Members land on the Google-style search bar. Sign in is required before a research task. Email/password plus a confirmation link; Google/Apple light up when those keys are set on Render. Shop code `WP-XXXX-XXXX` or skip for one free task. Sessions use `X-Auth-Token` in `localStorage` so the Squarespace iframe still works without third-party cookies.
+
+Site passwords and Restricted Index access codes stay with the operator. They are never stored in this repo.
 
 Optional script tag (host will match the request):
 
@@ -71,8 +97,19 @@ Optional script tag (host will match the request):
 ```bash
 npm install
 npm test
-npm start   # http://localhost:3000
+npm start          # http://localhost:3000
+npm run pay        # chmod ru.sh, copy Claude handoff, open billing, start 0.0.0.0:$PORT
+# then: /pay.html?prep=1  and  /embed-preview.html  (62.5% iframe, working now)
 ```
+
+Same process in Docker (Render and a later AWS cutover use this image):
+
+```bash
+docker build -t webpoint-tcs .
+docker run --rm -p 3000:3000 -e PORT=3000 webpoint-tcs
+```
+
+Cutover runbook when load actually requires AWS: [`docs/HOST_SWAP.md`](docs/HOST_SWAP.md). ECS example: [`deploy/ecs-task-definition.example.json`](deploy/ecs-task-definition.example.json).
 
 ## Chippewa County WI (first county)
 
@@ -89,6 +126,7 @@ S-PUL must know every jurisdiction on the [WPT Production Log](https://docs.goog
 ```bash
 npm run sync:sheet          # fetch sheet, merge stubs, apply golden locks
 npm run import:master       # optional local MASTER_VALIDATED ndjson + golden
+npm run import:searching    # fuse Squarespace Searching / searchpages URL grid
 ```
 
 Missing sheet counties are stored with `coverageStatus: needs_correction` and **no invented URL**. Typos such as `WI-Horry` alias to `SC-Horry`. Catalog: `data/wpt_production_counties.json`.

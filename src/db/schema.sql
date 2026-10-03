@@ -163,6 +163,7 @@ ALTER TABLE accounts ADD COLUMN IF NOT EXISTS plan TEXT NOT NULL DEFAULT 'free';
 ALTER TABLE accounts ADD COLUMN IF NOT EXISTS search_count INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE accounts ADD COLUMN IF NOT EXISTS member_code_id TEXT;
 ALTER TABLE accounts ADD COLUMN IF NOT EXISTS auth_provider TEXT NOT NULL DEFAULT 'password';
+ALTER TABLE accounts ADD COLUMN IF NOT EXISTS training_retention TEXT NOT NULL DEFAULT 'until_delete';
 
 CREATE TABLE IF NOT EXISTS email_otps (
   id TEXT PRIMARY KEY,
@@ -254,3 +255,84 @@ CREATE TABLE IF NOT EXISTS session_feedback (
 );
 
 CREATE INDEX IF NOT EXISTS session_feedback_key_idx ON session_feedback (jurisdiction_key, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS validation_runs (
+  id TEXT PRIMARY KEY,
+  generated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  probed INTEGER NOT NULL DEFAULT 0,
+  counts JSONB NOT NULL DEFAULT '{}'::jsonb,
+  look_for_hits JSONB NOT NULL DEFAULT '{}'::jsonb,
+  method TEXT,
+  how JSONB NOT NULL DEFAULT '[]'::jsonb,
+  notes TEXT
+);
+
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS look_for_hits JSONB NOT NULL DEFAULT '{}'::jsonb;
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS method TEXT;
+ALTER TABLE validation_runs ADD COLUMN IF NOT EXISTS how JSONB NOT NULL DEFAULT '[]'::jsonb;
+
+CREATE TABLE IF NOT EXISTS extractor_portal_sessions (
+  id TEXT PRIMARY KEY,
+  account_id TEXT,
+  session_id TEXT,
+  jurisdiction_key TEXT NOT NULL,
+  event TEXT NOT NULL,
+  fields JSONB NOT NULL DEFAULT '[]'::jsonb,
+  notes TEXT,
+  token_hash TEXT,
+  expires_at TIMESTAMPTZ,
+  family_id TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS token_hash TEXT;
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ;
+ALTER TABLE extractor_portal_sessions ADD COLUMN IF NOT EXISTS family_id TEXT;
+
+-- Own-model training data. Written only for accounts with learn_consent = true.
+-- Export re-checks CURRENT consent, so turning learning off stops future use immediately.
+CREATE TABLE IF NOT EXISTS training_examples (
+  id TEXT PRIMARY KEY,
+  account_id TEXT NOT NULL,
+  route TEXT NOT NULL,
+  jurisdiction_key TEXT,
+  messages JSONB NOT NULL,
+  reply TEXT NOT NULL,
+  model TEXT,
+  rating SMALLINT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS training_examples_account_idx ON training_examples (account_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS training_examples_created_idx ON training_examples (created_at);
+
+-- Editor protocol: a human (or Claude, flagging only) reviews every captured answer before it can train.
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS review_status TEXT NOT NULL DEFAULT 'pending';
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS corrected_reply TEXT;
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS review_note TEXT;
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS reviewer TEXT;
+ALTER TABLE training_examples ADD COLUMN IF NOT EXISTS reviewed_at TIMESTAMPTZ;
+CREATE INDEX IF NOT EXISTS training_examples_review_idx ON training_examples (review_status, created_at);
+
+-- Extractor lock proposals: Claude or a validator run proposes a collector search URL,
+-- a human editor approves it, and the approved lock overrides the file catalog at runtime.
+CREATE TABLE IF NOT EXISTS extractor_lock_proposals (
+  id TEXT PRIMARY KEY,
+  jurisdiction_key TEXT NOT NULL,
+  state TEXT,
+  county TEXT,
+  url TEXT NOT NULL,
+  verdict TEXT,
+  reason TEXT,
+  dr_fields JSONB NOT NULL DEFAULT '[]'::jsonb,
+  evidence JSONB NOT NULL DEFAULT '{}'::jsonb,
+  proposer TEXT,
+  proposer_role TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',
+  reviewer TEXT,
+  review_note TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  reviewed_at TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS extractor_lock_proposals_status_idx ON extractor_lock_proposals (status, created_at);
+CREATE INDEX IF NOT EXISTS extractor_lock_proposals_key_idx ON extractor_lock_proposals (jurisdiction_key, created_at DESC);

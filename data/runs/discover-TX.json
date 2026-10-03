@@ -1,0 +1,1121 @@
+{
+  "state": "TX",
+  "generated_at": "2026-10-03T17:59:18.367Z",
+  "head": "d0725cc",
+  "method": "extractorValidation.discoverMany",
+  "locked": false,
+  "counties_json_edited": false,
+  "unverified": 324,
+  "skipped_non_county": 94,
+  "skipped_keys": [
+    "TX-AndrewsCityISD",
+    "TX-ASW",
+    "TX-BAMunitax",
+    "TX-BaileyCAD",
+    "TX-BAMMELUD",
+    "TX-BarbersHillISD",
+    "TX-BellCAD",
+    "TX-BellCountyC/OApprDistrict",
+    "TX-BrownCAD",
+    "TX-BrownCountyCAD",
+    "TX-BurkburnettISD",
+    "TX-CallahanCAD",
+    "TX-CarrolltonFarmersISD",
+    "TX-CarrolltonFarmsISD",
+    "TX-CarroltonFarmersISD",
+    "TX-ChannelviewISD",
+    "TX-CherokeeCAD",
+    "TX-ClayCAD",
+    "TX-ClearCreekCityWaterAuthority",
+    "TX-ClearCreekISD",
+    "TX-ClearLakeCity",
+    "TX-ClearLakeCityWater",
+    "TX-DALLAMCAD-DAN",
+    "TX-DallasCountyURD",
+    "TX-DeltaCAD",
+    "TX-DewittCAD",
+    "TX-EastlandCAD",
+    "TX-EASTLANDCOUNTYAPPRAISALDISTRICT",
+    "TX-EdwardsCAD",
+    "TX-ELPASOCITYTAXOFFICE",
+    "TX-Equitax",
+    "TX-FloresvilleISD",
+    "TX-FloydCAD",
+    "TX-FriendswoodISD",
+    "TX-FrioCAD",
+    "TX-GainesCAD",
+    "TX-GAINESCOUNTYC/OAPPRAISALDISTRICT",
+    "TX-GalenaParkISD",
+    "TX-GARLANDCITYC/OTAXDEPARTMENT",
+    "TX-GillespieCAD",
+    "TX-GladewaterISD",
+    "TX-GrandPrairieMetropolitanURD",
+    "TX-GrapevineISD/Colleyville",
+    "TX-GrimesCAD",
+    "TX-HarrisCoMUD",
+    "TX-HarrisCountyMUD109",
+    "TX-HARRISCOUNTYMUD109BSP",
+    "TX-HARRISCOUNTYMUD36",
+    "TX-Harris-BrazoriaMUD",
+    "TX-HARRISONCENTRALAPPRAISALDISTRICT",
+    "TX-HARRISONCENTRALAPPRAISALDISTRICT-DAN",
+    "TX-HartleyCAD",
+    "TX-HARTLEYCOUNTYC/OAPPRDISTRICT",
+    "TX-HILLCADTAXCOLLECTIONS",
+    "TX-HoodCAD",
+    "TX-HowardCAD",
+    "TX-HutchinsonCAD",
+    "TX-JonesCAD",
+    "TX-JudsonISD",
+    "TX-KatyISD",
+    "TX-KleinISD",
+    "TX-KnoxCAD",
+    "TX-LampasasCAD",
+    "TX-LiveOakCAD",
+    "TX-LubbockCAD",
+    "TX-LUBBOCKCENTRALAPPRAISALDISTRICT",
+    "TX-McAllenCity",
+    "TX-MESQUITECITYPIDONLYCOLLECTION",
+    "TX-MesquiteCity/ISD",
+    "TX-MesquiteISD",
+    "TX-MidlandCAD",
+    "TX-MIDLANDCENTRALAPPRAISALDISTRICT",
+    "TX-MillsCAD",
+    "TX-MontagueCAD",
+    "TX-MooreCAD",
+    "TX-MorrisCAD",
+    "TX-NacogdochesCAD",
+    "TX-NolanCAD",
+    "TX-ParkerCAD",
+    "TX-PineVillagePUD",
+    "TX-RedRiverCAD",
+    "TX-RockwallCAD",
+    "TX-SheldonISD",
+    "TX-SpringISD",
+    "TX-SPRINGISDTAXOFFICE",
+    "TX-TaxTech",
+    "TX-TaylorCAD",
+    "TX-TerryCAD",
+    "TX-TitusCAD",
+    "TX-TitusCountyCAD",
+    "TX-UvaldeCountyCAD",
+    "TX-WallerCityISD",
+    "TX-WallerCountyCAD",
+    "TX-WiseCAD"
+  ],
+  "checked": 230,
+  "found": [],
+  "cloudflare": [],
+  "none": [
+    {
+      "key": "TX-Aldine",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Alief",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Andrews",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-AndrewsISDTX0020501",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Aransas",
+      "reason": "no collector page",
+      "links_found": 6
+    },
+    {
+      "key": "TX-AransasTX0040000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-AssessmentsOfTheSouthwest",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-AtacosaTX0070000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Bailey",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Bandera",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Bastrop",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Bell",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-BellCoC/OApprDist",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Blanco",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-BLANCOCOUNTYCENTRALCOLLECTIONS",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-BobLeard",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-BobbLeard",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Bosque",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-BosqueTX0180000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Bowie",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Brazoria",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Brewster",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-BrewsterTX0220000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-BrownCountyCntrl.Collections",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Burleson",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Caldwell",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Calhoun",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Callahan",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Cameron",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-Camp",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-CampTX0320000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-CASSCOUNTY-DAN",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Clay",
+      "reason": "no collector page",
+      "links_found": 9
+    },
+    {
+      "key": "TX-ClayTX0390000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-ClearCreek",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Coleman",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Colorado",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-ColoradoTX0450000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Coryell",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Cypress-Fairbanks",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Dallam",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-DallamCADTX0560501",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-De Witt",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Delta",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-DeltaTX0600000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-DentonCountyLID1",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-DentonCountyRUD1",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Dimmit",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-EastEndManagement",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Eastland",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-El Paso",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Ellis",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-Falls",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-FallsTX0730000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Fannin",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Fayette",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-FAYETTECOCENTRALCOLLECTIONS",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-FayetteCountyCentralCollectionsTX0752001",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Floresville",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Floyd",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-FortBend",
+      "reason": "no collector page",
+      "links_found": 7
+    },
+    {
+      "key": "TX-FortBendCounty,TX",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Franklin",
+      "reason": "no collector page",
+      "links_found": 2
+    },
+    {
+      "key": "TX-Freestone",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-FreestoneTX0810000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Frio",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-G.Ordeneaux",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Gaines",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Galveston",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-GillespieCADTX0860000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Gonzales",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-GooseCreek",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-GooseCreekConsolidatedTaxOffice",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Grapevine",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-GRAPEVINEAREATAXOFFICE",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Grapevine-Colleyville",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Grapevine-ColleyvilleAreaTaxOffice",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Guadalupe",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Hale",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Harlingen",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-HarrisCoMud36A",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-HarrisCountyMUD109TX1010934",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-HarrisCountyMUD36TX1015977",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-HarrisMUD109",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-HarrisMUD36",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-HarrisMUD386",
+      "reason": "no collector page",
+      "links_found": 2
+    },
+    {
+      "key": "TX-HarrisMUD489B",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-HarrisREM",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Harris11088",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Harris11741",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Harris12322",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Harris15114",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Harris88880",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Harrison",
+      "reason": "no collector page",
+      "links_found": 5
+    },
+    {
+      "key": "TX-Hartley",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-HartleyTX1030000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Hill",
+      "reason": "no collector page",
+      "links_found": 2
+    },
+    {
+      "key": "TX-HillCADTX1090501",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Hockley",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Hood",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Houston",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Howard",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-HowardTX1140000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Hunt",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Hutchinson",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-ITMServices",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Jack",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-Jackson",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-JacksonTX1200000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Jones",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-Karnes",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Kendall",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Kerr",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Kimble",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-KnoxTX1380000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-LLanoTX1500000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Lamar",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-LamarTX1390000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Lamb",
+      "reason": "no collector page",
+      "links_found": 4
+    },
+    {
+      "key": "TX-Lampasas",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-LampasasTX1410000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Lavaca",
+      "reason": "no collector page",
+      "links_found": 2
+    },
+    {
+      "key": "TX-Lee",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-LeeTX1440000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Leon",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-LeonTX1450000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-LibertyTX1460000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Lipscomb",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-LiveOak",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Llano",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Loving",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Lubbock",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-MadisonTX1570000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Matagorda",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-MatagordaTX1610000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-McCulloch",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Medina",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Medina/It'sreallyMatagorda",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Mesquite",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-MesquiteAreaTaxOffice",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Midland",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Milam",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-MilamTX1660000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-MillsTX1670000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Montague",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-MontagueCADTX1690501",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-MontagueTX1690000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Moore",
+      "reason": "no collector page",
+      "links_found": 2
+    },
+    {
+      "key": "TX-MooreTX1710000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Morris",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-MultiAgnecy",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Nacogdoches",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Nolan",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-NolanTX1770000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-NorthWestDallas",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-NorthWestDallasFCD",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-NorthwestDallasCountyFCD",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-NorthwestDallasCountyFCDTX0570906",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-NWDALLASCOUNTYFCD",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-PaloPintoCntrl.Appraisal",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Panola",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Parker",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Parmer",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-ParmerTX1850000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Pecos",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Rains",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Real",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-RedRiver",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-RedRiverTX1940000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-RobertsonTX1980000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Rockwall",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Runnels",
+      "reason": "no collector page",
+      "links_found": 2
+    },
+    {
+      "key": "TX-Rusk",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Sabine",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-San Augustine",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-SanJacinto",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-SanJacintoTaxService",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-SanJacintoTX2040000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-San Patricio",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Scurry",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Somervell",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-SomervellCentral",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-SOMERVELLCENTRALCOLLECTIONS",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-SomervellCentralCollectionsTX2132001",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-StAugustineTX2030000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Starr",
+      "reason": "no collector page",
+      "links_found": 4
+    },
+    {
+      "key": "TX-Stephens",
+      "reason": "no collector page",
+      "links_found": 4
+    },
+    {
+      "key": "TX-Sulphur",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-SulphurSprings",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-SulphurSpringsISDTX1120601",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Swisher",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Taylor",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-TAYLORCOUNTYCENTRALAPPRDIST",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-TerrellTX2220000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Terry",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-TERRYCOCENTRALCOLLECTIONS",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-TitusCounty",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-TitusCountyCntrlAppraisal",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Travis",
+      "reason": "no collector page",
+      "links_found": 7
+    },
+    {
+      "key": "TX-Trinity",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-TrinityGroverton",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Tyler",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Upshur",
+      "reason": "no collector page",
+      "links_found": 4
+    },
+    {
+      "key": "TX-UPSHURCOUNTY-DAN",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-UtilityTax",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-UVALDECOCENTRALCOLLECTIONS",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-UvaldeCountyCentralCollectionsTX2322001",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-UvaldeCountyCntrl.Collections",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-ValwoodImprovementAuthority",
+      "reason": "no collector page",
+      "links_found": 4
+    },
+    {
+      "key": "TX-VanZandt",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Victoria",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Walker",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Waller",
+      "reason": "no collector page",
+      "links_found": 4
+    },
+    {
+      "key": "TX-Ward",
+      "reason": "no collector page",
+      "links_found": 2
+    },
+    {
+      "key": "TX-WardTX2380000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Webb",
+      "reason": "no collector page",
+      "links_found": 1
+    },
+    {
+      "key": "TX-Wharton",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-WhartonTX2410000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Wheeler",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-WheelerAssociates",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Wilbarger",
+      "reason": "no collector page",
+      "links_found": 3
+    },
+    {
+      "key": "TX-WilbargerTX2440000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Williamson",
+      "reason": "no collector page",
+      "links_found": 2
+    },
+    {
+      "key": "TX-Wilson",
+      "reason": "no collector page",
+      "links_found": 7
+    },
+    {
+      "key": "TX-Wise",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-Wood",
+      "reason": "no collector page",
+      "links_found": 0
+    },
+    {
+      "key": "TX-WoodTX2500000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Yoakum",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-YoakumTX2510000",
+      "reason": "No start page on file. Pass the county homepage as url."
+    },
+    {
+      "key": "TX-Zapata",
+      "reason": "No start page on file. Pass the county homepage as url."
+    }
+  ],
+  "counts": {
+    "checked": 230,
+    "found": 0,
+    "cloudflare": 0,
+    "none": 230
+  },
+  "ms": 132215
+}

@@ -53,6 +53,10 @@ describe('central operator and shared county agents', () => {
     assert.match(routed.routed_to, /WI-Chippewa/i);
     assert.equal(routed.agent.role, 'county_agent');
     assert.ok(routed.agent.parcel_format);
+    assert.equal(routed.handoff.seamless, true);
+    assert.equal(routed.handoff.from.role, 'central');
+    assert.equal(routed.handoff.to.role, 'county_agent');
+    assert.match(routed.handoff.to.badge, /Chippewa/i);
   });
 
   it('shares a discovered parcel format with the next user of that county', async () => {
@@ -65,6 +69,8 @@ describe('central operator and shared county agents', () => {
     const one = await first.json();
     assert.equal(one.ok, true, JSON.stringify(one));
     assert.ok(one.agent.parcel_format);
+    assert.equal(one.handoff.seamless, true);
+    assert.match(one.handoff.to.badge, /Chippewa/i);
 
     const b = await confirmedToken(`bill.op.b.${Date.now()}@webpointllc.com`);
     const second = await fetch(`${base}/api/intelligence`, {

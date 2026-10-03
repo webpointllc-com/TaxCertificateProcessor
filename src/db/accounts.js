@@ -46,6 +46,10 @@ function publicAccount(row) {
     initial: (row.display_name || row.email || 'U').trim().charAt(0).toUpperCase(),
     created_at: row.created_at,
     learn_consent: row.learn_consent === true || row.learn_consent === 1,
+    training_retention:
+      row.training_retention === '90d' || row.training_retention === '1y' || row.training_retention === 'until_delete'
+        ? row.training_retention
+        : 'until_delete',
     email_verified: row.email_verified === true || row.email_verified === 1,
     plan,
     is_member: plan === 'member',
@@ -121,6 +125,7 @@ async function signup({ email, password, display_name, company, sessionId }) {
     password_hash,
     activity_on: false,
     learn_consent: false,
+    training_retention: 'until_delete',
     email_verified: false,
     plan: 'free',
     search_count: guestCount > 0 ? 1 : 0,
@@ -306,6 +311,7 @@ async function upsertOAuth({ email, display_name, provider, sessionId }) {
       password_hash,
       activity_on: false,
       learn_consent: false,
+      training_retention: 'until_delete',
       email_verified: true,
       plan: 'free',
       search_count: guestCount > 0 ? 1 : 0,
@@ -459,10 +465,27 @@ async function updateAccount(accountId, patch) {
   if (patch.company !== undefined) row.company = String(patch.company).trim();
   if (typeof patch.activity_on === 'boolean') row.activity_on = patch.activity_on;
   if (typeof patch.learn_consent === 'boolean') row.learn_consent = patch.learn_consent;
+  if (patch.training_retention != null) {
+    const v = String(patch.training_retention)
+      .trim()
+      .toLowerCase()
+      .replace(/[\s-]+/g, '_');
+    if (v === '90d' || v === '90' || v === '90_days' || v === '90days') row.training_retention = '90d';
+    else if (v === '1y' || v === '1_year' || v === 'year' || v === '365d') row.training_retention = '1y';
+    else if (v === 'until_delete' || v === 'untildelete' || v === 'keep') row.training_retention = 'until_delete';
+    else return { ok: false, error: 'Retention must be 90d, 1y, or until_delete' };
+  }
   if (usingPostgres()) {
     await pool.query(
-      `UPDATE accounts SET display_name = $2, company = $3, activity_on = $4, learn_consent = $5 WHERE id = $1`,
-      [accountId, row.display_name, row.company, row.activity_on, row.learn_consent === true]
+      `UPDATE accounts SET display_name = $2, company = $3, activity_on = $4, learn_consent = $5, training_retention = $6 WHERE id = $1`,
+      [
+        accountId,
+        row.display_name,
+        row.company,
+        row.activity_on,
+        row.learn_consent === true,
+        row.training_retention === '90d' || row.training_retention === '1y' ? row.training_retention : 'until_delete'
+      ]
     );
   }
   return { ok: true, account: publicAccount(row) };
@@ -772,6 +795,7 @@ module.exports = {
   issueOtp,
   logout,
   accountForToken,
+  findById,
   updateAccount,
   addRecent,
   listRecents,
