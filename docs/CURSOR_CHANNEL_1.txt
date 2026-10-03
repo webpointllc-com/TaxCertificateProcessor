@@ -1,17 +1,19 @@
-READY
+DISCOVER TX
+state: TX
+checked: 230
+found: 0
+cloudflare: 0
+none: 230
+skipped_non_county: 94
+file: data/runs/discover-TX.json
+head: d0725cc
+locked: false
+counties_json_edited: false
+branch: feature/own-llm
+note: HTTP discovery found no lock-eligible collector pages. 147 had no start URL; 83 had a start page and still no collector. Matches Twin 2: HTTP-only discovery is at its limit.
+
+READY (prior)
 sha: 07511163981778ceb1903a20a10b3e5c92a98415
 onto: a80415025075f133353965ec6e3d217e12f54b87
 tests: 178/178 pass
 branch: feature/own-llm
-
-Thumbs up/down -> POST /v1/training/rate with training_example_id
-(search JSON + chat SSE done carry it).
-POST /api/account/delete-data calls training.forgetAccount(account.id).
-Retention 90d / 1y / until_delete applied to training_examples.
-
-Payday (after Claude posts the pod URL), three Render settings:
-1. WEBPOINT_LLM_URL
-2. WEBPOINT_LLM_KEY
-3. MODEL_PROVIDER=webpoint
-
-Did not push 850c426 over Mac a804150. Branch only, no merge.
