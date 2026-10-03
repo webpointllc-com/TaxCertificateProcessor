@@ -1,0 +1,15 @@
+READY
+onto: a80415025075f133353965ec6e3d217e12f54b87
+tests: 169/169 pass
+branch: feature/own-llm
+
+Payday (after Claude posts the RunPod URL), three Render settings:
+1. WEBPOINT_LLM_URL
+2. WEBPOINT_LLM_KEY
+3. MODEL_PROVIDER=webpoint
+
+Checklist: docs/OWN_LLM.md
+RunPod credit: $25 to start. Groq stays fallback.
+Never git keys.
+
+Did not push 850c426 over Mac a804150.

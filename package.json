@@ -19,6 +19,7 @@
     "validate:extractors": "node scripts/validate-extractors.js --all",
     "validate:apply": "node scripts/apply-validation.js",
     "validate:families": "node scripts/validate-families.js",
+    "validate:pass2": "node scripts/validate-extractors.js --pass2",
     "deepshake:mac": "bash scripts/deepshake-hunt-mac.sh",
     "sync:sheet": "node scripts/sync-sheet-counties.js",
     "test": "node --test tests/*.test.js"

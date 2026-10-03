@@ -14,10 +14,22 @@ const siteValidator = require('../src/services/siteValidator');
 const { invalidateCountiesCache } = require('../src/services/urlFinder');
 
 const ROOT = path.join(__dirname, '..');
-const HITS_PATH = path.join(ROOT, 'data', 'validation_hits.json');
-const APPLY_LOG = path.join(ROOT, 'data', 'validation_apply.json');
+const DEFAULT_HITS = path.join(ROOT, 'data', 'validation_hits.json');
+const DEFAULT_LOG = path.join(ROOT, 'data', 'validation_apply.json');
 const TODAY = new Date().toISOString().slice(0, 10);
-const DRY = process.argv.includes('--dry-run');
+
+const argv = Object.fromEntries(
+  process.argv.slice(2).map((a) => {
+    const m = a.match(/^--([^=]+)=(.*)$/);
+    return m ? [m[1], m[2]] : [a.replace(/^--/, ''), true];
+  })
+);
+const DRY = Boolean(argv['dry-run']);
+const UPGRADES_ONLY = Boolean(argv['upgrades-only']);
+const HITS_PATH = argv.hits
+  ? path.resolve(ROOT, argv.hits)
+  : DEFAULT_HITS;
+const APPLY_LOG = argv.log ? path.resolve(ROOT, argv.log) : DEFAULT_LOG;
 
 function compact(s) {
   return compactJurisdictionName(s);
@@ -91,6 +103,7 @@ function main() {
       }
 
       const wasVerified = Boolean(row.verified);
+      if (UPGRADES_ONLY && hit.verdict !== 'collector_search') continue;
       row.lastProbed = TODAY;
       if (hit.title) row.probeTitle = String(hit.title).slice(0, 160);
       row.layout = {

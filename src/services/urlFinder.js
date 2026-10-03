@@ -9,6 +9,7 @@ const {
 } = require('./spulTruth');
 const { parseJurisdictionRaw } = require('./parseJurisdiction');
 const drProduction = require('./drProduction');
+const extractorCatalog = require('./extractorCatalog');
 
 const countiesPath = path.join(__dirname, '../../data/counties.json');
 const goldenPath = path.join(__dirname, '../../data/golden_overrides.json');
@@ -185,6 +186,7 @@ function invalidateGoldenCache() {
   playbookCache = null;
   vendorPlaybookCache = null;
   probeCache = null;
+  extractorCatalog.invalidate();
 }
 
 function invalidateCountiesCache() {
@@ -379,6 +381,12 @@ function lookupForApi(county, state) {
   const googleFallback = isGoogleFallbackUrl(result.url);
   const known = knownRecord(county, state);
   const homepageOnly = Boolean(result.url && isGenericCountyHomepage(result.url, result) && !locked);
+  const dump = extractorCatalog.dumpFor(
+    known ? known.county : county,
+    known ? known.state : state,
+    known && known.key
+  );
+  const dumpUrl = dump && isRealHttpUrl(dump.url) && !isGoogleFallbackUrl(dump.url) ? dump.url : null;
   return {
     ...result,
     urlLocked: locked,
@@ -389,7 +397,11 @@ function lookupForApi(county, state) {
     displayUrl: locked ? result.url : null,
     homepageOnly,
     canonicalCounty: known ? known.county : county,
-    canonicalState: known ? known.state : (state || null)
+    canonicalState: known ? known.state : (state || null),
+    dumpKey: dump ? dump.key : null,
+    dumpUrl,
+    dumpSource: dump ? dump.source || null : null,
+    dumpVersion: dump ? dump.version || null : null
   };
 }
 

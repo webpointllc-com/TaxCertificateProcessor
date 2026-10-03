@@ -59,7 +59,7 @@
     document.getElementById('prep-state').textContent = on
       ? 'On — billing, Blueprint, then Groq key. Card is added on Render, not here.'
       : 'Off — review the stack. Nothing is charged until you add a card on Render.';
-    ['btn-billing', 'btn-blueprint', 'btn-groq'].forEach(function (id) {
+    ['btn-billing', 'btn-blueprint', 'btn-groq', 'btn-own'].forEach(function (id) {
       var el = document.getElementById(id);
       el.classList.toggle('ready', on);
       el.setAttribute('aria-disabled', on ? 'false' : 'true');

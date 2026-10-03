@@ -82,8 +82,8 @@ On a Mac with T7: `npm run deepshake:mac`.
 | Per county, live | Search → county agent → Open official tax search → `wptpat_` minted, session ported |
 | Every ~28 days | Always-on Render Starter re-runs `validate-families.js` (O(families)). Full unique-URL GET is a release command, not the monthly tick |
 | After each pass | Operator `validate:apply` + git commit so catalog locks survive deploys (Render disk is ephemeral) |
-| After each pass | Operator `validate:apply` + git commit so catalog locks survive deploys (Render disk is ephemeral) |
 | Before a release | Operator runs the three npm commands above |
+| Pass-2 leftover hosts | `npm run validate:pass2` writes `data/validation_pass2.json` only. Never overwrites `validation_run.json` / `validation_hits.json`. Apply collector upgrades with `--hits=data/validation_pass2.json --upgrades-only` |
 
 Set `VALIDATE_MONTHLY=0` to disable the in-process monthly tick (tests and one-off boxes).
 

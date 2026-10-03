@@ -4,6 +4,7 @@ const { lookupForApi } = require('./urlFinder');
 const { hasUrlLock, enforceLockedSpulUrl, isGoogleFallbackUrl } = require('./spulTruth');
 const { buildScenarioContext, getFewShotExamples } = require('./scenarioRouter');
 const drProduction = require('./drProduction');
+const extractorCatalog = require('./extractorCatalog');
 
 const statutesPath = path.join(__dirname, '../../data/statutes.json');
 const searchingPagePath = path.join(__dirname, '../../data/searching_page.json');
@@ -42,7 +43,8 @@ CANONICAL OPERATOR INDEX:
 - Live page: ${page.canonicalUrl || 'https://webpointllc.com/searching'}
 - Top of that page is the Tax Certificate Processor iframe (class ${cls}, src ${src}). Same snippet as public/SQUARESPACE_EMBED.html. Render billing, OTP, and membership are operator-owned — this model does not invent a paywall.
 - Below the iframe is the ${label} (${n} validated collector URLs). That live list, public/County_Names_Urls_BillValidated.html, and data/spul_searching_inventory.json are the same registry.
-- The Development Extractor table dump (data/extractor_urls.txt) is the same extractor family. Prefer a Search URL over Base. Never lock google.com, {parcel} templates, or empty rows. Searching inventory + golden overrides win when they disagree with a raw Base URL.
+- The Development Extractor table dump (data/extractor_urls.txt / extractor_urls.json, ~2,030 usable Search URLs) is the same extractor family. Prefer a Search URL over Base. Never lock google.com, {parcel} templates, or empty rows. Searching inventory + golden overrides win when they disagree with a raw Base URL.
+- When a county is named, draw from that county's dump row, playbook, vendor family, and (if the account allowed learning) that account's session_feedback. Groq weights are rented and are not trained. The county extractor slot is the WebPoint model.
 - Output document is DR Production Results (finale/, 40 columns). Talk about the whole row for this parcel. Isolate a column only when the user names it. User/live feedback heals that county's extractor (parcel_format / exceptions); a locked collector URL stays locked.
 - KY clerk/sheriff tax is ECCLIX at ecclix.com (not parked eclix.com). PVDNet is view.properlytaxes.com. Oldham KY is ptax1.csiky.com. LA sheriff SNS is snstaxpayments.com.
 - Never invent URLs. Never echo site passwords, index access codes, or OTP secrets.`;
@@ -144,6 +146,15 @@ ${urlResult.method.steps.map((s) => `- ${s}`).join('\n')}`;
   if (urlResult.vendor) {
     injection += `
 Vendor: ${urlResult.vendor}`;
+  }
+
+  if (options.extractorContext && options.extractorContext.promptBlock) {
+    injection += options.extractorContext.promptBlock;
+  } else {
+    injection += extractorCatalog.catalogBlock(county, state, urlResult);
+    if (options.extractorContext && options.extractorContext.feedback) {
+      injection += extractorCatalog.learnedBlock(options.extractorContext.feedback);
+    }
   }
 
   const locked = Boolean(urlResult.urlLocked && urlResult.officialUrl);

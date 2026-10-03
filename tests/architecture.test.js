@@ -47,6 +47,8 @@ describe('architecture diagram', () => {
     assert.match(blueprint, /plan: basic-256mb/);
     assert.doesNotMatch(blueprint, /plan: free/);
     assert.match(blueprint, /GROQ_API_KEY/);
+    assert.match(blueprint, /WEBPOINT_LLM_URL/);
+    assert.match(blueprint, /WEBPOINT_LLM_KEY/);
     assert.match(blueprint, /sync: false/);
     assert.match(html, /Dockerfile/);
     assert.match(html, /\$45–90|\$45-90/);

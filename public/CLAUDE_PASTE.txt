@@ -24,6 +24,13 @@ Selected and required:
 2. Render PostgreSQL 16 Basic 256MB $7/mo · name webpoint-tcs-db (do not use Free Postgres).
 3. Groq Llama 3.3 70B · $0 at launch if keyed on free tier. GROQ_API_KEY in Render Dashboard only. Never git.
 
+PAY DAY — OWN LLM (when Claude posts the RunPod URL)
+$25 RunPod credit. Then three Render env vars — see docs/OWN_LLM.md:
+1. WEBPOINT_LLM_URL
+2. WEBPOINT_LLM_KEY
+3. MODEL_PROVIDER=webpoint
+Never git the URL or key. Groq stays fallback. The 2k extractor catalog is drawn into prompts; LoRA is weekly.
+
 Ready to scale, not selected: Standard $25, Pro $85 autoscale. Same Node app. Dockerfile is the later AWS idle-capacity swap — not this month.
 
 Do not buy: Pinecone, Algolia, Elastic Cloud, OpenAI embeddings, SerpAPI, browserless, greenfield AWS ALB+Fargate+RDS+NAT ($45–90).
@@ -32,7 +39,7 @@ OPEN THESE IN ORDER
 1. CARD (you are here to pay): https://dashboard.render.com/billing
 2. APPLY BLUEPRINT: https://dashboard.render.com/blueprint/new?repo=https://github.com/webpointllc-com/TaxCertificateProcessor
 3. GROQ KEY: https://console.groq.com/keys → paste into Render env GROQ_API_KEY
-4. Operator pay page in-app: /pay.html (toggle Prep to pay, then the three buttons light up)
+4. Operator pay page in-app: /pay.html (toggle Prep to pay, then the buttons light up)
 5. Local launch: bash scripts/ru.sh   (chmod +x, prints E0F block, opens billing, binds 0.0.0.0:$PORT)
 
 SQUARESPACE EMBED (paste after Render is live)

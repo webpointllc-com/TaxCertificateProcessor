@@ -113,11 +113,25 @@ async function ensureSlot(lookup) {
   const county = lookup.jurisdiction?.county || lookup.canonicalCounty || '';
   const state = (lookup.jurisdiction?.state || lookup.canonicalState || '').toUpperCase();
   const url = lookup.officialUrl || lookup.lockedUrl || lookup.url || '';
+  const catalog = require('../services/extractorCatalog');
+  const dump = catalog.dumpFor(county, state, key);
+  const urlFinder = require('../services/urlFinder');
+  if (!lookup.method) {
+    const book = urlFinder.playbookFor(county, state, { vendor: lookup.vendor, url: url || (dump && dump.url) });
+    if (book && book.method) lookup.method = book.method;
+    if (book && book.parcel_format && !lookup.parcelFormat) lookup.parcelFormat = book.parcel_format;
+  }
   const production = drProduction.attachLayout(key);
   const layout =
     lookup.layout && typeof lookup.layout === 'object'
       ? { ...lookup.layout, production }
       : { production };
+  let notes = lookup.urlLocked
+    ? (lookup.howFound || 'Seeded from locked Search Spul URL')
+    : 'No locked collector URL — waiting for a validated extractor. Output document is DR Production Results (finale/).';
+  if (dump && dump.url && dump.url !== url) {
+    notes = `${notes} Dump ${dump.source || 'row'} URL is a candidate only: ${dump.url}`;
+  }
   const row = {
     id: id(),
     jurisdiction_key: key,
@@ -130,9 +144,7 @@ async function ensureSlot(lookup) {
     status: 'active',
     source: 'seed',
     validated: Boolean(lookup.urlLocked),
-    notes: lookup.urlLocked
-      ? (lookup.howFound || 'Seeded from locked Search Spul URL')
-      : 'No locked collector URL — waiting for a validated extractor. Output document is DR Production Results (finale/).',
+    notes,
     parcel_format: lookup.parcelFormat || drProduction.parcelFormatFor(key) || '',
     exceptions: [],
     layout,
@@ -328,6 +340,58 @@ async function addFeedback({ accountId, jurisdictionKey, kind, body, extractorId
   return row;
 }
 
+async function listFeedback({ jurisdictionKey, keys, accountId, limit } = {}) {
+  const catalog = require('../services/extractorCatalog');
+  const keyList = (Array.isArray(keys) && keys.length ? keys : catalog.keysFor({ key: jurisdictionKey }))
+    .map((k) => String(k || '').trim())
+    .filter(Boolean);
+  const cap = Math.max(1, Math.min(Number(limit) || 8, 20));
+  if (!keyList.length) return [];
+  if (usingPostgres()) {
+    const params = [keyList, cap];
+    let sql = `SELECT * FROM session_feedback WHERE jurisdiction_key = ANY($1::text[])`;
+    if (accountId) {
+      params.splice(1, 0, accountId);
+      sql += ` AND account_id = $2`;
+      sql += ` ORDER BY created_at DESC LIMIT $3`;
+    } else {
+      sql += ` ORDER BY created_at DESC LIMIT $2`;
+    }
+    const { rows } = await pool.query(sql, params);
+    return rows;
+  }
+  return memory.feedback
+    .filter((row) => keyList.includes(row.jurisdiction_key) && (!accountId || row.account_id === accountId))
+    .slice(0, cap);
+}
+
+async function contextFor(lookup = {}, { accountId, learnConsent, agent } = {}) {
+  const catalog = require('../services/extractorCatalog');
+  const urlFinder = require('../services/urlFinder');
+  const vendorFamily = require('../services/vendorFamily');
+  const county = lookup.jurisdiction?.county || lookup.canonicalCounty || lookup.county || '';
+  const state = lookup.jurisdiction?.state || lookup.canonicalState || lookup.state || '';
+  const dump = catalog.dumpFor(county, state, lookup.key || lookup.dumpKey);
+  const playbook = urlFinder.playbookFor(county, state, {
+    vendor: lookup.vendor,
+    url: lookup.officialUrl || lookup.lockedUrl || lookup.candidateUrl || (dump && dump.url)
+  });
+  const url = lookup.officialUrl || lookup.lockedUrl || lookup.candidateUrl || (dump && dump.url) || '';
+  const family = vendorFamily.classify(url, 1);
+  const keys = catalog.keysFor({ ...lookup, dumpKey: dump && dump.key, county, state });
+  const feedback = learnConsent ? await listFeedback({ keys, accountId, limit: 8 }) : [];
+  const slot = agent || (lookup.key ? await findActive(lookup.key) : null);
+  return {
+    dump,
+    playbook,
+    family,
+    feedback,
+    agent: slot || null,
+    keys,
+    promptBlock: catalog.catalogBlock(county, state, { ...lookup, dumpKey: dump && dump.key }) + catalog.learnedBlock(feedback)
+  };
+}
+
 async function listActive(limit = 40) {
   const cap = Math.max(1, Math.min(Number(limit) || 40, 200));
   if (usingPostgres()) {
@@ -517,6 +581,8 @@ module.exports = {
   markBroken,
   rememberDiscovery,
   addFeedback,
+  listFeedback,
+  contextFor,
   recordPortalSession,
   recordValidationRun,
   latestValidationRun,

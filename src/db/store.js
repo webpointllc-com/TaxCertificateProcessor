@@ -220,7 +220,8 @@ function defaultChunks() {
         'Squarespace Searching / data/spul_searching_inventory.json is the cleaned overlay of that table. Golden overrides and operator locks still win.',
         'OH-Hamilton, CT-HartfordCity, IL-Sangamon keep empty search_url until the collector search page is confirmed even if the dump has a treasurer/homepage path.',
         'The document those extractors fill is DR Production Results in finale/ — 40 columns, same headers every county. Talk whole-row unless the user names a field. Empty cells stay empty.',
-        'User and live session feedback (/v1/feedback) heals that county extractor: parcel_format variants, layout notes, exceptions. A locked collector URL is not replaced by a guessed host.'
+        'User and live session feedback (/v1/feedback) is stored in session_feedback. When the account allows learning, the next county prompt SELECT-replays those bodies. Rented model weights are not trained on that turn. The county extractor slot is the WebPoint model.',
+        'A locked collector URL is not replaced by a guessed host or by a Development dump candidate URL.'
       ].join(' ')
     },
     {

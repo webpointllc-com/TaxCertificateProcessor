@@ -529,6 +529,11 @@ app.post('/api/intelligence', async (req, res) => {
       body: q
     });
   }
+  const extractorContext = await extractors.contextFor(lookup, {
+    accountId: account?.id,
+    learnConsent: Boolean(account && account.learn_consent),
+    agent
+  });
   let talk = production.isolated_field
     ? production.speak
     : production.on_file
@@ -538,6 +543,18 @@ app.post('/api/intelligence', async (req, res) => {
     agent.parcel_format ? `Parcel format: ${agent.parcel_format}` : '',
     Array.isArray(agent.exceptions) && agent.exceptions.length
       ? `Known exceptions: ${agent.exceptions.slice(-3).map((e) => e.value || e.kind).join('; ')}`
+      : '',
+    extractorContext.dump
+      ? `Dump ${extractorContext.dump.key} ${extractorContext.dump.source || ''} candidate: ${extractorContext.dump.url}`
+      : '',
+    extractorContext.family
+      ? `Vendor family: ${extractorContext.family.family} (${extractorContext.family.kind})`
+      : '',
+    extractorContext.feedback.length
+      ? `Learned from this account (${extractorContext.feedback.length}): ${extractorContext.feedback
+          .slice(0, 3)
+          .map((f) => f.body)
+          .join(' | ')}`
       : '',
     production.isolated_field
       ? `User named field: ${production.isolated_field.header} = ${production.isolated_field.empty ? '(empty)' : production.isolated_field.value}`
@@ -549,7 +566,8 @@ app.post('/api/intelligence', async (req, res) => {
       {
         role: 'system',
         content:
-          'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. Present a collector link only when it is locked and verified. If it is not locked, ask the user to confirm the tax collecting entity search page. Speak about the DR Production Results document as one row for this parcel. Isolate a single column only when the user named that field. Empty cells stay empty. Parcel formats are per county on the extractor.'
+          'You are the WebPoint central operator talking through a county agent. Use only the locked tax collecting entity. NEVER invent URLs or dollar amounts. Present a collector link only when it is locked and verified. If it is not locked, ask the user to confirm the tax collecting entity search page. Speak about the DR Production Results document as one row for this parcel. Isolate a single column only when the user named that field. Empty cells stay empty. Parcel formats are per county on the extractor. Draw county facts from the extractor catalog (dump + playbook + vendor family). If LEARNED FEEDBACK is present, use it for this county extractor — rented model weights are not trained on this turn.' +
+          extractorContext.promptBlock
       },
       {
         role: 'user',
@@ -608,6 +626,15 @@ app.post('/api/intelligence', async (req, res) => {
       land: formatMoney(card.land),
       improvement: formatMoney(card.improvement),
       total_tax: formatMoney(card.total_tax)
+    },
+    learned: {
+      consent: Boolean(account && account.learn_consent),
+      from_catalog: true,
+      dump: Boolean(extractorContext.dump),
+      dump_key: extractorContext.dump?.key || null,
+      family: extractorContext.family?.family || null,
+      playbook: Boolean(extractorContext.playbook),
+      feedback: extractorContext.feedback.length
     }
   });
 });
@@ -632,17 +659,22 @@ app.post('/api/extractors/heal', async (req, res) => {
   const lookup = lookupBundle(parsed.raw || q, parsed.county, parsed.state);
   if (!lookup.ok) return res.status(400).json(lookup);
   const previous = await extractors.ensureSlot(lookup);
+  const priorFeedback = await extractors.listFeedback({
+    keys: require('./services/extractorCatalog').keysFor(lookup),
+    accountId: account.id,
+    limit: 6
+  });
   const urlDecision = resolveHealedUrl(lookup, req.body?.proposed_url);
   let method = methodFromFeedback(feedback, lookup, previous);
   const healMessages = [
       {
         role: 'system',
         content:
-          'Return JSON only: {"steps":["..."],"search_by":["parcel","owner"],"notes":"..."}. You are repairing a tax-collector EXTRACTOR. Never invent a URL. The search_url is locked if provided.'
+          'Return JSON only: {"steps":["..."],"search_by":["parcel","owner"],"notes":"..."}. You are repairing a tax-collector EXTRACTOR. Never invent a URL. The search_url is locked if provided. Use prior learned feedback for this county when it does not conflict with the lock.'
       },
       {
         role: 'user',
-        content: `Entity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nPrior method: ${JSON.stringify(previous.method)}\nUser feedback: ${feedback}`
+        content: `Entity: ${lookup.entity}\nLocked URL: ${lookup.officialUrl || '(none)'}\nPrior method: ${JSON.stringify(previous.method)}\nPrior learned feedback: ${JSON.stringify(priorFeedback.map((f) => ({ kind: f.kind, body: f.body })))}\nUser feedback: ${feedback}`
       }
   ];
   const repaired = await llm.complete({ heavy: true, temperature: 0, max_tokens: 400, messages: healMessages });
@@ -783,11 +815,29 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
         .join('\n')}`
     : '';
 
+  const account = await resolveAccount(req).catch(() => null);
+  const extractorContext = jurisdiction.county
+    ? await extractors.contextFor(
+        {
+          ...(lookup || {}),
+          key: jurKey,
+          jurisdiction,
+          county: jurisdiction.county,
+          state: jurisdiction.state
+        },
+        {
+          accountId: account?.id,
+          learnConsent: Boolean(account && account.learn_consent)
+        }
+      )
+    : { promptBlock: '', feedback: [] };
+
   const systemContent =
     enrichSystemPrompt(jurisdiction.county, jurisdiction.state, {
       scenarioMatch,
       message,
-      parcel: parsed.apn
+      parcel: parsed.apn,
+      extractorContext
     }) +
     ragBlock +
     `\nYou may also draft TCS/TPA/RDS workflow steps. Still never invent collector URLs.`;
@@ -795,8 +845,6 @@ app.post(['/api/chat', '/v1/chat'], async (req, res) => {
   let fullResponse = urlLocked && lockedUrl
     ? buildLockedUrlPrefix(lockedUrl, lookup.confidence, lookup.entity)
     : '';
-
-  const account = await resolveAccount(req).catch(() => null);
   let answeredBy = llm.status().model;
   let chatMessages = null;
   let captured = null;

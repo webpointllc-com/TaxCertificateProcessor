@@ -10,7 +10,7 @@ const { app } = require('../src/server');
 const siteValidator = require('../src/services/siteValidator');
 const { lookupForApi } = require('../src/services/urlFinder');
 const { handshake } = require('../src/services/siteValidator');
-const { pickTargets } = require('../scripts/validate-extractors');
+const { pickTargets, pickPass2Targets } = require('../scripts/validate-extractors');
 
 describe('site validator + DR look-for heads', () => {
   it('looks for DR Production Results column heads on every county portal', () => {
@@ -79,6 +79,7 @@ describe('site validator + DR look-for heads', () => {
     assert.match(md, /wptpat_/);
     assert.match(md, /extractor\/session|extractors\/session/);
     assert.match(md, /keep_lock/);
+    assert.match(md, /validate:pass2|pass2/);
     assert.doesNotMatch(md, /bypass Cloudflare/i);
   });
 
@@ -96,6 +97,17 @@ describe('site validator + DR look-for heads', () => {
     const applySrc = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'apply-validation.js'), 'utf8');
     assert.match(applySrc, /keep_lock/);
     assert.match(applySrc, /wasVerified/);
+  });
+
+  it('picks leftover unknown_live hosts for pass2 without requiring a rewrite of the 2k run', () => {
+    const targets = pickPass2Targets();
+    assert.ok(targets.length >= 10, targets.length);
+    assert.ok(targets.every((t) => /^https?:/i.test(t.url)));
+    assert.ok(targets.every((t) => !/google\.com/i.test(t.url)));
+    const run = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '..', 'data', 'validation_run.json'), 'utf8')
+    );
+    assert.ok(run.probed >= 1400);
   });
 
   it('prefers a newer Postgres validation run over the file report', async () => {

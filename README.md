@@ -70,7 +70,7 @@ Render **is** scalable at an affordable rate through a few hundred concurrent re
 
 **AWS is not cheaper just because the company already has an AWS login.** A *new* production stack (ALB ~$16 + Fargate ~$15–25 + RDS ~$12–25 + NAT Gateway ~$32) is **3–6× Render** before Groq. AWS wins only when (a) this app sits on **idle RDS/ECS you already pay for** (marginal cost near $0), or (b) you are north of ~500–1,200 users with reserved capacity. Same Node app either way: `0.0.0.0:$PORT` + `DATABASE_URL`. `Dockerfile` is the swap, not a rewrite of the product.
 
-Do not buy RunPod/Lambda until year 2. Do not rebuild every flow onto AWS to “save money” at 50 users — that is how a $14 tool becomes a $70 tool that still talks to Groq.
+Do not rebuild every flow onto AWS to “save money” at 50 users — that is how a $14 tool becomes a $70 tool that still talks to Groq. Own-LLM pay day (RunPod $25 + three Render env vars) is [`docs/OWN_LLM.md`](docs/OWN_LLM.md). The catalog stays the product.
 
 Pay: open [`/pay.html`](public/pay.html) (or `npm run pay` / `bash scripts/ru.sh`). That page has the selected stack (Starter web + Postgres Basic 256MB = **$14/mo**) and a **Prep to pay** toggle. Flip it to jump straight to [Render billing](https://dashboard.render.com/billing), then [Apply Blueprint](https://dashboard.render.com/blueprint/new?repo=https://github.com/webpointllc-com/TaxCertificateProcessor), then paste Groq key from [console.groq.com/keys](https://console.groq.com/keys) into the Render Dashboard (never git).
 

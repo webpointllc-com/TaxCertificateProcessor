@@ -63,4 +63,18 @@ describe('Development Extractor table dump', () => {
     assert.ok(page.seeds.some((s) => /Extractor table dump/i.test(s)));
     assert.ok(page.seeds.some((s) => /feedback/i.test(s)));
   });
+
+  it('draws the 2k dump row for Chippewa as a candidate and keeps LandNav locked', () => {
+    const lookup = lookupForApi('Chippewa', 'WI');
+    assert.equal(lookup.urlLocked, true);
+    assert.match(lookup.officialUrl, /landnav\.com/i);
+    assert.ok(lookup.dumpUrl);
+    assert.match(lookup.dumpUrl, /chippewa/i);
+    const prompt = enrichSystemPrompt('Chippewa', 'WI');
+    assert.match(prompt, /landnav\.com/i);
+    assert.match(prompt, /Guest Sign In/);
+    assert.match(prompt, /candidate/i);
+    assert.match(prompt, /cctax\.co\.chippewa|Dump WI-Chippewa/);
+    assert.match(prompt, /COUNTY EXTRACTOR CATALOG/);
+  });
 });

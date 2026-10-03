@@ -25,6 +25,7 @@ Two learning speeds:
 | Speed | What learns | Where |
 | --- | --- | --- |
 | Instant | Extractor for that tax collecting entity | `/api/extractors/heal` → extractor vN (already shipped) |
+| Instant | 2k dump row + playbook + vendor family + consented `session_feedback` in the prompt | `extractorCatalog` + `listFeedback` (this slice). Dump URLs are candidates; locks still win |
 | Weekly | The model itself | `training_examples` → LoRA adapter vN (this branch) |
 
 ## What this branch adds (`feature/own-llm`)
@@ -39,6 +40,8 @@ Two learning speeds:
 | `training/train_lora.py` | QLoRA fine-tune. Refuses to run under 200 examples |
 | `training/eval_gate.py` | Ship gate. Fails if the new adapter invents more URLs or dollar amounts, or drifts from references |
 | `tests/own-llm.test.js` | 19 tests: chain, fallback, streaming, every consent rule, export masking |
+| `src/services/extractorCatalog.js` | Draws the Development dump (~2,030 usable URLs) into Groq/WebPoint prompts as **candidates**. Never locks google.com or dump-vs-golden disagreements |
+| `npm run validate:pass2` | Re-probes leftover `unknown_live` hosts into `data/validation_pass2.json` without overwriting the 2k run |
 
 Merging changes nothing in production. `MODEL_PROVIDER` stays `groq` until the switch-day steps below.
 

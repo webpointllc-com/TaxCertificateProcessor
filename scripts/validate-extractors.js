@@ -8,6 +8,10 @@
  *
  *   node scripts/validate-extractors.js --all
  *   node scripts/validate-extractors.js --limit=80 --concurrency=8
+ *   node scripts/validate-extractors.js --pass2
+ *     Probe leftover unknown_live (!cloudflare) from validation_hits.json.
+ *     Writes data/validation_pass2.json. Does NOT overwrite validation_run.json
+ *     or validation_hits.json.
  */
 'use strict';
 
@@ -22,6 +26,7 @@ const EXTRACTORS = path.join(ROOT, 'data', 'extractor_urls.json');
 const INVENTORY = path.join(ROOT, 'data', 'spul_searching_inventory.json');
 const LOCKS = path.join(ROOT, 'data', 'spul_searching_operator_locks.json');
 const HITS_PATH = path.join(ROOT, 'data', 'validation_hits.json');
+const PASS2_PATH = path.join(ROOT, 'data', 'validation_pass2.json');
 
 const args = Object.fromEntries(
   process.argv.slice(2).map((a) => {
@@ -121,12 +126,41 @@ function extractTitleSafe(html) {
   return m ? m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
 }
 
-async function main() {
-  const targets = pickTargets();
+function pickPass2Targets() {
+  const vendorFamily = require('../src/services/vendorFamily');
+  const bundle = loadJson(HITS_PATH, { hits: [] });
+  const seen = new Set();
+  const rows = [];
+  for (const hit of bundle.hits || []) {
+    if (!hit || hit.verdict !== 'unknown_live' || hit.cloudflare) continue;
+    const url = String(hit.url || '').trim();
+    if (!isRealHttpUrl(url) || isGoogleFallbackUrl(url)) continue;
+    if (siteValidator.skipPlaybookKey(hit.key)) continue;
+    const family = vendorFamily.classify(url, 1);
+    if (family.kind === 'assessor' || family.kind === 'skip' || family.kind === 'payment_hub') continue;
+    if (family.chrome === 'user_session') continue;
+    if (seen.has(url)) continue;
+    seen.add(url);
+    rows.push({
+      key: hit.key,
+      keys: hit.keys || [hit.key],
+      county: hit.county,
+      state: hit.state,
+      url,
+      source: hit.source || 'pass2_unknown_live',
+      family: family.family,
+      kind: family.kind
+    });
+  }
+  if (LIMIT) return rows.slice(0, LIMIT);
+  return rows;
+}
+
+async function probeTargets(targets) {
   const hits = new Array(targets.length);
   let done = 0;
   await pool(targets, CONCURRENCY, async (row, idx) => {
-    const fetched = await fetchOne(row.url, 12000);
+    const fetched = await fetchOne(row.url, 8000);
     const fields = extractFields(fetched.html || '');
     const verdict = classifyProbe({
       url: row.url,
@@ -143,7 +177,10 @@ async function main() {
       process.stderr.write(`validate-extractors ${done}/${targets.length}\n`);
     }
   });
+  return hits;
+}
 
+function tally(hits) {
   const counts = {};
   const lookForHits = {};
   for (const hit of hits) {
@@ -155,6 +192,54 @@ async function main() {
       lookForHits[header] = (lookForHits[header] || 0) + 1;
     }
   }
+  return { counts, lookForHits };
+}
+
+async function runPass2() {
+  const targets = pickPass2Targets();
+  const hits = await probeTargets(targets);
+  const { counts, lookForHits } = tally(hits);
+  const report = {
+    generatedAt: new Date().toISOString(),
+    method: 'pass2_unknown_live_http_get',
+    how: [
+      'Read data/validation_hits.json from the 2k unique-URL pass.',
+      'Re-probe unknown_live hosts that are not Cloudflare, not assessor, not user_session PAT families.',
+      'Write data/validation_pass2.json only. Do not overwrite validation_run.json or validation_hits.json.',
+      'Apply collector_search upgrades with: node scripts/apply-validation.js --hits=data/validation_pass2.json --log=data/validation_apply_pass2.json --upgrades-only'
+    ],
+    sourceRun: loadJson(HITS_PATH, {}).generatedAt || null,
+    probed: hits.length,
+    counts,
+    lookForHits,
+    lookFor: siteValidator.lookForHeaders(),
+    hits
+  };
+  fs.writeFileSync(PASS2_PATH, JSON.stringify(report, null, 2) + '\n');
+  process.stdout.write(
+    JSON.stringify(
+      {
+        ok: true,
+        pass2: true,
+        probed: report.probed,
+        counts: report.counts,
+        out: path.relative(ROOT, PASS2_PATH),
+        kept: ['data/validation_run.json', 'data/validation_hits.json']
+      },
+      null,
+      2
+    ) + '\n'
+  );
+}
+
+async function main() {
+  if (args.pass2) {
+    await runPass2();
+    return;
+  }
+  const targets = pickTargets();
+  const hits = await probeTargets(targets);
+  const { counts, lookForHits } = tally(hits);
 
   const queue = hits
     .filter((h) => h.needsDeepShake && !siteValidator.skipPlaybookKey(h.key))
@@ -228,4 +313,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { pickTargets, main };
+module.exports = { pickTargets, pickPass2Targets, main, PASS2_PATH };
